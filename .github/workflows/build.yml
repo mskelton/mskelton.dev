@@ -8,13 +8,13 @@ jobs:
       - uses: mskelton/setup-yarn@v1
       - run: yarn lint
       - run: yarn prettier --check .
-  type-check:
+  ts:
     name: Type Check
     runs-on: ubuntu-latest
     steps:
       - uses: mskelton/setup-yarn@v1
       - run: yarn ts
-  test:
+  e2e:
     name: Playwright Tests
     runs-on: ubuntu-latest
     steps:
