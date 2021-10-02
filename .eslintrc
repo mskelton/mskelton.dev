@@ -1,0 +1,7 @@
+{
+  "extends": [
+    "@mskelton",
+    "@mskelton/eslint-config/typescript",
+    "@mskelton/eslint-config/react"
+  ]
+}
