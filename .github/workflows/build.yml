@@ -15,13 +15,13 @@ jobs:
       - uses: mskelton/setup-yarn@v1
       - run: yarn ts
   test:
-    name: End-to-end Test
+    name: Playwright Tests
     runs-on: ubuntu-latest
     steps:
       - uses: mskelton/setup-yarn@v1
-      - run: yarn build
       - run: yarn playwright install-deps
       - run: yarn playwright install chromium
+      - run: yarn build
       - run: yarn test
       - name: Upload test results
         uses: actions/upload-artifact@v2
