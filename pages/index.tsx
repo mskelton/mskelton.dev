@@ -5,7 +5,7 @@ export default function Home() {
     <div className="container">
       <Head>
         <title>Mark Skelton</title>
-        <link rel="icon" href="/favicon.ico" />
+        <link href="/favicon.ico" rel="icon" />
       </Head>
 
       <main>
@@ -18,27 +18,27 @@ export default function Home() {
         </p>
 
         <div className="grid">
-          <a href="https://nextjs.org/docs" className="card">
+          <a className="card" href="https://nextjs.org/docs">
             <h3>Documentation &rarr;</h3>
             <p>Find in-depth information about Next.js features and API.</p>
           </a>
 
-          <a href="https://nextjs.org/learn" className="card">
+          <a className="card" href="https://nextjs.org/learn">
             <h3>Learn &rarr;</h3>
             <p>Learn about Next.js in an interactive course with quizzes!</p>
           </a>
 
           <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
             className="card"
+            href="https://github.com/vercel/next.js/tree/master/examples"
           >
             <h3>Examples &rarr;</h3>
             <p>Discover and deploy boilerplate example Next.js projects.</p>
           </a>
 
           <a
-            href="https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
             className="card"
+            href="https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
           >
             <h3>Deploy &rarr;</h3>
             <p>
@@ -51,10 +51,10 @@ export default function Home() {
       <footer>
         <a
           href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
           rel="noopener noreferrer"
+          target="_blank"
         >
-          Powered by <img src="/vercel.svg" alt="Vercel" className="logo" />
+          Powered by <img alt="Vercel" className="logo" src="/vercel.svg" />
         </a>
       </footer>
     </div>
