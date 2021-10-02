@@ -742,13 +742,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@mskelton/tsconfig@npm:^1.0.2":
-  version: 1.0.2
-  resolution: "@mskelton/tsconfig@npm:1.0.2"
-  checksum: aaf48f164a8151356fef280a8a3724538c5f94d1ec158f2c4e7f7d3fe8d46050522be9daeabae418f6ae0635f83b70cb314b9e026cdacd9ef5036a889add5590
-  languageName: node
-  linkType: hard
-
 "@napi-rs/triples@npm:^1.0.3":
   version: 1.0.3
   resolution: "@napi-rs/triples@npm:1.0.3"
@@ -3855,7 +3848,6 @@ fsevents@~2.3.1:
     "@babel/core": ^7.15.5
     "@babel/eslint-parser": ^7.15.7
     "@mskelton/eslint-config": ^6.1.0
-    "@mskelton/tsconfig": ^1.0.2
     "@playwright/test": ^1.15.1
     "@types/react": ^17.0.26
     "@types/react-dom": ^17.0.9
