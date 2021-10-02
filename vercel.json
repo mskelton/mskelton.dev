@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/yarn-outdated/:version*",
+      "destination": "https://github.com/mskelton/yarn-plugin-outdated/raw/:version*/bundles/@yarnpkg/plugin-outdated.js"
+    }
+  ]
+}
