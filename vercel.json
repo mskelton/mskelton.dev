@@ -8,12 +8,12 @@
       "destination": "https://github.com/mskelton/yarn-plugin-outdated/raw/:version*/bundles/@yarnpkg/plugin-outdated.js"
     },
     {
-      "source": "/ratchet",
-      "destination": "https://ratchet-mskelton.vercel.app"
+      "source": "/ratchet.ts",
+      "destination": "https://raw.githubusercontent.com/mskelton/ratchet/main/transform.ts"
     },
     {
-      "source": "/ratchet.ts",
-      "destination": "https://github.com/mskelton/ratchet/main/transform.ts"
+      "source": "/ratchet",
+      "destination": "https://ratchet-mskelton.vercel.app"
     }
   ]
 }
