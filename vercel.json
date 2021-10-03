@@ -12,8 +12,8 @@
       "destination": "https://raw.githubusercontent.com/mskelton/ratchet/main/transform.ts"
     },
     {
-      "source": "/ratchet",
-      "destination": "https://ratchet-mskelton.vercel.app"
+      "source": "/ratchet/:asset*",
+      "destination": "https://ratchet-mskelton.vercel.app/:asset*"
     }
   ]
 }
