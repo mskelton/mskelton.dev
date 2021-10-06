@@ -14,7 +14,7 @@ const config: PlaywrightTestConfig = {
     trace: "on-first-retry",
   },
   webServer: {
-    command: "yarn start",
+    command: "yarn dev",
     port: 3000,
     reuseExistingServer: !process.env.CI,
     timeout: 120 * 1000,
