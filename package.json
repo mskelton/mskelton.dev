@@ -19,10 +19,7 @@
     "ts": "tsc"
   },
   "dependencies": {
-    "@chakra-ui/react": "^1.6.8",
-    "@emotion/react": "^11",
-    "@emotion/styled": "^11",
-    "framer-motion": "^4",
+    "gray-matter": "^4.0.3",
     "next": "^11.1.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
@@ -36,6 +33,7 @@
     "@types/react-dom": "^17.0.9",
     "@typescript-eslint/eslint-plugin": "^4.32.0",
     "@typescript-eslint/parser": "^4.32.0",
+    "autoprefixer": "^10.3.7",
     "eslint": "^7.32.0",
     "eslint-plugin-playwright": "^0.5.1",
     "eslint-plugin-react": "^7.26.1",
@@ -43,7 +41,9 @@
     "eslint-plugin-sort": "^1.5.0",
     "expect-axe-playwright": "^1.2.0",
     "lariat": "^0.4.1",
+    "postcss": "^8.3.9",
     "prettier": "^2.4.1",
+    "tailwindcss": "^2.2.16",
     "typescript": "^4.4.3"
   }
 }
