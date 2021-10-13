@@ -1,6 +1,6 @@
 ---
 title: Why I Don't Use Environment Variables
-subtitle: Common challenges with environment variables and how to remedy them
+excerpt: Common challenges with environment variables and how to remedy them
 tags: Nodejs, Environment Variables, Dotenv
 date: "2020-01-11"
 ---
