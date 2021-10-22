@@ -1,6 +1,6 @@
-import { CalendarIcon, ClockIcon } from "@heroicons/react/solid"
 import Link from "next/link"
 import React from "react"
+import { FaCalendar, FaClock } from "react-icons/fa"
 import { BlogPost } from "../../lib/posts"
 import { formatDate } from "../../utils/date"
 import { CardFooterItem } from "./CardFooterItem"
@@ -24,11 +24,11 @@ export function BlogPostCard({
 
         <p className="text-gray-600 font-light mb-7">{excerpt}</p>
         <div className="flex items-center justify-between">
-          <CardFooterItem icon={<CalendarIcon />}>
+          <CardFooterItem icon={<FaCalendar />}>
             {formatDate(date)}
           </CardFooterItem>
 
-          <CardFooterItem icon={<ClockIcon />}>3 minute read</CardFooterItem>
+          <CardFooterItem icon={<FaClock />}>3 minute read</CardFooterItem>
         </div>
       </div>
     </article>
