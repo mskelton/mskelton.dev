@@ -14,9 +14,12 @@ export default class extends Document {
 
   render() {
     return (
-      <Html className="text-gray-900 leading-tight" lang="en">
+      <Html
+        className="bg-gray-800 text-gray-300 font-sans leading-tight"
+        lang="en"
+      >
         <Head />
-        <body className="min-h-screen bg-gray-100">
+        <body className="min-h-screen">
           <Main />
           <NextScript />
         </body>

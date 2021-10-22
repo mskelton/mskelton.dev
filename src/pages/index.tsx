@@ -1,17 +1,10 @@
-import { InferGetStaticPropsType } from "next"
 import Head from "next/head"
-import React from "react"
-import { BlogPostCard } from "../components/blog/BlogPostCard"
-import { BlogPostRow } from "../components/blog/BlogPostRow"
-import { getPosts } from "../lib/posts"
+import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa"
+import { Link } from "../components/Link"
+import { Paragraph } from "../components/Paragraph"
+import { SocialLink } from "../components/SocialLink"
 
-export async function getStaticProps() {
-  const posts = await getPosts(3, ["title", "slug", "excerpt"])
-
-  return { props: { posts } }
-}
-
-function Home({ posts }: InferGetStaticPropsType<typeof getStaticProps>) {
+function Home() {
   return (
     <div>
       <Head>
@@ -19,20 +12,60 @@ function Home({ posts }: InferGetStaticPropsType<typeof getStaticProps>) {
         <link href="/favicon.ico" rel="icon" />
       </Head>
 
-      <main data-testid="home">
-        <h1>Hi, I&rsquo;m Mark Skelton.</h1>
+      <main className="py-16 px-20" data-testid="home">
+        <h1 className="text-5xl mb-10">
+          Hi, I&rsquo;m <span className="text-blue-400">Mark Skelton</span>.
+        </h1>
 
-        <p>
+        <Paragraph className="mb-4">
           I&rsquo;m a software developer and follower of Christ from Monroe,
-          Wisconsin.
-        </p>
+          Wisconsin. Right now, I&rsquo;m working at{" "}
+          <Link href="https://www.widen.com">Widen</Link> as a lead developer
+          and JavaScript Engineer. TypeScript and React are my jam, plus a host
+          of other technologies including Node, Playwright, webpack, Prettier,
+          ESLint, and so much more.
+        </Paragraph>
 
-        <h2>Recent blogs posts</h2>
-        <BlogPostRow>
-          {posts.map((post) => (
-            <BlogPostCard key={post.slug} {...post} />
-          ))}
-        </BlogPostRow>
+        <Paragraph className="mb-8">
+          In my spare time, I enjoy spending time with friends, playing disc
+          golf, coding (why not), and remodeling my house. I&rsquo;m both and
+          extrovert and a nerd, so I&rsquo;m more than happy to talk for long
+          periods of time with my family about tech, even if they don&rsquo;t
+          understand.
+        </Paragraph>
+
+        <h2 className="text-4xl mb-2">Socials</h2>
+
+        <Paragraph className="mb-6">
+          If you want to get to know me better, check me out on any of my
+          socials!
+        </Paragraph>
+
+        <div className="flex gap-4">
+          <SocialLink
+            href="https://github.com/mskelton"
+            target="_blank"
+            title="GitHub"
+          >
+            <FaGithub />
+          </SocialLink>
+
+          <SocialLink
+            href="https://twitter.com/mskelton0"
+            target="_blank"
+            title="Twitter"
+          >
+            <FaTwitter />
+          </SocialLink>
+
+          <SocialLink
+            href="https://linkedin.com/in/mark-skelton"
+            target="_blank"
+            title="Linkedin"
+          >
+            <FaLinkedin />
+          </SocialLink>
+        </div>
       </main>
     </div>
   )
