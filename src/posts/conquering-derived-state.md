@@ -22,7 +22,7 @@ components and several alternatives to derived state.
 ## Recognizing Derived State
 
 Before I go any further, let me provide a few examples of derived state to help
-you start recognizing derived state patterns. I’ll begin with class based
+you start recognizing derived state patterns. I'll begin with class based
 components as they are easier to recognize than function based components.
 
 ```js
@@ -56,7 +56,7 @@ component derives its state from props.
 
 Because `componentWillReceiveProps` is being deprecated, React has a newer
 lifecycle method named `getDerivedStateFromProps`. This method almost needs no
-example as its name speaks for itself, but a quick example won’t hurt.
+example as its name speaks for itself, but a quick example won't hurt.
 
 ```js
 class PartiallyControlledInput extends React.Component {
@@ -111,18 +111,18 @@ As you can see, the previous example is a more subtle use of derived state. When
 `props.value` changes, an effect will run which will set the value of the input
 with the new prop value. This is essentially the same as the first example we
 showed above and suffers from the exact same problems. Just because it is
-written with hooks doesn’t mean it is magically better than its class based
+written with hooks doesn't mean it is magically better than its class based
 equivalent!
 
 ## Alternatives to Derived State
 
-Now that we’ve seen a few examples of derived state, let’s look at some
+Now that we've seen a few examples of derived state, let's look at some
 alternative solutions.
 
 ### Fully uncontrolled component with a key
 
 The first option would be to make the component fully uncontrolled and use
-React’s special `key` prop which will create a new instance of the component
+React's special `key` prop which will create a new instance of the component
 rather than updating the existing one. This includes re-initializing component
 state with the initial values provided.
 
@@ -215,7 +215,7 @@ function Form() {
 }
 ```
 
-Because the hook isn’t directly tied to the component, we can achieve a high
+Because the hook isn't directly tied to the component, we can achieve a high
 level of customization. For example, if we want to trigger some side effect when
 the day changes, we can simply add a `useEffect` hook with a dependency on the
 `day` variable. Or, if we needed to customize the `onDayChange` logic, we could

@@ -14,5 +14,5 @@
 }
 
 .markdown pre {
-  @apply bg-gray-700 p-3 mb-4 rounded;
+  @apply bg-gray-700 p-3 mb-4 rounded w-full overflow-x-scroll;
 }

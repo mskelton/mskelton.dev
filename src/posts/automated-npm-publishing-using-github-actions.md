@@ -8,15 +8,15 @@ date: "2019-11-16"
 
 GitHub Actions are a great way to setup CI/CD tasks directly in your GitHub
 repos for running tests, deploying code, publishing packages, and so much more.
-I’ve recently done some work to setup actions in my open source repositories for
+I've recently done some work to setup actions in my open source repositories for
 easily publishing npm packages without forcing me to run a bunch of commands
-from my local development machine. In this article, I’ll go through some basic
+from my local development machine. In this article, I'll go through some basic
 jobs that you can run using GitHub Actions to simplify the process of publishing
 npm packages.
 
 ## Basic Publish Action
 
-To get our feet wet with publishing npm packages using GitHub Actions, let’s
+To get our feet wet with publishing npm packages using GitHub Actions, let's
 start by creating a simple action that will publish to npm when we push a new
 version tag.
 
@@ -106,7 +106,7 @@ on: [push]
 
 Next, we will add a `test` job to the action that uses a matrix strategy to test
 our package against multiple node versions. You could also add OS versions to
-the matrix but for our example we’ll keep it simple.
+the matrix but for our example we'll keep it simple.
 
 ```yml
 test:
@@ -124,7 +124,7 @@ test:
 ```
 
 The last step is to update our other two jobs to depend on the test job and only
-run on tags. By depending on the test job we can ensure that we don’t publish a
+run on tags. By depending on the test job we can ensure that we don't publish a
 package until the tests have run and passed. Additionally, since we changed our
 trigger from tags to any push, we need to add a conditional to ensure that the
 publish and release steps will only run for tags while the test can still run

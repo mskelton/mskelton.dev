@@ -2,7 +2,7 @@ import { InferGetStaticPropsType } from "next"
 import Head from "next/head"
 import React from "react"
 import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa"
-import { Link } from "components/Link"
+import { Anchor } from "components/Anchor"
 import { Paragraph } from "components/Paragraph"
 import { SocialLink } from "components/SocialLink"
 import { BlogPostCard } from "components/blog/BlogPostCard"
@@ -31,10 +31,10 @@ export default function Home({
         <Paragraph className="mb-4">
           I&rsquo;m a software developer and follower of Christ from Monroe,
           Wisconsin. Right now, I&rsquo;m working at{" "}
-          <Link href="https://www.widen.com">Widen</Link> as a lead developer
-          and JavaScript Engineer. TypeScript and React are my jam, plus a host
-          of other technologies including Node, Playwright, webpack, Prettier,
-          ESLint, and so much more.
+          <Anchor href="https://www.widen.com">Widen</Anchor> as a lead
+          developer and JavaScript Engineer. TypeScript and React are my jam,
+          plus a host of other technologies including Node, Playwright, webpack,
+          Prettier, ESLint, and so much more.
         </Paragraph>
 
         <Paragraph className="mb-8">

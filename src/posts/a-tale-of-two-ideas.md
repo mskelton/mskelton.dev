@@ -6,16 +6,16 @@ date: "2019-11-02"
 
 Every day, we encounter ideas and viewpoints that affect our lives in one way or
 another. Sometimes we agree with the ideas we hear, other times we disagree, and
-many times we aren’t immediately sure if we agree or disagree with the ideas we
+many times we aren't immediately sure if we agree or disagree with the ideas we
 encounter. The challenge we face is discerning which ideas are true and which
 are false.
 
 While ideas come from a variety of sources, by far the easiest example of
-opposing ideas is politics (_don’t worry, this is not a political opinion
+opposing ideas is politics (_don't worry, this is not a political opinion
 article_). Each election cycle, candidates give speeches and participate in
 debates to make their ideas known in an effort to gain supporters who will vote
 for them in the upcoming election. However, the decision rests with the voters
-who must decide which candidate’s ideas most closely align with their own
+who must decide which candidate's ideas most closely align with their own
 beliefs.
 
 ## Forks in the Road
@@ -25,10 +25,10 @@ career in the software development industry. As such, many readers will not find
 it very useful due to its technical nature. If you are interested in a more
 general example, please let me know in the comments. Thanks!_
 
-Over the last few months, I’ve been interested in the topic of testing React
+Over the last few months, I've been interested in the topic of testing React
 components and I came across the concept of shallow rendering. In a nutshell,
 shallow rendering allows you to test React components without rendering their
-child components. React’s documentation says the following about shallow
+child components. React's documentation says the following about shallow
 rendering (_plus some other stuff not relevant to this article_).
 
 > Shallow rendering lets you render a component “one level deep”, … This does
@@ -56,7 +56,7 @@ For my shallow rendering investigation, I compared an article by
 with an article by [Tim Doherty](https://twitter.com/TimCDoherty) called
 "[In Defense of Shallow Rendering](https://javascript.plainenglish.io/in-defense-of-shallow-rendering-5f627f7c155d)".
 While you may find other differences, I found two high-level differences between
-the articles (_again, I’m saving my opinions for a different article_). The two
+the articles (_again, I'm saving my opinions for a different article_). The two
 differences I identified were:
 
 - Overall testing methodology (testing pyramid vs testing trophy)
@@ -79,7 +79,7 @@ While both Tim and Kent discuss implementation details, they use it to mean very
 different things. For example, Tim mentions in his post that “the DOM is an
 implementation detail” and goes on to say that child components are
 implementation details when testing a parent component. Kent looks at
-implementation details from the user’s perspective in which case the DOM would
+implementation details from the user's perspective in which case the DOM would
 not be an implementation detail but instead a necessary part of the code. These
 difference perspectives on implementation details further explain why the two
 authors have very different thoughts on shallow rendering.
@@ -98,15 +98,15 @@ In most cases, there comes a time to make the judgement call and decide which
 idea you believe to be true. When you do, be prepared for others to disagree
 with your conclusion and be willing to accept their feedback. Hearing feedback
 from others or searching for more information yourself may result in your
-opinion changing on a subject, and that’s okay! Making incorrect judgements,
+opinion changing on a subject, and that's okay! Making incorrect judgements,
 while undesirable, should be viewed as a learning opportunity rather than a
 failure.
 
 Making a decision on a subject can be scary at times especially if the decision
 could have an impact on those around you such as your family, friends, or
 employer. We have all likely heard of people who made simple decisions that
-resulted in a massive problem down the road and while this does happen, don’t
-let that stop you from making your decision and moving on. I’ve made many
+resulted in a massive problem down the road and while this does happen, don't
+let that stop you from making your decision and moving on. I've made many
 decisions in my career that I later found were less than ideal or just flat out
 wrong! The key in situations like this is simple: learn from the poor decision,
 change your future decisions, and move on with your life 🙂

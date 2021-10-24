@@ -10,21 +10,21 @@ date: "2020-03-21"
 In my article titled “[A Tale of Two Ideas](/blog/a-tale-of-two-ideas)” I
 discussed my method for discerning between opposing ideas and used the topic of
 shallow rendering as an example of a topic which has very distinct and differing
-opinions. Although I did not tell my opinion in the article as I didn’t want to
+opinions. Although I did not tell my opinion in the article as I didn't want to
 taint the purpose of the article, I did promise to publish an article with my
 opinions at a later point. And now, that time has come!
 
 ## TLDR
 
 Rather than making you scroll all the way to the end to see my list of reasons,
-they are listed succinctly in the following list. If you don’t like what you
-see, you won’t be forced to read any more. 🙂
+they are listed succinctly in the following list. If you don't like what you
+see, you won't be forced to read any more. 🙂
 
 1. Shallow rendering creates additional failure points.
 1. Shallow rendering decreases confidence.
 1. Shallow rendering complicates refactoring.
 
-_If you’re interested in the original article, check it out using the link
+_If you're interested in the original article, check it out using the link
 below!_
 
 TODO:
@@ -35,7 +35,7 @@ What is the purpose of shallow rendering in the first place? According to the
 [Enzyme docs](https://enzymejs.github.io/enzyme/docs/api/shallow.html),
 
 > Shallow rendering is useful to constrain yourself to testing a component as a
-> unit, and to ensure that your tests aren’t indirectly asserting on behavior of
+> unit, and to ensure that your tests aren't indirectly asserting on behavior of
 > child components.
 
 To a developer with a component driven design mindset, this sounds great since
@@ -71,10 +71,10 @@ down. Shallow rendering might give high confidence that a single component is
 working correctly, but it gives little to no confidence that it results in the
 correct user behavior.
 
-It is also important to mention that increased confidence doesn’t necessarily
-result in less time spent writing tests. Before you panic, that’s okay! The most
+It is also important to mention that increased confidence doesn't necessarily
+result in less time spent writing tests. Before you panic, that's okay! The most
 likely outcome of increased confidence is better testing coverage. Since you
-won’t spend as much time fixing false positives/negatives, you will have more
+won't spend as much time fixing false positives/negatives, you will have more
 time to test known edge cases and perform exploratory testing to find other edge
 cases.
 
@@ -95,7 +95,7 @@ component, I added a test that verifies the `UserDetails` component renders a
 `FormattedPhone` component and format the phone in the `UserDetails` component.
 Since I used shallow rendering, my test breaks since it was expecting to find a
 `FormattedPhone` component. Not only do the tests now require changes, but they
-don’t give me confidence that the changes to the components maintained the
+don't give me confidence that the changes to the components maintained the
 expected user behavior.
 
 ## A Better Way
@@ -113,7 +113,7 @@ recommendations:
    component. This is more similar to a real application where user interaction
    affects your component.
 1. Never under any circumstance use APIs which allow you to directly affect
-   component state (e.g. Enzyme’s `setState` method). This does not accurately
+   component state (e.g. Enzyme's `setState` method). This does not accurately
    reflect user behavior. Directly modifying props is also not ideal, but it is
    less problematic than directly modifying state.
 1. Try out

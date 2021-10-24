@@ -1,8 +1,10 @@
 import { getMDXComponent } from "mdx-bundler/client"
 import { GetStaticPropsContext, InferGetStaticPropsType } from "next"
 import Head from "next/head"
-import { useMemo } from "react"
-import { Link } from "components/Link"
+import Link from "next/link"
+import React, { useMemo } from "react"
+import { FaChevronLeft } from "react-icons/fa"
+import { Anchor } from "components/Anchor"
 import { MarkdownImage } from "components/MarkdownImage"
 import {
   MarkdownBlockquote,
@@ -47,12 +49,18 @@ export default function Post({
         <meta content={frontmatter.tags} name="keywords" />
       </Head>
 
-      <main>
+      <main className="max-w-prose mx-auto">
+        <Link href="/" passHref>
+          <Anchor className="inline-flex items-center mb-5">
+            <FaChevronLeft className="mr-1 text-sm" /> Back to home
+          </Anchor>
+        </Link>
+
         <h1 className="text-4xl mb-10">{frontmatter.title}</h1>
-        <article className="markdown max-w-prose">
+        <article className="markdown">
           <Component
             components={{
-              a: Link,
+              a: Anchor,
               blockquote: MarkdownBlockquote,
               h2: MarkdownH2,
               h3: MarkdownH3,
