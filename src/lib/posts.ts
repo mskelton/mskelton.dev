@@ -1,17 +1,18 @@
 import fs from "fs"
 import matter from "gray-matter"
-import path from "path"
-import rehypeHighlight from "rehype-highlight"
 import { bundleMDX } from "mdx-bundler"
+import path from "path"
+import readingTime from "reading-time"
+import rehypeHighlight from "rehype-highlight"
 
 export type BlogPostMeta = Record<
-  "date" | "excerpt" | "slug" | "title" | "time",
+  "date" | "excerpt" | "slug" | "title" | "readingTime",
   string
 >
 
 const postsDirectory = path.join(process.cwd(), "src/posts")
 
-async function getPostSlugs() {
+export async function getPostSlugs() {
   const filenames = await fs.promises.readdir(postsDirectory)
   return filenames.map((filename) => filename.replace(/\.md$/, ""))
 }
@@ -25,10 +26,6 @@ export async function getPostBySlug(slug: string) {
   const content = await getPostContent(slug)
 
   return bundleMDX(content, {
-    grayMatterOptions(options) {
-      options.excerpt = true
-      return options
-    },
     xdmOptions(options) {
       options.rehypePlugins = [
         ...(options.rehypePlugins ?? []),
@@ -42,11 +39,13 @@ export async function getPostBySlug(slug: string) {
 
 async function getPostMeta(slug: string): Promise<BlogPostMeta> {
   const fileContent = await getPostContent(slug)
+  const { content, data } = matter(fileContent)
 
   return {
-    ...(matter(fileContent).data as BlogPostMeta),
+    ...data,
+    readingTime: readingTime(content).text,
     slug,
-  }
+  } as BlogPostMeta
 }
 
 export async function getPosts(count: number | undefined) {

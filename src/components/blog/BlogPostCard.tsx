@@ -5,11 +5,13 @@ import { formatDate } from "utils/date"
 import { Link } from "../Link"
 import { CardFooterItem } from "./CardFooterItem"
 
+export type BlogPostCardProps = BlogPostMeta
+
 export function BlogPostCard({
   date,
   excerpt,
+  readingTime,
   slug,
-  time,
   title,
 }: BlogPostCardProps) {
   return (
@@ -30,14 +32,9 @@ export function BlogPostCard({
             {formatDate(date)}
           </CardFooterItem>
 
-          <CardFooterItem icon={<FaClock />}>{time} minute read</CardFooterItem>
+          <CardFooterItem icon={<FaClock />}>{readingTime}</CardFooterItem>
         </div>
       </div>
     </article>
   )
 }
-
-export type BlogPostCardProps = Pick<
-  BlogPostMeta,
-  "slug" | "title" | "date" | "excerpt" | "time"
->

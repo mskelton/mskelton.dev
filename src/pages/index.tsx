@@ -1,5 +1,6 @@
 import { InferGetStaticPropsType } from "next"
 import Head from "next/head"
+import React from "react"
 import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa"
 import { Link } from "components/Link"
 import { Paragraph } from "components/Paragraph"
@@ -13,12 +14,13 @@ export async function getStaticProps() {
   return { props: { posts } }
 }
 
-function Home({ posts }: InferGetStaticPropsType<typeof getStaticProps>) {
+export default function Home({
+  posts,
+}: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
     <div>
       <Head>
         <title>Mark Skelton</title>
-        <link href="/favicon.ico" rel="icon" />
       </Head>
 
       <main data-testid="home">
@@ -89,5 +91,3 @@ function Home({ posts }: InferGetStaticPropsType<typeof getStaticProps>) {
     </div>
   )
 }
-
-export default Home

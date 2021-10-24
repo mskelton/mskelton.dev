@@ -3,7 +3,9 @@
 @tailwind utilities;
 
 /* Code */
-.markdown code {
+.markdown p code,
+.markdown h2 code,
+.markdown h3 code {
   @apply bg-gray-700 py-0.5 px-2 rounded;
 }
 
