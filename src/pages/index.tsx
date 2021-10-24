@@ -1,10 +1,19 @@
+import { InferGetStaticPropsType } from "next"
 import Head from "next/head"
 import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa"
-import { Link } from "../components/Link"
-import { Paragraph } from "../components/Paragraph"
-import { SocialLink } from "../components/SocialLink"
+import { Link } from "components/Link"
+import { Paragraph } from "components/Paragraph"
+import { SocialLink } from "components/SocialLink"
+import { BlogPostCard } from "components/blog/BlogPostCard"
+import { BlogPostGrid } from "components/blog/BlogPostGrid"
+import { getPosts } from "lib/posts"
 
-function Home() {
+export async function getStaticProps() {
+  const posts = await getPosts(4)
+  return { props: { posts } }
+}
+
+function Home({ posts }: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
     <div>
       <Head>
@@ -12,7 +21,7 @@ function Home() {
         <link href="/favicon.ico" rel="icon" />
       </Head>
 
-      <main className="py-16 px-20" data-testid="home">
+      <main data-testid="home">
         <h1 className="text-5xl mb-10">
           Hi, I&rsquo;m <span className="text-blue-400">Mark Skelton</span>.
         </h1>
@@ -34,8 +43,18 @@ function Home() {
           understand.
         </Paragraph>
 
-        <h2 className="text-4xl mb-2">Socials</h2>
+        <h2 className="text-4xl mb-2">Blog</h2>
+        <Paragraph className="mb-6">Check out my latest posts!</Paragraph>
 
+        <div className="mb-8">
+          <BlogPostGrid>
+            {posts.map((post) => (
+              <BlogPostCard key={post.slug} {...post} />
+            ))}
+          </BlogPostGrid>
+        </div>
+
+        <h2 className="text-4xl mb-2">Socials</h2>
         <Paragraph className="mb-6">
           If you want to get to know me better, check me out on any of my
           socials!

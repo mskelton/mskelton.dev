@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Code */
+.markdown code {
+  @apply bg-gray-700 py-0.5 px-2 rounded;
+}
+
+.markdown p code {
+  @apply text-base;
+}
+
+.markdown pre {
+  @apply bg-gray-700 p-3 mb-4 rounded;
+}

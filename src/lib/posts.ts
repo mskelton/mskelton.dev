@@ -1,56 +1,58 @@
 import fs from "fs"
 import matter from "gray-matter"
 import path from "path"
+import rehypeHighlight from "rehype-highlight"
+import { bundleMDX } from "mdx-bundler"
 
-export type BlogPost = Record<
-  "content" | "date" | "excerpt" | "slug" | "title",
+export type BlogPostMeta = Record<
+  "date" | "excerpt" | "slug" | "title" | "time",
   string
 >
 
 const postsDirectory = path.join(process.cwd(), "src/posts")
 
-export function getPostSlugs() {
-  return fs.promises.readdir(postsDirectory)
+async function getPostSlugs() {
+  const filenames = await fs.promises.readdir(postsDirectory)
+  return filenames.map((filename) => filename.replace(/\.md$/, ""))
 }
 
-export async function getPostBySlug<T extends keyof BlogPost>(
-  slug: string,
-  fields: T[] = []
-): Promise<Pick<BlogPost, T>> {
-  const realSlug = slug.replace(/\.md$/, "")
-  const fullPath = path.join(postsDirectory, `${realSlug}.md`)
-  const fileContents = await fs.promises.readFile(fullPath, "utf8")
-  const { content, data } = matter(fileContents)
+async function getPostContent(slug: string) {
+  const fullPath = path.join(postsDirectory, `${slug}.md`)
+  return fs.promises.readFile(fullPath, "utf8")
+}
 
-  const post: Record<string, unknown> = {}
+export async function getPostBySlug(slug: string) {
+  const content = await getPostContent(slug)
 
-  // Ensure only the minimal needed data is exposed
-  fields.forEach((field) => {
-    if (field === "slug") {
-      post[field] = realSlug
-    }
+  return bundleMDX(content, {
+    grayMatterOptions(options) {
+      options.excerpt = true
+      return options
+    },
+    xdmOptions(options) {
+      options.rehypePlugins = [
+        ...(options.rehypePlugins ?? []),
+        rehypeHighlight,
+      ]
 
-    if (field === "content") {
-      post[field] = content
-    }
-
-    if (typeof data[field] !== "undefined") {
-      post[field] = data[field]
-    }
+      return options
+    },
   })
-
-  return post as Pick<BlogPost, T>
 }
 
-export async function getPosts<T extends Exclude<keyof BlogPost, "date">>(
-  count: number,
-  fields: T[] = []
-) {
+async function getPostMeta(slug: string): Promise<BlogPostMeta> {
+  const fileContent = await getPostContent(slug)
+
+  return {
+    ...(matter(fileContent).data as BlogPostMeta),
+    slug,
+  }
+}
+
+export async function getPosts(count: number | undefined) {
   const slugs = await getPostSlugs()
   const posts = await Promise.all(
-    slugs
-      .slice(0, count)
-      .map((slug) => getPostBySlug(slug, [...fields, "date"]))
+    slugs.slice(0, count).map((slug) => getPostMeta(slug))
   )
 
   // Sort posts by date in descending order

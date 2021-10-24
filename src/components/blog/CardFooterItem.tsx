@@ -2,8 +2,8 @@ import { cloneElement, ReactElement, ReactNode } from "react"
 
 export function CardFooterItem({ children, icon }: CardFooterItemProps) {
   return (
-    <p className="flex items-center text-gray-600">
-      {cloneElement(icon, { className: "h-4 w-4 mr-2 text-gray-400" })}{" "}
+    <p className="flex items-center text-gray-500">
+      {cloneElement(icon, { className: "h-4 w-4 mr-2 text-gray-500" })}{" "}
       {children}
     </p>
   )
