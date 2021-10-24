@@ -1,3 +1,4 @@
+import smartypants from "@silvenon/remark-smartypants"
 import fs from "fs"
 import matter from "gray-matter"
 import { bundleMDX } from "mdx-bundler"
@@ -27,6 +28,7 @@ export async function getPostBySlug(slug: string) {
 
   return bundleMDX(content, {
     xdmOptions(options) {
+      options.remarkPlugins = [...(options.remarkPlugins ?? []), smartypants]
       options.rehypePlugins = [
         ...(options.rehypePlugins ?? []),
         rehypeHighlight,

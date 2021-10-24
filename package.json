@@ -19,6 +19,7 @@
     "ts": "tsc"
   },
   "dependencies": {
+    "@silvenon/remark-smartypants": "^1.0.0",
     "components": "link:./src/components",
     "esbuild": "^0.13.8",
     "gray-matter": "^4.0.3",
