@@ -24,7 +24,7 @@ export function BlogPostCard({
             </Anchor>
           </Link>
 
-          <p className="text-gray-400 leading-6 mb-7">{excerpt}</p>
+          <p className="leading-6 mb-7">{excerpt}</p>
         </div>
 
         <div className="flex items-center justify-between">
