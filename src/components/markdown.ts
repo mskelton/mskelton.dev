@@ -5,6 +5,7 @@ import { Paragraph } from "./Paragraph"
 export const MarkdownH2 = styled.h2.use("text-3xl font-bold mb-4 mt-8")
 export const MarkdownH3 = styled.h3.use("text-2xl font-bold mb-3 mt-8")
 export const MarkdownParagraph = Paragraph.use("mb-4")
+export const MarkdownBlockquote = styled.blockquote.use("pl-5 border-l-4")
 
 // Lists
 const listStyle = "text-lg ml-8 mb-4"

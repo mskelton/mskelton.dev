@@ -5,6 +5,7 @@ import { useMemo } from "react"
 import { Link } from "components/Link"
 import { MarkdownImage } from "components/MarkdownImage"
 import {
+  MarkdownBlockquote,
   MarkdownH2,
   MarkdownH3,
   MarkdownOrderedList,
@@ -52,6 +53,7 @@ export default function Post({
           <Component
             components={{
               a: Link,
+              blockquote: MarkdownBlockquote,
               h2: MarkdownH2,
               h3: MarkdownH3,
               img: MarkdownImage as AllowableAny,

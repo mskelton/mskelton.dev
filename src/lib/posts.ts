@@ -50,12 +50,12 @@ async function getPostMeta(slug: string): Promise<BlogPostMeta> {
 
 export async function getPosts(count: number | undefined) {
   const slugs = await getPostSlugs()
-  const posts = await Promise.all(
-    slugs.slice(0, count).map((slug) => getPostMeta(slug))
-  )
+  const posts = await Promise.all(slugs.map((slug) => getPostMeta(slug)))
 
   // Sort posts by date in descending order
-  return posts.sort((post1, post2) =>
-    new Date(post1.date) > new Date(post2.date) ? -1 : 1
-  )
+  return posts
+    .sort((post1, post2) =>
+      new Date(post1.date) > new Date(post2.date) ? -1 : 1
+    )
+    .slice(0, count)
 }
