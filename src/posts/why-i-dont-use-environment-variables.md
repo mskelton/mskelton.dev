@@ -3,7 +3,6 @@ title: Why I Don't Use Environment Variables
 excerpt: Common challenges with environment variables and how to remedy them
 tags: Nodejs, Environment Variables, Dotenv
 date: "2020-01-11"
-time: 2
 ---
 
 Environment variables are very helpful for software development as they allow you to easily change certain aspects of your application based on the environment in which your application is used. However, environment variables do have some challenges which can cause some issues in certain scenarios. In this article, I'll explore some of those challenges and explain why I don't use environment variables in my applications.

@@ -3,7 +3,6 @@ title: My Experience Changing my GitHub Username
 excerpt: Changing your GitHub username can be a daunting task. Read on to learn my journey and experience.
 tags: GitHub, username
 date: "2019-10-19"
-time: 4
 ---
 
 I created my GitHub account about 3 years ago while working at my first software development job. At the time, Python was one of my primary languages for personal projects and was the inspiration for my first StackOverflow and GitHub username: `markypython`.

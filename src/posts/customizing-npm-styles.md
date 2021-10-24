@@ -2,7 +2,6 @@
 title: Customizing npmjs.com Styles
 excerpt: A few simple improvements to the npmjs.com package view styles
 date: "2019-12-01"
-time: 1
 ---
 
 Like most front-end developers, I use [npmjs.com](https://npmjs.com) to find new packages or read documentation for packages I use. I've also published some npm packages of my own, giving back to the open-source community.
