@@ -2,6 +2,24 @@
   "github": {
     "silent": true
   },
+  "redirects": [
+    {
+      "source": "/username",
+      "destination": "/blog/my-experience-changing-my-username"
+    },
+    {
+      "source": "/shallow",
+      "destination": "/blog/the-dangers-of-shallow-rendering"
+    },
+    {
+      "source": "/env-vars",
+      "destination": "/blog/why-i-dont-use-environment-variables"
+    },
+    {
+      "source": "/npm-publishing",
+      "destination": "/blog/automated-npm-publishing-using-github-actions"
+    }
+  ],
   "rewrites": [
     {
       "source": "/yarn-outdated/:version*",
