@@ -19,7 +19,7 @@ export default class extends Document {
         lang="en"
       >
         <Head />
-        <body className="min-h-screen py-16 px-20">
+        <body className="min-h-screen py-8 px-6 sm:py-12 sm:px-16 md:py-20 md:px-16">
           <Main />
           <NextScript />
         </body>

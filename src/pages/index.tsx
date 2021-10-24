@@ -23,7 +23,7 @@ export default function Home({
         <title>Mark Skelton</title>
       </Head>
 
-      <main data-testid="home">
+      <main className="max-w-3xl mx-auto" data-testid="home">
         <h1 className="text-5xl mb-10">
           Hi, I&rsquo;m <span className="text-blue-400">Mark Skelton</span>.
         </h1>
@@ -46,7 +46,10 @@ export default function Home({
         </Paragraph>
 
         <h2 className="text-4xl mb-2">Blog</h2>
-        <Paragraph className="mb-6">Check out my latest posts!</Paragraph>
+        <Paragraph className="mb-6">
+          From time to time, I enjoy writing about what I am learning or working
+          on. Check out some of my latest blog posts if you are interested!
+        </Paragraph>
 
         <div className="mb-8">
           <BlogPostGrid>
