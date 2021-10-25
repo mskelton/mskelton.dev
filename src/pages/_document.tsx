@@ -15,7 +15,7 @@ export default class extends Document {
   render() {
     return (
       <Html
-        className="bg-gray-800 text-gray-300 font-sans leading-tight"
+        className="bg-gray-900 text-gray-300 font-sans leading-tight"
         lang="en"
       >
         <Head />

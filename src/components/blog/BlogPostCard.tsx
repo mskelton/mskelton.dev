@@ -1,8 +1,9 @@
 import Link from "next/link"
+import React from "react"
 import { FaCalendar, FaClock } from "react-icons/fa"
+import { LinkOverlay } from "components/LinkOverlay"
 import { BlogPostMeta } from "lib/posts"
 import { formatDate } from "utils/date"
-import { Anchor } from "../Anchor"
 import { CardFooterItem } from "./CardFooterItem"
 
 export type BlogPostCardProps = BlogPostMeta
@@ -15,16 +16,16 @@ export function BlogPostCard({
   title,
 }: BlogPostCardProps) {
   return (
-    <article className="bg-gray-900 h-52 rounded-lg min">
+    <article className="bg-gray-800 hover:bg-gray-700 transition-colors border border-gray-700 h-52 rounded-lg relative">
       <div className="flex flex-col justify-between h-full p-5">
         <div>
           <Link href={`/blog/${encodeURIComponent(slug)}`} passHref>
-            <Anchor>
-              <h2 className="font-semibold mb-2">{title}</h2>
-            </Anchor>
+            <LinkOverlay>
+              <h2 className="text-lg font-semibold mb-2">{title}</h2>
+            </LinkOverlay>
           </Link>
 
-          <p className="leading-6 mb-7">{excerpt}</p>
+          <p className="text-gray-400 leading-6 mb-7">{excerpt}</p>
         </div>
 
         <div className="flex items-center justify-between">
