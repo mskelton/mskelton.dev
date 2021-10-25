@@ -8,7 +8,7 @@
   "bugs": {
     "url": "https://github.com/mskelton/mskelton.dev/issues"
   },
-  "packageManager": "yarn@3.0.2",
+  "packageManager": "yarn@3.1.0",
   "scripts": {
     "build": "next build",
     "dev": "next dev",
