@@ -12,12 +12,24 @@
       "destination": "/blog/the-dangers-of-shallow-rendering"
     },
     {
-      "source": "/env-vars",
-      "destination": "/blog/why-i-dont-use-environment-variables"
-    },
-    {
       "source": "/npm-publishing",
       "destination": "/blog/automated-npm-publishing-using-github-actions"
+    },
+    {
+      "source": "/constraints",
+      "destination": "/blog/using-yarn-constraints"
+    },
+    {
+      "source": "/derived-state",
+      "destination": "/blog/conquering-derived-state"
+    },
+    {
+      "source": "/prettier",
+      "destination": "/blog/auto-formatting-code-using-prettier-and-github-actions"
+    },
+    {
+      "source": "/semantic-release",
+      "destination": "/blog/automating-npm-package-releases"
     }
   ],
   "rewrites": [
