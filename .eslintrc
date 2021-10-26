@@ -3,7 +3,7 @@
     "@mskelton",
     "@mskelton/eslint-config/typescript",
     "@mskelton/eslint-config/react",
-    "plugin:@next/next/recommended"
+    "next"
   ],
   "rules": {
     "react/react-in-jsx-scope": "off"
