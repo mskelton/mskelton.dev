@@ -2,7 +2,8 @@
   "extends": [
     "@mskelton",
     "@mskelton/eslint-config/typescript",
-    "@mskelton/eslint-config/react"
+    "@mskelton/eslint-config/react",
+    "next"
   ],
   "rules": {
     "react/react-in-jsx-scope": "off"
