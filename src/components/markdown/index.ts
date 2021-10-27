@@ -13,4 +13,3 @@ export const MarkdownUnorderedList = styled.ul.use(`${listStyle} list-disc`)
 export const MarkdownOrderedList = styled.ol.use(`${listStyle} list-decimal`)
 
 export { MarkdownImage } from "./MarkdownImage"
-export { MarkdownLink } from "./MarkdownLink"

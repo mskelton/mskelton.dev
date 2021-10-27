@@ -50,7 +50,7 @@ async function getPostMeta(slug: string): Promise<BlogPostMeta> {
   } as BlogPostMeta
 }
 
-export async function getPosts(count: number | undefined) {
+export async function getPosts(count?: number) {
   const slugs = await getPostSlugs()
   const posts = await Promise.all(slugs.map((slug) => getPostMeta(slug)))
 

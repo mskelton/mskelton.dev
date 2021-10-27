@@ -3,6 +3,7 @@ import Head from "next/head"
 import React from "react"
 import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa"
 import { Anchor } from "components/Anchor"
+import { Link } from "components/Link"
 import { Paragraph } from "components/Paragraph"
 import { SocialLink } from "components/SocialLink"
 import { BlogPostCard } from "components/blog/BlogPostCard"
@@ -48,7 +49,8 @@ export default function Home({
         <h2 className="text-4xl mb-2">Blog</h2>
         <Paragraph className="mb-6">
           From time to time, I enjoy writing about what I am learning or working
-          on. Check out some of my latest blog posts if you are interested!
+          on. Check out some of my recent blog posts, or pop over to the{" "}
+          <Link href="/blog">blog</Link> to find a full listing of my posts.
         </Paragraph>
 
         <div className="mb-8">
