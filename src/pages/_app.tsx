@@ -17,8 +17,8 @@ export default function App({ Component, pageProps }: AppProps) {
           window.dataLayer = window.dataLayer || [];
           function gtag(){window.dataLayer.push(arguments);}
           gtag('js', new Date());
-          gtag('config', '${measurementId}', { debug_mode: ${isLocal}});
           gtag('consent', 'default', { analytics_storage: 'denied' });
+          gtag('config', '${measurementId}', { debug_mode: ${isLocal} });
         `}
       </Script>
 
