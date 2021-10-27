@@ -15,7 +15,7 @@ export function BlogPostCard({
   title,
 }: BlogPostCardProps) {
   return (
-    <article className="bg-gray-800 hover:bg-gray-700 transition-colors border border-gray-700 h-52 rounded-lg relative">
+    <article className="bg-gray-800 hover:bg-gray-700 transition-colors border border-gray-700 min-h-52 rounded-lg relative">
       <div className="flex flex-col justify-between h-full p-5">
         <div>
           <Link href={`/blog/${encodeURIComponent(slug)}`} passHref>
