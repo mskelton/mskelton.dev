@@ -34,12 +34,12 @@
     "utils": "link:./src/utils"
   },
   "devDependencies": {
-    "@babel/core": "^7.15.5",
-    "@babel/eslint-parser": "^7.15.7",
+    "@babel/core": "^7.15.8",
+    "@babel/eslint-parser": "^7.15.8",
     "@mskelton/eslint-config": "^6.1.0",
-    "@playwright/test": "^1.15.1",
-    "@types/react": "^17.0.26",
-    "@types/react-dom": "^17.0.9",
+    "@playwright/test": "^1.16.1",
+    "@types/react": "^17.0.33",
+    "@types/react-dom": "^17.0.10",
     "@typescript-eslint/eslint-plugin": "^4.32.0",
     "@typescript-eslint/parser": "^4.32.0",
     "autoprefixer": "^10.3.7",
@@ -51,9 +51,9 @@
     "eslint-plugin-sort": "^1.5.0",
     "expect-axe-playwright": "^1.2.0",
     "lariat": "^0.4.1",
-    "postcss": "^8.3.9",
+    "postcss": "^8.3.11",
     "prettier": "^2.4.1",
-    "tailwindcss": "^2.2.16",
-    "typescript": "^4.4.3"
+    "tailwindcss": "^2.2.17",
+    "typescript": "^4.4.4"
   }
 }
