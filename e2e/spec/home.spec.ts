@@ -12,9 +12,9 @@ test.describe("home page", async () => {
     ]
 
     for (let i = 0; i < links.length; i++) {
-      await expect(socialLink.nth(0)).toHaveAttribute("title", links[i][0])
-      await expect(socialLink.nth(0)).toHaveAttribute("href", links[i][1])
-      await expect(socialLink.nth(0)).toHaveAttribute("target", "_blank")
+      await expect(socialLink.nth(i)).toHaveAttribute("title", links[i][0])
+      await expect(socialLink.nth(i)).toHaveAttribute("href", links[i][1])
+      await expect(socialLink.nth(i)).toHaveAttribute("target", "_blank")
     }
   })
 

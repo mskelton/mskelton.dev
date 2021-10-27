@@ -1,5 +1,6 @@
 import { InferGetStaticPropsType } from "next"
 import Head from "next/head"
+import React from "react"
 import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa"
 import { Anchor } from "components/Anchor"
 import { Paragraph } from "components/Paragraph"
@@ -65,27 +66,15 @@ export default function Home({
         </Paragraph>
 
         <div className="flex gap-4">
-          <SocialLink
-            href="https://github.com/mskelton"
-            target="_blank"
-            title="GitHub"
-          >
+          <SocialLink href="https://github.com/mskelton" title="GitHub">
             <FaGithub />
           </SocialLink>
 
-          <SocialLink
-            href="https://twitter.com/mskelton0"
-            target="_blank"
-            title="Twitter"
-          >
+          <SocialLink href="https://twitter.com/mskelton0" title="Twitter">
             <FaTwitter />
           </SocialLink>
 
-          <SocialLink
-            href="https://linkedin.com/in/mark-skelton"
-            target="_blank"
-            title="Linkedin"
-          >
+          <SocialLink href="https://linkedin.com/in/mskelton0" title="Linkedin">
             <FaLinkedin />
           </SocialLink>
         </div>
