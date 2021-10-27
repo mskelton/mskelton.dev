@@ -1,6 +1,7 @@
 import { InferGetStaticPropsType } from "next"
 import Head from "next/head"
 import React from "react"
+import { BackLink } from "components/BackLink"
 import { Paragraph } from "components/Paragraph"
 import { BlogPostCard } from "components/blog/BlogPostCard"
 import { BlogPostGrid } from "components/blog/BlogPostGrid"
@@ -21,6 +22,7 @@ export default function Home({
       </Head>
 
       <main className="max-w-3xl mx-auto" data-testid="home">
+        <BackLink href="/">Back to home</BackLink>
         <h1 className="text-4xl mb-6">Blog</h1>
 
         <Paragraph className="mb-6">

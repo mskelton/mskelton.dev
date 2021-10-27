@@ -1,8 +1,8 @@
 import { getMDXComponent } from "mdx-bundler/client"
 import { GetStaticPropsContext, InferGetStaticPropsType } from "next"
 import Head from "next/head"
-import { useMemo } from "react"
-import { FaChevronLeft } from "react-icons/fa"
+import React, { useMemo } from "react"
+import { BackLink } from "components/BackLink"
 import { Link } from "components/Link"
 import {
   MarkdownBlockquote,
@@ -49,9 +49,7 @@ export default function Post({
       </Head>
 
       <main className="max-w-prose mx-auto">
-        <Link className="inline-flex items-center mb-5" href="/">
-          <FaChevronLeft className="mr-1 text-sm" /> Back to home
-        </Link>
+        <BackLink href="/blog">Back to blog</BackLink>
 
         <h1 className="text-4xl mb-10">{frontmatter.title}</h1>
         <article className="markdown">
