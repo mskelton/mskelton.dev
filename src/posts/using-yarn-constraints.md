@@ -32,7 +32,7 @@ Since our example project is open source, we want to make sure all of our
 packages have a `license` field in their manifest files (package.json). This
 would look something like this.
 
-```
+```prolog
 gen_enforced_field(WorkspaceCwd, 'license', 'ISC').
 ```
 
@@ -81,7 +81,7 @@ When writing more complex constraints like this, I like to start with a basic
 constraint and then add the complexity bit by bit. So, I'll start with something
 similar to our license constraint.
 
-```
+```prolog
 gen_enforced_field(WorkspaceCwd, 'homepage', 'something').
 ```
 
@@ -96,7 +96,7 @@ Let's start with the first issue. We need to instruct Yarn not to enforce the
 constraint for the root workspace. There are a number of ways you could do this,
 but the approach I like to take looks something like this.
 
-```
+```prolog
 gen_enforced_field(WorkspaceCwd, 'homepage', 'something') :-
   workspace_field(WorkspaceCwd, 'version', _).
 ```
@@ -113,7 +113,7 @@ head will be true if the body is true. For example, the following rule would be
 read as "X is a mortal if X is human" with `mortal(X)` as the "head" and
 `human(X)` as the "body".
 
-```
+```prolog
 mortal(X) :- human(X).
 ```
 
@@ -130,7 +130,7 @@ always true. Prolog calls these rules "facts" and our previous example of
 enforcing the license field is an example of a fact. Facts are just syntactic
 sugar meaning that the following two lines give the same result.
 
-```
+```prolog
 gen_enforced_field(WorkspaceCwd, 'license', 'ISC') :- true.
 gen_enforced_field(WorkspaceCwd, 'license', 'ISC').
 ```
@@ -141,7 +141,7 @@ Okay, back to our homepage constraint example. We left off with the following
 block of code, but I didn't explain why I added the `workspace_field` portion to
 the body of the rule.
 
-```
+```prolog
 gen_enforced_field(WorkspaceCwd, 'homepage', 'something') :-
   workspace_field(WorkspaceCwd, 'version', _).
 ```
@@ -156,7 +156,7 @@ constraint will not be enforced.
 Next, we need to set the correct homepage URL and to do that, we can change our
 constraint to the following.
 
-```
+```prolog
 gen_enforced_field(WorkspaceCwd, 'homepage', Homepage) :-
   workspace_field(WorkspaceCwd, 'version', _),
   atom_concat('https://github.com/mskelton/yarn-constraints-example/tree/main/', WorkspaceCwd, Homepage).
@@ -187,7 +187,7 @@ dependency should be a peer dependency, not a regular dependency. This is a
 perfect opportunity to add a constraint to enforce this rule in all of our
 packages. This constraint would look like this.
 
-```
+```prolog
 gen_enforced_dependency(WorkspaceCwd, 'react', null, dependencies) :-
   workspace_field(WorkspaceCwd, 'version', _).
 ```
