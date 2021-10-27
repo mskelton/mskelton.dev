@@ -6,6 +6,8 @@ export class HomePage extends Collection {
     super(page.locator("data-testid=home"))
   }
 
+  socialLink = this.el("data-testid=social-link")
+
   async goto() {
     await this.frame.goto("/")
   }

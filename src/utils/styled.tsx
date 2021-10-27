@@ -7,23 +7,30 @@ function titleCase(str: string) {
 }
 
 interface StyledComponent<T> extends FunctionComponent<T> {
+  attr(name: string, value: unknown): StyledComponent<T>
   use(className: string): StyledComponent<T>
 }
 
 const cx = (...classNames: (string | undefined)[]) =>
   classNames.filter((x) => x).join(" ")
 
+interface Props {
+  className?: string
+}
+
 function createdStyledComponent(
   Component: ElementType,
   displayName: string,
+  outerProps: Record<string, unknown> = {},
   outerClassName?: string
 ) {
   const StyledComponent = forwardRef(
-    (props: { className?: string }, ref: Ref<HTMLElement>) => (
+    ({ className, ...props }: Props, ref: Ref<HTMLElement>) => (
       <Component
-        {...props}
         ref={ref}
-        className={cx(outerClassName, props.className)}
+        className={cx(outerClassName, className)}
+        {...outerProps}
+        {...props}
       />
     )
   )
@@ -33,7 +40,15 @@ function createdStyledComponent(
     createdStyledComponent(
       Component,
       displayName,
+      outerProps,
       cx(outerClassName, className)
+    )
+  ;(StyledComponent as AllowableAny).attr = (name: string, value: unknown) =>
+    createdStyledComponent(
+      Component,
+      displayName,
+      { ...outerProps, [name]: value },
+      outerClassName
     )
 
   return StyledComponent
