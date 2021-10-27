@@ -8,7 +8,7 @@ A couple weeks ago, my fellow front-end developers at Widen had a conversation
 regarding one of our shared React components which we were struggling to
 implement in one of our applications. While most React components are fully
 controlled (via props) or fully uncontrolled (internal state), this component
-used what is known as “derived state” which is internal state that is controlled
+used what is known as "derived state" which is internal state that is controlled
 to some degree by props. Although derived state might seem like a good solution,
 it often causes many more problems than it attempts to solve.
 
@@ -26,6 +26,7 @@ you start recognizing derived state patterns. I'll begin with class based
 components as they are easier to recognize than function based components.
 
 ```js
+// Howdya
 class PartiallyControlledInput extends React.Component {
   state = {
     value: this.props.value,

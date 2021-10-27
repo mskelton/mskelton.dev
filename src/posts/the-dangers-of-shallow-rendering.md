@@ -7,7 +7,7 @@ tags: Testing, React
 date: "2020-03-21"
 ---
 
-In my article titled “[A Tale of Two Ideas](/blog/a-tale-of-two-ideas)” I
+In my article titled "[A Tale of Two Ideas](/blog/a-tale-of-two-ideas)" I
 discussed my method for discerning between opposing ideas and used the topic of
 shallow rendering as an example of a topic which has very distinct and differing
 opinions. Although I did not tell my opinion in the article as I didn't want to

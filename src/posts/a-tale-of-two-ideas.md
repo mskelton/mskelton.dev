@@ -31,7 +31,7 @@ shallow rendering allows you to test React components without rendering their
 child components. React's documentation says the following about shallow
 rendering (_plus some other stuff not relevant to this article_).
 
-> Shallow rendering lets you render a component “one level deep”, … This does
+> Shallow rendering lets you render a component "one level deep", … This does
 > not require a DOM.
 
 While some believe that shallow rendering is a good technique for testing React
@@ -42,9 +42,9 @@ demonstrating how to discern between differing viewpoints.
 
 ## Zooming Out
 
-Once you have identified a set of opposing viewpoints, it is helpful to “zoom
-out” from the specifics and look at what high-level differences exist between
-the ideas. When we stay “zoomed in” we can miss important details and make poor
+Once you have identified a set of opposing viewpoints, it is helpful to "zoom
+out" from the specifics and look at what high-level differences exist between
+the ideas. When we stay "zoomed in" we can miss important details and make poor
 judgement calls due to insufficient information. Often, the high-level
 differences result in a cascade of logic that eventually leads to the details
 that appear to be radically different from each other even though they stem from
@@ -60,24 +60,24 @@ the articles (_again, I'm saving my opinions for a different article_). The two
 differences I identified were:
 
 - Overall testing methodology (testing pyramid vs testing trophy)
-- Definition of “implementation details”
+- Definition of "implementation details"
 
 ### Testing Methodology
 
 One of the biggest differences between the two opinions on shallow rendering, as
 discussed in the aforementioned articles, is the overall testing methodology.
-Kent developed the “testing trophy” methodology where integration tests are
-favored over unit tests whereas Tim subscribes to the more traditional “testing
-pyramid” where unit tests are favored over integration tests. This difference in
+Kent developed the "testing trophy" methodology where integration tests are
+favored over unit tests whereas Tim subscribes to the more traditional "testing
+pyramid" where unit tests are favored over integration tests. This difference in
 how testing should be approached is a big reason why they differ on the idea of
 shallow rendering.
 
 ### Implementation Details
 
-Another difference I noticed was the definition of “implementation details”.
+Another difference I noticed was the definition of "implementation details".
 While both Tim and Kent discuss implementation details, they use it to mean very
-different things. For example, Tim mentions in his post that “the DOM is an
-implementation detail” and goes on to say that child components are
+different things. For example, Tim mentions in his post that "the DOM is an
+implementation detail" and goes on to say that child components are
 implementation details when testing a parent component. Kent looks at
 implementation details from the user's perspective in which case the DOM would
 not be an implementation detail but instead a necessary part of the code. These
@@ -86,7 +86,7 @@ authors have very different thoughts on shallow rendering.
 
 ## Making the Judgement Call
 
-So, the question you are probably asking yourself is “which approach is right?”
+So, the question you are probably asking yourself is "which approach is right?"
 However, this is not always the best question to ask. While it is often the case
 where one idea is right and another idea is wrong, there are instances where
 both ideas are right depending on the context or use. Remember that the goal is

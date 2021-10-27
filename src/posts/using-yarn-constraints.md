@@ -4,7 +4,7 @@ excerpt: How to create and use Yarn constraints for managing your monorepos
 date: "2020-12-06"
 ---
 
-Yarn 2 (aka berry) introduced a new feature referred to as “constraints” which
+Yarn 2 (aka berry) introduced a new feature referred to as "constraints" which
 allow developers to enforce rules for dependencies or manifest fields for some
 or all workspaces in a project. While constraints are still experimental and
 community examples of using them are a bit sparse, they are a very powerful tool
@@ -25,7 +25,7 @@ allows writing powerful rules in just a few short lines.
 Alright, let's get down to business and look at an example of a constraint. For
 the rest of this article, let's assume that we are working on an open-source
 component library containing 10 packages. This would thus have 11 total
-“workspaces” as each package is a workspace plus the root workspace which
+"workspaces" as each package is a workspace plus the root workspace which
 contains the `workspaces` key in the package.json file.
 
 Since our example project is open source, we want to make sure all of our
@@ -107,11 +107,11 @@ Before I explain the code block above, I should pause for a moment to explain
 some of the syntax in the previous code block and the mental model you should
 use when reading and writing Yarn constraints.
 
-In Prolog, we use “rules” to create conditional statements that will either be
-true or false. Rules contain a “head” section, and a “body” section where the
+In Prolog, we use "rules" to create conditional statements that will either be
+true or false. Rules contain a "head" section, and a "body" section where the
 head will be true if the body is true. For example, the following rule would be
-read as “X is a mortal if X is human” with `mortal(X)` as the “head” and
-`human(X)` as the “body”.
+read as "X is a mortal if X is human" with `mortal(X)` as the "head" and
+`human(X)` as the "body".
 
 ```
 mortal(X) :- human(X).
@@ -126,7 +126,7 @@ constraints. This point is important to remember.
 > indicates that the constraint should be enforced.
 
 The last thing to note about Prolog syntax is that rules without a body are
-always true. Prolog calls these rules “facts” and our previous example of
+always true. Prolog calls these rules "facts" and our previous example of
 enforcing the license field is an example of a fact. Facts are just syntactic
 sugar meaning that the following two lines give the same result.
 
