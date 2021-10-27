@@ -25,8 +25,7 @@ Before I go any further, let me provide a few examples of derived state to help
 you start recognizing derived state patterns. I'll begin with class based
 components as they are easier to recognize than function based components.
 
-```js
-// Howdya
+```jsx
 class PartiallyControlledInput extends React.Component {
   state = {
     value: this.props.value,
@@ -59,7 +58,7 @@ Because `componentWillReceiveProps` is being deprecated, React has a newer
 lifecycle method named `getDerivedStateFromProps`. This method almost needs no
 example as its name speaks for itself, but a quick example won't hurt.
 
-```js
+```jsx
 class PartiallyControlledInput extends React.Component {
   state = {
     value: this.props.value,
@@ -96,7 +95,7 @@ As we move on to function based components, derived state is a bit tougher to
 spot as you have to look for more than just `componentWillReceiveProps` or
 `getDerivedStateFromProps`.
 
-```js
+```jsx
 function PartiallyControlledInput(props) {
   const [value, setValue] = useState(props.value)
 
@@ -127,7 +126,7 @@ React's special `key` prop which will create a new instance of the component
 rather than updating the existing one. This includes re-initializing component
 state with the initial values provided.
 
-```js
+```jsx
 function FullyUncontrolledInput({ initialValue }) {
   const [value, setValue] = useState(initialValue)
 
@@ -140,7 +139,7 @@ a `key` prop. To re-initialize the internal state of the input, we simply need
 to change the `key`. In the following code block, we use a variable named
 `formId` which we can change when the form needs to be reset.
 
-```js
+```jsx
 function Form() {
   return <FullyUncontrolledInput key={formId} initialValue="Initial" />
 }
@@ -151,7 +150,7 @@ and let the parent component manage its state. This option will require us to
 add an `onChange` prop to the input component so the parent can listen to
 changes and update state accordingly.
 
-```js
+```jsx
 function FullyControlledInput({ value, onChange }) {
   return <input onChange={(e) => onChange(e.target.value)} value={value} />
 }
@@ -160,7 +159,7 @@ function FullyControlledInput({ value, onChange }) {
 With our fully controlled input component, we now can add a simple `useState`
 hook to our form component which will manage the state of our input.
 
-```js
+```jsx
 function Form() {
   const [value, setValue] = useState("Initial")
 
@@ -204,7 +203,7 @@ Now, we can very easily call the `useDatePicker` hook inside our form component
 and pass `datePickerProps` to the date picker component which will add all the
 necessary props for managing the state of the component.
 
-```js
+```jsx
 function Form() {
   const { datePickerProps, day, month } = useDatePicker()
 

@@ -1,10 +1,10 @@
+import prism from "@mapbox/rehype-prism"
 import smartypants from "@silvenon/remark-smartypants"
 import fs from "fs"
 import matter from "gray-matter"
 import { bundleMDX } from "mdx-bundler"
 import path from "path"
 import readingTime from "reading-time"
-import rehypeHighlight from "rehype-highlight"
 
 export type BlogPostMeta = Record<
   "date" | "excerpt" | "slug" | "title" | "readingTime",
@@ -28,11 +28,11 @@ export async function getPostBySlug(slug: string) {
 
   return bundleMDX(content, {
     xdmOptions(options) {
-      options.remarkPlugins = [...(options.remarkPlugins ?? []), smartypants]
       options.rehypePlugins = [
         ...(options.rehypePlugins ?? []),
-        rehypeHighlight,
+        [prism, { alias: { bash: "sh" } }],
       ]
+      options.remarkPlugins = [...(options.remarkPlugins ?? []), smartypants]
 
       return options
     },

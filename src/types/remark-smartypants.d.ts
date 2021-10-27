@@ -1,5 +1,5 @@
 declare module "@silvenon/remark-smartypants" {
-  import { Pluggable } from "unified"
-  const smartypants: Pluggable
+  import { Plugin } from "unified"
+  const smartypants: Plugin
   export default smartypants
 }
