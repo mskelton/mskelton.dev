@@ -21,7 +21,7 @@ export default function Home({
         <title>Mark Skelton&rsquo;s Blog</title>
       </Head>
 
-      <main className="max-w-3xl mx-auto" data-testid="home">
+      <main className="max-w-3xl mx-auto" data-testid="blog">
         <BackLink href="/">Back to home</BackLink>
         <h1 className="text-4xl mb-6">Blog</h1>
 
