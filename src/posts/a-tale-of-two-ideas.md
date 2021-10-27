@@ -112,6 +112,5 @@ wrong! The key in situations like this is simple: learn from the poor decision,
 change your future decisions, and move on with your life 🙂
 
 _If you are interested in the follow up article I wrote to this about my
-personal opinions on shallow rendering, check it out using the link below!_
-
-TODO:
+personal opinions on shallow rendering, check it out
+[here](/blog/the-dangers-of-shallow-rendering)!_

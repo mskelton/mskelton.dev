@@ -1,5 +1,4 @@
 import Link from "next/link"
-import React from "react"
 import { FaCalendar, FaClock } from "react-icons/fa"
 import { LinkOverlay } from "components/LinkOverlay"
 import { BlogPostMeta } from "lib/posts"

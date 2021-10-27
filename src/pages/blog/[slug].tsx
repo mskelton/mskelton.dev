@@ -2,14 +2,15 @@ import { getMDXComponent } from "mdx-bundler/client"
 import { GetStaticPropsContext, InferGetStaticPropsType } from "next"
 import Head from "next/head"
 import Link from "next/link"
-import React, { useMemo } from "react"
+import { useMemo } from "react"
 import { FaChevronLeft } from "react-icons/fa"
 import { Anchor } from "components/Anchor"
-import { MarkdownImage } from "components/MarkdownImage"
 import {
   MarkdownBlockquote,
   MarkdownH2,
   MarkdownH3,
+  MarkdownImage,
+  MarkdownLink,
   MarkdownOrderedList,
   MarkdownParagraph,
   MarkdownUnorderedList,
@@ -60,7 +61,7 @@ export default function Post({
         <article className="markdown">
           <Component
             components={{
-              a: Anchor,
+              a: MarkdownLink as AllowableAny,
               blockquote: MarkdownBlockquote,
               h2: MarkdownH2,
               h3: MarkdownH3,

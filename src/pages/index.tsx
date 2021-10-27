@@ -1,6 +1,5 @@
 import { InferGetStaticPropsType } from "next"
 import Head from "next/head"
-import React from "react"
 import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa"
 import { Anchor } from "components/Anchor"
 import { Paragraph } from "components/Paragraph"

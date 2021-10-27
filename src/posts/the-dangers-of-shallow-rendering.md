@@ -24,11 +24,6 @@ see, you won't be forced to read any more. 🙂
 1. Shallow rendering decreases confidence.
 1. Shallow rendering complicates refactoring.
 
-_If you're interested in the original article, check it out using the link
-below!_
-
-TODO:
-
 ## Shallow Rendering Creates Additional Failure Points
 
 What is the purpose of shallow rendering in the first place? According to the

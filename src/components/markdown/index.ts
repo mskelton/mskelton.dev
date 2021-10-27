@@ -1,5 +1,5 @@
 import styled from "utils/styled"
-import { Paragraph } from "./Paragraph"
+import { Paragraph } from "../Paragraph"
 
 // Content
 export const MarkdownH2 = styled.h2.use("text-3xl font-bold mb-4 mt-8")
@@ -11,3 +11,6 @@ export const MarkdownBlockquote = styled.blockquote.use("pl-5 border-l-4")
 const listStyle = "text-lg ml-8 mb-4"
 export const MarkdownUnorderedList = styled.ul.use(`${listStyle} list-disc`)
 export const MarkdownOrderedList = styled.ol.use(`${listStyle} list-decimal`)
+
+export { MarkdownImage } from "./MarkdownImage"
+export { MarkdownLink } from "./MarkdownLink"
