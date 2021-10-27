@@ -5,7 +5,7 @@
   "redirects": [
     {
       "source": "/username",
-      "destination": "/blog/my-experience-changing-my-username"
+      "destination": "/blog/my-experience-changing-my-github-username"
     },
     {
       "source": "/shallow",
