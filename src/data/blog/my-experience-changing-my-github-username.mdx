@@ -1,0 +1,115 @@
+---
+title: My Experience Changing my GitHub Username
+summary:
+  Changing your GitHub username can be a daunting task. Read on to learn my
+  journey and experience.
+tags: [github, username]
+date: "2019-10-19"
+---
+
+I created my GitHub account about 3 years ago while working at my first software
+development job. At the time, Python was one of my primary languages for
+personal projects and was the inspiration for my first StackOverflow and GitHub
+username: `markypython`.
+
+Since that time however, my usage of Python has decreased dramatically as I
+moved into JavaScript and Node.js development. I also had begun to use the
+username `mskelton` for most of my other accounts and the inconsistency annoyed
+me. However, some initial research into changing my GitHub username got me
+pretty frightened and I seriously questioned if it was worth it. Nevertheless,
+the desire to change my username remained and I eventually decided to do it.
+
+## Determining the Impact
+
+The first important step in changing my username was determining what the impact
+of changing it would be. While
+[GitHub's documentation](https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-github-user-account/managing-user-account-settings/changing-your-github-username)
+provided some helpful information, I also found two articles by others who have
+changed their GitHub username that provided good information about what could
+break when you changing your username. I have linked those articles below.
+
+- [A quick guide to changing your GitHub username](https://www.freecodecamp.org/news/a-quick-guide-to-changing-your-github-username/)
+- [Changing my GitHub username](https://www.nikhita.dev/changing-my-github-username)
+
+I was quite fortunate because I don't use GitHub pages, Netlify, or any other
+service that uses a `username.github.io` url, so a number of the steps in those
+articles did not apply to me. In the end, the changes I was
+
+- Repository links in `package.json` and readme files.
+- Changelogs or contribution links in repositories I've contributed to.
+- VSCode and JetBrains extension links
+- Travis CI
+- Git config files
+
+## Taking the Plunge
+
+Once I was reasonably confident of the impact, I decided to take the plunge and
+rename my account. I had already secured my new username and had created a
+separate GitHub account for it while I prepared for the rename. Once I was ready
+to go, I deleted the temporary account and then renamed my main account to the
+new username. GitHub did its thing and within a minute it had successfully
+changed my username. Hooray 🎉
+
+After renaming your username, the first step you should take is squatting your
+old username. I'll explain more about this in the next section, but you'll want
+to make sure that you do this immediately after renaming your account.
+
+Once my account was renamed, I started updating my repos in order of most used
+to least used. I maintain a JetBrains plugin and two VS Code plugins, so I
+started with those so I could get a new patch release out with my updating
+username. I use Travis CI for these plugins, and I found that you need to login
+to your Travis account and click the sync account button in your account
+settings for Travis to update to use your new username. Codecov was similar to
+Travis CI, but I found that I needed to logout and then log back in for the
+username change to be applied.
+
+When making updates to your repos, take advantage of GitHub's search feature
+which allows you to search all of GitHub for a piece of text. This was very
+helpful in determining where my username was being used especially for repos
+I've contributed to. I even found a repo I didn't know existed which was based
+on one of my repos!
+
+Updating my Git config files was fairly painless by running `grep` to find which
+of my projects needed updating.
+
+```sh
+grep markypython \*/.git/config
+```
+
+After getting that list, I just did some VS Code multi-cursor editing to
+generate a list of `sed` commands that looked like this. _This worked on macOS,
+but if you use another Unix-based OS, your mileage may vary._
+
+```sh
+sed -i '' -e 's/markypython/mskelton/' dotfiles/.git/config
+```
+
+## Squatting Your Old Username
+
+When you rename your account, GitHub will setup redirects from your old username
+to your new username, but if someone takes over your new username and creates a
+repo with the same name, those redirects will no longer go to your repository.
+To prevent this, create a new account with your old username and clearly
+identify that you renamed your main account.
+
+![Old username clearly indicating that the account was renamed.](username.png)
+
+An important note about squatting your old username is that GitHub prohibits
+name squatting and holding names for future use in their
+[username policy](https://docs.github.com/en/github/site-policy/github-username-policy).
+Because of this policy, I would recommend squatting your old username for a
+month or two and then deleting your old account so it is available for other
+users in the future.
+
+## Wrapping It Up
+
+Photo by Plush Design Studio on UnsplashAside from the decision to start the
+processing of renaming my account at 9:30 PM on a Friday night, I am very happy
+that I decided to rename my account as it was not nearly as bad as I thought it
+would be. The changes required are mostly busy-work and don't require a huge
+amount of effort. I wish the best to anyone else who embarks on the same journey
+of renaming their GitHub account and I hope this article was helpful in
+explaining some of that process!
+
+You can view my GitHub repository with my new username at
+[github.com/mskelton](https://github.com/mskelton).
