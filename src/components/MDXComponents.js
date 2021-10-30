@@ -1,26 +1,26 @@
 /* eslint-disable react/display-name */
-import { useMemo } from 'react'
-import { getMDXComponent } from 'mdx-bundler/client'
-import Image from './Image'
-import CustomLink from './Link'
-import TOCInline from './TOCInline'
-import Pre from './Pre'
-import { BlogNewsletterForm } from './NewsletterForm'
+import { getMDXComponent } from "mdx-bundler/client"
+import { useMemo } from "react"
+import Image from "./Image"
+import CustomLink from "./Link"
+import { BlogNewsletterForm } from "./NewsletterForm"
+import Pre from "./Pre"
+import TOCInline from "./TOCInline"
 
 export const MDXComponents = {
-  Image,
-  TOCInline,
   a: CustomLink,
+  BlogNewsletterForm,
+  Image,
   pre: Pre,
-  BlogNewsletterForm: BlogNewsletterForm,
+  TOCInline,
   wrapper: ({ components, layout, ...rest }) => {
     const Layout = require(`../layouts/${layout}`).default
     return <Layout {...rest} />
   },
 }
 
-export const MDXLayoutRenderer = ({ layout, mdxSource, ...rest }) => {
+export default function MDXLayoutRenderer({ layout, mdxSource, ...rest }) {
   const MDXLayout = useMemo(() => getMDXComponent(mdxSource), [mdxSource])
 
-  return <MDXLayout layout={layout} components={MDXComponents} {...rest} />
+  return <MDXLayout components={MDXComponents} layout={layout} {...rest} />
 }

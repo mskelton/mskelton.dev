@@ -1,34 +1,36 @@
-import { bundleMDX } from 'mdx-bundler'
-import fs from 'fs'
-import matter from 'gray-matter'
-import path from 'path'
-import readingTime from 'reading-time'
-import { visit } from 'unist-util-visit'
-import getAllFilesRecursively from './utils/files'
+import { bundleMDX } from "mdx-bundler"
+import fs from "fs"
+import matter from "gray-matter"
+import path from "path"
+import readingTime from "reading-time"
+import { visit } from "unist-util-visit"
+import getAllFilesRecursively from "./utils/files"
 // Remark packages
-import remarkGfm from 'remark-gfm'
-import remarkFootnotes from 'remark-footnotes'
-import remarkMath from 'remark-math'
-import remarkCodeTitles from './remark-code-title'
-import remarkTocHeadings from './remark-toc-headings'
-import remarkImgToJsx from './remark-img-to-jsx'
+import remarkGfm from "remark-gfm"
+import remarkFootnotes from "remark-footnotes"
+import remarkMath from "remark-math"
+import remarkCodeTitles from "./remark-code-title"
+import remarkTocHeadings from "./remark-toc-headings"
+import remarkImgToJsx from "./remark-img-to-jsx"
 // Rehype packages
-import rehypeSlug from 'rehype-slug'
-import rehypeAutolinkHeadings from 'rehype-autolink-headings'
-import rehypeKatex from 'rehype-katex'
-import rehypePrismPlus from 'rehype-prism-plus'
+import rehypeSlug from "rehype-slug"
+import rehypeAutolinkHeadings from "rehype-autolink-headings"
+import rehypeKatex from "rehype-katex"
+import rehypePrismPlus from "rehype-prism-plus"
 
 const root = process.cwd()
 
 export function getFiles(type) {
-  const prefixPaths = path.join(root, 'data', type)
+  const prefixPaths = path.join(root, "data", type)
   const files = getAllFilesRecursively(prefixPaths)
   // Only want to return blog/path and ignore root, replace is needed to work on Windows
-  return files.map((file) => file.slice(prefixPaths.length + 1).replace(/\\/g, '/'))
+  return files.map((file) =>
+    file.slice(prefixPaths.length + 1).replace(/\\/g, "/")
+  )
 }
 
 export function formatSlug(slug) {
-  return slug.replace(/\.(mdx|md)/, '')
+  return slug.replace(/\.(mdx|md)/, "")
 }
 
 export function dateSortDesc(a, b) {
@@ -38,27 +40,27 @@ export function dateSortDesc(a, b) {
 }
 
 export async function getFileBySlug(type, slug) {
-  const mdxPath = path.join(root, 'data', type, `${slug}.mdx`)
-  const mdPath = path.join(root, 'data', type, `${slug}.md`)
+  const mdxPath = path.join(root, "data", type, `${slug}.mdx`)
+  const mdPath = path.join(root, "data", type, `${slug}.md`)
   const source = fs.existsSync(mdxPath)
-    ? fs.readFileSync(mdxPath, 'utf8')
-    : fs.readFileSync(mdPath, 'utf8')
+    ? fs.readFileSync(mdxPath, "utf8")
+    : fs.readFileSync(mdPath, "utf8")
 
   // https://github.com/kentcdodds/mdx-bundler#nextjs-esbuild-enoent
-  if (process.platform === 'win32') {
+  if (process.platform === "win32") {
     process.env.ESBUILD_BINARY_PATH = path.join(
       process.cwd(),
-      'node_modules',
-      'esbuild',
-      'esbuild.exe'
+      "node_modules",
+      "esbuild",
+      "esbuild.exe"
     )
   } else {
     process.env.ESBUILD_BINARY_PATH = path.join(
       process.cwd(),
-      'node_modules',
-      'esbuild',
-      'bin',
-      'esbuild'
+      "node_modules",
+      "esbuild",
+      "bin",
+      "esbuild"
     )
   }
 
@@ -66,7 +68,7 @@ export async function getFileBySlug(type, slug) {
 
   const { frontmatter, code } = await bundleMDX(source, {
     // mdx imports can be automatically source from the components directory
-    cwd: path.join(process.cwd(), 'components'),
+    cwd: path.join(process.cwd(), "components"),
     xdmOptions(options) {
       // this is the recommended way to add custom remark/rehype plugins:
       // The syntax might look weird, but it protects you in case we add/remove
@@ -92,7 +94,7 @@ export async function getFileBySlug(type, slug) {
     esbuildOptions: (options) => {
       options.loader = {
         ...options.loader,
-        '.js': 'jsx',
+        ".js": "jsx",
       }
       return options
     },
@@ -112,26 +114,26 @@ export async function getFileBySlug(type, slug) {
 }
 
 export async function getAllFilesFrontMatter(folder) {
-  const prefixPaths = path.join(root, 'data', folder)
-
+  const prefixPaths = path.join(root, "data", folder)
   const files = getAllFilesRecursively(prefixPaths)
-
   const allFrontMatter = []
 
   files.forEach((file) => {
     // Replace is needed to work on Windows
-    const fileName = file.slice(prefixPaths.length + 1).replace(/\\/g, '/')
+    const fileName = file.slice(prefixPaths.length + 1).replace(/\\/g, "/")
     // Remove Unexpected File
-    if (path.extname(fileName) !== '.md' && path.extname(fileName) !== '.mdx') {
+    if (path.extname(fileName) !== ".md" && path.extname(fileName) !== ".mdx") {
       return
     }
-    const source = fs.readFileSync(file, 'utf8')
+    const source = fs.readFileSync(file, "utf8")
     const { data: frontmatter } = matter(source)
     if (frontmatter.draft !== true) {
       allFrontMatter.push({
         ...frontmatter,
         slug: formatSlug(fileName),
-        date: frontmatter.date ? new Date(frontmatter.date).toISOString() : null,
+        date: frontmatter.date
+          ? new Date(frontmatter.date).toISOString()
+          : null,
       })
     }
   })

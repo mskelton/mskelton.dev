@@ -13,8 +13,13 @@
     "@tailwindcss/forms": "^0.3.2",
     "@tailwindcss/typography": "^0.4.0",
     "autoprefixer": "^10.2.5",
+    "components": "link:./src/components",
+    "css": "link:./src/css",
+    "data": "link:./src/data",
     "esbuild": "^0.12.15",
     "gray-matter": "^4.0.2",
+    "layouts": "link:./src/layouts",
+    "lib": "link:./src/lib",
     "mdx-bundler": "^6.0.1",
     "next": "12.0.1",
     "next-themes": "^0.0.14",
@@ -32,11 +37,18 @@
     "unist-util-visit": "^4.0.0"
   },
   "devDependencies": {
-    "eslint": "^7.29.0",
+    "@babel/core": "^7.16.0",
+    "@babel/eslint-parser": "^7.16.0",
+    "@mskelton/eslint-config": "^6.1.0",
+    "@types/react": "^17.0.33",
+    "@types/react-dom": "^17.0.10",
+    "@typescript-eslint/eslint-plugin": "^4.30.0",
+    "@typescript-eslint/parser": "^4.30.0",
+    "eslint": "^7.32.0",
     "eslint-config-next": "12.0.1",
-    "file-loader": "^6.0.0",
-    "prettier": "2.2.1",
-    "socket.io": "^4.1.3",
-    "socket.io-client": "^4.1.3"
+    "eslint-plugin-react": "^7.26.1",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "eslint-plugin-sort": "^1.5.0",
+    "prettier": "2.2.1"
   }
 }

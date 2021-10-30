@@ -1,18 +1,18 @@
-import { useState, useRef } from 'react'
+import { useState, useRef } from "react"
 
-const Pre = (props) => {
+export default function Pre(props) {
   const textInput = useRef(null)
   const [hovered, setHovered] = useState(false)
   const [copied, setCopied] = useState(false)
 
-  const onEnter = () => {
+  export default function onEnter() {
     setHovered(true)
   }
-  const onExit = () => {
+  export default function onExit() {
     setHovered(false)
     setCopied(false)
   }
-  const onCopy = () => {
+  export default function onCopy() {
     setCopied(true)
     navigator.clipboard.writeText(textInput.current.textContent)
     setTimeout(() => {
@@ -21,15 +21,20 @@ const Pre = (props) => {
   }
 
   return (
-    <div ref={textInput} onMouseEnter={onEnter} onMouseLeave={onExit} className="relative">
+    <div
+      ref={textInput}
+      onMouseEnter={onEnter}
+      onMouseLeave={onExit}
+      className="relative"
+    >
       {hovered && (
         <button
           aria-label="Copy code"
           type="button"
           className={`absolute right-2 top-2 w-8 h-8 p-1 rounded border-2 bg-gray-700 dark:bg-gray-800 ${
             copied
-              ? 'focus:outline-none focus:border-green-400 border-green-400'
-              : 'border-gray-300'
+              ? "focus:outline-none focus:border-green-400 border-green-400"
+              : "border-gray-300"
           }`}
           onClick={onCopy}
         >
@@ -38,7 +43,7 @@ const Pre = (props) => {
             viewBox="0 0 24 24"
             stroke="currentColor"
             fill="none"
-            className={copied ? 'text-green-400' : 'text-gray-300'}
+            className={copied ? "text-green-400" : "text-gray-300"}
           >
             {copied ? (
               <>
@@ -67,5 +72,3 @@ const Pre = (props) => {
     </div>
   )
 }
-
-export default Pre

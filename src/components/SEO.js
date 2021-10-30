@@ -1,86 +1,99 @@
-import Head from 'next/head'
-import { useRouter } from 'next/router'
-import siteMetadata from '@/data/siteMetadata'
+import Head from "next/head"
+import { useRouter } from "next/router"
+import siteMetadata from "data/siteMetadata"
 
-const CommonSEO = ({ title, description, ogType, ogImage, twImage }) => {
+export function CommonSEO({ description, ogImage, ogType, title, twImage }) {
   const router = useRouter()
   return (
     <Head>
       <title>{title}</title>
-      <meta name="robots" content="follow, index" />
-      <meta name="description" content={description} />
-      <meta property="og:url" content={`${siteMetadata.siteUrl}${router.asPath}`} />
-      <meta property="og:type" content={ogType} />
-      <meta property="og:site_name" content={siteMetadata.title} />
-      <meta property="og:description" content={description} />
-      <meta property="og:title" content={title} />
-      {ogImage.constructor.name === 'Array' ? (
-        ogImage.map(({ url }) => <meta property="og:image" content={url} key={url} />)
+      <meta content="follow, index" name="robots" />
+      <meta content={description} name="description" />
+      <meta
+        content={`${siteMetadata.siteUrl}${router.asPath}`}
+        property="og:url"
+      />
+      <meta content={ogType} property="og:type" />
+      <meta content={siteMetadata.title} property="og:site_name" />
+      <meta content={description} property="og:description" />
+      <meta content={title} property="og:title" />
+      {ogImage.constructor.name === "Array" ? (
+        ogImage.map(({ url }) => (
+          <meta key={url} content={url} property="og:image" />
+        ))
       ) : (
-        <meta property="og:image" content={ogImage} key={ogImage} />
+        <meta key={ogImage} content={ogImage} property="og:image" />
       )}
-      <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:site" content={siteMetadata.twitter} />
-      <meta name="twitter:title" content={title} />
-      <meta name="twitter:description" content={description} />
-      <meta name="twitter:image" content={twImage} />
+      <meta content="summary_large_image" name="twitter:card" />
+      <meta content={siteMetadata.twitter} name="twitter:site" />
+      <meta content={title} name="twitter:title" />
+      <meta content={description} name="twitter:description" />
+      <meta content={twImage} name="twitter:image" />
     </Head>
   )
 }
 
-export const PageSEO = ({ title, description }) => {
+export function PageSEO({ description, title }) {
   const ogImageUrl = siteMetadata.siteUrl + siteMetadata.socialBanner
   const twImageUrl = siteMetadata.siteUrl + siteMetadata.socialBanner
   return (
     <CommonSEO
-      title={title}
       description={description}
-      ogType="website"
       ogImage={ogImageUrl}
+      ogType="website"
+      title={title}
       twImage={twImageUrl}
     />
   )
 }
 
-export const TagSEO = ({ title, description }) => {
+export function TagSEO({ description, title }) {
   const ogImageUrl = siteMetadata.siteUrl + siteMetadata.socialBanner
   const twImageUrl = siteMetadata.siteUrl + siteMetadata.socialBanner
   const router = useRouter()
   return (
     <>
       <CommonSEO
-        title={title}
         description={description}
-        ogType="website"
         ogImage={ogImageUrl}
+        ogType="website"
+        title={title}
         twImage={twImageUrl}
       />
       <Head>
         <link
-          rel="alternate"
-          type="application/rss+xml"
-          title={`${description} - RSS feed`}
           href={`${siteMetadata.siteUrl}${router.asPath}/feed.xml`}
+          rel="alternate"
+          title={`${description} - RSS feed`}
+          type="application/rss+xml"
         />
       </Head>
     </>
   )
 }
 
-export const BlogSEO = ({ authorDetails, title, summary, date, lastmod, url, images = [] }) => {
+export const BlogSEO = ({
+  authorDetails,
+  date,
+  images = [],
+  lastmod,
+  summary,
+  title,
+  url,
+}) => {
   const router = useRouter()
   const publishedAt = new Date(date).toISOString()
   const modifiedAt = new Date(lastmod || date).toISOString()
   let imagesArr =
     images.length === 0
       ? [siteMetadata.socialBanner]
-      : typeof images === 'string'
+      : typeof images === "string"
       ? [images]
       : images
 
   const featuredImages = imagesArr.map((img) => {
     return {
-      '@type': 'ImageObject',
+      "@type": "ImageObject",
       url: `${siteMetadata.siteUrl}${img}`,
     }
   })
@@ -89,38 +102,38 @@ export const BlogSEO = ({ authorDetails, title, summary, date, lastmod, url, ima
   if (authorDetails) {
     authorList = authorDetails.map((author) => {
       return {
-        '@type': 'Person',
+        "@type": "Person",
         name: author.name,
       }
     })
   } else {
     authorList = {
-      '@type': 'Person',
+      "@type": "Person",
       name: siteMetadata.author,
     }
   }
 
   const structuredData = {
-    '@context': 'https://schema.org',
-    '@type': 'Article',
-    mainEntityOfPage: {
-      '@type': 'WebPage',
-      '@id': url,
-    },
+    "@context": "https://schema.org",
+    "@type": "Article",
+    author: authorList,
+    dateModified: modifiedAt,
+    datePublished: publishedAt,
+    description: summary,
     headline: title,
     image: featuredImages,
-    datePublished: publishedAt,
-    dateModified: modifiedAt,
-    author: authorList,
+    mainEntityOfPage: {
+      "@id": url,
+      "@type": "WebPage",
+    },
     publisher: {
-      '@type': 'Organization',
-      name: siteMetadata.author,
+      "@type": "Organization",
       logo: {
-        '@type': 'ImageObject',
+        "@type": "ImageObject",
         url: `${siteMetadata.siteUrl}${siteMetadata.siteLogo}`,
       },
+      name: siteMetadata.author,
     },
-    description: summary,
   }
 
   const twImageUrl = featuredImages[0].url
@@ -128,21 +141,28 @@ export const BlogSEO = ({ authorDetails, title, summary, date, lastmod, url, ima
   return (
     <>
       <CommonSEO
-        title={title}
         description={summary}
-        ogType="article"
         ogImage={featuredImages}
+        ogType="article"
+        title={title}
         twImage={twImageUrl}
       />
       <Head>
-        {date && <meta property="article:published_time" content={publishedAt} />}
-        {lastmod && <meta property="article:modified_time" content={modifiedAt} />}
-        <link rel="canonical" href={`${siteMetadata.siteUrl}${router.asPath}`} />
+        {date && (
+          <meta content={publishedAt} property="article:published_time" />
+        )}
+        {lastmod && (
+          <meta content={modifiedAt} property="article:modified_time" />
+        )}
+        <link
+          href={`${siteMetadata.siteUrl}${router.asPath}`}
+          rel="canonical"
+        />
         <script
-          type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(structuredData, null, 2),
           }}
+          type="application/ld+json"
         />
       </Head>
     </>
