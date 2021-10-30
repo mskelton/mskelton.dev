@@ -1,11 +1,10 @@
 import Link from "components/Link"
+import NewsletterForm from "components/NewsletterForm"
 import { PageSEO } from "components/SEO"
 import Tag from "components/Tag"
 import siteMetadata from "data/siteMetadata"
 import { getAllFilesFrontMatter } from "lib/mdx"
 import formatDate from "lib/utils/formatDate"
-
-import NewsletterForm from "components/NewsletterForm"
 
 const MAX_DISPLAY = 5
 
@@ -19,8 +18,8 @@ export default function Home({ posts }) {
   return (
     <>
       <PageSEO
-        title={siteMetadata.title}
         description={siteMetadata.description}
+        title={siteMetadata.title}
       />
       <div className="divide-y divide-gray-200 dark:divide-gray-700">
         <div className="pt-6 pb-8 space-y-2 md:space-y-5">
@@ -34,7 +33,7 @@ export default function Home({ posts }) {
         <ul className="divide-y divide-gray-200 dark:divide-gray-700">
           {!posts.length && "No posts found."}
           {posts.slice(0, MAX_DISPLAY).map((frontMatter) => {
-            const { slug, date, title, summary, tags } = frontMatter
+            const { date, slug, summary, tags, title } = frontMatter
             return (
               <li key={slug} className="py-12">
                 <article>
@@ -50,8 +49,8 @@ export default function Home({ posts }) {
                         <div>
                           <h2 className="text-2xl font-bold leading-8 tracking-tight">
                             <Link
-                              href={`/blog/${slug}`}
                               className="text-gray-900 dark:text-gray-100"
+                              href={`/blog/${slug}`}
                             >
                               {title}
                             </Link>
@@ -68,9 +67,9 @@ export default function Home({ posts }) {
                       </div>
                       <div className="text-base font-medium leading-6">
                         <Link
-                          href={`/blog/${slug}`}
-                          className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
                           aria-label={`Read "${title}"`}
+                          className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
+                          href={`/blog/${slug}`}
                         >
                           Read more &rarr;
                         </Link>
@@ -86,9 +85,9 @@ export default function Home({ posts }) {
       {posts.length > MAX_DISPLAY && (
         <div className="flex justify-end text-base font-medium leading-6">
           <Link
-            href="/blog"
-            className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
             aria-label="all posts"
+            className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
+            href="/blog"
           >
             All Posts &rarr;
           </Link>

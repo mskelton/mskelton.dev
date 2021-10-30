@@ -1,6 +1,6 @@
 module.exports = {
   eslint: {
-    dirs: ["pages", "components", "lib", "layouts", "scripts"],
+    dirs: ["src"],
   },
   pageExtensions: ["ts", "tsx", "md", "mdx"],
   reactStrictMode: true,

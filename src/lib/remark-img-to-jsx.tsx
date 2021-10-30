@@ -1,6 +1,6 @@
-import { visit } from "unist-util-visit"
-import sizeOf from "image-size"
 import fs from "fs"
+import sizeOf from "image-size"
+import { visit } from "unist-util-visit"
 
 export default function remarkImgToJsx() {
   return (tree) => {
@@ -21,16 +21,16 @@ export default function remarkImgToJsx() {
           ;(imageNode.type = "mdxJsxFlowElement"),
             (imageNode.name = "Image"),
             (imageNode.attributes = [
-              { type: "mdxJsxAttribute", name: "alt", value: imageNode.alt },
-              { type: "mdxJsxAttribute", name: "src", value: imageNode.url },
+              { name: "alt", type: "mdxJsxAttribute", value: imageNode.alt },
+              { name: "src", type: "mdxJsxAttribute", value: imageNode.url },
               {
-                type: "mdxJsxAttribute",
                 name: "width",
+                type: "mdxJsxAttribute",
                 value: dimensions.width,
               },
               {
-                type: "mdxJsxAttribute",
                 name: "height",
+                type: "mdxJsxAttribute",
                 value: dimensions.height,
               },
             ])

@@ -1,22 +1,22 @@
-import { bundleMDX } from "mdx-bundler"
 import fs from "fs"
 import matter from "gray-matter"
+import { bundleMDX } from "mdx-bundler"
 import path from "path"
 import readingTime from "reading-time"
-import { visit } from "unist-util-visit"
-import getAllFilesRecursively from "./utils/files"
-// Remark packages
-import remarkGfm from "remark-gfm"
-import remarkFootnotes from "remark-footnotes"
-import remarkMath from "remark-math"
-import remarkCodeTitles from "./remark-code-title"
-import remarkTocHeadings from "./remark-toc-headings"
-import remarkImgToJsx from "./remark-img-to-jsx"
+import rehypeAutolinkHeadings from "rehype-autolink-headings"
 // Rehype packages
 import rehypeSlug from "rehype-slug"
-import rehypeAutolinkHeadings from "rehype-autolink-headings"
+import remarkFootnotes from "remark-footnotes"
+// Remark packages
+import remarkGfm from "remark-gfm"
+import { visit } from "unist-util-visit"
 import rehypeKatex from "rehype-katex"
 import rehypePrismPlus from "rehype-prism-plus"
+import remarkMath from "remark-math"
+import remarkCodeTitles from "./remark-code-title"
+import remarkImgToJsx from "./remark-img-to-jsx"
+import remarkTocHeadings from "./remark-toc-headings"
+import getAllFilesRecursively from "./utils/files"
 
 const root = process.cwd()
 
@@ -64,11 +64,18 @@ export async function getFileBySlug(type, slug) {
     )
   }
 
-  let toc = []
+  const toc = []
 
-  const { frontmatter, code } = await bundleMDX(source, {
+  const { code, frontmatter } = await bundleMDX(source, {
     // mdx imports can be automatically source from the components directory
     cwd: path.join(process.cwd(), "components"),
+    esbuildOptions: (options) => {
+      options.loader = {
+        ...options.loader,
+        ".js": "jsx",
+      }
+      return options
+    },
     xdmOptions(options) {
       // this is the recommended way to add custom remark/rehype plugins:
       // The syntax might look weird, but it protects you in case we add/remove
@@ -91,25 +98,18 @@ export async function getFileBySlug(type, slug) {
       ]
       return options
     },
-    esbuildOptions: (options) => {
-      options.loader = {
-        ...options.loader,
-        ".js": "jsx",
-      }
-      return options
-    },
   })
 
   return {
-    mdxSource: code,
-    toc,
     frontMatter: {
+      fileName: fs.existsSync(mdxPath) ? `${slug}.mdx` : `${slug}.md`,
       readingTime: readingTime(code),
       slug: slug || null,
-      fileName: fs.existsSync(mdxPath) ? `${slug}.mdx` : `${slug}.md`,
       ...frontmatter,
       date: frontmatter.date ? new Date(frontmatter.date).toISOString() : null,
     },
+    mdxSource: code,
+    toc,
   }
 }
 
@@ -130,10 +130,10 @@ export async function getAllFilesFrontMatter(folder) {
     if (frontmatter.draft !== true) {
       allFrontMatter.push({
         ...frontmatter,
-        slug: formatSlug(fileName),
         date: frontmatter.date
           ? new Date(frontmatter.date).toISOString()
           : null,
+        slug: formatSlug(fileName),
       })
     }
   })

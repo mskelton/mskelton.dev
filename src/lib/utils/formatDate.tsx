@@ -2,9 +2,9 @@ import siteMetadata from "data/siteMetadata"
 
 export default function formatDate(date) {
   const options = {
-    year: "numeric",
-    month: "long",
     day: "numeric",
+    month: "long",
+    year: "numeric",
   }
   const now = new Date(date).toLocaleDateString(siteMetadata.locale, options)
 

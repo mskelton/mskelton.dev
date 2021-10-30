@@ -1,12 +1,12 @@
+import Image from "components/Image"
 import Link from "components/Link"
 import PageTitle from "components/PageTitle"
-import SectionContainer from "components/SectionContainer"
 import { BlogSEO } from "components/SEO"
-import Image from "components/Image"
-import Tag from "components/Tag"
-import siteMetadata from "data/siteMetadata"
-import Comments from "components/comments"
 import ScrollTopAndComment from "components/ScrollTopAndComment"
+import SectionContainer from "components/SectionContainer"
+import Tag from "components/Tag"
+import Comments from "components/comments"
+import siteMetadata from "data/siteMetadata"
 
 const editUrl = (fileName) =>
   `${siteMetadata.siteRepo}/blob/master/data/blog/${fileName}`
@@ -16,26 +16,26 @@ const discussUrl = (slug) =>
   )}`
 
 const postDateTemplate = {
+  day: "numeric",
+  month: "long",
   weekday: "long",
   year: "numeric",
-  month: "long",
-  day: "numeric",
 }
 
 export default function PostLayout({
-  frontMatter,
   authorDetails,
+  children,
+  frontMatter,
   next,
   prev,
-  children,
 }) {
-  const { slug, fileName, date, title, tags } = frontMatter
+  const { date, fileName, slug, tags, title } = frontMatter
 
   return (
     <SectionContainer>
       <BlogSEO
-        url={`${siteMetadata.siteUrl}/blog/${slug}`}
         authorDetails={authorDetails}
+        url={`${siteMetadata.siteUrl}/blog/${slug}`}
         {...frontMatter}
       />
       <ScrollTopAndComment />
@@ -71,16 +71,16 @@ export default function PostLayout({
                 <ul className="flex justify-center space-x-8 xl:block sm:space-x-12 xl:space-x-0 xl:space-y-8">
                   {authorDetails.map((author) => (
                     <li
-                      className="flex items-center space-x-2"
                       key={author.name}
+                      className="flex items-center space-x-2"
                     >
                       {author.avatar && (
                         <Image
-                          src={author.avatar}
-                          width="38px"
-                          height="38px"
                           alt="avatar"
                           className="w-10 h-10 rounded-full"
+                          height="38px"
+                          src={author.avatar}
+                          width="38px"
                         />
                       )}
                       <dl className="text-sm font-medium leading-5 whitespace-nowrap">
@@ -92,8 +92,8 @@ export default function PostLayout({
                         <dd>
                           {author.twitter && (
                             <Link
-                              href={author.twitter}
                               className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
+                              href={author.twitter}
                             >
                               {author.twitter.replace(
                                 "https://twitter.com/",
@@ -162,8 +162,8 @@ export default function PostLayout({
               </div>
               <div className="pt-4 xl:pt-8">
                 <Link
-                  href="/blog"
                   className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
+                  href="/blog"
                 >
                   &larr; Back to the blog
                 </Link>

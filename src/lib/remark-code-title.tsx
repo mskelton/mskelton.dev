@@ -19,13 +19,13 @@ export default function remarkCodeTitles() {
       const className = "remark-code-title"
 
       const titleNode = {
-        type: "mdxJsxFlowElement",
-        name: "div",
         attributes: [
-          { type: "mdxJsxAttribute", name: "className", value: className },
+          { name: "className", type: "mdxJsxAttribute", value: className },
         ],
         children: [{ type: "text", value: title }],
         data: { _xdmExplicitJsx: true },
+        name: "div",
+        type: "mdxJsxFlowElement",
       }
 
       tree.children.splice(index, 0, titleNode)

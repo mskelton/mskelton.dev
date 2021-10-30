@@ -1,6 +1,6 @@
 import Link from "components/Link"
 
-export default function Pagination({ totalPages, currentPage }) {
+export default function Pagination({ currentPage, totalPages }) {
   const prevPage = parseInt(currentPage) - 1 > 0
   const nextPage = parseInt(currentPage) + 1 <= parseInt(totalPages)
 
@@ -9,9 +9,9 @@ export default function Pagination({ totalPages, currentPage }) {
       <nav className="flex justify-between">
         {!prevPage && (
           <button
-            rel="previous"
             className="cursor-auto disabled:opacity-50"
             disabled={!prevPage}
+            rel="previous"
           >
             Previous
           </button>
@@ -30,9 +30,9 @@ export default function Pagination({ totalPages, currentPage }) {
         </span>
         {!nextPage && (
           <button
-            rel="next"
             className="cursor-auto disabled:opacity-50"
             disabled={!nextPage}
+            rel="next"
           >
             Next
           </button>

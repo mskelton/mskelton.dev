@@ -16,8 +16,8 @@ export default function Tags({ tags }) {
   return (
     <>
       <PageSEO
-        title={`Tags - ${siteMetadata.author}`}
         description="Things I blog about"
+        title={`Tags - ${siteMetadata.author}`}
       />
       <div className="flex flex-col items-start justify-start divide-y divide-gray-200 dark:divide-gray-700 md:justify-center md:items-center md:divide-y-0 md:flex-row md:space-x-6 md:mt-24">
         <div className="pt-6 pb-8 space-x-2 md:space-y-5">
@@ -32,8 +32,8 @@ export default function Tags({ tags }) {
               <div key={t} className="mt-2 mb-2 mr-5">
                 <Tag text={t} />
                 <Link
-                  href={`/tags/${kebabCase(t)}`}
                   className="-ml-2 text-sm font-semibold text-gray-600 uppercase dark:text-gray-300"
+                  href={`/tags/${kebabCase(t)}`}
                 >
                   {` (${tags[t]})`}
                 </Link>

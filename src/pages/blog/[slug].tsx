@@ -1,3 +1,4 @@
+import { GetStaticPropsContext, InferGetStaticPropsType } from "next"
 import { MDXLayoutRenderer } from "components/MDXComponents"
 import PageTitle from "components/PageTitle"
 import {
@@ -6,7 +7,6 @@ import {
   getFileBySlug,
   getFiles,
 } from "lib/mdx"
-import { GetStaticPropsContext, InferGetStaticPropsType } from "next"
 
 const DEFAULT_LAYOUT = "PostLayout"
 

@@ -1,7 +1,7 @@
 import { PageSEO } from "components/SEO"
 import siteMetadata from "data/siteMetadata"
-import { getAllFilesFrontMatter } from "lib/mdx"
 import ListLayout from "layouts/ListLayout"
+import { getAllFilesFrontMatter } from "lib/mdx"
 import { POSTS_PER_PAGE } from "../../blog"
 
 export async function getStaticPaths() {
@@ -12,8 +12,8 @@ export async function getStaticPaths() {
   }))
 
   return {
-    paths,
     fallback: false,
+    paths,
   }
 }
 
@@ -34,24 +34,24 @@ export async function getStaticProps(context) {
 
   return {
     props: {
-      posts,
       initialDisplayPosts,
       pagination,
+      posts,
     },
   }
 }
 
-export default function PostPage({ posts, initialDisplayPosts, pagination }) {
+export default function PostPage({ initialDisplayPosts, pagination, posts }) {
   return (
     <>
       <PageSEO
-        title={siteMetadata.title}
         description={siteMetadata.description}
+        title={siteMetadata.title}
       />
       <ListLayout
-        posts={posts}
         initialDisplayPosts={initialDisplayPosts}
         pagination={pagination}
+        posts={posts}
         title="All Posts"
       />
     </>

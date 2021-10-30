@@ -5,11 +5,11 @@ const es = /&(?:amp|#38|lt|#60|gt|#62|apos|#39|quot|#34);/g
 const ca = /[&<>'"]/g
 
 const esca = {
+  '"': "&quot;",
   "&": "&amp;",
+  "'": "&#39;",
   "<": "&lt;",
   ">": "&gt;",
-  "'": "&#39;",
-  '"': "&quot;",
 }
 const pe = (m) => esca[m]
 

@@ -1,5 +1,5 @@
-import kebabCase from "lib/utils/kebabCase"
 import Link from "next/link"
+import kebabCase from "lib/utils/kebabCase"
 
 export default function Tag({ text }) {
   return (

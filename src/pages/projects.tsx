@@ -1,14 +1,14 @@
-import siteMetadata from "data/siteMetadata"
-import projectsData from "data/projectsData"
 import Card from "components/Card"
 import { PageSEO } from "components/SEO"
+import projectsData from "data/projectsData"
+import siteMetadata from "data/siteMetadata"
 
 export default function Projects() {
   return (
     <>
       <PageSEO
-        title={`Projects - ${siteMetadata.author}`}
         description={siteMetadata.description}
+        title={`Projects - ${siteMetadata.author}`}
       />
       <div className="divide-y divide-gray-200 dark:divide-gray-700">
         <div className="pt-6 pb-8 space-y-2 md:space-y-5">
@@ -25,10 +25,10 @@ export default function Projects() {
             {projectsData.map((d) => (
               <Card
                 key={d.title}
-                title={d.title}
                 description={d.description}
-                imgSrc={d.imgSrc}
                 href={d.href}
+                imgSrc={d.imgSrc}
+                title={d.title}
               />
             ))}
           </div>
