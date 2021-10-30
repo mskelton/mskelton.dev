@@ -5,7 +5,7 @@ import Link from "./Link"
 export default function MobileNav() {
   const [navShow, setNavShow] = useState(false)
 
-  export default function onToggleNav() {
+  function onToggleNav() {
     setNavShow((status) => {
       if (status) {
         document.body.style.overflow = "auto"
@@ -56,7 +56,7 @@ export default function MobileNav() {
           className="fixed w-full h-full cursor-auto focus:outline-none"
           onClick={onToggleNav}
           type="button"
-         />
+        />
         <nav className="fixed h-full mt-8">
           {headerNavLinks.map((link) => (
             <div key={link.title} className="px-12 py-4">

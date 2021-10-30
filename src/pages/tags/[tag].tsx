@@ -24,7 +24,7 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  const allPosts = await getAllFilesFrontMatter("blog")
+  const allPosts = await getAllFilesFrontMatter()
   const filteredPosts = allPosts.filter(
     (post) =>
       post.draft !== true &&

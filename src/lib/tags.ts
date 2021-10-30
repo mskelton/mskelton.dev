@@ -6,8 +6,8 @@ import kebabCase from "./utils/kebabCase"
 
 const root = process.cwd()
 
-export async function getAllTags(type) {
-  const files = await getFiles(type)
+export async function getAllTags() {
+  const files = await getFiles()
 
   const tagCount = {}
   // Iterate through each post, putting all found tags into `tags`
