@@ -1,6 +1,6 @@
 ---
 name: Mark Skelton
-avatar: /static/images/avatar.png
+avatar: mskelton.jpg
 occupation: JavaScript Engineer
 company: Widen Enterprises
 email: mdskelton99@gmail.com

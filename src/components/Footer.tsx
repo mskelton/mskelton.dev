@@ -15,15 +15,15 @@ export default function Footer() {
         </div>
 
         <div className="flex mb-2 space-x-2 text-sm text-gray-500 dark:text-gray-400">
-          <div>{siteMetadata.author}</div>
-          <div>{` • `}</div>
-          <div>{`© ${new Date().getFullYear()}`}</div>
-          <div>{` • `}</div>
-          <Link href="/">{siteMetadata.title}</Link>
+          <span>{`© ${new Date().getFullYear()}`}</span>
+          <span>{` • `}</span>
+          <span>{siteMetadata.author}</span>
         </div>
+
         <div className="mb-8 text-sm text-gray-500 dark:text-gray-400">
+          Built using{" "}
           <Link href="https://github.com/timlrx/tailwind-nextjs-starter-blog">
-            Tailwind Nextjs Theme
+            Tailwind Next.js Theme
           </Link>
         </div>
       </div>

@@ -7,12 +7,7 @@ export default function MobileNav() {
 
   function onToggleNav() {
     setNavShow((status) => {
-      if (status) {
-        document.body.style.overflow = "auto"
-      } else {
-        // Prevent scrolling
-        document.body.style.overflow = "hidden"
-      }
+      document.body.style.overflow = status ? "auto" : "hidden"
       return !status
     })
   }
@@ -57,6 +52,7 @@ export default function MobileNav() {
           onClick={onToggleNav}
           type="button"
         />
+
         <nav className="fixed h-full mt-8">
           {headerNavLinks.map((link) => (
             <div key={link.title} className="px-12 py-4">

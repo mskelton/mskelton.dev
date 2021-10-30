@@ -3,7 +3,7 @@ import Pagination from "components/Pagination"
 import Tag from "components/Tag"
 import formatDate from "lib/utils/formatDate"
 import { ComponentProps, useState } from "react"
-import { PostFrontMatter } from "types/PostFrontMatter"
+import { PostFrontMatter } from "types/FrontMatter"
 
 interface ListLayoutProps {
   posts: PostFrontMatter[]

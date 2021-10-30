@@ -1,10 +1,9 @@
 import Link from "components/Link"
-import NewsletterForm from "components/NewsletterForm"
 import { PageSEO } from "components/SEO"
 import Tag from "components/Tag"
-import siteMetadata from "data/siteMetadata"
 import { getAllFilesFrontMatter } from "lib/mdx"
 import formatDate from "lib/utils/formatDate"
+import siteMetadata from "data/siteMetadata"
 
 const MAX_DISPLAY = 5
 
@@ -82,6 +81,7 @@ export default function Home({ posts }) {
           })}
         </ul>
       </div>
+
       {posts.length > MAX_DISPLAY && (
         <div className="flex justify-end text-base font-medium leading-6">
           <Link
@@ -91,11 +91,6 @@ export default function Home({ posts }) {
           >
             All Posts &rarr;
           </Link>
-        </div>
-      )}
-      {siteMetadata.newsletter.provider !== "" && (
-        <div className="flex items-center justify-center pt-4">
-          <NewsletterForm />
         </div>
       )}
     </>

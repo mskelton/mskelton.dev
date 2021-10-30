@@ -2,7 +2,7 @@ import fs from "fs"
 import matter from "gray-matter"
 import path from "path"
 import slugify from "slugify"
-import { PostFrontMatter } from "types/PostFrontMatter"
+import { PostFrontMatter } from "types/FrontMatter"
 import { getFiles } from "./mdx"
 import { root } from "./utils/files"
 

@@ -8,7 +8,7 @@ import rehypeSlug from "rehype-slug"
 import remarkFootnotes from "remark-footnotes"
 import remarkGfm from "remark-gfm"
 import rehypePrismPlus from "rehype-prism-plus"
-import { PostFrontMatter } from "types/PostFrontMatter"
+import { FrontMatter, PostFrontMatter } from "types/FrontMatter"
 import remarkCodeTitles from "./remark-code-title"
 import { root } from "./utils/files"
 
@@ -32,17 +32,11 @@ export async function getFileBySlug<T extends "blog" | "authors">(
   slug: string
 ) {
   const file = path.join(root, "data", type, slug)
-  const source = fs.existsSync(`${file}.mdx`) ? `${file}.mdx` : `${file}.md`
+  const filePath = fs.existsSync(`${file}.mdx`) ? `${file}.mdx` : `${file}.md`
+  const source = fs.readFileSync(filePath, "utf8")
 
   const { code, frontmatter } = await bundleMDX(source, {
-    cwd: path.join(__dirname, "../components"),
-    esbuildOptions: (options) => {
-      options.loader = {
-        ...options.loader,
-        ".js": "jsx",
-      }
-      return options
-    },
+    cwd: path.join(root, "components"),
     xdmOptions(options) {
       options.remarkPlugins = [
         ...(options.remarkPlugins ?? []),
@@ -64,12 +58,12 @@ export async function getFileBySlug<T extends "blog" | "authors">(
 
   return {
     frontMatter: {
+      ...frontmatter,
+      date: frontmatter.date ? new Date(frontmatter.date).toISOString() : null,
       fileName: path.basename(source),
       readingTime: readingTime(code),
       slug: slug || null,
-      ...frontmatter,
-      date: frontmatter.date ? new Date(frontmatter.date).toISOString() : null,
-    },
+    } as unknown as FrontMatter<T>,
     mdxSource: code,
   }
 }
@@ -82,11 +76,11 @@ export async function getAllFilesFrontMatter() {
   files.forEach((file) => {
     const fileName = path.basename(file)
     const source = fs.readFileSync(file, "utf8")
-    const { data: frontMatter } = matter(source)
+    const frontMatter = matter(source).data as PostFrontMatter
 
     allFrontMatter.push({
       ...frontMatter,
-      date: frontMatter.date ? new Date(frontMatter.date).toISOString() : null,
+      date: new Date(frontMatter.date).toISOString(),
       slug: formatSlug(fileName),
     })
   })

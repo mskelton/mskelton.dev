@@ -7,9 +7,9 @@ export interface MarkdownImageProps {
 
 export function MarkdownImage({ alt, src }: MarkdownImageProps) {
   return (
-    <div className="text-center my-9">
-      <Image alt={alt} placeholder="blur" src={require(`../../img/${src}`)} />
-      <p className="text-sm text-gray-400">{alt}</p>
-    </div>
+    <span className="inline-block text-center">
+      <Image alt={alt} placeholder="blur" src={require(`../images/${src}`)} />
+      <span className="text-sm text-gray-500 dark:text-gray-400">{alt}</span>
+    </span>
   )
 }

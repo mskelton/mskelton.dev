@@ -6,7 +6,7 @@ export default function ScrollTopAndComment() {
 
   useEffect(() => {
     smoothscroll.polyfill()
-    export default function handleWindowScroll() {
+    function handleWindowScroll() {
       if (window.scrollY > 50) setShow(true)
       else setShow(false)
     }
@@ -15,10 +15,10 @@ export default function ScrollTopAndComment() {
     return () => window.removeEventListener("scroll", handleWindowScroll)
   }, [])
 
-  export default function handleScrollTop() {
+  function handleScrollTop() {
     window.scrollTo({ behavior: "smooth", top: 0 })
   }
-  export default function handleScrollToComment() {
+  function handleScrollToComment() {
     document.getElementById("comment").scrollIntoView()
   }
   return (

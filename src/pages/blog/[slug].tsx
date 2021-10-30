@@ -21,12 +21,12 @@ export async function getStaticProps({
 }: GetStaticPropsContext<{ slug: string }>) {
   const slug = params!.slug
   const allPosts = await getAllFilesFrontMatter()
-  const postIndex = allPosts.findIndex((post) => formatSlug(post.slug) === slug)
+  const postIndex = allPosts.findIndex((post) => post.slug === slug)
 
   const post = await getFileBySlug("blog", slug)
   const authorList = post.frontMatter.authors || ["mskelton"]
   const authorPromise = authorList.map(async (author) => {
-    const authorResults = await getFileBySlug("authors", [author])
+    const authorResults = await getFileBySlug("authors", author)
     return authorResults.frontMatter
   })
 

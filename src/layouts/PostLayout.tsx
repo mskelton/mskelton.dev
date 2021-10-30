@@ -1,25 +1,30 @@
-import Image from "components/Image"
 import Link from "components/Link"
 import PageTitle from "components/PageTitle"
 import { BlogSEO } from "components/SEO"
 import ScrollTopAndComment from "components/ScrollTopAndComment"
-import SectionContainer from "components/SectionContainer"
 import Tag from "components/Tag"
-import Comments from "components/comments"
+import Image from "next/image"
+import React, { ReactNode } from "react"
+import SectionContainer from "components/SectionContainer"
 import siteMetadata from "data/siteMetadata"
+import { AuthorFrontMatter, PostFrontMatter } from "types/FrontMatter"
 
-const editUrl = (fileName) =>
+const editUrl = (fileName: string) =>
   `${siteMetadata.siteRepo}/blob/master/data/blog/${fileName}`
-const discussUrl = (slug) =>
-  `https://mobile.twitter.com/search?q=${encodeURIComponent(
-    `${siteMetadata.siteUrl}/blog/${slug}`
-  )}`
 
-const postDateTemplate = {
+const postDateTemplate: Intl.DateTimeFormatOptions = {
   day: "numeric",
   month: "long",
   weekday: "long",
   year: "numeric",
+}
+
+interface PostLayoutProps {
+  authorDetails: AuthorFrontMatter[]
+  children: ReactNode
+  frontMatter: PostFrontMatter
+  next?: { slug: string; title: string }
+  prev?: { slug: string; title: string }
 }
 
 export default function PostLayout({
@@ -28,7 +33,7 @@ export default function PostLayout({
   frontMatter,
   next,
   prev,
-}) {
+}: PostLayoutProps) {
   const { date, fileName, slug, tags, title } = frontMatter
 
   return (
@@ -38,6 +43,7 @@ export default function PostLayout({
         url={`${siteMetadata.siteUrl}/blog/${slug}`}
         {...frontMatter}
       />
+
       <ScrollTopAndComment />
       <article>
         <div className="xl:divide-y xl:divide-gray-200 xl:dark:divide-gray-700">
@@ -56,6 +62,7 @@ export default function PostLayout({
                   </dd>
                 </div>
               </dl>
+
               <div>
                 <PageTitle>{title}</PageTitle>
               </div>
@@ -79,7 +86,7 @@ export default function PostLayout({
                           alt="avatar"
                           className="w-10 h-10 rounded-full"
                           height="38px"
-                          src={author.avatar}
+                          src={require(`../images/authors/${author.avatar}`)}
                           width="38px"
                         />
                       )}
@@ -88,6 +95,7 @@ export default function PostLayout({
                         <dd className="text-gray-900 dark:text-gray-100">
                           {author.name}
                         </dd>
+
                         <dt className="sr-only">Twitter</dt>
                         <dd>
                           {author.twitter && (
@@ -112,15 +120,8 @@ export default function PostLayout({
               <div className="pt-10 pb-8 prose dark:prose-dark max-w-none">
                 {children}
               </div>
-              <div className="pt-6 pb-6 text-sm text-gray-700 dark:text-gray-300">
-                <Link href={discussUrl(slug)} rel="nofollow">
-                  {"Discuss on Twitter"}
-                </Link>
-                {` • `}
-                <Link href={editUrl(fileName)}>{"View on GitHub"}</Link>
-              </div>
-              <Comments frontMatter={frontMatter} />
             </div>
+
             <footer>
               <div className="text-sm font-medium leading-5 divide-gray-200 xl:divide-y dark:divide-gray-700 xl:col-start-1 xl:row-start-2">
                 {tags && (
@@ -128,6 +129,7 @@ export default function PostLayout({
                     <h2 className="text-xs tracking-wide text-gray-500 uppercase dark:text-gray-400">
                       Tags
                     </h2>
+
                     <div className="flex flex-wrap">
                       {tags.map((tag) => (
                         <Tag key={tag}>{tag}</Tag>
@@ -135,6 +137,7 @@ export default function PostLayout({
                     </div>
                   </div>
                 )}
+
                 {(next || prev) && (
                   <div className="flex justify-between py-4 xl:block xl:space-y-8 xl:py-8">
                     {prev && (
@@ -142,16 +145,19 @@ export default function PostLayout({
                         <h2 className="text-xs tracking-wide text-gray-500 uppercase dark:text-gray-400">
                           Previous Article
                         </h2>
+
                         <div className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400">
                           <Link href={`/blog/${prev.slug}`}>{prev.title}</Link>
                         </div>
                       </div>
                     )}
+
                     {next && (
                       <div>
                         <h2 className="text-xs tracking-wide text-gray-500 uppercase dark:text-gray-400">
                           Next Article
                         </h2>
+
                         <div className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400">
                           <Link href={`/blog/${next.slug}`}>{next.title}</Link>
                         </div>
@@ -160,6 +166,7 @@ export default function PostLayout({
                   </div>
                 )}
               </div>
+
               <div className="pt-4 xl:pt-8">
                 <Link
                   className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
