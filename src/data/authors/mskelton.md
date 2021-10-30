@@ -1,12 +1,12 @@
 ---
-name: Tails Azimuth
+name: Mark Skelton
 avatar: /static/images/avatar.png
-occupation: Professor of Atmospheric Science
-company: Stanford University
-email: address@yoursite.com
-twitter: https://twitter.com/Twitter
-linkedin: https://www.linkedin.com
-github: https://github.com
+occupation: JavaScript Engineer
+company: Widen Enterprises
+email: mdskelton99@gmail.com
+twitter: https://twitter.com/mskelton0
+linkedin: https://www.linkedin.com/in/mskelton0/
+github: https://github.com/mskelton
 ---
 
 Tails Azimuth is a professor of atmospheric sciences at the Stanford AI Lab. His

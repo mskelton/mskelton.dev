@@ -1,7 +1,8 @@
 import { PageSEO } from "components/SEO"
-import siteMetadata from "data/siteMetadata"
 import ListLayout from "layouts/ListLayout"
 import { getAllFilesFrontMatter } from "lib/mdx"
+import { GetStaticPropsContext, InferGetStaticPropsType } from "next"
+import siteMetadata from "data/siteMetadata"
 import { POSTS_PER_PAGE } from "../../blog"
 
 export async function getStaticPaths() {
@@ -11,43 +12,39 @@ export async function getStaticPaths() {
     params: { page: (i + 1).toString() },
   }))
 
-  return {
-    fallback: false,
-    paths,
-  }
+  return { fallback: false, paths }
 }
 
-export async function getStaticProps(context) {
-  const {
-    params: { page },
-  } = context
+export async function getStaticProps(
+  context: GetStaticPropsContext<{ page: string }>
+) {
+  const page = parseInt(context.params!.page)
   const posts = await getAllFilesFrontMatter()
-  const pageNumber = parseInt(page)
   const initialDisplayPosts = posts.slice(
-    POSTS_PER_PAGE * (pageNumber - 1),
-    POSTS_PER_PAGE * pageNumber
+    POSTS_PER_PAGE * (page - 1),
+    POSTS_PER_PAGE * page
   )
+
   const pagination = {
-    currentPage: pageNumber,
+    currentPage: page,
     totalPages: Math.ceil(posts.length / POSTS_PER_PAGE),
   }
 
-  return {
-    props: {
-      initialDisplayPosts,
-      pagination,
-      posts,
-    },
-  }
+  return { props: { initialDisplayPosts, pagination, posts } }
 }
 
-export default function PostPage({ initialDisplayPosts, pagination, posts }) {
+export default function PostPage({
+  initialDisplayPosts,
+  pagination,
+  posts,
+}: InferGetStaticPropsType<typeof getStaticPaths>) {
   return (
     <>
       <PageSEO
         description={siteMetadata.description}
         title={siteMetadata.title}
       />
+
       <ListLayout
         initialDisplayPosts={initialDisplayPosts}
         pagination={pagination}

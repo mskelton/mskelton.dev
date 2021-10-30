@@ -1,5 +1,4 @@
 import { MDXLayoutRenderer } from "components/MDXComponents"
-import PageTitle from "components/PageTitle"
 import {
   formatSlug,
   getAllFilesFrontMatter,
@@ -8,18 +7,12 @@ import {
 } from "lib/mdx"
 import { GetStaticPropsContext, InferGetStaticPropsType } from "next"
 
-const DEFAULT_LAYOUT = "PostLayout"
-
 export async function getStaticPaths() {
   const posts = await getFiles()
 
   return {
     fallback: false,
-    paths: posts.map((p) => ({
-      params: {
-        slug: formatSlug(p).split("/"),
-      },
-    })),
+    paths: posts.map((p) => ({ params: { slug: formatSlug(p) } })),
   }
 }
 
@@ -57,30 +50,16 @@ export default function Blog({
   post,
   prev,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
-  const { frontMatter, mdxSource, toc } = post
+  const { frontMatter, mdxSource } = post
 
   return (
-    <>
-      {frontMatter.draft !== true ? (
-        <MDXLayoutRenderer
-          authorDetails={authorDetails}
-          frontMatter={frontMatter}
-          layout={frontMatter.layout || DEFAULT_LAYOUT}
-          mdxSource={mdxSource}
-          next={next}
-          prev={prev}
-          toc={toc}
-        />
-      ) : (
-        <div className="mt-24 text-center">
-          <PageTitle>
-            Under Construction{" "}
-            <span aria-label="roadwork sign" role="img">
-              🚧
-            </span>
-          </PageTitle>
-        </div>
-      )}
-    </>
+    <MDXLayoutRenderer
+      authorDetails={authorDetails}
+      frontMatter={frontMatter}
+      layout="PostLayout"
+      mdxSource={mdxSource}
+      next={next}
+      prev={prev}
+    />
   )
 }

@@ -1,21 +1,29 @@
-import { useState } from "react"
 import Link from "components/Link"
 import Pagination from "components/Pagination"
 import Tag from "components/Tag"
-import siteMetadata from "data/siteMetadata"
 import formatDate from "lib/utils/formatDate"
+import { ComponentProps, useState } from "react"
+import { PostFrontMatter } from "types/PostFrontMatter"
+
+interface ListLayoutProps {
+  posts: PostFrontMatter[]
+  title: string
+  initialDisplayPosts?: PostFrontMatter[]
+  pagination?: ComponentProps<typeof Pagination>
+}
 
 export default function ListLayout({
   initialDisplayPosts = [],
   pagination,
   posts,
   title,
-}) {
+}: ListLayoutProps) {
   const [searchValue, setSearchValue] = useState("")
   const filteredBlogPosts = posts.filter((frontMatter) => {
-    const searchContent =
-      frontMatter.title + frontMatter.summary + frontMatter.tags.join(" ")
-    return searchContent.toLowerCase().includes(searchValue.toLowerCase())
+    return [frontMatter.title, frontMatter.summary, ...frontMatter.tags]
+      .join(" ")
+      .toLowerCase()
+      .includes(searchValue.toLowerCase())
   })
 
   // If initialDisplayPosts exist, display it if no searchValue is specified
@@ -31,6 +39,7 @@ export default function ListLayout({
           <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
             {title}
           </h1>
+
           <div className="relative max-w-lg">
             <input
               aria-label="Search articles"
@@ -39,6 +48,7 @@ export default function ListLayout({
               placeholder="Search articles"
               type="text"
             />
+
             <svg
               className="absolute w-5 h-5 text-gray-400 right-3 top-3 dark:text-gray-300"
               fill="none"
@@ -80,7 +90,7 @@ export default function ListLayout({
                       </h3>
                       <div className="flex flex-wrap">
                         {tags.map((tag) => (
-                          <Tag key={tag} text={tag} />
+                          <Tag key={tag}>{tag}</Tag>
                         ))}
                       </div>
                     </div>

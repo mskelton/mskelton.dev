@@ -8,6 +8,7 @@ import rehypeSlug from "rehype-slug"
 import remarkFootnotes from "remark-footnotes"
 import remarkGfm from "remark-gfm"
 import rehypePrismPlus from "rehype-prism-plus"
+import { PostFrontMatter } from "types/PostFrontMatter"
 import remarkCodeTitles from "./remark-code-title"
 import { root } from "./utils/files"
 
@@ -26,7 +27,7 @@ export function dateSortDesc(a: string, b: string) {
   return 0
 }
 
-export async function getFileBySlug<T extends "blog" | "author">(
+export async function getFileBySlug<T extends "blog" | "authors">(
   type: T,
   slug: string
 ) {

@@ -17,7 +17,6 @@ export default function remarkCodeTitles() {
       }
 
       const className = "remark-code-title"
-
       const titleNode = {
         attributes: [
           { name: "className", type: "mdxJsxAttribute", value: className },

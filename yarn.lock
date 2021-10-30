@@ -7699,6 +7699,13 @@ resolve@^2.0.0-next.3:
   languageName: node
   linkType: hard
 
+"slugify@npm:^1.6.1":
+  version: 1.6.1
+  resolution: "slugify@npm:1.6.1"
+  checksum: 224ead8e5dc346d9a657e1dac741a89ad83b5f707f3cb71484407b004d68e167b605a679d3e4066ee130677109f21027fed0673602cce663562aedca54d6deca
+  languageName: node
+  linkType: hard
+
 "smart-buffer@npm:^4.1.0":
   version: 4.2.0
   resolution: "smart-buffer@npm:4.2.0"
@@ -8151,6 +8158,7 @@ resolve@^2.0.0-next.3:
     rehype-slug: ^5.0.0
     remark-footnotes: ^4.0.0
     remark-gfm: ^2.0.0
+    slugify: ^1.6.1
     smoothscroll-polyfill: ^0.4.4
     tailwindcss: ^2.2.2
     types: "link:./src/types"
