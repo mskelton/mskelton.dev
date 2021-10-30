@@ -1,6 +1,6 @@
-import { PageSEO } from "components/SEO"
 import Image from "next/image"
 import { ReactNode } from "react"
+import { PageSEO } from "components/SEO"
 import SocialIcon from "components/SocialIcon"
 import { AuthorFrontMatter } from "types/FrontMatter"
 

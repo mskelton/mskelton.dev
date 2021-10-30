@@ -1,6 +1,6 @@
+import { InferGetStaticPropsType } from "next"
 import { MDXLayoutRenderer } from "components/MDXComponents"
 import { getFileBySlug } from "lib/mdx"
-import { InferGetStaticPropsType } from "next"
 
 export async function getStaticProps() {
   const authorDetails = await getFileBySlug("authors", "mskelton")

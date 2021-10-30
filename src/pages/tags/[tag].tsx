@@ -1,10 +1,10 @@
+import { GetStaticPropsContext, InferGetStaticPropsType } from "next"
+import slugify from "slugify"
 import { TagSEO } from "components/SEO"
+import siteMetadata from "data/siteMetadata"
 import ListLayout from "layouts/ListLayout"
 import { getAllFilesFrontMatter } from "lib/mdx"
 import { getAllTags } from "lib/tags"
-import { GetStaticPropsContext, InferGetStaticPropsType } from "next"
-import slugify from "slugify"
-import siteMetadata from "data/siteMetadata"
 
 export async function getStaticPaths() {
   const tags = await getAllTags()
