@@ -12,6 +12,15 @@ import { AuthorFrontMatter, PostFrontMatter } from "types/FrontMatter"
 const editUrl = (fileName: string) =>
   `${siteMetadata.siteRepo}/blob/master/data/blog/${fileName}`
 
+function shareUrl(slug: string, title: string, author: string) {
+  const url = encodeURIComponent(`${siteMetadata.siteUrl}/blog/${slug}`)
+  const text = encodeURIComponent(
+    `Just finished reading "${title}" by ${author}.`
+  )
+
+  return `https://twitter.com/intent/tweet?text=${text}&url=${url}`
+}
+
 const postDateTemplate: Intl.DateTimeFormatOptions = {
   day: "numeric",
   month: "long",
@@ -101,12 +110,12 @@ export default function PostLayout({
                           {author.twitter && (
                             <Link
                               className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
-                              href={author.twitter}
-                            >
-                              {author.twitter.replace(
-                                "https://twitter.com/",
-                                "@"
+                              href={author.twitter.replace(
+                                "@",
+                                "https://twitter.com/"
                               )}
+                            >
+                              {author.twitter}
                             </Link>
                           )}
                         </dd>
@@ -119,6 +128,17 @@ export default function PostLayout({
             <div className="divide-y divide-gray-200 dark:divide-gray-700 xl:pb-0 xl:col-span-3 xl:row-span-2">
               <div className="pt-10 pb-8 prose dark:prose-dark max-w-none">
                 {children}
+              </div>
+
+              <div className="pt-6 pb-6 text-sm text-gray-700 dark:text-gray-300">
+                <Link
+                  href={shareUrl(slug, title, authorDetails[0].twitter)}
+                  rel="nofollow"
+                >
+                  Share on Twitter
+                </Link>
+                {` • `}
+                <Link href={editUrl(fileName)}>{"View on GitHub"}</Link>
               </div>
             </div>
 

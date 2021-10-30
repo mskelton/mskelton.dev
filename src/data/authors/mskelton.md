@@ -4,7 +4,7 @@ avatar: mskelton.jpg
 occupation: JavaScript Engineer
 company: Widen Enterprises
 email: mdskelton99@gmail.com
-twitter: https://twitter.com/mskelton0
+twitter: "@mskelton0"
 linkedin: https://www.linkedin.com/in/mskelton0/
 github: https://github.com/mskelton
 ---
