@@ -52,33 +52,31 @@ interface PageSEOProps {
 }
 
 export function PageSEO({ description, title }: PageSEOProps) {
-  const ogImageUrl = metadata.siteUrl + metadata.socialBanner
-  const twImageUrl = metadata.siteUrl + metadata.socialBanner
+  const imageUrl = metadata.siteUrl + metadata.socialBanner
 
   return (
     <CommonSEO
       description={description}
-      ogImage={ogImageUrl}
+      ogImage={imageUrl}
       ogType="website"
       title={title}
-      twImage={twImageUrl}
+      twImage={imageUrl}
     />
   )
 }
 
 export function TagSEO({ description, title }: PageSEOProps) {
   const router = useRouter()
-  const ogImageUrl = metadata.siteUrl + metadata.socialBanner
-  const twImageUrl = metadata.siteUrl + metadata.socialBanner
+  const imageUrl = metadata.siteUrl + metadata.socialBanner
 
   return (
     <>
       <CommonSEO
         description={description}
-        ogImage={ogImageUrl}
+        ogImage={imageUrl}
         ogType="website"
         title={title}
-        twImage={twImageUrl}
+        twImage={imageUrl}
       />
 
       <Head>
@@ -151,8 +149,6 @@ export const BlogSEO = ({
     },
   }
 
-  const twImageUrl = featuredImages[0].url
-
   return (
     <>
       <CommonSEO
@@ -160,7 +156,7 @@ export const BlogSEO = ({
         ogImage={featuredImages}
         ogType="article"
         title={title}
-        twImage={twImageUrl}
+        twImage={featuredImages[0].url}
       />
 
       <Head>

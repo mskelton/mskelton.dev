@@ -1,13 +1,6 @@
-import {
-  FaEnvelope,
-  FaFacebook,
-  FaGithub,
-  FaLinkedin,
-  FaTwitter,
-} from "react-icons/fa"
+import { FaEnvelope, FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa"
 
 const components = {
-  facebook: FaFacebook,
   github: FaGithub,
   linkedin: FaLinkedin,
   mail: FaEnvelope,

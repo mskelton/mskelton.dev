@@ -11,6 +11,8 @@ export default function Pagination({
 }: PaginationProps) {
   const prevPage = currentPage - 1 > 0
   const nextPage = currentPage + 1 <= totalPages
+  const prevURL =
+    currentPage - 1 === 1 ? `/blog/` : `/blog/page/${currentPage - 1}`
 
   return (
     <div className="pt-6 pb-8 space-y-2 md:space-y-5">
@@ -25,12 +27,8 @@ export default function Pagination({
         )}
 
         {prevPage && (
-          <Link
-            href={
-              currentPage - 1 === 1 ? `/blog/` : `/blog/page/${currentPage - 1}`
-            }
-          >
-            <a rel="previous">Previous</a>
+          <Link href={prevURL} rel="previous">
+            Previous
           </Link>
         )}
 
@@ -48,8 +46,8 @@ export default function Pagination({
         )}
 
         {nextPage && (
-          <Link href={`/blog/page/${currentPage + 1}`}>
-            <a rel="next">Next</a>
+          <Link href={`/blog/page/${currentPage + 1}`} rel="next">
+            Next
           </Link>
         )}
       </nav>

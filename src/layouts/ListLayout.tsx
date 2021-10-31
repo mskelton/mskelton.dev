@@ -58,7 +58,7 @@ export default function ListLayout({
         </div>
 
         <ul>
-          {!filteredBlogPosts.length && "No posts found."}
+          {!filteredBlogPosts.length && <p className="py-4">No posts found.</p>}
 
           {displayPosts.map(({ date, slug, summary, tags, title }) => (
             <li key={slug} className="py-4">
