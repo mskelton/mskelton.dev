@@ -4944,6 +4944,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"lariat@npm:^0.4.1":
+  version: 0.4.1
+  resolution: "lariat@npm:0.4.1"
+  dependencies:
+    playwright-core: ^1.14.1
+  checksum: d1e5d97e2182f88ad839021dfd71604e427b34ed271e81e17962132d446b2cf84ef6b84e1fba1f7b0c7955b2bc09a76206d4f1726f820a50f5b1d480ab81c72c
+  languageName: node
+  linkType: hard
+
 "layouts@link:./src/layouts::locator=tailwind-nextjs-starter-blog%40workspace%3A.":
   version: 0.0.0-use.local
   resolution: "layouts@link:./src/layouts::locator=tailwind-nextjs-starter-blog%40workspace%3A."
@@ -6744,7 +6753,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"playwright-core@npm:=1.16.2":
+"playwright-core@npm:=1.16.2, playwright-core@npm:^1.14.1":
   version: 1.16.2
   resolution: "playwright-core@npm:1.16.2"
   dependencies:
@@ -8135,6 +8144,7 @@ resolve@^2.0.0-next.3:
     eslint-plugin-sort: ^1.5.0
     expect-axe-playwright: ^1.2.0
     gray-matter: ^4.0.2
+    lariat: ^0.4.1
     layouts: "link:./src/layouts"
     lib: "link:./src/lib"
     mdx-bundler: ^6.0.1

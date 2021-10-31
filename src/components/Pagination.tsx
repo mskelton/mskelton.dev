@@ -1,8 +1,16 @@
 import Link from "components/Link"
 
-export default function Pagination({ currentPage, totalPages }) {
-  const prevPage = parseInt(currentPage) - 1 > 0
-  const nextPage = parseInt(currentPage) + 1 <= parseInt(totalPages)
+interface PaginationProps {
+  totalPages: number
+  currentPage: number
+}
+
+export default function Pagination({
+  currentPage,
+  totalPages,
+}: PaginationProps) {
+  const prevPage = currentPage - 1 > 0
+  const nextPage = currentPage + 1 <= totalPages
 
   return (
     <div className="pt-6 pb-8 space-y-2 md:space-y-5">
@@ -11,35 +19,37 @@ export default function Pagination({ currentPage, totalPages }) {
           <button
             className="cursor-auto disabled:opacity-50"
             disabled={!prevPage}
-            rel="previous"
           >
             Previous
           </button>
         )}
+
         {prevPage && (
           <Link
             href={
               currentPage - 1 === 1 ? `/blog/` : `/blog/page/${currentPage - 1}`
             }
           >
-            <button rel="previous">Previous</button>
+            <a rel="previous">Previous</a>
           </Link>
         )}
+
         <span>
           {currentPage} of {totalPages}
         </span>
+
         {!nextPage && (
           <button
             className="cursor-auto disabled:opacity-50"
             disabled={!nextPage}
-            rel="next"
           >
             Next
           </button>
         )}
+
         {nextPage && (
           <Link href={`/blog/page/${currentPage + 1}`}>
-            <button rel="next">Next</button>
+            <a rel="next">Next</a>
           </Link>
         )}
       </nav>

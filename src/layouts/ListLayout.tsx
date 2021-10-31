@@ -56,6 +56,7 @@ export default function ListLayout({
             />
           </div>
         </div>
+
         <ul>
           {!filteredBlogPosts.length && "No posts found."}
 

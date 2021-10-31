@@ -1,3 +1,4 @@
+import { InferGetStaticPropsType } from "next"
 import { PageSEO } from "components/SEO"
 import metadata from "data/metadata"
 import ListLayout from "layouts/ListLayout"
@@ -16,13 +17,18 @@ export async function getStaticProps() {
   return { props: { initialDisplayPosts, pagination, posts } }
 }
 
-export default function Blog({ initialDisplayPosts, pagination, posts }) {
+export default function Blog({
+  initialDisplayPosts,
+  pagination,
+  posts,
+}: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
     <>
       <PageSEO
         description={metadata.description}
         title={`Blog - ${metadata.author}`}
       />
+
       <ListLayout
         initialDisplayPosts={initialDisplayPosts}
         pagination={pagination}

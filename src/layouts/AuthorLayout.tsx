@@ -1,7 +1,6 @@
 import Image from "next/image"
 import { ReactNode } from "react"
 import { PageSEO } from "components/SEO"
-import SocialIcon from "components/SocialIcon"
 import { AuthorFrontMatter } from "types/FrontMatter"
 
 interface AuthorLayoutProps {
@@ -11,16 +10,7 @@ interface AuthorLayoutProps {
 
 export default function AuthorLayout({
   children,
-  frontMatter: {
-    avatar,
-    company,
-    email,
-    github,
-    linkedin,
-    name,
-    occupation,
-    twitter,
-  },
+  frontMatter: { avatar, company, name, occupation },
 }: AuthorLayoutProps) {
   return (
     <>

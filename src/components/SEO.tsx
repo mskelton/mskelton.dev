@@ -1,9 +1,25 @@
 import Head from "next/head"
 import { useRouter } from "next/router"
 import metadata from "data/metadata"
+import { AuthorFrontMatter, PostFrontMatter } from "types/FrontMatter"
 
-export function CommonSEO({ description, ogImage, ogType, title, twImage }) {
+interface CommonSEOProps {
+  title: string
+  description: string
+  ogType: string
+  ogImage: string | { "@type": string; url: string }[]
+  twImage: string
+}
+
+export function CommonSEO({
+  description,
+  ogImage,
+  ogType,
+  title,
+  twImage,
+}: CommonSEOProps) {
   const router = useRouter()
+
   return (
     <Head>
       <title>{title}</title>
@@ -14,12 +30,12 @@ export function CommonSEO({ description, ogImage, ogType, title, twImage }) {
       <meta content={metadata.title} property="og:site_name" />
       <meta content={description} property="og:description" />
       <meta content={title} property="og:title" />
-      {ogImage.constructor.name === "Array" ? (
+      {typeof ogImage === "string" ? (
+        <meta key={ogImage} content={ogImage} property="og:image" />
+      ) : (
         ogImage.map(({ url }) => (
           <meta key={url} content={url} property="og:image" />
         ))
-      ) : (
-        <meta key={ogImage} content={ogImage} property="og:image" />
       )}
       <meta content="summary_large_image" name="twitter:card" />
       <meta content={metadata.twitter} name="twitter:site" />
@@ -30,9 +46,15 @@ export function CommonSEO({ description, ogImage, ogType, title, twImage }) {
   )
 }
 
-export function PageSEO({ description, title }) {
+interface PageSEOProps {
+  title: string
+  description: string
+}
+
+export function PageSEO({ description, title }: PageSEOProps) {
   const ogImageUrl = metadata.siteUrl + metadata.socialBanner
   const twImageUrl = metadata.siteUrl + metadata.socialBanner
+
   return (
     <CommonSEO
       description={description}
@@ -44,10 +66,11 @@ export function PageSEO({ description, title }) {
   )
 }
 
-export function TagSEO({ description, title }) {
+export function TagSEO({ description, title }: PageSEOProps) {
+  const router = useRouter()
   const ogImageUrl = metadata.siteUrl + metadata.socialBanner
   const twImageUrl = metadata.siteUrl + metadata.socialBanner
-  const router = useRouter()
+
   return (
     <>
       <CommonSEO
@@ -57,6 +80,7 @@ export function TagSEO({ description, title }) {
         title={title}
         twImage={twImageUrl}
       />
+
       <Head>
         <link
           href={`${metadata.siteUrl}${router.asPath}/feed.xml`}
@@ -69,6 +93,11 @@ export function TagSEO({ description, title }) {
   )
 }
 
+interface BlogSEOProps extends PostFrontMatter {
+  authorDetails?: AuthorFrontMatter[]
+  url: string
+}
+
 export const BlogSEO = ({
   date,
   images = [],
@@ -76,7 +105,7 @@ export const BlogSEO = ({
   summary,
   title,
   url,
-}) => {
+}: BlogSEOProps) => {
   const router = useRouter()
   const publishedAt = new Date(date).toISOString()
   const modifiedAt = new Date(lastmod || date).toISOString()
@@ -127,16 +156,15 @@ export const BlogSEO = ({
   return (
     <>
       <CommonSEO
-        description={summary}
+        description={summary ?? ""}
         ogImage={featuredImages}
         ogType="article"
         title={title}
         twImage={twImageUrl}
       />
+
       <Head>
-        {date && (
-          <meta content={publishedAt} property="article:published_time" />
-        )}
+        <meta content={publishedAt} property="article:published_time" />
         {lastmod && (
           <meta content={modifiedAt} property="article:modified_time" />
         )}
