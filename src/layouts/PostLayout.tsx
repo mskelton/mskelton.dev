@@ -5,14 +5,14 @@ import { BlogSEO } from "components/SEO"
 import ScrollTop from "components/ScrollTop"
 import SectionContainer from "components/SectionContainer"
 import Tag from "components/Tag"
-import siteMetadata from "data/siteMetadata"
+import metadata from "data/metadata"
 import { PostFrontMatter } from "types/FrontMatter"
 
 const editUrl = (fileName: string) =>
-  `${siteMetadata.siteRepo}/blob/master/src/data/blog/${fileName}`
+  `${metadata.siteRepo}/blob/master/src/data/blog/${fileName}`
 
 function shareUrl(slug: string, title: string) {
-  const url = encodeURIComponent(`${siteMetadata.siteUrl}/blog/${slug}`)
+  const url = encodeURIComponent(`${metadata.siteUrl}/blog/${slug}`)
   const text = encodeURIComponent(
     `Just finished reading "${title}" by @mskelton.`
   )
@@ -44,7 +44,7 @@ export default function PostLayout({
 
   return (
     <SectionContainer>
-      <BlogSEO url={`${siteMetadata.siteUrl}/blog/${slug}`} {...frontMatter} />
+      <BlogSEO url={`${metadata.siteUrl}/blog/${slug}`} {...frontMatter} />
 
       <ScrollTop />
       <article>
@@ -57,7 +57,7 @@ export default function PostLayout({
                   <dd className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
                     <time dateTime={date}>
                       {new Date(date).toLocaleDateString(
-                        siteMetadata.locale,
+                        metadata.locale,
                         postDateTemplate
                       )}
                     </time>

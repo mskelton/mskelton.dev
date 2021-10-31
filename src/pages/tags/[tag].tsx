@@ -1,7 +1,7 @@
 import { GetStaticPropsContext, InferGetStaticPropsType } from "next"
 import slugify from "slugify"
 import { TagSEO } from "components/SEO"
-import siteMetadata from "data/siteMetadata"
+import metadata from "data/metadata"
 import ListLayout from "layouts/ListLayout"
 import { getAllFilesFrontMatter } from "lib/mdx"
 import { getAllTags } from "lib/tags"
@@ -44,8 +44,8 @@ export default function Tag({
   return (
     <>
       <TagSEO
-        description={`${tag} tags - ${siteMetadata.author}`}
-        title={`${tag} - ${siteMetadata.author}`}
+        description={`${tag} tags - ${metadata.author}`}
+        title={`${tag} - ${metadata.author}`}
       />
       <ListLayout posts={posts} title={`#${tag}`} />
     </>

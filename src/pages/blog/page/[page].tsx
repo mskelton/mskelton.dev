@@ -1,6 +1,6 @@
 import { GetStaticPropsContext, InferGetStaticPropsType } from "next"
 import { PageSEO } from "components/SEO"
-import siteMetadata from "data/siteMetadata"
+import metadata from "data/metadata"
 import ListLayout from "layouts/ListLayout"
 import { getAllFilesFrontMatter } from "lib/mdx"
 import { POSTS_PER_PAGE } from "../../blog"
@@ -40,10 +40,7 @@ export default function PostPage({
 }: InferGetStaticPropsType<typeof getStaticPaths>) {
   return (
     <>
-      <PageSEO
-        description={siteMetadata.description}
-        title={siteMetadata.title}
-      />
+      <PageSEO description={metadata.description} title={metadata.title} />
 
       <ListLayout
         initialDisplayPosts={initialDisplayPosts}

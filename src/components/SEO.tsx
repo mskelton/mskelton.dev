@@ -1,6 +1,6 @@
 import Head from "next/head"
 import { useRouter } from "next/router"
-import siteMetadata from "data/siteMetadata"
+import metadata from "data/metadata"
 
 export function CommonSEO({ description, ogImage, ogType, title, twImage }) {
   const router = useRouter()
@@ -9,12 +9,9 @@ export function CommonSEO({ description, ogImage, ogType, title, twImage }) {
       <title>{title}</title>
       <meta content="follow, index" name="robots" />
       <meta content={description} name="description" />
-      <meta
-        content={`${siteMetadata.siteUrl}${router.asPath}`}
-        property="og:url"
-      />
+      <meta content={`${metadata.siteUrl}${router.asPath}`} property="og:url" />
       <meta content={ogType} property="og:type" />
-      <meta content={siteMetadata.title} property="og:site_name" />
+      <meta content={metadata.title} property="og:site_name" />
       <meta content={description} property="og:description" />
       <meta content={title} property="og:title" />
       {ogImage.constructor.name === "Array" ? (
@@ -25,7 +22,7 @@ export function CommonSEO({ description, ogImage, ogType, title, twImage }) {
         <meta key={ogImage} content={ogImage} property="og:image" />
       )}
       <meta content="summary_large_image" name="twitter:card" />
-      <meta content={siteMetadata.twitter} name="twitter:site" />
+      <meta content={metadata.twitter} name="twitter:site" />
       <meta content={title} name="twitter:title" />
       <meta content={description} name="twitter:description" />
       <meta content={twImage} name="twitter:image" />
@@ -34,8 +31,8 @@ export function CommonSEO({ description, ogImage, ogType, title, twImage }) {
 }
 
 export function PageSEO({ description, title }) {
-  const ogImageUrl = siteMetadata.siteUrl + siteMetadata.socialBanner
-  const twImageUrl = siteMetadata.siteUrl + siteMetadata.socialBanner
+  const ogImageUrl = metadata.siteUrl + metadata.socialBanner
+  const twImageUrl = metadata.siteUrl + metadata.socialBanner
   return (
     <CommonSEO
       description={description}
@@ -48,8 +45,8 @@ export function PageSEO({ description, title }) {
 }
 
 export function TagSEO({ description, title }) {
-  const ogImageUrl = siteMetadata.siteUrl + siteMetadata.socialBanner
-  const twImageUrl = siteMetadata.siteUrl + siteMetadata.socialBanner
+  const ogImageUrl = metadata.siteUrl + metadata.socialBanner
+  const twImageUrl = metadata.siteUrl + metadata.socialBanner
   const router = useRouter()
   return (
     <>
@@ -62,7 +59,7 @@ export function TagSEO({ description, title }) {
       />
       <Head>
         <link
-          href={`${siteMetadata.siteUrl}${router.asPath}/feed.xml`}
+          href={`${metadata.siteUrl}${router.asPath}/feed.xml`}
           rel="alternate"
           title={`${description} - RSS feed`}
           type="application/rss+xml"
@@ -85,7 +82,7 @@ export const BlogSEO = ({
   const modifiedAt = new Date(lastmod || date).toISOString()
   const imagesArr =
     images.length === 0
-      ? [siteMetadata.socialBanner]
+      ? [metadata.socialBanner]
       : typeof images === "string"
       ? [images]
       : images
@@ -93,13 +90,13 @@ export const BlogSEO = ({
   const featuredImages = imagesArr.map((img) => {
     return {
       "@type": "ImageObject",
-      url: `${siteMetadata.siteUrl}${img}`,
+      url: `${metadata.siteUrl}${img}`,
     }
   })
 
   const author = {
     "@type": "Person",
-    name: siteMetadata.author,
+    name: metadata.author,
   }
 
   const structuredData = {
@@ -119,9 +116,9 @@ export const BlogSEO = ({
       "@type": "Organization",
       logo: {
         "@type": "ImageObject",
-        url: `${siteMetadata.siteUrl}${siteMetadata.siteLogo}`,
+        url: `${metadata.siteUrl}${metadata.siteLogo}`,
       },
-      name: siteMetadata.author,
+      name: metadata.author,
     },
   }
 
@@ -143,10 +140,7 @@ export const BlogSEO = ({
         {lastmod && (
           <meta content={modifiedAt} property="article:modified_time" />
         )}
-        <link
-          href={`${siteMetadata.siteUrl}${router.asPath}`}
-          rel="canonical"
-        />
+        <link href={`${metadata.siteUrl}${router.asPath}`} rel="canonical" />
         <script
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(structuredData, null, 2),

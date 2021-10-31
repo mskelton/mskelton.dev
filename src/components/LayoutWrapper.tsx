@@ -1,7 +1,7 @@
 import Image from "next/image"
 import { ReactNode } from "react"
 import headerNavLinks from "data/headerNavLinks"
-import siteMetadata from "data/siteMetadata"
+import metadata from "data/metadata"
 import logo from "../images/logo.jpg"
 import Footer from "./Footer"
 import Link from "./Link"
@@ -19,11 +19,11 @@ export default function LayoutWrapper({ children }: LayoutWrapperProps) {
       <div className="flex flex-col justify-between h-screen">
         <header className="flex items-center justify-between py-10">
           <div>
-            <Link aria-label={siteMetadata.title} href="/">
+            <Link aria-label={metadata.title} href="/">
               <div className="flex items-center justify-between">
                 <div className="mr-3">
                   <Image
-                    alt={siteMetadata.author}
+                    alt={metadata.author}
                     className="rounded-full"
                     height={40}
                     src={logo}
@@ -32,7 +32,7 @@ export default function LayoutWrapper({ children }: LayoutWrapperProps) {
                 </div>
 
                 <p className="hidden text-2xl font-semibold sm:block">
-                  {siteMetadata.headerTitle}
+                  {metadata.headerTitle}
                 </p>
               </div>
             </Link>

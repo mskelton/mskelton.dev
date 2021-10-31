@@ -1,5 +1,5 @@
 import { PageSEO } from "components/SEO"
-import siteMetadata from "data/siteMetadata"
+import metadata from "data/metadata"
 import ListLayout from "layouts/ListLayout"
 import { getAllFilesFrontMatter } from "lib/mdx"
 
@@ -20,8 +20,8 @@ export default function Blog({ initialDisplayPosts, pagination, posts }) {
   return (
     <>
       <PageSEO
-        description={siteMetadata.description}
-        title={`Blog - ${siteMetadata.author}`}
+        description={metadata.description}
+        title={`Blog - ${metadata.author}`}
       />
       <ListLayout
         initialDisplayPosts={initialDisplayPosts}

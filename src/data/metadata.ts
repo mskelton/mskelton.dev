@@ -1,4 +1,4 @@
-const siteMetadata = {
+const metadata = {
   author: "Mark Skelton",
   description: "A blog created with Next.js and Tailwind.css",
   email: "mdskelton99@gmail.com",
@@ -17,4 +17,4 @@ const siteMetadata = {
   twitter: "https://twitter.com/mskelton0",
 }
 
-export default siteMetadata
+export default metadata
