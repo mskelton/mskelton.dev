@@ -10,7 +10,7 @@ const metadata = {
   siteLogo: "/images/logo.jpg",
   siteRepo: "https://github.com/mskelton/mskelton.dev",
   siteUrl: "https://mskelton.dev",
-  socialBanner: "/images/twitter-card.png",
+  // socialBanner: "/images/twitter-card.png",
   title: "Mark Skelton",
   twitter: "https://twitter.com/mskelton0",
 }

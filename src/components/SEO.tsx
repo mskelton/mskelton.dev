@@ -8,7 +8,7 @@ interface CommonSEOProps {
   description: string
   ogType: string
   ogImage: string | { "@type": string; url: string }[]
-  twImage: string
+  twImage?: string
 }
 
 export function CommonSEO({
@@ -41,7 +41,7 @@ export function CommonSEO({
       <meta content={metadata.twitter} name="twitter:site" />
       <meta content={title} name="twitter:title" />
       <meta content={description} name="twitter:description" />
-      <meta content={twImage} name="twitter:image" />
+      {twImage && <meta content={twImage} name="twitter:image" />}
     </Head>
   )
 }
@@ -52,31 +52,31 @@ interface PageSEOProps {
 }
 
 export function PageSEO({ description, title }: PageSEOProps) {
-  const imageUrl = metadata.siteUrl + metadata.socialBanner
+  // const imageUrl = metadata.siteUrl + metadata.socialBanner
 
   return (
     <CommonSEO
       description={description}
-      ogImage={imageUrl}
+      ogImage={[]}
       ogType="website"
       title={title}
-      twImage={imageUrl}
+      // twImage={imageUrl}
     />
   )
 }
 
 export function TagSEO({ description, title }: PageSEOProps) {
   const router = useRouter()
-  const imageUrl = metadata.siteUrl + metadata.socialBanner
+  // const imageUrl = metadata.siteUrl + metadata.socialBanner
 
   return (
     <>
       <CommonSEO
         description={description}
-        ogImage={imageUrl}
+        ogImage={[]}
         ogType="website"
         title={title}
-        twImage={imageUrl}
+        // twImage={imageUrl}
       />
 
       <Head>
