@@ -1,17 +1,15 @@
 import { InferGetStaticPropsType } from "next"
-import Head from "next/head"
-import React from "react"
-import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa"
-import { Anchor } from "components/Anchor"
-import { Link } from "components/Link"
-import { Paragraph } from "components/Paragraph"
-import { SocialLink } from "components/SocialLink"
-import { BlogPostCard } from "components/blog/BlogPostCard"
-import { BlogPostGrid } from "components/blog/BlogPostGrid"
-import { getPosts } from "lib/posts"
+import Link from "components/Link"
+import { PageSEO } from "components/SEO"
+import Tag from "components/Tag"
+import metadata from "data/metadata"
+import { getAllFilesFrontMatter } from "lib/mdx"
+import formatDate from "lib/utils/formatDate"
+
+const MAX_DISPLAY = 5
 
 export async function getStaticProps() {
-  const posts = await getPosts(4)
+  const posts = await getAllFilesFrontMatter()
   return { props: { posts } }
 }
 
@@ -19,68 +17,91 @@ export default function Home({
   posts,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
-    <div>
-      <Head>
-        <title>Mark Skelton</title>
-      </Head>
+    <>
+      <PageSEO description={metadata.description} title={metadata.title} />
 
-      <main className="max-w-3xl mx-auto" data-testid="home">
-        <h1 className="text-5xl mb-10">
-          Hi, I&rsquo;m <span className="text-blue-400">Mark Skelton</span>.
-        </h1>
+      <div
+        className="divide-y divide-gray-200 dark:divide-gray-700"
+        data-testid="home"
+      >
+        <div className="pt-6 pb-8 space-y-2 md:space-y-5">
+          <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
+            Latest Posts
+          </h1>
 
-        <Paragraph className="mb-4">
-          I&rsquo;m a software developer and follower of Christ from Monroe,
-          Wisconsin. Right now, I&rsquo;m working at{" "}
-          <Anchor href="https://www.widen.com">Widen</Anchor> as a lead
-          developer and JavaScript Engineer. TypeScript and React are my jam,
-          plus a host of other technologies including Node, Playwright, webpack,
-          Prettier, ESLint, and so much more.
-        </Paragraph>
+          <p className="text-lg leading-7 text-gray-500 dark:text-gray-400">
+            Check out some of my recent blog posts.
+          </p>
+        </div>
 
-        <Paragraph className="mb-8">
-          In my spare time, I enjoy spending time with friends, playing disc
-          golf, coding (why not), and remodeling my house. I&rsquo;m both and
-          extrovert and a nerd, so I&rsquo;m more than happy to talk for long
-          periods of time with my family about tech, even if they don&rsquo;t
-          understand.
-        </Paragraph>
+        <ul className="divide-y divide-gray-200 dark:divide-gray-700">
+          {!posts.length && <p className="py-4">No posts found.</p>}
 
-        <h2 className="text-4xl mb-2">Blog</h2>
-        <Paragraph className="mb-6">
-          From time to time, I enjoy writing about what I am learning or working
-          on. Check out some of my recent blog posts, or pop over to the{" "}
-          <Link href="/blog">blog</Link> to find a full listing of my posts.
-        </Paragraph>
+          {posts
+            .slice(0, MAX_DISPLAY)
+            .map(({ date, slug, summary, tags, title }) => (
+              <li key={slug} className="py-12">
+                <article>
+                  <div className="space-y-2 xl:grid xl:grid-cols-4 xl:space-y-0 xl:items-baseline">
+                    <dl>
+                      <dt className="sr-only">Published on</dt>
+                      <dd className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
+                        <time dateTime={date}>{formatDate(date)}</time>
+                      </dd>
+                    </dl>
 
-        <div className="mb-8">
-          <BlogPostGrid>
-            {posts.map((post) => (
-              <BlogPostCard key={post.slug} {...post} />
+                    <div className="space-y-5 xl:col-span-3">
+                      <div className="space-y-6">
+                        <div>
+                          <h2 className="text-2xl font-bold leading-8 tracking-tight">
+                            <Link
+                              className="text-gray-900 dark:text-gray-100"
+                              href={`/blog/${slug}`}
+                            >
+                              {title}
+                            </Link>
+                          </h2>
+
+                          <div className="flex flex-wrap">
+                            {tags.map((tag) => (
+                              <Tag key={tag}>{tag}</Tag>
+                            ))}
+                          </div>
+                        </div>
+
+                        <div className="prose text-gray-500 max-w-none dark:text-gray-400">
+                          {summary}
+                        </div>
+                      </div>
+
+                      <div className="text-base font-medium leading-6">
+                        <Link
+                          aria-label={`Read "${title}"`}
+                          className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
+                          href={`/blog/${slug}`}
+                        >
+                          Read more &rarr;
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
+                </article>
+              </li>
             ))}
-          </BlogPostGrid>
+        </ul>
+      </div>
+
+      {posts.length > MAX_DISPLAY && (
+        <div className="flex justify-end text-base font-medium leading-6">
+          <Link
+            aria-label="all posts"
+            className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
+            href="/blog"
+          >
+            All Posts &rarr;
+          </Link>
         </div>
-
-        <h2 className="text-4xl mb-2">Socials</h2>
-        <Paragraph className="mb-6">
-          If you want to get to know me better, check me out on any of my
-          socials!
-        </Paragraph>
-
-        <div className="flex gap-4">
-          <SocialLink href="https://github.com/mskelton" title="GitHub">
-            <FaGithub />
-          </SocialLink>
-
-          <SocialLink href="https://twitter.com/mskelton0" title="Twitter">
-            <FaTwitter />
-          </SocialLink>
-
-          <SocialLink href="https://linkedin.com/in/mskelton0" title="Linkedin">
-            <FaLinkedin />
-          </SocialLink>
-        </div>
-      </main>
-    </div>
+      )}
+    </>
   )
 }

@@ -1,15 +1,23 @@
-import NextLink from "next/link"
+/* eslint-disable jsx-a11y/anchor-has-content */
+import Link from "next/link"
 import { AnchorHTMLAttributes } from "react"
-import { Anchor } from "./Anchor"
 
-export interface LinkProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
+export interface CustomLinkProps
+  extends AnchorHTMLAttributes<HTMLAnchorElement> {
   href: string
 }
 
-export function Link({ href, ...props }: LinkProps) {
-  return (
-    <NextLink href={href} passHref>
-      <Anchor {...props} />
-    </NextLink>
+export default function CustomLink({ href, ...rest }: CustomLinkProps) {
+  const isInternalLink = href.startsWith("/")
+  const isAnchorLink = href.startsWith("#")
+
+  return isInternalLink ? (
+    <Link href={href}>
+      <a {...rest} />
+    </Link>
+  ) : isAnchorLink ? (
+    <a href={href} {...rest} />
+  ) : (
+    <a href={href} rel="noopener noreferrer" target="_blank" {...rest} />
   )
 }

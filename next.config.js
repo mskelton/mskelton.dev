@@ -1,3 +1,7 @@
 module.exports = {
-  swcMinify: true,
+  eslint: {
+    dirs: ["src"],
+  },
+  pageExtensions: ["ts", "tsx", "md", "mdx"],
+  reactStrictMode: true,
 }

@@ -1,28 +1,21 @@
-import "../css/style.css"
-import type { AppProps } from "next/app"
-import Script from "next/script"
+import "css/prism.css"
+import "css/tailwind.css"
+import { ThemeProvider } from "next-themes"
+import { AppProps } from "next/app"
+import Head from "next/head"
+import Analytics from "components/Analytics"
+import LayoutWrapper from "components/LayoutWrapper"
 
 export default function App({ Component, pageProps }: AppProps) {
-  const isLocal = process.env.NODE_ENV !== "production"
-  const measurementId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID
-
   return (
-    <>
-      <Script
-        src={`https://www.googletagmanager.com/gtag/js?id=${measurementId}`}
-        strategy="afterInteractive"
-      />
-      <Script id="google-analytics" strategy="afterInteractive">
-        {`
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){window.dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('consent', 'default', { analytics_storage: 'denied' });
-          gtag('config', '${measurementId}', { debug_mode: ${isLocal} });
-        `}
-      </Script>
-
-      <Component {...pageProps} />
-    </>
+    <ThemeProvider attribute="class">
+      <Head>
+        <meta content="width=device-width, initial-scale=1" name="viewport" />
+      </Head>
+      <Analytics />
+      <LayoutWrapper>
+        <Component {...pageProps} />
+      </LayoutWrapper>
+    </ThemeProvider>
   )
 }
