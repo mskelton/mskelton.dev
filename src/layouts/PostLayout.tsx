@@ -9,7 +9,7 @@ import metadata from "data/metadata"
 import { PostFrontMatter } from "types/FrontMatter"
 
 const editUrl = (fileName: string) =>
-  `${metadata.siteRepo}/blob/master/src/data/blog/${fileName}`
+  `${metadata.siteRepo}/blob/main/src/data/blog/${fileName}`
 
 function shareUrl(slug: string, title: string) {
   const url = encodeURIComponent(`${metadata.siteUrl}/blog/${slug}`)
