@@ -7,17 +7,18 @@ const components = {
   twitter: FaTwitter,
 }
 
-interface SocialIconProps {
+interface SocialLinkProps {
   href: string
   kind: keyof typeof components
 }
 
-export default function SocialIcon({ href, kind }: SocialIconProps) {
+export default function SocialLink({ href, kind }: SocialLinkProps) {
   const Component = components[kind]
 
   return (
     <a
       className="text-sm text-gray-500 transition hover:text-gray-600"
+      data-testid="social-link"
       href={href}
       rel="noopener noreferrer"
       target="_blank"

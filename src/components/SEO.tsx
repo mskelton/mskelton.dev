@@ -157,7 +157,7 @@ export const BlogSEO = ({
         ogImage={featuredImages}
         ogType="article"
         title={title}
-        twImage={featuredImages[0].url}
+        // twImage={featuredImages[0].url}
       />
 
       <Head>

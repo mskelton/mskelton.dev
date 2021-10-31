@@ -29,12 +29,14 @@ export default function Blog({
         title={`Blog - ${metadata.author}`}
       />
 
-      <ListLayout
-        initialDisplayPosts={initialDisplayPosts}
-        pagination={pagination}
-        posts={posts}
-        title="All Posts"
-      />
+      <div data-testid="blog">
+        <ListLayout
+          initialDisplayPosts={initialDisplayPosts}
+          pagination={pagination}
+          posts={posts}
+          title="All Posts"
+        />
+      </div>
     </>
   )
 }

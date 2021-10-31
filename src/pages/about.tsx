@@ -13,10 +13,12 @@ export default function About({
   const { frontMatter, mdxSource } = authorDetails
 
   return (
-    <MDXLayoutRenderer
-      frontMatter={frontMatter}
-      layout="AuthorLayout"
-      mdxSource={mdxSource}
-    />
+    <div data-testid="about">
+      <MDXLayoutRenderer
+        frontMatter={frontMatter}
+        layout="AuthorLayout"
+        mdxSource={mdxSource}
+      />
+    </div>
   )
 }
