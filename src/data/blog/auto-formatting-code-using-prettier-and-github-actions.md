@@ -50,7 +50,7 @@ solution that is just as easy to implement! This solution utilizes the
 alongside whatever formatting script you have in your repository. For example,
 my repository has the following script to format using Prettier.
 
-```json
+```json:package.json
 "format": "prettier --write ."
 ```
 
@@ -58,7 +58,7 @@ To setup the GitHub action, all we need to do is install our dependencies (e.g.
 `npm ci`), run our format script (e.g. `npm run format`), and then commit any
 changes if necessary.
 
-```yml
+```yml:.github/workflows/format.yml
 name: Format
 on:
   pull_request:

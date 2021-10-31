@@ -16,7 +16,7 @@ export async function getAllTags() {
 
     data.tags?.forEach((tag) => {
       const formattedTag = slugify(tag)
-      tagCount[formattedTag] ??= 1
+      tagCount[formattedTag] ??= 0
       tagCount[formattedTag]++
     })
   })

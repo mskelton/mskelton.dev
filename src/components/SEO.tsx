@@ -73,7 +73,6 @@ export function TagSEO({ description, title }) {
 }
 
 export const BlogSEO = ({
-  authorDetails,
   date,
   images = [],
   lastmod,
@@ -98,25 +97,15 @@ export const BlogSEO = ({
     }
   })
 
-  let authorList
-  if (authorDetails) {
-    authorList = authorDetails.map((author) => {
-      return {
-        "@type": "Person",
-        name: author.name,
-      }
-    })
-  } else {
-    authorList = {
-      "@type": "Person",
-      name: siteMetadata.author,
-    }
+  const author = {
+    "@type": "Person",
+    name: siteMetadata.author,
   }
 
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "Article",
-    author: authorList,
+    author,
     dateModified: modifiedAt,
     datePublished: publishedAt,
     description: summary,

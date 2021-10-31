@@ -33,7 +33,7 @@ Since our example project is open source, we want to make sure all of our
 packages have a `license` field in their manifest files (package.json). This
 would look something like this.
 
-```prolog
+```prolog:constraints.pro
 gen_enforced_field(WorkspaceCwd, 'license', 'ISC').
 ```
 
@@ -46,7 +46,7 @@ workspaces (including the root) where each workspace should contain a `license`
 field with the value of `ISC`. We can check to see if our constraints are met by
 running the `yarn constraints` command.
 
-```sh
+```bash
 $ yarn constraints
 ➤ YN0037: package-a must have a field license set to "ISC", but doesn't
 ➤ YN0038: package-b must have a field license set to "ISC", but is set to "MIT" instead
@@ -58,7 +58,7 @@ As you can see from the output, Yarn warned us that package-a does not have a
 `license` field. To fix these issues, we can add the `--fix` argument to the
 command which will instruct Yarn to fix the issues for us if possible.
 
-```sh
+```bash
 $ yarn constraints --fix
 ➤ YN0000: Done in 0s 43ms
 ```
@@ -82,7 +82,7 @@ When writing more complex constraints like this, I like to start with a basic
 constraint and then add the complexity bit by bit. So, I'll start with something
 similar to our license constraint.
 
-```prolog
+```prolog:constraints.pro
 gen_enforced_field(WorkspaceCwd, 'homepage', 'something').
 ```
 
@@ -97,7 +97,7 @@ Let's start with the first issue. We need to instruct Yarn not to enforce the
 constraint for the root workspace. There are a number of ways you could do this,
 but the approach I like to take looks something like this.
 
-```prolog
+```prolog:constraints.pro
 gen_enforced_field(WorkspaceCwd, 'homepage', 'something') :-
   workspace_field(WorkspaceCwd, 'version', _).
 ```
@@ -114,7 +114,7 @@ head will be true if the body is true. For example, the following rule would be
 read as "X is a mortal if X is human" with `mortal(X)` as the "head" and
 `human(X)` as the "body".
 
-```prolog
+```prolog:constraints.pro
 mortal(X) :- human(X).
 ```
 
@@ -131,7 +131,7 @@ always true. Prolog calls these rules "facts" and our previous example of
 enforcing the license field is an example of a fact. Facts are just syntactic
 sugar meaning that the following two lines give the same result.
 
-```prolog
+```prolog:constraints.pro
 gen_enforced_field(WorkspaceCwd, 'license', 'ISC') :- true.
 gen_enforced_field(WorkspaceCwd, 'license', 'ISC').
 ```
@@ -142,7 +142,7 @@ Okay, back to our homepage constraint example. We left off with the following
 block of code, but I didn't explain why I added the `workspace_field` portion to
 the body of the rule.
 
-```prolog
+```prolog:constraints.pro
 gen_enforced_field(WorkspaceCwd, 'homepage', 'something') :-
   workspace_field(WorkspaceCwd, 'version', _).
 ```
@@ -157,7 +157,7 @@ constraint will not be enforced.
 Next, we need to set the correct homepage URL and to do that, we can change our
 constraint to the following.
 
-```prolog
+```prolog:constraints.pro
 gen_enforced_field(WorkspaceCwd, 'homepage', Homepage) :-
   workspace_field(WorkspaceCwd, 'version', _),
   atom_concat('https://github.com/mskelton/yarn-constraints-example/tree/main/', WorkspaceCwd, Homepage).
@@ -170,7 +170,7 @@ the third argument to `gen_enforced_field` so Yarn will enforce the correct
 homepage URL in each workspace. If we check our constraints, we will likely see
 something like this.
 
-```sh
+```bash
 $ yarn constraints
 ➤ YN0037: package-a must have a field homepage set to "https://github.com/mskelton/yarn-constraints-example/tree/main/packages/package-a", but doesn't
 ➤ YN0037: package-b must have a field homepage set to "https://github.com/mskelton/yarn-constraints-example/tree/main/packages/package-b", but doesn't
@@ -188,7 +188,7 @@ dependency should be a peer dependency, not a regular dependency. This is a
 perfect opportunity to add a constraint to enforce this rule in all of our
 packages. This constraint would look like this.
 
-```prolog
+```prolog:constraints.pro
 gen_enforced_dependency(WorkspaceCwd, 'react', null, dependencies) :-
   workspace_field(WorkspaceCwd, 'version', _).
 ```
@@ -200,7 +200,7 @@ version check trick. For the workspaces where we enforce this constraint, Yarn
 will ensure the `react` is not present in the `dependencies` block of the
 manifest. If it is, we will get the following error.
 
-```sh
+```bash
 $ yarn constraints
 ➤ YN0025: package-a has an extraneous dependency on react (in dependencies)
 ➤ YN0000: Failed with errors in 0s 20ms

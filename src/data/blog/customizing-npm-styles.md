@@ -15,7 +15,7 @@ unfinished and poorly styled look. So, with the help of the Chrome Stylus
 extension I was able to add a couple quick styles to get the page looking nice.
 The before and after of the page are shown below.
 
-![npm package view before and after adding the custom styles](npm-styles.png)
+![npm package view before and after adding the custom styles](blog/npm-styles.png)
 
 Here is the code I used for this simple style adjustment.
 

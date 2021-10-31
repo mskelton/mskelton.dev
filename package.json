@@ -36,7 +36,6 @@
     "remark-footnotes": "^4.0.0",
     "remark-gfm": "^2.0.0",
     "slugify": "^1.6.1",
-    "smoothscroll-polyfill": "^0.4.4",
     "tailwindcss": "^2.2.2",
     "types": "link:./src/types",
     "unist-util-visit": "^4.0.0"

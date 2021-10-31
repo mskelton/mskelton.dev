@@ -7713,13 +7713,6 @@ resolve@^2.0.0-next.3:
   languageName: node
   linkType: hard
 
-"smoothscroll-polyfill@npm:^0.4.4":
-  version: 0.4.4
-  resolution: "smoothscroll-polyfill@npm:0.4.4"
-  checksum: b99ff7d91689d563ec69cb1d29713b332a24c88ac3dc4ef9ef9fbe4137305336e67253211067c5f786478dbdabd2aa6c2033709d4d8feca327b09eca8d5a0e7b
-  languageName: node
-  linkType: hard
-
 "socks-proxy-agent@npm:^5.0.0":
   version: 5.0.1
   resolution: "socks-proxy-agent@npm:5.0.1"
@@ -8159,7 +8152,6 @@ resolve@^2.0.0-next.3:
     remark-footnotes: ^4.0.0
     remark-gfm: ^2.0.0
     slugify: ^1.6.1
-    smoothscroll-polyfill: ^0.4.4
     tailwindcss: ^2.2.2
     types: "link:./src/types"
     typescript: ^4.4.4

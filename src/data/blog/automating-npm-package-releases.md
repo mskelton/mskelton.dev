@@ -15,7 +15,7 @@ First, create a GitHub Action which calls `npx semantic-release` (or
 `yarn semantic-release` if you use Yarn). This should be run after any other
 pre-release steps such as `npm run build` and `npm test`.
 
-```yml
+```yml:.github/workflows/release.yml
 name: Release
 on: [push]
 jobs:
@@ -33,7 +33,7 @@ jobs:
 Next, update your package changelog to indicate that change notes can be viewed
 on the releases tab.
 
-```md
+```md:CHANGELOG.md
 # Changelog
 
 The changelog is automatically updated using
@@ -44,7 +44,7 @@ can see it on the [releases page](../../releases).
 Finally, update the version in your package.json to something that indicates
 your package is versioned using semantic release.
 
-```json
+```json:package.json
 "version": "0.0.0-semantically-released"
 ```
 

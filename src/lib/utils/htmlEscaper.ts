@@ -1,17 +1,10 @@
-const { replace } = ""
-
-// escape
-const es = /&(?:amp|#38|lt|#60|gt|#62|apos|#39|quot|#34);/g
-const ca = /[&<>'"]/g
-
-const esca = {
+const mapping = {
   '"': "&quot;",
   "&": "&amp;",
   "'": "&#39;",
   "<": "&lt;",
   ">": "&gt;",
 }
-const pe = (m) => esca[m]
 
 /**
  * Safely escape HTML entities such as `&`, `<`, `>`, `"`, and `'`.
@@ -20,4 +13,5 @@ const pe = (m) => esca[m]
  *  the input type is unexpected, except for boolean and numbers,
  *  converted as string.
  */
-export const escape = (es) => replace.call(es, ca, pe)
+export const escape = (str: string) =>
+  str.replace(/[&<>'"]/g, (char) => mapping[char as keyof typeof mapping])

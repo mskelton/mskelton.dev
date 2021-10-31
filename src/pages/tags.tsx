@@ -40,7 +40,7 @@ export default function Tags({
                   className="-ml-2 text-sm font-semibold text-gray-600 uppercase dark:text-gray-300"
                   href={`/tags/${slugify(t)}`}
                 >
-                  #{` (${tags[t]})`}
+                  {` (${tags[t]})`}
                 </Link>
               </div>
             )

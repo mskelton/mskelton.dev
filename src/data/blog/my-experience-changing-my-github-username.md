@@ -72,7 +72,7 @@ on one of my repos!
 Updating my Git config files was fairly painless by running `grep` to find which
 of my projects needed updating.
 
-```sh
+```bash
 grep markypython \*/.git/config
 ```
 
@@ -80,7 +80,7 @@ After getting that list, I just did some VS Code multi-cursor editing to
 generate a list of `sed` commands that looked like this. _This worked on macOS,
 but if you use another Unix-based OS, your mileage may vary._
 
-```sh
+```bash
 sed -i '' -e 's/markypython/mskelton/' dotfiles/.git/config
 ```
 
@@ -92,7 +92,7 @@ repo with the same name, those redirects will no longer go to your repository.
 To prevent this, create a new account with your old username and clearly
 identify that you renamed your main account.
 
-![Old username clearly indicating that the account was renamed.](username.png)
+![Old username clearly indicating that the account was renamed.](blog/username.png)
 
 An important note about squatting your old username is that GitHub prohibits
 name squatting and holding names for future use in their

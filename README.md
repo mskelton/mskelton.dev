@@ -7,7 +7,7 @@ Welcome to the source code for my website!
 Dependencies are managed with [Yarn](https://yarnpkg.com) and can be installed
 with the `yarn` command.
 
-```sh
+```bash
 yarn
 ```
 
@@ -16,7 +16,7 @@ yarn
 To start the dev server on [localhost:3000](http://localhost:3000), run the
 following command.
 
-```sh
+```bash
 yarn dev
 ```
 
@@ -27,13 +27,10 @@ linting, type checking, and end-to-end testing.
 
 ### Linting
 
-To lint the project with [ESLint](), run the following command.
+To lint the project with [ESLint](https://eslint.org), run the following
+command.
 
-_See the
-[ESLint docs](https://eslint.org/docs/user-guide/command-line-interface) for a
-full list of CLI options that can be passed to this command._
-
-```sh
+```bash
 yarn lint
 ```
 
@@ -45,7 +42,7 @@ _See the
 [TypeScript docs](https://www.typescriptlang.org/docs/handbook/compiler-options.html)
 for a full list of CLI options that can be passed to this command._
 
-```sh
+```bash
 # Run TypeScript once
 yarn ts
 
@@ -62,7 +59,7 @@ will automatically start it for the duration of the tests.
 _See the [Playwright docs](https://playwright.dev/docs/test-cli) for a full list
 of CLI options that can be passed to this command._
 
-```sh
+```bash
 # Run all tests
 yarn test
 

@@ -24,11 +24,6 @@ export async function getStaticProps({
   const postIndex = allPosts.findIndex((post) => post.slug === slug)
 
   const post = await getFileBySlug("blog", slug)
-  const authorList = post.frontMatter.authors || ["mskelton"]
-  const authorPromise = authorList.map(async (author) => {
-    const authorResults = await getFileBySlug("authors", author)
-    return authorResults.frontMatter
-  })
 
   // rss
   // const rss = generateRss(allPosts)
@@ -36,7 +31,6 @@ export async function getStaticProps({
 
   return {
     props: {
-      authorDetails: await Promise.all(authorPromise),
       next: allPosts[postIndex - 1] || null,
       post,
       prev: allPosts[postIndex + 1] || null,
@@ -45,7 +39,6 @@ export async function getStaticProps({
 }
 
 export default function Blog({
-  authorDetails,
   next,
   post,
   prev,
@@ -54,7 +47,6 @@ export default function Blog({
 
   return (
     <MDXLayoutRenderer
-      authorDetails={authorDetails}
       frontMatter={frontMatter}
       layout="PostLayout"
       mdxSource={mdxSource}

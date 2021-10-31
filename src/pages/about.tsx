@@ -15,7 +15,7 @@ export default function About({
   return (
     <MDXLayoutRenderer
       frontMatter={frontMatter}
-      layout={frontMatter.layout || "AuthorLayout"}
+      layout="AuthorLayout"
       mdxSource={mdxSource}
     />
   )
