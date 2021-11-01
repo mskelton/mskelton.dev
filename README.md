@@ -1,6 +1,6 @@
 # mskelton.dev
 
-Welcome to the source code for my website!
+Welcome to the source code for my website
 
 ## Installing
 
