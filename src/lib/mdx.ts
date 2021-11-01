@@ -18,7 +18,7 @@ export function getFiles() {
 }
 
 export function formatSlug(slug: string) {
-  return slug.replace(/\.(mdx|md)/, "")
+  return slug.replace(/\.mdx?/, "")
 }
 
 export function dateSortDesc(a: string, b: string) {
@@ -57,13 +57,13 @@ export async function getFileBySlug<T extends "blog" | "authors">(
   })
 
   return {
-    frontMatter: ({
+    frontMatter: {
       ...frontmatter,
       date: frontmatter.date ? new Date(frontmatter.date).toISOString() : null,
       fileName: path.basename(filePath),
       readingTime: readingTime(code),
       slug: slug || null,
-    } as unknown) as FrontMatter<T>,
+    } as unknown as FrontMatter<T>,
     mdxSource: code,
   }
 }

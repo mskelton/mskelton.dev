@@ -45,8 +45,8 @@ export default function PostLayout({
   return (
     <SectionContainer>
       <BlogSEO url={`${metadata.siteUrl}/blog/${slug}`} {...frontMatter} />
-
       <ScrollTop />
+
       <article>
         <div className="xl:divide-y xl:divide-gray-200 xl:dark:divide-gray-700">
           <header className="py-6">
