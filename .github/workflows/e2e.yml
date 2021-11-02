@@ -1,0 +1,19 @@
+name: Playwright Tests
+on: [deployment_status]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    if: github.event.deployment_status.state == 'success'
+    steps:
+      - uses: mskelton/setup-yarn@v1
+      - run: yarn playwright install chromium --with-deps
+      - run: yarn test
+        env:
+          PLAYWRIGHT_TEST_BASE_URL:
+            ${{ github.event.deployment_status.target_url }}
+      - name: Upload test results
+        uses: actions/upload-artifact@v2
+        if: ${{ failure() }}
+        with:
+          name: test-results
+          path: test-results

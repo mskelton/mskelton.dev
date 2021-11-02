@@ -14,17 +14,3 @@ jobs:
     steps:
       - uses: mskelton/setup-yarn@v1
       - run: yarn ts
-  e2e:
-    name: Playwright Tests
-    runs-on: ubuntu-latest
-    steps:
-      - uses: mskelton/setup-yarn@v1
-      - run: yarn playwright install-deps
-      - run: yarn playwright install chromium
-      - run: yarn test
-      - name: Upload test results
-        uses: actions/upload-artifact@v2
-        if: ${{ failure() }}
-        with:
-          name: test-results
-          path: test-results

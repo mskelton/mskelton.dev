@@ -13,12 +13,6 @@ const config: PlaywrightTestConfig = {
     screenshot: "only-on-failure",
     trace: "on-first-retry",
   },
-  webServer: {
-    command: "yarn dev",
-    port: 3000,
-    reuseExistingServer: !process.env.CI,
-    timeout: 120 * 1000,
-  },
 }
 
 export default config
