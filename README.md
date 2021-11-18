@@ -1,5 +1,8 @@
 # mskelton.dev
 
+[![Build](https://github.com/mskelton/mskelton.dev/actions/workflows/build.yml/badge.svg)](https://github.com/mskelton/mskelton.dev/actions/workflows/build.yml)
+[![Playwright Tests](https://github.com/mskelton/mskelton.dev/actions/workflows/e2e.yml/badge.svg)](https://github.com/mskelton/mskelton.dev/actions/workflows/e2e.yml)
+
 Welcome to the source code for my website!
 
 ## Installing
