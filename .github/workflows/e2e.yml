@@ -2,10 +2,13 @@ name: Playwright Tests
 on: [deployment_status]
 jobs:
   test:
+    name: Test
     runs-on: ubuntu-latest
     if: github.event.deployment_status.state == 'success'
     steps:
       - uses: mskelton/setup-yarn@v1
+        with:
+          cache: ""
       - run: yarn playwright install chromium --with-deps
       - run: yarn test
         env:
