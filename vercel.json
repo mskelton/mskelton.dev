@@ -44,6 +44,10 @@
     {
       "source": "/ratchet/:asset*",
       "destination": "https://ratchet-mskelton.vercel.app/:asset*"
+    },
+    {
+      "source": "/setup/:asset*",
+      "destination": "https://setup-mskelton.vercel.app/:asset*"
     }
   ]
 }
