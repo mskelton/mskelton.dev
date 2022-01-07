@@ -32,9 +32,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
+      - uses: actions/setup-node@v2
         with:
-          node-version: 12
+          node-version: '16.x'
           registry-url: https://registry.npmjs.org/
       - run: yarn
       - run: yarn publish
@@ -117,7 +117,7 @@ test:
       node-version: [10.x, 12.x]
   steps:
     - uses: actions/checkout@v1
-    - uses: actions/setup-node@v1
+    - uses: actions/setup-node@v2
       with:
         node-version: ${{ matrix.node-version }}
     - run: yarn
@@ -151,10 +151,10 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [10.x, 12.x]
+        node-version: [14.x, 16.x]
     steps:
       - uses: actions/checkout@v1
-      - uses: actions/setup-node@v1
+      - uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
       - run: yarn
@@ -165,9 +165,9 @@ jobs:
     if: startsWith(github.ref, 'refs/tags/')
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
+      - uses: actions/setup-node@v2
         with:
-          node-version: 12
+          node-version: '16.x'
           registry-url: https://registry.npmjs.org/
       - run: yarn
       - run: yarn publish
