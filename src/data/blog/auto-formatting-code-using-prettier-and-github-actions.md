@@ -90,5 +90,6 @@ While the example I showed only performed formatting with Prettier, you could
 also run ESLint, stylelint, or any other formatting tool you use as part of the
 GitHub action!
 
-If you are interested in the source code for this post, check out the example
-repository I put together using the link below. God bless and happy coding!
+If you are interested in the source code for this post, check out the
+[example repository](https://github.com/mskelton/prettier-formatting-example) I
+put together. God bless and happy coding!
