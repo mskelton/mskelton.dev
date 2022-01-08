@@ -39,7 +39,7 @@ jobs:
       - run: yarn
       - run: yarn publish
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.npm_token }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 ```
 
 This action is pretty basic and easy to understand. For the trigger, we use the
@@ -172,7 +172,7 @@ jobs:
       - run: yarn
       - run: yarn publish
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.npm_token }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
   create-release:
     needs: test
     runs-on: ubuntu-latest
