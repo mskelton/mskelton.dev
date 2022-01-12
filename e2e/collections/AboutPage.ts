@@ -1,4 +1,4 @@
-import { Collection } from "lariat"
+import Collection from "lariat"
 
 export class AboutPage extends Collection {
   async goto() {

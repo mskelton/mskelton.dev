@@ -920,9 +920,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@playwright/test@npm:^1.16.2":
-  version: 1.16.2
-  resolution: "@playwright/test@npm:1.16.2"
+"@playwright/test@npm:^1.17.2":
+  version: 1.17.2
+  resolution: "@playwright/test@npm:1.17.2"
   dependencies:
     "@babel/code-frame": ^7.14.5
     "@babel/core": ^7.14.8
@@ -941,25 +941,27 @@ __metadata:
     "@babel/plugin-syntax-optional-catch-binding": ^7.8.3
     "@babel/plugin-transform-modules-commonjs": ^7.14.5
     "@babel/preset-typescript": ^7.14.5
-    colors: ^1.4.0
+    colors: 1.4.0
     commander: ^8.2.0
     debug: ^4.1.1
     expect: =27.2.5
     jest-matcher-utils: =27.2.5
     jpeg-js: ^0.4.2
+    mime: ^2.4.6
     minimatch: ^3.0.3
     ms: ^2.1.2
     open: ^8.3.0
     pirates: ^4.0.1
     pixelmatch: ^5.2.1
-    playwright-core: =1.16.2
+    playwright-core: =1.17.2
     pngjs: ^5.0.0
     rimraf: ^3.0.2
     source-map-support: ^0.4.18
     stack-utils: ^2.0.3
+    yazl: ^2.5.1
   bin:
     playwright: cli.js
-  checksum: 8bd22d644345067b07d8ba0c776e958c147ff1c80d6b8ea18469a3277adc5df115943c62bdc8741dde1ac7852975b8cd0be2022455b340f425380899eddbcc6b
+  checksum: dd6ffc0794989373c4c86199eb7b2e7405688bc089d213d9554daccf7651e7cb418f679316e625f97444a4cbee8c3d63e57a93d78c23c7f864297647bb32ecdc
   languageName: node
   linkType: hard
 
@@ -1694,7 +1696,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"axe-core@npm:^4.2.3, axe-core@npm:^4.3.5":
+"axe-core@npm:^4.3.5":
   version: 4.3.5
   resolution: "axe-core@npm:4.3.5"
   checksum: 973c6a80f0aaa663820b209d4202de7a0c240a2dea2f3cff168b09c0f221b27179b1f0988f00ad11ed63cbc50535920f8ca779de1c60dc82090ab2d275f71fdd
@@ -2052,7 +2054,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"colors@npm:^1.4.0":
+"colors@npm:1.4.0":
   version: 1.4.0
   resolution: "colors@npm:1.4.0"
   checksum: 98aa2c2418ad87dedf25d781be69dc5fc5908e279d9d30c34d8b702e586a0474605b3a189511482b9d5ed0d20c867515d22749537f7bc546256c6014f3ebdcec
@@ -2953,12 +2955,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"expect-axe-playwright@npm:^1.2.0":
-  version: 1.2.0
-  resolution: "expect-axe-playwright@npm:1.2.0"
+"expect-axe-playwright@npm:^1.2.1":
+  version: 1.2.1
+  resolution: "expect-axe-playwright@npm:1.2.1"
   dependencies:
-    axe-core: ^4.2.3
-  checksum: eed6a75364d069d1a1232d73fef8a995f128e93f18c77d8439ff9ae39b5c1e479cf9c3836613afddf391107a7b3fd336083e95e3e0845a2ffb2278d8721d6b20
+    axe-core: ^4.3.5
+  checksum: 403523b212ac0e10612519f6b9a3093796a306070f1a917414e4164a76321a7b3d7f0520b9c6607d737113bb728693b801eae7e73bbe2c03e951d4ecf01ab7d2
   languageName: node
   linkType: hard
 
@@ -4290,12 +4292,12 @@ fsevents@~2.3.2:
   languageName: node
   linkType: hard
 
-"lariat@npm:^0.4.1":
-  version: 0.4.1
-  resolution: "lariat@npm:0.4.1"
+"lariat@npm:^1.1.0":
+  version: 1.1.0
+  resolution: "lariat@npm:1.1.0"
   dependencies:
-    playwright-core: ^1.14.1
-  checksum: d1e5d97e2182f88ad839021dfd71604e427b34ed271e81e17962132d446b2cf84ef6b84e1fba1f7b0c7955b2bc09a76206d4f1726f820a50f5b1d480ab81c72c
+    playwright-core: ^1.17.0
+  checksum: db16b8b340d06e9b758dd859c79043b212ff8cc5783b2326c1af324332e7bf946e1a3a67d3ac2262fed0176855b65fff5f3b0b277cf32a19daf5e51fcf243894
   languageName: node
   linkType: hard
 
@@ -5345,7 +5347,7 @@ fsevents@~2.3.2:
     "@babel/core": ^7.16.0
     "@babel/eslint-parser": ^7.16.5
     "@mskelton/eslint-config": ^7.1.0
-    "@playwright/test": ^1.16.2
+    "@playwright/test": ^1.17.2
     "@tailwindcss/forms": ^0.3.2
     "@tailwindcss/typography": ^0.4.0
     "@types/react": ^17.0.33
@@ -5363,9 +5365,9 @@ fsevents@~2.3.2:
     eslint-plugin-react: ^7.28.0
     eslint-plugin-react-hooks: ^4.3.0
     eslint-plugin-sort: ^2.3.1
-    expect-axe-playwright: ^1.2.0
+    expect-axe-playwright: ^1.2.1
     gray-matter: ^4.0.2
-    lariat: ^0.4.1
+    lariat: ^1.1.0
     layouts: "link:./src/layouts"
     lib: "link:./src/lib"
     mdx-bundler: ^6.0.1
@@ -5888,9 +5890,9 @@ fsevents@~2.3.2:
   languageName: node
   linkType: hard
 
-"playwright-core@npm:=1.16.2, playwright-core@npm:^1.14.1":
-  version: 1.16.2
-  resolution: "playwright-core@npm:1.16.2"
+"playwright-core@npm:=1.17.2, playwright-core@npm:^1.17.0":
+  version: 1.17.2
+  resolution: "playwright-core@npm:1.17.2"
   dependencies:
     commander: ^8.2.0
     debug: ^4.1.1
@@ -5910,7 +5912,7 @@ fsevents@~2.3.2:
     yazl: ^2.5.1
   bin:
     playwright: cli.js
-  checksum: 97007554d42cf6ae48beb0883891951a72014d767107183526214df369cea12ddc84ae9f5c80c4c21e074176983ca1a411f3bd1119d9813341fc11f5c1228803
+  checksum: d7d648eebd2529acecae3d1fa09fbb96b0101f26a33a4109ac70073c686cde7ad49706fcc65d610e30a945c17c9aa5b15d0f190fd64bc001dd08a80f38dafd3a
   languageName: node
   linkType: hard
 
