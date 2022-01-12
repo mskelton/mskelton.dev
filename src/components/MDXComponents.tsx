@@ -24,9 +24,9 @@ export const MDXComponents: ComponentMap = {
 }
 
 interface Props {
-  [key: string]: unknown
   layout: string
   mdxSource: string
+  [key: string]: unknown
 }
 
 export const MDXLayoutRenderer = ({ layout, mdxSource, ...rest }: Props) => {
