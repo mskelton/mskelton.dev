@@ -5,7 +5,6 @@ import path from "path"
 import readingTime from "reading-time"
 import rehypeAutolinkHeadings from "rehype-autolink-headings"
 import rehypeSlug from "rehype-slug"
-import remarkFootnotes from "remark-footnotes"
 import remarkGfm from "remark-gfm"
 import rehypePrismPlus from "rehype-prism-plus"
 import { FrontMatter, PostFrontMatter } from "types/FrontMatter"
@@ -42,7 +41,6 @@ export async function getFileBySlug<T extends "blog" | "authors">(
         ...(options.remarkPlugins ?? []),
         remarkGfm,
         remarkCodeTitles,
-        [remarkFootnotes, { inlineNotes: true }],
       ]
 
       options.rehypePlugins = [
