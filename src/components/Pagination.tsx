@@ -1,8 +1,8 @@
 import Link from "components/Link"
 
 interface PaginationProps {
-  totalPages: number
   currentPage: number
+  totalPages: number
 }
 
 export default function Pagination({

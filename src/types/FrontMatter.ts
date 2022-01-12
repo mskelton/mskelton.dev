@@ -1,25 +1,25 @@
 export type AuthorFrontMatter = {
-  layout?: string
-  name: string
   avatar: string
-  occupation: string
   company: string
   email: string
-  twitter: string
-  linkedin: string
   github: string
+  layout?: string
+  linkedin: string
+  name: string
+  occupation: string
+  twitter: string
 }
 
 export type PostFrontMatter = {
-  title: string
   date: string
-  tags: string[]
-  lastmod?: string
-  summary?: string
+  fileName: string
   images?: string[]
+  lastmod?: string
   layout?: string
   slug: string
-  fileName: string
+  summary?: string
+  tags: string[]
+  title: string
 }
 
 export type FrontMatter<T extends "blog" | "authors"> = T extends "blog"

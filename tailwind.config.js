@@ -3,13 +3,12 @@ const colors = require("tailwindcss/colors")
 
 module.exports = {
   darkMode: "class",
-  mode: "jit",
   plugins: [require("@tailwindcss/forms"), require("@tailwindcss/typography")],
   purge: ["./src/**/*.{ts,tsx}"],
   theme: {
     extend: {
       colors: {
-        gray: colors.trueGray,
+        gray: colors.neutral,
         primary: colors.teal,
       },
       fontFamily: {
@@ -102,12 +101,6 @@ module.exports = {
               paddingLeft: "4px",
               paddingRight: "4px",
               paddingTop: "2px",
-            },
-            "code:after": {
-              content: "none",
-            },
-            "code:before": {
-              content: "none",
             },
             color: theme("colors.gray.700"),
             details: {

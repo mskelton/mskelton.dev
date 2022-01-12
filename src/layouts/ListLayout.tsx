@@ -7,10 +7,10 @@ import formatDate from "lib/utils/formatDate"
 import { PostFrontMatter } from "types/FrontMatter"
 
 interface ListLayoutProps {
-  posts: PostFrontMatter[]
-  title: string
   initialDisplayPosts?: PostFrontMatter[]
   pagination?: ComponentProps<typeof Pagination>
+  posts: PostFrontMatter[]
+  title: string
 }
 
 export default function ListLayout({

@@ -4,10 +4,10 @@ import metadata from "data/metadata"
 import { AuthorFrontMatter, PostFrontMatter } from "types/FrontMatter"
 
 interface CommonSEOProps {
-  title: string
   description: string
-  ogType: string
   ogImage: string | { "@type": string; url: string }[]
+  ogType: string
+  title: string
   twImage?: string
 }
 
@@ -47,8 +47,8 @@ export function CommonSEO({
 }
 
 interface PageSEOProps {
-  title: string
   description: string
+  title: string
 }
 
 export function PageSEO({ description, title }: PageSEOProps) {

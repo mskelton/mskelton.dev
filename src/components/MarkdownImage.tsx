@@ -1,8 +1,8 @@
 import Image from "next/image"
 
 export interface MarkdownImageProps {
-  src: string
   alt: string
+  src: string
 }
 
 export function MarkdownImage({ alt, src }: MarkdownImageProps) {
