@@ -34,8 +34,9 @@ export async function getFileBySlug<T extends "blog" | "authors">(
   const filePath = fs.existsSync(`${file}.mdx`) ? `${file}.mdx` : `${file}.md`
   const source = fs.readFileSync(filePath, "utf8")
 
-  const { code, frontmatter } = await bundleMDX(source, {
+  const { code, frontmatter } = await bundleMDX({
     cwd: path.join(root, "components"),
+    source,
     xdmOptions(options) {
       options.remarkPlugins = [
         ...(options.remarkPlugins ?? []),
