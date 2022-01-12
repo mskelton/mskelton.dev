@@ -102,12 +102,6 @@ module.exports = {
               paddingRight: "4px",
               paddingTop: "2px",
             },
-            "code:after": {
-              content: "none",
-            },
-            "code:before": {
-              content: "none",
-            },
             color: theme("colors.gray.700"),
             details: {
               backgroundColor: theme("colors.gray.100"),
