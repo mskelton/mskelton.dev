@@ -1,6 +1,10 @@
 ---
 title: Conquering Derived State
-summary: How to recognize and replace derived state in your React components
+summary:
+  Derived state in React is generally considered to be an anti-pattern that
+  should be avoided. In this article, I show how to recognize derived state in
+  your components and alternative ways to write your components to avoid using
+  derived state.
 tags: [react, derived-state, react-hooks]
 date: "2020-04-03"
 ---

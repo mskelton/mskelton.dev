@@ -1,8 +1,10 @@
 ---
 title: The Dangers of Shallow Rendering
 summary:
-  Three reasons why you should avoid shallow rendering when writing JavaScript
-  component tests
+  Shallow rendering is an approach to unit testing made popular by the Enzyme
+  library. In this article, I discuss many of the problems that arise when using
+  shallow rendering and why you should avoid it when writing unit tests for your
+  React components.
 tags: [testing, react, enzyme, react-testing-library]
 date: "2020-03-21"
 ---

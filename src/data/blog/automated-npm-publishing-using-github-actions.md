@@ -1,8 +1,11 @@
 ---
 title: Automated npm Publishing Using GitHub Actions
 summary:
-  Simplify your development workflow by automating your npm package publishing
-  using GitHub Actions.
+  Releasing npm packages can be a challenge. There are often many steps in the
+  process and forgetting a step can result in a package being released
+  incorrectly. In this article, I will show how to use GitHub Actions to
+  automate some of the manual steps required to simplify your npm publishing
+  workflow.
 tags: [npm, github-actions]
 date: "2019-11-16"
 ---

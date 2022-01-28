@@ -1,8 +1,9 @@
 ---
-title: My Experience Changing my GitHub Username
+title: My Experience Changing my GitHub Username
 summary:
-  Changing your GitHub username can be a daunting task. Read on to learn my
-  journey and experience.
+  Are you considering changing your GitHub username? In this article, I discuss
+  everything I learned when changing my GitHub username to help you understand
+  the steps required in this process.
 tags: [github, username]
 date: "2019-10-19"
 ---
@@ -19,7 +20,7 @@ me. However, some initial research into changing my GitHub username got me
 pretty frightened and I seriously questioned if it was worth it. Nevertheless,
 the desire to change my username remained and I eventually decided to do it.
 
-## Determining the Impact
+## Determining the Impact
 
 The first important step in changing my username was determining what the impact
 of changing it would be. While
@@ -41,7 +42,7 @@ articles did not apply to me. In the end, the changes I was
 - Travis CI
 - Git config files
 
-## Taking the Plunge
+## Taking the Plunge
 
 Once I was reasonably confident of the impact, I decided to take the plunge and
 rename my account. I had already secured my new username and had created a
@@ -84,7 +85,7 @@ but if you use another Unix-based OS, your mileage may vary._
 sed -i '' -e 's/markypython/mskelton/' dotfiles/.git/config
 ```
 
-## Squatting Your Old Username
+## Squatting Your Old Username
 
 When you rename your account, GitHub will setup redirects from your old username
 to your new username, but if someone takes over your new username and creates a
@@ -101,9 +102,9 @@ Because of this policy, I would recommend squatting your old username for a
 month or two and then deleting your old account so it is available for other
 users in the future.
 
-## Wrapping It Up
+## Wrapping It Up
 
-Photo by Plush Design Studio on UnsplashAside from the decision to start the
+Photo by Plush Design Studio on UnsplashAside from the decision to start the
 processing of renaming my account at 9:30 PM on a Friday night, I am very happy
 that I decided to rename my account as it was not nearly as bad as I thought it
 would be. The changes required are mostly busy-work and don't require a huge
