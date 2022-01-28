@@ -8,3 +8,23 @@ summary:
 tags: [career, software-engineer]
 date: "2022-02-01"
 ---
+
+## Try Things Out
+
+## Teach What You Learn
+
+## Read Documentation
+
+## Get Good at Google
+
+This might sound silly, but
+
+## Relentlessly Improve Efficiency
+
+## Chase Your Passion
+
+## Stay Humble
+
+## Challenge the Status Quo
+
+## Be a Leader
