@@ -1,6 +1,10 @@
 ---
 title: Automating npm Package Releases
-summary: How to setup semantic-release with GitHub Actions
+summary:
+  Releasing npm packages can be a challenge. There are often many steps in the
+  process and forgetting a step can result in a package being released
+  incorrectly. In this article, I will show how to implement semantic-release in
+  your project to fully automate your npm package releases.
 tags: [npm, semantic-release]
 date: "2020-05-25"
 ---

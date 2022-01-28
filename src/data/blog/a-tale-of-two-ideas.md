@@ -1,6 +1,10 @@
 ---
 title: A Tale of Two Ideas
-summary: What to do when encountering ideas from differing perspectives
+summary:
+  Every day, we encounter ideas and viewpoints that affect our lives in one way
+  or another. In this article, I discuss how to look at differing ideas more
+  objectively to help you make better decisions at work and in your personal
+  life.
 tags: [concepts, testing]
 date: "2019-11-02"
 ---
