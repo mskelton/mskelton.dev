@@ -1,6 +1,10 @@
 ---
 title: Why I Don't Use Environment Variables
-summary: Common challenges with environment variables and how to remedy them
+summary:
+  Environment variables are a great way to manage configuration in your
+  applications, but they introduce a number of challenges. In this article, I
+  explain an alternative approach to managing configuration in your applications
+  using environment files rather than environment variables.
 tags: [nodejs, environment-variables, dotenv]
 date: "2020-01-11"
 ---

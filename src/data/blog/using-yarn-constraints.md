@@ -1,6 +1,10 @@
 ---
 title: Using Yarn Constraints
-summary: How to create and use Yarn constraints for managing your monorepos
+summary:
+  Yarn 2 introduced a new feature referred to as "constraints" to help you
+  manage packages in your monorepo. In this article, I explain how constraints
+  work and show you how you can use them to enforce consistency in your
+  monorepo.
 tags: [yarn, constraints]
 date: "2020-12-06"
 ---

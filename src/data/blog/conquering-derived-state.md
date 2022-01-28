@@ -1,17 +1,22 @@
 ---
 title: Conquering Derived State
-summary: How to recognize and replace derived state in your React components
+summary:
+  Derived state in React is generally considered to be an anti-pattern that
+  should be avoided. In this article, I show how to recognize derived state in
+  your components and alternative ways to write your components to avoid using
+  derived state.
 tags: [react, derived-state, react-hooks]
 date: "2020-04-03"
 ---
 
-A couple weeks ago, my fellow front-end developers at Widen had a conversation
-regarding one of our shared React components which we were struggling to
-implement in one of our applications. While most React components are fully
-controlled (via props) or fully uncontrolled (internal state), this component
-used what is known as "derived state" which is internal state that is controlled
-to some degree by props. Although derived state might seem like a good solution,
-it often causes many more problems than it attempts to solve.
+A couple weeks ago, my fellow front-end developers at
+[Widen](https://www.widen.com) had a conversation regarding one of our shared
+React components which we were struggling to implement in one of our
+applications. While most React components are fully controlled (via props) or
+fully uncontrolled (internal state), this component used what is known as
+"derived state" which is internal state that is controlled to some degree by
+props. Although derived state might seem like a good solution, it often causes
+many more problems than it attempts to solve.
 
 My goal in this article is not to convince you that derived state should be
 avoided. React has an excellent

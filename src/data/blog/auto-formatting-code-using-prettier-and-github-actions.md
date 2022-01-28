@@ -1,8 +1,10 @@
 ---
 title: Auto Formatting Code Using Prettier and GitHub Actions
 summary:
-  Learn how to configure a GitHub workflow to auto format your code using
-  Prettier.
+  Enforcing consistent code formatting in your repositories with Prettier is
+  great, but it can easily result in a less than ideal developer experience. In
+  this article, I discuss how to leverage GitHub Actions to automate code
+  formatting without requiring any additional steps from developers.
 tags: [prettier, github-actions]
 date: "2020-04-11"
 ---
