@@ -76,7 +76,7 @@ export default function PostLayout({
           >
             <div />
             <div className="divide-y divide-gray-200 dark:divide-gray-700 xl:pb-0 xl:col-span-3 xl:row-span-2">
-              <div className="pt-10 pb-8 prose dark:prose-dark prose-code:before:content-none prose-code:after:content-none prose-pre:bg-gray-800 max-w-none">
+              <div className="pt-10 pb-8 prose dark:prose-dark prose-code:before:content-none prose-code:after:content-none prose-pre:bg-gray-800 max-w-none  prose-headings:pl-6 prose-headings:-ml-6 prose-h2:mt-5 prose-h2:pt-3 prose-h3:mt-4 prose-h3:pt-2">
                 {children}
               </div>
 

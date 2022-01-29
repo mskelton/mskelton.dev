@@ -47,7 +47,16 @@ export async function getFileBySlug<T extends "blog" | "authors">(
       options.rehypePlugins = [
         ...(options.rehypePlugins ?? []),
         rehypeSlug,
-        rehypeAutolinkHeadings,
+        [
+          rehypeAutolinkHeadings,
+          {
+            properties: {
+              ariaHidden: true,
+              class: "heading-link",
+              tabIndex: -1,
+            },
+          },
+        ],
         [rehypePrismPlus, { ignoreMissing: true }],
       ]
 
