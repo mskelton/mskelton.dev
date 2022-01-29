@@ -1,9 +1,9 @@
 /* eslint-disable react/display-name */
 import { ComponentMap, getMDXComponent } from "mdx-bundler/client"
 import { ReactNode, useMemo } from "react"
-import Link from "./Link"
+import { CustomLink as Link } from "./Link"
 import { MarkdownImage } from "./MarkdownImage"
-import Pre from "./Pre"
+import { Pre } from "./Pre"
 
 interface WrapperProps {
   children?: ReactNode
@@ -17,8 +17,8 @@ function Wrapper({ layout, ...rest }: WrapperProps) {
 }
 
 export const MDXComponents: ComponentMap = {
-  a: Link as any,
-  img: MarkdownImage as any,
+  a: (props) => <Link {...props} className="link" />,
+  img: MarkdownImage,
   pre: Pre,
   wrapper: Wrapper,
 }

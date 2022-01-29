@@ -1,21 +1,18 @@
-import Link from "components/Link"
+import { CustomLink as Link } from "components/Link"
 
 interface PaginationProps {
   currentPage: number
   totalPages: number
 }
 
-export default function Pagination({
-  currentPage,
-  totalPages,
-}: PaginationProps) {
+export function Pagination({ currentPage, totalPages }: PaginationProps) {
   const prevPage = currentPage - 1 > 0
   const nextPage = currentPage + 1 <= totalPages
   const prevURL =
     currentPage - 1 === 1 ? `/blog/` : `/blog/page/${currentPage - 1}`
 
   return (
-    <div className="pt-6 pb-8 space-y-2 md:space-y-5">
+    <div className="space-y-2 pt-6 pb-8 md:space-y-5">
       <nav className="flex justify-between">
         {!prevPage && (
           <button

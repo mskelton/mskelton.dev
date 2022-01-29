@@ -1,6 +1,6 @@
 import Script from "next/script"
 
-export default function Analytics() {
+export function Analytics() {
   const measurementId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID
 
   return process.env.NODE_ENV !== "production" ? null : (

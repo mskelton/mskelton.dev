@@ -2,33 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
-html {
-  scroll-behavior: smooth;
-}
+@layer components {
+  .text {
+    @apply text-gray-900 dark:text-gray-100;
+  }
 
-/* https://stackoverflow.com/questions/61083813/how-to-avoid-internal-autofill-selected-style-to-be-applied */
-input:-webkit-autofill,
-input:-webkit-autofill:focus {
-  transition: background-color 600000s 0s, color 600000s 0s;
-}
+  .text-muted {
+    @apply text-gray-500 dark:text-gray-400;
+  }
 
-/* Prose heading links */
-.heading-link {
-  text-decoration: none;
-  opacity: 0;
-  transition: opacity 200ms ease-in-out;
-}
-
-:is(h1, h2, h3, h4):hover .heading-link {
-  opacity: 1;
-}
-
-.icon-link {
-  position: relative;
-}
-
-.icon-link::before {
-  content: "#";
-  position: absolute;
-  right: 8px;
+  .link {
+    @apply text-primary-500 hover:text-primary-600 dark:hover:text-primary-400;
+  }
 }

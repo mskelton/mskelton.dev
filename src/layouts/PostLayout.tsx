@@ -1,10 +1,11 @@
 import React, { ReactNode } from "react"
-import Link from "components/Link"
-import PageTitle from "components/PageTitle"
+import { CustomLink as Link } from "components/Link"
+import { PageTitle } from "components/PageTitle"
+import { PostPaginationLink } from "components/PostPaginationLink"
 import ScrollTop from "components/ScrollTop"
 import SectionContainer from "components/SectionContainer"
 import { BlogSEO } from "components/SEO"
-import Tag from "components/Tag"
+import { TagList } from "components/TagList"
 import metadata from "data/metadata"
 import { PostFrontMatter } from "types/FrontMatter"
 
@@ -54,7 +55,7 @@ export default function PostLayout({
               <dl className="space-y-10">
                 <div>
                   <dt className="sr-only">Published on</dt>
-                  <dd className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
+                  <dd className="text-muted text-base font-medium leading-6">
                     <time dateTime={date}>
                       {new Date(date).toLocaleDateString(
                         metadata.locale,
@@ -71,12 +72,12 @@ export default function PostLayout({
             </div>
           </header>
           <div
-            className="pb-8 divide-y divide-gray-200 xl:divide-y-0 dark:divide-gray-700 xl:grid xl:grid-cols-4 xl:gap-x-6"
+            className="divide-y divide-gray-200 pb-8 dark:divide-gray-700 xl:grid xl:grid-cols-4 xl:gap-x-6 xl:divide-y-0"
             style={{ gridTemplateRows: "auto 1fr" }}
           >
             <div />
-            <div className="divide-y divide-gray-200 dark:divide-gray-700 xl:pb-0 xl:col-span-3 xl:row-span-2">
-              <div className="pt-10 pb-8 prose dark:prose-dark prose-code:before:content-none prose-code:after:content-none prose-pre:bg-gray-800 max-w-none  prose-headings:pl-6 prose-headings:-ml-6 prose-h2:mt-5 prose-h2:pt-3 prose-h3:mt-4 prose-h3:pt-2">
+            <div className="divide-y divide-gray-200 dark:divide-gray-700 xl:col-span-3 xl:row-span-2 xl:pb-0">
+              <div className="prose max-w-none pt-10 pb-8 prose-headings:-ml-6 prose-headings:pl-6 prose-h2:mt-5 prose-h2:pt-3  prose-h3:mt-4 prose-h3:pt-2 prose-code:before:content-none prose-code:after:content-none prose-pre:bg-gray-800 dark:prose-dark">
                 {children}
               </div>
 
@@ -90,58 +91,30 @@ export default function PostLayout({
             </div>
 
             <footer>
-              <div className="text-sm font-medium leading-5 divide-gray-200 xl:divide-y dark:divide-gray-700 xl:col-start-1 xl:row-start-2">
+              <div className="divide-gray-200 text-sm font-medium leading-5 dark:divide-gray-700 xl:col-start-1 xl:row-start-2 xl:divide-y">
                 {tags && (
                   <div className="py-4 xl:py-8">
-                    <h2 className="text-xs tracking-wide text-gray-500 uppercase dark:text-gray-400">
-                      Tags
-                    </h2>
-
-                    <div className="flex flex-wrap">
-                      {tags.map((tag) => (
-                        <Tag key={tag}>{tag}</Tag>
-                      ))}
-                    </div>
+                    <h2 className="text-muted text-xs uppercase">Tags</h2>
+                    <TagList tags={tags} />
                   </div>
                 )}
 
                 {(next || prev) && (
                   <div className="flex justify-between py-4 xl:block xl:space-y-8 xl:py-8">
-                    {prev && (
-                      <div>
-                        <h2 className="text-xs tracking-wide text-gray-500 uppercase dark:text-gray-400">
-                          Previous Article
-                        </h2>
+                    <PostPaginationLink link={prev}>
+                      Previous Article
+                    </PostPaginationLink>
 
-                        <div className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400">
-                          <Link href={`/blog/${prev.slug}`}>{prev.title}</Link>
-                        </div>
-                      </div>
-                    )}
-
-                    {next && (
-                      <div>
-                        <h2 className="text-xs tracking-wide text-gray-500 uppercase dark:text-gray-400">
-                          Next Article
-                        </h2>
-
-                        <div className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400">
-                          <Link href={`/blog/${next.slug}`}>{next.title}</Link>
-                        </div>
-                      </div>
-                    )}
+                    <PostPaginationLink link={next}>
+                      Next Article
+                    </PostPaginationLink>
                   </div>
                 )}
               </div>
 
-              <div className="pt-4 xl:pt-8">
-                <Link
-                  className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
-                  href="/blog"
-                >
-                  &larr; Back to the blog
-                </Link>
-              </div>
+              <Link className="link inline-block pt-4 xl:pt-8" href="/blog">
+                &larr; Back to the blog
+              </Link>
             </footer>
           </div>
         </div>

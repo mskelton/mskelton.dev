@@ -4,10 +4,10 @@ import { AnchorHTMLAttributes } from "react"
 
 export interface CustomLinkProps
   extends AnchorHTMLAttributes<HTMLAnchorElement> {
-  href: string
+  href?: string
 }
 
-export default function CustomLink({ href, ...rest }: CustomLinkProps) {
+export function CustomLink({ href = "#", ...rest }: CustomLinkProps) {
   const isInternalLink = href.startsWith("/")
   const isAnchorLink = href.startsWith("#")
 

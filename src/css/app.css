@@ -1,0 +1,30 @@
+html {
+  scroll-behavior: smooth;
+}
+
+/* https://stackoverflow.com/questions/61083813/how-to-avoid-internal-autofill-selected-style-to-be-applied */
+input:-webkit-autofill,
+input:-webkit-autofill:focus {
+  transition: background-color 600000s 0s, color 600000s 0s;
+}
+
+/* Prose heading links */
+.heading-link {
+  text-decoration: none;
+  opacity: 0;
+  transition: opacity 200ms ease-in-out;
+}
+
+:is(h1, h2, h3, h4):hover .heading-link {
+  opacity: 1;
+}
+
+.icon-link {
+  position: relative;
+}
+
+.icon-link::before {
+  content: "#";
+  position: absolute;
+  right: 8px;
+}

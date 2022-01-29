@@ -2250,6 +2250,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"clsx@npm:^1.1.1":
+  version: 1.1.1
+  resolution: "clsx@npm:1.1.1"
+  checksum: ff052650329773b9b245177305fc4c4dc3129f7b2be84af4f58dc5defa99538c61d4207be7419405a5f8f3d92007c954f4daba5a7b74e563d5de71c28c830063
+  languageName: node
+  linkType: hard
+
 "code-point-at@npm:^1.0.0":
   version: 1.1.0
   resolution: "code-point-at@npm:1.1.0"
@@ -5640,6 +5647,7 @@ fsevents@~2.3.2:
     "@typescript-eslint/eslint-plugin": ^5.9.1
     "@typescript-eslint/parser": ^5.9.1
     autoprefixer: ^10.4.2
+    clsx: ^1.1.1
     components: "link:./src/components"
     css: "link:./src/css"
     data: "link:./src/data"
@@ -5660,6 +5668,7 @@ fsevents@~2.3.2:
     next-themes: ^0.0.15
     postcss: ^8.4.5
     prettier: ^2.5.1
+    prettier-plugin-tailwindcss: ^0.1.4
     react: 17.0.2
     react-dom: 17.0.2
     react-icons: ^4.3.1
@@ -6312,6 +6321,15 @@ fsevents@~2.3.2:
   version: 1.2.1
   resolution: "prelude-ls@npm:1.2.1"
   checksum: cd192ec0d0a8e4c6da3bb80e4f62afe336df3f76271ac6deb0e6a36187133b6073a19e9727a1ff108cd8b9982e4768850d413baa71214dd80c7979617dca827a
+  languageName: node
+  linkType: hard
+
+"prettier-plugin-tailwindcss@npm:^0.1.4":
+  version: 0.1.4
+  resolution: "prettier-plugin-tailwindcss@npm:0.1.4"
+  peerDependencies:
+    prettier: ">=2.2.0"
+  checksum: f624df7b7fbd00625dc2266e3f6b2c34a245042c96070f902a65396377cd31ad4b93a2131c03d08706fbb1bc50db81487f5a61deface27520fa9b38d2ecfb8db
   languageName: node
   linkType: hard
 

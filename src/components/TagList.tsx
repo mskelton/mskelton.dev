@@ -1,0 +1,16 @@
+import React from "react"
+import Tag from "./Tag"
+
+export interface TagListProps {
+  tags: string[]
+}
+
+export function TagList({ tags }: TagListProps) {
+  return (
+    <div className="flex flex-wrap">
+      {tags.map((tag) => (
+        <Tag key={tag}>{tag}</Tag>
+      ))}
+    </div>
+  )
+}

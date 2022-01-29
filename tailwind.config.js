@@ -20,9 +20,6 @@ module.exports = {
         13: "3.25rem",
         14: "3.5rem",
       },
-      spacing: {
-        "9/16": "56.25%",
-      },
       typography: (theme) => ({
         dark: {
           css: {

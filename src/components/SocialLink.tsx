@@ -24,7 +24,7 @@ export default function SocialLink({ href, kind }: SocialLinkProps) {
       target="_blank"
     >
       <span className="sr-only">{kind}</span>
-      <Component className="fill-current text-gray-700 dark:text-gray-200 hover:text-blue-500 dark:hover:text-blue-400 h-8 w-8" />
+      <Component className="h-8 w-8 fill-current text-gray-700 hover:text-blue-500 dark:text-gray-200 dark:hover:text-blue-400" />
     </a>
   )
 }

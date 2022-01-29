@@ -1,8 +1,8 @@
 import { useState } from "react"
 import headerNavLinks from "data/headerNavLinks"
-import Link from "./Link"
+import { CustomLink as Link } from "./Link"
 
-export default function MobileNav() {
+export function MobileNav() {
   const [navShow, setNavShow] = useState(false)
 
   function onToggleNav() {
@@ -16,12 +16,12 @@ export default function MobileNav() {
     <div className="sm:hidden">
       <button
         aria-label="Toggle Menu"
-        className="w-8 h-8 ml-1 mr-1 rounded"
+        className="ml-1 mr-1 h-8 w-8 rounded"
         onClick={onToggleNav}
         type="button"
       >
         <svg
-          className="text-gray-900 dark:text-gray-100"
+          className="text"
           fill="currentColor"
           viewBox="0 0 20 20"
           xmlns="http://www.w3.org/2000/svg"
@@ -41,32 +41,23 @@ export default function MobileNav() {
           )}
         </svg>
       </button>
-      <div
-        className={`fixed w-full h-full top-24 right-0 bg-gray-200 dark:bg-gray-800 opacity-95 z-10 transform ease-in-out duration-300 ${
+
+      <nav
+        className={`fixed top-24 right-0 z-10 h-full w-full transform bg-gray-200 pt-8 opacity-95 duration-200 ease-in-out dark:bg-gray-800 ${
           navShow ? "translate-x-0" : "translate-x-full"
         }`}
       >
-        <button
-          aria-label="toggle modal"
-          className="fixed w-full h-full cursor-auto focus:outline-none"
-          onClick={onToggleNav}
-          type="button"
-        />
-
-        <nav className="fixed h-full mt-8">
-          {headerNavLinks.map((link) => (
-            <div key={link.title} className="px-12 py-4">
-              <Link
-                className="text-2xl font-bold tracking-widest text-gray-900 dark:text-gray-100"
-                href={link.href}
-                onClick={onToggleNav}
-              >
-                {link.title}
-              </Link>
-            </div>
-          ))}
-        </nav>
-      </div>
+        {headerNavLinks.map((link) => (
+          <Link
+            key={link.href}
+            className="text block px-12 py-4 text-2xl font-bold"
+            href={link.href}
+            onClick={onToggleNav}
+          >
+            {link.title}
+          </Link>
+        ))}
+      </nav>
     </div>
   )
 }

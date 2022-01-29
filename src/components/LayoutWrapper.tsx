@@ -2,9 +2,9 @@ import Image from "next/image"
 import { ReactNode } from "react"
 import headerNavLinks from "data/headerNavLinks"
 import metadata from "data/metadata"
-import Footer from "./Footer"
-import Link from "./Link"
-import MobileNav from "./MobileNav"
+import { Footer } from "./Footer"
+import { CustomLink as Link } from "./Link"
+import { MobileNav } from "./MobileNav"
 import SectionContainer from "./SectionContainer"
 import ThemeSwitch from "./ThemeSwitch"
 
@@ -12,10 +12,10 @@ interface LayoutWrapperProps {
   children?: ReactNode
 }
 
-export default function LayoutWrapper({ children }: LayoutWrapperProps) {
+export function LayoutWrapper({ children }: LayoutWrapperProps) {
   return (
     <SectionContainer>
-      <div className="flex flex-col justify-between h-screen">
+      <div className="flex h-screen flex-col justify-between">
         <header className="flex items-center justify-between py-10">
           <div>
             <Link aria-label={metadata.title} href="/">
@@ -42,7 +42,7 @@ export default function LayoutWrapper({ children }: LayoutWrapperProps) {
               {headerNavLinks.map((link) => (
                 <Link
                   key={link.title}
-                  className="p-1 font-medium text-gray-900 sm:p-4 dark:text-gray-100"
+                  className="text p-1 font-medium sm:p-4"
                   href={link.href}
                 >
                   {link.title}

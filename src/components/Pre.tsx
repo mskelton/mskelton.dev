@@ -5,7 +5,7 @@ interface PreProps {
   children?: ReactNode
 }
 
-export default function Pre({ children }: PreProps) {
+export function Pre({ children }: PreProps) {
   const textInput = useRef<HTMLDivElement>(null!)
   const [copied, setCopied] = useState(false)
 
@@ -23,7 +23,7 @@ export default function Pre({ children }: PreProps) {
     <div ref={textInput} className="group relative">
       <button
         aria-label="Copy code"
-        className={`absolute opacity-0 flex items-center justify-center group-hover:opacity-100 focus:outline-none right-2 top-2 w-8 h-8 rounded border-2 bg-gray-700 dark:bg-gray-800 ${buttonStyle}`}
+        className={`absolute right-2 top-2 flex h-8 w-8 items-center justify-center rounded border-2 bg-gray-700 opacity-0 focus:outline-none group-hover:opacity-100 dark:bg-gray-800 ${buttonStyle}`}
         onClick={handleCopy}
         type="button"
       >
