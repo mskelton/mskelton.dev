@@ -1,6 +1,6 @@
 import SocialLink from "components/SocialLink"
 import metadata from "data/metadata"
-import { CustomLink as Link } from "./Link"
+import { Link } from "./Link"
 
 export function Footer() {
   return (

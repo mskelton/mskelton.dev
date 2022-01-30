@@ -1,5 +1,5 @@
 import React from "react"
-import { CustomLink as Link } from "./Link"
+import { Link } from "./Link"
 
 export interface PostPaginationLinkProps {
   children?: React.ReactNode

@@ -1,5 +1,5 @@
 import React, { ReactNode } from "react"
-import { CustomLink as Link } from "components/Link"
+import { Link } from "components/Link"
 import { PageTitle } from "components/PageTitle"
 import { PostPaginationLink } from "components/PostPaginationLink"
 import ScrollTop from "components/ScrollTop"

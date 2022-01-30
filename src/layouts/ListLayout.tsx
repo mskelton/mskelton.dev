@@ -1,6 +1,6 @@
 import React, { ComponentProps, useState } from "react"
 import { FiSearch } from "react-icons/fi"
-import { CustomLink as Link } from "components/Link"
+import { Link } from "components/Link"
 import { Pagination } from "components/Pagination"
 import { TagList } from "components/TagList"
 import formatDate from "lib/utils/formatDate"

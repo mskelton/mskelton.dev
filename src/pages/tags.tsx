@@ -1,6 +1,6 @@
 import { InferGetStaticPropsType } from "next"
 import slugify from "slugify"
-import { CustomLink as Link } from "components/Link"
+import { Link } from "components/Link"
 import { PageSEO } from "components/SEO"
 import Tag from "components/Tag"
 import metadata from "data/metadata"
