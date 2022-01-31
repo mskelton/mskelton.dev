@@ -9,12 +9,20 @@ linkedin: https://www.linkedin.com/in/mskelton0/
 github: https://github.com/mskelton
 ---
 
-I'm a software developer and follower of Christ from Monroe, Wisconsin. Right
-now, I'm working at [Widen](https://www.widen.com) as a JavaScript Engineer.
-TypeScript and React are my jam, plus a host of other technologies including
-Node, Playwright, webpack, Prettier, ESLint, and much more.
+I'm a JavaScript engineer and lead developer working at
+[Widen](https://www.widen.com). While I'm not afraid of CSS, my true passion
+lies in JavaScript engineering and developer experience (DX). I love finding
+ways to simplify or improve development workflow to save time and make it more
+fun to work on applications. Wait, did I forget to mention how much I love
+TypeScript?
 
-In my spare time, I enjoy spending time with friends, playing disc golf, coding
-(why not), and remodeling my house. I'm both an extrovert and a nerd, so I'm
-more than happy to talk for long periods of time with my family about tech, even
-if they don’t understand. 😂
+Outside of work, I'm a small town kid from Wisconsin who loves small town life
+almost as much as I like snow and winter. In my free time I like working on my
+house, spending time with my girlfriend, and playing disc golf. I am also a
+devout Christian seeking to be more like Jesus in word, thought, and deed.
+
+While I am a software engineer and a total nerd, I'm a huge extrovert and love
+spending time with people. If you ever want to debate the usefulness of college
+education for professions like computer science, I will gladly oblige as I am a
+self-taught developer who found very little practical value in college behind
+getting that slip of paper they call a diploma.

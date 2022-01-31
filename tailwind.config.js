@@ -2,9 +2,9 @@ const defaultTheme = require("tailwindcss/defaultTheme")
 const colors = require("tailwindcss/colors")
 
 module.exports = {
+  content: ["./src/**/*.{ts,tsx}"],
   darkMode: "class",
   plugins: [require("@tailwindcss/forms"), require("@tailwindcss/typography")],
-  purge: ["./src/**/*.{ts,tsx}"],
   theme: {
     extend: {
       colors: {
@@ -23,13 +23,6 @@ module.exports = {
       typography: (theme) => ({
         dark: {
           css: {
-            a: {
-              "&:hover": {
-                color: theme("colors.primary.400"),
-              },
-              code: { color: theme("colors.primary.400") },
-              color: theme("colors.primary.500"),
-            },
             blockquote: {
               borderLeftColor: theme("colors.gray.700"),
               color: theme("colors.gray.100"),
@@ -79,13 +72,7 @@ module.exports = {
         },
         DEFAULT: {
           css: {
-            a: {
-              "&:hover": {
-                color: theme("colors.primary.600"),
-              },
-              code: { color: theme("colors.primary.400") },
-              color: theme("colors.primary.500"),
-            },
+            a: false,
             blockquote: {
               borderLeftColor: theme("colors.gray.200"),
               color: theme("colors.gray.900"),

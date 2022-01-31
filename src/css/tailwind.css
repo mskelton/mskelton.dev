@@ -12,7 +12,7 @@
   }
 
   .link-primary {
-    @apply relative text-primary-500 after:absolute after:-bottom-0.5 after:left-0 after:h-0.5 after:w-0 after:rounded-sm after:bg-current after:transition-all hover:after:w-full;
+    @apply relative text-primary-500 after:absolute after:-bottom-0.5 after:left-0 after:h-0.5 after:w-0 after:rounded-sm after:bg-current after:transition-all hover:after:w-full dark:text-primary-400;
   }
 
   .link-secondary {
