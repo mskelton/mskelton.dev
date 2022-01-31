@@ -104,6 +104,41 @@ coworkers to also improve their skills.
 
 ## Relentlessly Improve Efficiency
 
+As you advance to higher levels of software engineering, you will solve more
+complex problems that require more time and mental energy. As you do, you will
+be limited by two factors: how quickly you can develop solutions to these
+problems and how quickly you can implement these solutions. Improving efficiency
+of developing solutions generally comes with time and experience making it more
+difficult to artificially speed up, but the opposite is true of improving
+efficiency of implementing solutions.
+
+While certainly not the only factor in efficiency, how you type and your typing
+speed are an important factor to efficiency. While software engineers do not
+simply type for 8 hours straight every day, we do type a lot, so improving your
+typing skills will have a positive impact on your overall efficiency. Not only
+that, but if you improve not only your typing speed, but also your typing method
+you will find yourself wasting less mental energy thinking about typing and
+instead you can use that energy to think about the problem you are trying to
+solve.
+
+There are so many other ways to improve efficiency, but rather than making this
+section huge, here are some of my top tips.
+
+- Learn keyboard shortcuts to reduce time wasted moving between your mouse and
+  keyboard.
+- Prefer CLIs over GUIs. While GUIs are nicer to look at and use, CLIs are often
+  more efficient. For example, with some configuration I can manage my Git
+  repositories far quicker via the command line than I can via VS Code's
+  built-in Git client.
+- Automate as much as you can. Setup a GitHub action to automatically update
+  dependencies every other week, create lint rules to enforce coding standards,
+  or create recurring reminders of common tasks. Anything you can do to reduce
+  what you have to remember and do will improve your efficiency.
+- For macOS users, replace Spotlight with [Raycast](https://www.raycast.com) or
+  [Alfred](https://www.alfredapp.com) which both provide more functionality and
+  offer means of customizing with extensions or workflows to automate common
+  tasks.
+
 ## Chase Your Passion
 
 ## Stay Humble
