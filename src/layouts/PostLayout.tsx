@@ -1,5 +1,5 @@
 import React, { ReactNode } from "react"
-import { CustomLink as Link } from "components/Link"
+import { Link } from "components/Link"
 import { PageTitle } from "components/PageTitle"
 import { PostPaginationLink } from "components/PostPaginationLink"
 import ScrollTop from "components/ScrollTop"
@@ -77,16 +77,22 @@ export default function PostLayout({
           >
             <div />
             <div className="divide-y divide-gray-200 dark:divide-gray-700 xl:col-span-3 xl:row-span-2 xl:pb-0">
-              <div className="prose max-w-none pt-10 pb-8 prose-headings:-ml-6 prose-headings:pl-6 prose-h2:mt-5 prose-h2:pt-3  prose-h3:mt-4 prose-h3:pt-2 prose-code:before:content-none prose-code:after:content-none prose-pre:bg-gray-800 dark:prose-dark">
+              <div className="prose max-w-none pt-10 pb-8 prose-headings:-ml-6 prose-headings:pl-6 prose-h2:mt-5 prose-h2:pt-3 prose-h3:mt-4  prose-h3:pt-2 prose-a:whitespace-nowrap prose-code:before:content-none prose-code:after:content-none prose-pre:bg-gray-800 dark:prose-dark">
                 {children}
               </div>
 
-              <div className="pt-6 pb-6 text-sm text-gray-700 dark:text-gray-300">
-                <Link href={shareUrl(slug, title)} rel="nofollow">
+              <div className="flex space-x-2 pt-6 pb-6 text-sm text-gray-700 dark:text-gray-300">
+                <Link
+                  className="link-primary"
+                  href={shareUrl(slug, title)}
+                  rel="nofollow"
+                >
                   Share on Twitter
                 </Link>
-                {` • `}
-                <Link href={editUrl(fileName)}>View on GitHub</Link>
+                <span>&bull;</span>
+                <Link className="link-primary" href={editUrl(fileName)}>
+                  View on GitHub
+                </Link>
               </div>
             </div>
 
@@ -112,7 +118,10 @@ export default function PostLayout({
                 )}
               </div>
 
-              <Link className="link inline-block pt-4 xl:pt-8" href="/blog">
+              <Link
+                className="link-primary inline-block pt-4 xl:pt-8"
+                href="/blog"
+              >
                 &larr; Back to the blog
               </Link>
             </footer>

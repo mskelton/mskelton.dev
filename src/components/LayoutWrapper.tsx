@@ -3,7 +3,7 @@ import { ReactNode } from "react"
 import headerNavLinks from "data/headerNavLinks"
 import metadata from "data/metadata"
 import { Footer } from "./Footer"
-import { CustomLink as Link } from "./Link"
+import { Link } from "./Link"
 import { MobileNav } from "./MobileNav"
 import SectionContainer from "./SectionContainer"
 import ThemeSwitch from "./ThemeSwitch"
@@ -42,7 +42,7 @@ export function LayoutWrapper({ children }: LayoutWrapperProps) {
               {headerNavLinks.map((link) => (
                 <Link
                   key={link.title}
-                  className="text p-1 font-medium sm:p-4"
+                  className="link-secondary p-1 font-medium sm:p-4"
                   href={link.href}
                 >
                   {link.title}

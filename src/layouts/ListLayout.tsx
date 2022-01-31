@@ -1,6 +1,6 @@
 import React, { ComponentProps, useState } from "react"
 import { FiSearch } from "react-icons/fi"
-import { CustomLink as Link } from "components/Link"
+import { Link } from "components/Link"
 import { Pagination } from "components/Pagination"
 import { TagList } from "components/TagList"
 import formatDate from "lib/utils/formatDate"
@@ -73,7 +73,7 @@ export default function ListLayout({
                 <div className="space-y-3 xl:col-span-3">
                   <div>
                     <h2 className="text-2xl font-bold leading-8">
-                      <Link className="text" href={`/blog/${slug}`}>
+                      <Link className="link-secondary" href={`/blog/${slug}`}>
                         {title}
                       </Link>
                     </h2>

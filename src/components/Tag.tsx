@@ -1,5 +1,5 @@
-import Link from "next/link"
 import slugify from "slugify"
+import { Link } from "./Link"
 
 interface TagProps {
   children: string
@@ -7,8 +7,11 @@ interface TagProps {
 
 export default function Tag({ children }: TagProps) {
   return (
-    <Link href={`/tags/${slugify(children)}`}>
-      <a className="link mr-3 text-sm font-medium">#{children}</a>
+    <Link
+      className="link-primary mr-3 text-sm font-medium"
+      href={`/tags/${slugify(children)}`}
+    >
+      #{children}
     </Link>
   )
 }

@@ -1,7 +1,7 @@
 /* eslint-disable react/display-name */
 import { ComponentMap, getMDXComponent } from "mdx-bundler/client"
 import { ReactNode, useMemo } from "react"
-import { CustomLink as Link } from "./Link"
+import { Link } from "./Link"
 import { MarkdownImage } from "./MarkdownImage"
 import { Pre } from "./Pre"
 
@@ -17,7 +17,7 @@ function Wrapper({ layout, ...rest }: WrapperProps) {
 }
 
 export const MDXComponents: ComponentMap = {
-  a: (props) => <Link {...props} className="link" />,
+  a: (props) => <Link {...props} className="link-primary" />,
   img: MarkdownImage,
   pre: Pre,
   wrapper: Wrapper,
