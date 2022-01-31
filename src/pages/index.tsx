@@ -54,7 +54,10 @@ export default function Home({
                       <div className="space-y-6">
                         <div>
                           <h2 className="text-2xl font-bold leading-8">
-                            <Link className="text" href={`/blog/${slug}`}>
+                            <Link
+                              className="link-secondary"
+                              href={`/blog/${slug}`}
+                            >
                               {title}
                             </Link>
                           </h2>
@@ -70,7 +73,7 @@ export default function Home({
                       <div className="text-base font-medium leading-6">
                         <Link
                           aria-label={`Read "${title}"`}
-                          className="link"
+                          className="link-primary"
                           href={`/blog/${slug}`}
                         >
                           Read more &rarr;
@@ -86,7 +89,7 @@ export default function Home({
 
       {posts.length > MAX_DISPLAY && (
         <div className="flex justify-end text-base font-medium leading-6">
-          <Link aria-label="all posts" className="link" href="/blog">
+          <Link aria-label="all posts" className="link-primary" href="/blog">
             All Posts &rarr;
           </Link>
         </div>

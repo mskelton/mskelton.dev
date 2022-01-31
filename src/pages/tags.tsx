@@ -1,6 +1,4 @@
 import { InferGetStaticPropsType } from "next"
-import slugify from "slugify"
-import { Link } from "components/Link"
 import { PageSEO } from "components/SEO"
 import Tag from "components/Tag"
 import metadata from "data/metadata"
@@ -34,19 +32,14 @@ export default function Tags({
         </div>
 
         <div className="flex max-w-lg flex-wrap">
-          {sortedTags.map((t) => {
-            return (
-              <div key={t} className="mt-2 mb-2 mr-5">
-                <Tag>{t}</Tag>
-                <Link
-                  className="-ml-2 text-sm font-semibold uppercase text-gray-600 dark:text-gray-300"
-                  href={`/tags/${slugify(t)}`}
-                >
-                  {` (${tags[t]})`}
-                </Link>
-              </div>
-            )
-          })}
+          {sortedTags.map((tag) => (
+            <div key={tag} className="mt-2 mb-2 mr-5">
+              <Tag>{tag}</Tag>
+              <span className="-ml-2 text-xs font-semibold text-gray-600 dark:text-gray-300">
+                ({tags[tag]})
+              </span>
+            </div>
+          ))}
         </div>
       </div>
     </>

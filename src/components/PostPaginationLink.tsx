@@ -17,7 +17,7 @@ export function PostPaginationLink({
     <div>
       <h2 className="text-muted text-xs uppercase">{children}</h2>
 
-      <Link className="link" href={`/blog/${link.slug}`}>
+      <Link className="link-primary" href={`/blog/${link.slug}`}>
         {link.title}
       </Link>
     </div>

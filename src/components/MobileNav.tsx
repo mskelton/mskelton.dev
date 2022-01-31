@@ -50,7 +50,7 @@ export function MobileNav() {
         {headerNavLinks.map((link) => (
           <Link
             key={link.href}
-            className="text block px-12 py-4 text-2xl font-bold"
+            className="link-secondary block px-12 py-4 text-2xl font-bold"
             href={link.href}
             onClick={onToggleNav}
           >

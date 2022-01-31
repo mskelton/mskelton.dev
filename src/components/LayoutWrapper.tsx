@@ -42,7 +42,7 @@ export function LayoutWrapper({ children }: LayoutWrapperProps) {
               {headerNavLinks.map((link) => (
                 <Link
                   key={link.title}
-                  className="text p-1 font-medium sm:p-4"
+                  className="link-secondary p-1 font-medium sm:p-4"
                   href={link.href}
                 >
                   {link.title}
