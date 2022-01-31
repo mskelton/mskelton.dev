@@ -143,6 +143,17 @@ section huge, here are some of my top tips.
 
 ## Stay Humble
 
+The most experience you get as a software engineer, the more easy it will become
+to be prideful of your knowledge, position, experience, salary, you name it.
+Fight this and stay humble. Pride will not only cause you to lose respect from
+your coworkers, which is vitally important as a senior engineer and a leader,
+but it will also stunt your continued growth and learning. If you think you have
+it all figured out and know everything you need to know, you will stop learning
+and stagnate at your current level of knowledge. However, if you remain humble,
+and remember that not only do you have much to learn but also that every one of
+your coworkers, regardless of seniority, can teach you something, you will
+unlock the door to continued growth and learning.
+
 ## Challenge the Status Quo
 
 ## Be a Leader
