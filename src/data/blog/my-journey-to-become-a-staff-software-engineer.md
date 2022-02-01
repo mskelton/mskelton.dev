@@ -141,6 +141,21 @@ section huge, here are some of my top tips.
 
 ## Chase Your Passion
 
+The world of software engineering is vast and varied. You can dive into low
+level programming with Rust and C, data science with Python and R, web
+application development with JavaScript and TypeScript, and so many more areas.
+Due to the wide breadth of the space, it is not feasible to truly excel in every
+area and so it is important to specialize in a subset of the overall field based
+on what you are passionate about. For me, that is web JavaScript engineering and
+developer experience, but what is it for you?
+
+As you grow, explore different areas to find where your passion lies so you can
+hone your skills and find more enjoyment in what you do every day. Don't just
+pick the most loved language on the StackOverflow annual survey or the language
+that pays the most, find what you love doing, and do that. If possible, use time
+outside of work to build side projects either to explore new technologies or
+deepen your knowledge of existing technologies you use.
+
 ## Stay Humble
 
 The most experience you get as a software engineer, the more easy it will become
