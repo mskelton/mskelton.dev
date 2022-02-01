@@ -1,6 +1,5 @@
 import Image from "next/image"
 import { ReactNode } from "react"
-import { Link } from "components/Link"
 import { PageSEO } from "components/SEO"
 import { AuthorFrontMatter } from "types/FrontMatter"
 
