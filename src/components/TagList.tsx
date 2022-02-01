@@ -7,7 +7,7 @@ export interface TagListProps {
 
 export function TagList({ tags }: TagListProps) {
   return (
-    <div className="flex flex-wrap">
+    <div className="flex flex-wrap gap-2">
       {tags.map((tag) => (
         <Tag key={tag}>{tag}</Tag>
       ))}

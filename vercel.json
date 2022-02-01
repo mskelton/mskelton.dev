@@ -32,6 +32,10 @@
       "destination": "/blog/automating-npm-package-releases"
     },
     {
+      "source": "/staff-engineer",
+      "destination": "/blog/my-journey-to-become-a-staff-software-engineer"
+    },
+    {
       "source": "/forex/eskelton/performance/conservative",
       "destination": "https://www.myfxbook.com/members/EricSkelton/conservative-account/9327919"
     },
@@ -41,7 +45,7 @@
     },
     {
       "source": "/forex/mskelton/performance/moderate",
-      "destination": "https://www.myfxbook.com/members/MarkSkelton/masari-moderately-aggressive/9075497/KWiuKEMZ4TPnVLK3qrRw"
+      "destination": "https://www.myfxbook.com/members/MarkSkelton/osprey-mt4/9351470/0nrmakgpsZPUYrR3uXu4"
     }
   ],
   "rewrites": [
