@@ -9,12 +9,12 @@ tags: [career, software]
 date: "2022-02-01"
 ---
 
-This past week, I began my new position at [Widen](https://www.widen.com/) as a
+This past week, I began my new position at [Widen](https://www.widen.com) as a
 staff software engineer with a focus on JavaScript engineering and developer
 experience. As I reflected on my career journey and what I learned to make it to
 this point, I wanted to share my journey and learnings to help other developers
 advance their careers and become better software engineers. In this article,
-I'll outline the 10 most important lessons I learned in the last 5 years I've
+I'll outline the 9 most important lessons I learned in the last 5 years I've
 spent as a software engineer.
 
 ## TLDR
@@ -26,8 +26,8 @@ spent as a software engineer.
 1. [Relentlessly Improve Efficiency](#relentlessly-improve-efficiency)
 1. [Chase Your Passion](#chase-your-passion)
 1. [Stay Humble](#stay-humble)
+1. [Embrace your team's norms](#embrace-your-team's-norms)
 1. [Challenge the Status Quo](#challenge-the-status-quo)
-1. [Be a Leader](#be-a-leader)
 
 ## Try Things Out
 
@@ -169,6 +169,24 @@ and remember that not only do you have much to learn but also that every one of
 your coworkers, regardless of seniority, can teach you something, you will
 unlock the door to continued growth and learning.
 
-## Challenge the Status Quo
+## Embrace Your Team's Norms
 
-## Be a Leader
+When I started working at Widen 3 years ago, I was moved around to different
+teams quite a bit. During some of the earlier transitions, I had a tendency to
+come to the team making all sorts of suggestions based on "what I did on my
+other team" or "what I did at my last job". While suggestions like this are not
+necessarily bad, they make it significantly more difficult to build respect with
+your team as they see your suggestions as a challenge to how they work, what
+they have built, etc. This can cause others on the team to quickly become
+defensive rather than being open to your ideas.
+
+What I've found to be much more effective is to embrace the norms of a team when
+joining them. This allows you to more easily see why they do what they do
+including the benefits of their process and approaches. As you embrace your
+team's norms, you will gain their respect far quicker which in turn will give
+you the ability to suggest improvements that will likely be taken much better by
+your team. Not only that, but often you will find that some of the things that
+were so important when you first joined might not be as important as you think
+after spending a little time on your new team.
+
+## Challenge the Status Quo
