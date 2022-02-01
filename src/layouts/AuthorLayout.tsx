@@ -1,5 +1,6 @@
 import Image from "next/image"
 import { ReactNode } from "react"
+import { Link } from "components/Link"
 import { PageSEO } from "components/SEO"
 import { AuthorFrontMatter } from "types/FrontMatter"
 
@@ -34,9 +35,9 @@ export default function AuthorLayout({
             />
 
             <h2 className="pt-4 pb-2 text-2xl font-bold leading-8">{name}</h2>
-
-            <div className="text-muted">{occupation}</div>
-            <div className="text-muted">{company}</div>
+            <p className="text-muted text-sm">
+              {occupation} at {company}
+            </p>
           </div>
 
           <div className="prose max-w-none pt-8 pb-8 dark:prose-dark xl:col-span-2">

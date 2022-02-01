@@ -1,7 +1,7 @@
 ---
 name: Mark Skelton
 avatar: mskelton.jpg
-occupation: Senior Software Engineer
+occupation: Staff Software Engineer
 company: Widen
 email: mdskelton99@gmail.com
 twitter: "@mskelton0"
@@ -9,12 +9,13 @@ linkedin: https://www.linkedin.com/in/mskelton0/
 github: https://github.com/mskelton
 ---
 
-I'm a JavaScript engineer and lead developer working at
-[Widen](https://www.widen.com). While I'm not afraid of CSS, my true passion
-lies in JavaScript engineering and developer experience (DX). I love finding
-ways to simplify or improve development workflow to save time and make it more
-fun to work on applications. Wait, did I forget to mention how much I love
-TypeScript?
+Hi, I'm Mark! 👋
+
+I'm a staff software engineer working at [Widen](https://www.widen.com). While
+I'm not afraid of CSS, my true passion lies in JavaScript engineering and
+developer experience (DX). I love finding ways to simplify or improve
+development workflow to save time and make it more fun to work on applications.
+Wait, did I forget to mention how much I love TypeScript?
 
 Outside of work, I'm a small town kid from Wisconsin who loves small town life
 almost as much as I like snow and winter. In my free time I like working on my
