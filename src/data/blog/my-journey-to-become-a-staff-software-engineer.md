@@ -1,16 +1,16 @@
 ---
 title: My Journey to Become a Staff Software Engineer
 summary:
-  A common question I hear from junior level software engineers is what it takes
-  to advance in their career as a software engineer. In this article, I discuss
+  A common question I hear from junior-level software engineers is what it takes
+  to advance in their career as software engineers. In this article, I discuss
   my journey to becoming a staff software engineer and what I learned along the
   way.
 tags: [career, software]
 date: "2022-02-01"
 ---
 
-This past week, I began my new position at [Widen](https://www.widen.com) as a
-staff software engineer with a focus on JavaScript engineering and developer
+This week, I begin my new position at [Widen](https://www.widen.com) as a staff
+software engineer with a focus on JavaScript engineering and developer
 experience. As I reflected on my career journey and what I learned to make it to
 this point, I wanted to share my journey and learnings to help other developers
 advance their careers and become better software engineers. In this article,
@@ -31,8 +31,8 @@ spent as a software engineer.
 
 ## Try Things Out
 
-One of the best ways to learn something, is just trying it out and seeing what
-you learn. So much of what I have learned is a result of experimenting with new
+One of the best ways to learn something is just trying it out to see what you
+learn. So much of what I have learned is a result of experimenting with new
 languages and frameworks; trying new ways of architecting applications; and
 taking inspiration from other developers and applying it to your own projects.
 The key here is "trying". You can learn so much if you give things a try, even
@@ -44,7 +44,7 @@ times to see if I can find a better way.
 ## Read Documentation
 
 It often shocks me how often I see engineers asking questions or failing to
-understand concepts when there is so many amazing sources of documentation that
+understand concepts when there are so many amazing sources of documentation that
 clearly explain these things. You can learn so much by reading documentation,
 even if you aren't looking for a specific answer to a question. In fact, this is
 where some of the best learnings come as you discover better ways of doing
@@ -52,8 +52,8 @@ something that you may not have known were possible!
 
 Now, I know what you are thinking, reading documentation sounds boring. That can
 certainly be the case, so set yourself small and attainable goals so you don't
-burn out from reading too much documentation. For the past year I've set a goal
-to read one page of documentation (or 5 minutes worth) every work day. Five
+burn out from reading too much documentation. For the past year, I've set a goal
+to read one page of documentation (or 5 minutes worth) every workday. Five
 minutes is such a small commitment, but you'd be surprised how much
 documentation you can read in a year when you do it every day!
 
@@ -62,7 +62,7 @@ documentation you can read in a year when you do it every day!
 This might sound silly, especially when many companies (including mine) don't
 allow using Google during coding interviews, but learning how to research
 problems is a very important skill to becoming a more effective engineer. I
-frequently see junior level developers who when faced with a problem they can't
+frequently see junior-level developers who when faced with a problem they can't
 figure out, will quickly go to a more experienced engineer to ask why their code
 isn't working.
 
@@ -85,7 +85,7 @@ engineer to lean on, so practice these skills now!
 
 ## Teach What You Learn
 
-As you learn and grown as a software engineer, one of the best ways to reinforce
+As you learn and grow as a software engineer, one of the best ways to reinforce
 and deepen your knowledge is by teaching others what you have learned. This is
 not anything new that other people haven't already figured out, but it certainly
 is true. When I am preparing to teach a concept, even if it is a simple Slack
@@ -107,17 +107,17 @@ coworkers to also improve their skills.
 As you advance to higher levels of software engineering, you will solve more
 complex problems that require more time and mental energy. As you do, you will
 be limited by two factors: how quickly you can develop solutions to these
-problems and how quickly you can implement these solutions. Improving efficiency
-of developing solutions generally comes with time and experience making it more
-difficult to artificially speed up, but the opposite is true of improving
-efficiency of implementing solutions.
+problems and how quickly you can implement these solutions. Improving the
+efficiency of developing solutions generally comes with time and experience
+making it more difficult to artificially speed up, but the opposite is true of
+improving the efficiency of implementing solutions.
 
 While certainly not the only factor in efficiency, how you type and your typing
-speed are an important factor to efficiency. While software engineers do not
+speed are important factors to efficiency. While software engineers do not
 simply type for 8 hours straight every day, we do type a lot, so improving your
 typing skills will have a positive impact on your overall efficiency. Not only
-that, but if you improve not only your typing speed, but also your typing method
-you will find yourself wasting less mental energy thinking about typing and
+that, but if you improve not only your typing speed but also your typing method
+you will find yourself wasting less mental energy thinking about typing, and
 instead you can use that energy to think about the problem you are trying to
 solve.
 
@@ -127,7 +127,7 @@ section huge, here are some of my top tips.
 - Learn keyboard shortcuts to reduce time wasted moving between your mouse and
   keyboard.
 - Prefer CLIs over GUIs. While GUIs are nicer to look at and use, CLIs are often
-  more efficient. For example, with some configuration I can manage my Git
+  more efficient. For example, with some configuration, I can manage my Git
   repositories far quicker via the command line than I can via VS Code's
   built-in Git client.
 - Automate as much as you can. Setup a GitHub action to automatically update
@@ -141,8 +141,8 @@ section huge, here are some of my top tips.
 
 ## Chase Your Passion
 
-The world of software engineering is vast and varied. You can dive into low
-level programming with Rust and C, data science with Python and R, web
+The world of software engineering is vast and varied. You can dive into
+low-level programming with Rust and C, data science with Python and R, web
 application development with JavaScript and TypeScript, and so many more areas.
 Due to the wide breadth of the space, it is not feasible to truly excel in every
 area and so it is important to specialize in a subset of the overall field based
@@ -158,27 +158,27 @@ deepen your knowledge of existing technologies you use.
 
 ## Stay Humble
 
-The most experience you get as a software engineer, the more easy it will become
-to be prideful of your knowledge, position, experience, salary, you name it.
-Fight this and stay humble. Pride will not only cause you to lose respect from
-your coworkers, which is vitally important as a senior engineer and a leader,
-but it will also stunt your continued growth and learning. If you think you have
-it all figured out and know everything you need to know, you will stop learning
-and stagnate at your current level of knowledge. However, if you remain humble,
-and remember that not only do you have much to learn but also that every one of
-your coworkers, regardless of seniority, can teach you something, you will
-unlock the door to continued growth and learning.
+The more experience you get as a software engineer, the easier it will become to
+be prideful of your knowledge, position, experience, salary, you name it. Fight
+this and stay humble. Pride will not only cause you to lose respect from your
+coworkers, which is vitally important as a senior engineer and a leader, but it
+will also stunt your continued growth and learning. If you think you have it all
+figured out and know everything you need to know, you will stop learning and
+stagnate at your current level of knowledge. However, if you remain humble, and
+remember that not only do you have much to learn but also that every one of your
+coworkers, regardless of seniority, can teach you something, you will unlock the
+door to continued growth and learning.
 
 ## Embrace Your Team's Norms
 
-When I started working at Widen 3 years ago, I was moved around to different
-teams quite a bit. During some of the earlier transitions, I had a tendency to
-come to the team making all sorts of suggestions based on "what I did on my
-other team" or "what I did at my last job". While suggestions like this are not
-necessarily bad, they make it significantly more difficult to build respect with
-your team as they see your suggestions as a challenge to how they work, what
-they have built, etc. This can cause others on the team to quickly become
-defensive rather than being open to your ideas.
+Since starting at Widen 3 years ago, I have moved around to different teams
+quite a bit. During some of the earlier transitions, I had a tendency to come to
+the team making all sorts of suggestions based on "what I did on my other team"
+or "what I did at my last job". While suggestions like this are not necessarily
+bad, they make it significantly more difficult to build respect with your team
+as they see your suggestions as a challenge to how they work, what they have
+built, etc. This can cause others on the team to quickly become defensive rather
+than being open to your ideas.
 
 What I've found to be much more effective is to embrace the norms of a team when
 joining them. This allows you to more easily see why they do what they do
@@ -190,3 +190,19 @@ were so important when you first joined might not be as important as you think
 after spending a little time on your new team.
 
 ## Challenge the Status Quo
+
+The final lesson I'll share in this article is to challenge the status quo.
+Being a highly effective software engineer involves challenging processes and
+decisions rather than blindly following the direction set by others. While this
+may sound contrary to my last point and very rebellious, when done properly, it
+can have a great positive impact. The key is knowing what to challenge. For
+example, at my work, UX decisions are something I often challenge. Asking why a
+design was created the way it was, suggesting simpler alternatives, or
+explaining technical reasons why a design should be reviewed. Be careful though,
+as your goal should not be to challenge for the sake of challenge, rather your
+goal should be to make the best possible software for your customers. If you are
+careful in how you challenge the status quo, you will likely find that others on
+your team appreciate your challenges and feedback.
+
+Thanks for reading! I hope you have found this article helpful and if you have
+any comments, feel free to share them with me on Twitter or GitHub!

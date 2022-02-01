@@ -8,7 +8,7 @@ interface TagProps {
 export default function Tag({ children }: TagProps) {
   return (
     <Link
-      className="link-primary mr-3 text-sm font-medium"
+      className="link-primary text-sm font-medium"
       href={`/tags/${slugify(children)}`}
     >
       #{children}
