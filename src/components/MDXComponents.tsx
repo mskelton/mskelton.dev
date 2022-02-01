@@ -1,4 +1,5 @@
 /* eslint-disable react/display-name */
+import clsx from "clsx"
 import { ComponentMap, getMDXComponent } from "mdx-bundler/client"
 import { ReactNode, useMemo } from "react"
 import { Link } from "./Link"
@@ -17,7 +18,9 @@ function Wrapper({ layout, ...rest }: WrapperProps) {
 }
 
 export const MDXComponents: ComponentMap = {
-  a: (props) => <Link {...props} className="link-primary" />,
+  a: ({ className, ...props }) => (
+    <Link {...props} className={clsx("link-primary", className)} />
+  ),
   img: MarkdownImage,
   pre: Pre,
   wrapper: Wrapper,

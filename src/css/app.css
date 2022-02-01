@@ -8,17 +8,6 @@ input:-webkit-autofill:focus {
   transition: background-color 600000s 0s, color 600000s 0s;
 }
 
-/* Prose heading links */
-.heading-link {
-  text-decoration: none;
-  opacity: 0;
-  transition: opacity 200ms ease-in-out;
-}
-
-:is(h1, h2, h3, h4):hover .heading-link {
-  opacity: 1;
-}
-
 .icon-link {
   position: relative;
 }
