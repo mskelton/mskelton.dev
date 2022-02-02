@@ -1,5 +1,5 @@
 import { InferGetStaticPropsType } from "next"
-import { MDXLayoutRenderer } from "components/MDXComponents"
+import { MDXLayoutRenderer } from "~/components/MDXComponents"
 import { getFileBySlug } from "lib/mdx"
 
 export async function getStaticProps() {

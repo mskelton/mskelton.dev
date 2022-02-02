@@ -1,5 +1,5 @@
 import { GetStaticPropsContext, InferGetStaticPropsType } from "next"
-import { MDXLayoutRenderer } from "components/MDXComponents"
+import { MDXLayoutRenderer } from "~/components/MDXComponents"
 import {
   formatSlug,
   getAllFilesFrontMatter,

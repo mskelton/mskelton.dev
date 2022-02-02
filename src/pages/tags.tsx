@@ -1,7 +1,7 @@
 import { InferGetStaticPropsType } from "next"
-import { PageSEO } from "components/SEO"
-import Tag from "components/Tag"
-import metadata from "data/metadata"
+import { PageSEO } from "~/components/SEO"
+import Tag from "~/components/Tag"
+import metadata from "~/data/metadata"
 import { getAllTags } from "lib/tags"
 
 export async function getStaticProps() {
