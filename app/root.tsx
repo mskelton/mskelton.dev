@@ -1,9 +1,9 @@
 import { LinksFunction, LoaderFunction, Scripts } from "remix"
 import { Outlet, useCatch, useLoaderData } from "remix"
-import { Document } from "~/components/Document"
-import { NotFound } from "~/components/NotFound"
 import stylesUrl from "~/tailwind.css"
-import { getTheme } from "~/utils/theme.server"
+import { Document } from "./components/Document"
+import { NotFound } from "./components/NotFound"
+import { getTheme } from "./utils/theme.server"
 
 export const links: LinksFunction = () => {
   return [

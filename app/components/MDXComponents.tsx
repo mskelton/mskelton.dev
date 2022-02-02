@@ -2,7 +2,7 @@
 import clsx from "clsx"
 import { ComponentMap, getMDXComponent } from "mdx-bundler/client"
 import { ReactNode, useMemo } from "react"
-import Layout from "~/layouts/AuthorLayout"
+import Layout from "../layouts/AuthorLayout"
 import { Link } from "./Link"
 import { MarkdownImage } from "./MarkdownImage"
 import { Pre } from "./Pre"

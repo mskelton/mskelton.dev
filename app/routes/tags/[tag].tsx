@@ -1,10 +1,10 @@
 import { LoaderFunction } from "remix"
 import slugify from "slugify"
-import { TagSEO } from "~/components/SEO"
-import metadata from "~/data/metadata"
-import ListLayout from "~/layouts/ListLayout"
-import { getAllFilesFrontMatter } from "~/lib/mdx.server"
+import { getAllFilesFrontMatter } from "~/utils/mdx.server"
 import { InferGetStaticPropsType } from "next"
+import { TagSEO } from "../../components/SEO"
+import metadata from "../../data/metadata"
+import ListLayout from "../../layouts/ListLayout"
 import { getStaticPaths } from "../blog/[slug]"
 
 export const loader: LoaderFunction = async () => {

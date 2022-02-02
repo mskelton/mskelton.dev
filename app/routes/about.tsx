@@ -1,6 +1,6 @@
 import { LoaderFunction } from "remix"
 import { MDXLayoutRenderer } from "~/components/MDXComponents"
-import { getFileBySlug } from "~/lib/mdx.server"
+import { getFileBySlug } from "~/utils/mdx.server"
 
 export const loader: LoaderFunction = async () => {
   return {

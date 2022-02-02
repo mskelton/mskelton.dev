@@ -1,6 +1,6 @@
 import { ReactNode } from "react"
-import headerNavLinks from "~/data/headerNavLinks"
-import metadata from "~/data/metadata"
+import headerNavLinks from "../data/headerNavLinks"
+import metadata from "../data/metadata"
 // import Image from "next/image"
 import { Footer } from "./Footer"
 import { Link } from "./Link"

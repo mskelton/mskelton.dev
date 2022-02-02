@@ -1,5 +1,5 @@
 import { Links, LiveReload, Meta, Scripts } from "remix"
-import type { Theme } from "~/utils/theme.server"
+import type { Theme } from "../utils/theme.server"
 // import { Analytics } from "./Analytics"
 import { LayoutWrapper } from "./LayoutWrapper"
 

@@ -1,8 +1,8 @@
-import { PageSEO } from "~/components/SEO"
-import Tag from "~/components/Tag"
-import metadata from "~/data/metadata"
-import { getAllTags } from "~/lib/tags.server"
+import { getAllTags } from "~/utils/tags.server"
 import { InferGetStaticPropsType } from "next"
+import { PageSEO } from "../components/SEO"
+import Tag from "../components/Tag"
+import metadata from "../data/metadata"
 
 export async function getStaticProps() {
   const tags = await getAllTags()

@@ -9,7 +9,7 @@
     "target": "ESNext",
     "module": "ESNext",
     "paths": {
-      "~/*": ["./src/*"]
+      "~/*": ["./app/*"]
     }
   },
   "include": ["remix.env.d.ts", "**/*.ts", "**/*.tsx"]

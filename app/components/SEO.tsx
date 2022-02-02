@@ -1,5 +1,5 @@
-import metadata from "~/data/metadata"
-import { AuthorFrontMatter, PostFrontMatter } from "~/types/FrontMatter"
+import metadata from "../data/metadata"
+import { AuthorFrontMatter, PostFrontMatter } from "../types/FrontMatter"
 // import Head from "next/head"
 // import { useRouter } from "next/router"
 

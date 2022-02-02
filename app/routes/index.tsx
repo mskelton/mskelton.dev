@@ -1,8 +1,8 @@
 import { LoaderFunction, useLoaderData } from "remix"
-import { Link } from "~/components/Link"
-import { TagList } from "~/components/TagList"
-import formatDate from "~/lib/utils/formatDate"
-import { PostFrontMatter } from "~/types/FrontMatter"
+import formatDate from "~/utils/formatDate"
+import { Link } from "../components/Link"
+import { TagList } from "../components/TagList"
+import { PostFrontMatter } from "../types/FrontMatter"
 
 const MAX_DISPLAY = 5
 

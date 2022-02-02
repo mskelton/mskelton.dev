@@ -17,4 +17,4 @@ test-results/
 .cache/
 /build/
 /public/build/
-/src/tailwind.css
+/app/tailwind.css
