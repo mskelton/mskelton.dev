@@ -3,10 +3,12 @@ import type { LinksFunction, LoaderFunction } from "remix"
 import { useCatch, useLoaderData } from "remix"
 import { Document } from "~/components/Document"
 import { NotFound } from "~/components/NotFound"
-import stylesUrl from "~/styles/tailwind.css"
+import stylesUrl from "~/tailwind.css"
 import { getTheme } from "~/utils/theme.server"
 
 export const links: LinksFunction = () => {
+  const measurementId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID
+
   return [
     {
       crossOrigin: "anonymous",
@@ -15,6 +17,10 @@ export const links: LinksFunction = () => {
     },
     {
       href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap",
+      rel: "stylesheet",
+    },
+    {
+      href: `https://www.googletagmanager.com/gtag/js?id=${measurementId}`,
       rel: "stylesheet",
     },
     { href: stylesUrl, rel: "stylesheet" },
