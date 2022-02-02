@@ -12,3 +12,9 @@ test-results/
 
 # TypeScript
 *.tsbuildinfo
+
+# Remix
+.cache/
+/build/
+/public/build/
+/src/tailwind.css
