@@ -1,9 +1,44 @@
-/**
- * CSS Styles for code highlighting.
- * Feel free to customize token styles
- * by copying from a prismjs compatible theme:
- * https://github.com/PrismJS/prism-themes
- */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .text {
+    @apply text-gray-900 dark:text-gray-100;
+  }
+
+  .text-muted {
+    @apply text-gray-500 dark:text-gray-400;
+  }
+
+  .link-primary {
+    @apply relative text-primary-500 after:absolute after:-bottom-0.5 after:left-0 after:h-0.5 after:w-0 after:rounded-sm after:bg-current after:transition-all hover:after:w-full dark:text-primary-400;
+  }
+
+  .link-secondary {
+    @apply text-gray-700 transition-colors hover:text-black dark:text-gray-300 dark:hover:text-white;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* https://stackoverflow.com/questions/61083813/how-to-avoid-internal-autofill-selected-style-to-be-applied */
+input:-webkit-autofill,
+input:-webkit-autofill:focus {
+  transition: background-color 600000s 0s, color 600000s 0s;
+}
+
+.icon-link {
+  position: relative;
+}
+
+.icon-link::before {
+  content: "#";
+  position: absolute;
+  right: 8px;
+}
 
 /* Code title styles */
 .remark-code-title {
@@ -33,13 +68,6 @@
 }
 
 /* Token styles */
-/**
- * MIT License
- * Copyright (c) 2018 Sarah Drasner
- * Sarah Drasner's[@sdras] Night Owl
- * Ported by Sara vieria [@SaraVieira]
- * Added by Souvik Mandal [@SimpleIndian]
- */
 .token.comment,
 .token.prolog,
 .token.cdata {
