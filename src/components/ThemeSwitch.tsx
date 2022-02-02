@@ -1,26 +1,31 @@
-import { useTheme } from "next-themes"
-import React, { useEffect, useState } from "react"
+import React from "react"
 import { FiMoon, FiSun } from "react-icons/fi"
+import { useFetcher } from "remix"
 
 export default function ThemeSwitch() {
-  const [mounted, setMounted] = useState(false)
-  const { resolvedTheme, setTheme } = useTheme()
+  // const data = useLoaderData()
+  const data = {}
+  const fetcher = useFetcher()
+  const theme = fetcher.submission?.formData.get("theme") ?? data.theme
 
-  // When mounted on client, now we can show the UI
-  useEffect(() => setMounted(true), [])
+  const handleSubmit = () => {
+    fetcher.submit(
+      { theme: theme === "dark" ? "light" : "dark" },
+      {
+        action: "action/set-theme",
+        method: "post",
+      }
+    )
+  }
 
   return (
     <button
       aria-label="Toggle Dark Mode"
       className="ml-1 mr-1 rounded p-1 sm:ml-4"
-      onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
+      onClick={handleSubmit}
       type="button"
     >
-      {mounted && resolvedTheme === "dark" ? (
-        <FiSun size={18} />
-      ) : (
-        <FiMoon size={18} />
-      )}
+      {theme === "dark" ? <FiSun size={18} /> : <FiMoon size={18} />}
     </button>
   )
 }

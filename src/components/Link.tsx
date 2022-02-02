@@ -1,5 +1,5 @@
-import NextLink from "next/link"
 import { AnchorHTMLAttributes } from "react"
+import { Link as RemixLink } from "remix"
 
 export type LinkProps = AnchorHTMLAttributes<HTMLAnchorElement>
 
@@ -8,9 +8,7 @@ export function Link({ href = "#", ...rest }: LinkProps) {
   const isAnchorLink = href.startsWith("#")
 
   return isInternalLink ? (
-    <NextLink href={href}>
-      <a {...rest} />
-    </NextLink>
+    <RemixLink to={href} {...rest} />
   ) : isAnchorLink ? (
     <a href={href} {...rest} />
   ) : (

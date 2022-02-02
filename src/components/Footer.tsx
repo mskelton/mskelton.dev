@@ -1,5 +1,5 @@
-import SocialLink from "components/SocialLink"
-import metadata from "data/metadata"
+import SocialLink from "~/components/SocialLink"
+import metadata from "~/data/metadata"
 import { Link } from "./Link"
 
 export function Footer() {

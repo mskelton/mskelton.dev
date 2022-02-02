@@ -1,6 +1,6 @@
 import Image from "next/image"
 import { ReactNode } from "react"
-import { PageSEO } from "components/SEO"
+import { PageSEO } from "~/components/SEO"
 import { AuthorFrontMatter } from "types/FrontMatter"
 
 interface AuthorLayoutProps {

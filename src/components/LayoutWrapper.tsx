@@ -1,7 +1,7 @@
-import Image from "next/image"
 import { ReactNode } from "react"
-import headerNavLinks from "data/headerNavLinks"
-import metadata from "data/metadata"
+import headerNavLinks from "~/data/headerNavLinks"
+import metadata from "~/data/metadata"
+// import Image from "next/image"
 import { Footer } from "./Footer"
 import { Link } from "./Link"
 import { MobileNav } from "./MobileNav"
@@ -21,7 +21,7 @@ export function LayoutWrapper({ children }: LayoutWrapperProps) {
             <Link aria-label={metadata.title} href="/">
               <div className="flex items-center justify-between">
                 <div className="mr-3">
-                  <Image
+                  <img
                     alt={metadata.author}
                     className="rounded-full"
                     height={40}
