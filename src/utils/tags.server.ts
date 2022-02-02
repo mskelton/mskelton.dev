@@ -2,9 +2,9 @@ import fs from "fs"
 import matter from "gray-matter"
 import path from "path"
 import slugify from "slugify"
-import { PostFrontMatter } from "types/FrontMatter"
+import { PostFrontMatter } from "~/types/FrontMatter"
+import { root } from "./files.server"
 import { getFiles } from "./mdx.server"
-import { root } from "./utils/files"
 
 export async function getAllTags() {
   const files = await getFiles()

@@ -4,7 +4,7 @@ import { bundleMDX } from "mdx-bundler"
 import path from "path"
 import readingTime from "reading-time"
 import { FrontMatter, PostFrontMatter } from "~/types/FrontMatter"
-import { root } from "./utils/files"
+import { root } from "./files.server"
 
 export function getFiles() {
   const prefixPaths = path.join(root, "data/blog")
@@ -30,7 +30,9 @@ export async function getFileBySlug<T extends "blog" | "authors">(
   const source = fs.readFileSync(filePath, "utf8")
 
   const { default: remarkGfm } = await import("remark-gfm")
-  const { default: remarkCodeTitles } = await import("./remark-code-titles")
+  const { default: remarkCodeTitles } = await import(
+    "./remarkCodeTitles.server"
+  )
   const { default: rehypeSlug } = await import("rehype-slug")
   const { default: rehypePrismPlus } = await import("rehype-prism-plus")
   const { default: rehypeAutolinkHeadings } = await import(
