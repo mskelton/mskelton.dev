@@ -2,11 +2,12 @@
   "compilerOptions": {
     "esModuleInterop": true,
     "jsx": "react-jsx",
-    "lib": ["DOM", "DOM.Iterable", "ES2019"],
+    "lib": ["ESNext", "DOM", "DOM.Iterable"],
     "moduleResolution": "node",
     "noEmit": true,
     "strict": true,
-    "target": "ES2019",
+    "target": "ESNext",
+    "module": "ESNext",
     "paths": {
       "~/*": ["./src/*"]
     }

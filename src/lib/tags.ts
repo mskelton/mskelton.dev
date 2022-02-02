@@ -3,7 +3,7 @@ import matter from "gray-matter"
 import path from "path"
 import slugify from "slugify"
 import { PostFrontMatter } from "types/FrontMatter"
-import { getFiles } from "./mdx"
+import { getFiles } from "./mdx.server"
 import { root } from "./utils/files"
 
 export async function getAllTags() {

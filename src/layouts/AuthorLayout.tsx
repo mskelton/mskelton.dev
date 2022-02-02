@@ -1,4 +1,4 @@
-import Image from "next/image"
+// import Image from "next/image"
 import { ReactNode } from "react"
 import { PageSEO } from "~/components/SEO"
 import { AuthorFrontMatter } from "~/types/FrontMatter"
@@ -25,7 +25,7 @@ export default function AuthorLayout({
 
         <div className="items-start space-y-2 xl:grid xl:grid-cols-3 xl:gap-x-8 xl:space-y-0">
           <div className="flex flex-col items-center pt-8">
-            <Image
+            <img
               alt="avatar"
               className="h-48 w-48 rounded-full"
               height="192px"

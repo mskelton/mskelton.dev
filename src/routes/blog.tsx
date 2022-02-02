@@ -1,12 +1,12 @@
-import { InferGetStaticPropsType } from "next"
+import { LoaderFunction } from "remix"
 import { PageSEO } from "~/components/SEO"
 import metadata from "~/data/metadata"
-import ListLayout from "layouts/ListLayout"
-import { getAllFilesFrontMatter } from "~/lib/mdx"
+import ListLayout from "~/layouts/ListLayout"
+import { getAllFilesFrontMatter } from "~/lib/mdx.server"
 
 export const POSTS_PER_PAGE = 5
 
-export async function getStaticProps() {
+export const loader: LoaderFunction = async () => {
   const posts = await getAllFilesFrontMatter()
   const initialDisplayPosts = posts.slice(0, POSTS_PER_PAGE)
   const pagination = {
@@ -17,11 +17,7 @@ export async function getStaticProps() {
   return { props: { initialDisplayPosts, pagination, posts } }
 }
 
-export default function Blog({
-  initialDisplayPosts,
-  pagination,
-  posts,
-}: InferGetStaticPropsType<typeof getStaticProps>) {
+export default function Blog() {
   return (
     <>
       <PageSEO

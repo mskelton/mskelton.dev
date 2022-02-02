@@ -3,12 +3,7 @@ import matter from "gray-matter"
 import { bundleMDX } from "mdx-bundler"
 import path from "path"
 import readingTime from "reading-time"
-import rehypeAutolinkHeadings from "rehype-autolink-headings"
-import rehypeSlug from "rehype-slug"
-import remarkGfm from "remark-gfm"
-import rehypePrismPlus from "rehype-prism-plus"
-import { FrontMatter, PostFrontMatter } from "types/FrontMatter"
-import remarkCodeTitles from "./remark-code-title"
+import { FrontMatter, PostFrontMatter } from "~/types/FrontMatter"
 import { root } from "./utils/files"
 
 export function getFiles() {
@@ -33,6 +28,14 @@ export async function getFileBySlug<T extends "blog" | "authors">(
   const file = path.join(root, "data", type, slug)
   const filePath = fs.existsSync(`${file}.mdx`) ? `${file}.mdx` : `${file}.md`
   const source = fs.readFileSync(filePath, "utf8")
+
+  const { default: remarkGfm } = await import("remark-gfm")
+  const { default: remarkCodeTitles } = await import("./remark-code-titles")
+  const { default: rehypeSlug } = await import("rehype-slug")
+  const { default: rehypePrismPlus } = await import("rehype-prism-plus")
+  const { default: rehypeAutolinkHeadings } = await import(
+    "rehype-autolink-headings"
+  )
 
   const { code, frontmatter } = await bundleMDX({
     cwd: path.join(root, "components"),

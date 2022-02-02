@@ -1,11 +1,11 @@
-import { GetStaticPropsContext, InferGetStaticPropsType } from "next"
 import { MDXLayoutRenderer } from "~/components/MDXComponents"
 import {
   formatSlug,
   getAllFilesFrontMatter,
   getFileBySlug,
   getFiles,
-} from "~/lib/mdx"
+} from "~/lib/mdx.server"
+import { GetStaticPropsContext, InferGetStaticPropsType } from "next"
 
 export async function getStaticPaths() {
   const posts = await getFiles()

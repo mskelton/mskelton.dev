@@ -1,23 +1,13 @@
-import { GetStaticPropsContext, InferGetStaticPropsType } from "next"
+import { LoaderFunction } from "remix"
 import slugify from "slugify"
 import { TagSEO } from "~/components/SEO"
 import metadata from "~/data/metadata"
-import ListLayout from "layouts/ListLayout"
-import { getAllFilesFrontMatter } from "~/lib/mdx"
-import { getAllTags } from "~/lib/tags"
+import ListLayout from "~/layouts/ListLayout"
+import { getAllFilesFrontMatter } from "~/lib/mdx.server"
+import { InferGetStaticPropsType } from "next"
+import { getStaticPaths } from "../blog/[slug]"
 
-export async function getStaticPaths() {
-  const tags = await getAllTags()
-
-  return {
-    fallback: false,
-    paths: Object.keys(tags).map((tag) => ({ params: { tag } })),
-  }
-}
-
-export async function getStaticProps({
-  params,
-}: GetStaticPropsContext<{ tag: string }>) {
+export const loader: LoaderFunction = async () => {
   const allPosts = await getAllFilesFrontMatter()
   const filteredPosts = allPosts.filter((post) =>
     post.tags.map((t) => slugify(t)).includes(params!.tag)

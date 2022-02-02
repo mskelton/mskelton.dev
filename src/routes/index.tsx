@@ -1,24 +1,28 @@
-import { InferGetStaticPropsType } from "next"
+import { LoaderFunction, useLoaderData } from "remix"
 import { Link } from "~/components/Link"
-import { PageSEO } from "~/components/SEO"
 import { TagList } from "~/components/TagList"
-import metadata from "~/data/metadata"
-import { getAllFilesFrontMatter } from "~/lib/mdx"
 import formatDate from "~/lib/utils/formatDate"
+import { PostFrontMatter } from "~/types/FrontMatter"
 
 const MAX_DISPLAY = 5
 
-export async function getStaticProps() {
-  const posts = await getAllFilesFrontMatter()
-  return { props: { posts } }
+interface LoaderData {
+  posts: PostFrontMatter[]
 }
 
-export default function Home({
-  posts,
-}: InferGetStaticPropsType<typeof getStaticProps>) {
+export const loader: LoaderFunction = async () => {
+  return {
+    // posts: await getAllFilesFrontMatter(),
+    posts: [],
+  }
+}
+
+export default function Home() {
+  const { posts } = useLoaderData<LoaderData>()
+
   return (
     <>
-      <PageSEO description={metadata.description} title={metadata.title} />
+      {/* <PageSEO description={metadata.description} title={metadata.title} /> */}
 
       <div
         className="divide-y divide-gray-200 dark:divide-gray-700"

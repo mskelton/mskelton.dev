@@ -1,7 +1,7 @@
 import metadata from "~/data/metadata"
 import { AuthorFrontMatter, PostFrontMatter } from "~/types/FrontMatter"
-import Head from "next/head"
-import { useRouter } from "next/router"
+// import Head from "next/head"
+// import { useRouter } from "next/router"
 
 interface CommonSEOProps {
   description: string
@@ -18,10 +18,10 @@ export function CommonSEO({
   title,
   twImage,
 }: CommonSEOProps) {
-  const router = useRouter()
+  // const router = useRouter()
 
   return (
-    <Head>
+    <head>
       <title>{title}</title>
       <meta content="follow, index" name="robots" />
       <meta content={description} name="description" />
@@ -42,7 +42,7 @@ export function CommonSEO({
       <meta content={title} name="twitter:title" />
       <meta content={description} name="twitter:description" />
       {twImage && <meta content={twImage} name="twitter:image" />}
-    </Head>
+    </head>
   )
 }
 

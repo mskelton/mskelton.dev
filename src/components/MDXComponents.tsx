@@ -2,6 +2,7 @@
 import clsx from "clsx"
 import { ComponentMap, getMDXComponent } from "mdx-bundler/client"
 import { ReactNode, useMemo } from "react"
+import Layout from "~/layouts/AuthorLayout"
 import { Link } from "./Link"
 import { MarkdownImage } from "./MarkdownImage"
 import { Pre } from "./Pre"
@@ -12,8 +13,7 @@ interface WrapperProps {
 }
 
 function Wrapper({ layout, ...rest }: WrapperProps) {
-  // eslint-disable-next-line @typescript-eslint/no-var-requires
-  const Layout = require(`../layouts/${layout}`).default
+  // const Layout = require(`../layouts/${layout}`).default
   return <Layout {...rest} />
 }
 
