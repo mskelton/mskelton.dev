@@ -1,8 +1,8 @@
 import { LoaderFunction } from "remix"
+import { PageSEO } from "~/components/SEO"
+import metadata from "~/data/metadata"
+import ListLayout from "~/layouts/ListLayout"
 import { getAllFilesFrontMatter } from "~/utils/mdx.server"
-import { PageSEO } from "../components/SEO"
-import metadata from "../data/metadata"
-import ListLayout from "../layouts/ListLayout"
 
 export const POSTS_PER_PAGE = 5
 

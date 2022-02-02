@@ -1,8 +1,9 @@
 import { LoaderFunction, useLoaderData } from "remix"
+import { Link } from "~/components/Link"
+import { TagList } from "~/components/TagList"
+import { PostFrontMatter } from "~/types/FrontMatter"
 import formatDate from "~/utils/formatDate"
-import { Link } from "../components/Link"
-import { TagList } from "../components/TagList"
-import { PostFrontMatter } from "../types/FrontMatter"
+import { getAllFilesFrontMatter } from "~/utils/mdx.server"
 
 const MAX_DISPLAY = 5
 
@@ -12,8 +13,7 @@ interface LoaderData {
 
 export const loader: LoaderFunction = async () => {
   return {
-    // posts: await getAllFilesFrontMatter(),
-    posts: [],
+    posts: await getAllFilesFrontMatter(),
   }
 }
 

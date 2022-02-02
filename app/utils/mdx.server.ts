@@ -3,7 +3,7 @@ import matter from "gray-matter"
 import { bundleMDX } from "mdx-bundler"
 import path from "path"
 import readingTime from "reading-time"
-import { FrontMatter, PostFrontMatter } from "../types/FrontMatter"
+import { FrontMatter, PostFrontMatter } from "~/types/FrontMatter"
 import { root } from "./files.server"
 
 export function getFiles() {

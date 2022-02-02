@@ -1,13 +1,13 @@
 import React, { ReactNode } from "react"
-import { Link } from "../components/Link"
-import { PageTitle } from "../components/PageTitle"
-import { PostPaginationLink } from "../components/PostPaginationLink"
-import ScrollTop from "../components/ScrollTop"
-import SectionContainer from "../components/SectionContainer"
-import { BlogSEO } from "../components/SEO"
-import { TagList } from "../components/TagList"
-import metadata from "../data/metadata"
-import { PostFrontMatter } from "../types/FrontMatter"
+import { Link } from "~/components/Link"
+import { PageTitle } from "~/components/PageTitle"
+import { PostPaginationLink } from "~/components/PostPaginationLink"
+import ScrollTop from "~/components/ScrollTop"
+import SectionContainer from "~/components/SectionContainer"
+import { BlogSEO } from "~/components/SEO"
+import { TagList } from "~/components/TagList"
+import metadata from "~/data/metadata"
+import { PostFrontMatter } from "~/types/FrontMatter"
 
 const editUrl = (fileName: string) =>
   `${metadata.siteRepo}/blob/main/app/data/blog/${fileName}`

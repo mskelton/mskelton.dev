@@ -1,9 +1,9 @@
 import { LoaderFunction } from "remix"
+import { PageSEO } from "~/../../components/SEO"
+import metadata from "~/../../data/metadata"
+import ListLayout from "~/../../layouts/ListLayout"
+import { POSTS_PER_PAGE } from "~/../blog"
 import { getAllFilesFrontMatter } from "~/utils/mdx.server"
-import { PageSEO } from "../../../components/SEO"
-import metadata from "../../../data/metadata"
-import ListLayout from "../../../layouts/ListLayout"
-import { POSTS_PER_PAGE } from "../../blog"
 
 export const loader: LoaderFunction = async () => {
   const page = parseInt(context.params!.page)
