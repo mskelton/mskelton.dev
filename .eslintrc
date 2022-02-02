@@ -5,6 +5,18 @@
     "@mskelton/eslint-config/react",
     "next"
   ],
+  "overrides": [
+    {
+      "files": "e2e/**",
+      "extends": "plugin:playwright/playwright-test",
+      "rules": {
+        "playwright/missing-playwright-await": [
+          "error",
+          { "customMatchers": ["toBeAccessible"] }
+        ]
+      }
+    }
+  ],
   "rules": {
     "@typescript-eslint/no-explicit-any": "off",
     "react/react-in-jsx-scope": "off"
