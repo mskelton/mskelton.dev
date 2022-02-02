@@ -3,8 +3,8 @@ import { Link } from "~/components/Link"
 import { PageSEO } from "~/components/SEO"
 import { TagList } from "~/components/TagList"
 import metadata from "~/data/metadata"
-import { getAllFilesFrontMatter } from "lib/mdx"
-import formatDate from "lib/utils/formatDate"
+import { getAllFilesFrontMatter } from "~/lib/mdx"
+import formatDate from "~/lib/utils/formatDate"
 
 const MAX_DISPLAY = 5
 

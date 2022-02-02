@@ -1,14 +1,11 @@
-import { Outlet } from "remix"
-import type { LinksFunction, LoaderFunction } from "remix"
-import { useCatch, useLoaderData } from "remix"
+import { LinksFunction, LoaderFunction, Scripts } from "remix"
+import { Outlet, useCatch, useLoaderData } from "remix"
 import { Document } from "~/components/Document"
 import { NotFound } from "~/components/NotFound"
 import stylesUrl from "~/tailwind.css"
 import { getTheme } from "~/utils/theme.server"
 
 export const links: LinksFunction = () => {
-  const measurementId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID
-
   return [
     {
       crossOrigin: "anonymous",
@@ -20,10 +17,14 @@ export const links: LinksFunction = () => {
       rel: "stylesheet",
     },
     {
-      href: `https://www.googletagmanager.com/gtag/js?id=${measurementId}`,
+      href: stylesUrl,
       rel: "stylesheet",
     },
-    { href: stylesUrl, rel: "stylesheet" },
+    {
+      href: "/feed.xml",
+      rel: "alternate",
+      type: "application/rss+xml",
+    },
   ]
 }
 
@@ -67,9 +68,6 @@ export default function App() {
   return (
     <Document theme={data.theme}>
       <Outlet />
-      <footer>
-        <p>This page was rendered at {data.date.toLocaleString()}</p>
-      </footer>
     </Document>
   )
 }

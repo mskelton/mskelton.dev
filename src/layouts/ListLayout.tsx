@@ -3,8 +3,8 @@ import { FiSearch } from "react-icons/fi"
 import { Link } from "~/components/Link"
 import { Pagination } from "~/components/Pagination"
 import { TagList } from "~/components/TagList"
-import formatDate from "lib/utils/formatDate"
-import { PostFrontMatter } from "types/FrontMatter"
+import formatDate from "~/lib/utils/formatDate"
+import { PostFrontMatter } from "~/types/FrontMatter"
 
 interface ListLayoutProps {
   initialDisplayPosts?: PostFrontMatter[]

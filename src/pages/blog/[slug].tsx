@@ -5,7 +5,7 @@ import {
   getAllFilesFrontMatter,
   getFileBySlug,
   getFiles,
-} from "lib/mdx"
+} from "~/lib/mdx"
 
 export async function getStaticPaths() {
   const posts = await getFiles()

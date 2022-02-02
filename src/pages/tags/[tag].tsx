@@ -3,8 +3,8 @@ import slugify from "slugify"
 import { TagSEO } from "~/components/SEO"
 import metadata from "~/data/metadata"
 import ListLayout from "layouts/ListLayout"
-import { getAllFilesFrontMatter } from "lib/mdx"
-import { getAllTags } from "lib/tags"
+import { getAllFilesFrontMatter } from "~/lib/mdx"
+import { getAllTags } from "~/lib/tags"
 
 export async function getStaticPaths() {
   const tags = await getAllTags()

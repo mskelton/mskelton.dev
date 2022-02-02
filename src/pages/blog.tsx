@@ -2,7 +2,7 @@ import { InferGetStaticPropsType } from "next"
 import { PageSEO } from "~/components/SEO"
 import metadata from "~/data/metadata"
 import ListLayout from "layouts/ListLayout"
-import { getAllFilesFrontMatter } from "lib/mdx"
+import { getAllFilesFrontMatter } from "~/lib/mdx"
 
 export const POSTS_PER_PAGE = 5
 

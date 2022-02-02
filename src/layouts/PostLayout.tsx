@@ -7,7 +7,7 @@ import SectionContainer from "~/components/SectionContainer"
 import { BlogSEO } from "~/components/SEO"
 import { TagList } from "~/components/TagList"
 import metadata from "~/data/metadata"
-import { PostFrontMatter } from "types/FrontMatter"
+import { PostFrontMatter } from "~/types/FrontMatter"
 
 const editUrl = (fileName: string) =>
   `${metadata.siteRepo}/blob/main/src/data/blog/${fileName}`

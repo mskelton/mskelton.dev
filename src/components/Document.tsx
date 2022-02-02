@@ -1,6 +1,6 @@
 import { Links, LiveReload, Meta, Scripts } from "remix"
 import type { Theme } from "~/utils/theme.server"
-import { Analytics } from "./Analytics"
+// import { Analytics } from "./Analytics"
 import { LayoutWrapper } from "./LayoutWrapper"
 
 interface DocumentProps {
@@ -18,7 +18,7 @@ export function Document({ children, theme, title }: DocumentProps) {
         {title && <title>{title}</title>}
         <Meta />
         <Links />
-        <Analytics />
+        {/* <Analytics /> */}
       </head>
 
       <body className="bg-white text-black antialiased dark:bg-gray-900 dark:text-white">
