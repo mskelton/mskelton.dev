@@ -12,7 +12,3 @@ test-results/
 
 # TypeScript
 *.tsbuildinfo
-
-# Next.js
-/.next/
-/out/
