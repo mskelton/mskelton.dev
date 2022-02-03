@@ -57,7 +57,7 @@ yarn ts -w
 
 End-to-end tests utilize [Playwright](https://playwright.dev) and can be run
 with the following command. If the dev server is not running locally, Playwright
-will automatically start it for the duration of the tests. 
+will automatically start it for the duration of the tests.
 
 _See the [Playwright docs](https://playwright.dev/docs/test-cli) for a full list
 of CLI options that can be passed to this command._
