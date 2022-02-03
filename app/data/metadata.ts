@@ -1,5 +1,4 @@
 const metadata = {
-  author: "Mark Skelton",
   description: "Software developer, Christ follower, small town kid.",
   email: "mdskelton99@gmail.com",
   github: "https://github.com/mskelton",

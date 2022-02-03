@@ -1,24 +1,25 @@
+import { useLoaderData } from "remix"
 import { PageSEO } from "~/components/SEO"
 import Tag from "~/components/Tag"
 import metadata from "~/data/metadata"
+import { InferLoaderData } from "~/types/remix"
 import { getAllTags } from "~/utils/tags.server"
-import { InferGetStaticPropsType } from "next"
 
-export async function getStaticProps() {
-  const tags = await getAllTags()
-  return { props: { tags } }
+export async function loader() {
+  return {
+    tags: await getAllTags(),
+  }
 }
 
-export default function Tags({
-  tags,
-}: InferGetStaticPropsType<typeof getStaticProps>) {
+export default function Tags() {
+  const { tags } = useLoaderData<InferLoaderData<typeof loader>>()
   const sortedTags = Object.keys(tags).sort((a, b) => tags[b] - tags[a])
 
   return (
     <>
       <PageSEO
         description="Things I blog about"
-        title={`Tags - ${metadata.author}`}
+        title={`Tags - ${metadata.title}`}
       />
 
       <div
@@ -35,7 +36,8 @@ export default function Tags({
           {sortedTags.map((tag) => (
             <div key={tag} className="mt-2 mb-2 mr-5">
               <Tag>{tag}</Tag>
-              <span className="-ml-2 text-xs font-semibold text-gray-600 dark:text-gray-300">
+
+              <span className="ml-1 text-xs font-semibold text-gray-600 dark:text-gray-300">
                 ({tags[tag]})
               </span>
             </div>

@@ -1,3 +1,4 @@
+import { DataFunctionArgs } from "@remix-run/server-runtime"
 import { useLoaderData } from "remix"
 import { PageSEO } from "~/components/SEO"
 import metadata from "~/data/metadata"
@@ -7,15 +8,21 @@ import { getAllFilesFrontMatter } from "~/utils/mdx.server"
 
 export const POSTS_PER_PAGE = 5
 
-export const loader = async () => {
+export async function loader({ request }: DataFunctionArgs) {
   const posts = await getAllFilesFrontMatter()
-  const initialDisplayPosts = posts.slice(0, POSTS_PER_PAGE)
-  const pagination = {
-    currentPage: 1,
-    totalPages: Math.ceil(posts.length / POSTS_PER_PAGE),
-  }
 
-  return { initialDisplayPosts, pagination, posts }
+  const url = new URL(request.url)
+  const page = +(url.searchParams.get("page") ?? 1)
+  const start = (page - 1) * POSTS_PER_PAGE
+
+  return {
+    initialDisplayPosts: posts.slice(start, start + POSTS_PER_PAGE),
+    pagination: {
+      currentPage: page,
+      totalPages: Math.ceil(posts.length / POSTS_PER_PAGE),
+    },
+    posts,
+  }
 }
 
 export default function Blog() {
@@ -25,7 +32,7 @@ export default function Blog() {
     <>
       <PageSEO
         description={metadata.description}
-        title={`Blog - ${metadata.author}`}
+        title={`Blog - ${metadata.title}`}
       />
 
       <div data-testid="blog">

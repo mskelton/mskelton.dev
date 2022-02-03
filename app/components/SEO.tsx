@@ -67,7 +67,8 @@ export function PageSEO({ description, title }: PageSEOProps) {
 }
 
 export function TagSEO({ description, title }: PageSEOProps) {
-  const router = useRouter()
+  // const router = useRouter()
+  const router = {}
   // const imageUrl = metadata.siteUrl + metadata.socialBanner
 
   return (
@@ -80,14 +81,14 @@ export function TagSEO({ description, title }: PageSEOProps) {
         // twImage={imageUrl}
       />
 
-      <Head>
+      <head>
         <link
           href={`${metadata.siteUrl}${router.asPath}/feed.xml`}
           rel="alternate"
           title={`${description} - RSS feed`}
           type="application/rss+xml"
         />
-      </Head>
+      </head>
     </>
   )
 }
@@ -105,7 +106,8 @@ export const BlogSEO = ({
   title,
   url,
 }: BlogSEOProps) => {
-  const router = useRouter()
+  // const router = useRouter()
+  const router = {}
   const publishedAt = new Date(date).toISOString()
   const modifiedAt = new Date(lastmod || date).toISOString()
   const imagesArr =
@@ -161,7 +163,7 @@ export const BlogSEO = ({
         // twImage={featuredImages[0].url}
       />
 
-      <Head>
+      <head>
         <meta content={publishedAt} property="article:published_time" />
         {lastmod && (
           <meta content={modifiedAt} property="article:modified_time" />
@@ -173,7 +175,7 @@ export const BlogSEO = ({
           }}
           type="application/ld+json"
         />
-      </Head>
+      </head>
     </>
   )
 }

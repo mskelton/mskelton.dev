@@ -1,6 +1,8 @@
 import { useLoaderData } from "remix"
 import { Link } from "~/components/Link"
+import { PageSEO } from "~/components/SEO"
 import { TagList } from "~/components/TagList"
+import metadata from "~/data/metadata"
 import { InferLoaderData } from "~/types/remix"
 import formatDate from "~/utils/formatDate"
 import { getAllFilesFrontMatter } from "~/utils/mdx.server"
@@ -18,7 +20,7 @@ export default function Home() {
 
   return (
     <>
-      {/* <PageSEO description={metadata.description} title={metadata.title} /> */}
+      <PageSEO description={metadata.description} title={metadata.title} />
 
       <div
         className="divide-y divide-gray-200 dark:divide-gray-700"
