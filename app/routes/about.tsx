@@ -1,23 +1,19 @@
-import { LoaderFunction } from "remix"
-import { MDXLayoutRenderer } from "~/components/MDXComponents"
+import { useLoaderData } from "remix"
+import { MDXRenderer } from "~/components/MDXRenderer"
+import AuthorLayout from "~/layouts/AboutLayout"
+import { InferLoaderData } from "~/types/remix"
 import { getFileBySlug } from "~/utils/mdx.server"
 
-export const loader: LoaderFunction = async () => {
-  return {
-    authorDetails: await getFileBySlug("authors", "mskelton"),
-  }
+export async function loader() {
+  return getFileBySlug("authors", "mskelton")
 }
 
 export default function About() {
-  const { frontMatter, mdxSource } = authorDetails
+  const data = useLoaderData<InferLoaderData<typeof loader>>()
 
   return (
     <div data-testid="about">
-      <MDXLayoutRenderer
-        frontMatter={frontMatter}
-        layout="AuthorLayout"
-        mdxSource={mdxSource}
-      />
+      <MDXRenderer layout={AuthorLayout} {...data} />
     </div>
   )
 }

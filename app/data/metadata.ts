@@ -7,7 +7,7 @@ const metadata = {
   language: "en-us",
   linkedin: "https://www.linkedin.com/in/mskelton0/",
   locale: "en-US",
-  siteLogo: "/images/logo.jpg",
+  siteLogo: "/images/me.jpg",
   siteRepo: "https://github.com/mskelton/mskelton.dev",
   siteUrl: "https://mskelton.dev",
   // socialBanner: "/images/twitter-card.png",

@@ -1,4 +1,5 @@
-import { MDXLayoutRenderer } from "~/../components/MDXComponents"
+import { MDXRenderer } from "~/components/MDXRenderer"
+import PostLayout from "~/layouts/PostLayout"
 import {
   formatSlug,
   getAllFilesFrontMatter,
@@ -42,15 +43,15 @@ export default function Blog({
   post,
   prev,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
-  const { frontMatter, mdxSource } = post
+  const { frontMatter, source } = post
 
   return (
-    <MDXLayoutRenderer
+    <MDXRenderer
       frontMatter={frontMatter}
-      layout="PostLayout"
-      mdxSource={mdxSource}
       next={next}
       prev={prev}
+      source={source}
+      wrapper={PostLayout}
     />
   )
 }

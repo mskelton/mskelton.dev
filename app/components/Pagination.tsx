@@ -11,7 +11,7 @@ export function Pagination({ currentPage, totalPages }: PaginationProps) {
       <nav className="flex justify-between">
         <PaginationLink
           disabled={currentPage === 1}
-          href={currentPage === 2 ? "/blog" : `/blog/page/${currentPage - 1}`}
+          href={currentPage === 2 ? "/blog" : `/blog?page=${currentPage - 1}`}
           rel="previous"
         >
           Previous
@@ -23,7 +23,7 @@ export function Pagination({ currentPage, totalPages }: PaginationProps) {
 
         <PaginationLink
           disabled={currentPage === totalPages}
-          href={`/blog/page/${currentPage + 1}`}
+          href={`?page=${currentPage + 1}`}
           rel="next"
         >
           Next

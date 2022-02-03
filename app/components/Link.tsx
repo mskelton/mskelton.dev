@@ -4,14 +4,14 @@ import { Link as RemixLink } from "remix"
 export type LinkProps = AnchorHTMLAttributes<HTMLAnchorElement>
 
 export function Link({ href = "#", ...rest }: LinkProps) {
-  const isInternalLink = href.startsWith("/")
+  const isExternalLink = /^https?:/.test(href)
   const isAnchorLink = href.startsWith("#")
 
-  return isInternalLink ? (
-    <RemixLink to={href} {...rest} />
+  return isExternalLink ? (
+    <a href={href} rel="noopener noreferrer" target="_blank" {...rest} />
   ) : isAnchorLink ? (
     <a href={href} {...rest} />
   ) : (
-    <a href={href} rel="noopener noreferrer" target="_blank" {...rest} />
+    <RemixLink to={href} {...rest} />
   )
 }

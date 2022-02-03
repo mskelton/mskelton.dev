@@ -1,24 +1,20 @@
-import { LoaderFunction, useLoaderData } from "remix"
+import { useLoaderData } from "remix"
 import { Link } from "~/components/Link"
 import { TagList } from "~/components/TagList"
-import { PostFrontMatter } from "~/types/FrontMatter"
+import { InferLoaderData } from "~/types/remix"
 import formatDate from "~/utils/formatDate"
 import { getAllFilesFrontMatter } from "~/utils/mdx.server"
 
 const MAX_DISPLAY = 5
 
-interface LoaderData {
-  posts: PostFrontMatter[]
-}
-
-export const loader: LoaderFunction = async () => {
+export async function loader() {
   return {
     posts: await getAllFilesFrontMatter(),
   }
 }
 
 export default function Home() {
-  const { posts } = useLoaderData<LoaderData>()
+  const { posts } = useLoaderData<InferLoaderData<typeof loader>>()
 
   return (
     <>

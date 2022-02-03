@@ -1,8 +1,9 @@
-import { LinksFunction, LoaderFunction, Scripts } from "remix"
-import { Outlet, useCatch, useLoaderData } from "remix"
+import { DataFunctionArgs } from "@remix-run/server-runtime"
+import { LinksFunction, Outlet, useCatch, useLoaderData } from "remix"
 import stylesUrl from "~/tailwind.css"
 import { Document } from "./components/Document"
 import { NotFound } from "./components/NotFound"
+import { InferLoaderData } from "./types/remix"
 import { getTheme } from "./utils/theme.server"
 
 export const links: LinksFunction = () => {
@@ -28,7 +29,7 @@ export const links: LinksFunction = () => {
   ]
 }
 
-export const loader: LoaderFunction = async ({ request }) => {
+export const loader = async ({ request }: DataFunctionArgs) => {
   return {
     date: new Date(),
     theme: await getTheme(request),
@@ -63,7 +64,7 @@ export function ErrorBoundary({ error }: { error: Error }) {
 }
 
 export default function App() {
-  const data = useLoaderData()
+  const data = useLoaderData<InferLoaderData<typeof loader>>()
 
   return (
     <Document theme={data.theme}>

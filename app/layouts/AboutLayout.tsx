@@ -1,4 +1,3 @@
-// import Image from "next/image"
 import { ReactNode } from "react"
 import { PageSEO } from "~/components/SEO"
 import { AuthorFrontMatter } from "~/types/FrontMatter"
@@ -10,11 +9,14 @@ interface AuthorLayoutProps {
 
 export default function AuthorLayout({
   children,
-  frontMatter: { avatar, company, name, occupation },
+  frontMatter: { company, occupation },
 }: AuthorLayoutProps) {
   return (
     <>
-      <PageSEO description={`About me - ${name}`} title={`About - ${name}`} />
+      <PageSEO
+        description="About me - Mark Skelton"
+        title="About - Mark Skelton"
+      />
 
       <div className="divide-y divide-gray-200 dark:divide-gray-700">
         <div className="space-y-2 pt-6 pb-8 md:space-y-5">
@@ -28,12 +30,13 @@ export default function AuthorLayout({
             <img
               alt="avatar"
               className="h-48 w-48 rounded-full"
-              height="192px"
-              src={require(`../images/authors/${avatar}`)}
-              width="192px"
+              src="/images/me.jpg"
             />
 
-            <h2 className="pt-4 pb-2 text-2xl font-bold leading-8">{name}</h2>
+            <h2 className="pt-4 pb-2 text-2xl font-bold leading-8">
+              Mark Skelton
+            </h2>
+
             <p className="text-muted text-sm">
               {occupation} at {company}
             </p>

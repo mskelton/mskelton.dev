@@ -19,6 +19,7 @@ export function CommonSEO({
   twImage,
 }: CommonSEOProps) {
   // const router = useRouter()
+  const router = {}
 
   return (
     <head>

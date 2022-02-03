@@ -1,7 +1,6 @@
 import { ReactNode } from "react"
 import headerNavLinks from "~/data/headerNavLinks"
 import metadata from "~/data/metadata"
-// import Image from "next/image"
 import { Footer } from "./Footer"
 import { Link } from "./Link"
 import { MobileNav } from "./MobileNav"
@@ -23,10 +22,8 @@ export function LayoutWrapper({ children }: LayoutWrapperProps) {
                 <div className="mr-3">
                   <img
                     alt={metadata.author}
-                    className="rounded-full"
-                    height={40}
-                    src="/images/logo.jpg"
-                    width={40}
+                    className="h-10 w-10 rounded-full"
+                    src="/images/me.jpg"
                   />
                 </div>
 
