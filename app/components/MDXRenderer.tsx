@@ -1,9 +1,9 @@
 import clsx from "clsx"
 import { ComponentMap, getMDXComponent } from "mdx-bundler/client"
 import { useMemo } from "react"
-import { Link } from "./Link"
-import { MarkdownImage } from "./MarkdownImage"
-import { Pre } from "./Pre"
+import { Link } from "~/components/Link"
+import { MarkdownImage } from "~/components/MarkdownImage"
+import { Pre } from "~/components/Pre"
 
 const componentMap: ComponentMap = {
   a: ({ className, ...props }) => (

@@ -1,5 +1,5 @@
 import React from "react"
-import { Link } from "./Link"
+import { Link } from "~/components/Link"
 
 export interface PaginationLinkProps {
   children: React.ReactNode

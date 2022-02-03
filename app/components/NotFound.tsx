@@ -1,5 +1,5 @@
 import { Link, useCatch } from "remix"
-import { Document } from "./Document"
+import { Document } from "~/components/Document"
 
 export function NotFound() {
   const caught = useCatch()

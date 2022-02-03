@@ -1,5 +1,5 @@
 import { FaEnvelope, FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa"
-import { Link } from "./Link"
+import { Link } from "~/components/Link"
 
 const components = {
   github: FaGithub,

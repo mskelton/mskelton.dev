@@ -1,10 +1,10 @@
 import { DataFunctionArgs } from "@remix-run/server-runtime"
 import { LinksFunction, Outlet, useCatch, useLoaderData } from "remix"
+import { Document } from "~/components/Document"
+import { NotFound } from "~/components/NotFound"
 import stylesUrl from "~/tailwind.css"
-import { Document } from "./components/Document"
-import { NotFound } from "./components/NotFound"
-import { InferLoaderData } from "./types/remix"
-import { getTheme } from "./utils/theme.server"
+import { InferLoaderData } from "~/types/remix"
+import { getTheme } from "~/utils/theme.server"
 
 export const links: LinksFunction = () => {
   return [

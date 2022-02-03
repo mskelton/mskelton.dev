@@ -1,11 +1,11 @@
 import { ReactNode } from "react"
 import headerNavLinks from "~/data/headerNavLinks"
 import metadata from "~/data/metadata"
-import { Footer } from "./Footer"
-import { Link } from "./Link"
-import { MobileNav } from "./MobileNav"
-import SectionContainer from "./SectionContainer"
-import ThemeSwitch from "./ThemeSwitch"
+import { Footer } from "~/components/Footer"
+import { Link } from "~/components/Link"
+import { MobileNav } from "~/components/MobileNav"
+import SectionContainer from "~/components/SectionContainer"
+import ThemeSwitch from "~/components/ThemeSwitch"
 
 interface LayoutWrapperProps {
   children?: ReactNode

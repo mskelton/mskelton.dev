@@ -1,7 +1,6 @@
 import { Links, LiveReload, Meta, Scripts } from "remix"
+import { LayoutWrapper } from "~/components/LayoutWrapper"
 import type { Theme } from "~/utils/theme.server"
-// import { Analytics } from "./Analytics"
-import { LayoutWrapper } from "./LayoutWrapper"
 
 interface DocumentProps {
   children: React.ReactNode
@@ -18,7 +17,6 @@ export function Document({ children, theme, title }: DocumentProps) {
         {title && <title>{title}</title>}
         <Meta />
         <Links />
-        {/* <Analytics /> */}
       </head>
 
       <body className="bg-white text-black antialiased dark:bg-gray-900 dark:text-white">

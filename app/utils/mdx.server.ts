@@ -4,7 +4,7 @@ import { bundleMDX } from "mdx-bundler"
 import path from "path"
 import readingTime from "reading-time"
 import { FrontMatter, PostFrontMatter } from "~/types/FrontMatter"
-import { root } from "./files.server"
+import { root } from "~/utils/files.server"
 
 export function getFiles() {
   const prefixPaths = path.join(root, "data/blog")

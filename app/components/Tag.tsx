@@ -1,5 +1,5 @@
 import slugify from "slugify"
-import { Link } from "./Link"
+import { Link } from "~/components/Link"
 
 interface TagProps {
   children: string

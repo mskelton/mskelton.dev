@@ -1,4 +1,4 @@
-import { PaginationLink } from "./PaginationLink"
+import { PaginationLink } from "~/components/PaginationLink"
 
 export interface PaginationProps {
   currentPage: number
