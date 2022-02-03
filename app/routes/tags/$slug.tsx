@@ -1,11 +1,17 @@
 import { DataFunctionArgs } from "@remix-run/server-runtime"
-import { useLoaderData } from "remix"
+import { MetaFunction, useLoaderData } from "remix"
 import slugify from "slugify"
-import { TagSEO } from "~/components/SEO"
-import metadata from "~/data/metadata"
 import ListLayout from "~/layouts/ListLayout"
 import { InferLoaderData } from "~/types/remix"
 import { getAllFilesFrontMatter } from "~/utils/mdx.server"
+import { seo } from "~/utils/seo"
+
+export const meta: MetaFunction = ({ data }) => {
+  return seo({
+    description: `What I've wrote about ${data.tag}`,
+    title: data.tag,
+  })
+}
 
 export async function loader({ params }: DataFunctionArgs) {
   const allPosts = await getAllFilesFrontMatter()
@@ -23,16 +29,7 @@ export async function loader({ params }: DataFunctionArgs) {
 }
 
 export default function Tag() {
-  const { posts, tag } = useLoaderData<InferLoaderData<typeof loader>>()
+  const data = useLoaderData<InferLoaderData<typeof loader>>()
 
-  return (
-    <>
-      <TagSEO
-        description={`${tag} tags - ${metadata.title}`}
-        title={`${tag} - ${metadata.title}`}
-      />
-
-      <ListLayout posts={posts} title={`#${tag}`} />
-    </>
-  )
+  return <ListLayout posts={data.posts} title={`#${data.tag}`} />
 }

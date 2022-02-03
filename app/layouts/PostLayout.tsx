@@ -4,7 +4,6 @@ import { PageTitle } from "~/components/PageTitle"
 import { PostPaginationLink } from "~/components/PostPaginationLink"
 import ScrollTop from "~/components/ScrollTop"
 import SectionContainer from "~/components/SectionContainer"
-import { BlogSEO } from "~/components/SEO"
 import { TagList } from "~/components/TagList"
 import metadata from "~/data/metadata"
 import { PostFrontMatter } from "~/types/FrontMatter"
@@ -45,7 +44,6 @@ export default function PostLayout({
 
   return (
     <SectionContainer>
-      <BlogSEO url={`${metadata.siteUrl}/blog/${slug}`} {...frontMatter} />
       <ScrollTop />
 
       <article>
@@ -58,7 +56,7 @@ export default function PostLayout({
                   <dd className="text-muted text-base font-medium leading-6">
                     <time dateTime={date}>
                       {new Date(date).toLocaleDateString(
-                        metadata.locale,
+                        undefined,
                         postDateTemplate
                       )}
                     </time>

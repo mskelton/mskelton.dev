@@ -1,13 +1,17 @@
-import { useLoaderData } from "remix"
+import { MetaFunction, useLoaderData } from "remix"
 import { Link } from "~/components/Link"
-import { PageSEO } from "~/components/SEO"
 import { TagList } from "~/components/TagList"
-import metadata from "~/data/metadata"
 import { InferLoaderData } from "~/types/remix"
 import formatDate from "~/utils/formatDate"
 import { getAllFilesFrontMatter } from "~/utils/mdx.server"
+import { seo } from "~/utils/seo"
 
-const MAX_DISPLAY = 3
+export const meta: MetaFunction = () => {
+  return seo({
+    description: "Homepage and recent blog posts",
+    title: "Home",
+  })
+}
 
 export async function loader() {
   return {
@@ -15,13 +19,13 @@ export async function loader() {
   }
 }
 
+const MAX_DISPLAY = 3
+
 export default function Home() {
   const { posts } = useLoaderData<InferLoaderData<typeof loader>>()
 
   return (
     <>
-      <PageSEO description={metadata.description} title={metadata.title} />
-
       <div
         className="divide-y divide-gray-200 dark:divide-gray-700"
         data-testid="home"

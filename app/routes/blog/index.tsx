@@ -1,10 +1,16 @@
 import { DataFunctionArgs } from "@remix-run/server-runtime"
-import { useLoaderData } from "remix"
-import { PageSEO } from "~/components/SEO"
-import metadata from "~/data/metadata"
+import { MetaFunction, useLoaderData } from "remix"
 import ListLayout from "~/layouts/ListLayout"
 import { InferLoaderData } from "~/types/remix"
 import { getAllFilesFrontMatter } from "~/utils/mdx.server"
+import { seo } from "~/utils/seo"
+
+export const meta: MetaFunction = () => {
+  return seo({
+    description: `Check out my recent articles or if you're feeling adventurous, dig back in the archives.`,
+    title: "Blog",
+  })
+}
 
 const POSTS_PER_PAGE = 5
 
@@ -29,15 +35,8 @@ export default function Blog() {
   const data = useLoaderData<InferLoaderData<typeof loader>>()
 
   return (
-    <>
-      <PageSEO
-        description={metadata.description}
-        title={`Blog - ${metadata.title}`}
-      />
-
-      <div data-testid="blog">
-        <ListLayout title="All Posts" {...data} />
-      </div>
-    </>
+    <div data-testid="blog">
+      <ListLayout title="All Posts" {...data} />
+    </div>
   )
 }

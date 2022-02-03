@@ -14,10 +14,8 @@ export type PostFrontMatter = {
   date: string
   fileName: string
   images?: string[]
-  lastmod?: string
-  layout?: string
   slug: string
-  summary?: string
+  summary: string
   tags: string[]
   title: string
 }

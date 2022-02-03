@@ -1,10 +1,17 @@
 import { DataFunctionArgs } from "@remix-run/server-runtime"
-import { LinksFunction, Outlet, useCatch, useLoaderData } from "remix"
+import {
+  LinksFunction,
+  MetaFunction,
+  Outlet,
+  useCatch,
+  useLoaderData,
+} from "remix"
 import { Document } from "~/components/Document"
 import { NotFound } from "~/components/NotFound"
 import stylesUrl from "~/tailwind.css"
 import { InferLoaderData } from "~/types/remix"
 import { getTheme } from "~/utils/theme.server"
+import metadata from "./data/metadata"
 
 export const links: LinksFunction = () => {
   return [
@@ -21,17 +28,33 @@ export const links: LinksFunction = () => {
       href: stylesUrl,
       rel: "stylesheet",
     },
-    {
-      href: "/feed.xml",
-      rel: "alternate",
-      type: "application/rss+xml",
-    },
+    // {
+    //   href: "/feed.xml",
+    //   rel: "alternate",
+    //   type: "application/rss+xml",
+    // },
   ]
 }
 
-export const loader = async ({ request }: DataFunctionArgs) => {
+export const meta: MetaFunction = ({ location }) => {
+  const image = metadata.siteUrl + metadata.siteLogo
+
   return {
-    date: new Date(),
+    charset: "utf-8",
+    "og:image": image,
+    "og:site_name": metadata.title,
+    "og:type": "website",
+    "og:url": metadata.siteUrl + location.pathname,
+    robots: "follow, index",
+    "twitter:card": "summary",
+    "twitter:image": image,
+    "twitter:site": metadata.twitter.handle,
+    viewport: "width=device-width, initial-scale=1",
+  }
+}
+
+export async function loader({ request }: DataFunctionArgs) {
+  return {
     theme: await getTheme(request),
   }
 }

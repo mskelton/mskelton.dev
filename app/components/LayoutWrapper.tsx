@@ -1,11 +1,11 @@
 import { ReactNode } from "react"
-import headerNavLinks from "~/data/headerNavLinks"
-import metadata from "~/data/metadata"
 import { Footer } from "~/components/Footer"
 import { Link } from "~/components/Link"
 import { MobileNav } from "~/components/MobileNav"
 import SectionContainer from "~/components/SectionContainer"
 import ThemeSwitch from "~/components/ThemeSwitch"
+import headerNavLinks from "~/data/headerNavLinks"
+import metadata from "~/data/metadata"
 
 interface LayoutWrapperProps {
   children?: ReactNode
@@ -21,14 +21,14 @@ export function LayoutWrapper({ children }: LayoutWrapperProps) {
               <div className="flex items-center justify-between">
                 <div className="mr-3">
                   <img
-                    alt={metadata.author}
+                    alt="Mark Skelton"
                     className="h-10 w-10 rounded-full"
                     src="/images/me.jpg"
                   />
                 </div>
 
                 <p className="hidden text-2xl font-semibold sm:block">
-                  {metadata.headerTitle}
+                  {metadata.title}
                 </p>
               </div>
             </Link>

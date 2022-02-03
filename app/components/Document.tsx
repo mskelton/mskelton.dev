@@ -12,10 +12,8 @@ export function Document({ children, theme, title }: DocumentProps) {
   return (
     <html className={theme} lang="en">
       <head>
-        <meta charSet="utf-8" />
-        <meta content="width=device-width, initial-scale=1" name="viewport" />
-        {title && <title>{title}</title>}
         <Meta />
+        {title && <title>{title}</title>}
         <Links />
       </head>
 
