@@ -1,3 +1,3 @@
 import path from "path"
 
-export const root = path.join(process.cwd(), "app")
+export const root = path.join(__dirname, "..")
