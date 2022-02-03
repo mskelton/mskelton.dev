@@ -1,3 +1,7 @@
 # Yarn
 .yarn/
 .yarnrc.yml
+
+# Outputs
+app/tailwind.css
+build/
