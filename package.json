@@ -4,7 +4,7 @@
   "packageManager": "yarn@3.1.1",
   "scripts": {
     "build:css": "tailwindcss -i ./styles/tailwind.css -o ./app/tailwind.css",
-    "build": "yarn build:css --minify && remix build && cp -r app/data api/data",
+    "build": "yarn build:css --minify && remix build",
     "dev:css": "yarn build:css --watch",
     "dev": "concurrently -c 'blue.bold,magenta.bold' -n 'CSS,Remix' 'yarn dev:css' 'remix dev'",
     "postinstall": "remix setup node",
