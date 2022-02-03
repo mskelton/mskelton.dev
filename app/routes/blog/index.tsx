@@ -6,7 +6,7 @@ import ListLayout from "~/layouts/ListLayout"
 import { InferLoaderData } from "~/types/remix"
 import { getAllFilesFrontMatter } from "~/utils/mdx.server"
 
-export const POSTS_PER_PAGE = 5
+const POSTS_PER_PAGE = 5
 
 export async function loader({ request }: DataFunctionArgs) {
   const posts = await getAllFilesFrontMatter()

@@ -7,7 +7,7 @@ import { InferLoaderData } from "~/types/remix"
 import formatDate from "~/utils/formatDate"
 import { getAllFilesFrontMatter } from "~/utils/mdx.server"
 
-const MAX_DISPLAY = 5
+const MAX_DISPLAY = 3
 
 export async function loader() {
   return {
