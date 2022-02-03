@@ -8,7 +8,6 @@
     "dev:css": "yarn build:css --watch",
     "dev": "concurrently -c 'blue.bold,magenta.bold' -n 'CSS,Remix' 'yarn dev:css' 'remix dev'",
     "postinstall": "remix setup node",
-    "vercel-build": "cp -R content api/content",
     "lint": "eslint .",
     "format": "prettier --write .",
     "test": "playwright test",
