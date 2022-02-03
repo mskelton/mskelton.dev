@@ -1,14 +1,15 @@
 import { Links, LiveReload, Meta, Scripts } from "remix"
 import { LayoutWrapper } from "~/components/LayoutWrapper"
-import type { Theme } from "~/utils/theme.server"
+import { useTheme } from "~/components/ThemeProvider"
 
 interface DocumentProps {
   children: React.ReactNode
-  theme: Theme
   title?: string
 }
 
-export function Document({ children, theme, title }: DocumentProps) {
+export function Document({ children, title }: DocumentProps) {
+  const { theme } = useTheme()
+
   return (
     <html className={theme} lang="en">
       <head>

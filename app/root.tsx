@@ -9,8 +9,8 @@ import {
 import { Document } from "~/components/Document"
 import { NotFound } from "~/components/NotFound"
 import stylesUrl from "~/tailwind.css"
-import { InferLoaderData } from "~/types/remix"
-import { getTheme } from "~/utils/theme.server"
+import { getTheme, Theme } from "~/utils/theme.server"
+import { ThemeProvider } from "./components/ThemeProvider"
 import metadata from "./data/metadata"
 
 export const links: LinksFunction = () => {
@@ -75,7 +75,7 @@ export function ErrorBoundary({ error }: { error: Error }) {
   console.error(error)
 
   return (
-    <Document theme="dark" title="Uh-oh!">
+    <Document title="Uh-oh!">
       <h1>App Error</h1>
       <pre>{error.message}</pre>
       <p>
@@ -87,11 +87,13 @@ export function ErrorBoundary({ error }: { error: Error }) {
 }
 
 export default function App() {
-  const data = useLoaderData<InferLoaderData<typeof loader>>()
+  const { theme } = useLoaderData<{ theme: Theme }>()
 
   return (
-    <Document theme={data.theme}>
-      <Outlet />
-    </Document>
+    <ThemeProvider initialTheme={theme}>
+      <Document>
+        <Outlet />
+      </Document>
+    </ThemeProvider>
   )
 }
