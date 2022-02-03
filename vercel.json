@@ -6,7 +6,7 @@
   },
   "functions": {
     "api/index.js": {
-      "includeFiles": "content/**/*.md"
+      "includeFiles": "content/**"
     }
   },
   "github": {
