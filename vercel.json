@@ -6,7 +6,7 @@
   },
   "functions": {
     "api/index.js": {
-      "includeFiles": "app/data/**"
+      "includeFiles": "data/**"
     }
   },
   "github": {

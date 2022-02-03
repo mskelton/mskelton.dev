@@ -7,8 +7,7 @@ import { FrontMatter, PostFrontMatter } from "~/types/FrontMatter"
 import { root } from "~/utils/files.server"
 
 export function getFiles() {
-  const prefixPaths = path.join(root, "data/blog")
-  return fs.promises.readdir(prefixPaths)
+  return fs.promises.readdir(path.join(root, "blog"))
 }
 
 export function formatSlug(slug: string) {
@@ -25,7 +24,7 @@ export async function getFileBySlug<T extends "blog" | "authors">(
   type: T,
   slug: string
 ) {
-  const file = path.join(root, "data", type, slug)
+  const file = path.join(root, type, slug)
   const filePath = fs.existsSync(`${file}.mdx`) ? `${file}.mdx` : `${file}.md`
   const source = fs.readFileSync(filePath, "utf8")
 
@@ -39,7 +38,6 @@ export async function getFileBySlug<T extends "blog" | "authors">(
 
   const codeTitles = await remarkCodeTitles()
   const { code, frontmatter } = await bundleMDX({
-    cwd: path.join(root, "components"),
     source,
     xdmOptions(options) {
       options.remarkPlugins = [
@@ -81,7 +79,7 @@ export async function getFileBySlug<T extends "blog" | "authors">(
 }
 
 export async function getAllFilesFrontMatter() {
-  const dir = path.join(root, "data/blog")
+  const dir = path.join(root, "blog")
   const files = fs.readdirSync(dir).map((file) => path.join(dir, file))
   const allFrontMatter: PostFrontMatter[] = []
 

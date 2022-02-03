@@ -8,10 +8,10 @@ import {
 } from "remix"
 import { Document } from "~/components/Document"
 import { NotFound } from "~/components/NotFound"
+import { ThemeProvider } from "~/components/ThemeProvider"
+import metadata from "~/data/metadata"
 import stylesUrl from "~/tailwind.css"
 import { getTheme, Theme } from "~/utils/theme.server"
-import { ThemeProvider } from "./components/ThemeProvider"
-import metadata from "./data/metadata"
 
 export const links: LinksFunction = () => {
   return [

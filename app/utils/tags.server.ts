@@ -11,7 +11,7 @@ export async function getAllTags() {
   const tagCount: Record<string, number> = {}
 
   files.forEach((file) => {
-    const source = fs.readFileSync(path.join(root, "data/blog", file), "utf8")
+    const source = fs.readFileSync(path.join(root, "blog", file), "utf8")
     const data = matter(source).data as PostFrontMatter
 
     data.tags?.forEach((tag) => {

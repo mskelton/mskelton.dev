@@ -15,6 +15,6 @@ test-results/
 
 # Remix
 .cache/
-api/data/
+api/content/
 app/tailwind.css
 build/
