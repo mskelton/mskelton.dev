@@ -1,7 +1,9 @@
-import { Parent, visit } from "unist-util-visit"
+import type { Parent } from "unist-util-visit"
 
-export default function remarkCodeTitles() {
-  return (tree: Parent & { lang?: string }) =>
+export async function remarkCodeTitles() {
+  const { visit } = await import("unist-util-visit")
+
+  return () => (tree: Parent & { lang?: string }) =>
     visit(tree, "code", (node: Parent & { lang?: string }, index: number) => {
       const nodeLang = node.lang || ""
       let language = ""

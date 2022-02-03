@@ -30,15 +30,14 @@ export async function getFileBySlug<T extends "blog" | "authors">(
   const source = fs.readFileSync(filePath, "utf8")
 
   const { default: remarkGfm } = await import("remark-gfm")
-  // const { default: remarkCodeTitles } = await import(
-  //   "./remarkCodeTitles.server"
-  // )
+  const { remarkCodeTitles } = await import("./remarkCodeTitles.server")
   const { default: rehypeSlug } = await import("rehype-slug")
   const { default: rehypePrismPlus } = await import("rehype-prism-plus")
   const { default: rehypeAutolinkHeadings } = await import(
     "rehype-autolink-headings"
   )
 
+  const codeTitles = await remarkCodeTitles()
   const { code, frontmatter } = await bundleMDX({
     cwd: path.join(root, "components"),
     source,
@@ -46,7 +45,7 @@ export async function getFileBySlug<T extends "blog" | "authors">(
       options.remarkPlugins = [
         ...(options.remarkPlugins ?? []),
         remarkGfm,
-        // remarkCodeTitles,
+        codeTitles,
       ]
 
       options.rehypePlugins = [
