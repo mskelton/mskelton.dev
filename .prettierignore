@@ -4,4 +4,4 @@
 
 # Outputs
 app/tailwind.css
-build/
+api/build/
