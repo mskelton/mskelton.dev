@@ -1,0 +1,72 @@
+---
+title: Why I Don't Use Environment Variables
+summary:
+  Environment variables are a great way to manage configuration in your
+  applications, but they introduce a number of challenges. In this article, I
+  explain an alternative approach to managing configuration in your applications
+  using environment files rather than environment variables.
+tags: [nodejs, environment-variables, dotenv]
+date: "2020-01-11"
+---
+
+Environment variables are very helpful for software development as they allow
+you to easily change certain aspects of your application based on the
+environment in which your application is used. However, environment variables do
+have some challenges which can cause some issues in certain scenarios. In this
+article, I'll explore some of those challenges and explain why I don't use
+environment variables in my applications.
+
+## Globally Available
+
+The first challenge with environment variables is the fact that they are
+globally available to all applications. The main problem this can cause is
+naming conflicts between applications. For example, if two applications both
+have an API token to some service (i.e. npm), you have to choose different names
+for the environment variables as a generic name like `NPM_TOKEN` would cause a
+conflict between the two applications. This might seem like a contrived example
+but it is actually one that I have faced at my job and it has caused some
+serious annoyances.
+
+## Shell Specific
+
+Another challenge with environment variables is that they are only available in
+the shell which you have configured them for. Again, this might not seem like a
+big deal, but if you have to switch between shells on occasion this can be a
+real pain as the variables are not shared by both shells and must be maintained
+in each shell.
+
+## Difficult To Find
+
+Because environment variables are configured in a file such as `~/.bashrc` it is
+harder to determine the value of each environment variable quickly. Although an
+minor inconvenience, it still adds to the list of challenges with environment
+variables.
+
+## My Solution
+
+My solution to this is to use `.env` files to store environment variables on a
+per-application basis. These files are not shell specific and they work across
+platforms. Additionally, `.env` files are stored alongside your application code
+making it very easy to view and change the environment variables for your
+application.
+
+Loading `.env` files into your application can be done manually or using a
+package such [Node's dotenv package](https://www.npmjs.com/package/dotenv).
+Other languages have similar packages such as
+[Python's dotenv package](https://pypi.org/project/python-dotenv/). Both of
+these packages, and likely others, will intelligently load environment variables
+so as to not override existing system environment variables unless explicitly
+requested. This behavior allows you to still specific environment variables on a
+per-command basis when running commands in your shell.
+
+## Should I Switch To `.env`?
+
+If you aren't having any issues with environment variables, I wouldn't recommend
+switching to `.env` just because it sounds neat. If however you have encountered
+some of the same challenges I mentioned in this article, you may want to
+experiment with `.env` as a way to augment or replace your usage of environment
+variables. Finally, remember that this article is merely my opinion on the
+subject and is by no means a comprehensive article about all the aspects of this
+subject. Regardless of if you decide to use any of the techniques I discussed in
+this article, I hope that it helped you learn a bit more about this particular
+area of software development. Cheers!
