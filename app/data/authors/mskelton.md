@@ -1,5 +1,4 @@
 ---
-name: Mark Skelton
 avatar: mskelton.jpg
 occupation: Staff Software Engineer
 company: Widen
