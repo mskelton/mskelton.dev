@@ -4,7 +4,7 @@ import { MDXRenderer } from "~/components/MDXRenderer"
 import PostLayout from "~/layouts/PostLayout"
 import { PostFrontMatter } from "~/types/FrontMatter"
 import { InferLoaderData } from "~/types/remix"
-import { getAllFilesFrontMatter, getFileBySlug } from "~/utils/mdx.server"
+import { getFileBySlug } from "~/utils/mdx.server"
 import { seo } from "~/utils/seo"
 
 export const meta: MetaFunction = ({ data }) => {
@@ -20,30 +20,22 @@ export const meta: MetaFunction = ({ data }) => {
 }
 
 export async function loader({ params }: DataFunctionArgs) {
-  const slug = params.slug!
-  const allPosts = await getAllFilesFrontMatter()
-  const postIndex = allPosts.findIndex((post) => post.slug === slug)
-
   // rss
   // const rss = generateRss(allPosts)
   // fs.writeFileSync("./public/feed.xml", rss)
 
   return {
-    next: allPosts[postIndex - 1] || null,
-    post: await getFileBySlug("blog", slug),
-    prev: allPosts[postIndex + 1] || null,
+    post: await getFileBySlug("blog", params.slug!),
   }
 }
 
 export default function Blog() {
-  const { next, post, prev } = useLoaderData<InferLoaderData<typeof loader>>()
+  const { post } = useLoaderData<InferLoaderData<typeof loader>>()
 
   return (
     <MDXRenderer
       frontMatter={post.frontMatter}
       layout={PostLayout}
-      next={next}
-      prev={prev}
       source={post.source}
     />
   )
