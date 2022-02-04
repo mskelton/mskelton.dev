@@ -1,4 +1,4 @@
-import fs from "fs"
+import fs from "fs/promises"
 import matter from "gray-matter"
 import { bundleMDX } from "mdx-bundler"
 import path from "path"
@@ -6,18 +6,8 @@ import readingTime from "reading-time"
 import { FrontMatter, PostFrontMatter } from "~/types/FrontMatter"
 import { root } from "~/utils/files.server"
 
-export function getFiles() {
-  return fs.promises.readdir(path.join(root, "blog"))
-}
-
-export function formatSlug(slug: string) {
-  return slug.replace(/\.mdx?/, "")
-}
-
-export function dateSortDesc(a: string, b: string) {
-  if (a > b) return -1
-  if (a < b) return 1
-  return 0
+function sortByDate(a: PostFrontMatter, b: PostFrontMatter) {
+  return a.date.localeCompare(b.date)
 }
 
 export async function getFileBySlug<T extends "blog" | "authors">(
@@ -25,8 +15,8 @@ export async function getFileBySlug<T extends "blog" | "authors">(
   slug: string
 ) {
   const file = path.join(root, type, slug)
-  const filePath = fs.existsSync(`${file}.mdx`) ? `${file}.mdx` : `${file}.md`
-  const source = fs.readFileSync(filePath, "utf8")
+  const filePath = `${file}.md`
+  const source = await fs.readFile(filePath, "utf8")
 
   const { default: remarkGfm } = await import("remark-gfm")
   const { remarkCodeTitles } = await import("./remarkCodeTitles.server")
@@ -80,20 +70,18 @@ export async function getFileBySlug<T extends "blog" | "authors">(
 
 export async function getAllFilesFrontMatter() {
   const dir = path.join(root, "blog")
-  const files = fs.readdirSync(dir).map((file) => path.join(dir, file))
-  const allFrontMatter: PostFrontMatter[] = []
+  const files = (await fs.readdir(dir)).map((file) => path.join(dir, file))
 
-  files.forEach((file) => {
-    const fileName = path.basename(file)
-    const source = fs.readFileSync(file, "utf8")
+  const promises = files.map(async (file) => {
+    const source = await fs.readFile(file, "utf8")
     const frontMatter = matter(source).data as PostFrontMatter
 
-    allFrontMatter.push({
+    return {
       ...frontMatter,
       date: new Date(frontMatter.date).toISOString(),
-      slug: formatSlug(fileName),
-    })
+      slug: path.basename(file).replace(".md", ""),
+    }
   })
 
-  return allFrontMatter.sort((a, b) => dateSortDesc(a.date, b.date))
+  return (await Promise.all(promises)).sort(sortByDate)
 }

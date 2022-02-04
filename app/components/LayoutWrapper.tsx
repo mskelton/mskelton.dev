@@ -4,8 +4,8 @@ import { Link } from "~/components/Link"
 import { MobileNav } from "~/components/MobileNav"
 import SectionContainer from "~/components/SectionContainer"
 import ThemeSwitch from "~/components/ThemeSwitch"
-import headerNavLinks from "~/data/headerNavLinks"
 import metadata from "~/data/metadata"
+import { navLinks } from "~/data/navLinks"
 
 interface LayoutWrapperProps {
   children?: ReactNode
@@ -36,7 +36,7 @@ export function LayoutWrapper({ children }: LayoutWrapperProps) {
 
           <div className="flex items-center text-base leading-5">
             <div className="hidden sm:block">
-              {headerNavLinks.map((link) => (
+              {navLinks.map((link) => (
                 <Link
                   key={link.title}
                   className="link-secondary p-1 font-medium sm:p-4"
