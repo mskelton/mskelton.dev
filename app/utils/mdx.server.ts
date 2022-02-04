@@ -6,10 +6,6 @@ import readingTime from "reading-time"
 import { FrontMatter, PostFrontMatter } from "~/types/FrontMatter"
 import { root } from "~/utils/files.server"
 
-function sortByDate(a: PostFrontMatter, b: PostFrontMatter) {
-  return a.date.localeCompare(b.date)
-}
-
 export async function getFileBySlug<T extends "blog" | "authors">(
   type: T,
   slug: string
@@ -66,6 +62,10 @@ export async function getFileBySlug<T extends "blog" | "authors">(
     } as unknown as FrontMatter<T>,
     source: code,
   }
+}
+
+function sortByDate(a: PostFrontMatter, b: PostFrontMatter) {
+  return a.date.localeCompare(b.date)
 }
 
 export async function getAllFilesFrontMatter() {
