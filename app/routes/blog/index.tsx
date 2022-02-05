@@ -2,7 +2,7 @@ import { DataFunctionArgs } from "@remix-run/server-runtime"
 import { MetaFunction, useLoaderData } from "remix"
 import ListLayout from "~/layouts/ListLayout"
 import { InferLoaderData } from "~/types/remix"
-import { getAllFilesFrontMatter } from "~/utils/mdx.server"
+import { getAllPostsFrontMatter } from "~/utils/mdx.server"
 import { seo } from "~/utils/seo"
 
 export const meta: MetaFunction = () => {
@@ -15,7 +15,7 @@ export const meta: MetaFunction = () => {
 const POSTS_PER_PAGE = 5
 
 export async function loader({ request }: DataFunctionArgs) {
-  const posts = await getAllFilesFrontMatter()
+  const posts = await getAllPostsFrontMatter()
 
   const url = new URL(request.url)
   const page = +(url.searchParams.get("page") ?? 1)

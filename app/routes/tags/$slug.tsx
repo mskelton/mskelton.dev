@@ -3,7 +3,7 @@ import { MetaFunction, useLoaderData } from "remix"
 import slugify from "slugify"
 import ListLayout from "~/layouts/ListLayout"
 import { InferLoaderData } from "~/types/remix"
-import { getAllFilesFrontMatter } from "~/utils/mdx.server"
+import { getAllPostsFrontMatter } from "~/utils/mdx.server"
 import { seo } from "~/utils/seo"
 
 export const meta: MetaFunction = ({ data }) => {
@@ -14,7 +14,7 @@ export const meta: MetaFunction = ({ data }) => {
 }
 
 export async function loader({ params }: DataFunctionArgs) {
-  const allPosts = await getAllFilesFrontMatter()
+  const allPosts = await getAllPostsFrontMatter()
   const filteredPosts = allPosts.filter((post) =>
     post.tags.map((t) => slugify(t)).includes(params.slug!)
   )

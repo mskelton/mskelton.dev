@@ -3,7 +3,7 @@ import { Link } from "~/components/Link"
 import { TagList } from "~/components/TagList"
 import { InferLoaderData } from "~/types/remix"
 import formatDate from "~/utils/formatDate"
-import { getAllFilesFrontMatter } from "~/utils/mdx.server"
+import { getAllPostsFrontMatter } from "~/utils/mdx.server"
 import { seo } from "~/utils/seo"
 
 export const meta: MetaFunction = () => {
@@ -15,7 +15,7 @@ export const meta: MetaFunction = () => {
 
 export async function loader() {
   return {
-    posts: await getAllFilesFrontMatter(),
+    posts: await getAllPostsFrontMatter(),
   }
 }
 
