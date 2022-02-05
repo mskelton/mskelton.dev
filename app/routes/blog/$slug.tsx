@@ -4,7 +4,7 @@ import { MDXRenderer } from "~/components/MDXRenderer"
 import PostLayout from "~/layouts/PostLayout"
 import { PostFrontMatter } from "~/types/FrontMatter"
 import { InferLoaderData } from "~/types/remix"
-import { getFileBySlug } from "~/utils/mdx.server"
+import { getPostBySlug } from "~/utils/mdx.server"
 import { seo } from "~/utils/seo"
 
 export const meta: MetaFunction = ({ data }) => {
@@ -25,7 +25,7 @@ export async function loader({ params }: DataFunctionArgs) {
   // fs.writeFileSync("./public/feed.xml", rss)
 
   return {
-    post: await getFileBySlug("blog", params.slug!),
+    post: await getPostBySlug(params.slug!),
   }
 }
 
