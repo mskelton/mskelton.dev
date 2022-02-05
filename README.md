@@ -23,6 +23,24 @@ following command.
 yarn dev
 ```
 
+## Deployment
+
+My website is hosted on [Fly.io](https://fly.io). To deploy to fly, first
+install the flyctl with Homebrew.
+
+```sh
+brew install superfly/tap/flyctl
+```
+
+### Redis
+
+Redis does not need to be redeployed often, but if you need to redeploy it, use
+the following command.
+
+```sh
+fly deploy --config redis/fly.toml
+```
+
 ## Project Validation
 
 This project has several forms of project validation configured including
