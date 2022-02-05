@@ -7,8 +7,7 @@ import { PostFrontMatter } from "~/types/FrontMatter"
 import { root } from "~/utils/files.server"
 
 export async function getPostBySlug(slug: string) {
-  const file = path.join(root, "blog", slug)
-  const filePath = `${file}.md`
+  const filePath = path.join(root, `${slug}.md`)
   const source = await fs.readFile(filePath, "utf8")
 
   const { default: remarkGfm } = await import("remark-gfm")
@@ -62,12 +61,13 @@ export async function getPostBySlug(slug: string) {
 }
 
 function sortByDate(a: PostFrontMatter, b: PostFrontMatter) {
-  return a.date.localeCompare(b.date)
+  return b.date.localeCompare(a.date)
 }
 
 export async function getAllPostsFrontMatter() {
-  const dir = path.join(root, "blog")
-  const files = (await fs.readdir(dir)).map((file) => path.join(dir, file))
+  const files = (await fs.readdir(root))
+    .filter((file) => file.endsWith(".md"))
+    .map((file) => path.join(root, file))
 
   const promises = files.map(async (file) => {
     const source = await fs.readFile(file, "utf8")

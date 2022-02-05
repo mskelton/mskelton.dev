@@ -6,9 +6,9 @@ import { PostFrontMatter } from "~/types/FrontMatter"
 import { root } from "~/utils/files.server"
 
 export async function getAllTags() {
-  const files = await fs.readdir(path.join(root, "blog"))
+  const files = await fs.readdir(root)
   const sources = await Promise.all(
-    files.map((file) => fs.readFile(path.join(root, "blog", file), "utf8"))
+    files.map((file) => fs.readFile(path.join(root, file), "utf8"))
   )
 
   return sources.reduce<Record<string, number>>((acc, source) => {

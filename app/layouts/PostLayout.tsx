@@ -37,7 +37,7 @@ export default function PostLayout({ children, frontMatter }: PostLayoutProps) {
     <SectionContainer>
       <ScrollTop />
 
-      <article className="mx-auto max-w-2xl divide-y divide-gray-200 dark:divide-gray-700">
+      <article className="mx-auto max-w-4xl divide-y divide-gray-200 dark:divide-gray-700">
         <header className="py-6">
           <div className="space-y-1 text-center">
             <dl className="space-y-10">
