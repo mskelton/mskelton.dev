@@ -13,6 +13,8 @@ test-results/
 # TypeScript
 *.tsbuildinfo
 
-# Next.js
-/.next/
-/out/
+# Remix
+.cache/
+api/content/
+app/tailwind.css
+build/

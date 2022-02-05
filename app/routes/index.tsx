@@ -1,0 +1,105 @@
+import { MetaFunction, useLoaderData } from "remix"
+import { Link } from "~/components/Link"
+import { TagList } from "~/components/TagList"
+import { InferLoaderData } from "~/types/remix"
+import formatDate from "~/utils/formatDate"
+import { getAllFilesFrontMatter } from "~/utils/mdx.server"
+import { seo } from "~/utils/seo"
+
+export const meta: MetaFunction = () => {
+  return seo({
+    description: "Homepage and recent blog posts",
+    title: "Home",
+  })
+}
+
+export async function loader() {
+  return {
+    posts: await getAllFilesFrontMatter(),
+  }
+}
+
+const MAX_DISPLAY = 3
+
+export default function Home() {
+  const { posts } = useLoaderData<InferLoaderData<typeof loader>>()
+
+  return (
+    <>
+      <div
+        className="divide-y divide-gray-200 dark:divide-gray-700"
+        data-testid="home"
+      >
+        <div className="space-y-2 pt-6 pb-8 md:space-y-5">
+          <h1 className="text text-3xl font-extrabold leading-9 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
+            Latest Posts
+          </h1>
+
+          <p className="text-muted text-lg leading-7">
+            Check out some of my recent blog posts.
+          </p>
+        </div>
+
+        <ul className="divide-y divide-gray-200 dark:divide-gray-700">
+          {!posts.length && <p className="py-4">No posts found.</p>}
+
+          {posts
+            .slice(0, MAX_DISPLAY)
+            .map(({ date, slug, summary, tags, title }) => (
+              <li key={slug} className="py-12">
+                <article>
+                  <div className="space-y-2 xl:grid xl:grid-cols-4 xl:items-baseline xl:space-y-0">
+                    <dl>
+                      <dt className="sr-only">Published on</dt>
+                      <dd className="text-muted text-base font-medium leading-6">
+                        <time dateTime={date}>{formatDate(date)}</time>
+                      </dd>
+                    </dl>
+
+                    <div className="space-y-5 xl:col-span-3">
+                      <div className="space-y-6">
+                        <div>
+                          <h2 className="text-2xl font-bold leading-8">
+                            <Link
+                              className="link-secondary"
+                              href={`/blog/${slug}`}
+                            >
+                              {title}
+                            </Link>
+                          </h2>
+
+                          <TagList tags={tags} />
+                        </div>
+
+                        <div className="text-muted prose max-w-none">
+                          {summary}
+                        </div>
+                      </div>
+
+                      <div className="text-base font-medium leading-6">
+                        <Link
+                          aria-label={`Read "${title}"`}
+                          className="link-primary"
+                          href={`/blog/${slug}`}
+                        >
+                          Read more &rarr;
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
+                </article>
+              </li>
+            ))}
+        </ul>
+      </div>
+
+      {posts.length > MAX_DISPLAY && (
+        <div className="flex justify-end text-base font-medium leading-6">
+          <Link aria-label="all posts" className="link-primary" href="/blog">
+            All Posts &rarr;
+          </Link>
+        </div>
+      )}
+    </>
+  )
+}

@@ -2,8 +2,7 @@
   "extends": [
     "@mskelton",
     "@mskelton/eslint-config/typescript",
-    "@mskelton/eslint-config/react",
-    "next"
+    "@mskelton/eslint-config/react"
   ],
   "overrides": [
     {
