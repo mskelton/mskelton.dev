@@ -4,7 +4,7 @@ import { PageTitle } from "~/components/PageTitle"
 import ScrollTop from "~/components/ScrollTop"
 import SectionContainer from "~/components/SectionContainer"
 import metadata from "~/data/metadata"
-import { PostFrontMatter } from "~/types/FrontMatter"
+import { PostFrontMatter } from "~/types/posts"
 
 const editUrl = (filePath: string) =>
   `${metadata.siteRepo}/blob/main/${filePath}`

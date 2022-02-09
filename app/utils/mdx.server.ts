@@ -2,11 +2,11 @@ import matter from "gray-matter"
 import { bundleMDX } from "mdx-bundler"
 import path from "path"
 import readingTime from "reading-time"
-import { PostFrontMatter } from "~/types/FrontMatter"
-import { listDir, readFile } from "~/utils/github.server"
+import { provider } from "~/providers/provider.server"
+import { PostFrontMatter } from "~/types/posts"
 
 export async function getPostBySlug(slug: string) {
-  const source = await readFile("main", `content/${slug}.md`)
+  const { name, source } = await provider.getPost(slug)
 
   const { default: remarkGfm } = await import("remark-gfm")
   const { remarkCodeTitles } = await import("./remarkCodeTitles.server")
@@ -50,7 +50,7 @@ export async function getPostBySlug(slug: string) {
     frontMatter: {
       ...frontmatter,
       date: frontmatter.date ? new Date(frontmatter.date).toISOString() : null,
-      filePath: `content/${slug}.md`,
+      filePath: `content/${name}`,
       readingTime: readingTime(code),
       slug: slug || null,
     } as unknown as PostFrontMatter,
@@ -63,9 +63,9 @@ function sortByDate(a: PostFrontMatter, b: PostFrontMatter) {
 }
 
 export async function getAllPostsFrontMatter() {
-  return (await listDir("main", "content"))
-    .map(({ content, name }) => {
-      const frontMatter = matter(content).data as PostFrontMatter
+  return (await provider.getAllPosts())
+    .map(({ name, source }) => {
+      const frontMatter = matter(source).data as PostFrontMatter
 
       return {
         ...frontMatter,

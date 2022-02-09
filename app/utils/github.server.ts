@@ -1,10 +1,4 @@
-import { Octokit } from "octokit"
-
-const octokit = new Octokit({
-  auth: process.env.GITHUB_TOKEN,
-})
-
-const LIST_DIR_QUERY = `
+export const LIST_DIR_QUERY = `
 query listDir($expression: String!) {
   repository(owner: "mskelton", name: "mskelton.dev") {
     object(expression: $expression) {
@@ -23,7 +17,7 @@ query listDir($expression: String!) {
 }
 `
 
-interface ListDirResponse {
+export interface ListDirResponse {
   repository: {
     object: {
       entries: {
@@ -34,18 +28,7 @@ interface ListDirResponse {
   }
 }
 
-export async function listDir(branch: string, path: string) {
-  const res = await octokit.graphql<ListDirResponse>(LIST_DIR_QUERY, {
-    expression: `${branch}:${path}`,
-  })
-
-  return res.repository.object.entries.map((entry) => ({
-    content: entry.object.text,
-    name: entry.name,
-  }))
-}
-
-const READ_FILE_QUERY = `
+export const READ_FILE_QUERY = `
   query readFile($expression: String!) {
     repository(owner: "mskelton", name: "mskelton.dev") {
       object(expression: $expression) {
@@ -57,18 +40,10 @@ const READ_FILE_QUERY = `
   }
 `
 
-interface ReadFileResponse {
+export interface ReadFileResponse {
   repository: {
     object: {
       text: string
     }
   }
-}
-
-export async function readFile(branch: string, path: string) {
-  const res = await octokit.graphql<ReadFileResponse>(READ_FILE_QUERY, {
-    expression: `${branch}:${path}`,
-  })
-
-  return res.repository.object.text
 }

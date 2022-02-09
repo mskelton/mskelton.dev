@@ -1,4 +1,4 @@
-export type PostFrontMatter = {
+export interface PostFrontMatter {
   date: string
   filePath: string
   images?: string[]
@@ -6,4 +6,9 @@ export type PostFrontMatter = {
   summary: string
   tags: string[]
   title: string
+}
+
+export interface PostSource {
+  name: string
+  source: string
 }

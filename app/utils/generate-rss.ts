@@ -1,5 +1,5 @@
 import metadata from "~/data/metadata"
-import { PostFrontMatter } from "~/types/FrontMatter"
+import { PostFrontMatter } from "~/types/posts"
 import { escape } from "~/utils/htmlEscaper"
 
 const generateRssItem = (post: PostFrontMatter) => `
