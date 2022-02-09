@@ -5,8 +5,9 @@
   "scripts": {
     "build:css": "tailwindcss -i ./styles/tailwind.css -o ./app/tailwind.css",
     "build": "yarn build:css --minify && remix build",
+    "dev:app": "node -r dotenv/config node_modules/.bin/remix dev",
     "dev:css": "yarn build:css --watch",
-    "dev": "concurrently -c 'blue.bold,magenta.bold' -n 'CSS,Remix' 'yarn dev:css' 'remix dev'",
+    "dev": "concurrently -c 'blue.bold,magenta.bold' -n 'CSS,Remix' 'yarn dev:css' 'yarn dev:app'",
     "postinstall": "remix setup node",
     "lint": "eslint .",
     "format": "prettier --write .",
@@ -22,6 +23,7 @@
     "@vercel/node": "^1.12.1",
     "autoprefixer": "^10.4.2",
     "clsx": "^1.1.1",
+    "dotenv": "^16.0.0",
     "esbuild": "^0.14.11",
     "gray-matter": "^4.0.2",
     "mdx-bundler": "^8.0.1",

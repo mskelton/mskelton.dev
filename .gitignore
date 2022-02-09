@@ -17,3 +17,7 @@ test-results/
 .cache/
 app/tailwind.css
 build/
+
+# Misc
+.env*
+!.env.sample

@@ -1,20 +1,11 @@
-import fs from "fs/promises"
-import matter from "gray-matter"
-import path from "path"
 import slugify from "slugify"
-import { PostFrontMatter } from "~/types/FrontMatter"
-import { root } from "~/utils/files.server"
+import { getAllPostsFrontMatter } from "./mdx.server"
 
 export async function getAllTags() {
-  const files = await fs.readdir(root)
-  const sources = await Promise.all(
-    files.map((file) => fs.readFile(path.join(root, file), "utf8"))
-  )
+  const posts = await getAllPostsFrontMatter()
 
-  return sources.reduce<Record<string, number>>((acc, source) => {
-    const data = matter(source).data as PostFrontMatter
-
-    data.tags?.forEach((tag) => {
+  return posts.reduce<Record<string, number>>((acc, post) => {
+    post.tags.forEach((tag) => {
       const slug = slugify(tag)
       acc[slug] ??= 0
       acc[slug]++

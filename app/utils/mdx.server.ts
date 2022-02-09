@@ -1,15 +1,12 @@
-import fs from "fs/promises"
 import matter from "gray-matter"
 import { bundleMDX } from "mdx-bundler"
 import path from "path"
 import readingTime from "reading-time"
 import { PostFrontMatter } from "~/types/FrontMatter"
-import { root } from "~/utils/files.server"
 import { listDir, readFile } from "~/utils/github.server"
 
 export async function getPostBySlug(slug: string) {
-  const filePath = path.join(root, `${slug}.md`)
-  const source = await fs.readFile(filePath, "utf8")
+  const source = await readFile("main", `content/${slug}.md`)
 
   const { default: remarkGfm } = await import("remark-gfm")
   const { remarkCodeTitles } = await import("./remarkCodeTitles.server")
@@ -53,7 +50,7 @@ export async function getPostBySlug(slug: string) {
     frontMatter: {
       ...frontmatter,
       date: frontmatter.date ? new Date(frontmatter.date).toISOString() : null,
-      fileName: path.basename(filePath),
+      filePath: `content/${slug}.md`,
       readingTime: readingTime(code),
       slug: slug || null,
     } as unknown as PostFrontMatter,
@@ -66,18 +63,15 @@ function sortByDate(a: PostFrontMatter, b: PostFrontMatter) {
 }
 
 export async function getAllPostsFrontMatter() {
-  const files = await listDir(root)
+  return (await listDir("main", "content"))
+    .map(({ content, name }) => {
+      const frontMatter = matter(content).data as PostFrontMatter
 
-  const promises = files.map(async (file) => {
-    const source = await readFile(file.path)
-    const frontMatter = matter(source).data as PostFrontMatter
-
-    return {
-      ...frontMatter,
-      date: new Date(frontMatter.date).toISOString(),
-      slug: path.basename(file).replace(".md", ""),
-    }
-  })
-
-  return (await Promise.all(promises)).sort(sortByDate)
+      return {
+        ...frontMatter,
+        date: new Date(frontMatter.date).toISOString(),
+        slug: path.basename(name).replace(".md", ""),
+      }
+    })
+    .sort(sortByDate)
 }

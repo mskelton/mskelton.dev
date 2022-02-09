@@ -6,8 +6,8 @@ import SectionContainer from "~/components/SectionContainer"
 import metadata from "~/data/metadata"
 import { PostFrontMatter } from "~/types/FrontMatter"
 
-const editUrl = (fileName: string) =>
-  `${metadata.siteRepo}/blob/main/content/${fileName}`
+const editUrl = (filePath: string) =>
+  `${metadata.siteRepo}/blob/main/${filePath}`
 
 function shareUrl(slug: string, title: string) {
   const url = encodeURIComponent(`${metadata.siteUrl}/blog/${slug}`)
@@ -31,7 +31,7 @@ interface PostLayoutProps {
 }
 
 export default function PostLayout({ children, frontMatter }: PostLayoutProps) {
-  const { date, fileName, slug, title } = frontMatter
+  const { date, filePath, slug, title } = frontMatter
 
   return (
     <SectionContainer>
@@ -75,7 +75,7 @@ export default function PostLayout({ children, frontMatter }: PostLayoutProps) {
                 Share on Twitter
               </Link>
               <span>&bull;</span>
-              <Link className="link-primary" href={editUrl(fileName)}>
+              <Link className="link-primary" href={editUrl(filePath)}>
                 View on GitHub
               </Link>
             </div>

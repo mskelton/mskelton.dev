@@ -1,6 +1,6 @@
 export type PostFrontMatter = {
   date: string
-  fileName: string
+  filePath: string
   images?: string[]
   slug: string
   summary: string
