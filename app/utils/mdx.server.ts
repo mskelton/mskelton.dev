@@ -5,6 +5,7 @@ import path from "path"
 import readingTime from "reading-time"
 import { PostFrontMatter } from "~/types/FrontMatter"
 import { root } from "~/utils/files.server"
+import { listDir, readFile } from "~/utils/github.server"
 
 export async function getPostBySlug(slug: string) {
   const filePath = path.join(root, `${slug}.md`)
@@ -65,12 +66,10 @@ function sortByDate(a: PostFrontMatter, b: PostFrontMatter) {
 }
 
 export async function getAllPostsFrontMatter() {
-  const files = (await fs.readdir(root))
-    .filter((file) => file.endsWith(".md"))
-    .map((file) => path.join(root, file))
+  const files = await listDir(root)
 
   const promises = files.map(async (file) => {
-    const source = await fs.readFile(file, "utf8")
+    const source = await readFile(file.path)
     const frontMatter = matter(source).data as PostFrontMatter
 
     return {
