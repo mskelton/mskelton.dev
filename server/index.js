@@ -1,5 +1,8 @@
-const { createRequestHandler } = require("@remix-run/vercel")
+const express = require("express")
+const remix = require("@remix-run/express")
 
-module.exports = createRequestHandler({
-  build: require("./build"),
-})
+const app = express()
+
+app.all("*", remix.createRequestHandler({ build: require("./build") }))
+
+app.listen(8080)

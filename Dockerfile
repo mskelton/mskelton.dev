@@ -11,7 +11,8 @@ WORKDIR /app
 COPY . .
 
 RUN yarn install --immutable
-RUN npm run build
+RUN yarn build
+RUN ls /app
 
 ###############################################################################
 ### INSTALL PRODUCTION DEPS ###################################################
@@ -39,8 +40,8 @@ RUN mkdir /app
 WORKDIR /app
 
 COPY --from=production-deps /app/node_modules /app/node_modules
-COPY --from=build /app/build /app/build
 COPY --from=build /app/public /app/public
+COPY --from=build /app/server /app/server
 COPY . .
 
 CMD ["npm", "run", "start"]
