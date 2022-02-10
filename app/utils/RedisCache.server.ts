@@ -1,11 +1,26 @@
+import { createClient } from "redis"
+
 export class RedisCache {
-  cache: Record<string, any> = {}
+  client = createClient({
+    password: process.env.REDIS_PASSWORD,
+    url: process.env.REDIS_URL,
+  })
+
+  constructor() {
+    this.client.on("error", (error) => {
+      console.error("REDIS ERROR:", error)
+    })
+  }
 
   async get<T>(key: string, freshen: () => T) {
-    if (!this.cache[key]) {
-      this.cache[key] = await freshen()
+    const value = await this.client.get(key)
+
+    if (value) {
+      return JSON.parse(value) as T
     }
 
-    return this.cache[key] as T
+    const newValue = await freshen()
+    await this.client.set(key, JSON.stringify(newValue))
+    return newValue
   }
 }
