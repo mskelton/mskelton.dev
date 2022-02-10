@@ -6,13 +6,16 @@ export class RedisCache {
     url: process.env.REDIS_URL,
   })
 
-  constructor() {
-    this.client.on("error", (error) => {
-      console.error("REDIS ERROR:", error)
-    })
+  async connect() {
+    if (!this.client.isOpen) {
+      this.client.on("error", (error) => console.error("REDIS ERROR:", error))
+
+      await this.client.connect()
+    }
   }
 
   async get<T>(key: string, freshen: () => T) {
+    await this.connect()
     const value = await this.client.get(key)
 
     if (value) {
