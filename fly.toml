@@ -5,6 +5,8 @@ processes = []
 
 [env]
   PORT = "8080"
+  NODE_ENV = "production"
+  REDIS_URL = "redis://mskelton-redis.internal:6379"
 
 [experimental]
   allowed_public_ports = []
