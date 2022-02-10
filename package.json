@@ -28,6 +28,7 @@
     "esbuild": "^0.14.11",
     "express": "^4.17.2",
     "gray-matter": "^4.0.2",
+    "js-yaml": "^4.1.0",
     "mdx-bundler": "^8.0.1",
     "octokit": "^1.7.1",
     "postcss": "^8.4.5",

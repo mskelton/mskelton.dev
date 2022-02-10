@@ -6842,6 +6842,7 @@ fsevents@~2.3.2:
     expect-axe-playwright: ^1.2.1
     express: ^4.17.2
     gray-matter: ^4.0.2
+    js-yaml: ^4.1.0
     lariat: ^1.1.0
     mdx-bundler: ^8.0.1
     octokit: ^1.7.1
