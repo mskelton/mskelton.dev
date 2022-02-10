@@ -5,4 +5,4 @@ const app = express()
 
 app.all("*", remix.createRequestHandler({ build: require("./build") }))
 
-app.listen(8080)
+app.listen(3000)
