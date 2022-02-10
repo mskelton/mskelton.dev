@@ -41,4 +41,4 @@ COPY --from=build /app/public /app/public
 COPY --from=build /app/server /app/server
 COPY . .
 
-CMD ["npm", "run", "start"]
+CMD ["yarn", "start"]

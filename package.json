@@ -9,6 +9,7 @@
     "dev:css": "yarn build:css --watch",
     "dev": "concurrently -c 'blue.bold,magenta.bold' -n 'CSS,Remix' 'yarn dev:css' 'yarn dev:app'",
     "postinstall": "remix setup node",
+    "start": "node server/index.js",
     "lint": "eslint .",
     "format": "prettier --write .",
     "test": "playwright test",
