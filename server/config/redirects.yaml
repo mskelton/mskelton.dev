@@ -1,1 +1,16 @@
-/username: /blog/my-experience-changing-my-github-username
+redirects:
+  /username: /blog/my-experience-changing-my-github-username
+  /shallow: /blog/the-dangers-of-shallow-rendering
+  /npm-publishing: /blog/automated-npm-publishing-using-github-actions
+  /constraints: /blog/using-yarn-constraints
+  /derived-state: /blog/conquering-derived-state
+  /prettier: /blog/auto-formatting-code-using-prettier-and-github-actions
+  /semantic-release: /blog/automating-npm-package-releases
+  /staff-engineer: /blog/my-journey-to-become-a-staff-software-engineer
+  /forex/eskelton/performance/conservative: https://www.myfxbook.com/members/EricSkelton/conservative-account/9327919
+  /forex/mskelton/performance/moderate: https://www.myfxbook.com/members/MarkSkelton/osprey-mt4/9351470/0nrmakgpsZPUYrR3uXu4
+rewrites:
+  /yarn-outdated/:version: https://raw.githubusercontent.com/mskelton/yarn-plugin-outdated/:version/bundles/@yarnpkg/plugin-outdated.js
+  /ratchet.ts: https://raw.githubusercontent.com/mskelton/ratchet/main/transform.ts
+  /ratchet/:asset?: https://ratchet-mskelton.vercel.app/:asset
+  /setup/:asset?: https://setup-mskelton.vercel.app/:asset
