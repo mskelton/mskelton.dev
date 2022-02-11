@@ -15,6 +15,6 @@ export type PostFrontMatter = {
   title: string
 }
 
-export type FrontMatter<T extends "blog" | "authors"> = T extends "blog"
+export type FrontMatter<T extends "blog" | "pages"> = T extends "blog"
   ? PostFrontMatter
   : AuthorFrontMatter
