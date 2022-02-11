@@ -1,13 +1,6 @@
 export type AuthorFrontMatter = {
-  avatar: string
   company: string
-  email: string
-  github: string
-  layout?: string
-  linkedin: string
-  name: string
   occupation: string
-  twitter: string
 }
 
 export type PostFrontMatter = {

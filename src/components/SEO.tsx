@@ -124,7 +124,7 @@ export const BlogSEO = ({
 
   const author = {
     "@type": "Person",
-    name: metadata.author,
+    name: "Mark Skelton",
   }
 
   const structuredData = {
@@ -146,7 +146,7 @@ export const BlogSEO = ({
         "@type": "ImageObject",
         url: `${metadata.siteUrl}${metadata.siteLogo}`,
       },
-      name: metadata.author,
+      name: "Mark Skelton",
     },
   }
 

@@ -24,10 +24,7 @@ export default function Blog({
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
     <>
-      <PageSEO
-        description={metadata.description}
-        title={`Blog - ${metadata.author}`}
-      />
+      <PageSEO description={metadata.description} title="Blog - Mark Skelton" />
 
       <div data-testid="blog">
         <ListLayout

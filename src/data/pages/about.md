@@ -1,12 +1,6 @@
 ---
-name: Mark Skelton
-avatar: mskelton.jpg
 occupation: Staff Software Engineer
 company: Widen
-email: mdskelton99@gmail.com
-twitter: "@mskelton0"
-linkedin: https://www.linkedin.com/in/mskelton0/
-github: https://github.com/mskelton
 ---
 
 Hi, I'm Mark! 👋
