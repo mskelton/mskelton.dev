@@ -2,6 +2,7 @@ import Image from "next/image"
 import { ReactNode } from "react"
 import { PageSEO } from "components/SEO"
 import { AuthorFrontMatter } from "types/FrontMatter"
+import logo from "../../public/images/me.jpg"
 
 interface AuthorLayoutProps {
   children?: ReactNode
@@ -32,7 +33,7 @@ export default function AboutLayout({
               alt="avatar"
               className="h-48 w-48 rounded-full"
               height="192px"
-              src="/images/me.jpg"
+              src={logo}
               width="192px"
             />
 

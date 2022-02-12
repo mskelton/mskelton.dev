@@ -5,7 +5,6 @@ const metadata = {
   language: "en-us",
   linkedin: "https://www.linkedin.com/in/mskelton0/",
   locale: "en-US",
-  siteLogo: "/images/me.jpg",
   siteRepo: "https://github.com/mskelton/mskelton.dev",
   siteUrl: "https://mskelton.dev",
   title: "Mark Skelton",

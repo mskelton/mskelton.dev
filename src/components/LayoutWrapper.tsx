@@ -2,6 +2,7 @@ import Image from "next/image"
 import { ReactNode } from "react"
 import metadata from "data/metadata"
 import { navLinks } from "data/nav"
+import logo from "../../public/images/me.jpg"
 import { Footer } from "./Footer"
 import { Link } from "./Link"
 import { MobileNav } from "./MobileNav"
@@ -24,9 +25,9 @@ export function LayoutWrapper({ children }: LayoutWrapperProps) {
                   <Image
                     alt="Mark Skelton"
                     className="rounded-full"
-                    height={40}
-                    src="/images/me.jpg"
-                    width={40}
+                    height="40px"
+                    src={logo}
+                    width="40px"
                   />
                 </div>
 
