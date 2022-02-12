@@ -26,7 +26,7 @@ export function dateSortDesc(a: string, b: string) {
   return 0
 }
 
-export async function getFileBySlug<T extends "blog" | "authors">(
+export async function getFileBySlug<T extends "blog" | "pages">(
   type: T,
   slug: string
 ) {

@@ -15,7 +15,7 @@ export function Footer() {
       <div className="mb-2 flex space-x-2">
         <span>{`© ${new Date().getFullYear()}`}</span>
         <span>{` • `}</span>
-        <span>{metadata.author}</span>
+        <span>Mark Skelton</span>
       </div>
 
       <div className="mb-8">

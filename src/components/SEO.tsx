@@ -102,7 +102,6 @@ export const BlogSEO = ({
   lastmod,
   summary,
   title,
-  url,
 }: BlogSEOProps) => {
   const router = useRouter()
   const publishedAt = new Date(date).toISOString()
@@ -122,34 +121,6 @@ export const BlogSEO = ({
     }
   })
 
-  const author = {
-    "@type": "Person",
-    name: metadata.author,
-  }
-
-  const structuredData = {
-    "@context": "https://schema.org",
-    "@type": "Article",
-    author,
-    dateModified: modifiedAt,
-    datePublished: publishedAt,
-    description: summary,
-    headline: title,
-    image: featuredImages,
-    mainEntityOfPage: {
-      "@id": url,
-      "@type": "WebPage",
-    },
-    publisher: {
-      "@type": "Organization",
-      logo: {
-        "@type": "ImageObject",
-        url: `${metadata.siteUrl}${metadata.siteLogo}`,
-      },
-      name: metadata.author,
-    },
-  }
-
   return (
     <>
       <CommonSEO
@@ -166,12 +137,6 @@ export const BlogSEO = ({
           <meta content={modifiedAt} property="article:modified_time" />
         )}
         <link href={`${metadata.siteUrl}${router.asPath}`} rel="canonical" />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(structuredData, null, 2),
-          }}
-          type="application/ld+json"
-        />
       </Head>
     </>
   )

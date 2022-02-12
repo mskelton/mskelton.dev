@@ -1,7 +1,7 @@
 import Image from "next/image"
 import { ReactNode } from "react"
-import headerNavLinks from "data/headerNavLinks"
 import metadata from "data/metadata"
+import { navLinks } from "data/nav"
 import { Footer } from "./Footer"
 import { Link } from "./Link"
 import { MobileNav } from "./MobileNav"
@@ -22,16 +22,16 @@ export function LayoutWrapper({ children }: LayoutWrapperProps) {
               <div className="flex items-center justify-between">
                 <div className="mr-3">
                   <Image
-                    alt={metadata.author}
+                    alt="Mark Skelton"
                     className="rounded-full"
                     height={40}
-                    src="/images/logo.jpg"
+                    src="/images/me.jpg"
                     width={40}
                   />
                 </div>
 
                 <p className="hidden text-2xl font-semibold sm:block">
-                  {metadata.headerTitle}
+                  {metadata.title}
                 </p>
               </div>
             </Link>
@@ -39,7 +39,7 @@ export function LayoutWrapper({ children }: LayoutWrapperProps) {
 
           <div className="flex items-center text-base leading-5">
             <div className="hidden sm:block">
-              {headerNavLinks.map((link) => (
+              {navLinks.map((link) => (
                 <Link
                   key={link.title}
                   className="link-secondary p-1 font-medium sm:p-4"

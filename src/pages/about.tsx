@@ -3,7 +3,7 @@ import { MDXLayoutRenderer } from "components/MDXComponents"
 import { getFileBySlug } from "lib/mdx"
 
 export async function getStaticProps() {
-  const authorDetails = await getFileBySlug("authors", "mskelton")
+  const authorDetails = await getFileBySlug("pages", "about")
   return { props: { authorDetails } }
 }
 
@@ -16,7 +16,7 @@ export default function About({
     <div data-testid="about">
       <MDXLayoutRenderer
         frontMatter={frontMatter}
-        layout="AuthorLayout"
+        layout="AboutLayout"
         mdxSource={mdxSource}
       />
     </div>

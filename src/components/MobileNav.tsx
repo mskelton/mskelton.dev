@@ -1,5 +1,5 @@
 import { useState } from "react"
-import headerNavLinks from "data/headerNavLinks"
+import { navLinks } from "data/nav"
 import { Link } from "./Link"
 
 export function MobileNav() {
@@ -47,7 +47,7 @@ export function MobileNav() {
           navShow ? "translate-x-0" : "translate-x-full"
         }`}
       >
-        {headerNavLinks.map((link) => (
+        {navLinks.map((link) => (
           <Link
             key={link.href}
             className="link-secondary block px-12 py-4 text-2xl font-bold"

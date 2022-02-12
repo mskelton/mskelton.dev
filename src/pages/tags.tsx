@@ -1,7 +1,6 @@
 import { InferGetStaticPropsType } from "next"
 import { PageSEO } from "components/SEO"
 import Tag from "components/Tag"
-import metadata from "data/metadata"
 import { getAllTags } from "lib/tags"
 
 export async function getStaticProps() {
@@ -16,10 +15,7 @@ export default function Tags({
 
   return (
     <>
-      <PageSEO
-        description="Things I blog about"
-        title={`Tags - ${metadata.author}`}
-      />
+      <PageSEO description="Things I blog about" title="Tags - Mark Skelton" />
 
       <div
         className="flex flex-col items-start justify-start divide-y divide-gray-200 dark:divide-gray-700 md:mt-24 md:flex-row md:items-center md:justify-center md:space-x-6 md:divide-y-0"
@@ -35,7 +31,8 @@ export default function Tags({
           {sortedTags.map((tag) => (
             <div key={tag} className="mt-2 mb-2 mr-5">
               <Tag>{tag}</Tag>
-              <span className="-ml-2 text-xs font-semibold text-gray-600 dark:text-gray-300">
+
+              <span className="ml-1 text-xs font-semibold text-gray-600 dark:text-gray-300">
                 ({tags[tag]})
               </span>
             </div>
