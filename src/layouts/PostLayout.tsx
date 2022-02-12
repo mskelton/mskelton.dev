@@ -12,7 +12,7 @@ const editUrl = (fileName: string) =>
 function shareUrl(slug: string, title: string) {
   const url = encodeURIComponent(`${metadata.siteUrl}/blog/${slug}`)
   const text = encodeURIComponent(
-    `Just finished reading "${title}" by @mskelton.`
+    `Just finished reading "${title}" by @mskelton0.`
   )
 
   return `https://twitter.com/intent/tweet?text=${text}&url=${url}`
