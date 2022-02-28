@@ -50,8 +50,8 @@
   ],
   "rewrites": [
     {
-      "source": "/yarn-outdated/:version*",
-      "destination": "https://raw.githubusercontent.com/mskelton/yarn-plugin-outdated/:version*/bundles/@yarnpkg/plugin-outdated.js"
+      "source": "/analyzer/:asset*",
+      "destination": "https://analyzer-mskelton.vercel.app/:asset*"
     },
     {
       "source": "/ratchet.ts",
@@ -64,6 +64,10 @@
     {
       "source": "/setup/:asset*",
       "destination": "https://setup-mskelton.vercel.app/:asset*"
+    },
+    {
+      "source": "/yarn-outdated/:version*",
+      "destination": "https://raw.githubusercontent.com/mskelton/yarn-plugin-outdated/:version*/bundles/@yarnpkg/plugin-outdated.js"
     }
   ]
 }
