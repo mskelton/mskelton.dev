@@ -50,10 +50,6 @@
   ],
   "rewrites": [
     {
-      "source": "/analyzer/:asset*",
-      "destination": "https://analyzer-mskelton.vercel.app/:asset*"
-    },
-    {
       "source": "/ratchet.ts",
       "destination": "https://raw.githubusercontent.com/mskelton/ratchet/main/transform.ts"
     },
