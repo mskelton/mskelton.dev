@@ -1,7 +1,7 @@
 import Head from "next/head"
 import { useRouter } from "next/router"
 import metadata from "data/metadata"
-import { AuthorFrontMatter, PostFrontMatter } from "types/FrontMatter"
+import { PostFrontMatter } from "types/FrontMatter"
 
 interface CommonSEOProps {
   description: string
