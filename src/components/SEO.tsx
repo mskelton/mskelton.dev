@@ -92,7 +92,6 @@ export function TagSEO({ description, title }: PageSEOProps) {
 }
 
 interface BlogSEOProps extends PostFrontMatter {
-  authorDetails?: AuthorFrontMatter[]
   url: string
 }
 

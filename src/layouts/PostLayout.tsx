@@ -3,6 +3,7 @@ import { Link } from "components/Link"
 import { PageTitle } from "components/PageTitle"
 import ScrollTop from "components/ScrollTop"
 import SectionContainer from "components/SectionContainer"
+import { BlogSEO } from "components/SEO"
 import metadata from "data/metadata"
 import { PostFrontMatter } from "types/FrontMatter"
 
@@ -35,6 +36,7 @@ export default function PostLayout({ children, frontMatter }: PostLayoutProps) {
 
   return (
     <SectionContainer>
+      <BlogSEO url={`${metadata.siteUrl}/blog/${slug}`} {...frontMatter} />
       <ScrollTop />
 
       <article className="mx-auto max-w-4xl divide-y divide-gray-200 dark:divide-gray-700">
