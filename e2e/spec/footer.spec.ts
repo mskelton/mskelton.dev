@@ -6,7 +6,7 @@ test.describe("footer", async () => {
   })
 
   test("renders social links", async ({ footer }) => {
-    await expect(footer.socialLink).toHaveCount(4)
+    await expect(footer.socialLink).toHaveCount(3)
 
     const links = [
       "https://github.com/mskelton",
@@ -19,10 +19,5 @@ test.describe("footer", async () => {
       await expect(link).toHaveAttribute("href", links[i])
       await expect(link).toHaveAttribute("target", "_blank")
     }
-
-    await expect(footer.socialLink.last()).toHaveAttribute(
-      "href",
-      "mailto:mdskelton99@gmail.com"
-    )
   })
 })

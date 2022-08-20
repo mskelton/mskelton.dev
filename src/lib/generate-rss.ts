@@ -9,7 +9,7 @@ const generateRssItem = (post: PostFrontMatter) => `
     <link>${metadata.siteUrl}/blog/${post.slug}</link>
     ${post.summary && `<description>${escape(post.summary)}</description>`}
     <pubDate>${new Date(post.date).toUTCString()}</pubDate>
-    <author>${metadata.email} (Mark Skelton)</author>
+    <author>Mark Skelton</author>
     ${post.tags && post.tags.map((t) => `<category>${t}</category>`).join("")}
   </item>
 `
@@ -21,8 +21,8 @@ const generateRss = (posts: PostFrontMatter[], page = "feed.xml") => `
       <link>${metadata.siteUrl}/blog</link>
       <description>${escape(metadata.description)}</description>
       <language>${metadata.language}</language>
-      <managingEditor>${metadata.email} (Mark Skelton)</managingEditor>
-      <webMaster>${metadata.email} (Mark Skelton)</webMaster>
+      <managingEditor>Mark Skelton</managingEditor>
+      <webMaster>Mark Skelton</webMaster>
       <lastBuildDate>${new Date(posts[0].date).toUTCString()}</lastBuildDate>
       <atom:link href="${
         metadata.siteUrl
