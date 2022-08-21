@@ -1,5 +1,6 @@
 const metadata = {
   description: "Software developer, Christ follower, small town kid.",
+  email: "info@mskelton.dev",
   github: "https://github.com/mskelton",
   language: "en-us",
   linkedin: "https://www.linkedin.com/in/mskelton0/",

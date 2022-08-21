@@ -9,6 +9,7 @@ export function Footer() {
         <SocialLink href={metadata.github} kind="github" />
         <SocialLink href={metadata.twitter} kind="twitter" />
         <SocialLink href={metadata.linkedin} kind="linkedin" />
+        <SocialLink href={`mailto:${metadata.email}`} kind="mail" />
       </div>
 
       <div className="mb-2 flex space-x-2">
