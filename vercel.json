@@ -51,6 +51,10 @@
   ],
   "rewrites": [
     {
+      "source": "/dottie.sh",
+      "destination": "https://raw.githubusercontent.com/mskelton/dottie/main/dottie.sh"
+    },
+    {
       "source": "/ratchet.ts",
       "destination": "https://raw.githubusercontent.com/mskelton/ratchet/main/transform.ts"
     },
