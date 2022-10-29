@@ -1,22 +1,27 @@
-import "css/app.css"
-import "css/prism.css"
-import "css/tailwind.css"
-import { ThemeProvider } from "next-themes"
+import "styles/tailwind.css"
 import { AppProps } from "next/app"
-import Head from "next/head"
-import { Analytics } from "components/Analytics"
-import { LayoutWrapper } from "components/LayoutWrapper"
+import { Footer } from "components/Footer"
+import { Header } from "components/Header"
+import { usePrevious } from "hooks/usePrevious"
 
-export default function App({ Component, pageProps }: AppProps) {
+export default function App({ Component, pageProps, router }: AppProps) {
+  const previousPathname = usePrevious(router.pathname)
+
   return (
-    <ThemeProvider attribute="class">
-      <Head>
-        <meta content="width=device-width, initial-scale=1" name="viewport" />
-      </Head>
-      <Analytics />
-      <LayoutWrapper>
-        <Component {...pageProps} />
-      </LayoutWrapper>
-    </ThemeProvider>
+    <>
+      <div className="fixed inset-0 flex justify-center sm:px-8">
+        <div className="flex w-full max-w-7xl lg:px-8">
+          <div className="w-full bg-white ring-1 ring-zinc-100 dark:bg-zinc-900 dark:ring-zinc-300/20" />
+        </div>
+      </div>
+
+      <div className="relative">
+        <Header />
+        <main>
+          <Component previousPathname={previousPathname} {...pageProps} />
+        </main>
+        <Footer />
+      </div>
+    </>
   )
 }
