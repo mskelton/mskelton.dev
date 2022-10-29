@@ -11,7 +11,7 @@ export async function generateRssFeed() {
   const feed = new Feed({
     author,
     copyright: `All rights reserved ${new Date().getFullYear()}`,
-    description: siteMeta.description,
+    description: siteMeta.tagline,
     favicon: `${siteMeta.url}/favicon.ico`,
     feedLinks: {
       json: `${siteMeta.url}/rss/feed.json`,

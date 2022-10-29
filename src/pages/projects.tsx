@@ -1,76 +1,73 @@
 import Image from "next/future/image"
 import Head from "next/head"
 import { Card } from "components/Card"
+import { LinkIcon } from "components/icons"
 import { SimpleLayout } from "components/SimpleLayout"
 import logoAnimaginary from "images/logos/animaginary.svg"
-import logoCosmos from "images/logos/cosmos.svg"
 import logoHelioStream from "images/logos/helio-stream.svg"
-import logoOpenShuttle from "images/logos/open-shuttle.svg"
 import logoPlanetaria from "images/logos/planetaria.svg"
+import { siteMeta } from "lib/siteMeta"
+
+function gh(slug: string) {
+  return {
+    href: `https://github.com/${slug}`,
+    label: "github.com",
+  }
+}
 
 const projects = [
   {
-    description:
-      "Creating technology to empower civilians to explore space on their own terms.",
-    link: { href: "http://planetaria.tech", label: "planetaria.tech" },
+    description: `The 2nd most popular JetBrains theme and the only project I created that someone else maintains.`,
+    link: gh("one-dark/jetbrains-one-dark-theme"),
     logo: logoPlanetaria,
-    name: "Planetaria",
+    name: "JetBrains One Dark Theme",
   },
   {
-    description:
-      "High performance web animation library, hand-written in optimized WASM.",
-    link: { href: "#", label: "github.com" },
+    description: `Yarn plugin to show outdated dependencies with way more features than anyone needs.`,
+    link: gh("mskelton/yarn-plugin-outdated"),
     logo: logoAnimaginary,
-    name: "Animaginary",
+    name: "Yarn Outdated Plugin",
   },
   {
-    description:
-      "Real-time video streaming library, optimized for interstellar transmission.",
-    link: { href: "#", label: "github.com" },
+    description: `Automatically convert React PropTypes to TypeScript definitions.`,
+    link: { href: `${siteMeta.url}/ratchet`, label: "mskelton.dev" },
     logo: logoHelioStream,
-    name: "HelioStream",
+    name: "Ratchet",
   },
   {
-    description:
-      "The operating system that powers our Planetaria space shuttles.",
-    link: { href: "#", label: "github.com" },
-    logo: logoCosmos,
-    name: "cosmOS",
+    description: `ESLint plugin for sorting imports, object properties, and more. Did I mention auto-fix that always works?`,
+    link: {
+      href: "https://www.npmjs.com/package/eslint-plugin-sort",
+      label: "npmjs.com",
+    },
+    logo: logoAnimaginary,
+    name: "ESLint Sort Plugin",
   },
   {
-    description:
-      "The schematics for the first rocket I designed that successfully made it to orbit.",
-    link: { href: "#", label: "github.com" },
-    logo: logoOpenShuttle,
-    name: "OpenShuttle",
+    description: `ESLint plugin for Playwright testing with lots of rules to help you enforce good testing practices.`,
+    link: {
+      href: "https://www.npmjs.com/package/eslint-plugin-playwright",
+      label: "npmjs.com",
+    },
+    logo: logoAnimaginary,
+    name: "ESLint Playwright Plugin",
   },
 ]
 
-function LinkIcon(props: React.SVGProps<SVGSVGElement>) {
-  return (
-    <svg aria-hidden="true" viewBox="0 0 24 24" {...props}>
-      <path
-        d="M15.712 11.823a.75.75 0 1 0 1.06 1.06l-1.06-1.06Zm-4.95 1.768a.75.75 0 0 0 1.06-1.06l-1.06 1.06Zm-2.475-1.414a.75.75 0 1 0-1.06-1.06l1.06 1.06Zm4.95-1.768a.75.75 0 1 0-1.06 1.06l1.06-1.06Zm3.359.53-.884.884 1.06 1.06.885-.883-1.061-1.06Zm-4.95-2.12 1.414-1.415L12 6.344l-1.415 1.413 1.061 1.061Zm0 3.535a2.5 2.5 0 0 1 0-3.536l-1.06-1.06a4 4 0 0 0 0 5.656l1.06-1.06Zm4.95-4.95a2.5 2.5 0 0 1 0 3.535L17.656 12a4 4 0 0 0 0-5.657l-1.06 1.06Zm1.06-1.06a4 4 0 0 0-5.656 0l1.06 1.06a2.5 2.5 0 0 1 3.536 0l1.06-1.06Zm-7.07 7.07.176.177 1.06-1.06-.176-.177-1.06 1.06Zm-3.183-.353.884-.884-1.06-1.06-.884.883 1.06 1.06Zm4.95 2.121-1.414 1.414 1.06 1.06 1.415-1.413-1.06-1.061Zm0-3.536a2.5 2.5 0 0 1 0 3.536l1.06 1.06a4 4 0 0 0 0-5.656l-1.06 1.06Zm-4.95 4.95a2.5 2.5 0 0 1 0-3.535L6.344 12a4 4 0 0 0 0 5.656l1.06-1.06Zm-1.06 1.06a4 4 0 0 0 5.657 0l-1.061-1.06a2.5 2.5 0 0 1-3.535 0l-1.061 1.06Zm7.07-7.07-.176-.177-1.06 1.06.176.178 1.06-1.061Z"
-        fill="currentColor"
-      />
-    </svg>
-  )
-}
-
 export default function Projects() {
+  const description =
+    "Things I’ve done to make creating software a little bit easier."
+
   return (
     <>
       <Head>
         <title>Projects - Mark Skelton</title>
-        <meta
-          content="Things I’ve made trying to put my dent in the universe."
-          name="description"
-        />
+        <meta content={description} name="description" />
       </Head>
 
       <SimpleLayout
-        intro="I’ve worked on tons of little projects over the years but these are the ones that I’m most proud of. Many of them are open-source, so if you see something that piques your interest, check out the code and contribute if you have ideas for how it can be improved."
-        title="Things I’ve made trying to put my dent in the universe."
+        intro="I love creating software, especially when it makes the process of creating software more enjoyable. These are some of my more popular projects that I’m proud of."
+        title={description}
       >
         <ul
           className="grid grid-cols-1 gap-x-12 gap-y-16 sm:grid-cols-2 lg:grid-cols-3"
