@@ -2,28 +2,29 @@ import { Feed } from "feed"
 import { mkdir, writeFile } from "fs/promises"
 import ReactDOMServer from "react-dom/server"
 import { getAllArticles } from "./getAllArticles"
+import { siteMeta } from "./siteMeta"
 
 export async function generateRssFeed() {
   const articles = await getAllArticles()
-  const author = { email: "info@mskelton.dev", name: "Mark Skelton" }
+  const author = { email: siteMeta.email, name: "Mark Skelton" }
 
   const feed = new Feed({
     author,
     copyright: `All rights reserved ${new Date().getFullYear()}`,
-    description: "Your blog description",
-    favicon: "https://mskelton.dev/favicon.ico",
+    description: siteMeta.description,
+    favicon: `${siteMeta.url}/favicon.ico`,
     feedLinks: {
-      json: "https://mskelton.dev/rss/feed.json",
-      rss2: "https://mskelton.dev/rss/feed.xml",
+      json: `${siteMeta.url}/rss/feed.json`,
+      rss2: `${siteMeta.url}/rss/feed.xml`,
     },
-    id: "https://mskelton.dev",
-    image: "https://mskelton.dev/favicon.ico",
-    link: "https://mskelton.dev",
+    id: siteMeta.url,
+    image: `${siteMeta.url}/favicon.ico`,
+    link: siteMeta.url,
     title: author.name,
   })
 
   for (const article of articles) {
-    const url = `https://mskelton.dev/blog/${article.slug}`
+    const url = `${siteMeta.url}/blog/${article.slug}`
     const html = ReactDOMServer.renderToStaticMarkup(
       <article.component isRssFeed />
     )

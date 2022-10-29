@@ -196,7 +196,7 @@ function Resume() {
       </ol>
 
       <Button className="group mt-6 w-full" href="#" variant="secondary">
-        Download CV
+        Download resume
         <ArrowDownIcon className="h-4 w-4 stroke-zinc-400 transition group-active:stroke-zinc-600 dark:group-hover:stroke-zinc-50 dark:group-active:stroke-zinc-50" />
       </Button>
     </div>

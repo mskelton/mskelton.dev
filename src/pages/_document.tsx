@@ -1,4 +1,5 @@
 import { Head, Html, Main, NextScript } from "next/document"
+import { siteMeta } from "lib/siteMeta"
 
 const modeScript = `
   let darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
@@ -42,12 +43,12 @@ export default function Document() {
         <script dangerouslySetInnerHTML={{ __html: modeScript }} />
 
         <link
-          href="https://mskelton.dev/rss/feed.xml"
+          href={`${siteMeta.url}/rss/feed.xml`}
           rel="alternate"
           type="application/rss+xml"
         />
         <link
-          href="https://mskelton.dev/rss/feed.json"
+          href={`${siteMeta.url}/rss/feed.json`}
           rel="alternate"
           type="application/feed+json"
         />

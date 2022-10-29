@@ -5,6 +5,7 @@ import Link from "next/link"
 import { Container } from "components/Container"
 import { socials } from "components/SocialIcons"
 import portraitImage from "images/portrait.jpg"
+import { siteMeta } from "lib/siteMeta"
 
 export interface SocialLinkProps {
   children?: React.ReactNode
@@ -112,10 +113,10 @@ export default function About() {
 
               <SocialLink
                 className="mt-8 border-t border-zinc-100 pt-8 dark:border-zinc-700/40"
-                href="mailto:info@mskelton.dev"
+                href={`mailto:${siteMeta.email}`}
                 icon={MailIcon}
               >
-                info@mskelton.dev
+                {siteMeta.email}
               </SocialLink>
             </ul>
           </div>
