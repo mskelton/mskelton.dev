@@ -206,7 +206,7 @@ export default function Home({ articles }: HomeProps) {
   return (
     <>
       <Head>
-        <title>Mark Skelton - {siteMeta.tagline}</title>
+        <title>{`Mark Skelton - ${siteMeta.tagline}`}</title>
         <meta content={siteMeta.description} name="description" />
       </Head>
 

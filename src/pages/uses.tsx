@@ -31,45 +31,70 @@ function Tool({ children, href, title }: ToolProps) {
 }
 
 export default function Uses() {
+  const description = `Software I use, gadgets I love, and other things I recommend.`
+
   return (
     <>
       <Head>
         <title>Uses - Mark Skelton</title>
-        <meta
-          content="Software I use, gadgets I love, and other things I recommend."
-          name="description"
-        />
+        <meta content={description} name="description" />
       </Head>
       <SimpleLayout
         intro="I get asked a lot about the things I use to build software, stay productive, or buy to fool myself into thinking I’m being productive when I’m really just procrastinating. Here’s a big list of all of my favorite stuff."
-        title="Software I use, gadgets I love, and other things I recommend."
+        title={description}
       >
         <div className="space-y-20">
           <ToolsSection title="Workstation">
-            <Tool title="16” MacBook Pro, M1 Max, 64GB RAM (2021)">
-              I was using an Intel-based 16” MacBook Pro prior to this and the
-              difference is night and day. I’ve never heard the fans turn on a
-              single time, even under the incredibly heavy loads I put it
-              through with our various launch simulations.
+            <Tool title="15” MacBook Pro, Intel Core i7, 16GB RAM (2016)">
+              My first MacBook, much to the chagrin of my Dad at the time (who
+              now also uses a MacBook). While I was dissapointed to hear that my
+              computer is not eligable for macOS Ventura due to it’s age, I
+              don’t think I’ll replace it just yet as it still runs like a
+              champ.
             </Tool>
-            <Tool title="Apple Pro Display XDR (Standard Glass)">
+
+            <Tool title="LG Ultra Fine ">
               The only display on the market if you want something HiDPI and
               bigger than 27”. When you’re working at planetary scale, every
               pixel you can get counts.
             </Tool>
-            <Tool title="IBM Model M SSK Industrial Keyboard">
-              They don’t make keyboards the way they used to. I buy these any
-              time I see them go up for sale and keep them in storage in case I
-              need parts or need to retire my main.
+
+            <Tool
+              href="https://www.zsa.io/moonlander"
+              title="Moonlander Mark 1 Keyboard"
+            >
+              Ortholinear split keyboars are the way to go. While $350 looks
+              like a lot on paper, it’s a small price for something that can
+              save your wrist health and improve your productivity. After all,
+              if you are using your keyboard for 8+ hours a day, shouldn’t it be
+              good?
             </Tool>
-            <Tool title="Apple Magic Trackpad">
+
+            <Tool
+              href="https://www.logitech.com/en-us/products/mice/mx-master-3s.html"
+              title="Logitech MX Master 3s Mouse"
+            >
               Something about all the gestures makes me feel like a wizard with
               special powers. I really like feeling like a wizard with special
               powers.
             </Tool>
-            <Tool title="Herman Miller Aeron Chair">
-              If I’m going to slouch in the worst ergonomic position imaginable
-              all day, I might as well do it in an expensive chair.
+
+            <Tool
+              href="https://www.autonomous.ai/standing-desks/smartdesk-2-home"
+              title="Autonomous SmartDesk Core"
+            >
+              I love my standing desk. So much easier to work when I can
+              alternate between sitting and standing, and Autonomous is really
+              high quality for the price.
+            </Tool>
+
+            <Tool
+              href="https://www.autonomous.ai/office-chairs/ergonomic-chair"
+              title="Autonomous ErgoChair Pro"
+            >
+              While certainly as fancy as a Herman Miller chair, this chair
+              get’s the job done and is much better than the kitchen chair I
+              used for three years.
             </Tool>
           </ToolsSection>
 

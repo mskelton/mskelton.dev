@@ -55,8 +55,7 @@ const projects = [
 ]
 
 export default function Projects() {
-  const description =
-    "Things I’ve done to make creating software a little bit easier."
+  const description = `Things I’ve done to make software development just a little bit easier.`
 
   return (
     <>
