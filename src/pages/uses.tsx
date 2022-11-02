@@ -40,30 +40,30 @@ export default function Uses() {
         <meta content={description} name="description" />
       </Head>
       <SimpleLayout
-        intro="I get asked a lot about the things I use to build software, stay productive, or buy to fool myself into thinking I’m being productive when I’m really just procrastinating. Here’s a big list of all of my favorite stuff."
+        intro="I create software 40+ hours per week so having the right tools is important to me. Poor tools can result in lower productivity and increased health risk. Here’s a big list of all of my favorite stuff."
         title={description}
       >
         <div className="space-y-20">
           <ToolsSection title="Workstation">
             <Tool title="15” MacBook Pro, Intel Core i7, 16GB RAM (2016)">
               My first MacBook, much to the chagrin of my Dad at the time (who
-              now also uses a MacBook). While I was dissapointed to hear that my
-              computer is not eligable for macOS Ventura due to it’s age, I
+              now also uses a MacBook). While I was disappointed to hear that my
+              computer is not eligible for macOS Ventura due to it’s age, I
               don’t think I’ll replace it just yet as it still runs like a
               champ.
             </Tool>
 
-            <Tool title="LG Ultra Fine ">
-              The only display on the market if you want something HiDPI and
-              bigger than 27”. When you’re working at planetary scale, every
-              pixel you can get counts.
+            <Tool title="LG 4k Monitor (2x)">
+              Multiple monitors is the only way to go. Thanks to my work getting
+              rid of some old monitors, I now have the best of both worlds with
+              a large main monitor <i>and</i> a secondary monitor.
             </Tool>
 
             <Tool
               href="https://www.zsa.io/moonlander"
-              title="Moonlander Mark 1 Keyboard"
+              title="Moonlander Mark I Keyboard"
             >
-              Ortholinear split keyboars are the way to go. While $350 looks
+              Ortholinear split keyboards are the way to go. While $350 looks
               like a lot on paper, it’s a small price for something that can
               save your wrist health and improve your productivity. After all,
               if you are using your keyboard for 8+ hours a day, shouldn’t it be
@@ -72,11 +72,12 @@ export default function Uses() {
 
             <Tool
               href="https://www.logitech.com/en-us/products/mice/mx-master-3s.html"
-              title="Logitech MX Master 3s Mouse"
+              title="Logitech MX Master 3S Mouse"
             >
-              Something about all the gestures makes me feel like a wizard with
-              special powers. I really like feeling like a wizard with special
-              powers.
+              Not being a gamer, having a fancy mouse seemed like something I
+              wouldn’t do, but I decied to try it to improve ergonimics and
+              efficency, and now there is no turning back. This mouse has by far
+              the greatest scroll wheel I’ve ever used.
             </Tool>
 
             <Tool
@@ -100,41 +101,49 @@ export default function Uses() {
 
           <ToolsSection title="Development tools">
             <Tool href="https://neovim.io" title="Neovim">
-              I don’t care if it’s missing all of the fancy IDE features
-              everyone else relies on, Sublime Text is still the best text
-              editor ever made.
+              I used to be a VS Code fanboy, but after using Vim motions for
+              over a year, I switched to Neovim. Not the best tool for
+              beginners, but if you are like me and enjoy spending hours
+              tweaking and improving your Neovim configuration, it’s a great
+              tool.
             </Tool>
+
             <Tool href="https://sw.kovidgoyal.net/kitty/" title="Kitty">
-              I’m honestly not even sure what features I get with this that
-              aren’t just part of the macOS Terminal but it’s what I use.
+              A “blazingly fast” terminal emulator that works very well with my
+              workflow. Easily configurable with code which makes it much
+              superior to the default macOS terminal.
             </Tool>
-            <Tool title="TablePlus">
-              Great software for working with databases. Has saved me from
-              building about a thousand admin interfaces for my various projects
-              over the years.
+
+            <Tool href="https://1password.com" title="1Password">
+              By far the best password manager on the market. Totally worth the
+              small price for the security and functionality it provides.
             </Tool>
           </ToolsSection>
 
           <ToolsSection title="Productivity">
             <Tool href="https://www.raycast.com" title="Raycast">
-              It’s not the newest kid on the block but it’s still the fastest.
-              The Sublime Text of the application launcher world.
+              I used to use Alfred as a Spotlight replacement, but when Raycast
+              came on the scene, it was a simple decision to switch. Highly
+              extensible thanks to their extension API.
             </Tool>
-            <Tool title="Reflect">
-              Using a daily notes system instead of trying to keep things
-              organized by topics has been super powerful for me. And with
-              Reflect, it’s still easy for me to keep all of that stuff
-              discoverable by topic even though all of my writing happens in the
-              daily note.
+
+            <Tool href="https://taskwarrior.org" title="Taskwarrior">
+              Since I began my transition to Vim, I started to become a terminal
+              junkie. Taskwarrior is an impressive CLI that let’s you manage
+              your todo list entirely from the command line with tons of
+              powerful features.
             </Tool>
-            <Tool title="SavvyCal">
-              Great tool for scheduling meetings while protecting my calendar
-              and making sure I still have lots of time for deep work during the
-              week.
+
+            <Tool href="https://shottr.cc" title="Shottr">
+              A better macOS screenshot tool. Not much more to be said, it’s
+              just straight up awesome.
             </Tool>
-            <Tool title="Focus">
-              Simple tool for blocking distracting websites when I need to just
-              do the work and get some momentum going.
+
+            <Tool href="https://justgetflux.com" title="Flux">
+              Not long into my career, I found that blue light was not great
+              when starring at a computer for long periods of time. While there
+              are built-in night modes on Mac, I find the customization of Flux
+              hard to beat.
             </Tool>
           </ToolsSection>
         </div>
