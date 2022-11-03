@@ -1,16 +1,15 @@
 import { visit } from "unist-util-visit"
 
 const className = [
-  "relative",
-  "top-8",
-  "right-8",
-  "bg-zinc-800",
+  "absolute",
+  "top-0",
+  "left-0",
   "px-8",
-  "py-2",
+  "py-3",
+  "bg-zinc-800",
   "text-white",
-  "text-xs",
-  "-m-8",
-  // width: calc(100% + 64px);
+  "text-sm",
+  "w-full",
 ]
 
 export default function rehypeCodeTitles() {
@@ -30,7 +29,7 @@ export default function rehypeCodeTitles() {
       return
     }
 
-    node.properties.className = ["relative"]
+    node.properties.className = ["relative", "pt-20"]
     node.children = [
       {
         children: [{ type: "text", value: title }],
