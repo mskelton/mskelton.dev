@@ -5,7 +5,7 @@ test.describe("About page", async () => {
     await aboutPage.goto()
   })
 
-  test("should be accessible", async ({ a11yOptions, aboutPage }) => {
-    await expect(aboutPage.root).toPassAxe(a11yOptions)
+  test("should be accessible", async ({ aboutPage }) => {
+    await expect(aboutPage.root).toPassAxe()
   })
 })

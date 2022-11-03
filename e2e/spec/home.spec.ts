@@ -5,7 +5,7 @@ test.describe("Home page", async () => {
     await homePage.goto()
   })
 
-  test("should be accessible", async ({ a11yOptions, homePage }) => {
-    await expect(homePage.root).toPassAxe(a11yOptions)
+  test("should be accessible", async ({ homePage }) => {
+    await expect(homePage.root).toPassAxe()
   })
 })
