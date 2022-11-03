@@ -1,6 +1,4 @@
-// playwright.config.ts
-import type { PlaywrightTestConfig } from "@playwright/test"
-import { expect } from "@playwright/test"
+import { expect, type PlaywrightTestConfig } from "@playwright/test"
 import matchers from "expect-axe-playwright"
 
 expect.extend(matchers)
