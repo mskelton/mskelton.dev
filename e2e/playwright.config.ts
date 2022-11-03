@@ -6,8 +6,8 @@ import matchers from "expect-axe-playwright"
 expect.extend(matchers)
 
 const config: PlaywrightTestConfig = {
-  retries: process.env.CI ? 2 : 0,
   fullyParallel: true,
+  retries: process.env.CI ? 2 : 0,
 }
 
 export default config
