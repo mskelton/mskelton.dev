@@ -1,16 +1,16 @@
 import { visit } from "unist-util-visit"
 
 const className = [
-  "absolute",
-  "top-0",
-  "right-0",
-  // "bg-teal-900",
+  "relative",
+  "top-8",
+  "right-8",
   "bg-zinc-800",
-  "py-0.5",
-  "px-4",
-  "rounded-bl-lg",
+  "px-8",
+  "py-2",
   "text-white",
   "text-xs",
+  "-m-8",
+  // width: calc(100% + 64px);
 ]
 
 export default function rehypeCodeTitles() {
