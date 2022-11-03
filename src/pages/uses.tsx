@@ -39,6 +39,7 @@ export default function Uses() {
         <title>Uses - Mark Skelton</title>
         <meta content={description} name="description" />
       </Head>
+
       <SimpleLayout
         intro="I create software 40+ hours per week so having the right tools is important to me. Poor tools can result in lower productivity and increased health risk. Here’s a big list of all of my favorite stuff."
         title={description}
