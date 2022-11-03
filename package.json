@@ -50,7 +50,7 @@
     "eslint-config-next": "12.2.5",
     "eslint-plugin-playwright": "^0.11.2",
     "eslint-plugin-sort": "^2.4.0",
-    "expect-axe-playwright": "^1.2.1",
+    "expect-axe-playwright": "^3.0.0",
     "lariat": "^1.1.0",
     "prettier": "^2.7.1",
     "prettier-plugin-tailwindcss": "^0.1.11",

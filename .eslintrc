@@ -10,9 +10,14 @@
       "files": "e2e/**",
       "extends": "plugin:playwright/playwright-test",
       "rules": {
+        "playwright/prefer-lowercase-title": [
+          "error",
+          { "ignoreTopLevelDescribe": true }
+        ],
+        "playwright/require-top-level-describe": "error",
         "playwright/missing-playwright-await": [
           "error",
-          { "customMatchers": ["toBeAccessible"] }
+          { "customMatchers": ["toPassAxe"] }
         ]
       }
     }

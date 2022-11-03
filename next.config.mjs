@@ -11,7 +11,7 @@ import remarkLayout from "./config/remark-layout.mjs"
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   eslint: {
-    dirs: ["src"],
+    dirs: ["src", "e2e"],
   },
   experimental: {
     newNextLinkBehavior: true,

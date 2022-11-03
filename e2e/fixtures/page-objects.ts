@@ -1,32 +1,27 @@
 import { AboutPage } from "../collections/AboutPage"
 import { BlogPage } from "../collections/BlogPage"
-import { Footer } from "../collections/Footer"
 import { HomePage } from "../collections/HomePage"
-import { TagsPage } from "../collections/TagsPage"
+import { ProjectsPage } from "../collections/ProjectsPage"
+import { UsesPage } from "../collections/UsesPage"
 import { test as base } from "./base"
 
 interface PageObjectFixtures {
   aboutPage: AboutPage
   blogPage: BlogPage
-  footer: Footer
   homePage: HomePage
-  tagsPage: TagsPage
+  projectsPage: ProjectsPage
+  usesPage: UsesPage
 }
 
 export const test = base.extend<PageObjectFixtures>({
-  aboutPage: async ({ page }, use) => {
-    await use(new AboutPage(page.locator("data-testid=about")))
-  },
-  blogPage: async ({ page }, use) => {
-    await use(new BlogPage(page.locator("data-testid=blog")))
-  },
-  footer: async ({ page }, use) => {
-    await use(new Footer(page))
-  },
-  homePage: async ({ page }, use) => {
-    await use(new HomePage(page.locator("data-testid=home")))
-  },
-  tagsPage: async ({ page }, use) => {
-    await use(new TagsPage(page.locator("data-testid=tags")))
-  },
+  aboutPage: ({ page }, use) =>
+    use(new AboutPage(page.locator("data-testid=about"))),
+  blogPage: ({ page }, use) =>
+    use(new BlogPage(page.locator("data-testid=blog"))),
+  homePage: ({ page }, use) =>
+    use(new HomePage(page.locator("data-testid=home"))),
+  projectsPage: ({ page }, use) =>
+    use(new ProjectsPage(page.locator("data-testid=projects"))),
+  usesPage: ({ page }, use) =>
+    use(new UsesPage(page.locator("data-testid=uses"))),
 })
