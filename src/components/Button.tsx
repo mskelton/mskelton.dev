@@ -10,26 +10,28 @@ const variantStyles = {
 
 export interface ButtonProps
   extends React.HTMLAttributes<HTMLElement>,
-    Pick<React.ButtonHTMLAttributes<HTMLButtonElement>, "type"> {
-  href?: string
+    Pick<React.ButtonHTMLAttributes<HTMLButtonElement>, "type">,
+    Pick<React.AnchorHTMLAttributes<HTMLAnchorElement>, "download" | "href"> {
+  as?: React.ElementType
   variant?: "primary" | "secondary"
 }
 
 export function Button({
+  as,
   className: classNameProp,
-  href,
   variant = "primary",
   ...props
 }: ButtonProps) {
-  const className = clsx(
-    "inline-flex items-center gap-2 justify-center rounded-md py-2 px-3 text-sm outline-offset-2 transition active:transition-none",
-    variantStyles[variant],
-    classNameProp
-  )
+  const Component = as ?? (props.href ? Link : "button")
 
-  return href ? (
-    <Link className={className} href={href} {...props} />
-  ) : (
-    <button className={className} {...props} />
+  return (
+    <Component
+      className={clsx(
+        "inline-flex items-center justify-center gap-2 rounded-md py-2 px-3 text-sm outline-offset-2 transition active:transition-none",
+        variantStyles[variant],
+        classNameProp
+      )}
+      {...props}
+    />
   )
 }
