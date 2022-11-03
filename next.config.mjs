@@ -5,7 +5,7 @@ import rehypeSlug from "rehype-slug"
 import remarkFrontmatter from "remark-frontmatter"
 import remarkGfm from "remark-gfm"
 import remarkMdxFrontmatter from "remark-mdx-frontmatter"
-import remarkCodeTitles from "./config/remark-code-titles.mjs"
+import rehypeCodeTitles from "./config/rehype-code-titles.mjs"
 import remarkLayout from "./config/remark-layout.mjs"
 
 /** @type {import('next').NextConfig} */
@@ -41,11 +41,11 @@ const withMDX = nextMDX({
           },
         },
       ],
+      rehypeCodeTitles,
       [rehypePrismPlus, { ignoreMissing: true }],
     ],
     remarkPlugins: [
       remarkGfm,
-      remarkCodeTitles,
       remarkFrontmatter,
       [remarkMdxFrontmatter, { name: "meta" }],
       remarkLayout,

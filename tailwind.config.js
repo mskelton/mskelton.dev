@@ -2,7 +2,7 @@
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./src/**/*.{ts,tsx}"],
+  content: ["./src/**/*.{ts,tsx}", "./config/*.mjs"],
   darkMode: "class",
   plugins: [require("@tailwindcss/typography")],
   theme: {
@@ -219,7 +219,7 @@ module.exports = {
             fontSize: theme("fontSize.sm")[0],
             fontWeight: theme("fontWeight.medium"),
             backgroundColor: "var(--tw-prose-pre-bg)",
-            borderRadius: theme("borderRadius.3xl"),
+            borderRadius: theme("borderRadius.2xl"),
             padding: theme("spacing.8"),
             overflowX: "auto",
             border: "1px solid",
