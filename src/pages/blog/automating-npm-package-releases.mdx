@@ -18,7 +18,7 @@ First, create a GitHub Action which calls `npx semantic-release` (or
 `yarn semantic-release` if you use Yarn). This should be run after any other
 pre-release steps such as `npm run build` and `npm test`.
 
-```yml:.github/workflows/release.yml
+```yaml:.github/workflows/release.yml
 name: Release
 on: [push]
 jobs:
