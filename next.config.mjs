@@ -23,7 +23,6 @@ const nextConfig = {
   },
   pageExtensions: ["ts", "tsx", "md", "mdx"],
   reactStrictMode: true,
-  swcMinify: true,
 }
 
 const withMDX = nextMDX({

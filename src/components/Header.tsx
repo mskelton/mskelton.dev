@@ -1,6 +1,6 @@
 import { Popover, Transition } from "@headlessui/react"
 import clsx from "clsx"
-import Image from "next/future/image"
+import Image from "next/image"
 import Link, { LinkProps } from "next/link"
 import { useRouter } from "next/router"
 import { Fragment } from "react"
