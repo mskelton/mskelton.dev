@@ -14,5 +14,9 @@ test-results/
 *.tsbuildinfo
 
 # Next.js
-/.next/
-/out/
+.next/
+out/
+
+# Generated files
+public/rss/
+

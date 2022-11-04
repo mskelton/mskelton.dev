@@ -10,15 +10,21 @@
       "files": "e2e/**",
       "extends": "plugin:playwright/playwright-test",
       "rules": {
+        "playwright/prefer-lowercase-title": [
+          "error",
+          { "ignoreTopLevelDescribe": true }
+        ],
+        "playwright/require-top-level-describe": "error",
         "playwright/missing-playwright-await": [
           "error",
-          { "customMatchers": ["toBeAccessible"] }
+          { "customMatchers": ["toPassAxe"] }
         ]
       }
     }
   ],
   "rules": {
     "@typescript-eslint/no-explicit-any": "off",
-    "react/react-in-jsx-scope": "off"
+    "react/react-in-jsx-scope": "off",
+    "react/jsx-curly-brace-presence": ["error", "never"]
   }
 }

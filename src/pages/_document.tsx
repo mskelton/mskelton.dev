@@ -1,27 +1,63 @@
-import Document, { Head, Html, Main, NextScript } from "next/document"
+import { Head, Html, Main, NextScript } from "next/document"
+import { siteMeta } from "lib/siteMeta"
 
-export default class MyDocument extends Document {
-  render() {
-    return (
-      <Html lang="en">
-        <Head>
-          <link href="/feed.xml" rel="alternate" type="application/rss+xml" />
-          <link
-            crossOrigin="anonymous"
-            href="https://fonts.gstatic.com"
-            rel="preconnect"
-          />
-          <link
-            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
-            rel="stylesheet"
-          />
-        </Head>
+const modeScript = `
+  let darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
 
-        <body className="bg-white text-black antialiased dark:bg-gray-900 dark:text-white">
-          <Main />
-          <NextScript />
-        </body>
-      </Html>
-    )
+  updateMode()
+  darkModeMediaQuery.addEventListener('change', updateModeWithoutTransitions)
+  window.addEventListener('storage', updateModeWithoutTransitions)
+
+  function updateMode() {
+    let isSystemDarkMode = darkModeMediaQuery.matches
+    let isDarkMode = window.localStorage.isDarkMode === 'true' || (!('isDarkMode' in window.localStorage) && isSystemDarkMode)
+
+    if (isDarkMode) {
+      document.documentElement.classList.add('dark')
+    } else {
+      document.documentElement.classList.remove('dark')
+    }
+
+    if (isDarkMode === isSystemDarkMode) {
+      delete window.localStorage.isDarkMode
+    }
   }
+
+  function disableTransitionsTemporarily() {
+    document.documentElement.classList.add('[&_*]:!transition-none')
+    window.setTimeout(() => {
+      document.documentElement.classList.remove('[&_*]:!transition-none')
+    }, 0)
+  }
+
+  function updateModeWithoutTransitions() {
+    disableTransitionsTemporarily()
+    updateMode()
+  }
+`
+
+export default function Document() {
+  return (
+    <Html className="h-full scroll-smooth antialiased" lang="en">
+      <Head>
+        <script dangerouslySetInnerHTML={{ __html: modeScript }} />
+
+        <link
+          href={`${siteMeta.url}/rss/feed.xml`}
+          rel="alternate"
+          type="application/rss+xml"
+        />
+        <link
+          href={`${siteMeta.url}/rss/feed.json`}
+          rel="alternate"
+          type="application/feed+json"
+        />
+      </Head>
+
+      <body className="flex h-full flex-col bg-zinc-50 dark:bg-black">
+        <Main />
+        <NextScript />
+      </body>
+    </Html>
+  )
 }
