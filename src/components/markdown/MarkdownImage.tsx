@@ -9,7 +9,7 @@ export function MarkdownImage({ alt, src }: MarkdownImageProps) {
   return (
     <span className="inline-block text-center">
       <Image
-        alt={alt}
+        alt={alt ?? ""}
         placeholder="blur"
         src={require(`../../images/${src}`)}
       />

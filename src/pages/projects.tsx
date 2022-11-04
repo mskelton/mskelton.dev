@@ -1,5 +1,5 @@
-import Image from "next/future/image"
 import Head from "next/head"
+import Image from "next/image"
 import { Card } from "components/Card"
 import { LinkIcon } from "components/icons"
 import { SimpleLayout } from "components/SimpleLayout"
