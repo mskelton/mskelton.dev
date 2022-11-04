@@ -5,13 +5,14 @@ import rehypeSlug from "rehype-slug"
 import remarkFrontmatter from "remark-frontmatter"
 import remarkGfm from "remark-gfm"
 import remarkMdxFrontmatter from "remark-mdx-frontmatter"
+import remarkSmartypants from "remark-smartypants"
 import rehypeCodeTitles from "./config/rehype-code-titles.mjs"
 import remarkLayout from "./config/remark-layout.mjs"
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   eslint: {
-    dirs: ["src", "e2e"],
+    dirs: ["src", "config", "e2e"],
   },
   experimental: {
     newNextLinkBehavior: true,
@@ -34,10 +35,18 @@ const withMDX = nextMDX({
       [
         rehypeAutolinkHeadings,
         {
-          properties: {
-            ariaHidden: true,
-            class: "heading-link",
-            tabIndex: -1,
+          content: {
+            children: [],
+            properties: {
+              className: [
+                "relative",
+                "before:content-['#']",
+                "before:absolute",
+                "before:right-2",
+              ],
+            },
+            tagName: "span",
+            type: "element",
           },
         },
       ],
@@ -46,6 +55,7 @@ const withMDX = nextMDX({
     ],
     remarkPlugins: [
       remarkGfm,
+      remarkSmartypants,
       remarkFrontmatter,
       [remarkMdxFrontmatter, { name: "meta" }],
       remarkLayout,

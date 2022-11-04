@@ -1,66 +1,66 @@
-const identifier = (name) => ({ type: "Identifier", name })
+const identifier = (name) => ({ name, type: "Identifier" })
 
 function importDecl() {
   return {
+    importKind: "value",
     source: {
       type: "Literal",
       value: "components/ArticleLayout",
     },
-    type: "ImportDeclaration",
     specifiers: [
       {
-        type: "ImportSpecifier",
         imported: identifier("ArticleLayout"),
         local: identifier("ArticleLayout"),
+        type: "ImportSpecifier",
       },
     ],
-    importKind: "value",
+    type: "ImportDeclaration",
   }
 }
 
 function exportDecl() {
   return {
-    type: "ExportDefaultDeclaration",
     declaration: {
-      type: "ArrowFunctionExpression",
-      expression: true,
-      params: [identifier("props")],
       body: {
-        type: "JSXElement",
+        children: [],
         openingElement: {
-          type: "JSXOpeningElement",
-          name: { type: "JSXIdentifier", name: "ArticleLayout" },
           attributes: [
             {
+              name: { name: "meta", type: "JSXIdentifier" },
               type: "JSXAttribute",
-              name: { type: "JSXIdentifier", name: "meta" },
               value: {
-                type: "JSXExpressionContainer",
                 expression: identifier("meta"),
+                type: "JSXExpressionContainer",
               },
             },
-            { type: "JSXSpreadAttribute", argument: identifier("props") },
+            { argument: identifier("props"), type: "JSXSpreadAttribute" },
           ],
+          name: { name: "ArticleLayout", type: "JSXIdentifier" },
           selfClosing: true,
+          type: "JSXOpeningElement",
         },
-        children: [],
+        type: "JSXElement",
       },
+      expression: true,
+      params: [identifier("props")],
+      type: "ArrowFunctionExpression",
     },
+    type: "ExportDefaultDeclaration",
   }
 }
 
 export default function remarkLayout() {
   return (ast) => {
     ast.children.unshift({
-      type: "mdxjsEsm",
-      value: "",
       data: {
         estree: {
-          type: "Program",
-          sourceType: "module",
           body: [importDecl(), exportDecl()],
+          sourceType: "module",
+          type: "Program",
         },
       },
+      type: "mdxjsEsm",
+      value: "",
     })
   }
 }

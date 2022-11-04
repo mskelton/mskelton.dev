@@ -2,7 +2,7 @@
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./src/**/*.{ts,tsx}", "./config/*.mjs"],
+  content: ["./src/**/*.{ts,tsx}", "./config/*.mjs", "next.config.mjs"],
   darkMode: "class",
   plugins: [require("@tailwindcss/typography")],
   theme: {
@@ -107,13 +107,15 @@ module.exports = {
           h2: {
             fontSize: theme("fontSize.xl")[0],
             lineHeight: theme("lineHeight.7"),
-            marginTop: theme("spacing.20"),
+            marginTop: theme("spacing.16"),
+            paddingTop: theme("spacing.4"),
             marginBottom: theme("spacing.4"),
           },
           h3: {
             fontSize: theme("fontSize.base")[0],
             lineHeight: theme("lineHeight.7"),
-            marginTop: theme("spacing.16"),
+            marginTop: theme("spacing.12"),
+            paddingTop: theme("spacing.4"),
             marginBottom: theme("spacing.4"),
           },
           ":is(h2, h3) + *": {

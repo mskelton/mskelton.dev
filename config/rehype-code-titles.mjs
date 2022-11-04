@@ -34,8 +34,8 @@ export default function rehypeCodeTitles() {
       {
         children: [{ type: "text", value: title }],
         properties: { className },
-        type: "element",
         tagName: "div",
+        type: "element",
       },
       { ...code, properties: { className: [lang] } },
     ]

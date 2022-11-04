@@ -58,19 +58,18 @@ export async function getStaticProps() {
 export default function Blog({
   articles,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
+  const description = `All of my blog posts, even the ones that I might not fully agree with anymore. Software engineering is a process of continuous learning, don’t ever think there isn’t more to learn.`
+
   return (
     <>
       <Head>
         <title>Blog - Mark Skelton</title>
-        <meta
-          content="All of my long-form thoughts on programming, leadership, product design, and more, collected in chronological order."
-          name="description"
-        />
+        <meta content={description} name="description" />
       </Head>
 
       <SimpleLayout
-        intro="All of my long-form thoughts on programming, leadership, product design, and more, collected in chronological order."
-        title="Writing on software design, company building, and the aerospace industry."
+        intro={description}
+        title="Writing about software engineering and developer experience"
       >
         <div className="md:border-l md:border-zinc-100 md:pl-6 md:dark:border-zinc-700/40">
           <div className="flex max-w-3xl flex-col space-y-16">
