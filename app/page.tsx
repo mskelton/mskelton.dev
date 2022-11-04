@@ -17,8 +17,8 @@ import { formatDate } from "lib/formatDate"
 // import { generateRssFeed } from "lib/generateRssFeed"
 import { getAllArticles } from "lib/getAllArticles"
 import { siteMeta } from "lib/siteMeta"
-import type { SocialLinkProps } from "./about"
-import type { ArticleProps } from "./blog"
+import type { SocialLinkProps } from "./about/page"
+import type { ArticleProps } from "./blog/page"
 
 function Article({ article }: ArticleProps) {
   return (

@@ -19,4 +19,4 @@ out/
 
 # Generated files
 public/rss/
-
+.vscode/
