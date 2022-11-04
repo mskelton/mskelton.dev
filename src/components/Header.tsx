@@ -1,8 +1,10 @@
+"use client"
+
 import { Popover, Transition } from "@headlessui/react"
 import clsx from "clsx"
 import Image from "next/image"
 import Link, { LinkProps } from "next/link"
-import { useRouter } from "next/router"
+import { usePathname } from "next/navigation"
 import { Fragment } from "react"
 import { Container } from "components/Container"
 import avatarImage from "images/avatar.jpg"
@@ -92,7 +94,7 @@ export interface NavItemProps {
 }
 
 function NavItem({ children, href }: NavItemProps) {
-  const isActive = useRouter().pathname === href
+  const isActive = usePathname() === href
 
   return (
     <li>
@@ -205,7 +207,7 @@ function Avatar({ className, large = false, ...props }: AvatarProps) {
 }
 
 export function Header() {
-  const isHomePage = useRouter().pathname === "/"
+  const isHomePage = usePathname() === "/"
 
   return (
     <>

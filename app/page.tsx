@@ -1,5 +1,4 @@
 import clsx from "clsx"
-import Head from "next/head"
 import Image from "next/image"
 import Link from "next/link"
 import { Button } from "components/Button"
@@ -15,11 +14,11 @@ import image3 from "images/photos/image-3.jpg"
 import image4 from "images/photos/image-4.jpg"
 import image5 from "images/photos/image-5.jpg"
 import { formatDate } from "lib/formatDate"
-import { generateRssFeed } from "lib/generateRssFeed"
+// import { generateRssFeed } from "lib/generateRssFeed"
 import { getAllArticles } from "lib/getAllArticles"
 import { siteMeta } from "lib/siteMeta"
-import { SocialLinkProps } from "./about"
-import { ArticleProps, IArticle } from "./blog"
+import type { SocialLinkProps } from "./about"
+import type { ArticleProps } from "./blog"
 
 function Article({ article }: ArticleProps) {
   return (
@@ -190,32 +189,17 @@ function Photos() {
   )
 }
 
-export async function getStaticProps() {
-  if (process.env.NODE_ENV === "production") {
-    await generateRssFeed()
-  }
+export default async function Home() {
+  const articles = (await getAllArticles())
+    .slice(0, 4)
+    .map(({ component: _, ...meta }) => meta)
 
-  return {
-    props: {
-      articles: (await getAllArticles())
-        .slice(0, 4)
-        .map(({ component: _, ...meta }) => meta),
-    },
-  }
-}
+  // if (process.env.NODE_ENV === "production") {
+  //   await generateRssFeed()
+  // }
 
-export interface HomeProps {
-  articles: IArticle[]
-}
-
-export default function Home({ articles }: HomeProps) {
   return (
     <>
-      <Head>
-        <title>{`Mark Skelton - ${siteMeta.tagline}`}</title>
-        <meta content={siteMeta.description} name="description" />
-      </Head>
-
       <Container className="mt-9">
         <div className="max-w-2xl">
           <h1 className="text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
