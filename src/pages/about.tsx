@@ -49,10 +49,7 @@ export default function About() {
     <>
       <Head>
         <title>About - Mark Skelton</title>
-        <meta
-          content="I’m Mark Skelton. I live in New York City, where I design the future."
-          name="description"
-        />
+        <meta content={siteMeta.description} name="description" />
       </Head>
 
       <Container className="mt-16 sm:mt-32">
