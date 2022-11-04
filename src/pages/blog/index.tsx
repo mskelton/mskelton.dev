@@ -58,7 +58,8 @@ export async function getStaticProps() {
 export default function Blog({
   articles,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
-  const description = `All of my blog posts, even the ones that I might not fully agree with anymore. Software engineering is a process of continuous learning, don’t ever think there isn’t more to learn.`
+  const description =
+    "All of my blog posts, even the ones that I might not fully agree with anymore. Software engineering is a process of continuous learning, don’t ever think there isn’t more to learn."
 
   return (
     <>

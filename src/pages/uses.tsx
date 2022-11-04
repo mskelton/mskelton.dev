@@ -31,7 +31,8 @@ function Tool({ children, href, title }: ToolProps) {
 }
 
 export default function Uses() {
-  const description = `Software I use, gadgets I love, and other things I recommend.`
+  const description =
+    "I create software 40+ hours per week so having the right tools is important to me. Poor tools can result in lower productivity and increased health risk. Here’s a big list of all of my favorite stuff."
 
   return (
     <>
@@ -41,8 +42,8 @@ export default function Uses() {
       </Head>
 
       <SimpleLayout
-        intro="I create software 40+ hours per week so having the right tools is important to me. Poor tools can result in lower productivity and increased health risk. Here’s a big list of all of my favorite stuff."
-        title={description}
+        intro={description}
+        title="Software I use, gadgets I love, and other things I recommend."
       >
         <div className="space-y-20">
           <ToolsSection title="Workstation">

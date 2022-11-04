@@ -57,7 +57,8 @@ const projects = [
 ]
 
 export default function Projects() {
-  const description = `Things I’ve done to make software development just a little bit easier.`
+  const description =
+    "I love creating software, especially when it makes the process of creating software more enjoyable. These are some of my more popular projects that I’m proud of."
 
   return (
     <>
@@ -67,8 +68,8 @@ export default function Projects() {
       </Head>
 
       <SimpleLayout
-        intro="I love creating software, especially when it makes the process of creating software more enjoyable. These are some of my more popular projects that I’m proud of."
-        title={description}
+        intro={description}
+        title="Things I’ve done to make software development just a little bit easier."
       >
         <ul
           className="grid grid-cols-1 gap-x-12 gap-y-16 sm:grid-cols-2 lg:grid-cols-3"
