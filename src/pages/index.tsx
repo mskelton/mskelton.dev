@@ -87,7 +87,7 @@ const resume = [
     company: "CKH Consulting",
     end: "2019",
     logo: logoCKH,
-    start: "2017",
+    start: "2016",
     title: "Software developer",
   },
 ]
