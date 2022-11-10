@@ -29,7 +29,7 @@ export default function rehypeCodeTitles() {
       return
     }
 
-    node.properties.className = ["relative", "pt-20"]
+    node.properties.className = ["relative", "pt-20", "peer", "has-title"]
     node.children = [
       {
         children: [{ type: "text", value: title }],

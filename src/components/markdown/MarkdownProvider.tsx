@@ -1,10 +1,12 @@
 import { MDXProvider } from "@mdx-js/react"
 import { MarkdownImage } from "./MarkdownImage"
 import { MarkdownLink } from "./MarkdownLink"
+import { MarkdownPre } from "./MarkdownPre"
 
 const components = {
   a: MarkdownLink,
   img: MarkdownImage,
+  pre: MarkdownPre,
 }
 
 export interface MarkdownProviderProps {
