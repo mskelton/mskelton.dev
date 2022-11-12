@@ -4,12 +4,13 @@ const className = [
   "absolute",
   "top-0",
   "left-0",
+  "right-0",
+  "rounded-t-2xl",
   "px-8",
   "py-3",
   "bg-zinc-800",
   "text-white",
   "text-sm",
-  "w-full",
 ]
 
 export default function rehypeCodeTitles() {
@@ -29,7 +30,7 @@ export default function rehypeCodeTitles() {
       return
     }
 
-    node.properties.className = ["relative", "pt-20", "peer", "has-title"]
+    node.properties.className = ["relative", "pt-12", "peer", "has-title"]
     node.children = [
       {
         children: [{ type: "text", value: title }],

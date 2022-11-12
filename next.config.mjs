@@ -39,7 +39,7 @@ const withMDX = nextMDX({
             properties: {
               className: [
                 "relative",
-                "before:content-['#']",
+                "md:before:content-['#']",
                 "before:absolute",
                 "before:right-2",
               ],

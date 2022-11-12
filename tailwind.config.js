@@ -222,19 +222,18 @@ module.exports = {
             fontWeight: theme("fontWeight.medium"),
             backgroundColor: "var(--tw-prose-pre-bg)",
             borderRadius: theme("borderRadius.2xl"),
-            padding: theme("spacing.8"),
-            overflowX: "auto",
             border: "1px solid",
             borderColor: "var(--tw-prose-pre-border)",
           },
           "pre code": {
-            display: "inline",
+            display: "block",
             color: "inherit",
             fontSize: "inherit",
+            padding: theme("spacing.8"),
+            overflowX: "auto",
             fontWeight: "inherit",
             backgroundColor: "transparent",
             borderRadius: 0,
-            padding: 0,
           },
 
           // Horizontal rules
