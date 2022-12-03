@@ -4,9 +4,9 @@
 module.exports = {
   content: [
     "./app/**/*.{ts,tsx}",
+    "./src/**/*.{ts,tsx}",
     "./config/*.mjs",
     "next.config.mjs",
-    "./src/**/*.{ts,tsx}",
   ],
   darkMode: "class",
   plugins: [require("@tailwindcss/typography")],
