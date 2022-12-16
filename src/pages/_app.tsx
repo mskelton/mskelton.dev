@@ -2,11 +2,8 @@ import "styles/tailwind.css"
 import { AppProps } from "next/app"
 import { Footer } from "components/Footer"
 import { Header } from "components/Header"
-import { usePrevious } from "hooks/usePrevious"
 
-export default function App({ Component, pageProps, router }: AppProps) {
-  const previousPathname = usePrevious(router.pathname)
-
+export default function App({ Component, pageProps }: AppProps) {
   return (
     <>
       <div className="fixed inset-0 flex justify-center sm:px-8">
@@ -18,7 +15,7 @@ export default function App({ Component, pageProps, router }: AppProps) {
       <div className="relative">
         <Header />
         <main>
-          <Component previousPathname={previousPathname} {...pageProps} />
+          <Component {...pageProps} />
         </main>
         <Footer />
       </div>
