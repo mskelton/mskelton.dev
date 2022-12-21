@@ -2,6 +2,7 @@ import "styles/tailwind.css"
 import { Footer } from "components/Footer"
 import { Header } from "components/Header"
 import { siteMeta } from "lib/siteMeta"
+import { AnalyticsWrapper } from "./AnalyticsWrapper"
 
 const modeScript = `
   let darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
@@ -43,9 +44,6 @@ export interface RootLayoutProps {
 }
 
 export default function RootLayout({ children }: RootLayoutProps) {
-  // const previousPathname = usePrevious(router.pathname)
-  /*<script dangerouslySetInnerHTML={{ __html: modeScript }} />*/
-
   return (
     <html className="h-full scroll-smooth antialiased" lang="en">
       <head>
@@ -59,6 +57,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
           rel="alternate"
           type="application/feed+json"
         />
+        <script dangerouslySetInnerHTML={{ __html: modeScript }} />
       </head>
 
       <body className="flex h-full flex-col bg-zinc-50 dark:bg-black">
@@ -73,6 +72,8 @@ export default function RootLayout({ children }: RootLayoutProps) {
           <main>{children}</main>
           <Footer />
         </div>
+
+        <AnalyticsWrapper />
       </body>
     </html>
   )

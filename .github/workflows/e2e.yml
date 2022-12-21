@@ -8,6 +8,7 @@ jobs:
     steps:
       - uses: mskelton/setup-yarn@v1
         with:
+          node-version: "18.x"
           cache: ""
       - run: yarn playwright install chromium --with-deps
       - run: yarn test
