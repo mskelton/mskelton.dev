@@ -49,7 +49,7 @@ workspaces (including the root) where each workspace should contain a `license`
 field with the value of `ISC`. We can check to see if our constraints are met by
 running the `yarn constraints` command.
 
-```bash
+```
 $ yarn constraints
 ➤ YN0037: package-a must have a field license set to "ISC", but doesn't
 ➤ YN0038: package-b must have a field license set to "ISC", but is set to "MIT" instead
@@ -61,7 +61,7 @@ As you can see from the output, Yarn warned us that package-a does not have a
 `license` field. To fix these issues, we can add the `--fix` argument to the
 command which will instruct Yarn to fix the issues for us if possible.
 
-```bash
+```
 $ yarn constraints --fix
 ➤ YN0000: Done in 0s 43ms
 ```
@@ -173,7 +173,7 @@ the third argument to `gen_enforced_field` so Yarn will enforce the correct
 homepage URL in each workspace. If we check our constraints, we will likely see
 something like this.
 
-```bash
+```
 $ yarn constraints
 ➤ YN0037: package-a must have a field homepage set to "https://github.com/mskelton/yarn-constraints-example/tree/main/packages/package-a", but doesn't
 ➤ YN0037: package-b must have a field homepage set to "https://github.com/mskelton/yarn-constraints-example/tree/main/packages/package-b", but doesn't
@@ -203,7 +203,7 @@ version check trick. For the workspaces where we enforce this constraint, Yarn
 will ensure the `react` is not present in the `dependencies` block of the
 manifest. If it is, we will get the following error.
 
-```bash
+```
 $ yarn constraints
 ➤ YN0025: package-a has an extraneous dependency on react (in dependencies)
 ➤ YN0000: Failed with errors in 0s 20ms

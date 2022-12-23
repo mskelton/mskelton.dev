@@ -1,11 +1,13 @@
 import nextMDX from "@next/mdx"
+import rehypeShiki from "@stefanprobst/rehype-shiki"
 import rehypeAutolinkHeadings from "rehype-autolink-headings"
-import rehypePrismPlus from "rehype-prism-plus"
 import rehypeSlug from "rehype-slug"
 import remarkFrontmatter from "remark-frontmatter"
 import remarkGfm from "remark-gfm"
 import remarkMdxFrontmatter from "remark-mdx-frontmatter"
 import remarkSmartypants from "remark-smartypants"
+import shiki from "shiki"
+import { fileURLToPath } from "url"
 import rehypeCodeTitles from "./config/rehype-code-titles.mjs"
 import remarkLayout from "./config/remark-layout.mjs"
 
@@ -24,6 +26,10 @@ const nextConfig = {
   pageExtensions: ["ts", "tsx", "md", "mdx"],
   reactStrictMode: true,
 }
+
+const themeURL = new URL("./config/tokyonight.json", import.meta.url)
+const theme = await shiki.loadTheme(fileURLToPath(themeURL))
+const highlighter = await shiki.getHighlighter({ theme })
 
 const withMDX = nextMDX({
   extension: /\.mdx?$/,
@@ -50,7 +56,7 @@ const withMDX = nextMDX({
         },
       ],
       rehypeCodeTitles,
-      [rehypePrismPlus, { ignoreMissing: true }],
+      [rehypeShiki, { highlighter }],
     ],
     remarkPlugins: [
       remarkGfm,
