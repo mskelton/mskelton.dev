@@ -13,7 +13,6 @@
   },
   "dependencies": {
     "@headlessui/react": "^1.7.4",
-    "@mapbox/rehype-prism": "^0.8.0",
     "@mdx-js/loader": "^2.1.5",
     "@mdx-js/react": "^2.1.5",
     "@next/mdx": "^13.0.2",
@@ -29,7 +28,6 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "rehype-autolink-headings": "^6.1.1",
-    "rehype-prism-plus": "^1.5.0",
     "rehype-slug": "^5.1.0",
     "remark-code-titles": "^0.1.2",
     "remark-frontmatter": "^4.0.1",
