@@ -220,7 +220,7 @@ module.exports = {
             color: "var(--tw-prose-pre-code)",
             fontSize: theme("fontSize.sm")[0],
             fontWeight: theme("fontWeight.medium"),
-            backgroundColor: "var(--tw-prose-pre-bg)",
+            backgroundColor: "var(--tw-prose-pre-bg) !important",
             borderRadius: theme("borderRadius.2xl"),
             border: "1px solid",
             borderColor: "var(--tw-prose-pre-border)",
