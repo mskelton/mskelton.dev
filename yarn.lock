@@ -688,6 +688,24 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@stefanprobst/rehype-shiki@npm:^2.2.0":
+  version: 2.2.0
+  resolution: "@stefanprobst/rehype-shiki@npm:2.2.0"
+  dependencies:
+    hast-util-to-string: ^2.0.0
+    json5: ^2.2.0
+    parse-numeric-range: ^1.3.0
+    remark-parse: ^10.0.1
+    remark-rehype: ^10.1.0
+    shiki-renderer-hast: ^1.1.5
+    unified: ^10.1.0
+    unist-util-visit: ^4.0.0
+  peerDependencies:
+    shiki: ^0.10.0
+  checksum: 036a9b360596ae35f52a89f9d9979fda1d4cccab33cd73db30b359603463054ad6d26a88b380ac81d6a43cd989d635a85a691a3998f40146058b699435228bf5
+  languageName: node
+  linkType: hard
+
 "@swc/helpers@npm:0.4.11":
   version: 0.4.11
   resolution: "@swc/helpers@npm:0.4.11"
@@ -4011,7 +4029,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"hastscript@npm:^7.0.0":
+"hastscript@npm:^7.0.0, hastscript@npm:^7.0.2":
   version: 7.1.0
   resolution: "hastscript@npm:7.1.0"
   dependencies:
@@ -4731,12 +4749,28 @@ __metadata:
   languageName: node
   linkType: hard
 
+"json5@npm:^2.2.0":
+  version: 2.2.2
+  resolution: "json5@npm:2.2.2"
+  bin:
+    json5: lib/cli.js
+  checksum: 9a878d66b72157b073cf0017f3e5d93ec209fa5943abcb38d37a54b208917c166bd473c26a24695e67a016ce65759aeb89946592991f8f9174fb96c8e2492683
+  languageName: node
+  linkType: hard
+
 "json5@npm:^2.2.1":
   version: 2.2.1
   resolution: "json5@npm:2.2.1"
   bin:
     json5: lib/cli.js
   checksum: 74b8a23b102a6f2bf2d224797ae553a75488b5adbaee9c9b6e5ab8b510a2fc6e38f876d4c77dea672d4014a44b2399e15f2051ac2b37b87f74c0c7602003543b
+  languageName: node
+  linkType: hard
+
+"jsonc-parser@npm:^3.0.0":
+  version: 3.2.0
+  resolution: "jsonc-parser@npm:3.2.0"
+  checksum: 946dd9a5f326b745aa326d48a7257e3f4a4b62c5e98ec8e49fa2bdd8d96cef7e6febf1399f5c7016114fd1f68a1c62c6138826d5d90bc650448e3cf0951c53c7
   languageName: node
   linkType: hard
 
@@ -6029,6 +6063,7 @@ __metadata:
     "@mskelton/eslint-config": ^7.1.0
     "@next/mdx": ^13.0.2
     "@playwright/test": ^1.25.0
+    "@stefanprobst/rehype-shiki": ^2.2.0
     "@tailwindcss/typography": ^0.5.4
     "@types/react": ^18.0.24
     "@types/react-dom": ^18.0.8
@@ -6059,6 +6094,7 @@ __metadata:
     remark-gfm: ^3.0.1
     remark-mdx-frontmatter: ^2.1.1
     remark-smartypants: ^2.0.0
+    shiki: ^0.10.0
     tailwindcss: ^3.2.1
     typescript: ^4.8.4
     unist-util-visit: ^4.1.1
@@ -7245,7 +7281,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"remark-parse@npm:^10.0.0":
+"remark-parse@npm:^10.0.0, remark-parse@npm:^10.0.1":
   version: 10.0.1
   resolution: "remark-parse@npm:10.0.1"
   dependencies:
@@ -7256,7 +7292,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"remark-rehype@npm:^10.0.0":
+"remark-rehype@npm:^10.0.0, remark-rehype@npm:^10.1.0":
   version: 10.1.0
   resolution: "remark-rehype@npm:10.1.0"
   dependencies:
@@ -7667,6 +7703,28 @@ __metadata:
   version: 3.0.0
   resolution: "shebang-regex@npm:3.0.0"
   checksum: 1a2bcae50de99034fcd92ad4212d8e01eedf52c7ec7830eedcf886622804fe36884278f2be8be0ea5fde3fd1c23911643a4e0f726c8685b61871c8908af01222
+  languageName: node
+  linkType: hard
+
+"shiki-renderer-hast@npm:^1.1.5":
+  version: 1.1.5
+  resolution: "shiki-renderer-hast@npm:1.1.5"
+  dependencies:
+    hastscript: ^7.0.2
+  peerDependencies:
+    shiki: ^0.9 || ^0.10.0
+  checksum: 73919ab12a64c1728c068ccb77150decf1e6bd9e333720b517393fc84e78ed4fccaf81e5c2a16685f5f6cd9aa3dbe68d99fb10657a79a0ebda061a497bbf1b21
+  languageName: node
+  linkType: hard
+
+"shiki@npm:^0.10.0":
+  version: 0.10.1
+  resolution: "shiki@npm:0.10.1"
+  dependencies:
+    jsonc-parser: ^3.0.0
+    vscode-oniguruma: ^1.6.1
+    vscode-textmate: 5.2.0
+  checksum: fb746f3cb3de7e545e3b10a6cb658d3938f840e4ccc9a3c90ceb7e69a8f89dbb432171faac1e9f02a03f103684dad88ee5e54b5c4964fa6b579fca6e8e26424d
   languageName: node
   linkType: hard
 
@@ -8324,7 +8382,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"unified@npm:^10.0.0":
+"unified@npm:^10.0.0, unified@npm:^10.1.0":
   version: 10.1.2
   resolution: "unified@npm:10.1.2"
   dependencies:
@@ -8732,6 +8790,20 @@ __metadata:
     unist-util-stringify-position: ^3.0.0
     vfile-message: ^3.0.0
   checksum: 14a9ea19d1801bb99fc9a451d220d2ee84d891bae52094db660f9bf637c1cada0c45a3e00962ff3e901da16dd5051367e25a4a214e40db57ae40f57363796b45
+  languageName: node
+  linkType: hard
+
+"vscode-oniguruma@npm:^1.6.1":
+  version: 1.7.0
+  resolution: "vscode-oniguruma@npm:1.7.0"
+  checksum: 53519d91d90593e6fb080260892e87d447e9b200c4964d766772b5053f5699066539d92100f77f1302c91e8fc5d9c772fbe40fe4c90f3d411a96d5a9b1e63f42
+  languageName: node
+  linkType: hard
+
+"vscode-textmate@npm:5.2.0":
+  version: 5.2.0
+  resolution: "vscode-textmate@npm:5.2.0"
+  checksum: 5449b42d451080f6f3649b66948f4b5ee4643c4e88cfe3558a3b31c84c78060cfdd288c4958c1690eaa5cd65d09992fa6b7c3bef9d4aa72b3651054a04624d20
   languageName: node
   linkType: hard
 
