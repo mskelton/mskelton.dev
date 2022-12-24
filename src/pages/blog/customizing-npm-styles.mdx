@@ -7,6 +7,8 @@ description:
 date: "2019-12-01"
 ---
 
+import { ImageComparison } from "../../components/ImageComparison"
+
 Like most front-end developers, I use [npmjs.com](https://npmjs.com) to find new
 packages or read documentation for packages I use. I've also published some npm
 packages of my own, giving back to the open-source community.
@@ -17,7 +19,16 @@ gave the page an unfinished and poorly styled look. So, with the help of the
 Chrome Stylus extension I was able to add a couple quick styles to get the page
 looking nice. The before and after of the page are shown below.
 
-![npm package view before and after adding the custom styles](blog/npm-styles.png)
+<ImageComparison
+  one={{
+    alt: "New styles",
+    src: "blog/customizing-npm-styles/new.png",
+  }}
+  two={{
+    alt: "Old styles",
+    src: "blog/customizing-npm-styles/old.png",
+  }}
+/>
 
 Here is the code I used for this simple style adjustment.
 
@@ -27,7 +38,6 @@ blockquote > p {
 }
 
 table {
-  border-bottom: none !important;
   margin-bottom: 16px;
 }
 ```
