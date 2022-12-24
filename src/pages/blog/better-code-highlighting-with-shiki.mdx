@@ -7,6 +7,8 @@ description:
 date: "2022-12-23"
 ---
 
+import { ImageComparison } from "../../components/ImageComparison"
+
 I've used Prism for code highlighting in many projects, but I've never been very
 happy with the results as it usually struggles to properly detect syntax,
 especially with uncommon languages, or with JSX. As I was scrolling through
@@ -20,3 +22,14 @@ After a very simple process of installing shiki as well as the
 to convert my blog to using shiki without any major gotchas! Check out the
 before/after image below to see the difference shiki makes in properly
 highlighting code!
+
+<ImageComparison
+  one={{
+    alt: "New syntax highlighting",
+    src: "blog/better-code-highlighting-with-shiki/new.png",
+  }}
+  two={{
+    alt: "Old syntax highlighting",
+    src: "blog/better-code-highlighting-with-shiki/old.png",
+  }}
+/>
