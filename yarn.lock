@@ -4847,6 +4847,7 @@ __metadata:
     prettier: ^2.7.1
     prettier-plugin-tailwindcss: ^0.1.11
     react: 18.2.0
+    react-compare-slider: ^2.2.0
     react-dom: 18.2.0
     rehype-autolink-headings: ^6.1.1
     rehype-slug: ^5.1.0
@@ -5479,6 +5480,16 @@ __metadata:
   dependencies:
     safe-buffer: ^5.1.0
   checksum: d779499376bd4cbb435ef3ab9a957006c8682f343f14089ed5f27764e4645114196e75b7f6abf1cbd84fd247c0cb0651698444df8c9bf30e62120fbbc52269d6
+  languageName: node
+  linkType: hard
+
+"react-compare-slider@npm:^2.2.0":
+  version: 2.2.0
+  resolution: "react-compare-slider@npm:2.2.0"
+  peerDependencies:
+    react: ">=16.8"
+    react-dom: ">=16.8"
+  checksum: ff636599ee12161022c71e32f30bea380f953770df7af8f1fd9d82f6a28058c7eee5505b63ddd24baecc0a4b9d5e2395fe27fb9439fd2eac435345ba174cdd07
   languageName: node
   linkType: hard
 
