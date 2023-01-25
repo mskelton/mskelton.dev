@@ -2,6 +2,7 @@
   "name": "mskelton.dev",
   "description": "Source code for my personal website.",
   "packageManager": "yarn@3.3.0",
+  "type": "module",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
