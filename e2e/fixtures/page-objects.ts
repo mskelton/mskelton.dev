@@ -1,9 +1,9 @@
 import { test as base } from "@playwright/test"
-import { AboutPage } from "../collections/AboutPage"
-import { BlogPage } from "../collections/BlogPage"
-import { HomePage } from "../collections/HomePage"
-import { ProjectsPage } from "../collections/ProjectsPage"
-import { UsesPage } from "../collections/UsesPage"
+import { AboutPage } from "../collections/AboutPage.js"
+import { BlogPage } from "../collections/BlogPage.js"
+import { HomePage } from "../collections/HomePage.js"
+import { ProjectsPage } from "../collections/ProjectsPage.js"
+import { UsesPage } from "../collections/UsesPage.js"
 
 interface PageObjectFixtures {
   aboutPage: AboutPage
