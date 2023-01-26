@@ -6,6 +6,14 @@ module.exports = {
   darkMode: "class",
   plugins: [require("@tailwindcss/typography")],
   theme: {
+    extend: {
+      keyframes: {
+        "delay-appear": {
+          "0%": { opacity: 0 },
+          "100%": { opacity: 1 },
+        },
+      },
+    },
     fontSize: {
       xs: ["0.8125rem", { lineHeight: "1.5rem" }],
       sm: ["0.875rem", { lineHeight: "1.5rem" }],

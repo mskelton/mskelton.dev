@@ -29,7 +29,7 @@ export function ImageComparison({ one, two }: ImageComparisonProps) {
       handle={
         <Handle
           buttonStyle={{ borderColor: "currentcolor" }}
-          className="text-teal-500"
+          className="animate-[delay-appear_200ms_linear_200ms_forwards]	text-teal-500 opacity-0 transition"
           style={{ color: undefined }}
         />
       }
