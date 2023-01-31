@@ -1,4 +1,4 @@
-import clsx from "clsx"
+import { clsx } from "clsx"
 import Link, { LinkProps } from "next/link"
 
 function ChevronRightIcon(props: React.SVGProps<SVGSVGElement>) {

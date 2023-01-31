@@ -1,4 +1,4 @@
-import clsx from "clsx"
+import { clsx } from "clsx"
 import React, { useRef, useState } from "react"
 
 export function MarkdownPre(props: React.HTMLAttributes<HTMLPreElement>) {

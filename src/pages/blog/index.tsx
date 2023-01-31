@@ -1,9 +1,9 @@
 import { InferGetStaticPropsType } from "next"
 import Head from "next/head"
-import { Card } from "components/Card"
-import { SimpleLayout } from "components/SimpleLayout"
-import { formatDate } from "lib/formatDate"
-import { getAllArticles } from "lib/getAllArticles"
+import { Card } from "components/Card.js"
+import { SimpleLayout } from "components/SimpleLayout.js"
+import { formatDate } from "lib/formatDate.js"
+import { getAllArticles } from "lib/getAllArticles.js"
 
 export interface IArticle {
   date: string

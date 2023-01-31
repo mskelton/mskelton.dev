@@ -13,10 +13,10 @@
     "ts": "tsc"
   },
   "dependencies": {
-    "@headlessui/react": "^1.7.7",
+    "@headlessui/react": "^1.7.8",
     "@mdx-js/loader": "^2.2.1",
     "@mdx-js/react": "^2.2.1",
-    "@next/mdx": "^13.1.5",
+    "@next/mdx": "^13.1.6",
     "@stefanprobst/rehype-shiki": "^2.2.0",
     "@tailwindcss/typography": "^0.5.9",
     "@vercel/analytics": "^0.1.8",
@@ -24,7 +24,7 @@
     "clsx": "^1.2.1",
     "fast-glob": "^3.2.12",
     "feed": "^4.2.2",
-    "next": "^13.1.5",
+    "next": "^13.1.6",
     "postcss": "^8.4.21",
     "react": "^18.2.0",
     "react-compare-slider": "^2.2.0",
@@ -36,7 +36,7 @@
     "remark-gfm": "^3.0.1",
     "remark-mdx-frontmatter": "^2.1.1",
     "remark-smartypants": "^2.0.0",
-    "shiki": "^0.12.1",
+    "shiki": "^0.14.0",
     "tailwindcss": "^3.2.4",
     "unist-util-visit": "^4.1.2",
     "webpack": "^5.75.0"
@@ -44,20 +44,23 @@
   "devDependencies": {
     "@babel/core": "^7.20.12",
     "@babel/eslint-parser": "^7.19.1",
-    "@mskelton/eslint-config": "^7.1.0",
+    "@mskelton/eslint-config": "^7.2.0",
     "@playwright/test": "^1.30.0",
     "@types/react": "^18.0.27",
     "@types/react-dom": "^18.0.10",
     "@typescript-eslint/eslint-plugin": "^5.49.0",
     "@typescript-eslint/parser": "^5.49.0",
-    "eslint": "^8.32.0",
-    "eslint-config-next": "^13.1.5",
+    "eslint": "^8.33.0",
+    "eslint-config-next": "^13.1.6",
     "eslint-plugin-playwright": "^0.12.0",
     "eslint-plugin-sort": "^2.4.0",
     "expect-axe-playwright": "^3.0.0",
-    "lariat": "^1.5.0",
+    "lariat": "^2.0.0",
     "prettier": "^2.8.3",
     "prettier-plugin-tailwindcss": "^0.2.2",
-    "typescript": "^4.9.4"
+    "typescript": "^4.9.5"
+  },
+  "resolutions": {
+    "lariat": "portal:/Users/mark/dev/lariat"
   }
 }
