@@ -16,6 +16,7 @@ const config: PlaywrightTestConfig = {
         "color-contrast": { enabled: false },
       },
     },
+    baseURL: "http://localhost:3000",
     screenshot: "only-on-failure",
     trace: "on-first-retry",
   },
