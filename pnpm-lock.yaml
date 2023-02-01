@@ -1,5 +1,10 @@
 lockfileVersion: 5.4
 
+patchedDependencies:
+  expect-axe-playwright@4.0.0:
+    hash: logp4ptj6yenv6qbijsprzgu5a
+    path: patches/expect-axe-playwright@4.0.0.patch
+
 specifiers:
   '@babel/core': ^7.20.12
   '@babel/eslint-parser': ^7.19.1
@@ -25,7 +30,7 @@ specifiers:
   expect-axe-playwright: ^4.0.0
   fast-glob: ^3.2.12
   feed: ^4.2.2
-  lariat: ^2.0.0
+  lariat: ^2.0.1
   next: ^13.1.6
   postcss: ^8.4.21
   prettier: ^2.8.3
@@ -88,8 +93,8 @@ devDependencies:
   eslint-config-next: 13.1.6_4vsywjlpuriuw3tl5oq6zy5a64
   eslint-plugin-playwright: 0.12.0_eslint@8.33.0
   eslint-plugin-sort: 2.4.0_4vsywjlpuriuw3tl5oq6zy5a64
-  expect-axe-playwright: 4.0.0_@playwright+test@1.30.0
-  lariat: 2.0.0_@playwright+test@1.30.0
+  expect-axe-playwright: 4.0.0_logp4ptj6yenv6qbijsprzgu5a_@playwright+test@1.30.0
+  lariat: 2.0.1_@playwright+test@1.30.0
   prettier: 2.8.3
   prettier-plugin-tailwindcss: 0.2.2_prettier@2.8.3
   typescript: 4.9.5
@@ -313,7 +318,7 @@ packages:
       debug: 4.3.4
       espree: 9.4.0
       globals: 13.19.0
-      ignore: 5.2.0
+      ignore: 5.2.4
       import-fresh: 3.3.0
       js-yaml: 4.1.0
       minimatch: 3.1.2
@@ -1239,11 +1244,6 @@ packages:
       postcss-value-parser: 4.2.0
     dev: false
 
-  /axe-core/4.5.1:
-    resolution: {integrity: sha512-1exVbW0X1O/HSr/WMwnaweyqcWOgZgLiVxdLG34pvSQk4NlYQr9OUy0JLwuhFfuVNQzzqgH57eYzkFBCb3bIsQ==}
-    engines: {node: '>=4'}
-    dev: true
-
   /axe-core/4.6.3:
     resolution: {integrity: sha512-/BQzOX780JhsxDnPpH4ZiyrJAzcd8AfzFPkv+89veFSr1rcMjuq2JDCwypKaPeB6ljHp9KjXhPpjgCvQlWYuqg==}
     engines: {node: '>=4'}
@@ -1796,7 +1796,7 @@ packages:
       aria-query: 4.2.2
       array-includes: 3.1.5
       ast-types-flow: 0.0.7
-      axe-core: 4.5.1
+      axe-core: 4.6.3
       axobject-query: 2.2.0
       damerau-levenshtein: 1.0.8
       emoji-regex: 9.2.2
@@ -1926,7 +1926,7 @@ packages:
       glob-parent: 6.0.2
       globals: 13.19.0
       grapheme-splitter: 1.0.4
-      ignore: 5.2.0
+      ignore: 5.2.4
       import-fresh: 3.3.0
       imurmurhash: 0.1.4
       is-glob: 4.0.3
@@ -2032,7 +2032,7 @@ packages:
     engines: {node: '>=0.8.x'}
     dev: false
 
-  /expect-axe-playwright/4.0.0_@playwright+test@1.30.0:
+  /expect-axe-playwright/4.0.0_logp4ptj6yenv6qbijsprzgu5a_@playwright+test@1.30.0:
     resolution: {integrity: sha512-GX5na4kXmRlErBJZmc8Yh8BhbnOcHNNH+mgO3xFeeBRUW253P4QSWsq4z9UzCeJnCN6eTijJsCCN52DmNGfFFw==}
     engines: {node: '>=16.0.0'}
     peerDependencies:
@@ -2047,6 +2047,7 @@ packages:
       isomorphic-resolve: 1.0.0
       merge-deep: 3.0.3
     dev: true
+    patched: true
 
   /extend/3.0.2:
     resolution: {integrity: sha512-fjquC59cD7CyW6urNXK0FBufkZcoiGG80wTuPujX590cB5Ttln20E2UB4S/WARVqhXffZl2LNgS+gQdPIIim/g==}
@@ -2400,11 +2401,6 @@ packages:
       space-separated-tokens: 2.0.1
     dev: false
 
-  /ignore/5.2.0:
-    resolution: {integrity: sha512-CmxgYGiEPCLhfLnpPp1MoRmifwEIOgjcHXxOBjv7mY96c+eWScsOP9c112ZyLdWHi0FxHjI+4uVhKYp/gcdRmQ==}
-    engines: {node: '>= 4'}
-    dev: true
-
   /ignore/5.2.4:
     resolution: {integrity: sha512-MAb38BcSbH0eHNBxn7ql2NH/kX33OkB3lZ1BNdh7ENeRChHTYsTvWrMubiIAMNS2llXEEgZ1MUOBtXChP3kaFQ==}
     engines: {node: '>= 4'}
@@ -2730,8 +2726,8 @@ packages:
       language-subtag-registry: 0.3.22
     dev: true
 
-  /lariat/2.0.0_@playwright+test@1.30.0:
-    resolution: {integrity: sha512-lJYo3pw86Pt7M5+7SBIWIfofYvXzyEvJxfUWlIPcPxkIqFvEdrzOHiiEAHDzujJffXQ81ABF67uoQ2myCwUfVQ==}
+  /lariat/2.0.1_@playwright+test@1.30.0:
+    resolution: {integrity: sha512-OPXr3Dg3RGRs00lsJ+8LMVgv4hTlscWXcpyTSvKmap7W1IPtRHpYtizunnogFCqwiMHxqX/PcR6WPLiPrbiOxQ==}
     peerDependencies:
       '@playwright/test': '>=1.28.0'
     dependencies:

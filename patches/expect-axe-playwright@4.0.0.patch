@@ -1,0 +1,12 @@
+diff --git a/package.json b/package.json
+index a3847399a8dc0d711d4a100470b8e7805a15a080..dfda847395d73985944fe723ffc6479168fc9b1c 100644
+--- a/package.json
++++ b/package.json
+@@ -28,6 +28,7 @@
+     "ts": "tsc"
+   },
+   "type": "module",
++  "types": "./global.d.ts",
+   "exports": {
+     "types": "./global.d.ts",
+     "import": "./dist/index.js",
