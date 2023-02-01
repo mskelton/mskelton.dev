@@ -10,8 +10,7 @@ jobs:
       - run: pnpm playwright install chromium --with-deps
       - run: pnpm test
         env:
-          PLAYWRIGHT_TEST_BASE_URL:
-            ${{ github.event.deployment_status.target_url }}
+          BASE_URL: ${{ github.event.deployment_status.target_url }}
       - name: Upload test results
         uses: actions/upload-artifact@v2
         if: ${{ failure() }}
