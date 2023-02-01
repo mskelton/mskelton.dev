@@ -1,5 +1,5 @@
 import { Head, Html, Main, NextScript } from "next/document"
-import { siteMeta } from "lib/siteMeta"
+import { siteMeta } from "lib/siteMeta.js"
 
 const modeScript = `
   let darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)')

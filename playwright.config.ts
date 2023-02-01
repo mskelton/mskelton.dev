@@ -1,6 +1,6 @@
 import { expect, PlaywrightTestConfig } from "@playwright/test"
 import axeMatchers from "expect-axe-playwright"
-import path from "path"
+import { fileURLToPath } from "node:url"
 
 expect.extend(axeMatchers)
 
@@ -9,13 +9,14 @@ const config: PlaywrightTestConfig = {
   fullyParallel: true,
   reporter: process.env.CI ? "dot" : "list",
   retries: process.env.CI ? 2 : 0,
-  testDir: path.join(__dirname, "./e2e/spec"),
+  testDir: fileURLToPath(new URL("./e2e/spec", import.meta.url)),
   use: {
     axeOptions: {
       rules: {
         "color-contrast": { enabled: false },
       },
     },
+    baseURL: process.env.BASE_URL ?? "http://localhost:3000",
     screenshot: "only-on-failure",
     trace: "on-first-retry",
   },

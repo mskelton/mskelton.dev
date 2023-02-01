@@ -25,6 +25,15 @@ const nextConfig = {
   },
   pageExtensions: ["ts", "tsx", "md", "mdx"],
   reactStrictMode: true,
+  webpack: (config) => ({
+    ...config,
+    resolve: {
+      ...config.resolve,
+      extensionAlias: {
+        ".js": [".js", ".tsx", ".ts"],
+      },
+    },
+  }),
 }
 
 const themeURL = new URL("./config/tokyonight.json", import.meta.url)

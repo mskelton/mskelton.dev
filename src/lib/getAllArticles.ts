@@ -1,5 +1,5 @@
 import glob from "fast-glob"
-import * as path from "path"
+import path from "node:path"
 
 async function importArticle(filename: string) {
   const { default: component, meta } = await import(`../pages/blog/${filename}`)

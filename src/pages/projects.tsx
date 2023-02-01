@@ -1,14 +1,14 @@
 import Head from "next/head"
 import Image from "next/image"
-import { Card } from "components/Card"
-import { LinkIcon } from "components/icons"
-import { SimpleLayout } from "components/SimpleLayout"
+import { Card } from "components/Card.js"
+import { LinkIcon } from "components/icons.js"
+import { SimpleLayout } from "components/SimpleLayout.js"
 import logoSort from "images/logos/eslint-plugin-sort.svg"
 import logoOneDark from "images/logos/one-dark.svg"
 import logoPlaywright from "images/logos/playwright.png"
 import logoRatchet from "images/logos/ratchet.svg"
 import logoYarn from "images/logos/yarn.svg"
-import { siteMeta } from "lib/siteMeta"
+import { siteMeta } from "lib/siteMeta.js"
 
 function gh(slug: string) {
   return {

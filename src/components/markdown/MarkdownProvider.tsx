@@ -1,7 +1,7 @@
 import { MDXProvider } from "@mdx-js/react"
-import { MarkdownImage } from "./MarkdownImage"
-import { MarkdownLink } from "./MarkdownLink"
-import { MarkdownPre } from "./MarkdownPre"
+import { MarkdownImage } from "./MarkdownImage.js"
+import { MarkdownLink } from "./MarkdownLink.js"
+import { MarkdownPre } from "./MarkdownPre.js"
 
 const components = {
   a: MarkdownLink,

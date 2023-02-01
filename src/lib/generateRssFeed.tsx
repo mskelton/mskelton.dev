@@ -1,8 +1,8 @@
 import { Feed } from "feed"
 import { mkdir, writeFile } from "fs/promises"
 import ReactDOMServer from "react-dom/server"
-import { getAllArticles } from "./getAllArticles"
-import { siteMeta } from "./siteMeta"
+import { getAllArticles } from "./getAllArticles.js"
+import { siteMeta } from "./siteMeta.js"
 
 export async function generateRssFeed() {
   const articles = await getAllArticles()
