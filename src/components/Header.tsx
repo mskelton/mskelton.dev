@@ -191,10 +191,10 @@ function Avatar({ className, large = false, ...props }: AvatarProps) {
         alt=""
         className={clsx(
           "rounded-full bg-zinc-100 object-cover dark:bg-zinc-800",
-          large ? "h-16 w-16" : "h-9 w-9"
+          large ? "h-24 w-24" : "h-9 w-9"
         )}
         priority
-        sizes={large ? "4rem" : "2.25rem"}
+        sizes={large ? "6rem" : "2.25rem"}
         src={avatarImage}
       />
     </Link>
@@ -226,7 +226,7 @@ export function Header() {
                       transform: "var(--avatar-border-transform)",
                     }}
                   />
-                  <Avatar className="block h-16 w-16 origin-left" large />
+                  <Avatar className="block h-24 w-24 origin-left" large />
                 </div>
               </div>
             </Container>
