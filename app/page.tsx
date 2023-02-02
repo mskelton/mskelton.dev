@@ -7,6 +7,7 @@ import { Container } from "components/Container"
 import { ArrowDownIcon, BriefcaseIcon } from "components/icons"
 import { socials } from "components/SocialIcons"
 import logoCKH from "images/logos/ckh.webp"
+import logoFederato from "images/logos/federato.png"
 import logoWiden from "images/logos/widen.svg"
 import image1 from "images/photos/image-1.jpg"
 import image2 from "images/photos/image-2.jpg"
@@ -36,15 +37,24 @@ function Article({ article }: ArticleProps) {
 function SocialLink({ icon: Icon, ...props }: SocialLinkProps) {
   return (
     <Link className="group -m-1 p-1" {...props}>
-      <Icon className="h-6 w-6 fill-zinc-500 transition group-hover:fill-zinc-600 dark:fill-zinc-400 dark:group-hover:fill-zinc-300" />
+      <Icon className="h-6 w-6 fill-zinc-500 transition group-hover:fill-teal-500 dark:fill-zinc-400" />
     </Link>
   )
 }
 
 const resume = [
   {
-    company: "Widen, an Acquia Company",
+    company: "Federato",
     end: "Present",
+    href: "https://www.federato.ai",
+    logo: logoFederato,
+    start: "2023",
+    title: "Senior software engineer",
+  },
+  {
+    company: "Widen, an Acquia Company",
+    end: "2023",
+    href: "https://www.widen.com",
     logo: logoWiden,
     start: "2019",
     title: "Staff software engineer",
@@ -52,6 +62,7 @@ const resume = [
   {
     company: "CKH Consulting",
     end: "2019",
+    href: "https://ckhconsulting.com",
     logo: logoCKH,
     start: "2016",
     title: "Software developer",
@@ -81,7 +92,14 @@ function Resume() {
             <dl className="flex flex-auto flex-wrap gap-x-2">
               <dt className="sr-only">Company</dt>
               <dd className="w-full flex-none text-sm font-medium text-zinc-900 dark:text-zinc-100">
-                {role.company}
+                <a
+                  className="transition-colors hover:text-teal-500"
+                  href={role.href}
+                  rel="noreferrer"
+                  target="_blank"
+                >
+                  {role.company}
+                </a>
               </dd>
 
               <dt className="sr-only">Role</dt>
