@@ -51,6 +51,10 @@ function exportDecl() {
 
 export default function remarkLayout() {
   return (ast) => {
+    if (ast.children[0].type === "mdxjsEsm" && ast.children[0].value === "") {
+      return
+    }
+
     ast.children.unshift({
       data: {
         estree: {
