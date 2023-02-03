@@ -20,6 +20,7 @@ specifiers:
   clsx: ^1.2.1
   eslint: ^8.33.0
   eslint-config-next: ^13.1.6
+  eslint-plugin-next: ^0.0.0
   eslint-plugin-playwright: ^0.12.0
   eslint-plugin-sort: ^2.4.0
   expect-axe-playwright: ^4.0.1
@@ -86,6 +87,7 @@ devDependencies:
   '@typescript-eslint/parser': 5.50.0_4vsywjlpuriuw3tl5oq6zy5a64
   eslint: 8.33.0
   eslint-config-next: 13.1.6_4vsywjlpuriuw3tl5oq6zy5a64
+  eslint-plugin-next: 0.0.0
   eslint-plugin-playwright: 0.12.0_eslint@8.33.0
   eslint-plugin-sort: 2.4.0_4vsywjlpuriuw3tl5oq6zy5a64
   expect-axe-playwright: 4.0.1_@playwright+test@1.30.0
@@ -1852,6 +1854,10 @@ packages:
       object.entries: 1.1.6
       object.fromentries: 2.0.6
       semver: 6.3.0
+    dev: true
+
+  /eslint-plugin-next/0.0.0:
+    resolution: {integrity: sha512-IldNDVb6WNduggwRbYzSGZhaskUwVecJ6fhmqwX01+S1aohwAWNzU4me6y47DDzpD/g0fdayNBGxEdt9vKkUtg==}
     dev: true
 
   /eslint-plugin-playwright/0.12.0_eslint@8.33.0:
