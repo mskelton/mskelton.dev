@@ -1,0 +1,151 @@
+---
+title: Embracing Shell Scripts
+description:
+  In the world of modern editors and tools, shell scripting has become somewhat
+  of a lost skill or a dark art. In this article, I'll show practical,
+  real-world examples of shell scripts to encourage you to re-explore shell
+  scripting to enhance your workflows and increase your productivity.
+date: "2022-12-17"
+---
+
+The year: 2022. The place: Southern Wisconsin. The scene: a programmer trying
+his utmost to find the words to explain his passion for shell scripting and
+automation. Okay, let me stop there before this article goes way off the deep
+end of silliness. This isn't Star Trek, and I'm nowhere near that cool. Yet, I'd
+like to tell you about something I find very exciting, the world of shell
+scripting and automation.
+
+Before you click away and go back to coding in your editor with all its amazing
+GUI tools (don't worry, I'm not against modern editors, they are awesome), hear
+me out for just a bit. As a developer, you've no doubt used your shell to some
+degree. Perhaps cloning a git repository, navigating your directory structure,
+or running the sketchy-looking command you found on StackOverflow that magically
+fixes the issue your computer was having. However, behind the shell you use lays
+a whole world of productivity improvements and automation you can tap into.
+
+## What's the point though?
+
+When I first started digging deeper into documentation surrounding shell script
+in bash/zsh/fish, I found myself asking the question "what's the point?" or
+"what can I automate that actually helps my daily work?" So, my goal in this
+article is going to be to share some of my favorite shell scripts and associated
+workflow improvements to help inspire you to consider what you can build. I'm
+not going to dive too deep into how every piece works, there are tons of
+resources already about learning `bash` or your favorite shell scripting
+language.
+
+So, let's dive in!
+
+## Printing the most recent commit URL
+
+From time to time, when discussing a PR with coworkers, I'll commit and push a
+change to GitHub, and then copy the URL of that commit to send them in Slack or
+add to a comment thread in the pull request. Previously, I didn't have a great
+process to do this, often resulting in opening up my git graph in VS Code and
+remembering what to click to copy the commit URL, or going into the branch in
+GitHub to manually find the URL.
+
+To simplify this, I created a `commit-url` script which will print the URL of
+the latest commit in my repository. This makes it as simple as running
+`commit-url | pbcopy` to print and then copy the commit URL to my clipboard to
+send to my coworkers.
+
+```bash
+# Get the SHA (e.g. ) of the latest commit in the repository unless a SHA was
+# provided as an argument to this script.
+commit=${1:-$(git rev-parse --short HEAD)}
+
+# Read the repository base URL from the git config
+url=$(git config --get remote.origin.url)
+
+# Take the git@hostname.com:account/repo.git format and turn it into
+# https://hostname.com/account/repo/commit/...
+if [[ "$url" != "https://"* ]]; then
+	url=$(echo $url | sed 's/\.git$//' | sed 's/:/\//' | sed 's/^git@/https:\/\//')
+fi
+
+echo "$url/commit/$commit"
+```
+
+## Built-in copying
+
+This script works great and while it's not something I have to use all the time,
+it's so nice to have it handy when I need it. However, it is a little bit of a
+pain to have to always add `| pbcopy` when calling the script if I want to copy
+it, so I started to employ a pattern with scripts like this one where I would
+create an associated "helper" script that would be named the same with a `!` as
+a postfix. This helper script would simply call the main script and pipe the
+output through `pbcopy` automatically.
+
+```bash
+commit-url $1 | pbcopy
+```
+
+While it looks a little odd to have the exclamation point when running the
+command (`commit-url!`), it's nice that several of my scripts are complementary
+in this way.
+
+## View package.json contents
+
+This one might sound a little odd, but it's actually quite handy when combined
+with autocompletion. As a Node.js developer, I work with `package.json` files
+all the time. When moving between projects, I don't always remember what scripts
+are available to start the project, run tests, etc. That's where this script
+comes in handy.
+
+```bash
+# Check if there is a package.json file in the current directory
+if [[ -f package.json ]]; then
+  # Parse the package.json file with jq
+	jq ".$1" package.json
+else
+	echo -e "Error: Couldn't find a package.json file in the current directory."
+fi
+```
+
+At its most simple level you can print the contents of the package.json file by
+simply running `pkg`. However, if you add an argument you can drill down into a
+specific section such as `pkg scripts` which would print only the scripts. Very
+simple, yet very useful.
+
+## Finding URLs in text
+
+Sometimes, I have a piece of text that contains one or more URLs that I wish to
+extract. With a few lines of bash, this is a very simple task.
+
+```bash
+# Loop through each line of the input stream
+while IFS= read line; do
+  # Print URLs matching the regex pattern
+  echo $line | grep -oE 'https?://\S+'
+done
+```
+
+Just like `commit-url`, I employ a similar concept where I can use `url!` to
+automatically open the URLs found in the text.
+
+```bash
+while IFS= read line; do
+	echo $line | url | xargs open
+done
+```
+
+## Sound test
+
+This one is really simple, and useful when setting up a new external device like
+a speaker or headphones. Rather than opening YouTube or Spotify to see if sound
+is working properly, run this script which I have named `ding` to send a simple
+push notification with sound. This is exclusive to macOS, but the concept could
+easily be ported to other operating systems.
+
+```bash
+osascript -e 'display notification "Did you hear it?" with title "Sound test" sound name "Glass"'
+```
+
+## Wrapping up
+
+There is a lot more that could be said about shell scripting and bash, as well
+as the myriad of other ways to automate your workflow (which I plan on writing
+other posts about). I hope this article will inspire you to spend some time
+exploring shell scripting to automate your workflows and improve your
+productivity.
