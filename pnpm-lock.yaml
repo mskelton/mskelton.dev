@@ -12,6 +12,7 @@ specifiers:
   '@stefanprobst/rehype-shiki': ^2.2.0
   '@tailwindcss/typography': ^0.5.9
   '@types/mdx': ^2.0.3
+  '@types/node': ^18.11.18
   '@types/react': ^18.0.27
   '@types/react-dom': ^18.0.10
   '@typescript-eslint/eslint-plugin': ^5.50.0
@@ -83,6 +84,7 @@ devDependencies:
   '@mskelton/eslint-config': 7.2.0_og7742kyp7pjovwsdjxmdcd5nm
   '@playwright/test': 1.30.0
   '@types/mdx': 2.0.3
+  '@types/node': 18.11.18
   '@types/react': 18.0.27
   '@types/react-dom': 18.0.10
   '@typescript-eslint/eslint-plugin': 5.50.0_go4drrxstycfikanvu45pi4vgq

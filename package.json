@@ -13,6 +13,8 @@
   },
   "dependencies": {
     "@headlessui/react": "^1.7.8",
+    "@mdx-js/loader": "^2.2.1",
+    "@mdx-js/react": "^2.2.1",
     "@next/mdx": "^13.1.6",
     "@stefanprobst/rehype-shiki": "^2.2.0",
     "@tailwindcss/typography": "^0.5.9",
@@ -44,6 +46,7 @@
     "@mskelton/eslint-config": "^7.2.0",
     "@playwright/test": "^1.30.0",
     "@types/mdx": "^2.0.3",
+    "@types/node": "^18.11.18",
     "@types/react": "^18.0.27",
     "@types/react-dom": "^18.0.10",
     "@typescript-eslint/eslint-plugin": "^5.50.0",

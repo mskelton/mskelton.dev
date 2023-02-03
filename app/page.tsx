@@ -14,7 +14,6 @@ import image3 from "images/photos/image-3.jpg"
 import image4 from "images/photos/image-4.jpg"
 import image5 from "images/photos/image-5.jpg"
 import { formatDate } from "lib/formatDate"
-// import { generateRssFeed } from "lib/generateRssFeed"
 import { getAllArticles } from "lib/getAllArticles"
 import { siteMeta } from "lib/siteMeta"
 import type { SocialLinkProps } from "./about/page"
@@ -161,10 +160,6 @@ export default async function Home() {
   const articles = (await getAllArticles())
     .slice(0, 4)
     .map(({ component: _, ...meta }) => meta)
-
-  // if (process.env.NODE_ENV === "production") {
-  //   await generateRssFeed()
-  // }
 
   return (
     <>

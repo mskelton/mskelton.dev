@@ -1,6 +1,6 @@
-import { MarkdownImage } from "./src/components/markdown/MarkdownImage.js"
-import { MarkdownLink } from "./src/components/markdown/MarkdownLink.js"
-import { MarkdownPre } from "./src/components/markdown/MarkdownPre.js"
+import { MarkdownImage } from "./src/components/markdown/MarkdownImage"
+import { MarkdownLink } from "./src/components/markdown/MarkdownLink"
+import { MarkdownPre } from "./src/components/markdown/MarkdownPre"
 
 export function useMDXComponents(components: {
   [component: string]: React.ComponentType
