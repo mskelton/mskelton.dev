@@ -14,10 +14,10 @@ import remarkLayout from "./config/remark-layout.mjs"
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   eslint: {
-    dirs: ["src", "config", "e2e"],
+    dirs: ["app", "config", "e2e", "src"],
   },
   experimental: {
-    newNextLinkBehavior: true,
+    appDir: true,
     scrollRestoration: true,
   },
   images: {
