@@ -7,7 +7,7 @@ async function importArticle(filename: string) {
   )
 
   return {
-    slug: filename.replace("page.tsx", ""),
+    slug: filename.replace("/content.mdx", ""),
     ...meta,
     component,
   }
@@ -15,8 +15,7 @@ async function importArticle(filename: string) {
 
 export async function getAllArticles() {
   const cwd = path.join(process.cwd(), "app/blog")
-  const filenames = await glob("*.mdx", { cwd })
-  console.log(filenames)
+  const filenames = await glob("**/*.mdx", { cwd })
   const articles = await Promise.all(filenames.map(importArticle))
 
   return articles.sort(
