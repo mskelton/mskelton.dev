@@ -14,7 +14,7 @@ import image3 from "images/photos/image-3.jpg"
 import image4 from "images/photos/image-4.jpg"
 import image5 from "images/photos/image-5.jpg"
 import { formatDate } from "lib/formatDate.js"
-import { generateRssFeed } from "lib/generateRssFeed.js"
+// import { generateRssFeed } from "lib/generateRssFeed.js"
 import { getAllArticles } from "lib/getAllArticles.js"
 import { siteMeta } from "lib/siteMeta.js"
 import type { SocialLinkProps } from "./about/page.js"
@@ -155,20 +155,6 @@ function Photos() {
       </div>
     </div>
   )
-}
-
-export async function getStaticProps() {
-  if (process.env.NODE_ENV === "production") {
-    await generateRssFeed()
-  }
-
-  return {
-    props: {
-      articles: (await getAllArticles())
-        .slice(0, 4)
-        .map(({ component: _, ...meta }) => meta),
-    },
-  }
 }
 
 export default async function Home() {
