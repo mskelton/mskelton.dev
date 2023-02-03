@@ -1,10 +1,5 @@
 {
-  "extends": [
-    "@mskelton",
-    "@mskelton/eslint-config/typescript",
-    "@mskelton/eslint-config/react",
-    "next"
-  ],
+  "extends": ["@mskelton", "@mskelton/eslint-config/typescript", "next"],
   "overrides": [
     {
       "files": "e2e/**",

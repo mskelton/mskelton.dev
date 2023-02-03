@@ -14,10 +14,10 @@ import remarkLayout from "./config/remark-layout.mjs"
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   eslint: {
-    dirs: ["src", "config", "e2e"],
+    dirs: ["app", "config", "e2e", "src"],
   },
   experimental: {
-    newNextLinkBehavior: true,
+    appDir: true,
     scrollRestoration: true,
   },
   images: {
@@ -25,15 +25,6 @@ const nextConfig = {
   },
   pageExtensions: ["ts", "tsx", "md", "mdx"],
   reactStrictMode: true,
-  webpack: (config) => ({
-    ...config,
-    resolve: {
-      ...config.resolve,
-      extensionAlias: {
-        ".js": [".js", ".tsx", ".ts"],
-      },
-    },
-  }),
 }
 
 const themeURL = new URL("./config/tokyonight.json", import.meta.url)
@@ -43,7 +34,6 @@ const highlighter = await shiki.getHighlighter({ theme })
 const withMDX = nextMDX({
   extension: /\.mdx?$/,
   options: {
-    providerImportSource: "@mdx-js/react",
     rehypePlugins: [
       rehypeSlug,
       [

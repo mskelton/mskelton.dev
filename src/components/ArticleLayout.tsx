@@ -1,10 +1,9 @@
 import Head from "next/head"
 import Link from "next/link"
-import { Container } from "components/Container.js"
-import { Prose } from "components/Prose.js"
-import { formatDate } from "lib/formatDate.js"
-import { ArrowLeftIcon } from "./icons.js"
-import { MarkdownProvider } from "./markdown/MarkdownProvider.js"
+import { Container } from "components/Container"
+import { Prose } from "components/Prose"
+import { formatDate } from "lib/formatDate"
+import { ArrowLeftIcon } from "./icons"
 
 export interface ArticleMeta {
   date: string
@@ -59,9 +58,7 @@ export function ArticleLayout({
                 </time>
               </header>
 
-              <MarkdownProvider>
-                <Prose className="mt-8">{children}</Prose>
-              </MarkdownProvider>
+              <Prose className="mt-8">{children}</Prose>
             </article>
           </div>
         </div>

@@ -1,12 +1,11 @@
 import { clsx } from "clsx"
-import Head from "next/head"
 import Image from "next/image"
 import Link from "next/link"
-import { Button } from "components/Button.js"
-import { Card } from "components/Card.js"
-import { Container } from "components/Container.js"
-import { ArrowDownIcon, BriefcaseIcon } from "components/icons.js"
-import { socials } from "components/SocialIcons.js"
+import { Button } from "components/Button"
+import { Card } from "components/Card"
+import { Container } from "components/Container"
+import { ArrowDownIcon, BriefcaseIcon } from "components/icons"
+import { socials } from "components/SocialIcons"
 import logoCKH from "images/logos/ckh.webp"
 import logoWiden from "images/logos/widen.svg"
 import image1 from "images/photos/image-1.jpg"
@@ -14,12 +13,11 @@ import image2 from "images/photos/image-2.jpg"
 import image3 from "images/photos/image-3.jpg"
 import image4 from "images/photos/image-4.jpg"
 import image5 from "images/photos/image-5.jpg"
-import { formatDate } from "lib/formatDate.js"
-import { generateRssFeed } from "lib/generateRssFeed.js"
-import { getAllArticles } from "lib/getAllArticles.js"
-import { siteMeta } from "lib/siteMeta.js"
-import { SocialLinkProps } from "./about.js"
-import { ArticleProps, IArticle } from "./blog/index.js"
+import { formatDate } from "lib/formatDate"
+import { getAllArticles } from "lib/getAllArticles"
+import { siteMeta } from "lib/siteMeta"
+import type { SocialLinkProps } from "./about/page"
+import type { ArticleProps } from "./blog/page"
 
 function Article({ article }: ArticleProps) {
   return (
@@ -158,32 +156,13 @@ function Photos() {
   )
 }
 
-export async function getStaticProps() {
-  if (process.env.NODE_ENV === "production") {
-    await generateRssFeed()
-  }
+export default async function Home() {
+  const articles = (await getAllArticles())
+    .slice(0, 4)
+    .map(({ component: _, ...meta }) => meta)
 
-  return {
-    props: {
-      articles: (await getAllArticles())
-        .slice(0, 4)
-        .map(({ component: _, ...meta }) => meta),
-    },
-  }
-}
-
-export interface HomeProps {
-  articles: IArticle[]
-}
-
-export default function Home({ articles }: HomeProps) {
   return (
     <>
-      <Head>
-        <title>{`Mark Skelton - ${siteMeta.tagline}`}</title>
-        <meta content={siteMeta.description} name="description" />
-      </Head>
-
       <Container className="mt-9">
         <div className="max-w-2xl">
           <h1 className="text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
@@ -201,7 +180,9 @@ export default function Home({ articles }: HomeProps) {
           </div>
         </div>
       </Container>
+
       <Photos />
+
       <Container className="mt-24 md:mt-28">
         <div className="mx-auto grid max-w-xl grid-cols-1 gap-y-20 lg:max-w-none lg:grid-cols-2">
           <div className="flex flex-col gap-16">

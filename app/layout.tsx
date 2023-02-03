@@ -1,5 +1,8 @@
-import { Head, Html, Main, NextScript } from "next/document"
-import { siteMeta } from "lib/siteMeta.js"
+import "styles/tailwind.css"
+import { Footer } from "components/Footer"
+import { Header } from "components/Header"
+import { siteMeta } from "lib/siteMeta"
+import { AnalyticsWrapper } from "./AnalyticsWrapper"
 
 const modeScript = `
   let darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
@@ -36,12 +39,14 @@ const modeScript = `
   }
 `
 
-export default function Document() {
-  return (
-    <Html className="h-full antialiased" lang="en">
-      <Head>
-        <script dangerouslySetInnerHTML={{ __html: modeScript }} />
+export interface RootLayoutProps {
+  children?: React.ReactNode
+}
 
+export default function RootLayout({ children }: RootLayoutProps) {
+  return (
+    <html className="h-full antialiased" lang="en">
+      <head>
         <link
           href={`${siteMeta.url}/rss/feed.xml`}
           rel="alternate"
@@ -52,12 +57,25 @@ export default function Document() {
           rel="alternate"
           type="application/feed+json"
         />
-      </Head>
+
+        <script dangerouslySetInnerHTML={{ __html: modeScript }} />
+      </head>
 
       <body className="flex h-full flex-col bg-zinc-50 dark:bg-black">
-        <Main />
-        <NextScript />
+        <div className="fixed inset-0 flex justify-center sm:px-8">
+          <div className="flex w-full max-w-7xl lg:px-8">
+            <div className="w-full bg-white ring-1 ring-zinc-100 dark:bg-zinc-900 dark:ring-zinc-300/20" />
+          </div>
+        </div>
+
+        <div className="relative">
+          <Header />
+          <main>{children}</main>
+          <Footer />
+        </div>
+
+        <AnalyticsWrapper />
       </body>
-    </Html>
+    </html>
   )
 }
