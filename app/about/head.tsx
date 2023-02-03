@@ -1,4 +1,4 @@
-import { siteMeta } from "lib/siteMeta.js"
+import { siteMeta } from "lib/siteMeta"
 
 export default function Head() {
   return (

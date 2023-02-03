@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { Container } from "components/Container.js"
+import { Container } from "components/Container"
 
 export interface NavLinkProps {
   children: React.ReactNode

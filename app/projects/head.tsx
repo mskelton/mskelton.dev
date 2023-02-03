@@ -1,4 +1,4 @@
-import { description } from "./meta.js"
+import { description } from "./meta"
 
 export default function Head() {
   return (

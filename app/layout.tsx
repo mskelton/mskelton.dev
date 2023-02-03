@@ -1,7 +1,7 @@
 import "styles/tailwind.css"
 import { Footer } from "components/Footer"
 import { Header } from "components/Header"
-import { siteMeta } from "lib/siteMeta.js"
+import { siteMeta } from "lib/siteMeta"
 import { AnalyticsWrapper } from "./AnalyticsWrapper"
 
 const modeScript = `

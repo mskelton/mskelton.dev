@@ -1,7 +1,7 @@
-import { Card } from "components/Card.js"
-import { Section, SectionProps } from "components/Section.js"
-import { SimpleLayout } from "components/SimpleLayout.js"
-import { description } from "./meta.js"
+import { Card } from "components/Card"
+import { Section, SectionProps } from "components/Section"
+import { SimpleLayout } from "components/SimpleLayout"
+import { description } from "./meta"
 
 function ToolsSection({ children, ...props }: SectionProps) {
   return (
