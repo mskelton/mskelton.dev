@@ -45,6 +45,7 @@
     "@babel/eslint-parser": "^7.19.1",
     "@mskelton/eslint-config": "^7.2.0",
     "@playwright/test": "^1.30.0",
+    "@types/mdx": "^2.0.3",
     "@types/react": "^18.0.27",
     "@types/react-dom": "^18.0.10",
     "@typescript-eslint/eslint-plugin": "^5.50.0",

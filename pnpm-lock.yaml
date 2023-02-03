@@ -11,6 +11,7 @@ specifiers:
   '@playwright/test': ^1.30.0
   '@stefanprobst/rehype-shiki': ^2.2.0
   '@tailwindcss/typography': ^0.5.9
+  '@types/mdx': ^2.0.3
   '@types/react': ^18.0.27
   '@types/react-dom': ^18.0.10
   '@typescript-eslint/eslint-plugin': ^5.50.0
@@ -81,6 +82,7 @@ devDependencies:
   '@babel/eslint-parser': 7.19.1_b3mcivpi6zqbotlvqqcfprcnry
   '@mskelton/eslint-config': 7.2.0_og7742kyp7pjovwsdjxmdcd5nm
   '@playwright/test': 1.30.0
+  '@types/mdx': 2.0.3
   '@types/react': 18.0.27
   '@types/react-dom': 18.0.10
   '@typescript-eslint/eslint-plugin': 5.50.0_go4drrxstycfikanvu45pi4vgq
@@ -755,7 +757,6 @@ packages:
 
   /@types/mdx/2.0.3:
     resolution: {integrity: sha512-IgHxcT3RC8LzFLhKwP3gbMPeaK7BM9eBH46OdapPA7yvuIUJ8H6zHZV53J8hGZcTSnt95jANt+rTBNUUc22ACQ==}
-    dev: false
 
   /@types/ms/0.7.31:
     resolution: {integrity: sha512-iiUgKzV9AuaEkZqkOLDIvlQiL6ltuZd9tGcW3gwpnX8JbuiuhFlEGmmFXEXkN50Cvq7Os88IY2v0dkDqXYWVgA==}
