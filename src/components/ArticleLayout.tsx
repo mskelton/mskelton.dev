@@ -4,7 +4,6 @@ import { Container } from "components/Container.js"
 import { Prose } from "components/Prose.js"
 import { formatDate } from "lib/formatDate.js"
 import { ArrowLeftIcon } from "./icons.js"
-import { MarkdownProvider } from "./markdown/MarkdownProvider.js"
 
 export interface ArticleMeta {
   date: string
@@ -59,9 +58,7 @@ export function ArticleLayout({
                 </time>
               </header>
 
-              <MarkdownProvider>
-                <Prose className="mt-8">{children}</Prose>
-              </MarkdownProvider>
+              <Prose className="mt-8">{children}</Prose>
             </article>
           </div>
         </div>

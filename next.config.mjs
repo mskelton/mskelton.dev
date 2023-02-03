@@ -43,7 +43,6 @@ const highlighter = await shiki.getHighlighter({ theme })
 const withMDX = nextMDX({
   extension: /\.mdx?$/,
   options: {
-    providerImportSource: "@mdx-js/react",
     rehypePlugins: [
       rehypeSlug,
       [
