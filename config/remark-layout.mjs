@@ -1,11 +1,11 @@
 const identifier = (name) => ({ name, type: "Identifier" })
 
-function importDecl(name) {
+function importDecl(name, path) {
   return {
     importKind: "value",
     source: {
       type: "Literal",
-      value: `components/${name}`,
+      value: path,
     },
     specifiers: [
       {
@@ -57,7 +57,10 @@ export default function remarkLayout() {
       ast.children.unshift({
         data: {
           estree: {
-            body: [importDecl(layout), exportDecl(layout)],
+            body: [
+              importDecl(layout, `components/${layout}`),
+              exportDecl(layout),
+            ],
             sourceType: "module",
             type: "Program",
           },
