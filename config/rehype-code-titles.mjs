@@ -1,20 +1,29 @@
-import { visit } from "unist-util-visit"
+import { SKIP, visit } from "unist-util-visit"
 
-const className = [
-  "absolute",
-  "top-0",
-  "left-0",
-  "right-0",
-  "rounded-t-2xl",
-  "px-8",
-  "py-3",
-  "bg-zinc-800",
-  "text-white",
-  "text-sm",
-]
+function createTitle(title) {
+  return {
+    children: [{ type: "text", value: title }],
+    properties: {
+      className: [
+        "absolute",
+        "top-0",
+        "left-0",
+        "right-0",
+        "rounded-t-2xl",
+        "px-8",
+        "py-3",
+        "bg-zinc-800",
+        "text-white",
+        "text-sm",
+      ],
+    },
+    tagName: "div",
+    type: "element",
+  }
+}
 
 export default function rehypeCodeTitles() {
-  const visitor = (node) => {
+  const visitor = (node, index, parent) => {
     if (node.tagName !== "pre") {
       return
     }
@@ -26,20 +35,20 @@ export default function rehypeCodeTitles() {
       .join("")
       .split(":")
 
-    if (!title) {
-      return
+    // Add the language to the code block so Shiki can highlight it
+    code.properties.className = [lang]
+
+    // Wrap the code block in a div with the title
+    parent.children[index] = {
+      children: title ? [createTitle(title), node] : [node],
+      properties: {
+        className: ["group", "relative", title ? "has-title pt-12" : ""],
+      },
+      tagName: "div",
+      type: "element",
     }
 
-    node.properties.className = ["relative", "pt-12", "peer", "has-title"]
-    node.children = [
-      {
-        children: [{ type: "text", value: title }],
-        properties: { className },
-        tagName: "div",
-        type: "element",
-      },
-      { ...code, properties: { className: [lang] } },
-    ]
+    return SKIP
   }
 
   return (tree) => visit(tree, "element", visitor)

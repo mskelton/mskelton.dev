@@ -8,6 +8,7 @@ import remarkGfm from "remark-gfm"
 import remarkMdxFrontmatter from "remark-mdx-frontmatter"
 import remarkSmartypants from "remark-smartypants"
 import shiki from "shiki"
+import rehypeCodeA11y from "./config/rehype-code-a11y.mjs"
 import rehypeCodeTitles from "./config/rehype-code-titles.mjs"
 import remarkFrontmatterMetadata from "./config/remark-frontmatter-metadata.mjs"
 import remarkLayout from "./config/remark-layout.mjs"
@@ -57,6 +58,7 @@ const withMDX = nextMDX({
       ],
       rehypeCodeTitles,
       [rehypeShiki, { highlighter }],
+      rehypeCodeA11y,
     ],
     remarkPlugins: [
       remarkGfm,

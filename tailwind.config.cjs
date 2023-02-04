@@ -248,6 +248,9 @@ module.exports = {
             backgroundColor: "transparent",
             borderRadius: 0,
           },
+          ".has-title pre": {
+            borderRadius: "0 0 1rem 1rem",
+          },
 
           // Horizontal rules
           hr: {
