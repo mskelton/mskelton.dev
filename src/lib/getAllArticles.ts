@@ -7,7 +7,7 @@ async function importArticle(filename: string) {
   )
 
   return {
-    slug: filename.replace("/content.mdx", ""),
+    slug: path.dirname(filename),
     ...meta,
     component,
   }

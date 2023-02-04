@@ -12,18 +12,11 @@ export interface ArticleMeta {
 
 export interface ArticleLayoutProps {
   children: React.ReactNode
-  isRssFeed?: boolean
   meta: ArticleMeta
 }
 
-export function ArticleLayout({
-  children,
-  isRssFeed = false,
-  meta,
-}: ArticleLayoutProps) {
-  return isRssFeed ? (
-    children
-  ) : (
+export function ArticleLayout({ children, meta }: ArticleLayoutProps) {
+  return (
     <Container className="mt-16 lg:mt-32">
       <div className="xl:relative">
         <div className="mx-auto max-w-2xl">
