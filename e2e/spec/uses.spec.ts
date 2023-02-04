@@ -8,4 +8,12 @@ test.describe("Uses page", async () => {
   test("should be accessible", async ({ usesPage }) => {
     await expect(usesPage.root).toPassAxe()
   })
+
+  test("has page metadata", async ({ page, usesPage }) => {
+    await expect(page).toHaveTitle("Uses - Mark Skelton")
+    await expect(usesPage.description).toHaveAttribute(
+      "content",
+      /I create software 40\+ hours/
+    )
+  })
 })

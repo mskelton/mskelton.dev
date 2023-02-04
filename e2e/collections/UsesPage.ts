@@ -1,7 +1,6 @@
-import { Page } from "@playwright/test"
-import Collection from "lariat"
+import { BasePage } from "./BasePage.js"
 
-export class UsesPage extends Collection<Page> {
+export class UsesPage extends BasePage {
   async goto() {
     await this.frame.goto("/uses")
   }
