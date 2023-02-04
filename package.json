@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "build:rss": "ts-node-esm ./src/lib/generateRssFeed.ts",
     "serve": "next start",
     "lint": "next lint",
     "format": "prettier --write .",
@@ -58,9 +59,11 @@
     "eslint-plugin-playwright": "^0.12.0",
     "eslint-plugin-sort": "^2.4.0",
     "expect-axe-playwright": "^4.0.1",
+    "gray-matter": "^4.0.3",
     "lariat": "^2.0.1",
     "prettier": "^2.8.3",
     "prettier-plugin-tailwindcss": "^0.2.2",
+    "ts-node": "^10.9.1",
     "typescript": "^4.9.5"
   }
 }
