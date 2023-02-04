@@ -94,7 +94,7 @@ export interface NavItemProps {
 }
 
 function NavItem({ children, href }: NavItemProps) {
-  const isActive = usePathname() === href
+  const isActive = usePathname()?.startsWith(href)
 
   return (
     <li>
