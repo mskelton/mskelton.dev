@@ -1,16 +1,16 @@
 const identifier = (name) => ({ name, type: "Identifier" })
 
-function importDecl() {
+function importDecl(name, path) {
   return {
     importKind: "value",
     source: {
       type: "Literal",
-      value: "components/ArticleLayout",
+      value: path,
     },
     specifiers: [
       {
-        imported: identifier("ArticleLayout"),
-        local: identifier("ArticleLayout"),
+        imported: identifier(name),
+        local: identifier(name),
         type: "ImportSpecifier",
       },
     ],
@@ -18,7 +18,7 @@ function importDecl() {
   }
 }
 
-function exportDecl() {
+function exportDecl(name) {
   return {
     declaration: {
       body: {
@@ -35,7 +35,7 @@ function exportDecl() {
             },
             { argument: identifier("props"), type: "JSXSpreadAttribute" },
           ],
-          name: { name: "ArticleLayout", type: "JSXIdentifier" },
+          name: { name, type: "JSXIdentifier" },
           selfClosing: true,
           type: "JSXOpeningElement",
         },
@@ -50,17 +50,24 @@ function exportDecl() {
 }
 
 export default function remarkLayout() {
-  return (ast) => {
-    ast.children.unshift({
-      data: {
-        estree: {
-          body: [importDecl(), exportDecl()],
-          sourceType: "module",
-          type: "Program",
+  return (ast, vfile) => {
+    const layout = vfile.data.matter.layout ?? "ArticleLayout"
+
+    if (layout !== "none") {
+      ast.children.unshift({
+        data: {
+          estree: {
+            body: [
+              importDecl(layout, `components/${layout}`),
+              exportDecl(layout),
+            ],
+            sourceType: "module",
+            type: "Program",
+          },
         },
-      },
-      type: "mdxjsEsm",
-      value: "",
-    })
+        type: "mdxjsEsm",
+        value: "",
+      })
+    }
   }
 }

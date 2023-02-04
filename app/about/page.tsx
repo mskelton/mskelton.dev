@@ -5,6 +5,7 @@ import { Container } from "components/Container"
 import { socials } from "components/SocialIcons"
 import portraitImage from "images/portrait.jpg"
 import { siteMeta } from "lib/siteMeta"
+import Content from "./content.mdx"
 
 export interface SocialLinkProps {
   children?: React.ReactNode
@@ -59,37 +60,12 @@ export default function About() {
         </div>
 
         <div className="lg:order-first lg:row-span-2">
-          <h1 className="text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
+          <h1 className="mb-12 text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
             Hi, I’m Mark 👋
           </h1>
 
-          <div className="mt-6 space-y-7 text-base text-zinc-600 dark:text-zinc-400">
-            <p>
-              I’m a staff software engineer working at Widen. While I’m not
-              afraid of CSS, my true passion lies in JavaScript engineering and
-              developer experience (DX). I love finding ways to simplify or
-              improve development workflow to save time and make it more fun to
-              work on applications. Wait, did I forget to mention how much I
-              love TypeScript?
-            </p>
-
-            <p>
-              Outside of work, I’m a small town kid from Wisconsin who loves
-              small town life almost as much as I like snow and winter. In my
-              free time I like working on my house, working on software side
-              projects, spending time with friends, and playing disc golf. I am
-              also a devout Christian seeking to be more like Jesus in word,
-              thought, and deed.
-            </p>
-
-            <p>
-              While I am a software engineer and a total nerd, I’m a huge
-              extrovert and love spending time with people. If you ever want to
-              debate the usefulness of college education for professions like
-              computer science, I will gladly oblige as I am a self-taught
-              developer who found very little practical value in college behind
-              getting that slip of paper they call a diploma.
-            </p>
+          <div className="space-y-7 text-base text-zinc-600 dark:text-zinc-400">
+            <Content />
           </div>
         </div>
 
