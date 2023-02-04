@@ -4,11 +4,12 @@ import rehypeAutolinkHeadings from "rehype-autolink-headings"
 import rehypeSlug from "rehype-slug"
 import remarkFrontmatter from "remark-frontmatter"
 import remarkGfm from "remark-gfm"
-import remarkMdxFrontmatter from "remark-mdx-frontmatter"
-import remarkSmartypants from "remark-smartypants"
 import shiki from "shiki"
 import { fileURLToPath } from "url"
+import remarkMdxFrontmatter from "remark-mdx-frontmatter"
+import remarkSmartypants from "remark-smartypants"
 import rehypeCodeTitles from "./config/rehype-code-titles.mjs"
+import remarkFrontmatterMetadata from "./config/remark-frontmatter-metadata.mjs"
 import remarkLayout from "./config/remark-layout.mjs"
 
 /** @type {import('next').NextConfig} */
@@ -60,6 +61,7 @@ const withMDX = nextMDX({
     remarkPlugins: [
       remarkGfm,
       remarkSmartypants,
+      remarkFrontmatterMetadata,
       remarkFrontmatter,
       [remarkMdxFrontmatter, { name: "meta" }],
       remarkLayout,
