@@ -15,6 +15,7 @@ function createTitle(title) {
         "bg-zinc-800",
         "text-white",
         "text-sm",
+        "font-mono",
       ],
     },
     tagName: "div",
