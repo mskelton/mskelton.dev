@@ -36,16 +36,8 @@
       "destination": "/blog/my-journey-to-become-a-staff-software-engineer"
     },
     {
-      "source": "/forex/eskelton/performance/conservative",
-      "destination": "https://www.myfxbook.com/members/EricSkelton/conservative-account/9327919"
-    },
-    {
-      "source": "/forex/eskelton/performance/moderate",
-      "destination": "https://www.myfxbook.com/members/EricSkelton/moderate/9327913"
-    },
-    {
-      "source": "/forex/mskelton/performance/moderate",
-      "destination": "https://www.myfxbook.com/members/MarkSkelton/osprey-mt4/9351470/0nrmakgpsZPUYrR3uXu4"
+      "source": "/semicolons",
+      "destination": "/blog/semicolons-the-never-ending-debate"
     }
   ],
   "rewrites": [
