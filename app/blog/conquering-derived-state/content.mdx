@@ -184,7 +184,7 @@ currently selected day and month as well as event handlers when the user changes
 the day or month. Rather than making our form component manage all the state and
 event handlers, we can wrap that logic in a custom `useDatePicker` hook!
 
-```js
+```javascript
 function useDatePicker(initialValues = { day: 1, month: "Jan" }) {
   const [month, setMonth] = useState(initialValues.month)
   const [day, setDay] = useState(initialValues.day)
