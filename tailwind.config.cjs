@@ -57,6 +57,9 @@ module.exports = {
           "--tw-prose-pre-border": "var(--tw-prose-invert-pre-border)",
           "--tw-prose-th-borders": "var(--tw-prose-invert-th-borders)",
           "--tw-prose-td-borders": "var(--tw-prose-invert-td-borders)",
+          "--tw-prose-kbd": "var(--tw-prose-invert-kbd)",
+          "--tw-prose-kbd-bg": "var(--tw-prose-invert-kbd-bg)",
+          "--tw-prose-kbd-borders": "var(--tw-prose-invert-kbd-borders)",
         },
       },
       DEFAULT: {
@@ -80,6 +83,9 @@ module.exports = {
           "--tw-prose-pre-border": "transparent",
           "--tw-prose-th-borders": theme("colors.zinc.200"),
           "--tw-prose-td-borders": theme("colors.zinc.100"),
+          "--tw-prose-kbd": theme("colors.zinc.700"),
+          "--tw-prose-kbd-bg": theme("colors.zinc.50"),
+          "--tw-prose-kbd-borders": theme("colors.zinc.200"),
           "--tw-prose-invert-body": theme("colors.zinc.400"),
           "--tw-prose-invert-headings": theme("colors.zinc.200"),
           "--tw-prose-invert-links": theme("colors.teal.400"),
@@ -99,6 +105,9 @@ module.exports = {
           "--tw-prose-invert-pre-border": theme("colors.zinc.200 / 0.1"),
           "--tw-prose-invert-th-borders": theme("colors.zinc.700"),
           "--tw-prose-invert-td-borders": theme("colors.zinc.800"),
+          "--tw-prose-invert-kbd": theme("colors.zinc.300"),
+          "--tw-prose-invert-kbd-bg": theme("colors.zinc.800"),
+          "--tw-prose-invert-kbd-borders": theme("colors.zinc.700"),
 
           // Base
           color: "var(--tw-prose-body)",
@@ -161,18 +170,31 @@ module.exports = {
           code: {
             display: "inline-block",
             color: "var(--tw-prose-code)",
-            fontSize: theme("fontSize.sm")[0],
             fontWeight: theme("fontWeight.semibold"),
             backgroundColor: "var(--tw-prose-code-bg)",
             borderRadius: theme("borderRadius.lg"),
-            paddingLeft: theme("spacing.1"),
-            paddingRight: theme("spacing.1"),
+            paddingInline: theme("spacing.2"),
+          },
+          "p code": {
+            fontSize: theme("fontSize.xs")[0],
+            lineHeight: theme("lineHeight.6"),
           },
           "a code": {
             color: "inherit",
           },
           ":is(h2, h3) code": {
             fontWeight: theme("fontWeight.bold"),
+          },
+          kbd: {
+            backgroundColor: "var(--tw-prose-kbd-bg)",
+            borderColor: "var(--tw-prose-kbd-borders)",
+            borderRadius: theme("borderRadius.md"),
+            borderWidth: theme("borderWidth.DEFAULT"),
+            boxShadow: "inset 0 -1px 0 var(--tw-prose-kbd-borders)",
+            color: "var(--tw-prose-kbd)",
+            fontSize: theme("fontSize.xs")[0],
+            paddingBlock: theme("spacing.[0.5]"),
+            paddingInline: theme("spacing.1"),
           },
 
           // Quotes
