@@ -23,7 +23,7 @@ To get our feet wet with publishing npm packages using GitHub Actions, let's
 start by creating a simple action that will publish to npm when we push a new
 version tag.
 
-```yaml:.github/workflows/publish.yml
+```yaml .github/workflows/publish.yml
 name: Publish
 on:
   push:
@@ -36,7 +36,7 @@ jobs:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
-          node-version: '16.x'
+          node-version: "16.x"
           registry-url: https://registry.npmjs.org/
       - run: yarn
       - run: yarn publish
@@ -76,7 +76,7 @@ from a `CHANGELOG.md` file. To make this easy, we will be using a custom GitHub
 action by [Roang-zero1](https://github.com/Roang-zero1) that will automate this
 entire process for us. To set this up, add the following job to your action.
 
-```yaml:.github/workflows/publish.yml
+```yaml .github/workflows/publish.yml
 create-release:
   runs-on: ubuntu-latest
   steps:
@@ -103,7 +103,7 @@ First, we will need to change the action trigger from on tags to on push. This
 way we can use the same action to run our tests on branches and pull requests.
 The trigger should now look like this.
 
-```yaml:.github/workflows/publish.yml
+```yaml .github/workflows/publish.yml
 on: [push]
 ```
 
@@ -111,7 +111,7 @@ Next, we will add a `test` job to the action that uses a matrix strategy to test
 our package against multiple node versions. You could also add OS versions to
 the matrix but for our example we'll keep it simple.
 
-```yaml:.github/workflows/publish.yml
+```yaml .github/workflows/publish.yml
 test:
   runs-on: ubuntu-latest
   strategy:
@@ -134,7 +134,7 @@ publish and release steps will only run for tags while the test can still run
 for any push. We will need to add the following two lines to both the publish
 and release jobs.
 
-```yaml:.github/workflows/publish.yml
+```yaml .github/workflows/publish.yml
 needs: test
 if: startsWith(github.ref, 'refs/tags/')
 ```
@@ -145,7 +145,7 @@ Putting all three of these pieces together, our final action would look like
 this. In some cases, you may not need all three of the jobs so you can easily
 mix and match to suit you needs.
 
-```yaml:.github/workflows/publish.yml
+```yaml .github/workflows/publish.yml
 name: Test, Publish, & Release
 on: [push]
 jobs:
@@ -169,7 +169,7 @@ jobs:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
-          node-version: '16.x'
+          node-version: "16.x"
           registry-url: https://registry.npmjs.org/
       - run: yarn
       - run: yarn publish
