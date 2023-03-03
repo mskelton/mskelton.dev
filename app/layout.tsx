@@ -40,7 +40,11 @@ const modeScript = `
   }
 `
 
-const font = Rubik({ subsets: ["latin"] })
+const font = Rubik({
+  display: "fallback",
+  fallback: ["sans-serif"],
+  subsets: ["latin"],
+})
 
 export interface RootLayoutProps {
   children?: React.ReactNode
