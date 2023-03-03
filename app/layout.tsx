@@ -1,4 +1,5 @@
 import "styles/tailwind.css"
+import { Rubik } from "@next/font/google"
 import { Footer } from "components/Footer"
 import { Header } from "components/Header"
 import { siteMeta } from "lib/siteMeta"
@@ -39,13 +40,15 @@ const modeScript = `
   }
 `
 
+const font = Rubik({ subsets: ["latin"] })
+
 export interface RootLayoutProps {
   children?: React.ReactNode
 }
 
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
-    <html className="h-full antialiased" lang="en">
+    <html className={`h-full text-lg antialiased ${font.className}`} lang="en">
       <head>
         <link
           href={`${siteMeta.url}/rss/feed.xml`}

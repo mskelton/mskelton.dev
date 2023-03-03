@@ -7,6 +7,7 @@ specifiers:
   '@mdx-js/loader': ^2.2.1
   '@mdx-js/react': ^2.2.1
   '@mskelton/eslint-config': ^7.2.0
+  '@next/font': ^13.2.1
   '@next/mdx': ^13.1.6
   '@playwright/test': ^1.30.0
   '@stefanprobst/rehype-shiki': ^2.2.0
@@ -56,6 +57,7 @@ dependencies:
   '@headlessui/react': 1.7.8_biqbaboplfbrettd7655fr4n2y
   '@mdx-js/loader': 2.2.1_webpack@5.75.0
   '@mdx-js/react': 2.2.1_react@18.2.0
+  '@next/font': 13.2.1
   '@next/mdx': 13.1.6_vvg67iglxhejglpl7nsv3pjzui
   '@stefanprobst/rehype-shiki': 2.2.0_shiki@0.10.1
   '@tailwindcss/typography': 0.5.9_tailwindcss@3.2.4
@@ -497,6 +499,10 @@ packages:
     dependencies:
       glob: 7.1.7
     dev: true
+
+  /@next/font/13.2.1:
+    resolution: {integrity: sha512-4sergLt7xp9+mZuKME/xM4tLlHGTcmL7naCq0qCTcAlof6NnttshYgiLOdhSiy0NcI+/yM3BjvdEk++O96UzTg==}
+    dev: false
 
   /@next/mdx/13.1.6_vvg67iglxhejglpl7nsv3pjzui:
     resolution: {integrity: sha512-ZLhXXDJeHbudFpSZT68eYQRzOaNwkaw+NuO7Zvnm5XKB6P7hKSj2dS47ZtitrY0JaL3KxR4FoxUSYeLvdoRwtQ==}
