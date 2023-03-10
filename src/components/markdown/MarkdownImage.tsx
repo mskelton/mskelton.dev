@@ -6,7 +6,7 @@ export interface MarkdownImageProps {
 }
 
 export async function MarkdownImage({ alt, src }: MarkdownImageProps) {
-  const image = await import(`../../images/${src}`)
+  const image = await import(`../../images/blog/${src}`)
 
   return (
     <span className="inline-block text-center">

@@ -1,9 +1,12 @@
 import { clsx } from "clsx"
 import Image from "next/image"
 import Link from "next/link"
+import { Avatar } from "components/Avatar"
+import { AvatarContainer } from "components/AvatarContainer"
 import { Button } from "components/Button"
 import { Card } from "components/Card"
 import { Container } from "components/Container"
+import { Header } from "components/Header"
 import { ArrowDownIcon, BriefcaseIcon } from "components/icons"
 import { socials } from "components/SocialIcons"
 import logoCKH from "images/logos/ckh.webp"
@@ -17,8 +20,8 @@ import image5 from "images/photos/image-5.jpg"
 import { formatDate } from "lib/formatDate"
 import { getAllArticles } from "lib/getAllArticles"
 import { siteMeta } from "lib/siteMeta"
-import type { SocialLinkProps } from "./about/page"
-import type { ArticleProps } from "./blog/page"
+import type { SocialLinkProps } from "./(header)/about/page"
+import type { ArticleProps } from "./(header)/blog/page"
 
 function Article({ article }: ArticleProps) {
   return (
@@ -181,40 +184,62 @@ export default async function Home() {
 
   return (
     <>
-      <Container className="mt-9">
-        <div className="max-w-2xl">
-          <h1 className="text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
-            {siteMeta.tagline}
-          </h1>
-
-          <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
-            {siteMeta.description}
-          </p>
-
-          <div className="mt-6 flex gap-6">
-            {socials.map(({ label, ...social }) => (
-              <SocialLink key={social.href} aria-label={label} {...social} />
-            ))}
+      <Header>
+        <div className="order-last mt-[calc(theme(spacing.16)-theme(spacing.3))]" />
+        <Container className="top-0 order-last -mb-3 pt-3">
+          <div className="top-[var(--avatar-top,theme(spacing.3))] w-full">
+            <div className="relative">
+              <AvatarContainer
+                className="absolute left-0 top-3 origin-left transition-opacity"
+                style={{
+                  opacity: "var(--avatar-border-opacity, 0)",
+                  transform: "var(--avatar-border-transform)",
+                }}
+              />
+              <Avatar className="block h-24 w-24 origin-left" large />
+            </div>
           </div>
-        </div>
-      </Container>
+        </Container>
+      </Header>
 
-      <Photos />
+      <div style={{ height: "var(--content-offset)" }} />
 
-      <Container className="mt-24 md:mt-28">
-        <div className="mx-auto grid max-w-xl grid-cols-1 gap-y-20 lg:max-w-none lg:grid-cols-2">
-          <div className="flex flex-col gap-16">
-            {articles.map((article) => (
-              <Article key={article.slug} article={article} />
-            ))}
+      <main>
+        <Container className="mt-9">
+          <div className="max-w-2xl">
+            <h1 className="text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
+              {siteMeta.tagline}
+            </h1>
+
+            <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
+              {siteMeta.description}
+            </p>
+
+            <div className="mt-6 flex gap-6">
+              {socials.map(({ label, ...social }) => (
+                <SocialLink key={social.href} aria-label={label} {...social} />
+              ))}
+            </div>
           </div>
+        </Container>
 
-          <div className="space-y-10 lg:pl-16 xl:pl-24">
-            {/* <Newsletter /> */}
-            <Resume />
+        <Photos />
+
+        <Container className="mt-24 md:mt-28">
+          <div className="mx-auto grid max-w-xl grid-cols-1 gap-y-20 lg:max-w-none lg:grid-cols-2">
+            <div className="flex flex-col gap-16">
+              {articles.map((article) => (
+                <Article key={article.slug} article={article} />
+              ))}
+            </div>
+
+            <div className="space-y-10 lg:pl-16 xl:pl-24">
+              {/* <Newsletter /> */}
+              <Resume />
+            </div>
           </div>
-        </div>
-      </Container>
+        </Container>
+      </main>
     </>
   )
 }
