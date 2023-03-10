@@ -1,5 +1,5 @@
 import React from "react"
-import { ArticleMeta } from "../../../../components/layouts/ArticleLayout"
+import { ArticleMeta } from "../../../components/layouts/ArticleLayout"
 
 export function ArticleHead({ meta }: ArticleHeadProps) {
   return (

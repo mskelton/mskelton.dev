@@ -4,10 +4,10 @@ import matter from "gray-matter"
 import fs from "node:fs/promises"
 import path from "node:path"
 import { fileURLToPath } from "url"
-import type { ArticleMeta } from "../../app/components/layouts/ArticleLayout.jsx"
-import { siteMeta } from "./siteMeta.js"
+import { ArticleMeta } from "../app/components/layouts/ArticleLayout"
+import { siteMeta } from "../app/lib/siteMeta"
 
-const baseURL = new URL("../../app/(header)/blog/", import.meta.url)
+const baseURL = new URL("../app/(header)/blog/", import.meta.url)
 
 async function readFrontmatter(filename: string) {
   const content = await fs.readFile(new URL(filename, baseURL), "utf8")

@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { formatDate } from "lib/formatDate"
+import { formatDate } from "../../lib/formatDate"
 import { Container } from "../Container"
 import { ArrowLeftIcon } from "../icons"
 import { Prose } from "../Prose"

@@ -3,7 +3,7 @@ import Image from "next/image"
 import Link, { LinkProps } from "next/link"
 import avatarImage from "images/avatar.jpg"
 
-export interface AvatarProps extends Omit<LinkProps, "href"> {
+export interface AvatarProps extends Omit<LinkProps<string>, "href"> {
   className?: string
   large?: boolean
 }

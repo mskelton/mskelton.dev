@@ -1,7 +1,7 @@
-import { formatDate } from "lib/formatDate"
-import { getAllArticles } from "lib/getAllArticles"
-import { SimpleLayout } from "../../../components/layouts/SimpleLayout"
 import { Card } from "../../components/Card"
+import { SimpleLayout } from "../../components/layouts/SimpleLayout"
+import { formatDate } from "../../lib/formatDate"
+import { getAllArticles } from "../../lib/getAllArticles"
 import { description } from "./meta"
 
 export interface IArticle {

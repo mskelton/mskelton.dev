@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "build:rss": "ts-node-esm ./src/lib/generateRssFeed.ts",
+    "build:rss": "ts-node-esm ./scripts/generateRssFeed.ts",
     "serve": "next start",
     "lint": "next lint",
     "format": "prettier --write .",

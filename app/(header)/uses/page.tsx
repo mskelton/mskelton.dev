@@ -1,6 +1,6 @@
 import { Metadata } from "next"
-import { SimpleLayout } from "../../../components/layouts/SimpleLayout"
 import { Card } from "../../components/Card"
+import { SimpleLayout } from "../../components/layouts/SimpleLayout"
 import { Section, SectionProps } from "../../components/Section"
 
 export const metadata: Metadata = {
