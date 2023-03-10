@@ -1,8 +1,8 @@
 import Link from "next/link"
 import { formatDate } from "lib/formatDate"
-import { Container } from "../../app/components/Container"
-import { ArrowLeftIcon } from "../../app/components/icons"
-import { Prose } from "../../app/components/Prose"
+import { Container } from "../Container"
+import { ArrowLeftIcon } from "../icons"
+import { Prose } from "../Prose"
 
 export interface ArticleMeta {
   date: string

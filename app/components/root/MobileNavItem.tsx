@@ -1,5 +1,5 @@
 import { Popover } from "@headlessui/react"
-import Link, { LinkProps } from "next/link"
+import Link from "next/link"
 
 export interface MobileNavItem {
   children: React.ReactNode

@@ -20,7 +20,7 @@ import { Button } from "./components/Button"
 import { Card } from "./components/Card"
 import { Container } from "./components/Container"
 import { ArrowDownIcon, BriefcaseIcon } from "./components/icons"
-import { Header } from "./components/layout/Header"
+import { Header } from "./components/root/Header"
 import { socials } from "./components/SocialIcons"
 
 function Article({ article }: ArticleProps) {

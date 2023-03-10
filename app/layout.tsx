@@ -2,8 +2,8 @@ import "styles/tailwind.css"
 import { Rubik } from "@next/font/google"
 import { Metadata } from "next"
 import { siteMeta } from "lib/siteMeta"
-import { AnalyticsWrapper } from "./components/layout/AnalyticsWrapper"
-import { Footer } from "./components/layout/Footer"
+import { AnalyticsWrapper } from "./components/root/AnalyticsWrapper"
+import { Footer } from "./components/root/Footer"
 
 export const metadata: Metadata = {
   description: siteMeta.description,
