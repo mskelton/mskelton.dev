@@ -1,3 +1,4 @@
+import { Metadata } from "next"
 import Image from "next/image"
 import logoSort from "images/logos/eslint-plugin-sort.svg"
 import logoOneDark from "images/logos/one-dark.svg"
@@ -8,6 +9,11 @@ import { siteMeta } from "lib/siteMeta"
 import { SimpleLayout } from "../../../components/layouts/SimpleLayout"
 import { Card } from "../../components/Card"
 import { LinkIcon } from "../../components/icons"
+
+export const metadata: Metadata = {
+  description: `I love creating software, especially when it makes the process of creating software more enjoyable. These are some of my more popular projects that I’m proud of.`,
+  title: "Projects - Mark Skelton",
+}
 
 function gh(slug: string) {
   return {
@@ -56,12 +62,9 @@ const projects = [
 ]
 
 export default function Projects() {
-  const description =
-    "I love creating software, especially when it makes the process of creating software more enjoyable. These are some of my more popular projects that I’m proud of."
-
   return (
     <SimpleLayout
-      intro={description}
+      intro={metadata.description}
       title="Things I’ve done to make software development just a little bit easier."
     >
       <ul

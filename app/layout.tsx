@@ -1,8 +1,14 @@
 import "styles/tailwind.css"
 import { Rubik } from "@next/font/google"
+import { Metadata } from "next"
 import { siteMeta } from "lib/siteMeta"
 import { AnalyticsWrapper } from "./components/layout/AnalyticsWrapper"
 import { Footer } from "./components/layout/Footer"
+
+export const metadata: Metadata = {
+  description: siteMeta.description,
+  title: `Mark Skelton - ${siteMeta.tagline}`,
+}
 
 const modeScript = `
   let darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
@@ -53,6 +59,8 @@ export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html className={`h-full text-lg antialiased ${font.className}`} lang="en">
       <head>
+        <meta content="width=device-width, initial-scale=1" name="viewport" />
+        <link href="/favicon.ico" rel="icon" />
         <link
           href={`${siteMeta.url}/rss/feed.xml`}
           rel="alternate"
@@ -63,7 +71,6 @@ export default function RootLayout({ children }: RootLayoutProps) {
           rel="alternate"
           type="application/feed+json"
         />
-
         <script dangerouslySetInnerHTML={{ __html: modeScript }} />
       </head>
 

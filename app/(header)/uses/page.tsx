@@ -1,7 +1,12 @@
+import { Metadata } from "next"
 import { SimpleLayout } from "../../../components/layouts/SimpleLayout"
 import { Card } from "../../components/Card"
 import { Section, SectionProps } from "../../components/Section"
-import { description } from "./meta"
+
+export const metadata: Metadata = {
+  description: `I create software 40+ hours per week so having the right tools is important to me. Poor tools can result in lower productivity and increased health risk. Here’s a big list of all of my favorite stuff.`,
+  title: "Uses - Mark Skelton",
+}
 
 function ToolsSection({ children, ...props }: SectionProps) {
   return (
@@ -33,7 +38,7 @@ function Tool({ children, href, title }: ToolProps) {
 export default function Uses() {
   return (
     <SimpleLayout
-      intro={description}
+      intro={metadata.description}
       title="Software I use, gadgets I love, and other things I recommend."
     >
       <div className="space-y-20">
