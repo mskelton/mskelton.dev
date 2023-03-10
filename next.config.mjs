@@ -17,7 +17,7 @@ import remarkLayout from "./config/remark-layout.mjs"
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   eslint: {
-    dirs: ["app", "config", "e2e", "src", "components"],
+    dirs: ["app", "components", "config", "e2e"],
   },
   experimental: {
     appDir: true,
