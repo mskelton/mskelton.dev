@@ -3,7 +3,7 @@ import path from "node:path"
 
 async function importArticle(filename: string) {
   const { default: component, meta } = await import(
-    `../../app/blog/${filename}`
+    `../../app/(header)/blog/${filename}`
   )
 
   return {
@@ -14,7 +14,7 @@ async function importArticle(filename: string) {
 }
 
 export async function getAllArticles() {
-  const cwd = path.join(process.cwd(), "app/blog")
+  const cwd = path.join(process.cwd(), "app/(header)/blog")
   const filenames = await glob("**/*.mdx", { cwd })
   const articles = await Promise.all(filenames.map(importArticle))
 

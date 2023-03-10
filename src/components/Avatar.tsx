@@ -20,7 +20,7 @@ export function Avatar({ className, large = false, ...props }: AvatarProps) {
         alt=""
         className={clsx(
           "rounded-full bg-zinc-100 object-cover dark:bg-zinc-800",
-          large ? "h-24 w-24" : "h-9 w-9"
+          large ? "h-24 w-24" : "h-11 w-11"
         )}
         priority
         sizes={large ? "6rem" : "2.25rem"}

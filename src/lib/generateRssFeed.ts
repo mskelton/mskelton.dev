@@ -7,7 +7,7 @@ import { fileURLToPath } from "url"
 import type { ArticleMeta } from "components/ArticleLayout.jsx"
 import { siteMeta } from "./siteMeta.js"
 
-const baseURL = new URL("../../app/blog/", import.meta.url)
+const baseURL = new URL("../../app/(header)/blog/", import.meta.url)
 
 async function readFrontmatter(filename: string) {
   const content = await fs.readFile(new URL(filename, baseURL), "utf8")

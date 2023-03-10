@@ -1,9 +1,8 @@
 import "styles/tailwind.css"
 import { Rubik } from "@next/font/google"
 import { Footer } from "components/Footer"
-import { Header } from "components/Header"
 import { siteMeta } from "lib/siteMeta"
-import { AnalyticsWrapper } from "./AnalyticsWrapper"
+import { AnalyticsWrapper } from "./components/AnalyticsWrapper"
 
 const modeScript = `
   let darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
@@ -76,8 +75,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
         </div>
 
         <div className="relative">
-          <Header />
-          <main>{children}</main>
+          {children}
           <Footer />
         </div>
 
