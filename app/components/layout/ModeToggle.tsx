@@ -1,6 +1,6 @@
 "use client"
 
-import { MoonIcon, SunIcon } from "./icons"
+import { MoonIcon, SunIcon } from "../icons"
 
 export function ModeToggle() {
   function disableTransitionsTemporarily() {

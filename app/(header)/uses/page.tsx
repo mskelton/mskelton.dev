@@ -1,6 +1,6 @@
-import { Card } from "components/Card"
-import { Section, SectionProps } from "components/Section"
-import { SimpleLayout } from "components/SimpleLayout"
+import { SimpleLayout } from "../../../components/layouts/SimpleLayout"
+import { Card } from "../../components/Card"
+import { Section, SectionProps } from "../../components/Section"
 import { description } from "./meta"
 
 function ToolsSection({ children, ...props }: SectionProps) {

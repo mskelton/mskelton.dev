@@ -1,3 +1,5 @@
+import path, { relative } from "node:path"
+
 const identifier = (name) => ({ name, type: "Identifier" })
 
 function importDecl(name, path) {
@@ -52,13 +54,17 @@ function exportDecl(name) {
 export default function remarkLayout() {
   return (ast, vfile) => {
     const layout = vfile.data.matter.layout ?? "ArticleLayout"
+    const relativePath = path.relative(
+      path.dirname(vfile.history[0]),
+      path.join(process.cwd(), "components/layouts")
+    )
 
     if (layout !== "none") {
       ast.children.unshift({
         data: {
           estree: {
             body: [
-              importDecl(layout, `components/${layout}`),
+              importDecl(layout, `${relativePath}/${layout}`),
               exportDecl(layout),
             ],
             sourceType: "module",

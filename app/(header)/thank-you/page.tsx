@@ -1,4 +1,4 @@
-import { SimpleLayout } from "components/SimpleLayout"
+import { SimpleLayout } from "../../../components/layouts/SimpleLayout"
 
 export default function ThankYou() {
   return (

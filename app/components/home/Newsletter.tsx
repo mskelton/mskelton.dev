@@ -1,5 +1,5 @@
-import { Button } from "./Button"
-import { MailIcon } from "./icons"
+import { Button } from "../Button"
+import { MailIcon } from "../icons"
 
 export function Newsletter() {
   return (

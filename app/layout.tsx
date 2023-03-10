@@ -1,8 +1,8 @@
 import "styles/tailwind.css"
 import { Rubik } from "@next/font/google"
-import { Footer } from "components/Footer"
 import { siteMeta } from "lib/siteMeta"
-import { AnalyticsWrapper } from "./components/AnalyticsWrapper"
+import { AnalyticsWrapper } from "./components/layout/AnalyticsWrapper"
+import { Footer } from "./components/layout/Footer"
 
 const modeScript = `
   let darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
