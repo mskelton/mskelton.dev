@@ -1,4 +1,10 @@
+import { Metadata } from "next"
 import { SimpleLayout } from "components/SimpleLayout"
+
+export const metadata: Metadata = {
+  description: `Thanks for subscribing to my newsletter.`,
+  title: "You’re subscribed - Mark Skelton",
+}
 
 export default function ThankYou() {
   return (
