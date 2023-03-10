@@ -2,7 +2,11 @@ import { Card } from "../../components/Card"
 import { SimpleLayout } from "../../components/layouts/SimpleLayout"
 import { formatDate } from "../../lib/formatDate"
 import { getAllArticles } from "../../lib/getAllArticles"
-import { description } from "./meta"
+
+export const metadata = {
+  description: `All of my blog posts, even the ones that I might not fully agree with anymore. Software engineering is a process of continuous learning, don’t ever think there isn’t more to learn.`,
+  title: "Blog - Mark Skelton",
+}
 
 export interface IArticle {
   date: string
@@ -51,7 +55,7 @@ export default async function Blog() {
 
   return (
     <SimpleLayout
-      intro={description}
+      intro={metadata.description}
       title="Writing about software engineering and developer experience"
     >
       <div className="md:border-l md:border-zinc-100 md:pl-6 md:dark:border-zinc-700/40">
