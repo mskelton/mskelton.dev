@@ -22,7 +22,6 @@ const nextConfig = {
   experimental: {
     appDir: true,
     scrollRestoration: true,
-    typedRoutes: true,
   },
   images: {
     minimumCacheTTL: 3600, // 1 hour
