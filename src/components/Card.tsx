@@ -34,7 +34,7 @@ export function Card({
   )
 }
 
-interface CardLinkProps extends LinkProps {
+interface CardLinkProps extends LinkProps<string> {
   children?: React.ReactNode
 }
 
