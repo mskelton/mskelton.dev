@@ -4,6 +4,6 @@ import type { ArticleMeta } from "../../components/layouts/ArticleLayout"
 export function getMetadata(meta: ArticleMeta): Metadata {
   return {
     description: meta.description,
-    title: meta.title,
+    title: `${meta.title} - Mark Skelton’s Blog`,
   }
 }
