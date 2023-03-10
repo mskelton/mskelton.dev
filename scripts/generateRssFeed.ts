@@ -4,8 +4,8 @@ import matter from "gray-matter"
 import fs from "node:fs/promises"
 import path from "node:path"
 import { fileURLToPath } from "url"
-import { ArticleMeta } from "../app/components/layouts/ArticleLayout"
-import { siteMeta } from "../app/lib/siteMeta"
+import { ArticleMeta } from "../app/components/layouts/ArticleLayout.js"
+import { siteMeta } from "../app/lib/siteMeta.js"
 
 const baseURL = new URL("../app/(header)/blog/", import.meta.url)
 
