@@ -1,11 +1,17 @@
+import { Metadata } from "@playwright/test"
 import { clsx } from "clsx"
 import Image from "next/image"
 import Link from "next/link"
-import { Container } from "components/Container"
-import { socials } from "components/SocialIcons"
-import portraitImage from "images/portrait.jpg"
-import { siteMeta } from "lib/siteMeta"
+import { Container } from "../../components/Container"
+import { socials } from "../../components/SocialIcons"
+import portraitImage from "../../images/portrait.jpg"
+import { siteMeta } from "../../lib/siteMeta"
 import Content from "./content.mdx"
+
+export const metadata: Metadata = {
+  description: siteMeta.description,
+  title: "About - Mark Skelton",
+}
 
 export interface SocialLinkProps {
   children?: React.ReactNode

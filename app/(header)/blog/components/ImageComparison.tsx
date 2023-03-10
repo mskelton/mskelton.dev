@@ -19,7 +19,7 @@ function CompareImage({ alt, src }: React.ImgHTMLAttributes<HTMLImageElement>) {
     <Image
       alt={alt ?? ""}
       placeholder="blur"
-      src={require(`../../../../src/images/blog/${src}`)}
+      src={require(`../../../images/blog/${src}`)}
       style={styleFitContainer()}
     />
   )

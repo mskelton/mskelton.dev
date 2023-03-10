@@ -1,4 +1,4 @@
-import { Container } from "components/Container"
+import { Container } from "../Container"
 import { DesktopNavigation } from "./DesktopNavigation"
 import { MobileNavigation } from "./MobileNavigation"
 import { ModeToggle } from "./ModeToggle"

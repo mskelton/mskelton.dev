@@ -1,6 +1,6 @@
-import { Avatar } from "components/Avatar"
-import { AvatarContainer } from "components/AvatarContainer"
-import { Header } from "components/Header"
+import { Avatar } from "../components/Avatar"
+import { AvatarContainer } from "../components/AvatarContainer"
+import { Header } from "../components/root/Header"
 
 export interface HeaderLayoutProps {
   children?: React.ReactNode

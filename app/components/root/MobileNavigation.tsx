@@ -2,7 +2,7 @@
 
 import { Popover, Transition } from "@headlessui/react"
 import { Fragment } from "react"
-import { ChevronDownIcon, CloseIcon } from "./icons"
+import { ChevronDownIcon, CloseIcon } from "../icons"
 import { MobileNavItem } from "./MobileNavItem"
 
 export interface MobileNavigationProps {
