@@ -1,4 +1,4 @@
-import path, { relative } from "node:path"
+import path from "node:path"
 
 const identifier = (name) => ({ name, type: "Identifier" })
 
