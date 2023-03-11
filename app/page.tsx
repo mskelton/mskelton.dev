@@ -9,11 +9,11 @@ import { Button } from "./components/Button"
 import { Card } from "./components/Card"
 import { Container } from "./components/Container"
 import { ArrowDownIcon, BriefcaseIcon } from "./components/icons"
+import { LogoCKH } from "./components/logos/LogoCKH"
+import { LogoFederato } from "./components/logos/LogoFederato"
+import { LogoWiden } from "./components/logos/LogoWiden"
 import { Header } from "./components/root/Header"
 import { socials } from "./components/SocialIcons"
-import logoCKH from "./images/logos/ckh.webp"
-import logoFederato from "./images/logos/federato.png"
-import logoWiden from "./images/logos/widen.svg"
 import image1 from "./images/photos/image-1.jpg"
 import image2 from "./images/photos/image-2.jpg"
 import image3 from "./images/photos/image-3.jpg"
@@ -50,7 +50,7 @@ const resume = [
     company: "Federato",
     end: "Present",
     href: "https://www.federato.ai",
-    logo: logoFederato,
+    logo: LogoFederato,
     start: "2023",
     title: "Senior software engineer",
   },
@@ -58,7 +58,7 @@ const resume = [
     company: "Widen, an Acquia Company",
     end: "2023",
     href: "https://www.widen.com",
-    logo: logoWiden,
+    logo: LogoWiden,
     start: "2019",
     title: "Staff software engineer",
   },
@@ -66,7 +66,7 @@ const resume = [
     company: "CKH Consulting",
     end: "2019",
     href: "https://ckhconsulting.com",
-    logo: logoCKH,
+    logo: LogoCKH,
     start: "2016",
     title: "Software developer",
   },
@@ -84,11 +84,9 @@ function Resume() {
         {resume.map((role, roleIndex) => (
           <li key={roleIndex} className="flex gap-4">
             <div className="relative mt-1 flex h-10 w-10 flex-none items-center justify-center rounded-full shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0">
-              <Image
-                alt={role.company}
+              <role.logo
+                aria-label={`${role.company} logo`}
                 className="h-7 w-7"
-                src={role.logo}
-                unoptimized
               />
             </div>
 
