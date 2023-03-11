@@ -1,5 +1,3 @@
-import clsx from "clsx"
-
 export function LogoFederato(props: React.SVGAttributes<SVGSVGElement>) {
   return (
     <svg viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg" {...props}>
