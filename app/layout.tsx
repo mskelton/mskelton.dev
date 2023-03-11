@@ -1,6 +1,7 @@
 import "./styles/tailwind.css"
 import { Rubik } from "@next/font/google"
 import { Metadata } from "next"
+import { cookies } from "next/headers"
 import { AnalyticsWrapper } from "./components/root/AnalyticsWrapper"
 import { Footer } from "./components/root/Footer"
 import { siteMeta } from "./lib/siteMeta"
@@ -9,41 +10,6 @@ export const metadata: Metadata = {
   description: siteMeta.description,
   title: `Mark Skelton - ${siteMeta.tagline}`,
 }
-
-const modeScript = `
-  let darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
-
-  updateMode()
-  darkModeMediaQuery.addEventListener('change', updateModeWithoutTransitions)
-  window.addEventListener('storage', updateModeWithoutTransitions)
-
-  function updateMode() {
-    let isSystemDarkMode = darkModeMediaQuery.matches
-    let isDarkMode = window.localStorage.isDarkMode === 'true' || (!('isDarkMode' in window.localStorage) && isSystemDarkMode)
-
-    if (isDarkMode) {
-      document.documentElement.classList.add('dark')
-    } else {
-      document.documentElement.classList.remove('dark')
-    }
-
-    if (isDarkMode === isSystemDarkMode) {
-      delete window.localStorage.isDarkMode
-    }
-  }
-
-  function disableTransitionsTemporarily() {
-    document.documentElement.classList.add('[&_*]:!transition-none')
-    window.setTimeout(() => {
-      document.documentElement.classList.remove('[&_*]:!transition-none')
-    }, 0)
-  }
-
-  function updateModeWithoutTransitions() {
-    disableTransitionsTemporarily()
-    updateMode()
-  }
-`
 
 const font = Rubik({
   display: "fallback",
@@ -56,8 +22,14 @@ export interface RootLayoutProps {
 }
 
 export default function RootLayout({ children }: RootLayoutProps) {
+  const cookieStore = cookies()
+  const theme = cookieStore.get("theme")?.value ?? "dark"
+
   return (
-    <html className={`h-full text-lg antialiased ${font.className}`} lang="en">
+    <html
+      className={`h-full text-lg antialiased ${theme} ${font.className}`}
+      lang="en"
+    >
       <head>
         <meta content="width=device-width, initial-scale=1" name="viewport" />
         <link href="/favicon.ico" rel="icon" />
@@ -71,7 +43,6 @@ export default function RootLayout({ children }: RootLayoutProps) {
           rel="alternate"
           type="application/feed+json"
         />
-        <script dangerouslySetInnerHTML={{ __html: modeScript }} />
       </head>
 
       <body className="flex h-full flex-col bg-zinc-50 dark:bg-black">
