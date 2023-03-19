@@ -43,7 +43,12 @@ export default function rehypeCodeTitles() {
     parent.children[index] = {
       children: title ? [createTitle(title), node] : [node],
       properties: {
-        className: ["group", "relative", title ? "has-title pt-12" : ""],
+        className: [
+          "group",
+          "relative",
+          "-ml-8",
+          title ? "has-title pt-12" : "",
+        ],
       },
       tagName: "div",
       type: "element",

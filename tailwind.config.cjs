@@ -9,13 +9,25 @@ module.exports = {
     "next.config.mjs",
   ],
   darkMode: "class",
-  plugins: [require("@tailwindcss/typography")],
+  plugins: [
+    require("@tailwindcss/typography"),
+    require("@tailwindcss/container-queries"),
+  ],
   theme: {
     extend: {
+      aria: {
+        current: 'current="page"',
+      },
+      animation: {
+        "draw-stroke": "300ms linear 700ms forwards draw-stroke",
+      },
       keyframes: {
         "delay-appear": {
           "0%": { opacity: 0 },
           "100%": { opacity: 1 },
+        },
+        "draw-stroke": {
+          to: { strokeDashoffset: 0 },
         },
       },
     },
@@ -66,10 +78,10 @@ module.exports = {
         css: {
           "--tw-prose-body": theme("colors.zinc.600"),
           "--tw-prose-headings": theme("colors.zinc.900"),
-          "--tw-prose-links": theme("colors.teal.500"),
-          "--tw-prose-links-hover": theme("colors.teal.600"),
-          "--tw-prose-underline": theme("colors.teal.500 / 0.2"),
-          "--tw-prose-underline-hover": theme("colors.teal.500"),
+          "--tw-prose-links": theme("colors.indigo.500"),
+          "--tw-prose-links-hover": theme("colors.indigo.600"),
+          "--tw-prose-underline": theme("colors.indigo.500 / 0.2"),
+          "--tw-prose-underline-hover": theme("colors.indigo.500"),
           "--tw-prose-bold": theme("colors.zinc.900"),
           "--tw-prose-counters": theme("colors.zinc.900"),
           "--tw-prose-bullets": theme("colors.zinc.900"),
@@ -88,10 +100,10 @@ module.exports = {
           "--tw-prose-kbd-borders": theme("colors.zinc.200"),
           "--tw-prose-invert-body": theme("colors.zinc.400"),
           "--tw-prose-invert-headings": theme("colors.zinc.200"),
-          "--tw-prose-invert-links": theme("colors.teal.400"),
-          "--tw-prose-invert-links-hover": theme("colors.teal.400"),
-          "--tw-prose-invert-underline": theme("colors.teal.400 / 0.3"),
-          "--tw-prose-invert-underline-hover": theme("colors.teal.400"),
+          "--tw-prose-invert-links": theme("colors.indigo.400"),
+          "--tw-prose-invert-links-hover": theme("colors.indigo.400"),
+          "--tw-prose-invert-underline": theme("colors.indigo.400 / 0.3"),
+          "--tw-prose-invert-underline-hover": theme("colors.indigo.400"),
           "--tw-prose-invert-bold": theme("colors.zinc.200"),
           "--tw-prose-invert-counters": theme("colors.zinc.200"),
           "--tw-prose-invert-bullets": theme("colors.zinc.200"),

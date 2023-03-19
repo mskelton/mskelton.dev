@@ -1,3 +1,4 @@
+import { EnvelopeIcon } from "@heroicons/react/24/solid"
 import { Metadata } from "@playwright/test"
 import { clsx } from "clsx"
 import Image from "next/image"
@@ -29,30 +30,19 @@ function SocialLink({
   return (
     <li className={clsx(className, "flex")}>
       <Link
-        className="group flex text-sm font-medium text-zinc-800 transition hover:text-teal-500 dark:text-zinc-200 dark:hover:text-teal-500"
+        className="group flex text-sm font-medium text-zinc-800 transition hover:text-indigo-500 dark:text-zinc-200 dark:hover:text-indigo-500"
         href={href}
       >
-        <Icon className="h-6 w-6 flex-none fill-zinc-500 transition group-hover:fill-teal-500" />
+        <Icon className="h-6 w-6 flex-none fill-zinc-500 transition group-hover:fill-indigo-500" />
         <span className="ml-4">{children}</span>
       </Link>
     </li>
   )
 }
 
-function MailIcon(props: React.SVGProps<SVGSVGElement>) {
-  return (
-    <svg aria-hidden="true" viewBox="0 0 24 24" {...props}>
-      <path
-        d="M6 5a3 3 0 0 0-3 3v8a3 3 0 0 0 3 3h12a3 3 0 0 0 3-3V8a3 3 0 0 0-3-3H6Zm.245 2.187a.75.75 0 0 0-.99 1.126l6.25 5.5a.75.75 0 0 0 .99 0l6.25-5.5a.75.75 0 0 0-.99-1.126L12 12.251 6.245 7.187Z"
-        fillRule="evenodd"
-      />
-    </svg>
-  )
-}
-
 export default function About() {
   return (
-    <Container className="mt-16 sm:mt-32">
+    <Container className="mt-16 sm:mt-20">
       <div className="grid grid-cols-1 gap-y-16 lg:grid-cols-2 lg:grid-rows-[auto_1fr] lg:gap-y-12">
         <div className="lg:pl-20">
           <div className="max-w-xs px-2.5 lg:max-w-none">
@@ -86,7 +76,7 @@ export default function About() {
             <SocialLink
               className="mt-8 border-t border-zinc-100 pt-8 dark:border-zinc-700/40"
               href={`mailto:${siteMeta.email}`}
-              icon={MailIcon}
+              icon={EnvelopeIcon}
             >
               {siteMeta.email}
             </SocialLink>

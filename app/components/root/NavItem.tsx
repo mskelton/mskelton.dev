@@ -15,12 +15,8 @@ export function NavItem({ children, href }: NavItemProps) {
   return (
     <li>
       <Link
-        className={clsx(
-          "relative block rounded-full py-1 px-4 transition-colors",
-          isActive
-            ? "bg-teal-200 dark:bg-teal-800"
-            : "hover:text-teal-500 dark:hover:text-teal-400"
-        )}
+        aria-current={isActive ? "page" : undefined}
+        className="relative flex gap-1 py-1 px-4 transition-colors hover:text-indigo-600 aria-current:text-indigo-600 dark:text-indigo-400 dark:hover:text-indigo-400"
         href={href}
       >
         {children}

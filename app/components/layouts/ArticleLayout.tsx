@@ -1,7 +1,7 @@
+import { ArrowLeftIcon } from "@heroicons/react/20/solid"
 import Link from "next/link"
 import { formatDate } from "../../lib/formatDate"
 import { Container } from "../Container"
-import { ArrowLeftIcon } from "../icons"
 import { Prose } from "../Prose"
 
 export interface ArticleMeta {
@@ -17,16 +17,16 @@ export interface ArticleLayoutProps {
 
 export function ArticleLayout({ children, meta }: ArticleLayoutProps) {
   return (
-    <Container className="mt-16 lg:mt-32">
+    <Container className="mt-16 sm:mt-20">
       <div className="xl:relative">
         <div className="mx-auto max-w-2xl">
           <Link
             aria-label="Go back to articles"
-            className="group mb-8 flex h-10 w-10 items-center justify-center rounded-full bg-white shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 transition dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0 dark:ring-white/10 dark:hover:border-zinc-700 dark:hover:ring-white/20 lg:absolute lg:-left-5 lg:mb-0 lg:-mt-2 xl:-top-1.5 xl:left-0 xl:mt-0"
+            className="group mb-8 hidden h-10 w-10 items-center justify-center rounded-full bg-white shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 transition dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0 dark:ring-white/10 dark:hover:border-zinc-700 dark:hover:ring-white/20 lg:absolute lg:-left-5 lg:mb-0 lg:-mt-2 lg:flex xl:-top-1.5 xl:left-0 xl:mt-0"
             href="/blog"
             type="button"
           >
-            <ArrowLeftIcon className="h-4 w-4 stroke-zinc-500 transition group-hover:stroke-zinc-700 dark:stroke-zinc-500 dark:group-hover:stroke-zinc-400" />
+            <ArrowLeftIcon className="h-4 w-4 text-zinc-500 transition group-hover:text-zinc-700 dark:text-zinc-500 dark:group-hover:text-zinc-400" />
           </Link>
 
           <article>

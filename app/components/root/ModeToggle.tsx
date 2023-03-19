@@ -1,6 +1,6 @@
 "use client"
 
-import { MoonIcon, SunIcon } from "../icons"
+import { MoonIcon, SunIcon } from "@heroicons/react/20/solid"
 
 export function ModeToggle() {
   function disableTransitionsTemporarily() {
@@ -17,18 +17,18 @@ export function ModeToggle() {
     const isDarkMode = document.documentElement.classList.toggle("dark")
     const value = isDarkMode ? "dark" : "light"
 
-    document.cookie = `theme=${value};  SameSite=None; path=/; max-age=31536000; Secure`
+    document.cookie = `theme=${value}; SameSite=None; path=/; max-age=31536000; Secure`
   }
 
   return (
     <button
       aria-label="Toggle dark mode"
-      className="group rounded-full bg-white/90 px-3 py-2 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur transition dark:bg-zinc-800/90 dark:ring-white/10 dark:hover:ring-white/20"
+      className="rounded-full p-2 text-zinc-800 transition hover:bg-blue-50 dark:text-zinc-200 dark:hover:bg-zinc-900"
       onClick={toggleMode}
       type="button"
     >
-      <SunIcon className="h-6 w-6 fill-zinc-100 stroke-zinc-500 transition group-hover:fill-zinc-200 group-hover:stroke-zinc-700 dark:hidden [@media(prefers-color-scheme:dark)]:fill-teal-50 [@media(prefers-color-scheme:dark)]:stroke-teal-500 [@media(prefers-color-scheme:dark)]:group-hover:fill-teal-50 [@media(prefers-color-scheme:dark)]:group-hover:stroke-teal-600" />
-      <MoonIcon className="hidden h-6 w-6 fill-zinc-700 stroke-zinc-500 transition dark:block [@media(prefers-color-scheme:dark)]:group-hover:stroke-zinc-400 [@media_not_(prefers-color-scheme:dark)]:fill-teal-400/10 [@media_not_(prefers-color-scheme:dark)]:stroke-teal-500" />
+      <SunIcon className="h-4 w-4 transition dark:hidden" />
+      <MoonIcon className="hidden h-4 w-4 transition dark:block" />
     </button>
   )
 }

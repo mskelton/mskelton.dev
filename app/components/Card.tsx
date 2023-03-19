@@ -1,18 +1,6 @@
+import { ChevronRightIcon } from "@heroicons/react/20/solid"
 import { clsx } from "clsx"
 import Link, { LinkProps } from "next/link"
-
-function ChevronRightIcon(props: React.SVGProps<SVGSVGElement>) {
-  return (
-    <svg aria-hidden="true" fill="none" viewBox="0 0 16 16" {...props}>
-      <path
-        d="M6.75 5.75 9.25 8l-2.5 2.25"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth="1.5"
-      />
-    </svg>
-  )
-}
 
 interface CardProps {
   as?: React.ElementType
@@ -70,13 +58,20 @@ Card.Title = function CardTitle({
 
 export interface CardDescriptionProps {
   children: React.ReactNode
+  className?: string
 }
 
 Card.Description = function CardDescription({
   children,
+  className,
 }: CardDescriptionProps) {
   return (
-    <p className="relative z-10 mt-2 text-sm text-zinc-600 dark:text-zinc-400">
+    <p
+      className={clsx(
+        "relative z-10 mt-2 text-sm text-zinc-600 dark:text-zinc-400",
+        className
+      )}
+    >
       {children}
     </p>
   )
@@ -90,10 +85,10 @@ Card.Cta = function CardCta({ children }: CardCtaProps) {
   return (
     <div
       aria-hidden="true"
-      className="relative z-10 mt-4 flex items-center text-sm font-medium text-teal-500"
+      className="relative z-10 mt-4 flex items-center text-sm font-medium text-indigo-500"
     >
       {children}
-      <ChevronRightIcon className="ml-1 h-4 w-4 stroke-current" />
+      <ChevronRightIcon className="ml-1 h-4 w-4" />
     </div>
   )
 }
