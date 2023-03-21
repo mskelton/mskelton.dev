@@ -4,6 +4,7 @@ import Link from "next/link"
 import { projects } from "../../(main)/projects/projects"
 import { Container } from "../Container"
 import { socials } from "../SocialIcons"
+import { Copyright } from "./Copyright"
 import { CursiveName } from "./CursiveName"
 
 const styles = {
@@ -35,32 +36,38 @@ export interface FooterProps {
 
 export function Footer({ home }: FooterProps) {
   return (
-    <footer className={clsx("mt-32", home && "bg-blue-100 dark:bg-zinc-800")}>
+    <footer
+      className={clsx(
+        home ? "mt-32 bg-blue-100 dark:bg-zinc-800" : "mt-16 lg:mt-32"
+      )}
+    >
       <Container.Outer>
         <div className={clsx("py-10", home && "py-16")}>
           <Container.Inner>
-            <div className="flex flex-col items-start justify-between gap-6 sm:flex-row">
-              <div className="flex flex-col items-start justify-between self-stretch text-sm text-zinc-800 dark:text-zinc-200">
-                <div>
-                  <CursiveName className="mt-1 w-32 text-zinc-800 dark:text-zinc-100" />
-                  <p className="text-zinc-600 dark:text-zinc-300">
+            <div className="flex flex-col items-center justify-between gap-6 md:flex-row md:items-start">
+              <div className="flex flex-col justify-between self-stretch text-sm text-zinc-800 dark:text-zinc-200">
+                <div className="w-full">
+                  <CursiveName className="mx-auto mt-1 w-32 text-zinc-800 dark:text-zinc-100 md:mx-0" />
+                  <p className="text-center text-zinc-600 dark:text-zinc-300 md:text-left">
                     Made with{" "}
                     <HeartIcon className="inline h-4 w-4 text-red-500" /> in
                     Wisconsin.
                   </p>
                 </div>
 
-                <p className="text-[0.75rem] text-zinc-500 dark:text-zinc-400">
-                  &copy; {new Date().getFullYear()} Mark Skelton. All rights
-                  reserved.
-                </p>
+                <Copyright className="hidden md:block" />
               </div>
 
-              <div className="flex gap-28">
+              <div className="flex w-full flex-shrink-0 justify-center gap-14 md:w-auto md:justify-start lg:gap-20">
                 <div>
                   <p className={styles.listTitle}>Projects</p>
 
-                  <ul className={clsx(styles.list, "grid-cols-2 gap-x-8")}>
+                  <ul
+                    className={clsx(
+                      styles.list,
+                      "grid-cols-2 gap-x-4 lg:gap-x-8"
+                    )}
+                  >
                     {projects.map(({ link, name, shortName }) => (
                       <FooterLink key={link.href} href={link.href}>
                         {shortName ?? name}
@@ -81,6 +88,8 @@ export function Footer({ home }: FooterProps) {
                   </ul>
                 </div>
               </div>
+
+              <Copyright className="mt-4 block md:hidden" />
             </div>
           </Container.Inner>
         </div>

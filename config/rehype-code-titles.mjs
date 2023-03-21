@@ -46,7 +46,8 @@ export default function rehypeCodeTitles() {
         className: [
           "group",
           "relative",
-          "-ml-8",
+          "mx-0",
+          "sm:-mx-8",
           title ? "has-title pt-12" : "",
         ],
       },

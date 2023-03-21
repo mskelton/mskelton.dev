@@ -32,9 +32,9 @@ export function Header({ home }: HeaderProps) {
 
             <DesktopNavigation className="ml-8 hidden flex-1 lg:flex" />
 
-            <div className="flex justify-end gap-4 lg:flex-1">
-              <MobileNavigation className="lg:hidden" />
+            <div className="flex flex-1 justify-end gap-4">
               <ModeToggle />
+              <MobileNavigation className="lg:hidden" />
             </div>
           </div>
         </Container>
