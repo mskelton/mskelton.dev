@@ -42,7 +42,7 @@ export function Footer({ home }: FooterProps) {
             <div className="flex flex-col items-start justify-between gap-6 sm:flex-row">
               <div className="flex flex-col items-start justify-between self-stretch text-sm text-zinc-800 dark:text-zinc-200">
                 <div>
-                  <CursiveName className="mt-4 mb-2 h-5 text-zinc-800 dark:text-zinc-100" />
+                  <CursiveName className="mt-1 w-32 text-zinc-800 dark:text-zinc-100" />
                   <p className="text-zinc-600 dark:text-zinc-300">
                     Made with{" "}
                     <HeartIcon className="inline h-4 w-4 text-red-500" /> in

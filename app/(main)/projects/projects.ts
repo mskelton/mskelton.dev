@@ -1,7 +1,7 @@
 import { siteMeta } from "../../lib/siteMeta"
 import logoSort from "./images/eslint-plugin-sort.svg"
 import logoOneDark from "./images/one-dark.svg"
-import logoPlaywright from "./images/playwright.png"
+import logoPlaywright from "./images/playwright.svg"
 import logoRatchet from "./images/ratchet.svg"
 import logoTermicons from "./images/termicons.svg"
 import logoYarn from "./images/yarn.svg"

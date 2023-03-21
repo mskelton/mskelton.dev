@@ -19,7 +19,7 @@ module.exports = {
         current: 'current="page"',
       },
       animation: {
-        "draw-stroke": "300ms linear 700ms forwards draw-stroke",
+        "draw-stroke": "300ms ease-in-out 700ms forwards draw-stroke",
       },
       keyframes: {
         "delay-appear": {
