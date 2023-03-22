@@ -83,7 +83,7 @@ function Resume() {
               />
             </div>
 
-            <dl className="flex flex-col flex-wrap gap-x-2 @[400px]:flex-row">
+            <dl className="flex w-full flex-col flex-wrap gap-x-2 @[400px]:flex-row">
               <dt className="sr-only">Company</dt>
               <dd className="w-full flex-none text-sm font-medium text-zinc-900 dark:text-zinc-100">
                 <a

@@ -38,7 +38,7 @@ export function Footer({ home }: FooterProps) {
   return (
     <footer
       className={clsx(
-        home ? "mt-32 bg-blue-100 dark:bg-zinc-800" : "mt-16 lg:mt-32"
+        home ? "mt-32 bg-blue-100 dark:bg-slate-800" : "mt-16 lg:mt-32"
       )}
     >
       <Container.Outer>

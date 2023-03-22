@@ -17,7 +17,7 @@ export function Header({ home }: HeaderProps) {
       className={clsx(
         "z-50 flex flex-col",
         home &&
-          "bg-gradient-to-b from-blue-100 to-blue-200 dark:from-zinc-800 dark:to-zinc-700"
+          "bg-gradient-to-b from-sky-100 to-sky-200 dark:from-slate-900 dark:to-slate-800"
       )}
     >
       <div className={clsx("top-0 z-10 py-6", home && "pb-12 lg:pb-20")}>
