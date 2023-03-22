@@ -33,7 +33,7 @@ function Article({ article }: ArticleProps) {
 function SocialLink({ icon: Icon, ...props }: SocialLinkProps) {
   return (
     <Link className="group -m-1 p-1" {...props}>
-      <Icon className="h-6 w-6 text-zinc-500 transition group-hover:text-indigo-500 dark:text-zinc-400" />
+      <Icon className="h-6 w-6 text-zinc-500 transition group-hover:text-indigo-500 dark:text-zinc-400 dark:group-hover:text-indigo-400" />
     </Link>
   )
 }
@@ -87,7 +87,7 @@ function Resume() {
               <dt className="sr-only">Company</dt>
               <dd className="w-full flex-none text-sm font-medium text-zinc-900 dark:text-zinc-100">
                 <a
-                  className="transition-colors hover:text-indigo-500"
+                  className="transition-colors hover:text-indigo-500 dark:hover:text-indigo-400"
                   href={role.href}
                   rel="noreferrer"
                   target="_blank"

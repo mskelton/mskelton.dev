@@ -1,4 +1,3 @@
-import { LinkIcon } from "@heroicons/react/20/solid"
 import { Metadata } from "next"
 import Image from "next/image"
 import { Card } from "../../components/Card"
@@ -33,17 +32,14 @@ export default function Projects() {
             </div>
 
             <h2 className="mt-6 text-base font-semibold text-zinc-800 dark:text-zinc-100">
-              <Card.Link href={project.link.href}>{project.name}</Card.Link>
+              <Card.Link href={project.href}>{project.name}</Card.Link>
             </h2>
 
             <Card.Description className="mb-6">
               {project.description}
             </Card.Description>
 
-            <p className="relative z-10 mt-auto flex items-center justify-self-end text-sm font-medium text-zinc-800 transition group-hover:text-indigo-500 dark:text-zinc-200 dark:group-hover:text-indigo-400">
-              <LinkIcon className="h-5 w-5" />
-              <span className="ml-2">{project.link.label}</span>
-            </p>
+            <Card.ExternalLink href={project.href} />
           </Card>
         ))}
       </ul>

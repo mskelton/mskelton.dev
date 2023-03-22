@@ -30,7 +30,12 @@ function Tool({ children, href, title }: ToolProps) {
       <Card.Title as="h3" href={href}>
         {title}
       </Card.Title>
-      <Card.Description>{children}</Card.Description>
+
+      <Card.Description className={href ? "mb-6" : ""}>
+        {children}
+      </Card.Description>
+
+      {href ? <Card.ExternalLink href={href} /> : null}
     </Card>
   )
 }
@@ -109,13 +114,20 @@ export default function Uses() {
             to the default macOS terminal.
           </Tool>
 
-          <Tool href="https://1password.com" title="1Password">
-            By far the best password manager on the market. Totally worth the
-            small price for the security and functionality it provides.
+          <Tool href="https://github.com/tmux/tmux" title="Tmux">
+            Not long into my career, I found that blue light was not great when
+            starring at a computer for long periods of time. While there are
+            built-in night modes on Mac, I find the customization of Flux hard
+            to beat.
           </Tool>
         </ToolsSection>
 
         <ToolsSection title="Productivity">
+          <Tool href="https://1password.com" title="1Password">
+            By far the best password manager on the market. Totally worth the
+            small price for the security and functionality it provides.
+          </Tool>
+
           <Tool href="https://www.raycast.com" title="Raycast">
             I used to use Alfred as a Spotlight replacement, but when Raycast
             came on the scene, it was a simple decision to switch. Highly
@@ -132,13 +144,6 @@ export default function Uses() {
           <Tool href="https://shottr.cc" title="Shottr">
             A better macOS screenshot tool. Not much more to be said, it’s just
             straight up awesome.
-          </Tool>
-
-          <Tool href="https://justgetflux.com" title="Flux">
-            Not long into my career, I found that blue light was not great when
-            starring at a computer for long periods of time. While there are
-            built-in night modes on Mac, I find the customization of Flux hard
-            to beat.
           </Tool>
         </ToolsSection>
       </div>

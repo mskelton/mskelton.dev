@@ -6,8 +6,8 @@ export function CursiveName({ swoop, ...props }: CursiveNameProps) {
   return (
     <svg
       fill="none"
-      xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 573 137"
+      xmlns="http://www.w3.org/2000/svg"
       {...props}
     >
       <path
@@ -17,14 +17,13 @@ export function CursiveName({ swoop, ...props }: CursiveNameProps) {
 
       {swoop && (
         <path
+          className="animate-draw-stroke stroke-indigo-500 dark:stroke-indigo-400"
           d="M556 127.295C526.5 106.295 425.5 98.2955 266.665 119.358C146.037 135.353 49 130.295 7 114.295"
-          stroke="currentColor"
-          strokeWidth="12"
-          strokeLinecap="round"
-          strokeLinejoin="round"
           strokeDasharray="566"
           strokeDashoffset="-566"
-          className="animate-draw-stroke"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="12"
         />
       )}
     </svg>

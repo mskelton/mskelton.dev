@@ -3,8 +3,6 @@ import { Metadata } from "next"
 import { Rubik } from "next/font/google"
 import { cookies } from "next/headers"
 import { AnalyticsWrapper } from "./components/root/AnalyticsWrapper"
-import { Footer } from "./components/root/Footer"
-import { Header } from "./components/root/Header"
 import { siteMeta } from "./lib/siteMeta"
 
 export const metadata: Metadata = {

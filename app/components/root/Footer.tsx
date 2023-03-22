@@ -21,7 +21,7 @@ function FooterLink({ children, href }: FooterLinkProps) {
   return (
     <li>
       <Link
-        className="group flex items-center transition hover:text-indigo-600 dark:text-zinc-200 dark:hover:text-indigo-400"
+        className="group flex items-center transition hover:text-indigo-500 dark:text-zinc-200 dark:hover:text-indigo-400"
         href={href}
       >
         <span className="text-xs">{children}</span>
@@ -68,8 +68,8 @@ export function Footer({ home }: FooterProps) {
                       "grid-cols-2 gap-x-4 lg:gap-x-8"
                     )}
                   >
-                    {projects.map(({ link, name, shortName }) => (
-                      <FooterLink key={link.href} href={link.href}>
+                    {projects.map(({ href, name, shortName }) => (
+                      <FooterLink key={href} href={href}>
                         {shortName ?? name}
                       </FooterLink>
                     ))}
