@@ -145,7 +145,7 @@ export default async function Home() {
       <Header home />
 
       <main>
-        <Container className="mt-20">
+        <Container className="mt-6 sm:mt-10">
           <div className="max-w-2xl">
             <h1 className="text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
               {siteMeta.tagline}

@@ -44,7 +44,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
         />
       </head>
 
-      <body className="flex h-full flex-col bg-white dark:bg-zinc-900">
+      <body className="flex min-h-fit flex-col bg-white dark:bg-zinc-900">
         {children}
         <AnalyticsWrapper />
       </body>

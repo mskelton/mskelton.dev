@@ -1,4 +1,3 @@
-import { MoonIcon } from "@heroicons/react/20/solid"
 import clsx from "clsx"
 import Link from "next/link"
 import { Container } from "../Container"
@@ -18,41 +17,44 @@ export function Header({ home }: HeaderProps) {
   return (
     <header
       className={clsx(
-        "z-50 flex flex-col",
-        home &&
-          "bg-gradient-to-b from-sky-100 to-sky-200 dark:from-slate-900 dark:to-slate-800"
+        "z-50 flex flex-col pt-8",
+        home
+          ? "relative h-48 bg-gradient-to-b from-sky-100 to-sky-200 dark:from-slate-900 dark:to-slate-800 lg:h-72"
+          : "sticky -top-6 flex h-full flex-col bg-white pb-2 dark:bg-zinc-900"
       )}
     >
-      <div className={clsx("top-0 z-10 py-6", home && "pb-12 lg:pb-20")}>
-        <Container className="w-full">
-          <div className="relative flex items-center gap-4">
-            <Link className="mt-1.5" href="/">
-              <CursiveName
-                className="w-40 text-zinc-700 dark:text-white"
-                swoop={home}
-              />
-            </Link>
+      <Container className="sticky top-0 w-full">
+        <div className="relative flex items-center gap-4">
+          <Link className="mt-1.5" href="/">
+            <CursiveName
+              className="w-40 text-zinc-700 dark:text-white"
+              swoop={home}
+            />
+          </Link>
 
-            <DesktopNavigation className="ml-8 hidden flex-1 lg:flex" />
+          <DesktopNavigation className="ml-8 hidden flex-1 lg:flex" />
 
-            <div className="flex flex-1 justify-end gap-3">
-              <HeaderIconButton
-                aria-label="Open source code on GitHub"
-                as="a"
-                href="https://github.com/mskelton/mskelton.dev"
-                target="_blank"
-              >
-                <GitHubIcon />
-              </HeaderIconButton>
+          <div className="flex flex-1 justify-end gap-3">
+            <HeaderIconButton
+              aria-label="Open source code on GitHub"
+              as="a"
+              href="https://github.com/mskelton/mskelton.dev"
+              target="_blank"
+            >
+              <GitHubIcon />
+            </HeaderIconButton>
 
-              <ModeToggle />
-              <MobileNavigation className="lg:hidden" />
-            </div>
+            <ModeToggle />
+            <MobileNavigation className="lg:hidden" />
           </div>
-        </Container>
-      </div>
+        </div>
+      </Container>
 
-      {home && <HeaderSwoop className="-mb-px text-white dark:text-zinc-900" />}
+      {home && (
+        <div className="absolute -bottom-px left-0 right-0 w-full overflow-hidden">
+          <HeaderSwoop className="h-16 w-full min-w-[500px] text-white dark:text-zinc-900 lg:h-28" />
+        </div>
+      )}
     </header>
   )
 }
