@@ -49,6 +49,7 @@ export default function About() {
             <Image
               alt=""
               className="aspect-square rotate-3 rounded-2xl bg-zinc-100 object-cover dark:bg-zinc-800"
+              priority
               sizes="(min-width: 1024px) 32rem, 20rem"
               src={portraitImage}
             />

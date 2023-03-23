@@ -1,8 +1,11 @@
+import { MoonIcon } from "@heroicons/react/20/solid"
 import clsx from "clsx"
 import Link from "next/link"
 import { Container } from "../Container"
+import { GitHubIcon } from "../SocialIcons"
 import { CursiveName } from "./CursiveName"
 import { DesktopNavigation } from "./DesktopNavigation"
+import HeaderIconButton from "./HeaderIconButton"
 import { MobileNavigation } from "./MobileNavigation"
 import { ModeToggle } from "./ModeToggle"
 import { HeaderSwoop } from "./Swoops"
@@ -32,7 +35,16 @@ export function Header({ home }: HeaderProps) {
 
             <DesktopNavigation className="ml-8 hidden flex-1 lg:flex" />
 
-            <div className="flex flex-1 justify-end gap-4">
+            <div className="flex flex-1 justify-end gap-3">
+              <HeaderIconButton
+                aria-label="Open source code on GitHub"
+                as="a"
+                href="https://github.com/mskelton/mskelton.dev"
+                target="_blank"
+              >
+                <GitHubIcon />
+              </HeaderIconButton>
+
               <ModeToggle />
               <MobileNavigation className="lg:hidden" />
             </div>

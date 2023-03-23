@@ -15,7 +15,7 @@ export function NavItem({ children, href }: NavItemProps) {
     <li>
       <Link
         aria-current={isActive ? "page" : undefined}
-        className="relative flex gap-1 py-1 px-4 transition-colors hover:text-indigo-500 dark:hover:text-indigo-400"
+        className="relative flex gap-1 py-1 px-4 text-zinc-800 transition-colors hover:text-indigo-600 dark:text-zinc-200 dark:hover:text-indigo-400"
         href={href}
       >
         {children}
