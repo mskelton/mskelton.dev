@@ -22,10 +22,6 @@ module.exports = {
         "draw-stroke": "300ms ease-in-out 700ms forwards draw-stroke",
       },
       keyframes: {
-        "delay-appear": {
-          "0%": { opacity: 0 },
-          "100%": { opacity: 1 },
-        },
         "draw-stroke": {
           to: { strokeDashoffset: 0 },
         },

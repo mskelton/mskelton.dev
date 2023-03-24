@@ -1,7 +1,8 @@
 "use client"
 
+import clsx from "clsx"
 import Image from "next/image"
-import React from "react"
+import React, { useState } from "react"
 import {
   ReactCompareSlider,
   ReactCompareSliderHandle,
@@ -14,10 +15,15 @@ const Handle = ReactCompareSliderHandle as React.FC<
   ReactCompareSliderHandleProps & { className: string }
 >
 
-function CompareImage({ alt, src }: React.ImgHTMLAttributes<HTMLImageElement>) {
+function CompareImage({
+  alt,
+  onLoad,
+  src,
+}: React.ImgHTMLAttributes<HTMLImageElement>) {
   return (
     <Image
       alt={alt ?? ""}
+      onLoad={onLoad}
       placeholder="blur"
       src={require(`../../../images/blog/${src}`)}
       style={styleFitContainer()}
@@ -26,17 +32,23 @@ function CompareImage({ alt, src }: React.ImgHTMLAttributes<HTMLImageElement>) {
 }
 
 export function ImageComparison({ one, two }: ImageComparisonProps) {
+  const [loaded, setLoading] = useState(0)
+  const handleLoad = () => setLoading((count) => count + 1)
+
   return (
     <ReactCompareSlider
       handle={
         <Handle
           buttonStyle={{ borderColor: "currentcolor" }}
-          className="animate-[delay-appear_200ms_linear_200ms_forwards] text-indigo-500 opacity-0 transition dark:hover:text-indigo-400"
+          className={clsx(
+            "text-indigo-400 opacity-0 transition",
+            loaded === 2 && "opacity-100"
+          )}
           style={{ color: undefined }}
         />
       }
-      itemOne={<CompareImage {...one} />}
-      itemTwo={<CompareImage {...two} />}
+      itemOne={<CompareImage {...one} onLoad={handleLoad} />}
+      itemTwo={<CompareImage {...two} onLoad={handleLoad} />}
     />
   )
 }
