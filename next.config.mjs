@@ -56,6 +56,7 @@ const withMDX = nextMDX({
             type: "element",
           },
           properties: {
+            ariaHidden: true,
             className: [
               "heading-link",
               "text-indigo-500",
@@ -63,6 +64,7 @@ const withMDX = nextMDX({
               "dark:text-indigo-400",
               "dark:hover:text-indigo-500",
             ],
+            tabIndex: -1,
           },
         },
       ],
