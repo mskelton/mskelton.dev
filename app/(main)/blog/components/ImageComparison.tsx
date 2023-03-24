@@ -17,6 +17,7 @@ const Handle = ReactCompareSliderHandle as React.FC<
 
 function CompareImage({
   alt,
+  dir,
   onLoad,
   src,
 }: React.ImgHTMLAttributes<HTMLImageElement>) {
@@ -25,15 +26,24 @@ function CompareImage({
       alt={alt ?? ""}
       onLoad={onLoad}
       placeholder="blur"
-      src={require(`../../../images/blog/${src}`)}
+      src={require(`../../../images/blog/${dir}/${src}`)}
       style={styleFitContainer()}
     />
   )
 }
 
-export function ImageComparison({ one, two }: ImageComparisonProps) {
+export interface ImageComparisonProps {
+  dir?: string
+  one: ReactCompareSliderImageProps
+  two: ReactCompareSliderImageProps
+}
+
+export function ImageComparison({ dir, one, two }: ImageComparisonProps) {
   const [loaded, setLoading] = useState(0)
-  const handleLoad = () => setLoading((count) => count + 1)
+  const imageProps = {
+    dir,
+    onLoad: () => setLoading((count) => count + 1),
+  }
 
   return (
     <ReactCompareSlider
@@ -48,13 +58,8 @@ export function ImageComparison({ one, two }: ImageComparisonProps) {
           style={{ color: undefined }}
         />
       }
-      itemOne={<CompareImage {...one} onLoad={handleLoad} />}
-      itemTwo={<CompareImage {...two} onLoad={handleLoad} />}
+      itemOne={<CompareImage {...one} {...imageProps} />}
+      itemTwo={<CompareImage {...two} {...imageProps} />}
     />
   )
-}
-
-export interface ImageComparisonProps {
-  one: ReactCompareSliderImageProps
-  two: ReactCompareSliderImageProps
 }
