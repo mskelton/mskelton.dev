@@ -37,6 +37,7 @@ export function ImageComparison({ one, two }: ImageComparisonProps) {
 
   return (
     <ReactCompareSlider
+      className="rounded-3xl"
       handle={
         <Handle
           buttonStyle={{ borderColor: "currentcolor" }}
