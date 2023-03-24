@@ -19,7 +19,7 @@ export function Header({ home }: HeaderProps) {
       className={clsx(
         "z-50 flex flex-col pt-8",
         home
-          ? "relative h-48 bg-gradient-to-b from-sky-100 to-sky-200 dark:from-slate-900 dark:to-slate-800 lg:h-72"
+          ? "relative h-48 bg-gradient-to-b from-blue-100/50 to-blue-200/50 dark:from-slate-900/50 dark:to-slate-800/50 lg:h-72"
           : "sticky -top-6 flex h-full flex-col bg-white pb-2 dark:bg-zinc-900"
       )}
     >
