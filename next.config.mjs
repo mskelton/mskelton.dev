@@ -55,6 +55,15 @@ const withMDX = nextMDX({
             tagName: "span",
             type: "element",
           },
+          properties: {
+            className: [
+              "heading-link",
+              "text-indigo-500",
+              "hover:text-indigo-400",
+              "dark:text-indigo-400",
+              "dark:hover:text-indigo-500",
+            ],
+          },
         },
       ],
       rehypeCodeTitles,
