@@ -37,13 +37,13 @@ test.describe("Blog page", async () => {
           await expect(blogPage.root).toPassAxe()
         })
 
-        test("renders page without errors", async ({ blogPage, page }) => {
+        test("renders page without errors", async ({ page }) => {
           const fileURL = new URL(filename, baseURL)
           const content = await fs.promises.readFile(fileURL, "utf8")
           const { data } = matter(content)
 
           await expect(page).toHaveTitle(`${data.title} - Mark Skelton’s Blog`)
-          await expect(blogPage.description).toHaveAttribute("h1", data.title)
+          await expect(page.locator("h1")).toHaveText(data.title)
         })
       })
     })

@@ -11,7 +11,9 @@ export async function MarkdownImage({ alt, src }: MarkdownImageProps) {
   return (
     <span className="inline-flex w-full flex-col items-center text-center">
       <Image alt={alt ?? ""} placeholder="blur" src={image.default} />
-      <span className="text-muted mt-3 inline-block text-sm">{alt}</span>
+      <span aria-hidden="true" className="text-muted mt-3 inline-block text-sm">
+        {alt}
+      </span>
     </span>
   )
 }
