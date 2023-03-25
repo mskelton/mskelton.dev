@@ -17,7 +17,7 @@ const HeaderIconButton = forwardRef<HTMLButtonElement, HeaderIconButtonProps>(
     return (
       <Component
         ref={ref}
-        className="rounded-full p-2 text-zinc-800 transition-colors hover:text-indigo-600 dark:text-zinc-200 dark:hover:text-indigo-400"
+        className="rounded-full p-2 text-zinc-700 transition-colors hover:text-black dark:text-zinc-300 dark:hover:text-white"
         type={props.href ? undefined : "button"}
         {...props}
       >
