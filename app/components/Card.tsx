@@ -1,18 +1,6 @@
+import { ChevronRightIcon, LinkIcon } from "@heroicons/react/20/solid"
 import { clsx } from "clsx"
 import Link, { LinkProps } from "next/link"
-
-function ChevronRightIcon(props: React.SVGProps<SVGSVGElement>) {
-  return (
-    <svg aria-hidden="true" fill="none" viewBox="0 0 16 16" {...props}>
-      <path
-        d="M6.75 5.75 9.25 8l-2.5 2.25"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth="1.5"
-      />
-    </svg>
-  )
-}
 
 interface CardProps {
   as?: React.ElementType
@@ -70,13 +58,20 @@ Card.Title = function CardTitle({
 
 export interface CardDescriptionProps {
   children: React.ReactNode
+  className?: string
 }
 
 Card.Description = function CardDescription({
   children,
+  className,
 }: CardDescriptionProps) {
   return (
-    <p className="relative z-10 mt-2 text-sm text-zinc-600 dark:text-zinc-400">
+    <p
+      className={clsx(
+        "relative z-10 mt-2 text-sm text-zinc-600 dark:text-zinc-400",
+        className
+      )}
+    >
       {children}
     </p>
   )
@@ -90,10 +85,10 @@ Card.Cta = function CardCta({ children }: CardCtaProps) {
   return (
     <div
       aria-hidden="true"
-      className="relative z-10 mt-4 flex items-center text-sm font-medium text-teal-500"
+      className="relative z-10 mt-4 flex items-center text-sm font-medium text-indigo-500 dark:text-indigo-400"
     >
       {children}
-      <ChevronRightIcon className="ml-1 h-4 w-4 stroke-current" />
+      <ChevronRightIcon className="ml-1 h-4 w-4" />
     </div>
   )
 }
@@ -114,9 +109,9 @@ Card.Eyebrow = function CardEyebrow({
   return (
     <Component
       className={clsx(
-        className,
         "relative z-10 order-first mb-3 flex items-center text-sm text-zinc-400 dark:text-zinc-500",
-        decorate && "pl-3.5"
+        decorate && "pl-3.5",
+        className
       )}
       {...props}
     >
@@ -131,5 +126,20 @@ Card.Eyebrow = function CardEyebrow({
 
       {children}
     </Component>
+  )
+}
+
+const formatURL = (url: string) => new URL(url).hostname.replace("www.", "")
+
+export interface CardExternalLinkProps {
+  href: string
+}
+
+Card.ExternalLink = function CardExternalLink({ href }: CardExternalLinkProps) {
+  return (
+    <p className="relative z-10 mt-auto flex items-center justify-self-end text-sm font-medium text-zinc-800 transition group-hover:text-indigo-500 dark:text-zinc-200 dark:group-hover:text-indigo-400">
+      <LinkIcon className="h-5 w-5" />
+      <span className="ml-2">{formatURL(href)}</span>
+    </p>
   )
 }

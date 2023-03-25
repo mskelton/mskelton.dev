@@ -1,40 +1,96 @@
+import { HeartIcon } from "@heroicons/react/20/solid"
+import clsx from "clsx"
 import Link from "next/link"
+import { projects } from "../../(main)/projects/projects"
 import { Container } from "../Container"
+import { socials } from "../SocialIcons"
+import { Copyright } from "./Copyright"
+import { CursiveName } from "./CursiveName"
 
-export interface NavLinkProps {
-  children: React.ReactNode
+const styles = {
+  list: "grid gap-y-2",
+  listTitle: "mb-3 text-xs font-medium text-zinc-800 dark:text-zinc-100",
+}
+
+export interface FooterLinkProps {
+  children?: React.ReactNode
   href: string
 }
 
-function NavLink({ children, href }: NavLinkProps) {
+function FooterLink({ children, href }: FooterLinkProps) {
   return (
-    <Link
-      className="transition hover:text-teal-500 dark:hover:text-teal-400"
-      href={href}
-    >
-      {children}
-    </Link>
+    <li>
+      <Link
+        className="group flex items-center transition hover:text-indigo-500 dark:text-zinc-200 dark:hover:text-indigo-400"
+        href={href}
+      >
+        <span className="text-xs">{children}</span>
+      </Link>
+    </li>
   )
 }
 
-export function Footer() {
+export interface FooterProps {
+  home?: boolean
+}
+
+export function Footer({ home }: FooterProps) {
   return (
-    <footer className="mt-32">
+    <footer
+      className={clsx(
+        "mt-16 lg:mt-32",
+        home && "bg-blue-100/50 dark:bg-slate-800"
+      )}
+    >
       <Container.Outer>
-        <div className="border-t border-zinc-100 pt-10 pb-16 dark:border-zinc-700/40">
+        <div className={clsx("py-10", home && "py-16")}>
           <Container.Inner>
-            <div className="flex flex-col items-center justify-between gap-6 sm:flex-row">
-              <div className="flex gap-6 text-sm font-medium text-zinc-800 dark:text-zinc-200">
-                <NavLink href="/blog">Blog</NavLink>
-                <NavLink href="/about">About</NavLink>
-                <NavLink href="/projects">Projects</NavLink>
-                <NavLink href="/uses">Uses</NavLink>
+            <div className="flex flex-col items-center justify-between gap-6 md:flex-row md:items-start">
+              <div className="flex flex-col justify-between self-stretch text-sm text-zinc-800 dark:text-zinc-200">
+                <div className="w-full">
+                  <CursiveName className="mx-auto mt-1 w-32 text-zinc-800 dark:text-zinc-100 md:mx-0" />
+                  <p className="text-center text-zinc-600 dark:text-zinc-300 md:text-left">
+                    Made with{" "}
+                    <HeartIcon className="inline h-4 w-4 text-red-500" /> in
+                    Wisconsin.
+                  </p>
+                </div>
+
+                <Copyright className="hidden md:block" />
               </div>
 
-              <p className="text-sm text-zinc-400 dark:text-zinc-500">
-                &copy; {new Date().getFullYear()} Mark Skelton. All rights
-                reserved.
-              </p>
+              <div className="flex w-full flex-shrink-0 justify-center gap-14 md:w-auto md:justify-start lg:gap-20">
+                <div>
+                  <p className={styles.listTitle}>Projects</p>
+
+                  <ul
+                    className={clsx(
+                      styles.list,
+                      "grid-cols-2 gap-x-4 lg:gap-x-8"
+                    )}
+                  >
+                    {projects.map(({ href, name, shortName }) => (
+                      <FooterLink key={href} href={href}>
+                        {shortName ?? name}
+                      </FooterLink>
+                    ))}
+                  </ul>
+                </div>
+
+                <div>
+                  <p className={styles.listTitle}>Socials</p>
+
+                  <ul className={styles.list}>
+                    {socials.slice(0, -1).map(({ href, name }) => (
+                      <FooterLink key={href} href={href}>
+                        {name}
+                      </FooterLink>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+
+              <Copyright className="mt-4 block md:hidden" />
             </div>
           </Container.Inner>
         </div>

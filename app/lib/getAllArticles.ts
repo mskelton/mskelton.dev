@@ -7,7 +7,7 @@ async function importArticle(filename: string) {
   // Next.js compiler will assume that other files in the blog directory are
   // being dynamically imported which causes RSC issues with metadata.
   const { default: component, meta } = await import(
-    `../../app/(header)/blog/${filename.replace(".mdx", "")}.mdx`
+    `../../app/(main)/blog/${filename.replace(".mdx", "")}.mdx`
   )
 
   return {
@@ -18,7 +18,7 @@ async function importArticle(filename: string) {
 }
 
 export async function getAllArticles() {
-  const cwd = path.join(process.cwd(), "app/(header)/blog")
+  const cwd = path.join(process.cwd(), "app/(main)/blog")
   const filenames = await glob("**/*.mdx", { cwd })
   const articles = await Promise.all(filenames.map(importArticle))
 

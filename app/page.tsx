@@ -1,24 +1,17 @@
-import { clsx } from "clsx"
-import Image from "next/image"
+import { ArrowDownIcon } from "@heroicons/react/20/solid"
 import Link from "next/link"
-import type { SocialLinkProps } from "./(header)/about/page"
-import type { ArticleProps } from "./(header)/blog/page"
-import { Avatar } from "./components/Avatar"
-import { AvatarContainer } from "./components/AvatarContainer"
+import type { SocialLinkProps } from "./(main)/about/page"
+import type { ArticleProps } from "./(main)/blog/page"
 import { Button } from "./components/Button"
 import { Card } from "./components/Card"
 import { Container } from "./components/Container"
-import { ArrowDownIcon, BriefcaseIcon } from "./components/icons"
+import { BriefcaseIcon } from "./components/icons"
 import { LogoCKH } from "./components/logos/LogoCKH"
 import { LogoFederato } from "./components/logos/LogoFederato"
 import { LogoWiden } from "./components/logos/LogoWiden"
+import { Footer } from "./components/root/Footer"
 import { Header } from "./components/root/Header"
 import { socials } from "./components/SocialIcons"
-import image1 from "./images/photos/image-1.jpg"
-import image2 from "./images/photos/image-2.jpg"
-import image3 from "./images/photos/image-3.jpg"
-import image4 from "./images/photos/image-4.jpg"
-import image5 from "./images/photos/image-5.jpg"
 import { formatDate } from "./lib/formatDate"
 import { getAllArticles } from "./lib/getAllArticles"
 import { siteMeta } from "./lib/siteMeta"
@@ -40,7 +33,7 @@ function Article({ article }: ArticleProps) {
 function SocialLink({ icon: Icon, ...props }: SocialLinkProps) {
   return (
     <Link className="group -m-1 p-1" {...props}>
-      <Icon className="h-6 w-6 fill-zinc-500 transition group-hover:fill-teal-500 dark:fill-zinc-400" />
+      <Icon className="h-6 w-6 text-zinc-500 transition group-hover:text-indigo-500 dark:text-zinc-400 dark:group-hover:text-indigo-400" />
     </Link>
   )
 }
@@ -74,7 +67,7 @@ const resume = [
 
 function Resume() {
   return (
-    <div className="rounded-2xl border border-zinc-100 p-6 dark:border-zinc-700/40">
+    <div className="rounded-2xl border border-zinc-100 p-6 @container dark:border-zinc-700/40">
       <h2 className="flex text-sm font-semibold text-zinc-900 dark:text-zinc-100">
         <BriefcaseIcon className="h-6 w-6 flex-none" />
         <span className="ml-3">Work</span>
@@ -90,11 +83,11 @@ function Resume() {
               />
             </div>
 
-            <dl className="flex flex-auto flex-wrap gap-x-2">
+            <dl className="flex w-full flex-col flex-wrap gap-x-2 @[400px]:flex-row">
               <dt className="sr-only">Company</dt>
               <dd className="w-full flex-none text-sm font-medium text-zinc-900 dark:text-zinc-100">
                 <a
-                  className="transition-colors hover:text-teal-500"
+                  className="transition-colors hover:text-indigo-500 dark:hover:text-indigo-400"
                   href={role.href}
                   rel="noreferrer"
                   target="_blank"
@@ -111,7 +104,7 @@ function Resume() {
               <dt className="sr-only">Date</dt>
               <dd
                 aria-label={`${role.start} until ${role.end}`}
-                className="ml-auto text-xs text-zinc-400 dark:text-zinc-500"
+                className="text-xs text-zinc-400 @[400px]:ml-auto dark:text-zinc-500"
               >
                 <time dateTime={role.start}>{role.start}</time>{" "}
                 <span aria-hidden="true">—</span>{" "}
@@ -142,39 +135,6 @@ function Resume() {
   )
 }
 
-function Photos() {
-  const rotations = [
-    "rotate-2",
-    "-rotate-2",
-    "rotate-2",
-    "rotate-2",
-    "-rotate-2",
-  ]
-
-  return (
-    <div className="mt-16 sm:mt-20">
-      <div className="-my-4 flex justify-center gap-5 overflow-hidden py-4 sm:gap-8">
-        {[image1, image2, image3, image4, image5].map((image, imageIndex) => (
-          <div
-            key={image.src}
-            className={clsx(
-              "relative aspect-[9/10] w-44 flex-none overflow-hidden rounded-xl bg-zinc-100 dark:bg-zinc-800 sm:w-72 sm:rounded-2xl",
-              rotations[imageIndex % rotations.length]
-            )}
-          >
-            <Image
-              alt=""
-              className="absolute inset-0 h-full w-full object-cover"
-              sizes="(min-width: 640px) 18rem, 11rem"
-              src={image}
-            />
-          </div>
-        ))}
-      </div>
-    </div>
-  )
-}
-
 export default async function Home() {
   const articles = (await getAllArticles())
     .slice(0, 4)
@@ -182,28 +142,10 @@ export default async function Home() {
 
   return (
     <>
-      <Header>
-        <div className="order-last mt-[calc(theme(spacing.16)-theme(spacing.3))]" />
-        <Container className="top-0 order-last -mb-3 pt-3">
-          <div className="top-[var(--avatar-top,theme(spacing.3))] w-full">
-            <div className="relative">
-              <AvatarContainer
-                className="absolute left-0 top-3 origin-left transition-opacity"
-                style={{
-                  opacity: "var(--avatar-border-opacity, 0)",
-                  transform: "var(--avatar-border-transform)",
-                }}
-              />
-              <Avatar className="block h-24 w-24 origin-left" large />
-            </div>
-          </div>
-        </Container>
-      </Header>
-
-      <div style={{ height: "var(--content-offset)" }} />
+      <Header home />
 
       <main>
-        <Container className="mt-9">
+        <Container className="mt-6 sm:mt-10">
           <div className="max-w-2xl">
             <h1 className="text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
               {siteMeta.tagline}
@@ -221,8 +163,6 @@ export default async function Home() {
           </div>
         </Container>
 
-        <Photos />
-
         <Container className="mt-24 md:mt-28">
           <div className="mx-auto grid max-w-xl grid-cols-1 gap-y-20 lg:max-w-none lg:grid-cols-2">
             <div className="flex flex-col gap-16">
@@ -238,6 +178,8 @@ export default async function Home() {
           </div>
         </Container>
       </main>
+
+      <Footer home />
     </>
   )
 }
