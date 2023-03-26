@@ -60,7 +60,7 @@ export default function About() {
         <div className="lg:order-first lg:row-span-2">
           <PageTitle>Hi, I’m Mark 👋</PageTitle>
 
-          <div className="space-y-7 text-base text-zinc-600 dark:text-zinc-400">
+          <div className="space-y-7 text-base text-zinc-600 transition-colors dark:text-zinc-400">
             <Content />
           </div>
         </div>
@@ -74,7 +74,7 @@ export default function About() {
             ))}
 
             <SocialLink
-              className="mt-8 border-t border-zinc-100 pt-8 dark:border-zinc-700/40"
+              className="mt-8 border-t border-zinc-100 pt-8 transition-colors dark:border-zinc-700/40"
               href={`mailto:${siteMeta.email}`}
               icon={EnvelopeIcon}
             >

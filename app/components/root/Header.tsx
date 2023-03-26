@@ -53,7 +53,7 @@ export function Header({ home }: HeaderProps) {
 
       {home && (
         <div className="absolute -bottom-px left-0 right-0 z-[-1] w-full overflow-hidden">
-          <HeaderSwoop className="h-16 w-full min-w-[500px] text-white dark:text-zinc-900 lg:h-28" />
+          <HeaderSwoop className="h-16 w-full min-w-[500px] lg:h-28" />
         </div>
       )}
     </header>

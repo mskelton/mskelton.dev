@@ -33,7 +33,7 @@ export default function Projects() {
 
             <h2 className="mt-6 text-base font-semibold">
               <Card.Link
-                className="text-zinc-800 dark:text-zinc-100"
+                className="text-zinc-800 transition-colors dark:text-zinc-100"
                 href={project.href}
               >
                 {project.name}

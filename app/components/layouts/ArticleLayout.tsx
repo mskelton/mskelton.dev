@@ -35,10 +35,10 @@ export function ArticleLayout({ children, meta }: ArticleLayoutProps) {
               <PageTitle className="mt-6">{meta.title}</PageTitle>
 
               <time
-                className="order-first flex items-center text-base text-zinc-500 dark:text-zinc-400"
+                className="order-first flex items-center text-base text-zinc-500 transition-colors dark:text-zinc-400"
                 dateTime={meta.date}
               >
-                <span className="h-4 w-0.5 rounded-full bg-zinc-200 dark:bg-zinc-500" />
+                <span className="h-4 w-0.5 rounded-full bg-zinc-200 transition-colors dark:bg-zinc-500" />
                 <span className="ml-3">{formatDate(meta.date)}</span>
               </time>
             </header>
