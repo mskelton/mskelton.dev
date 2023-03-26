@@ -66,7 +66,7 @@ export function Footer({ home }: FooterProps) {
                   <ul
                     className={clsx(
                       styles.list,
-                      "grid-cols-2 gap-x-4 lg:gap-x-8"
+                      "grid-cols-1 gap-x-4 min-[400px]:grid-cols-2 lg:gap-x-8"
                     )}
                   >
                     {projects.map(({ href, name, shortName }) => (
