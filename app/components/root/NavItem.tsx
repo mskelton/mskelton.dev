@@ -3,6 +3,7 @@
 import clsx from "clsx"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
+import { useEffect, useState } from "react"
 
 export interface NavItemProps {
   children: React.ReactNode
@@ -10,7 +11,15 @@ export interface NavItemProps {
 }
 
 export function NavItem({ children, href }: NavItemProps) {
-  const isActive = usePathname()?.startsWith(href)
+  const [isActive, setIsActive] = useState(false)
+  const pathname = usePathname()
+
+  // Because the header is a different component between home and other pages,
+  // we have to set the active state after the initial render to ensure the
+  // underline transition is applied.
+  useEffect(() => {
+    setIsActive(pathname?.startsWith(href))
+  }, [pathname, href])
 
   return (
     <li>
