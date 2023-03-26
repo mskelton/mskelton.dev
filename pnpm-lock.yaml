@@ -7,7 +7,7 @@ specifiers:
   '@heroicons/react': ^2.0.16
   '@mdx-js/loader': ^2.3.0
   '@mdx-js/react': ^2.3.0
-  '@mskelton/eslint-config': ^7.6.1
+  '@mskelton/eslint-config': ^7.7.1
   '@next/mdx': ^13.2.4
   '@playwright/test': ^1.31.2
   '@stefanprobst/rehype-shiki': ^2.2.0
@@ -91,7 +91,7 @@ dependencies:
 devDependencies:
   '@babel/core': 7.21.0
   '@babel/eslint-parser': 7.19.1_vtnbfkwqsm6iol5jb3gfhr3fli
-  '@mskelton/eslint-config': 7.6.1_uo4qd5bekwzjolinba7pkm35xa
+  '@mskelton/eslint-config': 7.7.1_uo4qd5bekwzjolinba7pkm35xa
   '@playwright/test': 1.31.2
   '@types/mdx': 2.0.3
   '@types/node': 18.15.0
@@ -490,8 +490,8 @@ packages:
       react: 18.2.0
     dev: false
 
-  /@mskelton/eslint-config/7.6.1_uo4qd5bekwzjolinba7pkm35xa:
-    resolution: {integrity: sha512-PZHCGcsj+ONPZLvdhC99JEESr5fYYt18HZm1El8lZst+EAqkCAEKaj/ol/ktXISjSnzXxf6nHtU3gMLwA1L8vA==}
+  /@mskelton/eslint-config/7.7.1_uo4qd5bekwzjolinba7pkm35xa:
+    resolution: {integrity: sha512-sAqO3sIDTa0uFlg7AtJxg2gp+Ijth68ofFMbYa3HsX0iXPv3qzdUraniorYHH2Ai3fsDn8OYzSqbVIEDZelnEQ==}
     peerDependencies:
       '@babel/core': '>= 7'
       '@babel/eslint-parser': '>= 7'

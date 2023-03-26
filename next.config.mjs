@@ -61,6 +61,7 @@ const withMDX = nextMDX({
             className: [
               "heading-link",
               "text-indigo-500",
+              "transition-colors",
               "hover:text-indigo-400",
               "dark:text-indigo-400",
               "dark:hover:text-indigo-500",

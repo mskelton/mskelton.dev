@@ -15,7 +15,7 @@ test.describe("Home page", async () => {
     )
     await expect(homePage.description).toHaveAttribute(
       "content",
-      /I’m Mark, a software engineer/
+      /I’m Mark, a frontend software engineer/
     )
   })
 })

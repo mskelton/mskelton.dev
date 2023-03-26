@@ -1,12 +1,13 @@
 import clsx from "clsx"
 
-export type CopyrightProps = React.HTMLAttributes<HTMLParagraphElement>
+export interface CopyrightProps
+  extends React.HTMLAttributes<HTMLParagraphElement> {}
 
 export function Copyright({ className, ...props }: CopyrightProps) {
   return (
     <p
       className={clsx(
-        "text-[0.75rem] text-zinc-500 dark:text-zinc-400",
+        "text-[0.75rem] text-zinc-500 transition-colors dark:text-zinc-400",
         className
       )}
       {...props}

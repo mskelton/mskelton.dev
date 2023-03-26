@@ -2,6 +2,7 @@ import { ArrowLeftIcon } from "@heroicons/react/20/solid"
 import Link from "next/link"
 import { formatDate } from "../../lib/formatDate"
 import { Container } from "../Container"
+import { PageTitle } from "../PageTitle"
 import { Prose } from "../Prose"
 
 export interface ArticleMeta {
@@ -31,15 +32,13 @@ export function ArticleLayout({ children, meta }: ArticleLayoutProps) {
 
           <article>
             <header className="flex flex-col">
-              <h1 className="mt-6 text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
-                {meta.title}
-              </h1>
+              <PageTitle className="mt-6">{meta.title}</PageTitle>
 
               <time
-                className="order-first flex items-center text-base text-zinc-500 dark:text-zinc-400"
+                className="order-first flex items-center text-base text-zinc-500 transition-colors dark:text-zinc-400"
                 dateTime={meta.date}
               >
-                <span className="h-4 w-0.5 rounded-full bg-zinc-200 dark:bg-zinc-500" />
+                <span className="h-4 w-0.5 rounded-full bg-zinc-200 transition-colors dark:bg-zinc-500" />
                 <span className="ml-3">{formatDate(meta.date)}</span>
               </time>
             </header>
