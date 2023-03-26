@@ -4,6 +4,7 @@ import { clsx } from "clsx"
 import Image from "next/image"
 import Link from "next/link"
 import { Container } from "../../components/Container"
+import { PageTitle } from "../../components/PageTitle"
 import { socials } from "../../components/SocialIcons"
 import portraitImage from "../../images/portrait.jpg"
 import { siteMeta } from "../../lib/siteMeta"
@@ -57,9 +58,7 @@ export default function About() {
         </div>
 
         <div className="lg:order-first lg:row-span-2">
-          <h1 className="mb-12 text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
-            Hi, I’m Mark 👋
-          </h1>
+          <PageTitle>Hi, I’m Mark 👋</PageTitle>
 
           <div className="space-y-7 text-base text-zinc-600 dark:text-zinc-400">
             <Content />

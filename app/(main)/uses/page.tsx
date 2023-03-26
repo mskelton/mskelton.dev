@@ -48,24 +48,30 @@ export default function Uses() {
     >
       <div className="space-y-20">
         <ToolsSection title="Workstation">
-          <Tool title="15” MacBook Pro, Intel Core i7, 16GB RAM (2016)">
-            My first MacBook, much to the chagrin of my Dad at the time (who now
-            also uses a MacBook). While I was disappointed to hear that my
-            computer is not eligible for macOS Ventura due to it’s age, I don’t
-            think I’ll replace it just yet as it still runs like a champ.
+          <Tool
+            href="https://www.apple.com/shop/buy-mac/macbook-pro/16-inch"
+            title="16” MacBook Pro, M1, 16GB RAM (2021)"
+          >
+            After several years of nursing along an old MacBook, I gave in an
+            bought a new MacBook Pro. This machine is an absolute workhorse and
+            I’ve yet to see the fans kick in. Oh yeah, and if you are
+            considering an upgrade, the 16” is totally worth the extra money.
           </Tool>
 
-          <Tool title="LG 4k Monitor (2x)">
+          <Tool
+            href="https://www.lg.com/us/monitors/lg-32up83a-w-4k-uhd-led-monitor#"
+            title="LG 4k Monitor (2x)"
+          >
             Multiple monitors is the only way to go. Thanks to my work getting
             rid of some old monitors, I now have the best of both worlds with a
             large main monitor <i>and</i> a secondary monitor.
           </Tool>
 
           <Tool
-            href="https://www.zsa.io/moonlander"
-            title="Moonlander Mark I Keyboard"
+            href="https://kinesis-ergo.com/shop/adv360pro"
+            title="Kinesis Advantage 360 Pro Keyboard"
           >
-            Ortholinear split keyboards are the way to go. While $350 looks like
+            Ortholinear split keyboards are the way to go. While $450 looks like
             a lot on paper, it’s a small price for something that can save your
             wrist health and improve your productivity. After all, if you are
             using your keyboard for 8+ hours a day, shouldn’t it be good?

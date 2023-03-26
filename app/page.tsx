@@ -9,6 +9,7 @@ import { BriefcaseIcon } from "./components/icons"
 import { LogoCKH } from "./components/logos/LogoCKH"
 import { LogoFederato } from "./components/logos/LogoFederato"
 import { LogoWiden } from "./components/logos/LogoWiden"
+import { PageSubtitle, PageTitle } from "./components/PageTitle"
 import { Footer } from "./components/root/Footer"
 import { Header } from "./components/root/Header"
 import { socials } from "./components/SocialIcons"
@@ -147,13 +148,8 @@ export default async function Home() {
       <main>
         <Container className="mt-6 sm:mt-10">
           <div className="max-w-2xl">
-            <h1 className="text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
-              {siteMeta.tagline}
-            </h1>
-
-            <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
-              {siteMeta.description}
-            </p>
+            <PageTitle>{siteMeta.tagline}</PageTitle>
+            <PageSubtitle>{siteMeta.description}</PageSubtitle>
 
             <div className="mt-6 flex gap-6">
               {socials.map(({ label, ...social }) => (
