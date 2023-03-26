@@ -17,13 +17,16 @@ const HeaderIconButton = forwardRef<HTMLButtonElement, HeaderIconButtonProps>(
     return (
       <Component
         ref={ref}
-        className="rounded-full p-2 text-zinc-700 transition-colors hover:text-black dark:text-zinc-300 dark:hover:text-white"
+        className="group rounded-full p-2"
         type={props.href ? undefined : "button"}
         {...props}
       >
         {Children.map(children, (child) =>
           cloneElement(child, {
-            className: clsx("w-5 h-5", child.props.className),
+            className: clsx(
+              "w-5 h-5 text-zinc-700 transition-colors group-hover:text-black dark:text-zinc-300 dark:group-hover:text-white",
+              child.props.className
+            ),
           })
         )}
       </Component>

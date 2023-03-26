@@ -17,18 +17,19 @@ export function Header({ home }: HeaderProps) {
   return (
     <header
       className={clsx(
-        "z-50 flex flex-col pt-8 transition-colors duration-300",
+        "isolate z-50 flex flex-col pt-8 duration-300",
         home
-          ? "relative h-48 bg-gradient-to-b from-blue-100/50 to-blue-200/50 dark:from-slate-800 dark:to-slate-700 lg:h-72"
-          : "sticky -top-6 flex h-full flex-col bg-white pb-2 dark:bg-zinc-900"
+          ? "relative z-10 h-48 bg-gradient-to-b from-blue-100/50 to-blue-200/50 before:absolute before:inset-0 before:z-[-1] before:bg-gradient-to-b before:from-slate-800 before:to-slate-700 before:opacity-0 before:transition-opacity before:duration-300 dark:before:opacity-100 lg:h-72"
+          : "sticky -top-6 flex h-full flex-col bg-white pb-2 transition-colors dark:bg-zinc-900"
       )}
     >
       <Container className="sticky top-0 w-full">
         <div className="relative flex items-center gap-4">
           <Link className="mt-1.5" href="/">
             <CursiveName
-              className="w-40 text-zinc-700 dark:text-white"
+              className="w-40"
               swoop={home}
+              textClassName="text-zinc-700 dark:text-zinc-100"
             />
           </Link>
 
@@ -51,7 +52,7 @@ export function Header({ home }: HeaderProps) {
       </Container>
 
       {home && (
-        <div className="absolute -bottom-px left-0 right-0 w-full overflow-hidden">
+        <div className="absolute -bottom-px left-0 right-0 z-[-1] w-full overflow-hidden">
           <HeaderSwoop className="h-16 w-full min-w-[500px] text-white dark:text-zinc-900 lg:h-28" />
         </div>
       )}

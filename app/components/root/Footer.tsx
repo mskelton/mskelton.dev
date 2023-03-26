@@ -9,7 +9,8 @@ import { CursiveName } from "./CursiveName"
 
 const styles = {
   list: "grid gap-y-2",
-  listTitle: "mb-3 text-xs font-medium text-zinc-800 dark:text-zinc-100",
+  listTitle:
+    "mb-3 text-xs font-medium text-zinc-800 dark:text-zinc-100 transition-colors",
 }
 
 export interface FooterLinkProps {
@@ -39,17 +40,21 @@ export function Footer({ home }: FooterProps) {
     <footer
       className={clsx(
         "mt-16 lg:mt-32",
-        home && "bg-blue-100/50 dark:bg-slate-800"
+        home && "bg-blue-100/50 transition-colors dark:bg-slate-800"
       )}
     >
       <Container.Outer>
         <div className={clsx("py-10", home && "py-16")}>
           <Container.Inner>
             <div className="flex flex-col items-center justify-between gap-6 md:flex-row md:items-start">
-              <div className="flex flex-col justify-between self-stretch text-sm text-zinc-800 dark:text-zinc-200">
+              <div className="flex flex-col justify-between self-stretch text-sm text-zinc-800 transition-colors dark:text-zinc-200">
                 <div className="w-full">
-                  <CursiveName className="mx-auto mt-1 w-32 text-zinc-800 dark:text-zinc-100 md:mx-0" />
-                  <p className="text-center text-zinc-600 dark:text-zinc-300 md:text-left">
+                  <CursiveName
+                    className="mx-auto mt-1 w-32 md:mx-0"
+                    textClassName="text-zinc-800 dark:text-zinc-100"
+                  />
+
+                  <p className="text-center text-zinc-600 transition-colors dark:text-zinc-300 md:text-left">
                     Made with{" "}
                     <HeartIcon className="inline h-4 w-4 text-red-500" /> in
                     Wisconsin.

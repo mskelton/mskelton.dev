@@ -68,8 +68,8 @@ const resume = [
 
 function Resume() {
   return (
-    <div className="rounded-2xl border border-zinc-100 p-6 @container dark:border-zinc-700/40">
-      <h2 className="flex text-sm font-semibold text-zinc-900 dark:text-zinc-100">
+    <div className="rounded-2xl border border-zinc-100 p-6 transition-colors @container dark:border-zinc-700/40">
+      <h2 className="flex text-sm font-semibold text-zinc-900 transition-colors dark:text-zinc-100">
         <BriefcaseIcon className="h-6 w-6 flex-none" />
         <span className="ml-3">Work</span>
       </h2>
@@ -77,7 +77,7 @@ function Resume() {
       <ol className="mt-6 space-y-4">
         {resume.map((role, roleIndex) => (
           <li key={roleIndex} className="flex gap-4">
-            <div className="relative mt-1 flex h-10 w-10 flex-none items-center justify-center rounded-full shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0">
+            <div className="relative mt-1 flex h-10 w-10 flex-none items-center justify-center rounded-full shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 transition-colors dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0">
               <role.logo
                 aria-label={`${role.company} logo`}
                 className="h-7 w-7"
@@ -86,9 +86,9 @@ function Resume() {
 
             <dl className="flex w-full flex-col flex-wrap gap-x-2 @[400px]:flex-row">
               <dt className="sr-only">Company</dt>
-              <dd className="w-full flex-none text-sm font-medium text-zinc-900 dark:text-zinc-100">
+              <dd className="w-full flex-none">
                 <a
-                  className="transition-colors hover:text-indigo-500 dark:hover:text-indigo-400"
+                  className="text-sm font-medium text-zinc-900 transition-colors hover:text-indigo-500 dark:text-zinc-100 dark:hover:text-indigo-400"
                   href={role.href}
                   rel="noreferrer"
                   target="_blank"
@@ -98,14 +98,14 @@ function Resume() {
               </dd>
 
               <dt className="sr-only">Role</dt>
-              <dd className="text-xs text-zinc-500 dark:text-zinc-400">
+              <dd className="text-xs text-zinc-500 transition-colors dark:text-zinc-400">
                 {role.title}
               </dd>
 
               <dt className="sr-only">Date</dt>
               <dd
                 aria-label={`${role.start} until ${role.end}`}
-                className="text-xs text-zinc-400 @[400px]:ml-auto dark:text-zinc-500"
+                className="text-xs text-zinc-400 transition-colors @[400px]:ml-auto dark:text-zinc-500"
               >
                 <time dateTime={role.start}>{role.start}</time>{" "}
                 <span aria-hidden="true">—</span>{" "}
