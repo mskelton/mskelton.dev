@@ -6,8 +6,8 @@ import { CursiveName } from "./CursiveName"
 import { DesktopNavigation } from "./DesktopNavigation"
 import HeaderIconButton from "./HeaderIconButton"
 import { MobileNavigation } from "./MobileNavigation"
-import { ModeToggle } from "./ModeToggle"
 import { HeaderSwoop } from "./Swoops"
+import { ThemeToggle } from "./ThemeToggle"
 
 export interface HeaderProps {
   home?: boolean
@@ -17,7 +17,7 @@ export function Header({ home }: HeaderProps) {
   return (
     <header
       className={clsx(
-        "z-50 flex flex-col pt-8",
+        "z-50 flex flex-col pt-8 transition-colors duration-300",
         home
           ? "relative h-48 bg-gradient-to-b from-blue-100/50 to-blue-200/50 dark:from-slate-800 dark:to-slate-700 lg:h-72"
           : "sticky -top-6 flex h-full flex-col bg-white pb-2 dark:bg-zinc-900"
@@ -34,7 +34,7 @@ export function Header({ home }: HeaderProps) {
 
           <DesktopNavigation className="ml-8 hidden flex-1 lg:flex" />
 
-          <div className="flex flex-1 justify-end gap-3">
+          <div className="flex flex-1 justify-end gap-2 sm:gap-3">
             <HeaderIconButton
               aria-label="Open source code on GitHub"
               as="a"
@@ -44,7 +44,7 @@ export function Header({ home }: HeaderProps) {
               <GitHubIcon />
             </HeaderIconButton>
 
-            <ModeToggle />
+            <ThemeToggle />
             <MobileNavigation className="lg:hidden" />
           </div>
         </div>
