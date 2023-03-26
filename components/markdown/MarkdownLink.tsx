@@ -1,7 +1,7 @@
 import Link from "next/link"
 import { AnchorHTMLAttributes } from "react"
 
-export type LinkProps = AnchorHTMLAttributes<HTMLAnchorElement>
+export interface LinkProps extends AnchorHTMLAttributes<HTMLAnchorElement> {}
 
 export function MarkdownLink({ href = "#", ...props }: LinkProps) {
   const isInternalLink = href.startsWith("/")

@@ -4,13 +4,14 @@ specifiers:
   '@babel/core': ^7.21.0
   '@babel/eslint-parser': ^7.19.1
   '@headlessui/react': ^1.7.13
+  '@heroicons/react': ^2.0.16
   '@mdx-js/loader': ^2.3.0
   '@mdx-js/react': ^2.3.0
-  '@mskelton/eslint-config': ^7.3.0
-  '@next/font': ^13.2.4
+  '@mskelton/eslint-config': ^7.7.1
   '@next/mdx': ^13.2.4
   '@playwright/test': ^1.31.2
   '@stefanprobst/rehype-shiki': ^2.2.0
+  '@tailwindcss/container-queries': ^0.1.0
   '@tailwindcss/typography': ^0.5.9
   '@types/mdx': ^2.0.3
   '@types/node': ^18.15.0
@@ -34,7 +35,7 @@ specifiers:
   next: ^13.2.4
   postcss: ^8.4.21
   prettier: ^2.8.4
-  prettier-plugin-tailwindcss: ^0.2.4
+  prettier-plugin-tailwindcss: ^0.2.5
   react: ^18.2.0
   react-compare-slider: ^2.2.0
   react-dom: ^18.2.0
@@ -56,11 +57,12 @@ specifiers:
 
 dependencies:
   '@headlessui/react': 1.7.13_biqbaboplfbrettd7655fr4n2y
+  '@heroicons/react': 2.0.16_react@18.2.0
   '@mdx-js/loader': 2.3.0_webpack@5.76.1
   '@mdx-js/react': 2.3.0_react@18.2.0
-  '@next/font': 13.2.4
   '@next/mdx': 13.2.4_msthxdjvrhmdkfpqqalumiidgq
   '@stefanprobst/rehype-shiki': 2.2.0_shiki@0.10.1
+  '@tailwindcss/container-queries': 0.1.0_tailwindcss@3.2.7
   '@tailwindcss/typography': 0.5.9_tailwindcss@3.2.7
   '@vercel/analytics': 0.1.11_react@18.2.0
   autoprefixer: 10.4.14_postcss@8.4.21
@@ -89,7 +91,7 @@ dependencies:
 devDependencies:
   '@babel/core': 7.21.0
   '@babel/eslint-parser': 7.19.1_vtnbfkwqsm6iol5jb3gfhr3fli
-  '@mskelton/eslint-config': 7.3.0_uo4qd5bekwzjolinba7pkm35xa
+  '@mskelton/eslint-config': 7.7.1_uo4qd5bekwzjolinba7pkm35xa
   '@playwright/test': 1.31.2
   '@types/mdx': 2.0.3
   '@types/node': 18.15.0
@@ -106,7 +108,7 @@ devDependencies:
   gray-matter: 4.0.3
   lariat: 2.0.1_@playwright+test@1.31.2
   prettier: 2.8.4
-  prettier-plugin-tailwindcss: 0.2.4_prettier@2.8.4
+  prettier-plugin-tailwindcss: 0.2.5_prettier@2.8.4
   ts-node: 10.9.1_lwgqdwokjtwlohdqtbb6s252kq
   typescript: 4.9.5
 
@@ -369,6 +371,14 @@ packages:
       react-dom: 18.2.0_react@18.2.0
     dev: false
 
+  /@heroicons/react/2.0.16_react@18.2.0:
+    resolution: {integrity: sha512-x89rFxH3SRdYaA+JCXwfe+RkE1SFTo9GcOkZettHer71Y3T7V+ogKmfw5CjTazgS3d0ClJ7p1NA+SP7VQLQcLw==}
+    peerDependencies:
+      react: '>= 16'
+    dependencies:
+      react: 18.2.0
+    dev: false
+
   /@humanwhocodes/config-array/0.11.8:
     resolution: {integrity: sha512-UybHIJzJnR5Qc/MsD9Kr+RpO2h+/P1GhOwdiLPXK5TWk5sgTdu88bTD9UP+CKbPPh5Rni1u0GjAdYQLemG8g+g==}
     engines: {node: '>=10.10.0'}
@@ -480,8 +490,8 @@ packages:
       react: 18.2.0
     dev: false
 
-  /@mskelton/eslint-config/7.3.0_uo4qd5bekwzjolinba7pkm35xa:
-    resolution: {integrity: sha512-th79/fnSh6FcA28Y2EWFCAlePEKkm/OWIrGGYSgNkdcKiWAies4dgfXrq1IqirDYJOdz7UO2F4g7XGUXiM4lcw==}
+  /@mskelton/eslint-config/7.7.1_uo4qd5bekwzjolinba7pkm35xa:
+    resolution: {integrity: sha512-sAqO3sIDTa0uFlg7AtJxg2gp+Ijth68ofFMbYa3HsX0iXPv3qzdUraniorYHH2Ai3fsDn8OYzSqbVIEDZelnEQ==}
     peerDependencies:
       '@babel/core': '>= 7'
       '@babel/eslint-parser': '>= 7'
@@ -522,10 +532,6 @@ packages:
     dependencies:
       glob: 7.1.7
     dev: true
-
-  /@next/font/13.2.4:
-    resolution: {integrity: sha512-lMAnuOYjv5g22WhD00u0DQ9u2rTMJH0S64PKE4Sy8Y2q+FJTYs6ZHT2z3VRoI8+AOWSLK4FirpnygcjOienQ9A==}
-    dev: false
 
   /@next/mdx/13.2.4_msthxdjvrhmdkfpqqalumiidgq:
     resolution: {integrity: sha512-inl7u+OEa4Ok3uL052oa8EDw1bUkMGLVKzFfVBIgG19s29gxQvcWYzxa5t438J31ljApjh6Y5k4AD6yLaCAlQw==}
@@ -734,6 +740,14 @@ packages:
     resolution: {integrity: sha512-4C7nX/dvpzB7za4Ql9K81xK3HPxCpHMgwTZVyf+9JQ6VUbn9jjZVN7/Nkdz/Ugzs2CSjqnL/UPXroiVBVHUWUw==}
     dependencies:
       tslib: 2.5.0
+    dev: false
+
+  /@tailwindcss/container-queries/0.1.0_tailwindcss@3.2.7:
+    resolution: {integrity: sha512-t1GeJ9P8ual160BvKy6Y1sG7bjChArMaK6iRXm3ZYjZGN2FTzmqb5ztsTDb9AsTSJD4NMHtsnaI2ielrXEk+hw==}
+    peerDependencies:
+      tailwindcss: '>=3.2.0'
+    dependencies:
+      tailwindcss: 3.2.7_aesdjsunmf4wiehhujt67my7tu
     dev: false
 
   /@tailwindcss/typography/0.5.9_tailwindcss@3.2.7:
@@ -4171,8 +4185,8 @@ packages:
     engines: {node: '>= 0.8.0'}
     dev: true
 
-  /prettier-plugin-tailwindcss/0.2.4_prettier@2.8.4:
-    resolution: {integrity: sha512-wMyugRI2yD8gqmMpZSS8kTA0gGeKozX/R+w8iWE+yiCZL09zY0SvfiHfHabNhjGhzxlQ2S2VuTxPE3T72vppCQ==}
+  /prettier-plugin-tailwindcss/0.2.5_prettier@2.8.4:
+    resolution: {integrity: sha512-vZ/iKieyCx0WTxHbkf5E1rBlv/ybFk8WTT4hL5W2jlVxum2Zbe0jMUpuQdDrpa4z2vnPiJ5KIWCqL/kd16fKYg==}
     engines: {node: '>=12.17.0'}
     peerDependencies:
       '@ianvs/prettier-plugin-sort-imports': '*'

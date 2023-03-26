@@ -10,6 +10,7 @@ import remarkSmartypants from "remark-smartypants"
 import shiki from "shiki"
 import rehypeCodeA11y from "./config/rehype-code-a11y.mjs"
 import rehypeCodeTitles from "./config/rehype-code-titles.mjs"
+import remarkAutoImagePath from "./config/remark-auto-image-path.mjs"
 import remarkCodeTitles from "./config/remark-code-titles.mjs"
 import remarkFrontmatterMetadata from "./config/remark-frontmatter-metadata.mjs"
 import remarkLayout from "./config/remark-layout.mjs"
@@ -55,6 +56,18 @@ const withMDX = nextMDX({
             tagName: "span",
             type: "element",
           },
+          properties: {
+            ariaHidden: true,
+            className: [
+              "heading-link",
+              "text-indigo-500",
+              "transition-colors",
+              "hover:text-indigo-400",
+              "dark:text-indigo-400",
+              "dark:hover:text-indigo-500",
+            ],
+            tabIndex: -1,
+          },
         },
       ],
       rehypeCodeTitles,
@@ -69,6 +82,7 @@ const withMDX = nextMDX({
       [remarkMdxFrontmatter, { name: "meta" }],
       remarkLayout,
       remarkCodeTitles,
+      remarkAutoImagePath,
     ],
   },
 })
