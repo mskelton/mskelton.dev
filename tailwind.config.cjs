@@ -113,7 +113,6 @@ module.exports = {
             "h2, h3": {
               color: "var(--tw-prose-headings)",
               fontWeight: theme("fontWeight.semibold"),
-              scrollMarginTop: theme("spacing.20"),
             },
             h2: {
               fontSize: theme("fontSize.xl")[0],
