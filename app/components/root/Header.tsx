@@ -17,7 +17,7 @@ export function Header({ home }: HeaderProps) {
   return (
     <header
       className={clsx(
-        "z-10 flex flex-col pt-8",
+        "z-50 flex flex-col pt-8",
         home
           ? "relative h-48 bg-gradient-to-b from-blue-100/50 to-blue-200/50 before:absolute before:inset-0 before:z-[-1] before:bg-gradient-to-b before:from-slate-800 before:to-slate-700 before:opacity-0 before:transition-opacity before:duration-300 dark:before:opacity-100 lg:h-72"
           : "sticky -top-6 flex h-full flex-col bg-white pb-2 transition-colors duration-300 dark:bg-zinc-900"
@@ -52,7 +52,7 @@ export function Header({ home }: HeaderProps) {
       </Container>
 
       {home && (
-        <div className="absolute -bottom-px left-0 right-0 z-10 w-full overflow-hidden">
+        <div className="absolute -bottom-px left-0 right-0 z-50 w-full overflow-hidden">
           <HeaderSwoop className="h-16 w-full min-w-[500px] lg:h-28" />
         </div>
       )}
