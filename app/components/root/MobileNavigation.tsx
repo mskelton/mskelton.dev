@@ -28,7 +28,7 @@ export function MobileNavigation({ className }: MobileNavigationProps) {
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <Popover.Overlay className="fixed inset-0 z-50 bg-zinc-800/40 backdrop-blur-sm dark:bg-black/80" />
+            <Popover.Overlay className="fixed inset-0 z-[100] bg-zinc-800/40 backdrop-blur-sm dark:bg-black/80" />
           </Transition.Child>
 
           <Transition.Child
@@ -41,7 +41,7 @@ export function MobileNavigation({ className }: MobileNavigationProps) {
             leaveTo="opacity-0 scale-95"
           >
             <Popover.Panel
-              className="fixed inset-x-4 top-8 z-50 origin-top rounded-3xl bg-white p-8 ring-1 ring-zinc-900/5 dark:bg-zinc-900 dark:ring-zinc-800"
+              className="fixed inset-x-4 top-8 z-[100] origin-top rounded-3xl bg-white p-8 ring-1 ring-zinc-900/5 dark:bg-zinc-900 dark:ring-zinc-800"
               focus
             >
               <div className="flex flex-row-reverse items-center justify-between">
