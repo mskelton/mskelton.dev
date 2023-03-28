@@ -27,16 +27,16 @@ jscodeshift to automate code transformation to speed up refactoring so you can
 take advantage of new libraries or updates without having to manually migrate
 your project(s).
 
-You can find the code from this article, as well as an example Jest test suite,
+_You can find the code from this article, as well as an example Jest test suite,
 in the
-[accompanying GitHub repo](https://github.com/mskelton/jscodeshift-example).
+[accompanying GitHub repo](https://github.com/mskelton/jscodeshift-example)._
 
 ## Introduction to jscodeshift
 
 [jscodeshift](https://github.com/facebook/jscodeshift) is a tool created by
 Facebook that provides a simple API to perform abstract syntax tree (AST)
 transformations on your project's source files. We can use these APIs to create
-custom “codemods” to transform our code for whatever needs we have. An example
+custom "codemods" to transform our code for whatever needs we have. An example
 of this might be removing an imported variable from a library and instead
 importing it from a file in your project. The code block below demonstrates this
 example, which I'll use for the remainder of this article.
