@@ -1,7 +1,7 @@
 "use client"
 
-import { MoonIcon, SunIcon } from "@heroicons/react/20/solid"
 import HeaderIconButton from "./HeaderIconButton"
+import { ThemeIcon } from "./ThemeIcon"
 
 export function ThemeToggle() {
   function handleToggle() {
@@ -14,8 +14,7 @@ export function ThemeToggle() {
 
   return (
     <HeaderIconButton aria-label="Toggle dark mode" onClick={handleToggle}>
-      <SunIcon className="dark:hidden" />
-      <MoonIcon className="hidden dark:block" />
+      <ThemeIcon />
     </HeaderIconButton>
   )
 }
