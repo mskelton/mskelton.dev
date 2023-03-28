@@ -1,0 +1,164 @@
+---
+title: Demystifying TypeScript's Extract Type
+description:
+  TypeScript's Extract type can be confusing to understand and use. In this
+  article, I'll show how this type works as well as some practical examples of
+  when you might want to use it in your applications.
+date: "2021-06-03"
+---
+
+Many of the applications I develop at work utilize TypeScript for front-end
+development to provide a high level of type safety while also remaining familiar
+to developers who are used to JavaScript. In one such application, a need arose
+that required a more sophisticated type than I use on a daily basis. After some
+research, I discovered a solution using TypeScript's `Extract` type. In this
+post, I'll share a few examples of how you can use `Extract` in your own
+projects to improve type safety and developer experience.
+
+## Use case: Extracting subsets of a union
+
+To get started with `Extract`, let's look at a simple example. Suppose we have a
+type `MixedArgs`, which is a union type containing four different members of
+various types. Our goal is to "extract" the members of the union that are
+functions, which we can do using `Extract`. This would look something like this:
+
+```typescript
+type MixedArgs = string | number | () => string | () => number
+type FunctionArgs = Extract<MixedArgs, Function>
+```
+
+The first argument we pass to Extract is our union type and the second argument
+is the type that we will use when comparing each member of the union. If a
+member is assignable to our second argument, it will be included in the
+resulting type.
+
+_Pro tip: The second argument to `Extract` can also be a union!_
+
+Since `string` and `number` are not assignable to `Function,` they will not be
+included in the resulting type. This results in `FunctionArgs` evaluating to the
+following type:
+
+```typescript
+type FunctionArgs = () => string | () => number
+```
+
+## Use case: `filterProducts`
+
+Now that we understand the basic concept, let's look at a real world example.
+Say we have an array of products, each of which contains a key `type` which is a
+string to determine what type of object it is. This would look something like
+this:
+
+```typescript
+type Product =
+  | { type: "book"; author: string }
+  | { type: "movie"; producer: string }
+  | { type: "appliance"; manufacturer: string }
+```
+
+Let's say we want to create a function that takes an array of `Product`s and
+returns only those which match a specified type. This would look something like
+this:
+
+```typescript
+function filterProducts(products: Product[], type: Product["type"]) {
+  return products.filter((item) => item.type === type)
+}
+```
+
+While this function will do exactly what we want at runtime, the type returned
+from calling `filterProducts(products, 'book')` will be `Product[]` even though
+we know that the resulting array won't contain any `movie`s or `appliance`s.
+With the power of `Extract`, we can improve this:
+
+```typescript
+function filterProducts<T extends Product, U extends T["type"]>(
+  products: T[],
+  type: U
+) {
+  return products.filter(
+    (item): item is Extract<T, Record<"type", U>> => item.type === type
+  )
+}
+```
+
+There is a lot going on here, so let's break it down. First, we've updated the
+function to accept two generic arguments: `T` and `U`. TypeScript will infer the
+value of these
+[generic arguments](https://www.typescriptlang.org/docs/handbook/2/generics.html#generic-constraints)
+since we have typed the function parameters using the generic variables. Since
+each generic argument has a corresponding generic constraint, the function will
+properly type check the arguments provided to the function like it did in the
+non-generic example we looked at before.
+
+Now that we have our generic arguments, we can add a
+[type predicate](https://www.typescriptlang.org/docs/handbook/2/narrowing.html#using-type-predicates)
+to our filter function. Our type predicate allows us to instruct TypeScript
+about the specific type of the argument passed to the function when the function
+returns `true`. `Array.prototype.filter` will use this to narrow the type of the
+resulting array.
+
+The type that our type predicate is narrowing to is
+`Extract<T, Record<"type", U>>`, which probably looks a bit confusing at first.
+The type we are extracting from is `T`, which will be our array of Products that
+we passed to our function. `Record<"type", U>` will be an object that looks
+something like this: `{ type: 'book' }`. Just like our previous example with
+`FunctionArgs`, `Extract` will return a type containing all members that
+`{ type: 'book' }` is assignable to. Our final resulting type when calling our
+function will look like this:
+
+```typescript
+type Result = { type: "book"; author: string }[]
+```
+
+Neat, right!
+
+## Bonus: Extract with template literal types
+
+For a little bonus, let's explore a complex but extremely powerful way of using
+Extract with
+[template literal types](https://www.typescriptlang.org/docs/handbook/2/template-literal-types.html)
+to extract keys from an object with keys matching a specific pattern.
+
+Let's say we have a `Person` type that contains some details about the user.
+
+```typescript
+type Person = {
+  name: string
+  email: string
+  homePhone: number
+  mobilePhone: number
+  workPhone: number
+}
+```
+
+Now, further suppose that we want to create a type from `Person` that contains
+only the phone number keys. This would be fairly simple with `Pick` as we could
+do this:
+
+```typescript
+type PhoneInfo = Pick<Person, "homePhone" | "mobilePhone" | "workPhone">
+```
+
+However, if we have a large number of phone number keys, this will be difficult
+to maintain and prone to errors. With `Extract` and template literal types we
+can create the `PhoneInfo` type very easily with the following code:
+
+```typescript
+type PhoneInfo = {
+  [key in Extract<keyof Person, `${string}Phone`>]: Person[key]
+}
+```
+
+The resulting type of `PhoneInfo` is the following:
+
+```typescript
+type PhoneInfo = {
+  homePhone: number
+  mobilePhone: number
+  workPhone: number
+}
+```
+
+I don't know about you, but the power of type constructs like this is one of the
+reasons I love TypeScript!
