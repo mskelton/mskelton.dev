@@ -35,6 +35,7 @@ export default function Projects() {
               <Card.Link
                 className="text-zinc-800 transition-colors dark:text-zinc-100"
                 href={project.href}
+                prefetch={false}
               >
                 {project.name}
               </Card.Link>

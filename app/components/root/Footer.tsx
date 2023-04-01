@@ -24,6 +24,7 @@ function FooterLink({ children, href }: FooterLinkProps) {
       <Link
         className="group flex items-center transition hover:text-indigo-500 dark:text-zinc-200 dark:hover:text-indigo-400"
         href={href}
+        prefetch={false}
       >
         <span className="text-xs">{children}</span>
       </Link>

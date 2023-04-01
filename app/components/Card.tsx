@@ -43,19 +43,21 @@ interface CardTitleProps {
   as?: React.ElementType
   children: React.ReactNode
   href?: string
+  prefetch?: boolean
 }
 
 Card.Title = function CardTitle({
   as: Component = "h2",
   children,
   href,
+  prefetch,
 }: CardTitleProps) {
   const className = "text-zinc-800 dark:text-zinc-100 transition-colors"
 
   return (
     <Component className="text-base font-semibold tracking-tight">
       {href ? (
-        <Card.Link className={className} href={href}>
+        <Card.Link className={className} href={href} prefetch={prefetch}>
           {children}
         </Card.Link>
       ) : (

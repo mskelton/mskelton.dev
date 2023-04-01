@@ -1,5 +1,4 @@
 import { ArrowDownIcon } from "@heroicons/react/20/solid"
-import Link from "next/link"
 import type { SocialLinkProps } from "./(main)/about/page"
 import type { ArticleProps } from "./(main)/blog/page"
 import { Button } from "./components/Button"
@@ -33,9 +32,9 @@ function Article({ article }: ArticleProps) {
 
 function SocialLink({ icon: Icon, ...props }: SocialLinkProps) {
   return (
-    <Link className="group -m-1 p-1" {...props}>
+    <a className="group -m-1 p-1" {...props}>
       <Icon className="h-6 w-6 text-zinc-500 transition group-hover:text-indigo-500 dark:text-zinc-400 dark:group-hover:text-indigo-400" />
-    </Link>
+    </a>
   )
 }
 

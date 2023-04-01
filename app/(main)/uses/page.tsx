@@ -27,7 +27,7 @@ export interface ToolProps {
 function Tool({ children, href, title }: ToolProps) {
   return (
     <Card as="li">
-      <Card.Title as="h3" href={href}>
+      <Card.Title as="h3" href={href} prefetch={false}>
         {title}
       </Card.Title>
 
