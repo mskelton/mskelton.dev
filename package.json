@@ -51,7 +51,7 @@
   "devDependencies": {
     "@babel/core": "^7.21.4",
     "@babel/eslint-parser": "^7.21.3",
-    "@mskelton/eslint-config": "^7.7.1",
+    "@mskelton/eslint-config": "^7.8.0",
     "@playwright/test": "^1.32.2",
     "@types/mdx": "^2.0.4",
     "@types/node": "^18.15.11",
@@ -63,7 +63,7 @@
     "eslint-config-next": "^13.3.0",
     "eslint-plugin-next": "^0.0.0",
     "eslint-plugin-playwright": "^0.12.0",
-    "eslint-plugin-sort": "^2.7.1",
+    "eslint-plugin-sort": "^2.8.0",
     "expect-axe-playwright": "^4.0.1",
     "gray-matter": "^4.0.3",
     "lariat": "^2.0.1",

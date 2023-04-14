@@ -16,8 +16,8 @@ export default function remarkAutoImagePath() {
       if (node.name !== "ImageComparison") return
 
       node.attributes.push({
-        type: "mdxJsxAttribute",
         name: "dir",
+        type: "mdxJsxAttribute",
         value: dir,
       })
     })

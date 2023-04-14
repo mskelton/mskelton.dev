@@ -109,8 +109,8 @@ devDependencies:
     specifier: ^7.21.3
     version: 7.21.3(@babel/core@7.21.4)(eslint@8.37.0)
   '@mskelton/eslint-config':
-    specifier: ^7.7.1
-    version: 7.7.1(@babel/core@7.21.4)(@babel/eslint-parser@7.21.3)(@typescript-eslint/eslint-plugin@5.57.1)(@typescript-eslint/parser@5.57.1)(eslint-plugin-sort@2.7.1)(eslint@8.37.0)
+    specifier: ^7.8.0
+    version: 7.8.0(@babel/core@7.21.4)(@babel/eslint-parser@7.21.3)(@typescript-eslint/eslint-plugin@5.57.1)(@typescript-eslint/parser@5.57.1)(eslint-plugin-sort@2.8.0)(eslint@8.37.0)
   '@playwright/test':
     specifier: ^1.32.2
     version: 1.32.2
@@ -145,8 +145,8 @@ devDependencies:
     specifier: ^0.12.0
     version: 0.12.0(eslint@8.37.0)
   eslint-plugin-sort:
-    specifier: ^2.7.1
-    version: 2.7.1(eslint@8.37.0)(typescript@5.0.3)
+    specifier: ^2.8.0
+    version: 2.8.0(eslint@8.37.0)(typescript@5.0.3)
   expect-axe-playwright:
     specifier: ^4.0.1
     version: 4.0.1(@playwright/test@1.32.2)
@@ -547,8 +547,8 @@ packages:
       react: 18.2.0
     dev: false
 
-  /@mskelton/eslint-config@7.7.1(@babel/core@7.21.4)(@babel/eslint-parser@7.21.3)(@typescript-eslint/eslint-plugin@5.57.1)(@typescript-eslint/parser@5.57.1)(eslint-plugin-sort@2.7.1)(eslint@8.37.0):
-    resolution: {integrity: sha512-sAqO3sIDTa0uFlg7AtJxg2gp+Ijth68ofFMbYa3HsX0iXPv3qzdUraniorYHH2Ai3fsDn8OYzSqbVIEDZelnEQ==}
+  /@mskelton/eslint-config@7.8.0(@babel/core@7.21.4)(@babel/eslint-parser@7.21.3)(@typescript-eslint/eslint-plugin@5.57.1)(@typescript-eslint/parser@5.57.1)(eslint-plugin-sort@2.8.0)(eslint@8.37.0):
+    resolution: {integrity: sha512-8LL3OzSu8mS9eHE99B2hOkcLxdkujdQ7Z59PzJt9Ou5ioqItbCUrWpck373fwwWiZ27fCnaUhPJMquhXMRJ3TQ==}
     peerDependencies:
       '@babel/core': '>= 7'
       '@babel/eslint-parser': '>= 7'
@@ -577,7 +577,7 @@ packages:
       '@typescript-eslint/parser': 5.57.1(eslint@8.37.0)(typescript@5.0.3)
       eslint: 8.37.0
       eslint-config-prettier: 8.8.0(eslint@8.37.0)
-      eslint-plugin-sort: 2.7.1(eslint@8.37.0)(typescript@5.0.3)
+      eslint-plugin-sort: 2.8.0(eslint@8.37.0)(typescript@5.0.3)
     dev: true
 
   /@next/env@13.3.0:
@@ -2085,8 +2085,8 @@ packages:
       string.prototype.matchall: 4.0.8
     dev: true
 
-  /eslint-plugin-sort@2.7.1(eslint@8.37.0)(typescript@5.0.3):
-    resolution: {integrity: sha512-vak5TQKfba+0LPYu8R2+AakzXAIcsOVAJC1U5MdZk7eWkkQ5zgEnHxPbQWvr2vO8opIZFjX+aAcUYTkO7hmFxg==}
+  /eslint-plugin-sort@2.8.0(eslint@8.37.0)(typescript@5.0.3):
+    resolution: {integrity: sha512-wTAMvFna7xOxiC54yGJrTTvET8cO6Q+xy+ZSXcmIw/cs0MM7EyMtZIl3cgw7juZmfyktfC/mnwz9YGQLlHf+Hw==}
     peerDependencies:
       eslint: '>=6'
     dependencies:
