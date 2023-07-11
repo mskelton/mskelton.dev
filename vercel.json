@@ -66,8 +66,8 @@
       "destination": "https://mskelton.github.io/termicons/:asset*"
     },
     {
-      "source": "/flashlight/install",
-      "destination": "https://raw.githubusercontent.com/mskelton/flashlight/main/scripts/install.sh"
+      "source": "/:repo/install",
+      "destination": "https://raw.githubusercontent.com/mskelton/:repo/main/scripts/install.sh"
     }
   ]
 }
