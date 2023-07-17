@@ -148,7 +148,7 @@ module.exports = {
               transitionProperty: "all",
               transitionDuration: theme("transitionDuration.150"),
               transitionTimingFunction: theme(
-                "transitionTimingFunction.in-out"
+                "transitionTimingFunction.in-out",
               ),
             },
             ":is(a:hover, a:focus):not(.heading-link)": {

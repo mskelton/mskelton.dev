@@ -13,7 +13,7 @@ test.describe("Uses page", async () => {
     await expect(page).toHaveTitle("Uses - Mark Skelton")
     await expect(usesPage.description).toHaveAttribute(
       "content",
-      /I create software 40\+ hours/
+      /I create software 40\+ hours/,
     )
   })
 })

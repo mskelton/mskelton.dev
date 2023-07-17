@@ -11,11 +11,11 @@ test.describe("Home page", async () => {
 
   test("has page metadata", async ({ homePage, page }) => {
     await expect(page).toHaveTitle(
-      "Mark Skelton - Software engineer, Christ follower, small town kid."
+      "Mark Skelton - Software engineer, Christ follower, small town kid.",
     )
     await expect(homePage.description).toHaveAttribute(
       "content",
-      /I’m Mark, a frontend software engineer/
+      /I’m Mark, a frontend software engineer/,
     )
   })
 })

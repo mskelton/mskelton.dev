@@ -53,7 +53,7 @@ export function ImageComparison({ dir, one, two }: ImageComparisonProps) {
           buttonStyle={{ borderColor: "currentcolor" }}
           className={clsx(
             "text-indigo-400 opacity-0 transition",
-            loaded === 2 && "opacity-100"
+            loaded === 2 && "opacity-100",
           )}
           style={{ color: undefined }}
         />

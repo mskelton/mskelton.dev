@@ -12,7 +12,7 @@ export interface HeaderIconButtonProps
 const HeaderIconButton = forwardRef<HTMLButtonElement, HeaderIconButtonProps>(
   function HeaderIconButton(
     { as: Component = "button", children, ...props },
-    ref
+    ref,
   ) {
     return (
       <Component
@@ -25,13 +25,13 @@ const HeaderIconButton = forwardRef<HTMLButtonElement, HeaderIconButtonProps>(
           cloneElement(child, {
             className: clsx(
               "w-5 h-5 text-zinc-700 transition-colors group-hover:text-black dark:text-zinc-300 dark:group-hover:text-white",
-              child.props.className
+              child.props.className,
             ),
-          })
+          }),
         )}
       </Component>
     )
-  }
+  },
 )
 
 export default HeaderIconButton

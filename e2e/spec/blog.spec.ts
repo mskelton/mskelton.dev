@@ -20,7 +20,7 @@ test.describe("Blog page", async () => {
     await expect(page).toHaveTitle("Blog - Mark Skelton")
     await expect(blogPage.description).toHaveAttribute(
       "content",
-      /All of my blog posts/
+      /All of my blog posts/,
     )
   })
 

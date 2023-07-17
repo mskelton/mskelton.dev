@@ -51,7 +51,7 @@ function Article({ article }: ArticleProps) {
 
 export default async function Blog() {
   const articles = (await getAllArticles()).map(
-    ({ component: _, ...meta }) => meta
+    ({ component: _, ...meta }) => meta,
   )
 
   return (

@@ -80,7 +80,7 @@ Card.Description = function CardDescription({
     <p
       className={clsx(
         "relative z-10 mt-2 text-sm text-zinc-600 transition-colors dark:text-zinc-400",
-        className
+        className,
       )}
     >
       {children}
@@ -122,7 +122,7 @@ Card.Eyebrow = function CardEyebrow({
       className={clsx(
         "relative z-10 order-first mb-3 flex items-center text-sm text-zinc-400 transition-colors dark:text-zinc-500",
         decorate && "pl-3.5",
-        className
+        className,
       )}
       {...props}
     >

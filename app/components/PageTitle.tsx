@@ -8,7 +8,7 @@ export function PageTitle({ className, ...props }: PageTitleProps) {
     <h1
       className={clsx(
         "text-4xl font-bold tracking-tight text-zinc-800 transition-colors dark:text-zinc-100 sm:text-5xl",
-        className
+        className,
       )}
       {...props}
     />

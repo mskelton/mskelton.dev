@@ -8,7 +8,7 @@ export function Copyright({ className, ...props }: CopyrightProps) {
     <p
       className={clsx(
         "text-[0.75rem] text-zinc-500 transition-colors dark:text-zinc-400",
-        className
+        className,
       )}
       {...props}
     >

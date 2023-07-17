@@ -56,7 +56,7 @@ export default function remarkLayout() {
     const layout = vfile.data.matter.layout ?? "ArticleLayout"
     const relativePath = path.relative(
       path.dirname(vfile.history[0]),
-      path.join(process.cwd(), "app/components/layouts")
+      path.join(process.cwd(), "app/components/layouts"),
     )
 
     if (layout !== "none") {

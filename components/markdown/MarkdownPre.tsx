@@ -32,7 +32,7 @@ export function MarkdownPre(props: React.HTMLAttributes<HTMLPreElement>) {
         aria-label={copied ? "Copied" : "Copy code"}
         className={clsx(
           "absolute right-4 top-4 z-10 flex h-10 w-10 items-center justify-center rounded-lg bg-zinc-800 opacity-0 transition-all delay-75 hover:bg-zinc-700 focus-visible:opacity-100 group-hover:opacity-100 group-[.has-title]:top-16",
-          copied ? "text-green-400" : "text-zinc-300"
+          copied ? "text-green-400" : "text-zinc-300",
         )}
         onClick={handleCopy}
         type="button"

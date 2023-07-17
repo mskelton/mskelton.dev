@@ -74,10 +74,10 @@ With the power of `Extract`, we can improve this:
 ```typescript
 function filterProducts<T extends Product, U extends T["type"]>(
   products: T[],
-  type: U
+  type: U,
 ) {
   return products.filter(
-    (item): item is Extract<T, Record<"type", U>> => item.type === type
+    (item): item is Extract<T, Record<"type", U>> => item.type === type,
   )
 }
 ```
