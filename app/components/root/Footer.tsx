@@ -41,7 +41,7 @@ export function Footer({ home }: FooterProps) {
     <footer
       className={clsx(
         "mt-16 lg:mt-32",
-        home && "bg-blue-100/50 transition-colors dark:bg-slate-800"
+        home && "bg-blue-100/50 transition-colors dark:bg-slate-800",
       )}
     >
       <Container.Outer>
@@ -72,14 +72,16 @@ export function Footer({ home }: FooterProps) {
                   <ul
                     className={clsx(
                       styles.list,
-                      "grid-cols-1 gap-x-4 min-[400px]:grid-cols-2 lg:gap-x-8"
+                      "grid-cols-1 gap-x-4 min-[400px]:grid-cols-2 lg:gap-x-8",
                     )}
                   >
-                    {projects.map(({ href, name, shortName }) => (
-                      <FooterLink key={href} href={href}>
-                        {shortName ?? name}
-                      </FooterLink>
-                    ))}
+                    {projects
+                      .filter((project) => project.footer)
+                      .map(({ href, name, shortName }) => (
+                        <FooterLink key={href} href={href}>
+                          {shortName ?? name}
+                        </FooterLink>
+                      ))}
                   </ul>
                 </div>
 
