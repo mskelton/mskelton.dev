@@ -1,9 +1,9 @@
 import { RssIcon } from "@heroicons/react/20/solid"
 
-export function TwitterIcon(props: React.SVGAttributes<SVGSVGElement>) {
+export function XIcon(props: React.SVGAttributes<SVGSVGElement>) {
   return (
     <svg aria-hidden="true" fill="currentColor" viewBox="0 0 24 24" {...props}>
-      <path d="M20.055 7.983c.011.174.011.347.011.523 0 5.338-3.92 11.494-11.09 11.494v-.003A10.755 10.755 0 0 1 3 18.186c.308.038.618.057.928.058a7.655 7.655 0 0 0 4.841-1.733c-1.668-.032-3.13-1.16-3.642-2.805a3.753 3.753 0 0 0 1.76-.07C5.07 13.256 3.76 11.6 3.76 9.676v-.05a3.77 3.77 0 0 0 1.77.505C3.816 8.945 3.288 6.583 4.322 4.737c1.98 2.524 4.9 4.058 8.034 4.22a4.137 4.137 0 0 1 1.128-3.86A3.807 3.807 0 0 1 19 5.274a7.657 7.657 0 0 0 2.475-.98c-.29.934-.9 1.729-1.713 2.233A7.54 7.54 0 0 0 22 5.89a8.084 8.084 0 0 1-1.945 2.093Z" />
+      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
     </svg>
   )
 }
@@ -32,10 +32,10 @@ export const socials = [
     name: "GitHub",
   },
   {
-    href: "https://twitter.com/mskelton0",
-    icon: TwitterIcon,
-    label: "Follow on Twitter",
-    name: "Twitter",
+    href: "https://x.com/mskelton0",
+    icon: XIcon,
+    label: "Follow on X",
+    name: "X",
   },
   {
     href: "https://linkedin.com/in/mskelton0/",
