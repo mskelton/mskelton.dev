@@ -16,7 +16,7 @@ import remarkCodeTitles from "./config/remark-code-titles.mjs"
 import remarkFrontmatterMetadata from "./config/remark-frontmatter-metadata.mjs"
 import remarkLayout from "./config/remark-layout.mjs"
 
-/** @type {import('next').NextConfig} */
+/** @type {import("next").NextConfig} */
 const nextConfig = {
   eslint: {
     dirs: ["app", "components", "config", "e2e"],

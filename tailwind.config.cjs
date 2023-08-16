@@ -1,6 +1,6 @@
 /* eslint-disable sort/object-properties */
 
-/** @type {import('tailwindcss').Config} */
+/** @type {import("tailwindcss").Config} */
 module.exports = {
   content: [
     "./app/**/*.{ts,tsx}",
