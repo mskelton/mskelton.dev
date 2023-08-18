@@ -7,7 +7,7 @@ jobs:
     steps:
       - uses: mskelton/setup-pnpm@v1
       - run: pnpm lint
-      - run: pnpm prettier --check .
+      - run: pnpm dprint check
   ts:
     name: Type Check
     runs-on: ubuntu-latest

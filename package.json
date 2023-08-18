@@ -9,7 +9,7 @@
     "build:rss": "ts-node-esm ./scripts/generateRssFeed.ts",
     "serve": "next start",
     "lint": "next lint",
-    "format": "prettier --write .",
+    "fmt": "dprint fmt",
     "test": "playwright test",
     "ts": "tsc"
   },
