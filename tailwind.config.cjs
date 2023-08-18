@@ -141,10 +141,11 @@ module.exports = {
             "a:not(.heading-link)": {
               color: "var(--tw-prose-link)",
               fontWeight: theme("fontWeight.semibold"),
-              backgroundImage: `linear-gradient(var(--tw-prose-link-bg), var(--tw-prose-link-bg))`,
+              backgroundImage:
+                "linear-gradient(var(--tw-prose-link-bg), var(--tw-prose-link-bg))",
               backgroundPosition: `bottom 2px left 100%`,
               backgroundRepeat: "no-repeat",
-              backgroundSize: `100% 3px`,
+              backgroundSize: "100% 3px",
               transitionProperty: "all",
               transitionDuration: theme("transitionDuration.150"),
               transitionTimingFunction: theme(
@@ -152,8 +153,8 @@ module.exports = {
               ),
             },
             ":is(a:hover, a:focus):not(.heading-link)": {
-              backgroundPosition: `0 100%`,
-              backgroundSize: `100% 100%`,
+              backgroundPosition: "0 100%",
+              backgroundSize: "100% 100%",
               borderRadius: theme("borderRadius.sm"),
               paddingInline: theme("spacing[0.5]"),
               marginInline: "-" + theme("spacing[0.5]"),
