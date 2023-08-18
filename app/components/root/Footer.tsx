@@ -57,8 +57,8 @@ export function Footer({ home }: FooterProps) {
 
                   <p className="text-center text-zinc-600 transition-colors dark:text-zinc-300 md:text-left">
                     Made with{" "}
-                    <HeartIcon className="inline h-4 w-4 text-red-500" /> in
-                    Wisconsin.
+                    <HeartIcon className="inline h-4 w-4 text-red-500" />{" "}
+                    in Wisconsin.
                   </p>
                 </div>
 

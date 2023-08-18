@@ -2,7 +2,8 @@ import clsx from "clsx"
 import { Children, cloneElement, forwardRef } from "react"
 
 export interface HeaderIconButtonProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  extends React.ButtonHTMLAttributes<HTMLButtonElement>
+{
   as?: React.ElementType
   children: React.ReactElement | React.ReactElement[]
   href?: string
@@ -27,8 +28,7 @@ const HeaderIconButton = forwardRef<HTMLButtonElement, HeaderIconButtonProps>(
               "w-5 h-5 text-zinc-700 transition-colors group-hover:text-black dark:text-zinc-300 dark:group-hover:text-white",
               child.props.className,
             ),
-          }),
-        )}
+          }))}
       </Component>
     )
   },

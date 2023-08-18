@@ -1,7 +1,8 @@
 import clsx from "clsx"
 
 export interface CopyrightProps
-  extends React.HTMLAttributes<HTMLParagraphElement> {}
+  extends React.HTMLAttributes<HTMLParagraphElement>
+{}
 
 export function Copyright({ className, ...props }: CopyrightProps) {
   return (

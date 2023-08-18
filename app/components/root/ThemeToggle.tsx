@@ -9,7 +9,8 @@ export function ThemeToggle() {
     const isDarkMode = document.documentElement.classList.toggle("dark")
     const value = isDarkMode ? "dark" : "light"
 
-    document.cookie = `theme=${value}; SameSite=None; path=/; max-age=31536000; Secure`
+    document.cookie =
+      `theme=${value}; SameSite=None; path=/; max-age=31536000; Secure`
   }
 
   return (

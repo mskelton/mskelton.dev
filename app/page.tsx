@@ -109,9 +109,9 @@ function Resume() {
                 <time dateTime={role.start}>{role.start}</time>{" "}
                 <span aria-hidden="true">—</span>{" "}
                 <time
-                  dateTime={
-                    roleIndex ? role.end : new Date().getFullYear().toString()
-                  }
+                  dateTime={roleIndex
+                    ? role.end
+                    : new Date().getFullYear().toString()}
                 >
                   {role.end}
                 </time>

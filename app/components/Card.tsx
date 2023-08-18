@@ -56,13 +56,13 @@ Card.Title = function CardTitle({
 
   return (
     <Component className="text-base font-semibold tracking-tight">
-      {href ? (
-        <Card.Link className={className} href={href} prefetch={prefetch}>
-          {children}
-        </Card.Link>
-      ) : (
-        <span className={className}>{children}</span>
-      )}
+      {href
+        ? (
+          <Card.Link className={className} href={href} prefetch={prefetch}>
+            {children}
+          </Card.Link>
+        )
+        : <span className={className}>{children}</span>}
     </Component>
   )
 }

@@ -1,7 +1,8 @@
 import clsx from "clsx"
 
 export interface PageTitleProps
-  extends React.HTMLAttributes<HTMLHeadingElement> {}
+  extends React.HTMLAttributes<HTMLHeadingElement>
+{}
 
 export function PageTitle({ className, ...props }: PageTitleProps) {
   return (
@@ -16,7 +17,8 @@ export function PageTitle({ className, ...props }: PageTitleProps) {
 }
 
 export interface PageSubtitleProps
-  extends React.HTMLAttributes<HTMLParagraphElement> {}
+  extends React.HTMLAttributes<HTMLParagraphElement>
+{}
 
 export function PageSubtitle(props: PageSubtitleProps) {
   return (
