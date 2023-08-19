@@ -7,6 +7,10 @@
     }
   ],
   "rules": {
+    "sort/exports": "off",
+    "sort/export-members": "off",
+    "sort/imports": "off",
+    "sort/import-members": "off",
     "@next/next/no-html-link-for-pages": "off",
     "@typescript-eslint/no-useless-constructor": "off"
   }

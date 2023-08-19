@@ -64,7 +64,6 @@
     "eslint-config-next": "^13.4.10",
     "eslint-plugin-next": "^0.0.0",
     "eslint-plugin-playwright": "^0.15.3",
-    "eslint-plugin-sort": "^2.10.0",
     "expect-axe-playwright": "^4.0.1",
     "gray-matter": "^4.0.3",
     "lariat": "^2.0.1",

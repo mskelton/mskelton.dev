@@ -1,5 +1,4 @@
 {
-  "$schema": "https://dprint.dev/schemas/v0.json",
   "lineWidth": 80,
   "typescript": {
     "semiColons": "asi",
@@ -7,8 +6,20 @@
     "arrowFunction.useParentheses": "force",
     "enumDeclaration.memberSpacing": "blankLine"
   },
-  "json": {},
-  "markdown": {},
+  "json": {
+    "associations": [
+      "**/*.{json,jsonc}",
+      ".eslintrc",
+      ".prettierrc"
+    ],
+    "indentWidth": 2
+  },
+  "markdown": {
+    "associations": [
+      "**/*.md"
+    ],
+    "textWrap": "always"
+  },
   "excludes": ["**/node_modules", ".next/", "pnpm-lock.yaml"],
   "plugins": [
     "https://plugins.dprint.dev/typescript-0.86.2.wasm",

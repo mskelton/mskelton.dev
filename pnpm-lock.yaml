@@ -147,9 +147,6 @@ devDependencies:
   eslint-plugin-playwright:
     specifier: ^0.15.3
     version: 0.15.3(eslint@8.45.0)
-  eslint-plugin-sort:
-    specifier: ^2.10.0
-    version: 2.10.0(eslint@8.45.0)(typescript@5.1.6)
   expect-axe-playwright:
     specifier: ^4.0.1
     version: 4.0.1(@playwright/test@1.36.1)
