@@ -68,6 +68,10 @@
     {
       "source": "/:repo/install",
       "destination": "https://raw.githubusercontent.com/mskelton/:repo/main/scripts/install.sh"
+    },
+    {
+      "source": "/dprint/:version.json",
+      "destination": "https://raw.githubusercontent.com/mskelton/dprint-config/:version/dprint.json"
     }
   ]
 }
