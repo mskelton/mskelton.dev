@@ -1,25 +1,6 @@
 {
-  "lineWidth": 80,
-  "typescript": {
-    "semiColons": "asi",
-    "quoteStyle": "preferDouble",
-    "arrowFunction.useParentheses": "force",
-    "enumDeclaration.memberSpacing": "blankLine"
-  },
-  "json": {
-    "associations": [
-      "**/*.{json,jsonc}",
-      ".eslintrc",
-      ".prettierrc"
-    ],
-    "indentWidth": 2
-  },
-  "markdown": {
-    "associations": [
-      "**/*.md"
-    ],
-    "textWrap": "always"
-  },
+  "$schema": "https://dprint.dev/schemas/v0.json",
+  "extends": "https://mskelton.dev/dprint/v1.json",
   "excludes": ["**/node_modules", ".next/", "pnpm-lock.yaml"],
   "plugins": [
     "https://plugins.dprint.dev/typescript-0.86.2.wasm",
