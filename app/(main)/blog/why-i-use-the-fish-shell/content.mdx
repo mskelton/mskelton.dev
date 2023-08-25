@@ -43,7 +43,17 @@ are working on. Also, it's all just keybindings so you can even customizing it
 yourself with your own keybindings for specific modes. Here are a few of my
 favorites:
 
-![Customizing Fish Vim-style keybindings](vim-keybindings.png)
+
+```bash
+# Use _ to go to the beginning of the line as I use this a lot in Vim
+bind -s --preset _ beginning-of-line
+bind -s --preset -M visual _ beginning-of-line
+
+# Switch between modes with escape. A little out of the ordinary, but I find
+# myself doing it a lot. Also updates escape in insert mode to not move
+# backwards one character.
+bind -s --preset \e "set fish_bind_mode insert; commandline -f repaint-mode"
+```
 
 ## Syntax highlighting
 
