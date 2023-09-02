@@ -1,7 +1,7 @@
 import { Metadata } from "next"
 import { Card } from "../../components/Card"
 import { SimpleLayout } from "../../components/layouts/SimpleLayout"
-import { formatDate } from "../../lib/formatDate"
+import { formatDate, toDateString } from "../../lib/formatDate"
 import { searchBytes } from "./api"
 
 export const metadata: Metadata = {
@@ -55,14 +55,20 @@ export default async function Blog({
   searchParams: { q?: string }
 }) {
   const query = searchParams.q
-  const articles = await searchBytes(query ?? "")
+  const bytes = await searchBytes(query ?? "")
 
   return (
     <SimpleLayout intro={metadata.description} title="hi">
       <div className="transition-colors md:border-l-2 md:border-zinc-100 md:pl-6 md:dark:border-zinc-700/40">
         <div className="flex max-w-3xl flex-col space-y-16">
-          {articles.map((article) => (
-            <Article key={article.slug} article={article} />
+          {bytes.map((byte) => (
+            <Article
+              key={byte.slug}
+              article={{
+                ...byte,
+                date: toDateString(byte.createdAt),
+              }}
+            />
           ))}
         </div>
       </div>

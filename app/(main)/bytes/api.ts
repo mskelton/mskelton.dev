@@ -1,5 +1,6 @@
 import { cache } from "react"
 import { octokit } from "../../api/github"
+import prisma from "../../lib/prisma"
 
 // Revalidate the data at most every hour
 export const revalidate = 3600
@@ -22,4 +23,9 @@ export const getByte = cache(async (slug: string) => {
   return data
 })
 
-export const searchBytes = cache(async (query: string) => {})
+export const searchBytes = cache(async (query: string) => {
+  return prisma.byte.findMany({
+    take: 10,
+    where: { title: { contains: query } },
+  })
+})
