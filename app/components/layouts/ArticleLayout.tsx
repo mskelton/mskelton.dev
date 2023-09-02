@@ -12,11 +12,16 @@ export interface ArticleMeta {
 }
 
 export interface ArticleLayoutProps {
+  backHref?: string
   children: React.ReactNode
   meta: ArticleMeta
 }
 
-export function ArticleLayout({ children, meta }: ArticleLayoutProps) {
+export function ArticleLayout({
+  backHref = "/blog",
+  children,
+  meta,
+}: ArticleLayoutProps) {
   return (
     <Container className="mt-16 sm:mt-20">
       <div className="xl:relative">
@@ -24,7 +29,7 @@ export function ArticleLayout({ children, meta }: ArticleLayoutProps) {
           <Link
             aria-label="Go back to articles"
             className="mb-8 hidden h-10 w-10 items-center justify-center rounded-full bg-white shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 transition hover:text-zinc-700 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:text-zinc-500 dark:ring-0 dark:ring-white/10 dark:hover:border-zinc-700 dark:hover:text-zinc-400 dark:hover:ring-white/20 lg:absolute lg:-left-5 lg:-mt-2 lg:mb-0 lg:flex xl:-top-1.5 xl:left-0 xl:mt-0"
-            href="/blog"
+            href={backHref}
             type="button"
           >
             <ArrowLeftIcon className="h-4 w-4" />
