@@ -15,4 +15,13 @@ model Byte {
   updatedAt   DateTime @updatedAt
   title       String
   description String
+  tags        Tag[]
+}
+
+model Tag {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  name      String   @unique
+  bytes     Byte[]
 }

@@ -6,8 +6,10 @@ export function toDateString(date: Date) {
   )}`
 }
 
-export function formatDate(dateString: string) {
-  return new Date(`${dateString}T00:00:00Z`).toLocaleDateString("en-US", {
+export function formatDate(date: string | Date) {
+  const d = typeof date === "string" ? new Date(`${date}T00:00:00Z`) : date
+
+  return d.toLocaleDateString("en-US", {
     day: "numeric",
     month: "long",
     timeZone: "UTC",
