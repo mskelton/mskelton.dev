@@ -104,7 +104,7 @@ Card.Cta = function CardCta({ children }: CardCtaProps) {
       className="relative z-10 mt-4 flex items-center text-sm font-medium text-indigo-500 transition-colors dark:text-indigo-400"
     >
       {children}
-      <ChevronRightIcon className="ml-1 h-4 w-4" />
+      <ChevronRightIcon className="ml-1 h-5 w-5 transition-[margin] group-hover:ml-1.5" />
     </div>
   )
 }
@@ -178,7 +178,7 @@ Card.Tag = function CardTag({ children, href }: CardTagProps) {
   return (
     <Link
       className={clsx(
-        "relative z-20 flex items-center gap-0.5 rounded-2xl px-4 py-0.5 text-sm font-medium transition-colors",
+        "relative z-20 flex items-center gap-0.5 rounded-2xl px-4 py-0.5 text-xs font-medium transition-colors",
         "bg-zinc-100 text-zinc-800 hover:bg-zinc-200 group-hover:bg-zinc-200/70 group-hover:hover:bg-zinc-200",
         "dark:bg-zinc-800 dark:text-zinc-200 dark:hover:bg-zinc-700 dark:group-hover:bg-zinc-700/70 dark:group-hover:hover:bg-zinc-700/90",
       )}
