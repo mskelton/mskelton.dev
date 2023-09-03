@@ -1,6 +1,5 @@
 import { Metadata } from "next"
 import { Card } from "../../components/Card"
-import MiniMd from "../../components/MiniMd"
 import { formatDate, toDateString } from "../../lib/formatDate"
 import { searchBytes } from "./api"
 import BytesPage, { description } from "./BytesPage"
@@ -44,10 +43,7 @@ export default async function Blog({
                 </Card.Eyebrow>
               </div>
 
-              <Card.Description>
-                <MiniMd>{byte.description}</MiniMd>
-              </Card.Description>
-
+              <Card.Description>{byte.description}</Card.Description>
               <Card.Cta>Read byte</Card.Cta>
             </Card>
           </article>
