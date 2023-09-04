@@ -5,7 +5,7 @@ import { cache } from "react"
 import rehypeSlug from "rehype-slug"
 import remarkGfm from "remark-gfm"
 import remarkSmartypants from "remark-smartypants"
-import { octokit } from "api/github"
+import { getByteSource } from "lib/api/bytes"
 import prisma from "lib/prisma"
 // import { getHighlighter } from "../../../config/highlighter.mjs"
 import rehypeCodeA11y from "../../../config/rehype-code-a11y.mjs"
@@ -22,20 +22,7 @@ export const getByte = cache(async (slug: string) => {
   // const themePath = path.join(process.cwd(), "config/tokyonight.json")
   // const highlighter = await getHighlighter(themePath)
 
-  const bytePath = `bytes/${slug}.md`
-  const { data } = await octokit.repos.getContent({
-    mediaType: { format: "raw" },
-    owner: "mskelton",
-    path: bytePath,
-    repo: "bytes",
-  })
-
-  if (typeof data !== "string") {
-    throw new Error(
-      `Tried to fetch raw file from ${bytePath}. GitHub did not return the raw contents. This should never happen...`,
-    )
-  }
-
+  const source = await getByteSource(slug)
   const { content, frontmatter } = await compileMDX<ByteMeta>({
     options: {
       mdxOptions: {
@@ -51,7 +38,7 @@ export const getByte = cache(async (slug: string) => {
       },
       parseFrontmatter: true,
     },
-    source: data,
+    source,
   })
 
   return { content, meta: frontmatter }
@@ -67,8 +54,8 @@ export const searchBytes = cache(async ({ query, tag }: SearchBytesRequest) => {
     include: { tags: true },
     take: 10,
     where: {
-      tags: { some: { name: { equals: tag } } },
-      title: { contains: query ?? "" },
+      tags: tag ? { some: { name: { equals: tag } } } : undefined,
+      title: query ? { contains: query } : undefined,
     },
   })
 

@@ -1,6 +1,6 @@
 import rehypeAutolinkHeadings from "rehype-autolink-headings"
 
-/** @type {import("unified").Pluggable} */
+/** @type {import("unified").Pluggable<any[]>} */
 const rehypeHeadings = [
   rehypeAutolinkHeadings,
   {

@@ -37,14 +37,14 @@ export default async function Blog({
       </form>
 
       {bytes.length ? (
-        <div className="mt-16 grid grid-cols-[repeat(auto-fill,minmax(min(360px,100%),1fr))] gap-12 sm:mt-20">
+        <div className="mt-16 space-y-16 sm:mt-20">
           {bytes.map((byte) => {
             const date = toDateString(byte.createdAt)
 
             return (
               <article key={byte.id}>
                 <Card>
-                  <div className="w-full grid-cols-2 sm:grid">
+                  <div className="w-full grid-cols-[1fr,auto] sm:grid">
                     <Card.Title href={`/bytes/${byte.slug}`}>
                       {byte.title}
                     </Card.Title>
