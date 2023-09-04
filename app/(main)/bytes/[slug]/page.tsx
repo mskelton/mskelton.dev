@@ -1,4 +1,4 @@
-import { ArticleLayout } from "../../../components/layouts/ArticleLayout"
+import { ArticleLayout } from "components/layouts/ArticleLayout"
 import { getByte } from "../api"
 
 interface PageProps {

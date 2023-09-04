@@ -1,9 +1,9 @@
 import { FaceFrownIcon, HashtagIcon } from "@heroicons/react/20/solid"
 import { Metadata } from "next"
-import { Card } from "../../components/Card"
-import Input from "../../components/Input"
-import { SimpleLayout } from "../../components/layouts/SimpleLayout"
-import { formatDate, toDateString } from "../../lib/formatDate"
+import { Card } from "components/Card"
+import Input from "components/Input"
+import { SimpleLayout } from "components/layouts/SimpleLayout"
+import { formatDate, toDateString } from "lib/formatDate"
 import { searchBytes } from "./api"
 
 export const metadata: Metadata = {

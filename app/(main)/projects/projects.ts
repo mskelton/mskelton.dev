@@ -1,4 +1,4 @@
-import { siteMeta } from "../../lib/siteMeta"
+import { siteMeta } from "lib/siteMeta"
 import logoDtsfmt from "./images/dtsfmt.svg"
 import logoSort from "./images/eslint-plugin-sort.svg"
 import logoFlashlight from "./images/flashlight.svg"

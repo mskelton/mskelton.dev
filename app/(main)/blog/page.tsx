@@ -1,8 +1,8 @@
 import { Metadata } from "next"
-import { Card } from "../../components/Card"
-import { SimpleLayout } from "../../components/layouts/SimpleLayout"
-import { formatDate } from "../../lib/formatDate"
-import { getAllArticles } from "../../lib/getAllArticles"
+import { Card } from "components/Card"
+import { SimpleLayout } from "components/layouts/SimpleLayout"
+import { formatDate } from "lib/formatDate"
+import { getAllArticles } from "lib/getAllArticles"
 
 export const metadata: Metadata = {
   description: `All of my blog posts, even the ones that I might not fully agree with anymore. Software engineering is a process of continuous learning, don’t ever think there isn’t more to learn.`,

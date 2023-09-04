@@ -1,9 +1,9 @@
 import { ArrowLeftIcon } from "@heroicons/react/20/solid"
 import Link from "next/link"
-import { formatDate } from "../../lib/formatDate"
-import { Container } from "../Container"
-import { PageTitle } from "../PageTitle"
-import { Prose } from "../Prose"
+import { Container } from "components/Container"
+import { PageTitle } from "components/PageTitle"
+import { Prose } from "components/Prose"
+import { formatDate } from "lib/formatDate"
 
 export interface ArticleMeta {
   date: string
