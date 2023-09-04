@@ -26,7 +26,7 @@ test.describe("Blog page", async () => {
 
   test.describe("posts", () => {
     filenames.forEach((filename) => {
-      const blogPath = `/${  path.dirname(filename)}`
+      const blogPath = `/${path.dirname(filename)}`
 
       test.describe(blogPath, () => {
         test.beforeEach(async ({ blogPage }) => {

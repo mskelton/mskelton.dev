@@ -6,11 +6,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: mskelton/setup-pnpm@v1
-      - run: pnpm lint
-      - run: pnpm prettier --check .
+      - name: Lint
+        run: pnpm lint
+      - name: Check formatting
+        run: pnpm prettier --check .
   ts:
     name: Type Check
     runs-on: ubuntu-latest
     steps:
       - uses: mskelton/setup-pnpm@v1
-      - run: pnpm ts
+      - name: Build
+        run: pnpm build
+      - name: Type check
+        run: pnpm ts
