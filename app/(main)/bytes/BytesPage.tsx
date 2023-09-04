@@ -9,8 +9,8 @@ export interface BytesPageProps {
 
 export default function BytesPage({ children }: BytesPageProps) {
   return (
-    <SimpleLayout intro={description} title="Bits and Bytes of Code">
-      <div className="grid grid-cols-[repeat(auto-fill,minmax(360px,1fr))] gap-12">
+    <SimpleLayout intro={description} title="Bits and bytes of code">
+      <div className="grid grid-cols-[repeat(auto-fill,minmax(min(360px,100%),1fr))] gap-12">
         {children}
       </div>
     </SimpleLayout>

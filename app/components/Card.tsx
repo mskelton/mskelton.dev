@@ -1,8 +1,4 @@
-import {
-  ChevronRightIcon,
-  HashtagIcon,
-  LinkIcon,
-} from "@heroicons/react/20/solid"
+import { ChevronRightIcon, LinkIcon } from "@heroicons/react/20/solid"
 import { clsx } from "clsx"
 import Link, { LinkProps } from "next/link"
 import { twMerge } from "tailwind-merge"
@@ -171,20 +167,21 @@ Card.Tags = function CardTags({ children, className }: CardTagsProps) {
 
 export interface CardTagProps {
   children?: React.ReactNode
+  className?: string
   href: string
 }
 
-Card.Tag = function CardTag({ children, href }: CardTagProps) {
+Card.Tag = function CardTag({ children, className, href }: CardTagProps) {
   return (
     <Link
-      className={clsx(
+      className={twMerge(
         "relative z-20 flex items-center gap-0.5 rounded-2xl px-4 py-0.5 text-xs font-medium transition-colors",
         "bg-zinc-100 text-zinc-800 hover:bg-zinc-200 group-hover:bg-zinc-200/70 group-hover:hover:bg-zinc-200",
         "dark:bg-zinc-800 dark:text-zinc-200 dark:hover:bg-zinc-700 dark:group-hover:bg-zinc-700/70 dark:group-hover:hover:bg-zinc-700/90",
+        className,
       )}
       href={href}
     >
-      <HashtagIcon className="h-3 w-3" />
       {children}
     </Link>
   )

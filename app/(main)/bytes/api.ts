@@ -1,4 +1,5 @@
 import rehypeShiki from "@stefanprobst/rehype-shiki"
+import { notFound } from "next/navigation"
 import { compileMDX } from "next-mdx-remote/rsc"
 import path from "node:path"
 import { cache } from "react"
