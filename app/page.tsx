@@ -12,7 +12,7 @@ import { PageSubtitle, PageTitle } from "./components/PageTitle"
 import { Footer } from "./components/root/Footer"
 import { Header } from "./components/root/Header"
 import { socials } from "./components/SocialIcons"
-import { formatDate } from "./lib/formatDate"
+import { formatDate } from "./lib/date"
 import { getAllArticles } from "./lib/getAllArticles"
 import { siteMeta } from "./lib/siteMeta"
 

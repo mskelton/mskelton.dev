@@ -1,7 +1,7 @@
 import { Metadata } from "next"
 import { Card } from "components/Card"
 import { SimpleLayout } from "components/layouts/SimpleLayout"
-import { formatDate } from "lib/formatDate"
+import { formatDate } from "lib/date"
 import { getAllArticles } from "lib/getAllArticles"
 
 export const metadata: Metadata = {

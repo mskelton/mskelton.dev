@@ -3,7 +3,7 @@ import { Metadata } from "next"
 import { Card } from "components/Card"
 import Input from "components/Input"
 import { SimpleLayout } from "components/layouts/SimpleLayout"
-import { formatDate, toDateString } from "lib/formatDate"
+import { formatDate, toDateString } from "lib/date"
 import { searchBytes } from "./api"
 
 export const metadata: Metadata = {

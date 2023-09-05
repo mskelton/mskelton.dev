@@ -3,7 +3,7 @@ import Link from "next/link"
 import { Container } from "components/Container"
 import { PageTitle } from "components/PageTitle"
 import { Prose } from "components/Prose"
-import { formatDate } from "lib/formatDate"
+import { formatDate } from "lib/date"
 
 export interface ArticleMeta {
   date: string

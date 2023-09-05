@@ -1,4 +1,5 @@
 import { ArticleLayout } from "components/layouts/ArticleLayout"
+import { toDateString } from "lib/date"
 import { getByte } from "../api"
 
 interface PageProps {
@@ -8,18 +9,23 @@ interface PageProps {
 }
 
 export async function generateMetadata({ params }: PageProps) {
-  const { meta } = await getByte(params.slug)
+  const { title } = await getByte(params.slug)
 
   return {
-    title: `${meta.title} - Mark Skelton`,
+    title: `${title} - Mark Skelton`,
   }
 }
 
 export default async function Page({ params }: { params: { slug: string } }) {
-  const { content, meta } = await getByte(params.slug)
+  const { content, createdAt, description, title } = await getByte(params.slug)
+  const date = toDateString(createdAt)
 
   return (
-    <ArticleLayout backHref="/bytes" backText="Go back to bytes" meta={meta}>
+    <ArticleLayout
+      backHref="/bytes"
+      backText="Go back to bytes"
+      meta={{ date, description, title }}
+    >
       {content}
     </ArticleLayout>
   )

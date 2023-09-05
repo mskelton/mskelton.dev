@@ -16,3 +16,13 @@ export function formatDate(date: string | Date) {
     year: "numeric",
   })
 }
+
+export function parseDate(date: string | Date) {
+  if (typeof date === "string") {
+    return date.includes("T")
+      ? new Date(date)
+      : new Date(`${date}T08:00:00-06:00`)
+  }
+
+  return date
+}

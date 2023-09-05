@@ -28,7 +28,7 @@ export const getByte = cache(async (slug: string) => {
   const themePath = path.join(process.cwd(), "config/tokyonight.json")
   const highlighter = await getHighlighter(themePath)
 
-  const { content, frontmatter } = await compileMDX<ByteMeta>({
+  const { content } = await compileMDX<ByteMeta>({
     options: {
       mdxOptions: {
         rehypePlugins: [
@@ -41,12 +41,11 @@ export const getByte = cache(async (slug: string) => {
         ],
         remarkPlugins: [remarkGfm, remarkSmartypants, remarkCodeTitles],
       },
-      parseFrontmatter: true,
     },
     source: byte.content,
   })
 
-  return { content, meta: frontmatter }
+  return { ...byte, content }
 })
 
 export interface SearchBytesRequest {

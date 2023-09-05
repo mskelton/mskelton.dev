@@ -16,7 +16,7 @@ export function verifySignature(req: Request) {
 
   try {
     return crypto.timingSafeEqual(trusted, untrusted)
-  } catch {
+  } catch (e) {
     return false
   }
 }

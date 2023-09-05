@@ -3,6 +3,7 @@ import { PushEvent } from "@octokit/webhooks-types"
 import { addByte } from "lib/api/bytes"
 import { getByteSource } from "lib/api/github"
 import { verifySignature } from "lib/api/signature"
+import { parseDate } from "lib/date"
 import { getFrontmatter, parseDescription, toSlug } from "lib/parser"
 import prisma from "lib/prisma"
 
@@ -29,6 +30,7 @@ async function modify(file: string) {
   await prisma.byte.update({
     data: {
       content: Buffer.from(content, "utf-8"),
+      createdAt: parseDate(meta.date),
       description: await parseDescription(content),
       tags: {
         connectOrCreate: meta.tags.map((tag) => ({
