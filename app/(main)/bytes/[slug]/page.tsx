@@ -12,7 +12,7 @@ export async function generateMetadata({ params }: PageProps) {
   const { title } = await getByte(params.slug)
 
   return {
-    title: `${title} - Mark Skelton`,
+    title: `${title} | Mark Skelton`,
   }
 }
 

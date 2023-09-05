@@ -11,7 +11,7 @@ import Content from "./content.mdx"
 
 export const metadata: Metadata = {
   description: siteMeta.description,
-  title: "About - Mark Skelton",
+  title: "About | Mark Skelton",
 }
 
 export interface SocialLinkProps {
