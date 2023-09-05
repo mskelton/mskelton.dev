@@ -1,37 +1,16 @@
-import matter from "gray-matter"
 import { NextResponse } from "next/server"
-import remarkParse from "remark-parse"
-import { unified } from "unified"
-import { ByteMeta } from "(main)/bytes/types"
 import { PushEvent } from "@octokit/webhooks-types"
-import { getByteSource } from "lib/api/bytes"
+import { addByte } from "lib/api/bytes"
+import { getByteSource } from "lib/api/github"
 import { verifySignature } from "lib/api/signature"
+import { getFrontmatter, parseDescription, toSlug } from "lib/parser"
 import prisma from "lib/prisma"
-import remarkStringify from "../../../config/remark-stringify.mjs"
 
-const toSlug = (file: string) => file.replace(/\.md$/, "").split("/").pop()!
+async function add(file: string) {
+  const slug = toSlug(file)
+  const source = await getByteSource(slug)
 
-function getFrontmatter(source: string) {
-  const { content, data } = matter(source)
-  const meta = data as ByteMeta
-  const tags = Array.isArray(meta.tags) ? meta.tags : [meta.tags]
-
-  return {
-    content,
-    meta: {
-      ...meta,
-      tags,
-    },
-  }
-}
-
-async function parseDescription(source: string) {
-  const vfile = await unified()
-    .use(remarkParse as any)
-    .use(remarkStringify)
-    .process(source)
-
-  return String(vfile)
+  return addByte(slug, source)
 }
 
 async function remove(files: string[]) {
@@ -39,27 +18,6 @@ async function remove(files: string[]) {
 
   await prisma.byte.deleteMany({
     where: { slug: { in: slugs } },
-  })
-}
-
-async function add(file: string) {
-  const slug = toSlug(file)
-  const source = await getByteSource(slug)
-  const { content, meta } = getFrontmatter(source)
-
-  await prisma.byte.create({
-    data: {
-      content: Buffer.from(content, "utf-8"),
-      description: await parseDescription(content),
-      slug,
-      tags: {
-        connectOrCreate: meta.tags.map((tag) => ({
-          create: { name: tag },
-          where: { name: tag },
-        })),
-      },
-      title: meta.title,
-    },
   })
 }
 

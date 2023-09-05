@@ -1,21 +1,21 @@
-import { octokit } from "./github"
+import { getFrontmatter, parseDescription } from "lib/parser"
+import prisma from "lib/prisma"
 
-function getByte() {}
+export async function addByte(slug: string, source: string) {
+  const { content, meta } = getFrontmatter(source)
 
-export async function getByteSource(slug: string) {
-  const bytePath = `bytes/${slug}.md`
-  const { data } = await octokit.repos.getContent({
-    mediaType: { format: "raw" },
-    owner: "mskelton",
-    path: bytePath,
-    repo: "bytes",
+  await prisma.byte.create({
+    data: {
+      content: Buffer.from(content, "utf-8"),
+      description: await parseDescription(content),
+      slug,
+      tags: {
+        connectOrCreate: meta.tags.map((tag) => ({
+          create: { name: tag },
+          where: { name: tag },
+        })),
+      },
+      title: meta.title,
+    },
   })
-
-  if (typeof data !== "string") {
-    throw new Error(
-      `Tried to fetch raw file from ${bytePath}. GitHub did not return the raw contents. This should never happen...`,
-    )
-  }
-
-  return data as string
 }
