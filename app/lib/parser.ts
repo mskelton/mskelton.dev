@@ -14,10 +14,7 @@ export function getFrontmatter(source: string) {
 
   return {
     content,
-    meta: {
-      ...meta,
-      tags,
-    },
+    meta: { ...meta, tags },
   }
 }
 

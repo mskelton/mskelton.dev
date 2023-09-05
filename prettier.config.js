@@ -1,7 +1,7 @@
 const config = {
   plugins: [
+    "./node_modules/prettier-plugin-jsdoc/dist/index.js",
     "prettier-plugin-tailwindcss",
-    // "./node_modules/prettier-plugin-jsdoc/dist/index.js",
   ],
   proseWrap: "always",
   semi: false,
