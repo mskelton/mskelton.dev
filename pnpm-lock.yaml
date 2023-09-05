@@ -13,9 +13,6 @@ dependencies:
   '@mdx-js/react':
     specifier: ^2.3.0
     version: 2.3.0(react@18.2.0)
-  '@mskelton/req':
-    specifier: ^1.0.3
-    version: 1.0.3
   '@next/mdx':
     specifier: ^13.4.19
     version: 13.4.19(@mdx-js/loader@2.3.0)(@mdx-js/react@2.3.0)
@@ -603,10 +600,6 @@ packages:
       eslint-config-prettier: 8.10.0(eslint@8.48.0)
       eslint-plugin-sort: 2.10.0(eslint@8.48.0)(typescript@5.2.2)
     dev: true
-
-  /@mskelton/req@1.0.3:
-    resolution: {integrity: sha512-7biZwMGIy6vlkFKLtYsVtU7KRYU3bt+WLGV7Nd4Jc71P/kqb+q4XNqn22P14gw4xfaUypONGt9UK5pYUxJEO+w==}
-    dev: false
 
   /@next/env@13.4.19:
     resolution: {integrity: sha512-FsAT5x0jF2kkhNkKkukhsyYOrRqtSxrEhfliniIq0bwWbuXLgyt3Gv0Ml+b91XwjwArmuP7NxCiGd++GGKdNMQ==}
