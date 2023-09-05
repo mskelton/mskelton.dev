@@ -1,6 +1,6 @@
 import matter from "gray-matter"
 import remarkParse from "remark-parse"
-import { unified } from "unified"
+import { Plugin, unified } from "unified"
 import { ByteMeta } from "(main)/bytes/types"
 import remarkStringify from "../../config/remark-stringify.mjs"
 
@@ -23,7 +23,7 @@ export function getFrontmatter(source: string) {
 
 export async function parseDescription(source: string) {
   const vfile = await unified()
-    .use(remarkParse as any)
+    .use(remarkParse as unknown as Plugin)
     .use(remarkStringify)
     .process(source)
 

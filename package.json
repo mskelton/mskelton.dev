@@ -62,7 +62,7 @@
   "devDependencies": {
     "@babel/core": "^7.22.11",
     "@babel/eslint-parser": "^7.22.11",
-    "@mskelton/eslint-config": "^8.2.1",
+    "@mskelton/eslint-config": "^8.3.0",
     "@octokit/webhooks-types": "^7.2.0",
     "@playwright/test": "^1.37.1",
     "@types/mdx": "^2.0.7",
