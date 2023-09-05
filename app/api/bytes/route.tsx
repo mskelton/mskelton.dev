@@ -5,6 +5,7 @@ import { unified } from "unified"
 import { ByteMeta } from "(main)/bytes/types"
 import { PushEvent } from "@octokit/webhooks-types"
 import { getByteSource } from "lib/api/bytes"
+import { verifySignature } from "lib/api/signature"
 import prisma from "lib/prisma"
 import remarkStringify from "../../../config/remark-stringify.mjs"
 
@@ -48,6 +49,7 @@ async function add(file: string) {
 
   await prisma.byte.create({
     data: {
+      content: Buffer.from(content, "utf-8"),
       description: await parseDescription(content),
       slug,
       tags: {
@@ -68,6 +70,7 @@ async function modify(file: string) {
 
   await prisma.byte.update({
     data: {
+      content: Buffer.from(content, "utf-8"),
       description: await parseDescription(content),
       tags: {
         connectOrCreate: meta.tags.map((tag) => ({
@@ -83,8 +86,12 @@ async function modify(file: string) {
   })
 }
 
-export async function POST(request: Request) {
-  const { commits } = (await request.json()) as PushEvent
+export async function POST(req: Request) {
+  if (!verifySignature(req)) {
+    return NextResponse.json({ message: "Unauthorized" }, { status: 401 })
+  }
+
+  const { commits } = (await req.json()) as PushEvent
 
   await remove(commits.flatMap((c) => c.removed))
   await Promise.all(commits.flatMap((c) => c.added).map(add))

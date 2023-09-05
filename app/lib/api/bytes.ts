@@ -1,5 +1,7 @@
 import { octokit } from "./github"
 
+function getByte() {}
+
 export async function getByteSource(slug: string) {
   const bytePath = `bytes/${slug}.md`
   const { data } = await octokit.repos.getContent({

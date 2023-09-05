@@ -15,6 +15,7 @@ model Byte {
   updatedAt   DateTime @updatedAt
   title       String
   description String   @db.Text
+  content     Bytes    @db.MediumBlob
   tags        Tag[]
 }
 
