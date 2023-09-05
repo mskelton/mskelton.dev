@@ -47,12 +47,13 @@ async function modify(file: string) {
 }
 
 export async function POST(req: Request) {
-  if (!verifySignature(req)) {
+  const body = (await req.json()) as PushEvent
+
+  if (!verifySignature(req, body)) {
     return NextResponse.json({ message: "Unauthorized" }, { status: 401 })
   }
 
-  const { commits } = (await req.json()) as PushEvent
-
+  const { commits } = body
   await remove(commits.flatMap((c) => c.removed))
   await Promise.all(commits.flatMap((c) => c.added).map(add))
   await Promise.all(commits.flatMap((c) => c.modified).map(modify))
