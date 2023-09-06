@@ -1,4 +1,5 @@
-import { ArrowDownIcon } from "@heroicons/react/20/solid"
+import { ArrowDownIcon, ChevronRightIcon } from "@heroicons/react/20/solid"
+import Link from "next/link"
 import type { SocialLinkProps } from "./(main)/about/page"
 import type { ArticleProps } from "./(main)/blog/page"
 import { Button } from "./components/Button"
@@ -26,7 +27,7 @@ function Article({ article }: ArticleProps) {
       </Card.Eyebrow>
 
       <Card.Description>{article.description}</Card.Description>
-      <Card.Cta>Read article</Card.Cta>
+      <Card.Cta>Read post</Card.Cta>
     </Card>
   )
 }
@@ -169,6 +170,11 @@ export default async function Home() {
               {articles.map((article) => (
                 <Article key={article.slug} article={article} />
               ))}
+
+              <Button as={Link} href="/blog" variant="secondary">
+                <span>More posts</span>
+                <ChevronRightIcon className="h-5 w-5" />
+              </Button>
             </div>
 
             <div className="space-y-10 lg:pl-16 xl:pl-24">
