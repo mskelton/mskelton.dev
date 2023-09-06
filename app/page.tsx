@@ -11,6 +11,7 @@ import { LogoWiden } from "./components/logos/LogoWiden"
 import { PageSubtitle, PageTitle } from "./components/PageTitle"
 import { Footer } from "./components/root/Footer"
 import { Header } from "./components/root/Header"
+import { HeaderSwoop } from "./components/root/Swoops"
 import { socials } from "./components/SocialIcons"
 import { formatDate } from "./lib/formatDate"
 import { getAllArticles } from "./lib/getAllArticles"
@@ -144,8 +145,12 @@ export default async function Home() {
     <>
       <Header home />
 
-      <main>
-        <Container className="mt-6 sm:mt-10">
+      <main className="bg-inherit z-[60] relative">
+        <div className="absolute -top-16 left-0 right-0 z-50 w-full overflow-hidden">
+          <HeaderSwoop className="h-16 w-full min-w-[500px] lg:h-28" />
+        </div>
+
+        <Container className="pt-6 sm:pt-12 lg:pt-20">
           <div className="max-w-2xl">
             <PageTitle>{siteMeta.tagline}</PageTitle>
             <PageSubtitle>{siteMeta.description}</PageSubtitle>
