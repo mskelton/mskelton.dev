@@ -1,21 +1,23 @@
 export const themeEffect = function () {
-  let result: string
   const pref = localStorage.getItem("theme")
+  const d = document.documentElement
+  let result: string
 
   if (
     pref === "dark" ||
     (!pref && window.matchMedia("(prefers-color-scheme: dark)").matches)
   ) {
-    document.documentElement.classList.add("dark")
+    d.classList.add("dark")
     result = "dark"
   } else {
-    document.documentElement.classList.remove("dark")
+    d.classList.remove("dark")
     result = "light"
   }
 
-  // requestAnimationFrame(() => {
-  //   document.documentElement.classList.remove("pause-transitions")
-  // })
+  d.style.colorScheme = result
+  requestAnimationFrame(() => {
+    d.classList.remove("pause-transitions")
+  })
 
   return result
 }

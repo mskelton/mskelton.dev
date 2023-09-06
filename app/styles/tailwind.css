@@ -5,5 +5,5 @@
 :root.pause-transitions *,
 :root.pause-transitions *::before,
 :root.pause-transitions *::after {
-  transition-duration: 0ms !important;
+  transition: none !important;
 }
