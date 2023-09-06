@@ -13,9 +13,9 @@ export const themeEffect = function () {
     result = "light"
   }
 
-  requestAnimationFrame(() => {
-    document.documentElement.classList.remove("pause-transitions")
-  })
+  // requestAnimationFrame(() => {
+  //   document.documentElement.classList.remove("pause-transitions")
+  // })
 
   return result
 }
