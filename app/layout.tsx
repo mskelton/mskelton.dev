@@ -3,7 +3,7 @@ import { Metadata } from "next"
 import { Rubik } from "next/font/google"
 import { AnalyticsWrapper } from "./components/root/AnalyticsWrapper"
 import { siteMeta } from "./lib/siteMeta"
-import ThemeScript from "./ThemeScript"
+import { themeEffect } from "./lib/themeEffect"
 
 export const metadata: Metadata = {
   description: siteMeta.description,
@@ -28,7 +28,6 @@ export default function RootLayout({ children }: RootLayoutProps) {
       suppressHydrationWarning
     >
       <head>
-        <ThemeScript />
         <meta content="width=device-width, initial-scale=1" name="viewport" />
         <link href="/favicon.ico" rel="icon" />
         <link
@@ -40,6 +39,9 @@ export default function RootLayout({ children }: RootLayoutProps) {
           href={`${siteMeta.url}/rss/feed.json`}
           rel="alternate"
           type="application/feed+json"
+        />
+        <script
+          dangerouslySetInnerHTML={{ __html: `(${themeEffect.toString()})();` }}
         />
       </head>
 
