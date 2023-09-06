@@ -14,7 +14,6 @@ export const themeEffect = function () {
     result = "light"
   }
 
-  d.style.colorScheme = result
   requestAnimationFrame(() => {
     d.classList.remove("pause-transitions")
   })
