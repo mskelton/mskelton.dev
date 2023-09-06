@@ -23,7 +23,7 @@ export interface RootLayoutProps {
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html
-      className={`h-full text-lg antialiased ${font.className}`}
+      className={`h-full text-lg antialiased pause-transitions ${font.className}`}
       lang="en"
       suppressHydrationWarning
     >

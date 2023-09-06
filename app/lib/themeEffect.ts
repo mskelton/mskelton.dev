@@ -1,4 +1,5 @@
 export const themeEffect = function () {
+  let result: string
   const pref = localStorage.getItem("theme")
 
   if (
@@ -6,11 +7,17 @@ export const themeEffect = function () {
     (!pref && window.matchMedia("(prefers-color-scheme: dark)").matches)
   ) {
     document.documentElement.classList.add("dark")
-    return "dark"
+    result = "dark"
   } else {
     document.documentElement.classList.remove("dark")
-    return "light"
+    result = "light"
   }
+
+  requestAnimationFrame(() => {
+    document.documentElement.classList.remove("pause-transitions")
+  })
+
+  return result
 }
 
 export function toggleTheme() {
