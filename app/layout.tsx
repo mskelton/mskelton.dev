@@ -1,9 +1,9 @@
 import "./styles/tailwind.css"
 import { Metadata } from "next"
 import { Rubik } from "next/font/google"
-import { cookies } from "next/headers"
 import { AnalyticsWrapper } from "./components/root/AnalyticsWrapper"
 import { siteMeta } from "./lib/siteMeta"
+import { themeEffect } from "./lib/themeEffect"
 
 export const metadata: Metadata = {
   description: siteMeta.description,
@@ -21,13 +21,11 @@ export interface RootLayoutProps {
 }
 
 export default function RootLayout({ children }: RootLayoutProps) {
-  const cookieStore = cookies()
-  const theme = cookieStore.get("theme")?.value ?? "dark"
-
   return (
     <html
-      className={`h-full text-lg antialiased ${theme} ${font.className}`}
+      className={`h-full text-lg antialiased ${font.className}`}
       lang="en"
+      suppressHydrationWarning
     >
       <head>
         <meta content="width=device-width, initial-scale=1" name="viewport" />
@@ -41,6 +39,9 @@ export default function RootLayout({ children }: RootLayoutProps) {
           href={`${siteMeta.url}/rss/feed.json`}
           rel="alternate"
           type="application/feed+json"
+        />
+        <script
+          dangerouslySetInnerHTML={{ __html: `(${themeEffect.toString()})();` }}
         />
       </head>
 
