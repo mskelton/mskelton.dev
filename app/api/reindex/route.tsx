@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server"
-import { addByte } from "lib/api/bytes"
+import { upsertByte } from "lib/api/bytes"
 import { getByteSource, octokit } from "lib/api/github"
 import { toSlug } from "lib/parser"
 import prisma from "lib/prisma"
@@ -38,7 +38,7 @@ export async function POST() {
   await prisma.byte.deleteMany()
 
   // Add all bytes to the database
-  await Promise.all(sources.map((source, i) => addByte(slugs[i], source)))
+  await Promise.all(sources.map((source, i) => upsertByte(slugs[i], source)))
 
   return NextResponse.json({ message: "ok" })
 }
