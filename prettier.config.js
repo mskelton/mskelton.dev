@@ -1,8 +1,8 @@
-import * as jsdoc from "prettier-plugin-jsdoc"
-import * as tailwind from "prettier-plugin-tailwindcss"
-
 const config = {
-  plugins: [tailwind, jsdoc],
+  plugins: [
+    "./node_modules/prettier-plugin-jsdoc/dist/index.js",
+    "prettier-plugin-tailwindcss",
+  ],
   proseWrap: "always",
   semi: false,
 }
