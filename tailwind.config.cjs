@@ -138,8 +138,8 @@ module.exports = {
               borderRadius: theme("borderRadius.3xl"),
 
               "@screen sm": {
-                marginInline: "-" + theme("spacing.8"),
-                maxWidth: "calc(100% + " + theme("spacing.16") + ")",
+                marginInline: `-${theme("spacing.8")}`,
+                maxWidth: `calc(100% + ${theme("spacing.16")})`,
               },
             },
 
