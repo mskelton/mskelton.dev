@@ -39,8 +39,8 @@ export default async function Blog({
         </form>
 
         {query || tag ? (
-          <div className="flex mt-2 text-sm justify-between px-2">
-            <p className="dark:text-zinc-200 transition-colors">
+          <div className="mt-2 flex justify-between px-2 text-sm">
+            <p className="transition-colors dark:text-zinc-200">
               Showing results for{" "}
               <span className="font-bold">
                 {query ? `“${query}”` : `#${tag}`}
@@ -48,7 +48,7 @@ export default async function Blog({
             </p>
 
             <Link
-              className="text-indigo-500 transition-colors dark:text-indigo-400 font-medium dark:hover:text-indigo-500 hover:text-indigo-600"
+              className="font-medium text-indigo-500 transition-colors hover:text-indigo-600 dark:text-indigo-400 dark:hover:text-indigo-500"
               href="/bytes"
             >
               Clear
