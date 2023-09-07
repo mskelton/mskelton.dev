@@ -1,5 +1,6 @@
 import { FaceFrownIcon, HashtagIcon } from "@heroicons/react/20/solid"
 import { Metadata } from "next"
+import Link from "next/link"
 import { Card } from "components/Card"
 import Input from "components/Input"
 import { SimpleLayout } from "components/layouts/SimpleLayout"
@@ -26,15 +27,35 @@ export default async function Blog({
       noMargin
       title="Bits and bytes of code"
     >
-      <form>
-        <Input
-          aria-label="Search for bytes"
-          className="mt-6 w-96 max-w-full"
-          defaultValue={query}
-          name="q"
-          placeholder="Search for bytes..."
-        />
-      </form>
+      <div className="w-96 max-w-full">
+        <form>
+          <Input
+            aria-label="Search for bytes"
+            className="mt-6 w-full"
+            defaultValue={query}
+            name="q"
+            placeholder="Search for bytes..."
+          />
+        </form>
+
+        {query || tag ? (
+          <div className="flex mt-2 text-sm justify-between px-2">
+            <p className="dark:text-zinc-200 transition-colors">
+              Showing results for{" "}
+              <span className="font-bold">
+                {query ? `“${query}”` : `#${tag}`}
+              </span>
+            </p>
+
+            <Link
+              className="text-indigo-500 transition-colors dark:text-indigo-400 font-medium dark:hover:text-indigo-500 hover:text-indigo-600"
+              href="/bytes"
+            >
+              Clear
+            </Link>
+          </div>
+        ) : null}
+      </div>
 
       {bytes.length ? (
         <div className="mt-16 space-y-16 sm:mt-20">
