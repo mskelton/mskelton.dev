@@ -1,5 +1,5 @@
 import { Metadata } from "next"
-import type { ArticleMeta } from "../../components/layouts/ArticleLayout"
+import type { ArticleMeta } from "components/layouts/ArticleLayout"
 
 export function getMetadata(meta: ArticleMeta): Metadata {
   return {

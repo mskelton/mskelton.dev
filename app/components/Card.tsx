@@ -1,6 +1,7 @@
 import { ChevronRightIcon, LinkIcon } from "@heroicons/react/20/solid"
 import { clsx } from "clsx"
 import Link, { LinkProps } from "next/link"
+import { twMerge } from "tailwind-merge"
 
 interface CardProps {
   as?: React.ElementType
@@ -96,10 +97,10 @@ Card.Cta = function CardCta({ children }: CardCtaProps) {
   return (
     <div
       aria-hidden="true"
-      className="transition-colorss relative z-10 mt-4 flex items-center text-sm font-medium text-indigo-500 dark:text-indigo-400"
+      className="relative z-10 mt-4 flex items-center text-sm font-medium text-indigo-500 transition-colors dark:text-indigo-400"
     >
       {children}
-      <ChevronRightIcon className="ml-1 h-4 w-4" />
+      <ChevronRightIcon className="ml-1 h-5 w-5 transition-[margin] group-hover:ml-1.5" />
     </div>
   )
 }
@@ -119,7 +120,7 @@ Card.Eyebrow = function CardEyebrow({
 }: CardEyebrowProps) {
   return (
     <Component
-      className={clsx(
+      className={twMerge(
         "relative z-10 order-first mb-3 flex items-center text-sm text-zinc-400 transition-colors dark:text-zinc-500",
         decorate && "pl-3.5",
         className,
@@ -152,5 +153,36 @@ Card.ExternalLink = function CardExternalLink({ href }: CardExternalLinkProps) {
       <LinkIcon className="h-5 w-5" />
       <span className="ml-2">{formatURL(href)}</span>
     </p>
+  )
+}
+
+export interface CardTagsProps {
+  children?: React.ReactNode
+  className?: string
+}
+
+Card.Tags = function CardTags({ children, className }: CardTagsProps) {
+  return <div className={clsx("flex gap-2", className)}>{children}</div>
+}
+
+export interface CardTagProps {
+  children?: React.ReactNode
+  className?: string
+  href: string
+}
+
+Card.Tag = function CardTag({ children, className, href }: CardTagProps) {
+  return (
+    <Link
+      className={twMerge(
+        "relative z-20 flex items-center gap-0.5 rounded-2xl px-4 py-0.5 text-xs font-medium transition-colors",
+        "bg-zinc-100 text-zinc-800 hover:bg-zinc-200 group-hover:bg-zinc-200/70 group-hover:hover:bg-zinc-200",
+        "dark:bg-zinc-800 dark:text-zinc-200 dark:hover:bg-zinc-700 dark:group-hover:bg-zinc-700/70 dark:group-hover:hover:bg-zinc-700/90",
+        className,
+      )}
+      href={href}
+    >
+      {children}
+    </Link>
   )
 }
