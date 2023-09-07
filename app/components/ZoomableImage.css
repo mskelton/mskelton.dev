@@ -52,6 +52,10 @@
   display: none;
 }
 
+[data-rmiz-modal] {
+  outline: none;
+}
+
 [data-rmiz-modal][open] {
   position: fixed;
   width: 100vw;
