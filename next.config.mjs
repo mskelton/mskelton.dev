@@ -21,9 +21,6 @@ const nextConfig = {
   eslint: {
     dirs: ["app", "components", "config", "e2e"],
   },
-  experimental: {
-    serverComponentsExternalPackages: ["shiki"],
-  },
   images: {
     minimumCacheTTL: 3600, // 1 hour
   },
