@@ -5,9 +5,5 @@
       "files": "e2e/**",
       "extends": "@mskelton/eslint-config/playwright"
     }
-  ],
-  "rules": {
-    "@next/next/no-html-link-for-pages": "off",
-    "@typescript-eslint/no-useless-constructor": "off"
-  }
+  ]
 }
