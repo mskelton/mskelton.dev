@@ -1,4 +1,5 @@
-import { ArrowDownIcon } from "@heroicons/react/20/solid"
+import { ArrowDownIcon, ChevronRightIcon } from "@heroicons/react/20/solid"
+import Link from "next/link"
 import type { SocialLinkProps } from "./(main)/about/page"
 import type { ArticleProps } from "./(main)/blog/page"
 import { Button } from "./components/Button"
@@ -11,6 +12,7 @@ import { LogoWiden } from "./components/logos/LogoWiden"
 import { PageSubtitle, PageTitle } from "./components/PageTitle"
 import { Footer } from "./components/root/Footer"
 import { Header } from "./components/root/Header"
+import { HeaderSwoop } from "./components/root/Swoops"
 import { socials } from "./components/SocialIcons"
 import { formatDate } from "./lib/date"
 import { getAllArticles } from "./lib/getAllArticles"
@@ -25,7 +27,7 @@ function Article({ article }: ArticleProps) {
       </Card.Eyebrow>
 
       <Card.Description>{article.description}</Card.Description>
-      <Card.Cta>Read article</Card.Cta>
+      <Card.Cta>Read post</Card.Cta>
     </Card>
   )
 }
@@ -144,8 +146,12 @@ export default async function Home() {
     <>
       <Header home />
 
-      <main>
-        <Container className="mt-6 sm:mt-10">
+      <main className="bg-inherit z-[60] relative">
+        <div className="absolute -top-16 left-0 right-0 z-50 w-full overflow-hidden">
+          <HeaderSwoop className="h-16 w-full min-w-[500px] lg:h-28" />
+        </div>
+
+        <Container className="pt-6 sm:pt-12 lg:pt-20">
           <div className="max-w-2xl">
             <PageTitle>{siteMeta.tagline}</PageTitle>
             <PageSubtitle>{siteMeta.description}</PageSubtitle>
@@ -164,6 +170,11 @@ export default async function Home() {
               {articles.map((article) => (
                 <Article key={article.slug} article={article} />
               ))}
+
+              <Button as={Link} href="/blog" variant="secondary">
+                <span>More posts</span>
+                <ChevronRightIcon className="h-5 w-5" />
+              </Button>
             </div>
 
             <div className="space-y-10 lg:pl-16 xl:pl-24">

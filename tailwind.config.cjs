@@ -136,6 +136,11 @@ module.exports = {
             // Images
             img: {
               borderRadius: theme("borderRadius.3xl"),
+
+              "@screen sm": {
+                marginInline: "-" + theme("spacing.8"),
+                maxWidth: "calc(100% + " + theme("spacing.16") + ")",
+              },
             },
 
             // Links
@@ -286,6 +291,7 @@ module.exports = {
               marginBottom: theme("spacing.20"),
               borderTopWidth: "1px",
               borderColor: "var(--tw-prose-hr)",
+
               "@screen lg": {
                 marginLeft: `calc(${theme("spacing.12")} * -1)`,
                 marginRight: `calc(${theme("spacing.12")} * -1)`,

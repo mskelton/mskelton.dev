@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root.pause-transitions *,
+:root.pause-transitions *::before,
+:root.pause-transitions *::after {
+  transition: none !important;
+}
