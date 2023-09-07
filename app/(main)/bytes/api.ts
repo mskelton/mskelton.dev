@@ -56,6 +56,7 @@ export interface SearchBytesRequest {
 export const searchBytes = cache(async ({ query, tag }: SearchBytesRequest) => {
   const res = await prisma.byte.findMany({
     include: { tags: true },
+    orderBy: { createdAt: "desc" },
     take: 10,
     where: {
       tags: tag ? { some: { name: { equals: tag } } } : undefined,
