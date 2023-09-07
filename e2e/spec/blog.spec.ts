@@ -17,7 +17,7 @@ test.describe("Blog page", async () => {
 
   test("has page metadata", async ({ blogPage, page }) => {
     await blogPage.goto()
-    await expect(page).toHaveTitle("Blog - Mark Skelton")
+    await expect(page).toHaveTitle("Blog | Mark Skelton")
     await expect(blogPage.description).toHaveAttribute(
       "content",
       /All of my blog posts/,
@@ -42,7 +42,7 @@ test.describe("Blog page", async () => {
           const content = await fs.promises.readFile(fileURL, "utf8")
           const { data } = matter(content)
 
-          await expect(page).toHaveTitle(`${data.title} - Mark Skelton’s Blog`)
+          await expect(page).toHaveTitle(`${data.title} | Mark Skelton’s Blog`)
           await expect(page.locator("h1")).toHaveText(data.title)
         })
       })

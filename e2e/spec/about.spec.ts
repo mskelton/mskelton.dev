@@ -10,7 +10,7 @@ test.describe("About page", async () => {
   })
 
   test("has page metadata", async ({ aboutPage, page }) => {
-    await expect(page).toHaveTitle("About - Mark Skelton")
+    await expect(page).toHaveTitle("About | Mark Skelton")
     await expect(aboutPage.description).toHaveAttribute(
       "content",
       /I’m Mark, a frontend software engineer/,

@@ -3,7 +3,7 @@ import { SimpleLayout } from "../../components/layouts/SimpleLayout"
 
 export const metadata: Metadata = {
   description: `Thanks for subscribing to my newsletter.`,
-  title: "You’re subscribed - Mark Skelton",
+  title: "You’re subscribed | Mark Skelton",
 }
 
 export default function ThankYou() {
