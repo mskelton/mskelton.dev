@@ -23,7 +23,7 @@ export interface RootLayoutProps {
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html
-      className={`h-full text-lg antialiased pause-transitions ${font.className}`}
+      className={`pause-transitions h-full text-lg antialiased ${font.className}`}
       lang="en"
       suppressHydrationWarning
     >
@@ -45,7 +45,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
         />
       </head>
 
-      <body className="flex min-h-fit flex-col bg-white transition-colors duration-300 dark:bg-zinc-900 relative">
+      <body className="relative flex min-h-fit flex-col bg-white transition-colors duration-300 dark:bg-zinc-900">
         {children}
         <AnalyticsWrapper />
       </body>

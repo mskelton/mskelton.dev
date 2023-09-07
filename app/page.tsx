@@ -146,7 +146,7 @@ export default async function Home() {
     <>
       <Header home />
 
-      <main className="bg-inherit z-[60] relative">
+      <main className="relative z-[60] bg-inherit">
         <div className="absolute -top-16 left-0 right-0 z-50 w-full overflow-hidden">
           <HeaderSwoop className="h-16 w-full min-w-[500px] lg:h-28" />
         </div>

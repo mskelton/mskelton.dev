@@ -19,7 +19,12 @@ export default function ZoomableImage({ alt, ...props }: ZoomableImageProps) {
       wrapElement="span"
       zoomMargin={48}
     >
-      <Image alt={alt ?? ""} placeholder="blur" {...props} />
+      <Image
+        alt={alt ?? ""}
+        className="sm:-mx-8 sm:max-w-[calc(100%+4rem)]"
+        placeholder="blur"
+        {...props}
+      />
     </Zoom>
   )
 }
