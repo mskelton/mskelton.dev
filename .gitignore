@@ -13,3 +13,6 @@ out/
 # Generated files
 .vscode/
 public/rss/
+
+.env*
+!.env.example
