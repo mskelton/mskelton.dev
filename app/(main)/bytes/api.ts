@@ -39,7 +39,7 @@ export const getByte = cache(async (slug: string) => {
           [rehypeShiki, { highlighter }],
           rehypeCodeA11y,
         ],
-        remarkPlugins: [remarkGfm, remarkSmartypants, remarkCodeTitles],
+        remarkPlugins: [remarkGfm, remarkSmartypants as any, remarkCodeTitles],
       },
     },
     source: byte.content,
