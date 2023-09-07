@@ -79,9 +79,10 @@ module.exports = {
             "--tw-prose-body": theme("colors.zinc.600"),
             "--tw-prose-headings": theme("colors.zinc.900"),
             "--tw-prose-link": theme("colors.zinc.900"),
-            "--tw-prose-link-bg": theme("colors.indigo.300"),
+            "--tw-prose-link-hover": theme("colors.zinc.100"),
+            "--tw-prose-link-bg": theme("colors.indigo.400"),
             "--tw-prose-underline": theme("colors.indigo.500 / 0.2"),
-            "--tw-prose-underline-hover": theme("colors.indigo.500"),
+            "--tw-prose-underline-hover": theme("colors.indigo.400"),
             "--tw-prose-bold": theme("colors.zinc.900"),
             "--tw-prose-counters": theme("colors.zinc.900"),
             "--tw-prose-bullets": theme("colors.zinc.900"),
@@ -147,7 +148,7 @@ module.exports = {
               color: "var(--tw-prose-link)",
               fontWeight: theme("fontWeight.semibold"),
               backgroundImage: `linear-gradient(var(--tw-prose-link-bg), var(--tw-prose-link-bg))`,
-              backgroundPosition: `bottom 2px left 100%`,
+              backgroundPosition: "bottom 2px left 100%",
               backgroundRepeat: "no-repeat",
               backgroundSize: `100% 3px`,
               transitionProperty: "all",
@@ -157,18 +158,19 @@ module.exports = {
               ),
             },
             ":is(a:hover, a:focus):not(.heading-link)": {
+              color: "var(--tw-prose-link-hover, var(--tw-prose-link))",
               backgroundPosition: `0 100%`,
               backgroundSize: `100% 100%`,
               borderRadius: theme("borderRadius.sm"),
               paddingInline: theme("spacing[0.5]"),
-              marginInline: "-" + theme("spacing[0.5]"),
+              marginInline: `-${theme("spacing[0.5]")}`,
             },
             "a:not(.heading-link):focus": {
               outline: "none",
             },
             "em a:not(.heading-link):hover": {
               paddingRight: theme("spacing.1"),
-              marginRight: "-" + theme("spacing.1"),
+              marginRight: `-${theme("spacing.1")}`,
             },
 
             strong: {
