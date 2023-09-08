@@ -1,4 +1,5 @@
 import { ArrowLeftIcon } from "@heroicons/react/20/solid"
+import { Route } from "next"
 import Link from "next/link"
 import { Container } from "components/Container"
 import { PageTitle } from "components/PageTitle"
@@ -12,7 +13,7 @@ export interface ArticleMeta {
 }
 
 export interface ArticleLayoutProps {
-  backHref?: string
+  backHref?: Route
   backText?: string
   children: React.ReactNode
   meta: ArticleMeta

@@ -1,13 +1,14 @@
 "use client"
 
 import clsx from "clsx"
+import { Route } from "next"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { useEffect, useState } from "react"
 
 export interface NavItemProps {
   children: React.ReactNode
-  href: string
+  href: Route
 }
 
 export function NavItem({ children, href }: NavItemProps) {
