@@ -4,7 +4,7 @@
   "packageManager": "pnpm@8.7.4",
   "type": "module",
   "scripts": {
-    "build": "prisma generate && next build",
+    "build": "prisma generate && pnpm shiki && next build",
     "build:rss": "ts-node-esm ./scripts/generateRssFeed.ts",
     "db:generate": "prisma generate",
     "db:push": "prisma db push",
@@ -12,6 +12,7 @@
     "db:reindex": "curl -X POST http://localhost:3000/api/reindex",
     "dev": "next dev",
     "serve": "next start",
+    "shiki": "cp -r node_modules/shiki/{languages,themes} ./lib/shiki",
     "lint": "next lint",
     "format": "prettier --write .",
     "test": "playwright test",

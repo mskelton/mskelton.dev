@@ -1,13 +1,12 @@
 import rehypeShiki from "@stefanprobst/rehype-shiki"
 import { notFound } from "next/navigation"
 import { compileMDX } from "next-mdx-remote/rsc"
-import path from "node:path"
 import { cache } from "react"
 import rehypeSlug from "rehype-slug"
 import remarkGfm from "remark-gfm"
 import remarkSmartypants from "remark-smartypants"
+import { getHighlighter } from "lib/mdx"
 import prisma from "lib/prisma"
-import { getHighlighter } from "../../../config/highlighter.mjs"
 import rehypeCodeA11y from "../../../config/rehype-code-a11y.mjs"
 import rehypeCodeTitles from "../../../config/rehype-code-titles.mjs"
 import rehypeHeaderId from "../../../config/rehype-header-id.mjs"
@@ -24,10 +23,6 @@ export const getByte = cache(async (slug: string) => {
     notFound()
   }
 
-  // Create a shiki highlighter
-  const themePath = path.join(process.cwd(), "config/tokyonight.json")
-  const highlighter = await getHighlighter(themePath)
-
   const { content } = await compileMDX<ByteMeta>({
     options: {
       mdxOptions: {
@@ -36,7 +31,7 @@ export const getByte = cache(async (slug: string) => {
           rehypeHeadings,
           rehypeHeaderId,
           rehypeCodeTitles,
-          [rehypeShiki, { highlighter }],
+          [rehypeShiki, { highlighter: await getHighlighter() }],
           rehypeCodeA11y,
         ],
         remarkPlugins: [remarkGfm, remarkSmartypants as any, remarkCodeTitles],

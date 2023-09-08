@@ -6,7 +6,7 @@ import remarkFrontmatter from "remark-frontmatter"
 import remarkGfm from "remark-gfm"
 import remarkMdxFrontmatter from "remark-mdx-frontmatter"
 import remarkSmartypants from "remark-smartypants"
-import { getHighlighter } from "./config/highlighter.mjs"
+import shiki from "shiki"
 import rehypeCodeA11y from "./config/rehype-code-a11y.mjs"
 import rehypeCodeTitles from "./config/rehype-code-titles.mjs"
 import rehypeHeaderId from "./config/rehype-header-id.mjs"
@@ -32,7 +32,9 @@ const nextConfig = {
 }
 
 const themeURL = new URL("./config/tokyonight.json", import.meta.url)
-const highlighter = await getHighlighter(fileURLToPath(themeURL))
+const highlighter = await shiki.getHighlighter({
+  theme: await shiki.loadTheme(fileURLToPath(themeURL)),
+})
 
 const withMDX = nextMDX({
   extension: /\.mdx?$/,
