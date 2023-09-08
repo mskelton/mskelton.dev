@@ -42,7 +42,7 @@ test.describe("Blog page", async () => {
           const content = await fs.promises.readFile(fileURL, "utf8")
           const { data } = matter(content)
 
-          await expect(page).toHaveTitle(`${data.title} | Mark Skelton’s Blog`)
+          await expect(page).toHaveTitle(`${data.title} | Mark Skelton`)
           await expect(page.locator("h1")).toHaveText(data.title)
         })
       })
