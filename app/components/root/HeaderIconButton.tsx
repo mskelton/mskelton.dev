@@ -1,11 +1,12 @@
 import clsx from "clsx"
+import { Route } from "next"
 import { Children, cloneElement, forwardRef } from "react"
 
 export interface HeaderIconButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   as?: React.ElementType
   children: React.ReactElement | React.ReactElement[]
-  href?: string
+  href?: Route
   target?: string
 }
 

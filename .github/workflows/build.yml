@@ -16,6 +16,6 @@ jobs:
     steps:
       - uses: mskelton/setup-pnpm@v2
       - name: Build
-        run: pnpm build
+        run: pnpm db:generate
       - name: Type check
         run: pnpm ts

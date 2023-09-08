@@ -1,5 +1,6 @@
 import { ChevronRightIcon, LinkIcon } from "@heroicons/react/20/solid"
 import { clsx } from "clsx"
+import { Route } from "next"
 import Link, { LinkProps } from "next/link"
 import { twMerge } from "tailwind-merge"
 
@@ -23,16 +24,17 @@ export function Card({
   )
 }
 
-interface CardLinkProps extends LinkProps {
+interface CardLinkProps extends Omit<LinkProps<Route>, "href"> {
   children?: React.ReactNode
   className?: string
+  href: string
 }
 
-Card.Link = function CardLink({ children, ...props }: CardLinkProps) {
+Card.Link = function CardLink({ children, href, ...props }: CardLinkProps) {
   return (
     <>
       <div className="absolute -inset-x-4 -inset-y-6 z-0 scale-95 bg-zinc-50 opacity-0 transition group-hover:scale-100 group-hover:opacity-100 dark:bg-zinc-800/50 sm:-inset-x-6 sm:rounded-2xl" />
-      <Link {...props}>
+      <Link {...props} href={href as Route}>
         <span className="absolute -inset-x-4 -inset-y-6 z-20 sm:-inset-x-6 sm:rounded-2xl" />
         <span className="relative z-10">{children}</span>
       </Link>
@@ -83,6 +85,7 @@ Card.Description = function CardDescription({
         "relative z-10 mt-2 text-sm text-zinc-600 transition-colors dark:text-zinc-400",
         className,
       )}
+      data-testid="card-description"
     >
       {children}
     </p>
@@ -180,7 +183,8 @@ Card.Tag = function CardTag({ children, className, href }: CardTagProps) {
         "dark:bg-zinc-800 dark:text-zinc-200 dark:hover:bg-zinc-700 dark:group-hover:bg-zinc-700/70 dark:group-hover:hover:bg-zinc-700/90",
         className,
       )}
-      href={href}
+      data-testid="card-tag"
+      href={href as Route}
     >
       {children}
     </Link>

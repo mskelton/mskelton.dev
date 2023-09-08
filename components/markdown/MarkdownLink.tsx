@@ -1,3 +1,4 @@
+import { Route } from "next"
 import Link from "next/link"
 import { AnchorHTMLAttributes } from "react"
 
@@ -8,7 +9,7 @@ export function MarkdownLink({ href = "#", ...props }: LinkProps) {
   const isAnchorLink = href.startsWith("#")
 
   return isInternalLink ? (
-    <Link href={href} {...props} />
+    <Link href={href as Route} {...props} />
   ) : isAnchorLink ? (
     <a href={href} {...props} />
   ) : (
