@@ -76,5 +76,17 @@ test.describe("Bytes page", async () => {
       await expect(page).toHaveTitle(`${title} | Mark Skelton`)
       await expect(page.locator("h1")).toHaveText(title)
     })
+
+    test("should show a 404 page if byte is not found", async ({
+      bytesPage,
+      notFoundPage,
+    }) => {
+      await bytesPage.goto("/asdf")
+      await expect(notFoundPage.code).toHaveText("404")
+      await expect(notFoundPage.title).toHaveText("Byte Not Found")
+      await expect(notFoundPage.subtitle).toContainText(
+        "Seems you are trying to access a byte which doesn't exist",
+      )
+    })
   })
 })
