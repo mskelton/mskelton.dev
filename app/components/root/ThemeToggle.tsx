@@ -1,5 +1,10 @@
 "use client"
 
+import {
+  FloatingOverlay,
+  FloatingPortal,
+  useFloating,
+} from "@floating-ui/react"
 import { Listbox, Transition } from "@headlessui/react"
 import {
   ComputerDesktopIcon,
@@ -8,11 +13,6 @@ import {
 } from "@heroicons/react/20/solid"
 import { Fragment, useEffect, useState } from "react"
 import { twMerge } from "tailwind-merge"
-import {
-  FloatingOverlay,
-  FloatingPortal,
-  useFloating,
-} from "@floating-ui/react"
 import { themeEffect } from "../../lib/themeEffect"
 import HeaderIconButton from "./HeaderIconButton"
 
@@ -43,8 +43,12 @@ export function ThemeToggle() {
   }, [])
 
   useEffect(() => {
+    // This has to happen in an effect otherwise it won't work during SSR
+    // since there is no localStorage.
     setPreference(localStorage.getItem("theme"))
 
+    // Refresh the theme when the user changes their system theme. If the user
+    // set a preference, this will be ignored.
     const matchMedia = window.matchMedia("(prefers-color-scheme: dark)")
     matchMedia.addEventListener("change", themeEffect)
     return () => matchMedia.removeEventListener("change", themeEffect)
@@ -61,12 +65,7 @@ export function ThemeToggle() {
   }
 
   return (
-    <Listbox
-      as="div"
-      className="relative inline-block text-left"
-      onChange={handleChange}
-      value={preference}
-    >
+    <Listbox onChange={handleChange} value={preference}>
       {({ open }) => (
         <>
           <Listbox.Button
@@ -94,7 +93,7 @@ export function ThemeToggle() {
             >
               <Listbox.Options
                 ref={refs.setFloating}
-                className="absolute right-0 z-[60] mt-2 w-56 rounded-xl bg-white dark:bg-zinc-800 shadow-lg ring-1 ring-zinc-900 ring-opacity-5 focus:outline-none"
+                className="z-[60] mt-2 w-40 rounded-xl bg-white dark:bg-zinc-800 shadow-lg ring-1 ring-zinc-900 ring-opacity-5 focus:outline-none"
                 static
                 style={{
                   left: x ?? 0,
