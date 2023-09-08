@@ -28,9 +28,9 @@ export default async function Blog({
       title="Bits and bytes of code"
     >
       <div className="w-96 max-w-full">
-        <form>
+        <form role="search">
           <Input
-            aria-label="Search for bytes"
+            aria-label="Search bytes"
             className="mt-6 w-full"
             defaultValue={query}
             name="q"

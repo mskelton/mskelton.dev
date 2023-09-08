@@ -85,6 +85,7 @@ Card.Description = function CardDescription({
         "relative z-10 mt-2 text-sm text-zinc-600 transition-colors dark:text-zinc-400",
         className,
       )}
+      data-testid="card-description"
     >
       {children}
     </p>
@@ -182,6 +183,7 @@ Card.Tag = function CardTag({ children, className, href }: CardTagProps) {
         "dark:bg-zinc-800 dark:text-zinc-200 dark:hover:bg-zinc-700 dark:group-hover:bg-zinc-700/70 dark:group-hover:hover:bg-zinc-700/90",
         className,
       )}
+      data-testid="card-tag"
       href={href as Route}
     >
       {children}
