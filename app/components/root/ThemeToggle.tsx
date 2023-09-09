@@ -34,6 +34,7 @@ export function ThemeToggle() {
   useEffect(() => {
     function handleStorageChange(event: StorageEvent) {
       if (event.key === "theme") {
+        setPreference(event.newValue)
         themeEffect()
       }
     }
