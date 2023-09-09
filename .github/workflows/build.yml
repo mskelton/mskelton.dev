@@ -5,17 +5,17 @@ jobs:
     name: Lint
     runs-on: ubuntu-latest
     steps:
-      - uses: mskelton/setup-pnpm@v2
+      - uses: mskelton/setup-bun@v1
       - name: Lint
-        run: pnpm lint
+        run: bun lint
       - name: Check formatting
-        run: pnpm prettier --check .
+        run: bun prettier --check .
   ts:
     name: Type Check
     runs-on: ubuntu-latest
     steps:
-      - uses: mskelton/setup-pnpm@v2
+      - uses: mskelton/setup-bun@v1
       - name: Build
-        run: pnpm db:generate
+        run: bun db:generate
       - name: Type check
-        run: pnpm ts
+        run: bun ts
