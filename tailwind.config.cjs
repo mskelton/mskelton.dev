@@ -39,6 +39,10 @@ module.exports = {
             strokeDasharray: "90, 150",
           },
         },
+        show: {
+          from: { opacity: 0 },
+          to: { opacity: 1 },
+        },
       },
     },
     fontSize: {
