@@ -38,7 +38,9 @@ export async function POST() {
   await prisma.byte.deleteMany()
 
   // Add all bytes to the database
-  await Promise.all(sources.map((source, i) => upsertByte(slugs[i], source)))
+  for (let i = 0; i < slugs.length; i++) {
+    await upsertByte(slugs[i], sources[i])
+  }
 
   return NextResponse.json({ message: "ok" })
 }
