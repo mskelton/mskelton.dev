@@ -40,7 +40,10 @@ export default async function Blog({
 
         {query || tag ? (
           <div className="mt-2 flex justify-between px-2 text-sm">
-            <p className="transition-colors dark:text-zinc-200">
+            <p
+              className="transition-colors dark:text-zinc-200"
+              data-testid="search-hint"
+            >
               Showing results for{" "}
               <span className="font-bold">
                 {query ? `“${query}”` : `#${tag}`}

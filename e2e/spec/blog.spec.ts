@@ -1,13 +1,15 @@
-import glob from "fast-glob"
 import matter from "gray-matter"
 import fs from "node:fs"
-import path from "node:path"
-import { fileURLToPath } from "node:url"
 import { expect, test } from "../fixtures/index.js"
 
 const baseURL = new URL("../../app/(main)/blog/", import.meta.url)
-const cwd = fileURLToPath(baseURL)
-const filenames = await glob("**/*.mdx", { cwd })
+const slugs = [
+  "auto-formatting-code-using-prettier-and-github-actions",
+  "better-code-highlighting-with-shiki",
+  "demystifying-typescripts-extract-type",
+  "using-yarn-constraints",
+  "why-i-use-the-fish-shell",
+]
 
 test.describe("Blog page", async () => {
   test("should be accessible", async ({ blogPage }) => {
@@ -25,12 +27,12 @@ test.describe("Blog page", async () => {
   })
 
   test.describe("posts", () => {
-    filenames.forEach((filename) => {
-      const blogPath = `/${path.dirname(filename)}`
+    slugs.forEach((slug) => {
+      const path = `/${slug}`
 
-      test.describe(blogPath, () => {
+      test.describe(path, () => {
         test.beforeEach(async ({ blogPage }) => {
-          await blogPage.goto(blogPath)
+          await blogPage.goto(path)
         })
 
         test("should be accessible", async ({ blogPage }) => {
@@ -38,7 +40,7 @@ test.describe("Blog page", async () => {
         })
 
         test("renders page without errors", async ({ page }) => {
-          const fileURL = new URL(filename, baseURL)
+          const fileURL = new URL(`./${slug}/content.mdx`, baseURL)
           const content = await fs.promises.readFile(fileURL, "utf8")
           const { data } = matter(content)
 

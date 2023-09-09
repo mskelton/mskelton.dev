@@ -20,9 +20,3 @@ export const themeEffect = function () {
 
   return result
 }
-
-export function toggleTheme() {
-  const current = themeEffect()
-  localStorage.setItem("theme", current === "dark" ? "light" : "dark")
-  themeEffect()
-}

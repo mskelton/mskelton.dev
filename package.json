@@ -19,6 +19,7 @@
     "ts": "tsc"
   },
   "dependencies": {
+    "@floating-ui/react": "^0.25.4",
     "@headlessui/react": "^1.7.15",
     "@heroicons/react": "^2.0.18",
     "@mdx-js/loader": "^2.3.0",
