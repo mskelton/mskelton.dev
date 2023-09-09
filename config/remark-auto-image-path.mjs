@@ -4,19 +4,20 @@ import { visit } from "unist-util-visit"
 /** Automatically add the directory path to images. */
 export default function remarkAutoImagePath() {
   return (ast, vfile) => {
-    const dir = path.basename(path.dirname(vfile.history[0]))
+    const filename = vfile.history[0]
+    const slug = path.basename(filename, path.extname(filename))
 
     visit(ast, "image", (node) => {
-      node.url = path.join(dir, node.url)
+      node.url = path.join(slug, node.url)
     })
 
     visit(ast, "mdxJsxFlowElement", (node) => {
       if (node.name !== "ImageComparison") return
 
       node.attributes.push({
-        name: "dir",
+        name: "slug",
         type: "mdxJsxAttribute",
-        value: dir,
+        value: slug,
       })
     })
   }

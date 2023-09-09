@@ -7,7 +7,7 @@ import { fileURLToPath } from "url"
 import { ArticleMeta } from "../app/components/layouts/ArticleLayout.js"
 import { siteMeta } from "../app/lib/siteMeta.js"
 
-const baseURL = new URL("../app/(main)/blog/", import.meta.url)
+const baseURL = new URL("../app/(main)/blog/posts/", import.meta.url)
 
 async function readFrontmatter(filename: string) {
   const content = await fs.readFile(new URL(filename, baseURL), "utf8")
@@ -15,13 +15,13 @@ async function readFrontmatter(filename: string) {
 
   return {
     ...(frontmatter.data as ArticleMeta),
-    slug: path.dirname(filename),
+    slug: path.basename(filename, path.extname(filename)),
   }
 }
 
 async function getAllArticles() {
   const cwd = fileURLToPath(baseURL)
-  const filenames = await glob("**/*.mdx", { cwd })
+  const filenames = await glob("*.{md,mdx}", { cwd })
   const articles = await Promise.all(filenames.map(readFrontmatter))
 
   return articles.sort(
