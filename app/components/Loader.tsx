@@ -6,7 +6,7 @@ export default function Loader({ className }: LoaderProps) {
   return (
     <div className={className} role="status">
       <svg
-        className="h-10 w-10 animate-[show_100ms_ease-in_300ms_forwards,spin_2s_linear_infinite] opacity-0"
+        className="h-10 w-10 animate-[show_50ms_ease-in_300ms_forwards,spin_2s_linear_infinite] opacity-0"
         viewBox="0 0 50 50"
       >
         <circle
