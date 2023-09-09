@@ -1,7 +1,10 @@
 {
+  "$schema": "https://openapi.vercel.sh/vercel.json",
   "github": {
     "silent": true
   },
+  "installCommand": "curl -fsSL https://bun.sh/install | bash && ~/.bun/bin/bun install --frozen-lockfile",
+  "buildCommand": "~/.bun/bin/bun run build:rss && ~/.bun/bin/bun run build:vercel",
   "redirects": [
     {
       "source": "/username",
