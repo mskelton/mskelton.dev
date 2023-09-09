@@ -59,10 +59,10 @@ of CLI options that can be passed to this command._
 
 ```bash
 # Run all tests
-bun test
+bun run test
 
 # Run test files matching "home"
-bun test home
+bun run test home
 ```
 
 ## License
