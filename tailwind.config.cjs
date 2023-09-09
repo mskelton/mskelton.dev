@@ -25,6 +25,20 @@ module.exports = {
         "draw-stroke": {
           to: { strokeDashoffset: 0 },
         },
+        dash: {
+          "0%": {
+            strokeDashoffset: 1,
+            strokeDasharray: "1, 150",
+          },
+          "50%": {
+            strokeDashoffset: -35,
+            strokeDasharray: "90, 150",
+          },
+          "100%": {
+            strokeDashoffset: -124,
+            strokeDasharray: "90, 150",
+          },
+        },
       },
     },
     fontSize: {
