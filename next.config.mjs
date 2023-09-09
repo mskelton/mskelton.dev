@@ -14,7 +14,6 @@ import rehypeHeadings from "./config/rehype-headings.mjs"
 import remarkAutoImagePath from "./config/remark-auto-image-path.mjs"
 import remarkCodeTitles from "./config/remark-code-titles.mjs"
 import remarkFrontmatterMetadata from "./config/remark-frontmatter-metadata.mjs"
-import remarkLayout from "./config/remark-layout.mjs"
 
 /** @type {import("next").NextConfig} */
 const nextConfig = {
@@ -53,7 +52,6 @@ const withMDX = nextMDX({
       remarkFrontmatterMetadata,
       remarkFrontmatter,
       [remarkMdxFrontmatter, { name: "meta" }],
-      remarkLayout,
       remarkCodeTitles,
       remarkAutoImagePath,
     ],
