@@ -59,7 +59,7 @@ export function ArticleLayout({
                     </span>
                   </time>
                 ) : (
-                  <Skeleton className="w-40 h-4 rounded">{"\u200b"}</Skeleton>
+                  <Skeleton className="h-4 w-40 rounded">{"\u200b"}</Skeleton>
                 )}
               </div>
             </header>

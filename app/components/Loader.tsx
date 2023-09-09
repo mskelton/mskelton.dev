@@ -10,7 +10,7 @@ export default function Loader({ className }: LoaderProps) {
         viewBox="0 0 50 50"
       >
         <circle
-          className="stroke-indigo-600 animate-[dash_1.5s_ease-in-out_infinite]"
+          className="animate-[dash_1.5s_ease-in-out_infinite] stroke-indigo-600"
           cx="25"
           cy="25"
           fill="none"
