@@ -44,7 +44,6 @@ export function ImageComparison({ one, slug, two }: ImageComparisonProps) {
     onLoad: () => setLoading((count) => count + 1),
     slug,
   }
-  console.log(one, slug)
 
   return (
     <ReactCompareSlider
