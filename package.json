@@ -1,10 +1,9 @@
 {
   "name": "mskelton.dev",
   "description": "Source code for my personal website.",
-  "packageManager": "pnpm@8.7.4",
   "type": "module",
   "scripts": {
-    "build": "prisma generate && pnpm shiki && next build",
+    "build": "prisma generate && bun shiki && next build",
     "build:rss": "ts-node-esm ./scripts/generateRssFeed.ts",
     "db:generate": "prisma generate",
     "db:push": "prisma db push",
@@ -52,7 +51,7 @@
     "remark-mdx-frontmatter": "^3.0.0",
     "remark-parse": "^10.0.2",
     "remark-smartypants": "^2.0.0",
-    "sharp": "^0.32.3",
+    "sharp": "^0.32.5",
     "shiki": "^0.14.3",
     "tailwind-merge": "^1.14.0",
     "tailwindcss": "^3.3.3",
@@ -87,12 +86,5 @@
     "prisma": "^5.2.0",
     "ts-node": "^10.9.1",
     "typescript": "^5.2.2"
-  },
-  "pnpm": {
-    "peerDependencyRules": {
-      "allowAny": [
-        "shiki"
-      ]
-    }
   }
 }
