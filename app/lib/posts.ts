@@ -1,7 +1,7 @@
 import glob from "fast-glob"
 import path from "node:path"
 
-async function getArticle(filename: string) {
+async function getPost(filename: string) {
   const slug = path.basename(filename, path.extname(filename))
 
   // We have to do a bit of a workaround here to ensure that `.mdx` is part of
@@ -15,12 +15,12 @@ async function getArticle(filename: string) {
   return { ...meta, component, slug }
 }
 
-export async function getAllArticles() {
+export async function getAllPosts() {
   const cwd = path.join(process.cwd(), "app/(main)/blog/posts")
   const filenames = await glob("*.mdx", { cwd })
-  const articles = await Promise.all(filenames.map(getArticle))
+  const posts = await Promise.all(filenames.map(getPost))
 
-  return articles.sort(
+  return posts.sort(
     (a, z) => new Date(z.date).getTime() - new Date(a.date).getTime(),
   )
 }

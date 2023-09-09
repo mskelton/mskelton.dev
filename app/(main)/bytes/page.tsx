@@ -9,7 +9,7 @@ import { searchBytes } from "./api"
 
 export const metadata: Metadata = {
   description:
-    "Bytes is my collection of short-form articles, tips, and things I learn as I build software.",
+    "Bytes is my collection of short-form posts, tips, and things I learn as I build software.",
   title: "Bytes | Mark Skelton",
 }
 

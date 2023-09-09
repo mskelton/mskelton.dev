@@ -6,25 +6,25 @@ import { Prose } from "components/Prose"
 import Skeleton from "components/Skeleton"
 import { formatDate } from "lib/date"
 
-export interface ArticleMeta {
+export interface PostMeta {
   date: string
   description: string
   title: string
 }
 
-export interface ArticleLayoutProps {
-  backHref?: string
-  backText?: string
+export interface PostLayoutProps {
+  backHref: string
+  backText: string
   children: React.ReactNode
-  meta?: ArticleMeta
+  meta?: PostMeta
 }
 
-export function ArticleLayout({
-  backHref = "/blog",
-  backText = "Go back to articles",
+export function PostLayout({
+  backHref,
+  backText,
   children,
   meta,
-}: ArticleLayoutProps) {
+}: PostLayoutProps) {
   return (
     <Container className="mt-16 sm:mt-20">
       <div className="xl:relative">

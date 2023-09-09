@@ -1,7 +1,7 @@
 import { ArrowDownIcon, ChevronRightIcon } from "@heroicons/react/20/solid"
 import Link from "next/link"
 import type { SocialLinkProps } from "./(main)/about/page"
-import type { ArticleProps } from "./(main)/blog/page"
+import type { PostProps } from "./(main)/blog/page"
 import { Button } from "./components/Button"
 import { Card } from "./components/Card"
 import { Container } from "./components/Container"
@@ -15,18 +15,18 @@ import { Header } from "./components/root/Header"
 import { HeaderSwoop } from "./components/root/Swoops"
 import { socials } from "./components/SocialIcons"
 import { formatDate } from "./lib/date"
-import { getAllArticles } from "./lib/getAllArticles"
+import { getAllPosts } from "./lib/posts"
 import { siteMeta } from "./lib/siteMeta"
 
-function Article({ article }: ArticleProps) {
+function Post({ post }: PostProps) {
   return (
     <Card as="article">
-      <Card.Title href={`/blog/${article.slug}`}>{article.title}</Card.Title>
-      <Card.Eyebrow as="time" dateTime={article.date} decorate>
-        {formatDate(article.date)}
+      <Card.Title href={`/blog/${post.slug}`}>{post.title}</Card.Title>
+      <Card.Eyebrow as="time" dateTime={post.date} decorate>
+        {formatDate(post.date)}
       </Card.Eyebrow>
 
-      <Card.Description>{article.description}</Card.Description>
+      <Card.Description>{post.description}</Card.Description>
       <Card.Cta>Read post</Card.Cta>
     </Card>
   )
@@ -138,7 +138,7 @@ function Resume() {
 }
 
 export default async function Home() {
-  const articles = (await getAllArticles())
+  const posts = (await getAllPosts())
     .slice(0, 4)
     .map(({ component: _, ...meta }) => meta)
 
@@ -167,8 +167,8 @@ export default async function Home() {
         <Container className="mt-24 md:mt-28">
           <div className="mx-auto grid max-w-xl grid-cols-1 gap-y-20 lg:max-w-none lg:grid-cols-2">
             <div className="flex flex-col gap-16">
-              {articles.map((article) => (
-                <Article key={article.slug} article={article} />
+              {posts.map((post) => (
+                <Post key={post.slug} post={post} />
               ))}
 
               <Button as={Link} href="/blog" variant="secondary">

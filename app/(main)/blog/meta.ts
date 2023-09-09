@@ -1,7 +1,7 @@
 import { Metadata } from "next"
-import type { ArticleMeta } from "components/layouts/ArticleLayout"
+import type { PostMeta } from "components/layouts/PostLayout"
 
-export function getMetadata(meta: ArticleMeta): Metadata {
+export function getMetadata(meta: PostMeta): Metadata {
   return {
     description: meta.description,
     title: `${meta.title} | Mark Skelton`,

@@ -4,7 +4,7 @@ import matter from "gray-matter"
 import fs from "node:fs/promises"
 import path from "node:path"
 import { fileURLToPath } from "url"
-import { ArticleMeta } from "../app/components/layouts/ArticleLayout.js"
+import { PostMeta } from "../app/components/layouts/PostLayout.jsx"
 import { siteMeta } from "../app/lib/siteMeta.js"
 
 const baseURL = new URL("../app/(main)/blog/posts/", import.meta.url)
@@ -14,22 +14,22 @@ async function readFrontmatter(filename: string) {
   const frontmatter = matter(content)
 
   return {
-    ...(frontmatter.data as ArticleMeta),
+    ...(frontmatter.data as PostMeta),
     slug: path.basename(filename, path.extname(filename)),
   }
 }
 
-async function getAllArticles() {
+async function getAllPosts() {
   const cwd = fileURLToPath(baseURL)
   const filenames = await glob("*.{md,mdx}", { cwd })
-  const articles = await Promise.all(filenames.map(readFrontmatter))
+  const posts = await Promise.all(filenames.map(readFrontmatter))
 
-  return articles.sort(
+  return posts.sort(
     (a, z) => new Date(z.date).getTime() - new Date(a.date).getTime(),
   )
 }
 
-const articles = await getAllArticles()
+const posts = await getAllPosts()
 const author = { email: siteMeta.email, name: "Mark Skelton" }
 
 const feed = new Feed({
@@ -47,21 +47,21 @@ const feed = new Feed({
   title: author.name,
 })
 
-for (const article of articles) {
-  const url = `${siteMeta.url}/blog/${article.slug}`
+for (const post of posts) {
+  const url = `${siteMeta.url}/blog/${post.slug}`
   // const html = ReactDOMServer.renderToStaticMarkup(
-  //   createElement(article.component, { isRssFeed: true })
+  //   createElement(post.component, { isRssFeed: true })
   // )
 
   feed.addItem({
     author: [author],
     // content: html,
     contributor: [author],
-    date: new Date(article.date),
-    description: article.description,
-    id: article.slug,
+    date: new Date(post.date),
+    description: post.description,
+    id: post.slug,
     link: url,
-    title: article.title,
+    title: post.title,
   })
 }
 

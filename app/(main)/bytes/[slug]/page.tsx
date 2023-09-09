@@ -1,4 +1,4 @@
-import { ArticleLayout } from "components/layouts/ArticleLayout"
+import { PostLayout } from "components/layouts/PostLayout"
 import { toDateString } from "lib/date"
 import { getByte } from "../api"
 
@@ -21,12 +21,12 @@ export default async function Page({ params }: { params: { slug: string } }) {
   const date = toDateString(createdAt)
 
   return (
-    <ArticleLayout
+    <PostLayout
       backHref="/bytes"
       backText="Go back to bytes"
       meta={{ date, description, title }}
     >
       {content}
-    </ArticleLayout>
+    </PostLayout>
   )
 }

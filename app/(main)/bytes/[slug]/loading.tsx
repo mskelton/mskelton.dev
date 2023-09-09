@@ -1,10 +1,10 @@
-import { ArticleLayout } from "components/layouts/ArticleLayout"
+import { PostLayout } from "components/layouts/PostLayout"
 import Loader from "components/Loader"
 
 export default function ByteLoading() {
   return (
-    <ArticleLayout backHref="/bytes" backText="Go back to bytes">
+    <PostLayout backHref="/bytes" backText="Go back to bytes">
       <Loader className="mt-24 flex flex-col items-center" />
-    </ArticleLayout>
+    </PostLayout>
   )
 }
