@@ -1,9 +1,8 @@
 import clsx from "clsx"
-import { Route } from "next"
 import Link from "next/link"
 import { LinkProps } from "next/link"
 
-export interface NavItemProps extends LinkProps<Route> {
+export interface NavItemProps extends LinkProps {
   children: React.ReactNode
   isActive?: boolean
 }

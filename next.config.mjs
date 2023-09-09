@@ -20,9 +20,6 @@ const nextConfig = {
   eslint: {
     dirs: ["app", "components", "config", "e2e"],
   },
-  experimental: {
-    typedRoutes: true,
-  },
   images: {
     minimumCacheTTL: 3600, // 1 hour
   },

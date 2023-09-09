@@ -1,10 +1,9 @@
 import { Popover } from "@headlessui/react"
-import { Route } from "next"
 import Link from "next/link"
 
 export interface MobileNavItem {
   children: React.ReactNode
-  href: Route
+  href: string
 }
 
 export function MobileNavItem({ children, href }: MobileNavItem) {

@@ -1,7 +1,5 @@
-import { Route } from "next"
-
 interface NavItem {
-  href: Route
+  href: string
   label: string
 }
 

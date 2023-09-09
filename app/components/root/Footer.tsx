@@ -1,6 +1,5 @@
 import { HeartIcon } from "@heroicons/react/20/solid"
 import clsx from "clsx"
-import { Route } from "next"
 import Link from "next/link"
 import { projects } from "../../(main)/projects/projects"
 import { Container } from "../Container"
@@ -24,7 +23,7 @@ function FooterLink({ children, href }: FooterLinkProps) {
     <li>
       <Link
         className="group flex items-center transition hover:text-indigo-500 dark:text-zinc-200 dark:hover:text-indigo-400"
-        href={href as Route}
+        href={href}
         prefetch={false}
       >
         <span className="text-xs">{children}</span>
