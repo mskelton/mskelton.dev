@@ -65,6 +65,15 @@ export function ThemeToggle() {
     setPreference(value)
   }
 
+  function handleClick(e: React.MouseEvent) {
+    // Allow quick switching the theme when holding down cmd/ctrl
+    if (e.metaKey || e.ctrlKey) {
+      e.preventDefault()
+      handleChange(themeEffect() === "dark" ? "light" : "dark")
+      themeEffect()
+    }
+  }
+
   return (
     <Listbox onChange={handleChange} value={preference}>
       {({ open }) => (
@@ -73,6 +82,7 @@ export function ThemeToggle() {
             ref={refs.setReference}
             aria-label="Set website theme"
             as={HeaderIconButton}
+            onClick={handleClick}
           >
             <SunIcon className="dark:hidden" />
             <MoonIcon className="hidden dark:block" />
