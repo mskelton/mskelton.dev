@@ -4,6 +4,7 @@ import Link from "next/link"
 import { Container } from "components/Container"
 import { PageTitle } from "components/PageTitle"
 import { Prose } from "components/Prose"
+import Skeleton from "components/Skeleton"
 import { formatDate } from "lib/date"
 
 export interface ArticleMeta {
@@ -16,7 +17,7 @@ export interface ArticleLayoutProps {
   backHref?: Route
   backText?: string
   children: React.ReactNode
-  meta: ArticleMeta
+  meta?: ArticleMeta
 }
 
 export function ArticleLayout({
@@ -40,15 +41,27 @@ export function ArticleLayout({
 
           <article>
             <header className="flex flex-col">
-              <PageTitle className="mt-6">{meta.title}</PageTitle>
+              {meta ? (
+                <PageTitle className="mt-6">{meta.title}</PageTitle>
+              ) : (
+                <Skeleton className="w-fulll mt-6 h-14" />
+              )}
 
-              <time
-                className="order-first flex items-center text-base text-zinc-500 transition-colors dark:text-zinc-400"
-                dateTime={meta.date}
-              >
-                <span className="h-4 w-0.5 rounded-full bg-zinc-200 transition-colors dark:bg-zinc-500" />
-                <span className="ml-3">{formatDate(meta.date)}</span>
-              </time>
+              <div className="order-first">
+                {meta ? (
+                  <time
+                    className="flex items-center text-base text-zinc-500 transition-colors dark:text-zinc-400"
+                    dateTime={meta.date}
+                  >
+                    <span className="h-4 w-0.5 rounded-full bg-zinc-200 transition-colors dark:bg-zinc-500" />
+                    <span className="ml-3 flex items-center">
+                      {formatDate(meta.date)}
+                    </span>
+                  </time>
+                ) : (
+                  <Skeleton className="w-40 h-4 rounded">{"\u200b"}</Skeleton>
+                )}
+              </div>
             </header>
 
             <Prose className="mt-8">{children}</Prose>
