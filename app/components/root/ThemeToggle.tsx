@@ -93,7 +93,7 @@ export function ThemeToggle() {
             >
               <Listbox.Options
                 ref={refs.setFloating}
-                className="z-[60] mt-2 w-40 rounded-xl bg-white dark:bg-zinc-800 shadow-lg ring-1 ring-zinc-900 ring-opacity-5 focus:outline-none"
+                className="z-[60] mt-2 w-40 rounded-xl bg-white shadow-lg ring-1 ring-zinc-900 ring-opacity-5 focus:outline-none dark:bg-zinc-800"
                 static
                 style={{
                   left: x ?? 0,
@@ -107,7 +107,7 @@ export function ThemeToggle() {
                       key={option.label}
                       className={({ active, selected }) =>
                         twMerge(
-                          "group flex items-center px-4 py-2 text-xs font-medium w-full rounded-lg",
+                          "group flex w-full items-center rounded-lg px-4 py-2 text-xs font-medium",
                           active
                             ? "bg-zinc-100 text-zinc-900 dark:bg-zinc-900 dark:text-zinc-100"
                             : "text-zinc-700 dark:text-zinc-300",

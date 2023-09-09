@@ -10,6 +10,7 @@ class Byte extends Collection {
 export class BytesPage extends BasePage {
   query = this.getByRole("textbox", { name: "Search bytes" })
   clear = this.getByRole("link", { name: "Clear" })
+  searchHint = this.getByTestId("search-hint")
   byte = (title?: string) =>
     this.nest(
       Byte,
