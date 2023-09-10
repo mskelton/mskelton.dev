@@ -12,7 +12,6 @@ out/
 
 # Generated files
 .vscode/
-public/rss/
 
 # Shiki files have to be copied when deploying to Vercel
 lib/shiki/*

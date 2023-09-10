@@ -4,7 +4,6 @@
   "type": "module",
   "scripts": {
     "build": "prisma generate && bun shiki && next build",
-    "build:rss": "bun ./scripts/generateRssFeed.ts",
     "db:generate": "prisma generate",
     "db:push": "prisma db push",
     "db:studio": "prisma studio",
