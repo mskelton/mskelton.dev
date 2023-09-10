@@ -41,7 +41,7 @@ export function Footer({ home }: FooterProps) {
     <footer
       className={clsx(
         home
-          ? "bg-blue-100/50 transition-colors dark:bg-slate-800"
+          ? "bg-blue-100/80 transition-colors dark:bg-slate-800"
           : "mt-16 lg:mt-32",
       )}
     >
