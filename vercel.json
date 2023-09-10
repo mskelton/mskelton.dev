@@ -3,6 +3,8 @@
   "github": {
     "silent": true
   },
+  "installCommand": "./scripts/setup-bun.sh && bun install",
+  "buildCommand": "bun run build:rss && bun run build",
   "redirects": [
     {
       "source": "/username",
