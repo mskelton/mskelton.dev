@@ -1,0 +1,118 @@
+---
+title: Introducing Bytes
+description:
+  I'm proud to unveil Bytes, my collection of short-form posts, tips, and things
+  I learn as I build software! Bytes is a way to document my learnings and share
+  that knowledge with you and in this post I share a bit more about my
+  motivation for creating Bytes, and some of the fun tech stack that powers it.
+date: "2023-10-10"
+---
+
+Today, I'm very proud to unveil [Bytes](/bytes), my collection of short-form
+posts, tips, and things I learn as I build software! I'm super excited about
+this new section of my website both from a technical standpoint as it was a
+great deal of fun to build, but I'm more excited about being able to use Bytes
+to more frequently share small snippets of useful information with you all. To
+kick of this launch, I wanted to write up in a bit more detail both the
+inspiration and reason for building Bytes, but also how I built it to make it
+extremely easy to maintain.
+
+## What is Bytes?
+
+The idea of Bytes is short blog posts that can be written in around 3-5 minutes.
+Typically blog posts take a lot more time to write as they tend to dive more
+deeply into a particular topic and explain it in depth. Bytes on the other hand
+intends to document and share **small learning moments** I have throughout the
+day. This might include such topics as:
+
+- Shell scripts I build to simplify workflows
+- Vim/Neovim tips and tricks
+- Lesser known JavaScript APIs or CSS features
+- How to use Git more effectively
+- And much more!
+
+## Small Learning Moments
+
+The idea of small learning moments is part of my overall philosophy on how to
+improve as a software engineer. Many software engineers will face the same
+challenges over and over again because they do not take the time to improve
+their workflow in small ways, each and every day. Instead of assigning a
+keyboard shortcut to that command you run several times a day in VS Code, you
+keep opening up the command palette, searching for the command, and running it
+manually. You keep typing the same boilerplate for a unit test instead of
+building a snippet to add it with a few keystrokes.
+
+These moments are critically important to improving your developer workflow and
+recognizing them is the first step in the process. One thing I've seen happen
+very consistently with junior and mid level engineers is that they want to
+improve and become more efficient, but they often don't know where to start. I
+understand that feeling, we've all been there! It feels quite daunting when you
+see other engineers who are highly productive and you wonder, "how will I ever"
+become that good?
+
+The truth of the matter is taking advantage of small moments consistently is one
+of the keys to success in software engineering. There is **so** much more I
+would love to say about this, but it's best left to a dedicated post I plan on
+writing in the future. For now, let's move on and talk a bit more about Bytes,
+and how I built it!
+
+## The Tech Stack
+
+My website is built using [Next.js](https://nextjs.org) using the
+[App Router](https://nextjs.org/docs/app/building-your-application/routing) that
+was introduced in Next.js 13. I love the simplicity that React Server Components
+brings apps like my website where you can do data fetching directly in your
+components and let Next.js deal with all the hard stuff. Not having to worry
+about API endpoints, data fetching libraries, and caching makes development feel
+like a dream.
+
+For the majority of my website's content, I use MDX with a fair number of
+plugins, some pre-built and some custom plugins to make it super simple to
+author content for my website. As I was planning on Bytes, I had three main
+goals.
+
+1. Make it effortless to create new bytes in a matter of minutes.
+1. Publish new Bytes without redeploying the entire site.
+1. Make it easy to search through what will become a fairly large collection of
+   content.
+
+With these goals in mind, I decided that it would make the most sense to host
+the content for bytes in a separate repo. These files get indexed into a MySQL
+database (thanks PlanetScale) which makes it very simple to search and reduces
+the dependency on using the GitHub API for requests. Not to mention that
+searching through raw files on GitHub is kind of tricky if you want to build any
+kind of search experience.
+
+Now with the contents of the [bytes](https://github.com/mskelton/bytes) repo
+being indexed to the website, I then setup a webhook so that new commits pushed
+to the would be sent to the website. The website takes these commits, and based
+on what files were added, removed, or modified, updates the database accordingly
+fetching the latest data from GitHub. This worked great, and gives me basically
+immediate publishing anytime I push content to the bytes repo.
+
+I thought about doing this in the main website repo and just ignoring specific
+paths from builds, but I worried that doing so would make it difficult to add or
+update bytes if I'm simultaneously working on a branch that is not yet ready to
+push. This is part of that first goal of making it effortless to add bytes, I
+don't want to think about switching branches, merge conflicts, or any similar
+nonsense. Just let me push content and let it just work.
+
+The last piece of this all is not yet finished, but I'm working on building a
+simple Go CLI tool that will allow me to add bytes directly in the command line.
+Basically it will create a temporary file for you to add the content, then once
+you save and exit your editor (in my case Neovim), it will automatically push
+that byte to the bytes repo which will trigger the webhook.
+
+The beauty of this setup is that even without this CLI tool, I can still add
+bytes since I'm just committing files to a GitHub repo. Plus, I don't need to
+worry about database backups or anything, if for some reason I nuke the database
+I can just run my `bun db:reindex` script which will pull all the content fresh
+from the bytes repo and add it to the database.
+
+## More to Come
+
+I'm super excited to launch bytes today and start this journey with you all!
+While there are only a few bytes published so far, expect many more to come in
+the coming days and weeks. I'm also hoping this will help me to be more active
+in content writing that I can get a few other longer blog posts out the door
+that I've been chewing on for a while. Cheers!

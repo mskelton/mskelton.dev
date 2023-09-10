@@ -22,7 +22,7 @@ export function DesktopNavigation(props: React.HTMLAttributes<HTMLElement>) {
           <NavItem
             key={item.href}
             {...item}
-            isActive={item.href === active}
+            isActive={active?.startsWith(item.href)}
             onClick={() => setLocal(item.href)}
           >
             {item.label}
