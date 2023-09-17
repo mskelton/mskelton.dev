@@ -85,7 +85,7 @@ module.exports = {
             "--tw-prose-code": theme("colors.zinc.300"),
             "--tw-prose-code-bg": theme("colors.zinc.200 / 0.05"),
             "--tw-prose-pre-code": theme("colors.zinc.100"),
-            "--tw-prose-pre-bg": "rgb(0 0 0 / 0.4)",
+            "--tw-prose-pre-bg": theme("colors.zinc.950"),
             "--tw-prose-pre-border": theme("colors.zinc.200 / 0.1"),
             "--tw-prose-kbd": theme("colors.zinc.300"),
             "--tw-prose-kbd-bg": theme("colors.zinc.800"),
@@ -191,6 +191,7 @@ module.exports = {
               fontWeight: theme("fontWeight.semibold"),
             },
             code: {
+              ...transition,
               display: "inline-block",
               color: "var(--tw-prose-code)",
               fontWeight: theme("fontWeight.semibold"),
@@ -286,7 +287,6 @@ module.exports = {
             },
             "pre code": {
               display: "block",
-              color: "inherit",
               fontSize: "inherit",
               padding: theme("spacing.8"),
               overflowX: "auto",
