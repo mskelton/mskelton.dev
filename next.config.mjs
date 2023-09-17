@@ -8,11 +8,12 @@ import remarkMdxFrontmatter from "remark-mdx-frontmatter"
 import remarkSmartypants from "remark-smartypants"
 import shiki from "shiki"
 import rehypeCodeA11y from "./config/rehype-code-a11y.mjs"
+import rehypeCodeMeta from "./config/rehype-code-meta.mjs"
 import rehypeCodeTitles from "./config/rehype-code-titles.mjs"
 import rehypeHeaderId from "./config/rehype-header-id.mjs"
 import rehypeHeadings from "./config/rehype-headings.mjs"
 import remarkAutoImagePath from "./config/remark-auto-image-path.mjs"
-import remarkCodeTitles from "./config/remark-code-titles.mjs"
+import remarkCodeMeta from "./config/remark-code-meta.mjs"
 import remarkFrontmatterMetadata from "./config/remark-frontmatter-metadata.mjs"
 
 /** @type {import("next").NextConfig} */
@@ -41,6 +42,7 @@ const withMDX = nextMDX({
       rehypeHeaderId,
       rehypeCodeTitles,
       [rehypeShiki, { highlighter }],
+      rehypeCodeMeta,
       rehypeCodeA11y,
     ],
     remarkPlugins: [
@@ -49,7 +51,7 @@ const withMDX = nextMDX({
       remarkFrontmatterMetadata,
       remarkFrontmatter,
       [remarkMdxFrontmatter, { name: "meta" }],
-      remarkCodeTitles,
+      remarkCodeMeta,
       remarkAutoImagePath,
     ],
   },

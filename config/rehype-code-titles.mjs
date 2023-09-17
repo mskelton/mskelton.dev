@@ -29,15 +29,20 @@ export default function rehypeCodeTitles() {
       return
     }
 
-    // Extract the language class from the code block to add the titles
     const code = Array.isArray(node.children) ? node.children[0] : node.children
-    const [lang, title] = (code.properties.className || [])
+    const [lang, ...meta] = (code.properties.className || [])
       .filter((cls) => cls.startsWith("language-"))
       .join("")
       .split(":")
 
+    const regex = /{[\d,-]+}/
+    const [title] = meta.filter((cls) => !regex.test(cls))
+
     // Add the language to the code block so Shiki can highlight it
-    code.properties.className = [lang]
+    code.properties.className = [
+      lang,
+      `meta-${meta.filter((cls) => cls !== title).join(":")}`,
+    ]
 
     // Wrap the code block in a div with the title
     parent.children[index] = {
