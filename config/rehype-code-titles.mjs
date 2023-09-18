@@ -25,10 +25,6 @@ function createTitle(title) {
 
 export default function rehypeCodeTitles() {
   const visitor = (node, index, parent) => {
-    if (node.tagName !== "pre") {
-      return
-    }
-
     const code = Array.isArray(node.children) ? node.children[0] : node.children
     const [lang, ...meta] = (code.properties.className || [])
       .filter((cls) => cls.startsWith("language-"))
@@ -37,24 +33,24 @@ export default function rehypeCodeTitles() {
 
     const regex = /{[\d,-]+}/
     const [title] = meta.filter((cls) => !regex.test(cls))
+    const rest = meta.filter((cls) => cls !== title)
 
     // Add the language to the code block so Shiki can highlight it
-    code.properties.className = [
-      lang,
-      `meta-${meta.filter((cls) => cls !== title).join(":")}`,
-    ]
+    code.properties.className = [lang]
 
     // Wrap the code block in a div with the title
     parent.children[index] = {
       children: title ? [createTitle(title), node] : [node],
+      data: {
+        // Add the remaining metadata to the parent div. This is required
+        // since rehype-shiki replaces the pre and code elements.
+        meta: rest,
+      },
       properties: {
         className: [
-          "group",
-          "relative",
-          "mx-0",
-          "sm:-mx-8",
+          "group relative mx-0 sm:-mx-8",
           title ? "has-title pt-12" : "",
-        ],
+        ].filter(Boolean),
       },
       tagName: "div",
       type: "element",
@@ -63,5 +59,10 @@ export default function rehypeCodeTitles() {
     return SKIP
   }
 
-  return (tree) => visit(tree, "element", visitor)
+  return (tree) =>
+    visit(
+      tree,
+      (node) => node.type === "element" && node.tagName === "pre",
+      visitor,
+    )
 }
