@@ -3,19 +3,19 @@ import { PushEvent } from "@octokit/webhooks-types"
 import { upsertByte } from "lib/api/bytes"
 import { getByteSource } from "lib/api/github"
 import { verifySignature } from "lib/api/signature"
-import { toSlug } from "lib/parser"
+import { toId } from "lib/parser"
 import prisma from "lib/prisma"
 
 async function upsert(file: string) {
-  const slug = toSlug(file)
-  return upsertByte(slug, await getByteSource(slug))
+  const id = toId(file)
+  return upsertByte(id, await getByteSource(id))
 }
 
 async function remove(files: string[]) {
-  const slugs = files.map(toSlug)
+  const ids = files.map(toId)
 
   await prisma.byte.deleteMany({
-    where: { slug: { in: slugs } },
+    where: { id: { in: ids } },
   })
 }
 

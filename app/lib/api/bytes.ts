@@ -1,13 +1,17 @@
-import { parseDate } from "lib/date"
-import { getFrontmatter, parseDescription } from "lib/parser"
+import {
+  dateFromId,
+  getFrontmatter,
+  parseDescription,
+  slugify,
+} from "lib/parser"
 import prisma from "lib/prisma"
 
-export async function upsertByte(slug: string, source: string) {
+export async function upsertByte(id: string, source: string) {
   const { content, meta } = getFrontmatter(source)
 
   const data = {
     content: Buffer.from(content, "utf-8"),
-    createdAt: parseDate(meta.date),
+    createdAt: dateFromId(id),
     description: await parseDescription(content),
     tags: {
       connectOrCreate: meta.tags.map((tag) => ({
@@ -19,8 +23,12 @@ export async function upsertByte(slug: string, source: string) {
   }
 
   await prisma.byte.upsert({
-    create: { ...data, slug },
+    create: {
+      ...data,
+      id,
+      slug: slugify(meta.title),
+    },
     update: data,
-    where: { slug },
+    where: { id },
   })
 }

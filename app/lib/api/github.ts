@@ -13,8 +13,8 @@ octokit.hook.error("request", async (error) => {
   throw error
 })
 
-export async function getByteSource(slug: string) {
-  const path = `bytes/${slug}.md`
+export async function getByteSource(id: string) {
+  const path = `bytes/${id}.md`
   const { data } = await octokit.repos.getContent({
     mediaType: { format: "raw" },
     owner: "mskelton",

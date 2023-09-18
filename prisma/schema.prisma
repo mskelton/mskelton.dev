@@ -9,7 +9,7 @@ generator client {
 }
 
 model Byte {
-  id          Int      @id @default(autoincrement())
+  id          String   @id
   slug        String   @unique
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
