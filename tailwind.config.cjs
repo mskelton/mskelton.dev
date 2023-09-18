@@ -286,7 +286,7 @@ module.exports = {
               borderRadius: theme("borderRadius.2xl"),
             },
             "pre code": {
-              display: "block",
+              display: "grid",
               fontSize: "inherit",
               padding: theme("spacing.8"),
               overflowX: "auto",
