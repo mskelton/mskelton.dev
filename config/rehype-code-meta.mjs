@@ -22,6 +22,11 @@ export default function rehypeCodeMeta() {
       pre,
       (t) => t.type === "element" && t.properties?.className?.includes("line"),
       (line, index) => {
+        if (!line.children.length) {
+          // Add a zero-width space to allow highlighting over empty lines
+          line.children.push({ type: "text", value: "\u200b" })
+        }
+
         if (shouldHighlight(index / 2)) {
           line.properties.className ??= []
           line.properties.className.push("highlight")

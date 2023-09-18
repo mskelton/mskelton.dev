@@ -89,7 +89,7 @@ module.exports = {
             "--tw-prose-kbd": theme("colors.zinc.300"),
             "--tw-prose-kbd-bg": theme("colors.zinc.800"),
             "--tw-prose-kbd-borders": theme("colors.zinc.700"),
-            "--tw-prose-hl-bg": theme("colors.slate.800 / 30%"),
+            "--tw-prose-hl-bg": theme("colors.slate.800 / 40%"),
             "--tw-prose-hl-border": theme("colors.indigo.500"),
           },
         },
@@ -115,7 +115,7 @@ module.exports = {
             "--tw-prose-kbd": theme("colors.zinc.700"),
             "--tw-prose-kbd-bg": theme("colors.zinc.50"),
             "--tw-prose-kbd-borders": theme("colors.zinc.200"),
-            "--tw-prose-hl-bg": theme("colors.slate.800 / 50%"),
+            "--tw-prose-hl-bg": theme("colors.slate.800 / 60%"),
             "--tw-prose-hl-border": theme("colors.indigo.500"),
 
             // Base
