@@ -21,8 +21,8 @@ export default function rehypeCodeMeta() {
     visit(
       pre,
       (t) => t.type === "element" && t.properties?.className?.includes("line"),
-      (line, index) => {
-        if (!line.children.length) {
+      (line, index, parent) => {
+        if (!line.children.length && index !== parent.children.length - 1) {
           // Add a zero-width space to allow highlighting over empty lines
           line.children.push({ type: "text", value: "\u200b" })
         }
