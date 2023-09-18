@@ -24,48 +24,6 @@ export const getByte = cache(async (slug: string) => {
     notFound()
   }
 
-  byte.content = `
-    \`\`\`javascript
-    const a = 1
-    const b = 2
-    console.log(a + b)
-
-    const a = 1
-    const b = 2
-    console.log(a + b)
-    \`\`\`
-
-    \`\`\`javascript just-title.js
-    const a = 1
-    const b = 2
-    console.log(a + b)
-
-    const a = 1
-    const b = 2
-    console.log(a + b)
-    \`\`\`
-
-    \`\`\`javascript {1,3-4}
-    const a = 1
-    const b = 2
-    console.log(a + b)
-
-    const a = 1
-    const b = 2
-    console.log(a + b)
-    \`\`\`
-
-    \`\`\`javascript {1, 2-3} title.yml
-    const a = 1
-    const b = 2
-    console.log(a + b)
-
-    const a = 1
-    const b = 2
-    console.log(a + b)
-    \`\`\`
-  `
-
   const { content } = await compileMDX<ByteMeta>({
     options: {
       mdxOptions: {
