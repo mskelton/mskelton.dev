@@ -19,7 +19,11 @@ import { ByteMeta } from "./types"
 export const revalidate = 3600
 
 export const getByte = cache(async (slug: string) => {
-  const byte = await prisma.byte.findUnique({ where: { slug } })
+  const byte = await prisma.byte.findFirst({
+    where: {
+      OR: [{ id: slug }, { slug }],
+    },
+  })
   if (!byte) {
     notFound()
   }
