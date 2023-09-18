@@ -24,7 +24,7 @@ export default function rehypeCodeMeta() {
       (line, index) => {
         if (shouldHighlight(index / 2)) {
           line.properties.className ??= []
-          line.properties.className.push("highlight-line")
+          line.properties.className.push("highlight")
         }
       },
     )

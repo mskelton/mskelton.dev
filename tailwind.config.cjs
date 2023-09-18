@@ -86,10 +86,11 @@ module.exports = {
             "--tw-prose-code-bg": theme("colors.zinc.200 / 0.05"),
             "--tw-prose-pre-code": theme("colors.zinc.100"),
             "--tw-prose-pre-bg": theme("colors.zinc.950"),
-            "--tw-prose-pre-border": theme("colors.zinc.200 / 0.1"),
             "--tw-prose-kbd": theme("colors.zinc.300"),
             "--tw-prose-kbd-bg": theme("colors.zinc.800"),
             "--tw-prose-kbd-borders": theme("colors.zinc.700"),
+            "--tw-prose-hl-bg": theme("colors.slate.800 / 30%"),
+            "--tw-prose-hl-border": theme("colors.indigo.500"),
           },
         },
         DEFAULT: {
@@ -111,10 +112,11 @@ module.exports = {
             "--tw-prose-code-bg": theme("colors.zinc.300 / 0.2"),
             "--tw-prose-pre-code": theme("colors.zinc.100"),
             "--tw-prose-pre-bg": theme("colors.zinc.900"),
-            "--tw-prose-pre-border": "transparent",
             "--tw-prose-kbd": theme("colors.zinc.700"),
             "--tw-prose-kbd-bg": theme("colors.zinc.50"),
             "--tw-prose-kbd-borders": theme("colors.zinc.200"),
+            "--tw-prose-hl-bg": theme("colors.slate.800 / 50%"),
+            "--tw-prose-hl-border": theme("colors.indigo.500"),
 
             // Base
             color: "var(--tw-prose-body)",
@@ -282,8 +284,6 @@ module.exports = {
               fontWeight: theme("fontWeight.medium"),
               backgroundColor: "var(--tw-prose-pre-bg) !important",
               borderRadius: theme("borderRadius.2xl"),
-              border: "1px solid",
-              borderColor: "var(--tw-prose-pre-border)",
             },
             "pre code": {
               display: "block",
@@ -296,6 +296,15 @@ module.exports = {
             },
             ".has-title pre": {
               borderRadius: "0 0 1rem 1rem",
+            },
+            "pre code .line.highlight": {
+              backgroundColor: "var(--tw-prose-hl-bg)",
+              borderColor: "var(--tw-prose-hl-border)",
+              borderLeftWidth: theme("borderWidth.4"),
+              display: "inline-block",
+              marginInline: `calc(${theme("spacing.8")} * -1)`,
+              paddingInline: theme("spacing.8"),
+              width: `calc(100% + ${theme("spacing.16")})`,
             },
 
             // Horizontal rules
