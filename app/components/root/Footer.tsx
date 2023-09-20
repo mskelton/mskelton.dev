@@ -33,20 +33,20 @@ function FooterLink({ children, href }: FooterLinkProps) {
 }
 
 export interface FooterProps {
-  home?: boolean
+  variant?: "home" | "tools"
 }
 
-export function Footer({ home }: FooterProps) {
+export function Footer({ variant }: FooterProps) {
   return (
     <footer
       className={clsx(
-        home
+        variant === "home"
           ? "bg-blue-100/80 transition-colors dark:bg-slate-800"
           : "mt-16 lg:mt-32",
       )}
     >
       <Container.Outer>
-        <div className={clsx("py-10", home && "py-16")}>
+        <div className={clsx("py-10", variant === "home" && "py-16")}>
           <Container.Inner>
             <div className="flex flex-col items-center justify-between gap-6 md:flex-row md:items-start">
               <div className="flex flex-col justify-between self-stretch text-sm text-zinc-800 transition-colors dark:text-zinc-200">

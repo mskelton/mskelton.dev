@@ -144,7 +144,7 @@ export default async function Home() {
 
   return (
     <>
-      <Header home />
+      <Header variant="home" />
 
       <main className="relative z-[60] bg-inherit pb-16 lg:pb-32">
         <div className="absolute -top-16 left-0 right-0 z-50 w-full overflow-hidden">
@@ -185,7 +185,7 @@ export default async function Home() {
         </Container>
       </main>
 
-      <Footer home />
+      <Footer variant="home" />
     </>
   )
 }
