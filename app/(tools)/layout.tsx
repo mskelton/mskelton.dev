@@ -10,7 +10,7 @@ export default function ToolsLayout({ children }: ToolsLayoutProps) {
     <>
       <Header variant="tools" />
       <main className="flex-1">{children}</main>
-      <Footer />
+      <Footer variant="tools" />
     </>
   )
 }

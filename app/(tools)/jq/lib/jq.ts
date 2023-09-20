@@ -9,6 +9,12 @@ declare global {
   }
 }
 
+export type JqResult = {
+  isError: boolean
+  stderr: string | null
+  stdout: string
+}
+
 export function jq(json: string, query: string, options: string[] = []) {
   const { FS, Module, STDERR, STDOUT } = window
   if (!FS) return
@@ -28,6 +34,7 @@ export function jq(json: string, query: string, options: string[] = []) {
   FS.streams[2] = FS.open("/dev/stderr", "w")
 
   return {
+    isError: !!STDERR.length,
     stderr: STDERR.length ? `${STDERR[0]}\n${STDERR[1]}` : null,
     stdout: STDOUT.join("\n"),
   }

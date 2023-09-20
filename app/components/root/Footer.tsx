@@ -33,7 +33,7 @@ function FooterLink({ children, href }: FooterLinkProps) {
 }
 
 export interface FooterProps {
-  variant?: "home" | "tools"
+  variant: "home" | "main" | "tools"
 }
 
 export function Footer({ variant }: FooterProps) {

@@ -8,9 +8,9 @@ export interface MainLayoutProps {
 export default function MainLayout({ children }: MainLayoutProps) {
   return (
     <>
-      <Header />
+      <Header variant="main" />
       <main className="flex-1">{children}</main>
-      <Footer />
+      <Footer variant="main" />
     </>
   )
 }

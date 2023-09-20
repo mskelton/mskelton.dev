@@ -1,17 +1,17 @@
 "use client"
 
+import clsx from "clsx"
 import { useEffect, useState } from "react"
-import { jq } from "./lib/jq"
+import { jq, JqResult } from "./lib/jq"
 
-export default function JQEditor() {
+export default function JqEditor() {
   const [json, setJson] = useState('{ "name": "John", "age": 30 }')
   const [query, setQuery] = useState(".name")
-  const [output, setOutput] = useState("")
+  const [result, setResult] = useState<JqResult>()
 
   useEffect(() => {
     const onReady = () => {
-      const res = jq(json, query)
-      setOutput(res?.stdout ?? "")
+      setResult(jq(json, query))
     }
 
     document.addEventListener("jq-ready", onReady)
@@ -21,8 +21,7 @@ export default function JQEditor() {
   }, [])
 
   useEffect(() => {
-    const res = jq(json, query)
-    setOutput(res?.stdout ?? "")
+    setResult(jq(json, query))
   }, [json, query])
 
   function format(value: string) {
@@ -37,12 +36,14 @@ export default function JQEditor() {
   return (
     <div>
       <textarea
+        className="dark:bg-zinc-950 dark:text-white"
         onChange={(e) => setQuery(e.target.value)}
         style={{ height: "200px", width: "100%" }}
         value={query}
       />
 
       <textarea
+        className="dark:bg-zinc-950 dark:text-white"
         onBlur={(e) => format(e.target.value)}
         onChange={(e) => setJson(e.target.value)}
         onPaste={(e) => {
@@ -55,7 +56,11 @@ export default function JQEditor() {
       />
 
       <div className="text-white">
-        <pre>{output}</pre>
+        {result ? (
+          <pre className={clsx("", result.isError && "dark:text-red-500")}>
+            {result.stdout || result.stderr}
+          </pre>
+        ) : null}
       </div>
     </div>
   )

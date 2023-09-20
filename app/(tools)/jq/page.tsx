@@ -1,26 +1,15 @@
-import Script from "next/script"
-import JQEditor from "./JQEditor"
+import { SimpleLayout } from "components/layouts/SimpleLayout"
+import JqEditor from "./JqEditor"
 
-const init = `
-var STDOUT = [],
-  STDERR = [],
-  FILE_DATA = "/tmp/data.json",
-  Module = {
-    noInitialRun: true,
-    print: stdout => STDOUT.push(stdout),
-    printErr: stderr => STDERR.push(stderr),
-    onRuntimeInitialized: () => {
-      document.dispatchEvent(new Event('jq-ready'));
-    }
-  };
-`
+export const metadata = {
+  description: "jq is a lightweight and flexible command-line JSON processor.",
+  title: "jq | Mark Skelton",
+}
 
 export default function Page() {
   return (
-    <div>
-      <Script src="/jq.js" />
-      <Script id="jq-init">{init}</Script>
-      <JQEditor />
-    </div>
+    <SimpleLayout intro={metadata.description} title="jq">
+      <JqEditor />
+    </SimpleLayout>
   )
 }
