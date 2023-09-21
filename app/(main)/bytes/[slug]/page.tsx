@@ -9,9 +9,10 @@ interface PageProps {
 }
 
 export async function generateMetadata({ params }: PageProps) {
-  const { title } = await getByte(params.slug)
+  const { description, title } = await getByte(params.slug)
 
   return {
+    description,
     title: `${title} | Mark Skelton`,
   }
 }
