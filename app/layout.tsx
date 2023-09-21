@@ -28,6 +28,9 @@ export default function RootLayout({ children }: RootLayoutProps) {
     >
       <head>
         <meta content="width=device-width, initial-scale=1" name="viewport" />
+        <script
+          dangerouslySetInnerHTML={{ __html: `(${themeEffect.toString()})();` }}
+        />
         <link href="/favicon.ico" rel="icon" />
         <link
           href={`${siteMeta.url}/rss/feed.xml`}
@@ -38,9 +41,6 @@ export default function RootLayout({ children }: RootLayoutProps) {
           href={`${siteMeta.url}/rss/feed.json`}
           rel="alternate"
           type="application/feed+json"
-        />
-        <script
-          dangerouslySetInnerHTML={{ __html: `(${themeEffect.toString()})();` }}
         />
       </head>
 
