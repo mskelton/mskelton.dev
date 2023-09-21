@@ -1,7 +1,6 @@
 import "./styles/tailwind.css"
 import { Metadata } from "next"
 import { Rubik } from "next/font/google"
-import { AnalyticsWrapper } from "./components/root/AnalyticsWrapper"
 import { siteMeta } from "./lib/siteMeta"
 import { themeEffect } from "./lib/themeEffect"
 
@@ -47,7 +46,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
 
       <body className="relative flex min-h-full flex-col bg-white transition-colors duration-300 dark:bg-zinc-900">
         {children}
-        <AnalyticsWrapper />
+        {/* <AnalyticsWrapper /> */}
       </body>
     </html>
   )
