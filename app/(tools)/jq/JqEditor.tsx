@@ -2,12 +2,17 @@
 
 import clsx from "clsx"
 import { useEffect, useState } from "react"
+import Editor from "./Editor"
 import { jq, JqResult } from "./lib/jq"
+import { TextareaAutoSize } from "./TextareaAutoSize"
 
 export default function JqEditor() {
-  const [json, setJson] = useState('{ "name": "John", "age": 30 }')
+  const [json, setJson] = useState(
+    JSON.stringify({ age: 30, name: "John Doe" }, null, 2),
+  )
   const [query, setQuery] = useState(".name")
   const [result, setResult] = useState<JqResult>()
+  console.log(result)
 
   useEffect(() => {
     const onReady = () => {
@@ -34,16 +39,15 @@ export default function JqEditor() {
   }
 
   return (
-    <div>
-      <textarea
-        className="dark:bg-zinc-950 dark:text-white"
+    <div className="grid grid-cols-2 gap-4">
+      <Editor
+        as={TextareaAutoSize}
+        className="col-span-2"
         onChange={(e) => setQuery(e.target.value)}
-        style={{ height: "200px", width: "100%" }}
         value={query}
       />
 
-      <textarea
-        className="dark:bg-zinc-950 dark:text-white"
+      <Editor
         onBlur={(e) => format(e.target.value)}
         onChange={(e) => setJson(e.target.value)}
         onPaste={(e) => {

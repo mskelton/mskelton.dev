@@ -57,7 +57,7 @@ export default function About() {
         </div>
 
         <div className="lg:order-first lg:row-span-2">
-          <PageTitle>Hi, I’m Mark 👋</PageTitle>
+          <PageTitle className="mb-12">Hi, I’m Mark 👋</PageTitle>
 
           <div className="space-y-7 text-base text-zinc-600 transition-colors dark:text-zinc-400">
             <Content />
