@@ -6,9 +6,9 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event.deployment_status.state == 'success'
     steps:
-      - uses: mskelton/setup-bun@v1
-      - run: bun playwright install chromium --with-deps
-      - run: bun run test
+      - uses: mskelton/setup-pnpm@v2
+      - run: pnpm playwright install chromium --with-deps
+      - run: pnpm test
         env:
           BASE_URL: ${{ github.event.deployment_status.target_url }}
       - name: Upload test results
