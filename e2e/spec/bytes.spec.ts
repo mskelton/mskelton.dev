@@ -67,12 +67,19 @@ test.describe("Bytes page", async () => {
 
   test.describe("byte page", () => {
     test("should be accessible", async ({ bytesPage }) => {
-      await bytesPage.goto("/applescript-js")
+      await bytesPage.goto("/controlling-browsers-without-applescript")
       await expect(bytesPage.root).toPassAxe()
     })
 
-    test("renders page without errors", async ({ bytesPage, page }) => {
-      await bytesPage.goto("/applescript-js")
+    test("loads byte by id", async ({ bytesPage, page }) => {
+      await bytesPage.goto("/20230903044640")
+      const title = "Controlling Browsers With AppleScript"
+      await expect(page).toHaveTitle(`${title} | Mark Skelton`)
+      await expect(page.locator("h1")).toHaveText(title)
+    })
+
+    test("loads byte by slug", async ({ bytesPage, page }) => {
+      await bytesPage.goto("/controlling-browsers-with-applescript")
       const title = "Controlling Browsers With AppleScript"
       await expect(page).toHaveTitle(`${title} | Mark Skelton`)
       await expect(page.locator("h1")).toHaveText(title)
