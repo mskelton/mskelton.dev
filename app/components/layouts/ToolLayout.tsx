@@ -8,9 +8,9 @@ export interface ToolLayoutProps {
 
 export function ToolLayout({ children, title }: ToolLayoutProps) {
   return (
-    <ToolContainer className="mt-12 sm:mt-10">
+    <ToolContainer className="mt-12 flex flex-1 flex-col sm:mt-10">
       <PageTitle>{title}</PageTitle>
-      <div className="mt-12">{children}</div>
+      <div className="mt-12 flex flex-1 flex-col">{children}</div>
     </ToolContainer>
   )
 }

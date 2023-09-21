@@ -39,7 +39,7 @@ export default function JqEditor() {
   }
 
   return (
-    <div className="grid grid-cols-2 gap-4">
+    <div className="grid flex-1 grid-cols-2 grid-rows-[auto_1fr] gap-4">
       <Editor
         as={TextareaAutoSize}
         className="col-span-2"
@@ -48,6 +48,7 @@ export default function JqEditor() {
       />
 
       <Editor
+        className="h-full min-h-[400px] w-full"
         onBlur={(e) => format(e.target.value)}
         onChange={(e) => setJson(e.target.value)}
         onPaste={(e) => {
@@ -55,17 +56,19 @@ export default function JqEditor() {
             format((e.target as HTMLTextAreaElement).value)
           })
         }}
-        style={{ height: "200px", width: "100%" }}
         value={json}
       />
 
-      <div className="text-white">
-        {result ? (
-          <pre className={clsx("", result.isError && "dark:text-red-500")}>
-            {result.stdout || result.stderr}
-          </pre>
-        ) : null}
-      </div>
+      {result ? (
+        <pre
+          className={clsx(
+            "overflow-x-auto rounded-lg bg-zinc-100 px-4 py-3 font-mono text-sm dark:bg-zinc-950",
+            result.isError ? "dark:text-red-500" : "dark:text-white",
+          )}
+        >
+          {result.stdout || result.stderr}
+        </pre>
+      ) : null}
     </div>
   )
 }
