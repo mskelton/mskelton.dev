@@ -3,7 +3,7 @@ import { AnchorHTMLAttributes } from "react"
 
 export interface LinkProps extends AnchorHTMLAttributes<HTMLAnchorElement> {}
 
-export function MarkdownLink({ href = "#", ...props }: LinkProps) {
+export default function MarkdownLink({ href = "#", ...props }: LinkProps) {
   const isInternalLink = href.startsWith("/")
   const isAnchorLink = href.startsWith("#")
 
