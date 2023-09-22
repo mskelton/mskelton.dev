@@ -5,7 +5,7 @@ export interface MarkdownImageProps {
   src?: string
 }
 
-export async function MarkdownImage({ alt, src }: MarkdownImageProps) {
+export default async function MarkdownImage({ alt, src }: MarkdownImageProps) {
   const image = await import(`../../app/images/blog/${src}`)
 
   return (

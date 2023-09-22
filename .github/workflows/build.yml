@@ -5,17 +5,47 @@ jobs:
     name: Lint
     runs-on: ubuntu-latest
     steps:
-      - uses: mskelton/setup-bun@v1
+      - uses: mskelton/setup-pnpm@v2
       - name: Lint
-        run: bun lint
+        run: pnpm lint
       - name: Check formatting
-        run: bun prettier --check .
+        run: pnpm prettier --check .
   ts:
     name: Type Check
     runs-on: ubuntu-latest
     steps:
-      - uses: mskelton/setup-bun@v1
+      - uses: mskelton/setup-pnpm@v2
       - name: Build
-        run: bun db:generate
+        run: pnpm db:generate
       - name: Type check
-        run: bun ts
+        run: pnpm ts
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: mskelton/setup-pnpm@v2
+      - run: pnpm playwright install chromium --with-deps
+      - run: pnpm db:generate
+      - run: pnpm test
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+      - name: Upload test results
+        uses: actions/upload-artifact@v2
+        if: ${{ failure() }}
+        with:
+          name: test-results
+          path: test-results
+  deploy:
+    name: Deploy
+    if: github.ref == 'refs/heads/main'
+    needs: [lint, ts, test]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Fly
+        uses: superfly/flyctl-actions/setup-flyctl@master
+      - name: Deploy
+        run: flyctl deploy --remote-only
+        env:
+          FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}

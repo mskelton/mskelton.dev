@@ -7,11 +7,11 @@ Welcome to my personal website!
 
 ## Installing
 
-Dependencies are managed with [bun](https://bun.sh) and can be installed with
-the `bun install` command.
+Dependencies are managed with [pnpm](https://pnpm.io) and can be installed with
+the `pnpm install` command.
 
 ```bash
-bun install
+pnpm install
 ```
 
 ## Starting the Dev Server
@@ -20,7 +20,7 @@ To start the dev server on [localhost:3000](http://localhost:3000), run the
 following command.
 
 ```bash
-bun dev
+pnpm dev
 ```
 
 ## Linting
@@ -29,7 +29,7 @@ To lint the project with [ESLint](https://eslint.org), run the following
 command.
 
 ```bash
-bun lint
+pnpm lint
 ```
 
 ## Type Checking
@@ -42,10 +42,10 @@ for a full list of CLI options that can be passed to this command._
 
 ```bash
 # Run TypeScript once
-bun ts
+pnpm ts
 
 # Run TypeScript in watch mode
-bun ts -w
+pnpm ts -w
 ```
 
 ## Testing
@@ -59,10 +59,10 @@ of CLI options that can be passed to this command._
 
 ```bash
 # Run all tests
-bun run test
+pnpm test
 
 # Run test files matching "home"
-bun run test home
+pnpm test home
 ```
 
 ## License

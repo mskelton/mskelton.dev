@@ -16,9 +16,16 @@ const config: PlaywrightTestConfig = {
         "color-contrast": { enabled: false },
       },
     },
-    baseURL: process.env.BASE_URL ?? "http://localhost:3000",
+    baseURL: "http://127.0.0.1:3000",
     screenshot: "only-on-failure",
     trace: "on-first-retry",
+  },
+  webServer: {
+    command: "pnpm dev",
+    reuseExistingServer: !process.env.CI,
+    stderr: "pipe",
+    stdout: "ignore",
+    url: "http://127.0.0.1:3000",
   },
 }
 

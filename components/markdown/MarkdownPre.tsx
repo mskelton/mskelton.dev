@@ -7,7 +7,9 @@ import {
 import { clsx } from "clsx"
 import React, { useRef, useState } from "react"
 
-export function MarkdownPre(props: React.HTMLAttributes<HTMLPreElement>) {
+export default function MarkdownPre(
+  props: React.HTMLAttributes<HTMLPreElement>,
+) {
   const preRef = useRef<HTMLPreElement>(null!)
   const [copied, setCopied] = useState(false)
   const Icon = copied ? ClipboardDocumentCheckIcon : ClipboardDocumentListIcon
