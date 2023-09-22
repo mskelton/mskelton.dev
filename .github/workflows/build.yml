@@ -27,6 +27,8 @@ jobs:
       - run: pnpm playwright install chromium --with-deps
       - run: pnpm db:generate
       - run: pnpm test
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
       - name: Upload test results
         uses: actions/upload-artifact@v2
         if: ${{ failure() }}
