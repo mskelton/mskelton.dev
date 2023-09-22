@@ -38,7 +38,11 @@ export interface ImageComparisonProps {
   two: ReactCompareSliderImageProps
 }
 
-export function ImageComparison({ one, slug, two }: ImageComparisonProps) {
+export default function ImageComparison({
+  one,
+  slug,
+  two,
+}: ImageComparisonProps) {
   const [loaded, setLoading] = useState(0)
   const imageProps = {
     onLoad: () => setLoading((count) => count + 1),
