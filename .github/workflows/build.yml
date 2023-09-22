@@ -19,3 +19,34 @@ jobs:
         run: pnpm db:generate
       - name: Type check
         run: pnpm ts
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: mskelton/setup-pnpm@v2
+      - run: pnpm playwright install chromium --with-deps
+      - run: pnpm test
+        env:
+          BASE_URL: ${{ github.event.deployment_status.target_url }}
+      - name: Upload test results
+        uses: actions/upload-artifact@v2
+        if: ${{ failure() }}
+        with:
+          name: test-results
+          path: test-results
+  publish:
+    name: Publish Docker Image
+    # if: github.ref == 'refs/heads/main'
+    needs: [lint, ts, test]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Build Image
+        run: |
+          docker build . --tag ghcr.io/mskelton/mskelton-dev:latest
+          docker push ghcr.io/mskelton/mskelton-dev:latest

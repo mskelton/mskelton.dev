@@ -20,6 +20,13 @@ const config: PlaywrightTestConfig = {
     screenshot: "only-on-failure",
     trace: "on-first-retry",
   },
+  webServer: {
+    command: "pnpm dev",
+    reuseExistingServer: !process.env.CI,
+    stderr: "pipe",
+    stdout: "ignore",
+    url: "http://0.0.0.0:3000",
+  },
 }
 
 export default config
