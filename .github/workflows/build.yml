@@ -37,8 +37,8 @@ jobs:
           path: test-results
   publish:
     name: Publish Docker Image
-    # if: github.ref == 'refs/heads/main'
-    # needs: [lint, ts, test]
+    if: github.ref == 'refs/heads/main'
+    needs: [lint, ts, test]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
