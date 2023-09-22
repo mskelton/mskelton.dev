@@ -143,8 +143,8 @@ devDependencies:
     specifier: ^7.2.0
     version: 7.3.1
   '@playwright/test':
-    specifier: ^1.37.1
-    version: 1.38.0
+    specifier: ^1.38.1
+    version: 1.38.1
   '@types/mdx':
     specifier: ^2.0.7
     version: 2.0.7
@@ -180,13 +180,13 @@ devDependencies:
     version: 2.10.0(eslint@8.49.0)(typescript@5.2.2)
   expect-axe-playwright:
     specifier: ^4.0.1
-    version: 4.0.1(@playwright/test@1.38.0)
+    version: 4.0.1(@playwright/test@1.38.1)
   gray-matter:
     specifier: ^4.0.3
     version: 4.0.3
   lariat:
     specifier: ^2.0.1
-    version: 2.0.1(@playwright/test@1.38.0)
+    version: 2.0.1(@playwright/test@1.38.1)
   prettier:
     specifier: ^3.0.3
     version: 3.0.3
@@ -877,12 +877,12 @@ packages:
     resolution: {integrity: sha512-u6355ZsZnHwmxen30SrqnYb1pXieBFkYgkNzt+Ed4Ao5tupN1OErHfzwiV6hq6duGkDAYASbq7/uVJQ69PjLEg==}
     dev: true
 
-  /@playwright/test@1.38.0:
-    resolution: {integrity: sha512-xis/RXXsLxwThKnlIXouxmIvvT3zvQj1JE39GsNieMUrMpb3/GySHDh2j8itCG22qKVD4MYLBp7xB73cUW/UUw==}
+  /@playwright/test@1.38.1:
+    resolution: {integrity: sha512-NqRp8XMwj3AK+zKLbZShl0r/9wKgzqI/527bkptKXomtuo+dOjU9NdMASQ8DNC9z9zLOMbG53T4eihYr3XR+BQ==}
     engines: {node: '>=16'}
     hasBin: true
     dependencies:
-      playwright: 1.38.0
+      playwright: 1.38.1
     dev: true
 
   /@prisma/client@5.3.1(prisma@5.3.1):
@@ -915,7 +915,7 @@ packages:
     resolution: {integrity: sha512-5riyvOc6x9iw4obQxuxMZIOP5gAtym5Pp1vghVXkRXgSTdh8aE14viZL1ooXw76hAmi+rXr2HQdnvEUvt1foBA==}
     engines: {node: '>=14.17', yarn: 1.x}
     peerDependencies:
-      shiki: ^0.14.1
+      shiki: '*'
     dependencies:
       hast-util-to-string: 2.0.0
       json5: 2.2.3
@@ -2521,7 +2521,7 @@ packages:
     engines: {node: '>=6'}
     dev: false
 
-  /expect-axe-playwright@4.0.1(@playwright/test@1.38.0):
+  /expect-axe-playwright@4.0.1(@playwright/test@1.38.1):
     resolution: {integrity: sha512-NbEKqZFuZvPXrg4jDp34JrupRIOwF77m+RSF9cfHSmHP2ROgygKNwk9pSGtiBH/vkr/sajrI7OwJ2a0m9hkghg==}
     engines: {node: '>=16.0.0'}
     peerDependencies:
@@ -2530,7 +2530,7 @@ packages:
       '@playwright/test':
         optional: true
     dependencies:
-      '@playwright/test': 1.38.0
+      '@playwright/test': 1.38.1
       axe-core: 4.8.2
       axe-reporter-html: 1.0.0
       isomorphic-resolve: 1.0.0
@@ -3364,12 +3364,12 @@ packages:
       language-subtag-registry: 0.3.22
     dev: true
 
-  /lariat@2.0.1(@playwright/test@1.38.0):
+  /lariat@2.0.1(@playwright/test@1.38.1):
     resolution: {integrity: sha512-OPXr3Dg3RGRs00lsJ+8LMVgv4hTlscWXcpyTSvKmap7W1IPtRHpYtizunnogFCqwiMHxqX/PcR6WPLiPrbiOxQ==}
     peerDependencies:
       '@playwright/test': '>=1.28.0'
     dependencies:
-      '@playwright/test': 1.38.0
+      '@playwright/test': 1.38.1
     dev: true
 
   /lazy-cache@0.2.7:
@@ -4339,18 +4339,18 @@ packages:
     engines: {node: '>= 6'}
     dev: false
 
-  /playwright-core@1.38.0:
-    resolution: {integrity: sha512-f8z1y8J9zvmHoEhKgspmCvOExF2XdcxMW8jNRuX4vkQFrzV4MlZ55iwb5QeyiFQgOFCUolXiRHgpjSEnqvO48g==}
+  /playwright-core@1.38.1:
+    resolution: {integrity: sha512-tQqNFUKa3OfMf4b2jQ7aGLB8o9bS3bOY0yMEtldtC2+spf8QXG9zvXLTXUeRsoNuxEYMgLYR+NXfAa1rjKRcrg==}
     engines: {node: '>=16'}
     hasBin: true
     dev: true
 
-  /playwright@1.38.0:
-    resolution: {integrity: sha512-fJGw+HO0YY+fU/F1N57DMO+TmXHTrmr905J05zwAQE9xkuwP/QLDk63rVhmyxh03dYnEhnRbsdbH9B0UVVRB3A==}
+  /playwright@1.38.1:
+    resolution: {integrity: sha512-oRMSJmZrOu1FP5iu3UrCx8JEFRIMxLDM0c/3o4bpzU5Tz97BypefWf7TuTNPWeCe279TPal5RtPPZ+9lW/Qkow==}
     engines: {node: '>=16'}
     hasBin: true
     dependencies:
-      playwright-core: 1.38.0
+      playwright-core: 1.38.1
     optionalDependencies:
       fsevents: 2.3.2
     dev: true
@@ -4975,7 +4975,7 @@ packages:
   /shiki-renderer-hast@1.1.5(shiki@0.14.4):
     resolution: {integrity: sha512-XOHX0/mIRJZnqPNGoyyJ9bUrqUwj/tLUJQ5SuU/UkQLTiSJjiHaCP17HRB7/VSQoor4+WJF3QkT8BXbipyJN0Q==}
     peerDependencies:
-      shiki: ^0.9 || ^0.10.0
+      shiki: '*'
     dependencies:
       hastscript: 7.2.0
       shiki: 0.14.4
