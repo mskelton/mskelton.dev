@@ -5,6 +5,8 @@
   "packageManager": "pnpm@8.7.6",
   "scripts": {
     "build": "prisma generate && next build",
+    "build:vercel": "pnpm shiki && pnpm build",
+    "shiki": "cp -r ./node_modules/shiki/{languages,themes} ./lib/shiki",
     "db:generate": "prisma generate",
     "db:push": "prisma db push",
     "db:studio": "prisma studio",

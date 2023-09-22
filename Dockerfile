@@ -19,7 +19,7 @@ COPY . .
 
 # Build the app
 RUN cp -r ./node_modules/shiki/languages ./lib/shiki
-RUN cp -r ./node_modules/shiki/languages ./lib/shiki
+RUN cp -r ./node_modules/shiki/themes ./lib/shiki
 RUN yarn build
 
 # Production image, copy all the files and run next
