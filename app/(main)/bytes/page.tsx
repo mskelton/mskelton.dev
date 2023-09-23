@@ -1,11 +1,17 @@
-import { FaceFrownIcon, HashtagIcon } from "@heroicons/react/20/solid"
+import {
+  ChevronLeftIcon,
+  ChevronRightIcon,
+  FaceFrownIcon,
+  HashtagIcon,
+} from "@heroicons/react/20/solid"
 import { Metadata } from "next"
 import Link from "next/link"
 import { Card } from "components/Card"
 import Input from "components/Input"
 import { SimpleLayout } from "components/layouts/SimpleLayout"
 import { formatDate, toDateString } from "lib/date"
-import { searchBytes } from "./api"
+import { Direction, searchBytes } from "./api"
+import PageLink from "./PageLink"
 
 export const metadata: Metadata = {
   description:
@@ -16,10 +22,21 @@ export const metadata: Metadata = {
 export default async function Blog({
   searchParams,
 }: {
-  searchParams: { q?: string; tag?: string }
+  searchParams: {
+    after?: string
+    before?: string
+    q?: string
+    tag?: string
+  }
 }) {
-  const { q: query, tag } = searchParams
-  const bytes = await searchBytes({ query, tag })
+  const { after, before, q: query, tag } = searchParams
+  const direction: Direction = after ? "right" : before ? "left" : "none"
+  const { bytes, nextHref, prevHref } = await searchBytes({
+    cursor: after ?? before,
+    direction,
+    query,
+    tag,
+  })
 
   return (
     <SimpleLayout
@@ -29,6 +46,9 @@ export default async function Blog({
     >
       <div className="w-96 max-w-full">
         <form role="search">
+          {before ? <input name="before" type="hidden" value={before} /> : null}
+          {after ? <input name="after" type="hidden" value={after} /> : null}
+
           <Input
             aria-label="Search bytes"
             className="mt-6 w-full"
@@ -61,7 +81,7 @@ export default async function Blog({
       </div>
 
       {bytes.length ? (
-        <div className="mt-16 space-y-16 sm:mt-20">
+        <div className="mt-16 flex flex-col gap-16 sm:mt-20">
           {bytes.map((byte) => {
             const date = toDateString(byte.createdAt)
 
@@ -97,6 +117,20 @@ export default async function Blog({
               </article>
             )
           })}
+
+          {prevHref || nextHref ? (
+            <div className="mt-12 flex items-center justify-center gap-6">
+              <PageLink href={prevHref}>
+                <ChevronLeftIcon className="h-4 w-4" />
+                Previous page
+              </PageLink>
+
+              <PageLink href={nextHref}>
+                Next page
+                <ChevronRightIcon className="h-4 w-4" />
+              </PageLink>
+            </div>
+          ) : null}
         </div>
       ) : (
         <p className="mx-auto mt-24 flex max-w-xl flex-col items-center text-center text-base text-zinc-600 transition-colors dark:text-zinc-400">
