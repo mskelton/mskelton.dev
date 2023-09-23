@@ -27,6 +27,7 @@ export const getByte = cache(async (slug: string) => {
       OR: [{ id: slug }, { slug }],
     },
   })
+
   if (!byte) {
     notFound()
   }

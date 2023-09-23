@@ -11,7 +11,11 @@ interface PageProps {
 export async function generateMetadata({ params }: PageProps) {
   const { description, title } = await getPost(params.slug)
 
-  return withOpenGraph({ description, title })
+  return withOpenGraph({
+    description,
+    openGraph: { url: `/blog/${params.slug}` },
+    title,
+  })
 }
 
 export default async function Page({ params }: { params: { slug: string } }) {

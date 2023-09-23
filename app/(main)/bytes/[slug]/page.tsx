@@ -10,9 +10,13 @@ interface PageProps {
 }
 
 export async function generateMetadata({ params }: PageProps) {
-  const { description, title } = await getByte(params.slug)
+  const { description, id, title } = await getByte(params.slug)
 
-  return withOpenGraph({ description, title })
+  return withOpenGraph({
+    description,
+    openGraph: { url: `/bytes/${id}` },
+    title,
+  })
 }
 
 export default async function Page({ params }: { params: { slug: string } }) {
