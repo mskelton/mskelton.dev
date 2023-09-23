@@ -7,6 +7,7 @@ import remarkGfm from "remark-gfm"
 import remarkMdxFrontmatter from "remark-mdx-frontmatter"
 import remarkSmartypants from "remark-smartypants"
 import shiki from "shiki"
+import { redirects, rewrites } from "./config/redirects.mjs"
 import rehypeCodeA11y from "./config/rehype-code-a11y.mjs"
 import rehypeCodeMeta from "./config/rehype-code-meta.mjs"
 import rehypeCodeTitles from "./config/rehype-code-titles.mjs"
@@ -27,6 +28,8 @@ const nextConfig = {
   output: process.env.VERCEL ? undefined : "standalone",
   pageExtensions: ["ts", "tsx", "md", "mdx"],
   reactStrictMode: true,
+  redirects: () => Promise.resolve(redirects),
+  rewrites: () => Promise.resolve(rewrites),
 }
 
 const themeURL = new URL("./config/tokyonight.json", import.meta.url)
