@@ -80,7 +80,7 @@ export interface SearchBytesRequest {
   tag?: string
 }
 
-export const PAGE_SIZE = 3
+export const PAGE_SIZE = 10
 
 export const searchBytes = cache(
   async ({ cursor, direction, query, tag }: SearchBytesRequest) => {
