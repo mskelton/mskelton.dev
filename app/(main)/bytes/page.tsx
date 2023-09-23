@@ -46,9 +46,6 @@ export default async function Blog({
     >
       <div className="w-96 max-w-full">
         <form role="search">
-          {before ? <input name="before" type="hidden" value={before} /> : null}
-          {after ? <input name="after" type="hidden" value={after} /> : null}
-
           <Input
             aria-label="Search bytes"
             className="mt-6 w-full"
