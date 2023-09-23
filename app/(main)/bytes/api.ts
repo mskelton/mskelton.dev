@@ -7,6 +7,9 @@ import remarkGfm from "remark-gfm"
 import remarkSmartypants from "remark-smartypants"
 import { getHighlighter } from "lib/mdx"
 import prisma from "lib/prisma"
+import MarkdownImage from "../../../components/markdown/MarkdownImage"
+import MarkdownLink from "../../../components/markdown/MarkdownLink"
+import MarkdownPre from "../../../components/markdown/MarkdownPre"
 import rehypeCodeA11y from "../../../config/rehype-code-a11y.mjs"
 import rehypeCodeMeta from "../../../config/rehype-code-meta.mjs"
 import rehypeCodeTitles from "../../../config/rehype-code-titles.mjs"
@@ -29,6 +32,11 @@ export const getByte = cache(async (slug: string) => {
   }
 
   const { content } = await compileMDX<ByteMeta>({
+    components: {
+      a: MarkdownLink,
+      img: MarkdownImage,
+      pre: MarkdownPre,
+    },
     options: {
       mdxOptions: {
         rehypePlugins: [

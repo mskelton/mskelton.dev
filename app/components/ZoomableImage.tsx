@@ -6,9 +6,17 @@ import Image, { ImageProps } from "next/image"
 import React from "react"
 import Zoom from "react-medium-image-zoom"
 
-export interface ZoomableImageProps extends ImageProps {}
+export interface ZoomableImageProps extends Omit<ImageProps, "src"> {
+  src: string
+}
 
-export default function ZoomableImage({ alt, ...props }: ZoomableImageProps) {
+export default function ZoomableImage({
+  alt,
+  src,
+  ...props
+}: ZoomableImageProps) {
+  const Component = src.startsWith("https://") ? "img" : Image
+
   return (
     <Zoom
       IconZoom={ArrowsPointingOutIcon}
@@ -19,10 +27,11 @@ export default function ZoomableImage({ alt, ...props }: ZoomableImageProps) {
       wrapElement="span"
       zoomMargin={48}
     >
-      <Image
+      <Component
         alt={alt ?? ""}
         className="sm:-mx-8 sm:max-w-[calc(100%+4rem)]"
         placeholder="blur"
+        src={src}
         {...props}
       />
     </Zoom>
