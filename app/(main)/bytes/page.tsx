@@ -118,13 +118,13 @@ export default async function Blog({
           {prevHref || nextHref ? (
             <div className="mt-12 flex items-center justify-center gap-6">
               <PageLink href={prevHref}>
-                <ChevronLeftIcon className="h-4 w-4" />
+                <ChevronLeftIcon className="h-4 w-4 stroke-current" />
                 Previous page
               </PageLink>
 
               <PageLink href={nextHref}>
                 Next page
-                <ChevronRightIcon className="h-4 w-4" />
+                <ChevronRightIcon className="h-4 w-4 stroke-current" />
               </PageLink>
             </div>
           ) : null}

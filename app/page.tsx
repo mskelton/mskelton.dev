@@ -1,4 +1,4 @@
-import { ArrowDownIcon, ChevronRightIcon } from "@heroicons/react/20/solid"
+import { ArrowDownTrayIcon, ChevronRightIcon } from "@heroicons/react/20/solid"
 import Link from "next/link"
 import type { SocialLinkProps } from "./(main)/about/page"
 import type { PostProps } from "./(main)/blog/page"
@@ -131,7 +131,7 @@ function Resume() {
         variant="secondary"
       >
         Download resume
-        <ArrowDownIcon className="h-4 w-4 stroke-zinc-400 transition group-active:stroke-zinc-600 dark:group-hover:stroke-zinc-50 dark:group-active:stroke-zinc-50" />
+        <ArrowDownTrayIcon className="h-4 w-4 stroke-current" />
       </Button>
     </div>
   )
