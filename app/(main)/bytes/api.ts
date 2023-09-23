@@ -114,9 +114,9 @@ export const searchBytes = cache(
     return {
       bytes,
       nextHref:
-        // The next button is enabled when we are moving left, on the root page,
-        // or there are more pages to the right.
-        direction !== "right" || (direction === "right" && hasMore)
+        // The next button is enabled when we are moving left, or there are more
+        // pages to the right.
+        direction === "left" || hasMore
           ? `${prefix}after=${bytes.at(-1)?.id}`
           : undefined,
       prevHref:
