@@ -96,9 +96,15 @@ export const searchBytes = cache(
       // and use the total count to determine if there are more pages. This has
       // to account for the cursor direction as well.
       take: (direction === "left" ? -1 : 1) * (PAGE_SIZE + 1),
+      // Search by tag, or by title/description
       where: {
+        OR: query
+          ? [
+              { title: { contains: query } },
+              { description: { contains: query } },
+            ]
+          : undefined,
         tags: tag ? { some: { name: { equals: tag } } } : undefined,
-        title: query ? { contains: query } : undefined,
       },
     })
 
