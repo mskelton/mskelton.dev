@@ -15,6 +15,7 @@ export function withOpenGraph({
     metadataBase: new URL(siteMeta.url),
     openGraph: {
       description,
+      images: ["/logo.png"],
       locale: "en_US",
       siteName: "Mark Skelton",
       title,
@@ -25,6 +26,7 @@ export function withOpenGraph({
     twitter: {
       card: "summary",
       description,
+      images: ["/logo.png"],
       site: "@mskelton",
       title,
       ...twitter,
