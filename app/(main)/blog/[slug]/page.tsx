@@ -1,4 +1,5 @@
 import { PostLayout } from "components/layouts/PostLayout"
+import { withOpenGraph } from "lib/metadata"
 import { getPost } from "../api"
 
 interface PageProps {
@@ -8,11 +9,9 @@ interface PageProps {
 }
 
 export async function generateMetadata({ params }: PageProps) {
-  const { title } = await getPost(params.slug)
+  const { description, title } = await getPost(params.slug)
 
-  return {
-    title: `${title} | Mark Skelton`,
-  }
+  return withOpenGraph({ description, title })
 }
 
 export default async function Page({ params }: { params: { slug: string } }) {

@@ -1,5 +1,6 @@
 import { PostLayout } from "components/layouts/PostLayout"
 import { toDateString } from "lib/date"
+import { withOpenGraph } from "lib/metadata"
 import { getByte } from "../api"
 
 interface PageProps {
@@ -11,10 +12,7 @@ interface PageProps {
 export async function generateMetadata({ params }: PageProps) {
   const { description, title } = await getByte(params.slug)
 
-  return {
-    description,
-    title: `${title} | Mark Skelton`,
-  }
+  return withOpenGraph({ description, title })
 }
 
 export default async function Page({ params }: { params: { slug: string } }) {
