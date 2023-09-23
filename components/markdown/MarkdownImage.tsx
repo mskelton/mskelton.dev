@@ -1,3 +1,4 @@
+import { isExternalImage } from "lib/image"
 import ZoomableImage from "../../app/components/ZoomableImage"
 
 export interface MarkdownImageProps {
@@ -6,7 +7,7 @@ export interface MarkdownImageProps {
 }
 
 export default async function MarkdownImage({ alt, src }: MarkdownImageProps) {
-  const image = src?.startsWith("https://")
+  const image = isExternalImage(src)
     ? { default: src }
     : await import(`../../app/images/blog/${src}`)
 

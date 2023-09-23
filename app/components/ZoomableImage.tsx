@@ -5,6 +5,7 @@ import { ArrowsPointingOutIcon } from "@heroicons/react/20/solid"
 import Image, { ImageProps } from "next/image"
 import React from "react"
 import Zoom from "react-medium-image-zoom"
+import { isExternalImage } from "lib/image"
 
 export interface ZoomableImageProps extends Omit<ImageProps, "src"> {
   src: string
@@ -15,7 +16,7 @@ export default function ZoomableImage({
   src,
   ...props
 }: ZoomableImageProps) {
-  const Component = src.startsWith("https://") ? "img" : Image
+  const Component = isExternalImage(src) ? "img" : Image
 
   return (
     <Zoom
