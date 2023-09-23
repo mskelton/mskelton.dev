@@ -1,7 +1,8 @@
 import glob from "fast-glob"
 import path from "node:path"
+import { PostMeta } from "components/layouts/PostLayout"
 
-async function getPost(filename: string) {
+async function getPost(filename: string): Promise<PostMeta & { slug: string }> {
   const slug = path.basename(filename, path.extname(filename))
 
   // We have to do a bit of a workaround here to ensure that `.mdx` is part of

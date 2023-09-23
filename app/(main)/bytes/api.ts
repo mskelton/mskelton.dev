@@ -73,6 +73,19 @@ function getPrefix({ query, tag }: Pick<SearchBytesRequest, "query" | "tag">) {
   return `/bytes?${str + (str ? "&" : "")}`
 }
 
+export function getAllBytes() {
+  return prisma.byte.findMany({
+    orderBy: { createdAt: "desc" },
+    select: {
+      createdAt: true,
+      description: true,
+      id: true,
+      slug: true,
+      title: true,
+    },
+  })
+}
+
 export interface SearchBytesRequest {
   cursor?: string
   direction: Direction
@@ -86,8 +99,20 @@ export const searchBytes = cache(
   async ({ cursor, direction, query, tag }: SearchBytesRequest) => {
     const res = await prisma.byte.findMany({
       cursor: cursor ? { id: cursor } : undefined,
-      include: { tags: true },
       orderBy: { createdAt: "desc" },
+      select: {
+        createdAt: true,
+        description: true,
+        id: true,
+        slug: true,
+        tags: {
+          select: {
+            id: true,
+            name: true,
+          },
+        },
+        title: true,
+      },
       // When using a cursor, we want to skip the current record since we don't
       // want it on multiple pages. This doesn't apply when we are on the root
       // page without a cursor.

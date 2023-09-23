@@ -1,14 +1,21 @@
 import { Feed } from "feed"
 import { cache } from "react"
+import { getAllBytes } from "(main)/bytes/api"
+import { parseDate } from "lib/date"
 import { getAllPosts } from "lib/posts"
 import { siteMeta } from "lib/siteMeta"
+
+const author = {
+  email: siteMeta.email,
+  name: "Mark Skelton",
+}
 
 // Revalidate the data at most every hour
 export const revalidate = 3600
 
 export const getFeed = cache(async () => {
   const posts = await getAllPosts()
-  const author = { email: siteMeta.email, name: "Mark Skelton" }
+  const bytes = await getAllBytes()
 
   const feed = new Feed({
     author,
@@ -25,21 +32,35 @@ export const getFeed = cache(async () => {
     title: author.name,
   })
 
-  for (const post of posts) {
-    const url = `${siteMeta.url}/blog/${post.slug}`
-    // const html = ReactDOMServer.renderToStaticMarkup(
-    //   createElement(post.component, { isRssFeed: true })
-    // )
+  feed.addCategory("Blog")
+  feed.addCategory("Bytes")
 
+  const items = [
+    ...posts.map((post) => ({
+      ...post,
+      category: "Blog",
+      date: parseDate(post.date),
+      url: `${siteMeta.url}/blog/${post.slug}`,
+    })),
+    ...bytes.map((byte) => ({
+      ...byte,
+      category: "Bytes",
+      date: byte.createdAt,
+      url: `${siteMeta.url}/bytes/${byte.slug}`,
+    })),
+  ].sort((a, b) => b.date.getTime() - a.date.getTime())
+
+  for (const item of items) {
     feed.addItem({
       author: [author],
-      // content: html,
+      category: [{ name: item.category }],
       contributor: [author],
-      date: new Date(post.date),
-      description: post.description,
-      id: post.slug,
-      link: url,
-      title: post.title,
+      date: new Date(item.date),
+      description: item.description,
+      id: item.slug,
+      link: item.url,
+      published: new Date(item.date),
+      title: item.title,
     })
   }
 
