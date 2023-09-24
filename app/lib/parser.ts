@@ -30,12 +30,8 @@ export function dateFromId(id: string) {
 export function getFrontmatter(source: string) {
   const { content, data } = matter(source)
   const meta = data as ByteMeta
-  const tags = Array.isArray(meta.tags) ? meta.tags : [meta.tags]
 
-  return {
-    content,
-    meta: { ...meta, tags },
-  }
+  return { content, meta }
 }
 
 export async function parseDescription(source: string) {
