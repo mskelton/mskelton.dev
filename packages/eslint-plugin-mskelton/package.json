@@ -1,0 +1,9 @@
+{
+  "name": "eslint-plugin-mskelton",
+  "version": "1.0.0",
+  "type": "commonjs",
+  "main": "index.js",
+  "peerDependencies": {
+    "eslint": "*"
+  }
+}
