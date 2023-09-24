@@ -140,8 +140,8 @@ export const searchBytes = cache(
     // Since we fetch extra records, we need to slice the result to the correct
     // size. Again, we have to account for cursor direction and trim the first
     // or last item accordingly.
-    const start = direction === "left" && hasMore ? 1 : 0
-    const bytes = res.slice(start, start + PAGE_SIZE)
+    const bytes =
+      direction === "left" ? res.slice(-PAGE_SIZE) : res.slice(0, PAGE_SIZE)
 
     return {
       bytes,
