@@ -13,7 +13,7 @@ out/
 # Generated files
 .vscode/
 
-# Shiki files have to be copied when deploying to Vercel
+# Shiki files have to be copied when deploying
 lib/shiki/*
 !lib/shiki/.gitkeep
 

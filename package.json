@@ -5,7 +5,6 @@
   "packageManager": "pnpm@8.7.6",
   "scripts": {
     "build": "prisma generate && next build",
-    "build:vercel": "pnpm shiki && pnpm build",
     "shiki": "cp -r ./node_modules/shiki/{languages,themes} ./lib/shiki",
     "db:generate": "prisma generate",
     "db:push": "prisma db push",
@@ -30,7 +29,6 @@
     "@stefanprobst/rehype-shiki": "^2.2.1",
     "@tailwindcss/container-queries": "^0.1.1",
     "@tailwindcss/typography": "^0.5.9",
-    "@vercel/analytics": "^1.0.1",
     "autoprefixer": "^10.4.14",
     "clsx": "^2.0.0",
     "fast-glob": "^3.3.0",
