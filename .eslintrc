@@ -1,5 +1,10 @@
 {
   "extends": ["@mskelton", "@mskelton/eslint-config/react", "next"],
+  "plugins": ["mskelton"],
+  "rules": {
+    "react/no-unescaped-entities": "off",
+    "mskelton/no-unescaped-quotes": "error"
+  },
   "overrides": [
     {
       "files": "e2e/**",
