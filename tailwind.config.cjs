@@ -201,7 +201,7 @@ module.exports = {
               borderRadius: theme("borderRadius.lg"),
               paddingInline: theme("spacing.2"),
             },
-            "p code": {
+            ":is(p, li) > code": {
               fontSize: theme("fontSize.xs")[0],
               lineHeight: theme("lineHeight.6"),
             },
