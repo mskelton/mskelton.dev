@@ -303,7 +303,10 @@ module.exports = {
               borderLeftWidth: theme("borderWidth.4"),
               display: "inline-block",
               marginInline: `calc(${theme("spacing.8")} * -1)`,
-              paddingInline: theme("spacing.8"),
+              paddingRight: theme("spacing.8"),
+              paddingLeft: `calc(${theme("spacing.8")} - ${theme(
+                "borderWidth.4",
+              )})`,
               width: `calc(100% + ${theme("spacing.16")})`,
             },
 
