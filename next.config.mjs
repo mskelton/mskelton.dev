@@ -25,7 +25,7 @@ const nextConfig = {
   images: {
     minimumCacheTTL: 3600, // 1 hour
   },
-  output: process.env.VERCEL ? undefined : "standalone",
+  output: "standalone",
   pageExtensions: ["ts", "tsx", "md", "mdx"],
   reactStrictMode: true,
   redirects: () => Promise.resolve(redirects),

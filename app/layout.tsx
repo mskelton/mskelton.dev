@@ -46,7 +46,6 @@ export default function RootLayout({ children }: RootLayoutProps) {
 
       <body className="relative flex min-h-full flex-col bg-white transition-colors duration-300 dark:bg-zinc-900">
         {children}
-        {/* <AnalyticsWrapper /> */}
       </body>
     </html>
   )
