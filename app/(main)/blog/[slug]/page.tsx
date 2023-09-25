@@ -1,7 +1,6 @@
 import { PostLayout } from "components/layouts/PostLayout"
 import { withOpenGraph } from "lib/metadata"
-import { getAllPostSlugs } from "lib/posts"
-import { getPost } from "../api"
+import { getAllPostSlugs, getPost } from "lib/posts"
 
 export async function generateStaticParams() {
   const slugs = await getAllPostSlugs()
@@ -25,7 +24,7 @@ export async function generateMetadata({ params }: PageProps) {
 }
 
 export default async function Page({ params }: { params: { slug: string } }) {
-  const { Component, ...meta } = await getPost(params.slug)
+  const { component: Component, ...meta } = await getPost(params.slug)
 
   return (
     <PostLayout backHref="/blog" backText="Go back to posts" meta={meta}>
