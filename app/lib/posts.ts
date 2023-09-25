@@ -8,13 +8,13 @@ interface Post extends PostMeta {
   slug: string
 }
 
-async function getPost(slug: string): Promise<Post> {
+export async function getPost(slug: string): Promise<Post> {
   // We have to do a bit of a workaround here to ensure that `.mdx` is part of
   // the static string in the dynamic import. This is required otherwise the
   // Next.js compiler will assume that other files in the blog directory are
   // being dynamically imported which causes RSC issues with metadata.
   const { default: component, meta } = await import(
-    `../../app/(main)/blog/posts/${slug}.mdx`
+    `../../app/(main)/blog/posts/${slug}/content.mdx`
   )
 
   return { ...meta, component, slug }
@@ -22,9 +22,9 @@ async function getPost(slug: string): Promise<Post> {
 
 export async function getAllPostSlugs() {
   const cwd = path.join(process.cwd(), "app/(main)/blog/posts")
-  const filenames = await glob("*.mdx", { cwd })
+  const filenames = await glob("*/content.mdx", { cwd })
 
-  return filenames.map((file) => path.basename(file, path.extname(file)))
+  return filenames.map((file) => path.basename(path.dirname(file)))
 }
 
 export async function getAllPosts() {
@@ -39,7 +39,7 @@ export async function getAllPosts() {
 export async function getPostImage(slug: string) {
   const imagePath = path.join(
     process.cwd(),
-    `app/(main)/blog/images/${slug}.png`,
+    `app/(main)/blog/${slug}/opengraph-image.png`,
   )
 
   if (await fs.stat(imagePath).catch(() => null)) {

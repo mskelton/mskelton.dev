@@ -21,7 +21,7 @@ async function readFrontmatter(filename: string) {
 
 async function getAllPosts() {
   const cwd = fileURLToPath(baseURL)
-  const filenames = await glob("*.{md,mdx}", { cwd })
+  const filenames = await glob("*/content.{md,mdx}", { cwd })
   const posts = await Promise.all(filenames.map(readFrontmatter))
 
   return posts.sort(

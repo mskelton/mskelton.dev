@@ -40,7 +40,7 @@ test.describe("Blog page", async () => {
         })
 
         test("renders page without errors", async ({ page }) => {
-          const fileURL = new URL(`./posts/${slug}.mdx`, baseURL)
+          const fileURL = new URL(`./posts/${slug}/content.mdx`, baseURL)
           const content = await fs.promises.readFile(fileURL, "utf8")
           const { data } = matter(content)
 

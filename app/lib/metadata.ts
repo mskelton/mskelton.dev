@@ -23,7 +23,7 @@ export function withOpenGraph({
     },
     title,
     twitter: {
-      card: "summary",
+      card: "summary_large_image",
       description,
       site: "@mskelton",
       title,
