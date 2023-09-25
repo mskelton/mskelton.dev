@@ -39,7 +39,7 @@ export async function getAllPosts() {
 export async function getPostImage(slug: string) {
   const imagePath = path.join(
     process.cwd(),
-    `app/(main)/blog/${slug}/opengraph-image.png`,
+    `app/(main)/blog/posts/${slug}/opengraph-image.png`,
   )
 
   if (await fs.stat(imagePath).catch(() => null)) {
