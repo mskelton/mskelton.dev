@@ -46,7 +46,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
           data-domain="mskelton.dev"
           defer
           src="https://plausible.io/js/script.js"
-         />
+        />
       </head>
 
       <body className="relative flex min-h-full flex-col bg-white transition-colors duration-300 dark:bg-zinc-900">
