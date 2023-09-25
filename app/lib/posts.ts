@@ -7,9 +7,7 @@ interface Post extends PostMeta {
   slug: string
 }
 
-async function getPost(filename: string): Promise<Post> {
-  const slug = path.basename(filename, path.extname(filename))
-
+async function getPost(slug: string): Promise<Post> {
   // We have to do a bit of a workaround here to ensure that `.mdx` is part of
   // the static string in the dynamic import. This is required otherwise the
   // Next.js compiler will assume that other files in the blog directory are
@@ -21,10 +19,16 @@ async function getPost(filename: string): Promise<Post> {
   return { ...meta, component, slug }
 }
 
-export async function getAllPosts() {
+export async function getAllPostSlugs() {
   const cwd = path.join(process.cwd(), "app/(main)/blog/posts")
   const filenames = await glob("*.mdx", { cwd })
-  const posts = await Promise.all(filenames.map(getPost))
+
+  return filenames.map((file) => path.basename(file, path.extname(file)))
+}
+
+export async function getAllPosts() {
+  const slugs = await getAllPostSlugs()
+  const posts = await Promise.all(slugs.map(getPost))
 
   return posts.sort(
     (a, z) => new Date(z.date).getTime() - new Date(a.date).getTime(),

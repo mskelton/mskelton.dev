@@ -1,6 +1,12 @@
 import { PostLayout } from "components/layouts/PostLayout"
 import { withOpenGraph } from "lib/metadata"
+import { getAllPostSlugs } from "lib/posts"
 import { getPost } from "../api"
+
+export async function generateStaticParams() {
+  const slugs = await getAllPostSlugs()
+  return slugs.map((slug) => ({ slug }))
+}
 
 interface PageProps {
   params: {
