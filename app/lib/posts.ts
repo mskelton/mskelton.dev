@@ -1,4 +1,5 @@
 import glob from "fast-glob"
+import fs from "node:fs/promises"
 import path from "node:path"
 import { PostMeta } from "components/layouts/PostLayout"
 
@@ -33,4 +34,17 @@ export async function getAllPosts() {
   return posts.sort(
     (a, z) => new Date(z.date).getTime() - new Date(a.date).getTime(),
   )
+}
+
+export async function getPostImage(slug: string) {
+  const imagePath = path.join(
+    process.cwd(),
+    `app/(main)/blog/images/${slug}.png`,
+  )
+
+  if (await fs.stat(imagePath).catch(() => null)) {
+    return fs.readFile(imagePath)
+  }
+
+  return fs.readFile(path.join(process.cwd(), "public/logo.jpg"))
 }
