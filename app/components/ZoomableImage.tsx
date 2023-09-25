@@ -1,6 +1,5 @@
 "use client"
 
-import "./ZoomableImage.css"
 import { ArrowsPointingOutIcon } from "@heroicons/react/20/solid"
 import Image, { ImageProps } from "next/image"
 import React from "react"
