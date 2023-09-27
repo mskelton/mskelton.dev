@@ -14,15 +14,8 @@ export async function generateMetadata({ params }: PageProps) {
 
   return withOpenGraph({
     description,
-    openGraph: {
-      images: ["/logo.jpg"],
-      url: `/bytes/${id}`,
-    },
+    openGraph: { url: `/bytes/${id}` },
     title,
-    twitter: {
-      card: "summary",
-      images: ["/logo.jpg"],
-    },
   })
 }
 
