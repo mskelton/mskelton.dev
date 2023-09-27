@@ -20,6 +20,7 @@ export async function generateMetadata({ params }: PageProps) {
     },
     title,
     twitter: {
+      card: "summary",
       images: ["/logo.jpg"],
     },
   })
