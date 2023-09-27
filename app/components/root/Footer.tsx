@@ -1,7 +1,6 @@
 import { HeartIcon } from "@heroicons/react/20/solid"
 import clsx from "clsx"
 import Link from "next/link"
-import ToolContainer from "components/ToolContainer"
 import { projects } from "../../(main)/projects/projects"
 import { Container } from "../Container"
 import { socials } from "../SocialIcons"
@@ -34,12 +33,10 @@ function FooterLink({ children, href }: FooterLinkProps) {
 }
 
 export interface FooterProps {
-  variant: "home" | "main" | "tools"
+  variant: "home" | "main"
 }
 
 export function Footer({ variant }: FooterProps) {
-  const Contain = variant === "tools" ? ToolContainer : Container
-
   return (
     <footer
       className={clsx(
@@ -48,7 +45,7 @@ export function Footer({ variant }: FooterProps) {
           : "mt-16 lg:mt-32",
       )}
     >
-      <Contain>
+      <Container>
         <div className={clsx("py-10", variant === "home" && "py-16")}>
           <div className="flex flex-col items-center justify-between gap-6 md:flex-row md:items-start">
             <div className="flex flex-col justify-between self-stretch text-sm text-zinc-800 transition-colors dark:text-zinc-200">
@@ -104,7 +101,7 @@ export function Footer({ variant }: FooterProps) {
             <Copyright className="mt-4 block md:hidden" />
           </div>
         </div>
-      </Contain>
+      </Container>
     </footer>
   )
 }

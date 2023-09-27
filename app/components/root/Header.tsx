@@ -1,6 +1,5 @@
 import Link from "next/link"
 import { twMerge } from "tailwind-merge"
-import ToolContainer from "components/ToolContainer"
 import { Container } from "../Container"
 import { GitHubIcon } from "../SocialIcons"
 import { CursiveName } from "./CursiveName"
@@ -10,12 +9,10 @@ import { MobileNavigation } from "./MobileNavigation"
 import { ThemeToggle } from "./ThemeToggle"
 
 export interface HeaderProps {
-  variant: "home" | "main" | "tools"
+  variant: "home" | "main"
 }
 
 export function Header({ variant }: HeaderProps) {
-  const Contain = variant === "tools" ? ToolContainer : Container
-
   return (
     <header
       className={twMerge(
@@ -23,11 +20,10 @@ export function Header({ variant }: HeaderProps) {
         variant === "home"
           ? "top-0 h-40 bg-gradient-to-b from-blue-100/80 to-blue-200/80 before:absolute before:inset-0 before:z-[-1] before:bg-gradient-to-b before:from-slate-900/90 before:to-slate-800/90 before:opacity-0 before:transition-opacity before:duration-300 dark:before:opacity-100 lg:h-60"
           : "flex h-full flex-col bg-white pb-2 transition-colors duration-300 dark:bg-zinc-900",
-        variant === "main" && "-top-6 ",
-        variant === "tools" && "pt-2",
+        variant === "main" && "-top-6",
       )}
     >
-      <Contain className="w-full">
+      <Container className="w-full">
         <div className="relative flex items-center gap-4">
           <Link className="mt-1.5" href="/">
             <CursiveName
@@ -53,7 +49,7 @@ export function Header({ variant }: HeaderProps) {
             <MobileNavigation className="lg:hidden" />
           </div>
         </div>
-      </Contain>
+      </Container>
     </header>
   )
 }
