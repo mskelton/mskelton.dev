@@ -1,4 +1,4 @@
-import { ArrowDownTrayIcon, ChevronRightIcon } from "@heroicons/react/20/solid"
+import { ChevronRightIcon } from "@heroicons/react/20/solid"
 import Link from "next/link"
 import type { SocialLinkProps } from "./(main)/about/page"
 import type { PostProps } from "./(main)/blog/page"
@@ -124,14 +124,13 @@ function Resume() {
       </ol>
 
       <Button
-        as="a"
+        as={Link}
         className="group mt-6 w-full"
-        download
-        href="/mark-skelton.pdf"
+        href="/resume"
         variant="secondary"
       >
-        Download resume
-        <ArrowDownTrayIcon className="h-4 w-4 stroke-current" />
+        View Resume
+        <ChevronRightIcon className="h-5 w-5" />
       </Button>
     </div>
   )

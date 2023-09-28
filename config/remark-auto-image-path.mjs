@@ -8,7 +8,9 @@ export default function remarkAutoImagePath() {
     const slug = path.basename(path.dirname(filename))
 
     visit(ast, "image", (node) => {
-      node.url = path.join(slug, node.url)
+      if (!node.url.startsWith("https://")) {
+        node.url = path.join(slug, node.url)
+      }
     })
 
     visit(ast, "mdxJsxFlowElement", (node) => {
