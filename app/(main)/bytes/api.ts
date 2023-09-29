@@ -10,6 +10,7 @@ import prisma from "lib/prisma"
 import MarkdownImage from "../../../components/markdown/MarkdownImage"
 import MarkdownLink from "../../../components/markdown/MarkdownLink"
 import MarkdownPre from "../../../components/markdown/MarkdownPre"
+import rehypeCallout from "../../../config/rehype-callout.mjs"
 import rehypeCodeA11y from "../../../config/rehype-code-a11y.mjs"
 import rehypeCodeMeta from "../../../config/rehype-code-meta.mjs"
 import rehypeCodeTitles from "../../../config/rehype-code-titles.mjs"
@@ -48,6 +49,7 @@ export const getByte = cache(async (slug: string) => {
           [rehypeShiki, { highlighter: await getHighlighter() }],
           rehypeCodeMeta,
           rehypeCodeA11y,
+          rehypeCallout,
         ],
         remarkPlugins: [remarkGfm, remarkSmartypants as any, remarkCodeMeta],
       },
