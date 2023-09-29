@@ -19,25 +19,6 @@ import rehypeHeadings from "../../../config/rehype-headings.mjs"
 import remarkCodeMeta from "../../../config/remark-code-meta.mjs"
 import { ByteMeta } from "./types"
 
-const byteContent = `
-Using bold to emphasize text is great in certain scenarios, but it can be
-difficult to distinguish bold text from normal text, especially in dark mode.
-
-One great way to improve the readability of bold text is to give it a different
-color. Yep, it's sometimes that simple! In the case of a dark background, muting
-the body text color to a slightly darker white and keeping the bold color a pure
-white can really help to make the bold text pop and be very easy to distinguish
-at a glance.
-
-> [!ERROR Something]  
-> The same principle applies in light mode, except you would make the bold text a
-> darker black than the body text.
-
-I've used this trick on my website for some time now, and as you can **see
-here**, it works great!
-
-`.trim()
-
 // Revalidate the data at most every hour
 export const revalidate = 3600
 
@@ -73,7 +54,7 @@ export const getByte = cache(async (slug: string) => {
         remarkPlugins: [remarkGfm, remarkSmartypants as any, remarkCodeMeta],
       },
     },
-    source: byteContent,
+    source: byte.content,
   })
 
   return { ...byte, content }
