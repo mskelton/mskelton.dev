@@ -7,7 +7,6 @@ import remarkGfm from "remark-gfm"
 import remarkMdxFrontmatter from "remark-mdx-frontmatter"
 import remarkSmartypants from "remark-smartypants"
 import shiki from "shiki"
-import remarkAdmonitions from "remark-admonitions"
 import { redirects, rewrites } from "./config/redirects.mjs"
 import rehypeCodeA11y from "./config/rehype-code-a11y.mjs"
 import rehypeCodeMeta from "./config/rehype-code-meta.mjs"
@@ -58,7 +57,6 @@ const withMDX = nextMDX({
       [remarkMdxFrontmatter, { name: "meta" }],
       remarkCodeMeta,
       remarkAutoImagePath,
-      remarkAdmonitions,
     ],
   },
 })
