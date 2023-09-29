@@ -7,6 +7,7 @@ import remarkGfm from "remark-gfm"
 import remarkSmartypants from "remark-smartypants"
 import { getHighlighter } from "lib/mdx"
 import prisma from "lib/prisma"
+import remarkAdmonitions from "remark-admonitions"
 import MarkdownImage from "../../../components/markdown/MarkdownImage"
 import MarkdownLink from "../../../components/markdown/MarkdownLink"
 import MarkdownPre from "../../../components/markdown/MarkdownPre"
@@ -49,7 +50,12 @@ export const getByte = cache(async (slug: string) => {
           rehypeCodeMeta,
           rehypeCodeA11y,
         ],
-        remarkPlugins: [remarkGfm, remarkSmartypants as any, remarkCodeMeta],
+        remarkPlugins: [
+          remarkGfm,
+          remarkSmartypants as any,
+          remarkCodeMeta,
+          remarkAdmonitions,
+        ],
       },
     },
     source: byte.content,
