@@ -115,7 +115,7 @@
   image-rendering: high-quality;
   transform-origin: top left;
   transition: transform 0.3s;
-  border-radius: 1.5rem;
+  border-radius: 0.75rem;
 }
 
 @media (prefers-reduced-motion: reduce) {

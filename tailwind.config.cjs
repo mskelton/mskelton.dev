@@ -155,7 +155,7 @@ module.exports = {
 
             // Images
             img: {
-              borderRadius: theme("borderRadius.3xl"),
+              borderRadius: theme("borderRadius.xl"),
             },
 
             // Links
@@ -283,7 +283,7 @@ module.exports = {
               fontSize: theme("fontSize.sm")[0],
               fontWeight: theme("fontWeight.medium"),
               backgroundColor: "var(--tw-prose-pre-bg) !important",
-              borderRadius: theme("borderRadius.2xl"),
+              borderRadius: theme("borderRadius.xl"),
             },
             "pre code": {
               display: "grid",
