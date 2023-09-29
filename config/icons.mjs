@@ -12,7 +12,6 @@ export const info = {
     },
   ],
   properties: {
-    class: "w-6 h-6",
     fill: "none",
     stroke: "currentColor",
     "stroke-width": "1.5",
@@ -37,7 +36,6 @@ export const warn = {
     },
   ],
   properties: {
-    class: "w-6 h-6",
     fill: "none",
     stroke: "currentColor",
     "stroke-width": "1.5",
@@ -62,7 +60,6 @@ export const error = {
     },
   ],
   properties: {
-    class: "w-6 h-6",
     fill: "none",
     stroke: "currentColor",
     "stroke-width": "1.5",
