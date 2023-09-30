@@ -18,7 +18,7 @@ export default function rehypeShiki({ highlighter }) {
           node.children[0].properties.className[0].startsWith("language-")
         )
       },
-      (node, index, parent) => {
+      (node) => {
         const code = toText(node).slice(0, -1)
         const language = node.children[0].properties.className[0]
           .split("language-")
@@ -31,41 +31,27 @@ export default function rehypeShiki({ highlighter }) {
           return
         }
 
-        parent.children[index] = {
-          children: [
-            {
-              children: output.map((line) => ({
-                children: line.map((token) => ({
-                  children: [
-                    {
-                      type: "text",
-                      value: token.content,
-                    },
-                  ],
-                  properties: {
-                    style: `color: ${token.color};`,
-                  },
-                  tagName: "span",
-                  type: "element",
-                })),
-                properties: {
-                  className: ["line"],
-                },
-                tagName: "span",
-                type: "element",
-              })),
-              tagName: "code",
-              type: "element",
-            },
-          ],
-          properties: {
-            className: ["shiki"],
-            style: `background-color: ${highlighter.getBackgroundColor()};`,
-            tabindex: 0,
-          },
-          tagName: "pre",
+        // Add properties to the pre tag
+        node.properties ??= {}
+        node.properties.className ??= []
+        node.properties.className.push("shiki")
+        node.properties.tabindex = 0
+
+        node.children[0].children = output.map((line) => ({
           type: "element",
-        }
+          tagName: "span",
+          properties: {
+            className: ["line"],
+          },
+          children: line.map((token) => ({
+            type: "element",
+            tagName: "span",
+            properties: {
+              style: `color: ${token.color};`,
+            },
+            children: [{ type: "text", value: token.content }],
+          })),
+        }))
 
         return SKIP
       },

@@ -15,11 +15,13 @@ function calculateLinesToHighlight(meta) {
 }
 
 export default function rehypeCodeMeta() {
-  const visitor = (pre, _, parent) => {
-    const shouldHighlight = calculateLinesToHighlight(parent.data.meta)
+  const visitor = (node) => {
+    const shouldHighlight = calculateLinesToHighlight(
+      node.data?.attributes ?? [],
+    )
 
     visit(
-      pre,
+      node,
       (t) => t.type === "element" && t.properties?.className?.includes("line"),
       (line, index, parent) => {
         if (!line.children.length && index !== parent.children.length - 1) {

@@ -15,7 +15,6 @@ import rehypeCodeTitles from "../../../config/rehype-code-titles.mjs"
 import rehypeHeaderId from "../../../config/rehype-header-id.mjs"
 import rehypeHeadings from "../../../config/rehype-headings.mjs"
 import rehypeShiki from "../../../config/rehype-shiki.mjs"
-import remarkCodeMeta from "../../../config/remark-code-meta.mjs"
 import { ByteMeta } from "./types"
 
 // Revalidate the data at most every hour
@@ -49,7 +48,7 @@ export const getByte = cache(async (slug: string) => {
           rehypeCodeMeta,
           rehypeCallout,
         ],
-        remarkPlugins: [remarkGfm, remarkSmartypants as any, remarkCodeMeta],
+        remarkPlugins: [remarkGfm, remarkSmartypants as any],
       },
     },
     source: byte.content,

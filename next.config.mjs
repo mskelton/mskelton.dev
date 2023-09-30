@@ -14,7 +14,6 @@ import rehypeHeaderId from "./config/rehype-header-id.mjs"
 import rehypeHeadings from "./config/rehype-headings.mjs"
 import rehypeShiki from "./config/rehype-shiki.mjs"
 import remarkAutoImagePath from "./config/remark-auto-image-path.mjs"
-import remarkCodeMeta from "./config/remark-code-meta.mjs"
 import remarkDemo from "./config/remark-demo.mjs"
 import remarkFrontmatterMetadata from "./config/remark-frontmatter-metadata.mjs"
 
@@ -56,7 +55,6 @@ const withMDX = nextMDX({
       remarkFrontmatterMetadata,
       remarkFrontmatter,
       [remarkMdxFrontmatter, { name: "meta" }],
-      remarkCodeMeta,
       remarkAutoImagePath,
       remarkDemo,
     ],
