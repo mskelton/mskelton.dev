@@ -1,4 +1,6 @@
 /* eslint-disable sort/object-properties */
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const plugin = require("tailwindcss/plugin")
 
 /** @type {import("tailwindcss").Config} */
 module.exports = {
@@ -12,6 +14,17 @@ module.exports = {
   plugins: [
     require("@tailwindcss/typography"),
     require("@tailwindcss/container-queries"),
+    plugin(({ matchUtilities, theme }) => {
+      matchUtilities(
+        {
+          s: (value) => ({
+            height: value,
+            width: value,
+          }),
+        },
+        { values: theme("width") },
+      )
+    }),
   ],
   theme: {
     extend: {
@@ -20,6 +33,8 @@ module.exports = {
       },
       animation: {
         "draw-stroke": "300ms ease-in-out 700ms forwards draw-stroke",
+        heartbeat:
+          "1s ease-in-out 0s infinite alternate none running heartbeat",
       },
       keyframes: {
         "draw-stroke": {
@@ -38,6 +53,10 @@ module.exports = {
             strokeDashoffset: -124,
             strokeDasharray: "90, 150",
           },
+        },
+        heartbeat: {
+          from: { transform: "scale(1)" },
+          to: { transform: "scale(1.1)" },
         },
         show: {
           from: { opacity: 0 },
@@ -278,6 +297,12 @@ module.exports = {
             },
 
             // Code blocks
+            ".code-block:not(.demo)": {
+              marginInline: 0,
+              "@screen sm": {
+                marginInline: `calc(${theme("spacing.8")} * -1)`,
+              },
+            },
             pre: {
               color: "var(--tw-prose-pre-code)",
               fontSize: theme("fontSize.sm")[0],
