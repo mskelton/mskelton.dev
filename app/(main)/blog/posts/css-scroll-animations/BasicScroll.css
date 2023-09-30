@@ -1,0 +1,29 @@
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.scroll-parent {
+  height: 320px;
+  overflow-y: scroll;
+  position: relative;
+}
+
+.scroll-area {
+  height: 1200px;
+}
+
+.box {
+  --size: 120px;
+  animation: rotate linear;
+  aspect-ratio: 1;
+  left: calc(50% - var(--size) / 2);
+  top: calc(50% - var(--size) / 2);
+  animation-timeline: scroll();
+  position: sticky;
+  width: var(--size);
+}
