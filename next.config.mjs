@@ -1,5 +1,4 @@
 import nextMDX from "@next/mdx"
-import rehypeShiki from "@stefanprobst/rehype-shiki"
 import { fileURLToPath } from "node:url"
 import rehypeSlug from "rehype-slug"
 import remarkFrontmatter from "remark-frontmatter"
@@ -9,13 +8,14 @@ import remarkSmartypants from "remark-smartypants"
 import shiki from "shiki"
 import { redirects, rewrites } from "./config/redirects.mjs"
 import rehypeCallout from "./config/rehype-callout.mjs"
-import rehypeCodeA11y from "./config/rehype-code-a11y.mjs"
 import rehypeCodeMeta from "./config/rehype-code-meta.mjs"
 import rehypeCodeTitles from "./config/rehype-code-titles.mjs"
 import rehypeHeaderId from "./config/rehype-header-id.mjs"
 import rehypeHeadings from "./config/rehype-headings.mjs"
+import rehypeShiki from "./config/rehype-shiki.mjs"
 import remarkAutoImagePath from "./config/remark-auto-image-path.mjs"
 import remarkCodeMeta from "./config/remark-code-meta.mjs"
+import remarkDemo from "./config/remark-demo.mjs"
 import remarkFrontmatterMetadata from "./config/remark-frontmatter-metadata.mjs"
 
 /** @type {import("next").NextConfig} */
@@ -48,7 +48,6 @@ const withMDX = nextMDX({
       rehypeCodeTitles,
       [rehypeShiki, { highlighter }],
       rehypeCodeMeta,
-      rehypeCodeA11y,
       rehypeCallout,
     ],
     remarkPlugins: [
@@ -59,6 +58,7 @@ const withMDX = nextMDX({
       [remarkMdxFrontmatter, { name: "meta" }],
       remarkCodeMeta,
       remarkAutoImagePath,
+      remarkDemo,
     ],
   },
 })

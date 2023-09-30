@@ -1,4 +1,3 @@
-import rehypeShiki from "@stefanprobst/rehype-shiki"
 import { notFound } from "next/navigation"
 import { compileMDX } from "next-mdx-remote/rsc"
 import { cache } from "react"
@@ -11,11 +10,11 @@ import MarkdownImage from "../../../components/markdown/MarkdownImage"
 import MarkdownLink from "../../../components/markdown/MarkdownLink"
 import MarkdownPre from "../../../components/markdown/MarkdownPre"
 import rehypeCallout from "../../../config/rehype-callout.mjs"
-import rehypeCodeA11y from "../../../config/rehype-code-a11y.mjs"
 import rehypeCodeMeta from "../../../config/rehype-code-meta.mjs"
 import rehypeCodeTitles from "../../../config/rehype-code-titles.mjs"
 import rehypeHeaderId from "../../../config/rehype-header-id.mjs"
 import rehypeHeadings from "../../../config/rehype-headings.mjs"
+import rehypeShiki from "../../../config/rehype-shiki.mjs"
 import remarkCodeMeta from "../../../config/remark-code-meta.mjs"
 import { ByteMeta } from "./types"
 
@@ -48,7 +47,6 @@ export const getByte = cache(async (slug: string) => {
           rehypeCodeTitles,
           [rehypeShiki, { highlighter: await getHighlighter() }],
           rehypeCodeMeta,
-          rehypeCodeA11y,
           rehypeCallout,
         ],
         remarkPlugins: [remarkGfm, remarkSmartypants as any, remarkCodeMeta],
