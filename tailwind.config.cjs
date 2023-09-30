@@ -310,6 +310,10 @@ module.exports = {
               backgroundColor: "var(--tw-prose-pre-bg) !important",
               borderRadius: theme("borderRadius.xl"),
             },
+            "pre.demo": {
+              borderTopLeftRadius: 0,
+              borderTopRightRadius: 0,
+            },
             "pre code": {
               display: "grid",
               fontSize: "inherit",

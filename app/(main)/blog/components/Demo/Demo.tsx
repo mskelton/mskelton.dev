@@ -51,7 +51,14 @@ export default function Demo({
         raw={raw}
       />
 
-      {isExpanded && <div>{source}</div>}
+      <div
+        className={clsx(
+          "grid max-h-96 transition-[grid-template-rows]",
+          isExpanded ? "grid-rows-[1fr]" : "grid-rows-[0fr]",
+        )}
+      >
+        <div className="overflow-auto rounded-b-xl">{source}</div>
+      </div>
     </div>
   )
 }
