@@ -82,6 +82,7 @@
     "gray-matter": "^4.0.3",
     "lariat": "^2.0.1",
     "prettier": "^3.0.3",
+    "prettier-plugin-css-order": "^2.0.0",
     "prettier-plugin-jsdoc": "^1.0.1",
     "prettier-plugin-tailwindcss": "^0.5.4",
     "prisma": "^5.2.0",
