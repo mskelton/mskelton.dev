@@ -37,13 +37,22 @@ export default function MarkdownPre({
     <>
       <pre
         ref={preRef}
-        className={clsx(isExpanded ? "expanded" : "collapsed", className)}
+        className={clsx(
+          !hasFocus ? undefined : isExpanded ? "expanded" : "collapsed",
+          className,
+        )}
         {...props}
       />
 
-      <button onClick={() => setIsExpanded(!isExpanded)} type="button">
-        Expand
-      </button>
+      {hasFocus ? (
+        <button
+          className="absolute right-6 top-3 rounded-md bg-zinc-900 px-2 text-xs text-white transition-colors hover:bg-zinc-950"
+          onClick={() => setIsExpanded(!isExpanded)}
+          type="button"
+        >
+          {isExpanded ? "Collapse code" : "Expand code"}
+        </button>
+      ) : null}
 
       <button
         aria-label={copied ? "Copied" : "Copy code"}

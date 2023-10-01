@@ -342,7 +342,7 @@ module.exports = {
               )})`,
               width: `calc(100% + ${theme("spacing.16")})`,
             },
-            "pre:not(.expanded) code .line:not(.focus)": {
+            "pre.collapsed code .line:not(.focus)": {
               display: "none",
             },
 
