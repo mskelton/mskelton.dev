@@ -34,7 +34,7 @@ export interface TooltipGroupProps {
 
 export function TooltipGroup({ children }: TooltipGroupProps) {
   return (
-    <FloatingDelayGroup delay={{ close: 0, open: 500 }}>
+    <FloatingDelayGroup delay={{ close: 100, open: 250 }}>
       {children}
     </FloatingDelayGroup>
   )
@@ -74,7 +74,6 @@ export function useTooltip({
     delay,
     enabled: controlledOpen == null,
     move: false,
-    restMs: delay ? undefined : 250,
   })
   const focus = useFocus(context, { enabled: controlledOpen == null })
   const dismiss = useDismiss(context)
@@ -147,10 +146,12 @@ export function TooltipContent({
   const state = useTooltipState()
   const id = useId()
   const { currentId, isInstantPhase } = useDelayGroupContext()
+
   useDelayGroup(state.context, { id })
 
-  const duration = 250
   const instantDuration = 0
+  const duration = 250
+
   const { isMounted, styles } = useTransitionStyles(state.context, {
     duration: isInstantPhase
       ? {
@@ -174,7 +175,7 @@ export function TooltipContent({
         {...state.getFloatingProps(props)}
       >
         <div
-          className="z-10 rounded-lg bg-gray-900 px-2 py-1 text-xs text-white shadow-lg dark:bg-zinc-300 dark:text-zinc-900"
+          className="z-10 rounded-lg bg-gray-900 p-2 text-2xs text-white shadow-lg dark:bg-zinc-300 dark:text-zinc-900"
           style={styles}
         >
           {children}
