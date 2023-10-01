@@ -54,6 +54,9 @@ module.exports = {
             strokeDasharray: "90, 150",
           },
         },
+        halfspin: {
+          to: { transform: "rotate(180deg)" },
+        },
         heartbeat: {
           from: { transform: "scale(1)" },
           to: { transform: "scale(1.1)" },
@@ -221,7 +224,7 @@ module.exports = {
               borderRadius: theme("borderRadius.lg"),
               paddingInline: theme("spacing.2"),
             },
-            ":is(p, li) > code": {
+            ":is(p, li, aside) code": {
               fontSize: theme("fontSize.xs")[0],
               lineHeight: theme("lineHeight.6"),
             },

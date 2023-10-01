@@ -1,19 +1,15 @@
 import {
-  ArrowPathIcon,
   ChevronUpDownIcon,
-  ClipboardDocumentIcon,
   ViewfinderCircleIcon,
 } from "@heroicons/react/24/outline"
 import { GitHubIcon } from "components/SocialIcons"
 import { TooltipGroup } from "components/Tooltip"
+import CopyCodeButton from "./CopyCodeButton"
 import DemoToolbarButton from "./DemoToolbarButton"
+import ResetDemoButton from "./ResetDemoButton"
 
 const gh = (path: string) =>
   `https://github.com/mskelton/mskelton.dev/blob/main/app/(main)/blog/posts/${path}`
-
-async function copy(text: string) {
-  await navigator.clipboard.writeText(text)
-}
 
 export interface DemoToolbarProps {
   onFocusReset: () => void
@@ -38,9 +34,7 @@ export default function DemoToolbar({
             <ChevronUpDownIcon />
           </DemoToolbarButton>
 
-          <DemoToolbarButton onClick={() => copy(raw)} title="Copy the source">
-            <ClipboardDocumentIcon />
-          </DemoToolbarButton>
+          <CopyCodeButton raw={raw} />
 
           <DemoToolbarButton href={gh(path)} title="View source on GitHub">
             <GitHubIcon />
@@ -53,9 +47,7 @@ export default function DemoToolbar({
             <ViewfinderCircleIcon />
           </DemoToolbarButton>
 
-          <DemoToolbarButton onClick={onReset} title="Reset demo">
-            <ArrowPathIcon />
-          </DemoToolbarButton>
+          <ResetDemoButton onReset={onReset} />
         </TooltipGroup>
       </div>
     </div>
