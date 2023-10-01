@@ -50,6 +50,7 @@ export default function MarkdownPre({
       <pre
         ref={preRef}
         className={clsx(
+          "bg-zinc-950 text-sm font-medium leading-7 text-zinc-100",
           !hasFocus ? undefined : isExpanded ? "expanded" : "collapsed",
           className,
         )}
@@ -58,6 +59,7 @@ export default function MarkdownPre({
         {cloneElement(children, {
           className: clsx(
             children.props.className,
+            "grid [font-size:inherit] p-8 overflow-x-auto [font-weight:inherit] bg-transparent",
             "focus:outline-none focus-visible:ring-inset focus-visible:ring focus-visible:ring-indigo-500",
           ),
         })}

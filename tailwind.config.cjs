@@ -107,8 +107,6 @@ module.exports = {
             "--tw-prose-captions": theme("colors.zinc.500"),
             "--tw-prose-code": theme("colors.zinc.300"),
             "--tw-prose-code-bg": theme("colors.zinc.200 / 0.05"),
-            "--tw-prose-pre-code": theme("colors.zinc.100"),
-            "--tw-prose-pre-bg": theme("colors.zinc.950"),
             "--tw-prose-kbd": theme("colors.zinc.300"),
             "--tw-prose-kbd-bg": theme("colors.zinc.800"),
             "--tw-prose-kbd-borders": theme("colors.zinc.700"),
@@ -313,20 +311,6 @@ module.exports = {
                 marginInline: `calc(${theme("spacing.8")} * -1)`,
               },
             },
-            pre: {
-              color: "var(--tw-prose-pre-code)",
-              fontSize: theme("fontSize.sm")[0],
-              fontWeight: theme("fontWeight.medium"),
-              backgroundColor: "var(--tw-prose-pre-bg) !important",
-            },
-            "pre code": {
-              display: "grid",
-              fontSize: "inherit",
-              padding: theme("spacing.8"),
-              overflowX: "auto",
-              fontWeight: "inherit",
-              backgroundColor: "transparent",
-            },
             ":is(.has-title, .demo) :is(pre, code)": {
               borderRadius: `0 0 ${theme("borderRadius.xl")} ${theme(
                 "borderRadius.xl",
@@ -347,8 +331,15 @@ module.exports = {
               )})`,
               width: `calc(100% + ${theme("spacing.16")})`,
             },
+            "pre code .line": {
+              ...transition,
+              transitionProperty: "height",
+              transitionDuration: theme("transitionDuration.300"),
+              height: theme("spacing.7"),
+              overflowY: "hidden",
+            },
             "pre.collapsed code .line:not(.focus)": {
-              display: "none",
+              height: 0,
             },
 
             // Horizontal rules
