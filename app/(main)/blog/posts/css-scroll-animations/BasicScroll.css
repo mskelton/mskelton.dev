@@ -10,8 +10,13 @@
 .scroll-parent {
   height: 320px;
   overflow-y: scroll;
-  overscroll-behavior: contain;
   position: relative;
+}
+
+@media (pointer: fine) {
+  .scroll-parent {
+    overscroll-behavior: contain;
+  }
 }
 
 .scroll-area {
@@ -21,10 +26,11 @@
 .box {
   --size: 120px;
   animation: rotate linear;
+  animation-duration: 1ms; /* Firefox requires this to apply the animation */
+  animation-timeline: scroll();
   aspect-ratio: 1;
   left: calc(50% - var(--size) / 2);
-  top: calc(50% - var(--size) / 2);
-  animation-timeline: scroll();
   position: sticky;
+  top: calc(50% - var(--size) / 2);
   width: var(--size);
 }

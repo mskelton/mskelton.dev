@@ -41,7 +41,9 @@ export default function rehypeCallout() {
         },
         {
           children: [{ type: "text", value: title }],
-          properties: { className: "text-zinc-900 dark:text-white" },
+          properties: {
+            className: "text-zinc-900 dark:text-white font-bold mb-2 block",
+          },
           tagName: "strong",
           type: "element",
         },
@@ -54,7 +56,7 @@ export default function rehypeCallout() {
       ],
       properties: {
         class: [
-          "not-prose px-4 -mx-4 relative dark:text-white",
+          "px-4 -mx-4 relative dark:text-white",
           "sm:rounded sm:-mr-6 sm:-ml-7 py-4 sm:px-6 sm:border-l-4",
           type === "INFO" &&
             "bg-indigo-300/50 border-indigo-500 dark:bg-indigo-900/50 dark:border-indigo-500",

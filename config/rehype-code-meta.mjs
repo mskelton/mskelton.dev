@@ -29,7 +29,7 @@ export default function rehypeCodeMeta() {
           line.children.push({ type: "text", value: "\u200b" })
         }
 
-        if (shouldHighlight(index / 2)) {
+        if (shouldHighlight(index)) {
           line.properties.className ??= []
           line.properties.className.push("highlight")
         }
