@@ -43,14 +43,14 @@ export default function Demo({
         {component}
       </div>
 
-      <DemoToolbar
-        isExpanded={isExpanded}
-        onFocusReset={() => focusRef.current?.focus({ preventScroll: true })}
-        onReset={() => setReset(reset ^ 1)}
-        onToggleExpanded={() => setIsExpanded(!isExpanded)}
-        path={name}
-        raw={raw}
-      />
+      {/* <DemoToolbar */}
+      {/*   isExpanded={isExpanded} */}
+      {/*   onFocusReset={() => focusRef.current?.focus({ preventScroll: true })} */}
+      {/*   onReset={() => setReset(reset ^ 1)} */}
+      {/*   onToggleExpanded={() => setIsExpanded(!isExpanded)} */}
+      {/*   path={name} */}
+      {/*   raw={raw} */}
+      {/* /> */}
 
       <div
         className={clsx(
