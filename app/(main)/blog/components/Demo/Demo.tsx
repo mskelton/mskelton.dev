@@ -44,6 +44,7 @@ export default function Demo({
       </div>
 
       <DemoToolbar
+        isExpanded={isExpanded}
         onFocusReset={() => focusRef.current?.focus({ preventScroll: true })}
         onReset={() => setReset(reset ^ 1)}
         onToggleExpanded={() => setIsExpanded(!isExpanded)}
