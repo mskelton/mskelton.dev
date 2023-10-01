@@ -1,0 +1,52 @@
+---
+title: CSS Scroll Animations
+description:
+  Scroll animations is an extremely exciting feature that is coming to CSS. Join
+  me as we explore how to use scroll animations to create performant and well
+  polished user experiences.
+date: "2023-09-29"
+---
+
+import CodeBlock from "../../components/CodeBlock"
+import Demo from "../../components/Demo"
+import BasicScroll from "./BasicScroll"
+
+In a recent project at work, I started exploring CSS scroll animations to
+transition elements in a sticky header between a larger and smaller size. After
+just a couple hours of exploration I had a working prototype using scroll
+animations to replace the much less reliable and smooth JavaScript based
+animation.
+
+Having just scratched the surface of what is possible with scroll animations, I
+knew a blog post was in order to show off some of the incredible features of
+scroll animations.
+
+> [!WARN Experimental features ahead]  
+> CSS scroll animations are still experimental. At the time of writing, support
+> for scroll animations is primarily in Chromium with Firefox supporting them
+> behind a flag. Safari unfortunately does not support them at all. For more
+> details, checkout the
+> [MDN compatibility table](https://developer.mozilla.org/en-US/docs/Web/CSS/animation-timeline#browser_compatibility).
+
+Let's start with a rather simple example showing a blue box that rotates as it's
+container scrolls. Try scrolling the container below to see it rotate!
+
+<Demo>
+  <BasicScroll />
+</Demo>
+
+To accomplish this lovely animation, we only need to add 3 lines of CSS.
+
+<CodeBlock filename="BasicScroll.css" meta="[28-30]" />
+
+We specify the `animation` just like we would with any other CSS animation by
+referencing a set of keyframes (e.g. `rotate`), and an easing function (e.g.
+`linear`). What is missing from our `animation` property is a duration which is
+required when using standard CSS animations. This is omitted because a duration
+does not make sense when the animation is linked to scroll progress.
+
+> [!ERROR Firefox bug]  
+> To make this work properly in Firefox, we need to add an `animation-duration`
+> which we can set to `1ms`. The value doesn't actually matter, but Firefox
+> needs the property for the animation to work. Hopefully this will be fixed as
+> Firefox support for scroll animations continues to improve.

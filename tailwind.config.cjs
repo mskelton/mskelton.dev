@@ -1,4 +1,6 @@
 /* eslint-disable sort/object-properties */
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const plugin = require("tailwindcss/plugin")
 
 /** @type {import("tailwindcss").Config} */
 module.exports = {
@@ -12,6 +14,17 @@ module.exports = {
   plugins: [
     require("@tailwindcss/typography"),
     require("@tailwindcss/container-queries"),
+    plugin(({ matchUtilities, theme }) => {
+      matchUtilities(
+        {
+          s: (value) => ({
+            height: value,
+            width: value,
+          }),
+        },
+        { values: theme("width") },
+      )
+    }),
   ],
   theme: {
     extend: {
@@ -20,6 +33,8 @@ module.exports = {
       },
       animation: {
         "draw-stroke": "300ms ease-in-out 700ms forwards draw-stroke",
+        heartbeat:
+          "1s ease-in-out 0s infinite alternate none running heartbeat",
       },
       keyframes: {
         "draw-stroke": {
@@ -39,6 +54,13 @@ module.exports = {
             strokeDasharray: "90, 150",
           },
         },
+        halfspin: {
+          to: { transform: "rotate(180deg)" },
+        },
+        heartbeat: {
+          from: { transform: "scale(1)" },
+          to: { transform: "scale(1.1)" },
+        },
         show: {
           from: { opacity: 0 },
           to: { opacity: 1 },
@@ -46,6 +68,7 @@ module.exports = {
       },
     },
     fontSize: {
+      "2xs": ["0.75rem", { lineHeight: "1rem" }],
       xs: ["0.8125rem", { lineHeight: "1.5rem" }],
       sm: ["0.875rem", { lineHeight: "1.5rem" }],
       base: ["1rem", { lineHeight: "1.75rem" }],
@@ -84,8 +107,6 @@ module.exports = {
             "--tw-prose-captions": theme("colors.zinc.500"),
             "--tw-prose-code": theme("colors.zinc.300"),
             "--tw-prose-code-bg": theme("colors.zinc.200 / 0.05"),
-            "--tw-prose-pre-code": theme("colors.zinc.100"),
-            "--tw-prose-pre-bg": theme("colors.zinc.950"),
             "--tw-prose-kbd": theme("colors.zinc.300"),
             "--tw-prose-kbd-bg": theme("colors.zinc.800"),
             "--tw-prose-kbd-borders": theme("colors.zinc.700"),
@@ -126,6 +147,7 @@ module.exports = {
               marginBottom: theme("spacing.10"),
             },
             p: {
+              ...transition,
               marginTop: theme("spacing.7"),
               marginBottom: theme("spacing.7"),
             },
@@ -201,7 +223,7 @@ module.exports = {
               borderRadius: theme("borderRadius.lg"),
               paddingInline: theme("spacing.2"),
             },
-            ":is(p, li) > code": {
+            ":is(p, li, aside) code": {
               fontSize: theme("fontSize.xs")[0],
               lineHeight: theme("lineHeight.6"),
             },
@@ -278,36 +300,50 @@ module.exports = {
             },
 
             // Code blocks
-            pre: {
-              color: "var(--tw-prose-pre-code)",
-              fontSize: theme("fontSize.sm")[0],
-              fontWeight: theme("fontWeight.medium"),
-              backgroundColor: "var(--tw-prose-pre-bg) !important",
+            ".code-block": {
+              position: "relative",
+            },
+            ".code-block.has-title": {
+              paddingTop: theme("spacing.12"),
+            },
+            ".code-block:not(.demo)": {
+              marginInline: 0,
+              "@screen sm": {
+                marginInline: `calc(${theme("spacing.8")} * -1)`,
+              },
+            },
+            ":is(.has-title, .demo) :is(pre, code)": {
+              borderRadius: `0 0 ${theme("borderRadius.xl")} ${theme(
+                "borderRadius.xl",
+              )}`,
+            },
+            ".code-block:not(:is(.has-title, .demo)) :is(pre, code)": {
               borderRadius: theme("borderRadius.xl"),
             },
-            "pre code": {
-              display: "grid",
-              fontSize: "inherit",
-              padding: theme("spacing.8"),
-              overflowX: "auto",
-              fontWeight: "inherit",
-              backgroundColor: "transparent",
-              borderRadius: 0,
-            },
-            ".has-title pre": {
-              borderRadius: "0 0 1rem 1rem",
-            },
-            "pre code .line.highlight": {
-              backgroundColor: "var(--tw-prose-hl-bg)",
-              borderColor: "var(--tw-prose-hl-border)",
+            "pre code .line": {
+              ...transition,
+              transitionDuration: theme("transitionDuration.300"),
+              transitionProperty:
+                "height, border-color, background-color, clip-path",
+              borderColor: "transparent",
               borderLeftWidth: theme("borderWidth.4"),
+              clipPath: "inset(0 0 0 0)",
               display: "inline-block",
+              height: theme("spacing.7"),
               marginInline: `calc(${theme("spacing.8")} * -1)`,
-              paddingRight: theme("spacing.8"),
               paddingLeft: `calc(${theme("spacing.8")} - ${theme(
                 "borderWidth.4",
               )})`,
+              paddingRight: theme("spacing.8"),
+            },
+            "pre:not(.collapsed) code .line:is(.highlight, .focus)": {
               width: `calc(100% + ${theme("spacing.16")})`,
+              backgroundColor: "var(--tw-prose-hl-bg)",
+              borderColor: "var(--tw-prose-hl-border)",
+            },
+            "pre.collapsed code .line:not(.focus)": {
+              clipPath: "inset(100% 0 0 0)",
+              height: 0,
             },
 
             // Horizontal rules

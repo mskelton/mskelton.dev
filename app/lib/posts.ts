@@ -24,7 +24,9 @@ export async function getAllPostSlugs() {
   const cwd = path.join(process.cwd(), "app/(main)/blog/posts")
   const filenames = await glob("*/content.mdx", { cwd })
 
-  return filenames.map((file) => path.basename(path.dirname(file)))
+  return filenames
+    .map((file) => path.basename(path.dirname(file)))
+    .filter((slug) => !slug.endsWith(".draft"))
 }
 
 export async function getAllPosts() {

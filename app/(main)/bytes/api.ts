@@ -1,4 +1,3 @@
-import rehypeShiki from "@stefanprobst/rehype-shiki"
 import { notFound } from "next/navigation"
 import { compileMDX } from "next-mdx-remote/rsc"
 import { cache } from "react"
@@ -16,7 +15,7 @@ import rehypeCodeMeta from "../../../config/rehype-code-meta.mjs"
 import rehypeCodeTitles from "../../../config/rehype-code-titles.mjs"
 import rehypeHeaderId from "../../../config/rehype-header-id.mjs"
 import rehypeHeadings from "../../../config/rehype-headings.mjs"
-import remarkCodeMeta from "../../../config/remark-code-meta.mjs"
+import rehypeShiki from "../../../config/rehype-shiki.mjs"
 import { ByteMeta } from "./types"
 
 // Revalidate the data at most every hour
@@ -37,7 +36,7 @@ export const getByte = cache(async (slug: string) => {
     components: {
       a: MarkdownLink,
       img: MarkdownImage,
-      pre: MarkdownPre,
+      pre: MarkdownPre as any,
     },
     options: {
       mdxOptions: {
@@ -47,11 +46,11 @@ export const getByte = cache(async (slug: string) => {
           rehypeHeaderId,
           rehypeCodeTitles,
           [rehypeShiki, { highlighter: await getHighlighter() }],
-          rehypeCodeMeta,
           rehypeCodeA11y,
+          rehypeCodeMeta,
           rehypeCallout,
         ],
-        remarkPlugins: [remarkGfm, remarkSmartypants as any, remarkCodeMeta],
+        remarkPlugins: [remarkGfm, remarkSmartypants as any],
       },
     },
     source: byte.content,

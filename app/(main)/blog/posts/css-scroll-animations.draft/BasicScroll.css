@@ -1,0 +1,36 @@
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.scroll-parent {
+  height: 320px;
+  overflow-y: scroll;
+  position: relative;
+}
+
+@media (pointer: fine) {
+  .scroll-parent {
+    overscroll-behavior: contain;
+  }
+}
+
+.scroll-area {
+  height: 1200px;
+}
+
+.box {
+  --size: 120px;
+  animation: rotate linear;
+  animation-duration: 1ms; /* Firefox requires this to apply the animation */
+  animation-timeline: scroll();
+  aspect-ratio: 1;
+  left: calc(50% - var(--size) / 2);
+  position: sticky;
+  top: calc(50% - var(--size) / 2);
+  width: var(--size);
+}
