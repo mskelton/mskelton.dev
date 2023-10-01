@@ -330,7 +330,7 @@ module.exports = {
             ".has-title pre": {
               borderRadius: "0 0 1rem 1rem",
             },
-            "pre code .line.highlight": {
+            "pre:not(.collapsed) code .line:is(.highlight, .focus)": {
               backgroundColor: "var(--tw-prose-hl-bg)",
               borderColor: "var(--tw-prose-hl-border)",
               borderLeftWidth: theme("borderWidth.4"),
@@ -341,6 +341,9 @@ module.exports = {
                 "borderWidth.4",
               )})`,
               width: `calc(100% + ${theme("spacing.16")})`,
+            },
+            "pre:not(.expanded) code .line:not(.focus)": {
+              display: "none",
             },
 
             // Horizontal rules

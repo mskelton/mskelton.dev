@@ -1,9 +1,9 @@
 import rangeParser from "parse-numeric-range"
 import { SKIP, visit } from "unist-util-visit"
 
-function calculateLinesToHighlight(meta) {
+function calculateLines(meta, char) {
   const [range] = meta
-    .filter((item) => item.startsWith("{"))
+    .filter((item) => item.startsWith(char))
     .map((item) => item.slice(1, -1))
 
   if (range) {
@@ -16,9 +16,9 @@ function calculateLinesToHighlight(meta) {
 
 export default function rehypeCodeMeta() {
   const visitor = (node) => {
-    const shouldHighlight = calculateLinesToHighlight(
-      node.data?.attributes ?? [],
-    )
+    const attrs = node.data?.attributes ?? []
+    const shouldHighlight = calculateLines(attrs, "{")
+    const shouldFocus = calculateLines(attrs, "[")
 
     visit(
       node,
@@ -32,6 +32,11 @@ export default function rehypeCodeMeta() {
         if (shouldHighlight(index)) {
           line.properties.className ??= []
           line.properties.className.push("highlight")
+        }
+
+        if (shouldFocus(index)) {
+          line.properties.className ??= []
+          line.properties.className.push("focus")
         }
       },
     )

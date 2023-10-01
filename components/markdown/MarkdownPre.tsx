@@ -7,10 +7,17 @@ import {
 import { clsx } from "clsx"
 import React, { useRef, useState } from "react"
 
-export default function MarkdownPre(
-  props: React.HTMLAttributes<HTMLPreElement>,
-) {
+export interface MarkdownPreProps extends React.HTMLProps<HTMLPreElement> {
+  hasFocus?: boolean
+}
+
+export default function MarkdownPre({
+  className,
+  hasFocus,
+  ...props
+}: MarkdownPreProps) {
   const preRef = useRef<HTMLPreElement>(null!)
+  const [isExpanded, setIsExpanded] = useState(false)
   const [copied, setCopied] = useState(false)
   const Icon = copied ? ClipboardDocumentCheckIcon : ClipboardDocumentListIcon
 
@@ -28,7 +35,15 @@ export default function MarkdownPre(
 
   return (
     <>
-      <pre ref={preRef} {...props} />
+      <pre
+        ref={preRef}
+        className={clsx(isExpanded ? "expanded" : "collapsed", className)}
+        {...props}
+      />
+
+      <button onClick={() => setIsExpanded(!isExpanded)} type="button">
+        Expand
+      </button>
 
       <button
         aria-label={copied ? "Copied" : "Copy code"}

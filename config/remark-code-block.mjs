@@ -24,7 +24,7 @@ export default function remarkCodeBlock() {
 
     const promises = nodes.map(async (node) => {
       const filename = getAttr(node, "filename")
-      const highlight = getAttr(node, "highlight")
+      const meta = getAttr(node, "meta")
       if (!filename) return
 
       const raw = await fs.readFile(path.join(dir, filename), "utf8")
@@ -35,7 +35,7 @@ export default function remarkCodeBlock() {
           type: "code",
           lang: path.extname(filename).slice(1),
           value: raw.trim(),
-          meta: `${filename} ${highlight ?? ""}`,
+          meta: `${filename} ${meta ?? ""}`,
         },
       ]
     })
