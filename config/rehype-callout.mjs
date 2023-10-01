@@ -26,13 +26,15 @@ export default function rehypeCallout() {
     const icon = iconMap[type] ?? info
 
     parent.children.splice(index, 1, {
+      type: "element",
+      tagName: "aside",
       children: [
         {
           ...icon,
           properties: {
             ...icon.properties,
             class: [
-              "w-9 h-9 absolute top-1 right-1 p-1.5",
+              "w-9 h-9 absolute top-1 right-1 p-1.5 transition-colors",
               type === "INFO" && "text-indigo-600 dark:text-indigo-400",
               type === "WARN" && "text-yellow-700 dark:text-yellow-500",
               type === "ERROR" && "text-red-600 dark:text-red-500",
@@ -40,23 +42,26 @@ export default function rehypeCallout() {
           },
         },
         {
-          children: [{ type: "text", value: title }],
-          properties: {
-            className: "text-zinc-900 dark:text-white font-bold mb-2 block",
-          },
-          tagName: "strong",
           type: "element",
+          tagName: "strong",
+          properties: {
+            className:
+              "text-zinc-900 dark:text-white font-bold mb-2 block transition-colors",
+          },
+          children: [{ type: "text", value: title }],
         },
         {
-          children: children.slice(2),
-          properties: { className: "text-zinc-700 dark:text-zinc-200" },
-          tagName: "div",
           type: "element",
+          tagName: "div",
+          properties: {
+            className: "text-zinc-700 dark:text-zinc-200 transition-colors",
+          },
+          children: children.slice(2),
         },
       ],
       properties: {
         class: [
-          "px-4 -mx-4 relative dark:text-white",
+          "px-4 -mx-4 relative dark:text-white transition-colors",
           "sm:rounded sm:-mr-6 sm:-ml-7 py-4 sm:px-6 sm:border-l-4",
           type === "INFO" &&
             "bg-indigo-300/50 border-indigo-500 dark:bg-indigo-900/50 dark:border-indigo-500",
@@ -66,8 +71,6 @@ export default function rehypeCallout() {
             "bg-red-300/50 border-red-500 dark:bg-red-900/50 dark:border-red-500",
         ].filter(Boolean),
       },
-      tagName: "aside",
-      type: "element",
     })
 
     return SKIP

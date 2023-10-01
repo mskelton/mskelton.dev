@@ -147,6 +147,7 @@ module.exports = {
               marginBottom: theme("spacing.10"),
             },
             p: {
+              ...transition,
               marginTop: theme("spacing.7"),
               marginBottom: theme("spacing.7"),
             },
@@ -319,26 +320,29 @@ module.exports = {
             ".code-block:not(:is(.has-title, .demo)) :is(pre, code)": {
               borderRadius: theme("borderRadius.xl"),
             },
-            "pre:not(.collapsed) code .line:is(.highlight, .focus)": {
-              backgroundColor: "var(--tw-prose-hl-bg)",
-              borderColor: "var(--tw-prose-hl-border)",
+            "pre code .line": {
+              ...transition,
+              transitionDuration: theme("transitionDuration.300"),
+              transitionProperty:
+                "height, border-color, background-color, clip-path",
+              borderColor: "transparent",
               borderLeftWidth: theme("borderWidth.4"),
+              clipPath: "inset(0 0 0 0)",
               display: "inline-block",
+              height: theme("spacing.7"),
               marginInline: `calc(${theme("spacing.8")} * -1)`,
-              paddingRight: theme("spacing.8"),
               paddingLeft: `calc(${theme("spacing.8")} - ${theme(
                 "borderWidth.4",
               )})`,
-              width: `calc(100% + ${theme("spacing.16")})`,
+              paddingRight: theme("spacing.8"),
             },
-            "pre code .line": {
-              ...transition,
-              transitionProperty: "height",
-              transitionDuration: theme("transitionDuration.300"),
-              height: theme("spacing.7"),
-              overflowY: "hidden",
+            "pre:not(.collapsed) code .line:is(.highlight, .focus)": {
+              width: `calc(100% + ${theme("spacing.16")})`,
+              backgroundColor: "var(--tw-prose-hl-bg)",
+              borderColor: "var(--tw-prose-hl-border)",
             },
             "pre.collapsed code .line:not(.focus)": {
+              clipPath: "inset(100% 0 0 0)",
               height: 0,
             },
 

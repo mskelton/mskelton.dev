@@ -7,6 +7,7 @@ export const themeEffect = function () {
     pref === "dark" ||
     (!pref && window.matchMedia("(prefers-color-scheme: dark)").matches)
   ) {
+    // TODO: Add [color-scheme:dark]
     d.classList.add("dark")
     result = "dark"
   } else {
