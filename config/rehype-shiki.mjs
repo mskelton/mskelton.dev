@@ -19,14 +19,14 @@ export default function rehypeShiki({ highlighter }) {
         )
       },
       (node) => {
-        const code = toText(node).slice(0, -1)
+        const source = toText(node).slice(0, -1)
         const language = node.children[0].properties.className[0]
           .split("language-")
           .at(-1)
 
         let output = []
         try {
-          output = highlighter.codeToThemedTokens(code, language)
+          output = highlighter.codeToThemedTokens(source, language)
         } catch (error) {
           return
         }
@@ -35,9 +35,9 @@ export default function rehypeShiki({ highlighter }) {
         node.properties ??= {}
         node.properties.className ??= []
         node.properties.className.push("shiki")
-        node.properties.tabindex = 0
 
-        node.children[0].children = output.map((line) => ({
+        const code = node.children[0]
+        code.children = output.map((line) => ({
           type: "element",
           tagName: "span",
           properties: {

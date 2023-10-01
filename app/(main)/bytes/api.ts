@@ -10,6 +10,7 @@ import MarkdownImage from "../../../components/markdown/MarkdownImage"
 import MarkdownLink from "../../../components/markdown/MarkdownLink"
 import MarkdownPre from "../../../components/markdown/MarkdownPre"
 import rehypeCallout from "../../../config/rehype-callout.mjs"
+import rehypeCodeA11y from "../../../config/rehype-code-a11y.mjs"
 import rehypeCodeMeta from "../../../config/rehype-code-meta.mjs"
 import rehypeCodeTitles from "../../../config/rehype-code-titles.mjs"
 import rehypeHeaderId from "../../../config/rehype-header-id.mjs"
@@ -35,7 +36,7 @@ export const getByte = cache(async (slug: string) => {
     components: {
       a: MarkdownLink,
       img: MarkdownImage,
-      pre: MarkdownPre,
+      pre: MarkdownPre as any,
     },
     options: {
       mdxOptions: {
@@ -45,6 +46,7 @@ export const getByte = cache(async (slug: string) => {
           rehypeHeaderId,
           rehypeCodeTitles,
           [rehypeShiki, { highlighter: await getHighlighter() }],
+          rehypeCodeA11y,
           rehypeCodeMeta,
           rehypeCallout,
         ],

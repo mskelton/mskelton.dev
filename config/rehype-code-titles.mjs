@@ -28,19 +28,12 @@ export default function rehypeCodeTitles() {
     const code = Array.isArray(node.children) ? node.children[0] : node.children
     const meta = code.data?.meta
 
-    // If the node is part of a demo, it's styles are slightly modified.
-    if (meta?.demo) {
-      node.properties ??= {}
-      node.properties.className ??= []
-      node.properties.className.push("demo")
-      return
-    }
-
-    if (!meta) return
     const regex = /{[\d,-]+}/
-    const parsed = meta.split(" ").filter(Boolean)
+    const parsed = (typeof meta === "string" ? meta : "")
+      .split(" ")
+      .filter(Boolean)
     const [title] = parsed.filter((cls) => !regex.test(cls))
-    const rest = parsed.filter((cls) => cls !== title)
+    const rest = parsed?.filter((cls) => cls !== title)
 
     // Add remaining metadata to the pre element
     node.data ??= {}
@@ -51,8 +44,9 @@ export default function rehypeCodeTitles() {
       children: title ? [createTitle(title), node] : [node],
       properties: {
         className: [
-          "code-block group relative",
-          title ? "has-title pt-12" : "",
+          "code-block group",
+          title ? "has-title" : "",
+          meta?.demo && "demo",
         ].filter(Boolean),
       },
       tagName: "div",

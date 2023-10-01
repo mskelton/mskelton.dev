@@ -301,6 +301,12 @@ module.exports = {
             },
 
             // Code blocks
+            ".code-block": {
+              position: "relative",
+            },
+            ".code-block.has-title": {
+              paddingTop: theme("spacing.12"),
+            },
             ".code-block:not(.demo)": {
               marginInline: 0,
               "@screen sm": {
@@ -312,11 +318,6 @@ module.exports = {
               fontSize: theme("fontSize.sm")[0],
               fontWeight: theme("fontWeight.medium"),
               backgroundColor: "var(--tw-prose-pre-bg) !important",
-              borderRadius: theme("borderRadius.xl"),
-            },
-            "pre.demo": {
-              borderTopLeftRadius: 0,
-              borderTopRightRadius: 0,
             },
             "pre code": {
               display: "grid",
@@ -325,10 +326,14 @@ module.exports = {
               overflowX: "auto",
               fontWeight: "inherit",
               backgroundColor: "transparent",
-              borderRadius: 0,
             },
-            ".has-title pre": {
-              borderRadius: "0 0 1rem 1rem",
+            ":is(.has-title, .demo) :is(pre, code)": {
+              borderRadius: `0 0 ${theme("borderRadius.xl")} ${theme(
+                "borderRadius.xl",
+              )}`,
+            },
+            ".code-block:not(:is(.has-title, .demo)) :is(pre, code)": {
+              borderRadius: theme("borderRadius.xl"),
             },
             "pre:not(.collapsed) code .line:is(.highlight, .focus)": {
               backgroundColor: "var(--tw-prose-hl-bg)",
