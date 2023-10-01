@@ -10,6 +10,7 @@
 .scroll-parent {
   height: 320px;
   overflow-y: scroll;
+  overscroll-behavior: contain;
   position: relative;
 }
 
