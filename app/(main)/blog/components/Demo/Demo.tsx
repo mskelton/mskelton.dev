@@ -24,7 +24,7 @@ export default function Demo({
   const [isExpanded, setIsExpanded] = useState(false)
 
   return (
-    <div className="relative rounded-xl border border-zinc-200 transition-colors dark:border-zinc-700/80">
+    <div className="relative rounded-lg border border-zinc-200 transition-colors dark:border-zinc-700/80">
       <button
         ref={focusRef}
         aria-label="A generic container that is programmatically focused to test keyboard navigation"
@@ -43,14 +43,14 @@ export default function Demo({
         {component}
       </div>
 
-      {/* <DemoToolbar */}
-      {/*   isExpanded={isExpanded} */}
-      {/*   onFocusReset={() => focusRef.current?.focus({ preventScroll: true })} */}
-      {/*   onReset={() => setReset(reset ^ 1)} */}
-      {/*   onToggleExpanded={() => setIsExpanded(!isExpanded)} */}
-      {/*   path={name} */}
-      {/*   raw={raw} */}
-      {/* /> */}
+      <DemoToolbar
+        isExpanded={isExpanded}
+        onFocusReset={() => focusRef.current?.focus({ preventScroll: true })}
+        onReset={() => setReset(reset ^ 1)}
+        onToggleExpanded={() => setIsExpanded(!isExpanded)}
+        path={name}
+        raw={raw}
+      />
 
       <div
         className={clsx(
