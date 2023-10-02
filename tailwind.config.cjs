@@ -312,6 +312,9 @@ module.exports = {
                 marginInline: `calc(${theme("spacing.8")} * -1)`,
               },
             },
+            "pre code": {
+              borderRadius: 0,
+            },
             ":is(.has-title, .demo) :is(pre, code)": {
               "@screen sm": {
                 borderRadius: `0 0 ${theme("borderRadius.xl")} ${theme(
@@ -323,9 +326,6 @@ module.exports = {
               "@screen sm": {
                 borderRadius: theme("borderRadius.xl"),
               },
-            },
-            "pre code": {
-              borderRadius: 0,
             },
             "pre code .line": {
               ...transition,
