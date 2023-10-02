@@ -10,6 +10,7 @@ date: "2023-09-29"
 import CodeBlock from "../../components/CodeBlock"
 import Demo from "../../components/Demo"
 import BasicScroll from "./BasicScroll"
+import BasicView from "./BasicView"
 
 In a recent project at work, I started exploring CSS scroll animations to
 transition elements in a sticky header between a larger and smaller size. After
@@ -50,3 +51,9 @@ does not make sense when the animation is linked to scroll progress.
 > which we can set to `1ms`. The value doesn't actually matter, but Firefox
 > needs the property for the animation to work. Hopefully this will be fixed as
 > Firefox support for scroll animations continues to improve.
+
+<Demo>
+  <BasicView />
+</Demo>
+
+<CodeBlock filename="BasicView.css" />
