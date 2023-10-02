@@ -16,6 +16,7 @@ function createTitle(title) {
         "text-white",
         "text-sm",
         "font-mono",
+        "sm:mx-0",
         "sm:rounded-t-2xl",
         "sm:px-8",
       ],

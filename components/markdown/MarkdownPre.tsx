@@ -50,7 +50,7 @@ export default function MarkdownPre({
       <pre
         ref={preRef}
         className={clsx(
-          "-mx-4 bg-zinc-950 text-sm font-medium leading-7 text-zinc-100",
+          "-mx-4 bg-zinc-950 text-sm font-medium leading-7 text-zinc-100 sm:mx-0",
           !hasFocus ? undefined : isExpanded ? "expanded" : "collapsed",
           className,
         )}
