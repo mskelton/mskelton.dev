@@ -39,7 +39,7 @@ export default function MarkdownPre({
     <>
       {hasFocus ? (
         <button
-          className="absolute right-6 top-3 rounded-md bg-zinc-900 px-2 text-xs text-white transition-colors hover:bg-zinc-950 focus:outline-none focus-visible:ring focus-visible:ring-indigo-500"
+          className="absolute right-0 top-3 rounded-md bg-zinc-900 px-2 text-xs text-white transition-colors hover:bg-zinc-950 focus:outline-none focus-visible:ring focus-visible:ring-indigo-500 sm:right-6"
           onClick={() => setIsExpanded(!isExpanded)}
           type="button"
         >
