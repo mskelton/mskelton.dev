@@ -313,12 +313,19 @@ module.exports = {
               },
             },
             ":is(.has-title, .demo) :is(pre, code)": {
-              borderRadius: `0 0 ${theme("borderRadius.xl")} ${theme(
-                "borderRadius.xl",
-              )}`,
+              "@screen sm": {
+                borderRadius: `0 0 ${theme("borderRadius.xl")} ${theme(
+                  "borderRadius.xl",
+                )}`,
+              },
             },
             ".code-block:not(:is(.has-title, .demo)) :is(pre, code)": {
-              borderRadius: theme("borderRadius.xl"),
+              "@screen sm": {
+                borderRadius: theme("borderRadius.xl"),
+              },
+            },
+            "pre code": {
+              borderRadius: 0,
             },
             "pre code .line": {
               ...transition,
@@ -330,16 +337,28 @@ module.exports = {
               clipPath: "inset(0 0 0 0)",
               display: "inline-block",
               height: theme("spacing.7"),
-              marginInline: `calc(${theme("spacing.8")} * -1)`,
-              paddingLeft: `calc(${theme("spacing.8")} - ${theme(
+              marginInline: `calc(${theme("spacing.4")} * -1)`,
+              paddingLeft: `calc(${theme("spacing.4")} - ${theme(
                 "borderWidth.4",
               )})`,
-              paddingRight: theme("spacing.8"),
+              paddingRight: theme("spacing.4"),
+
+              "@screen sm": {
+                marginInline: `calc(${theme("spacing.8")} * -1)`,
+                paddingLeft: `calc(${theme("spacing.8")} - ${theme(
+                  "borderWidth.4",
+                )})`,
+                paddingRight: theme("spacing.8"),
+              },
             },
             "pre:not(.collapsed) code .line:is(.highlight, .focus)": {
-              width: `calc(100% + ${theme("spacing.16")})`,
+              width: `calc(100% + ${theme("spacing.8")})`,
               backgroundColor: "var(--tw-prose-hl-bg)",
               borderColor: "var(--tw-prose-hl-border)",
+
+              "@screen sm": {
+                width: `calc(100% + ${theme("spacing.16")})`,
+              },
             },
             "pre.collapsed code .line:not(.focus)": {
               clipPath: "inset(100% 0 0 0)",
