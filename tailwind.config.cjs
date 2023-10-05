@@ -314,6 +314,7 @@ module.exports = {
             },
             "pre code": {
               borderRadius: 0,
+              color: theme("colors.zinc.100"),
             },
             ":is(.has-title, .demo) :is(pre, code)": {
               "@screen sm": {
