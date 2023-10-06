@@ -107,6 +107,8 @@ module.exports = {
             "--tw-prose-captions": theme("colors.zinc.500"),
             "--tw-prose-code": theme("colors.zinc.300"),
             "--tw-prose-code-bg": theme("colors.zinc.200 / 0.05"),
+            "--tw-prose-code-link": theme("colors.indigo.400"),
+            "--tw-prose-code-link-hover": theme("colors.indigo.500"),
             "--tw-prose-kbd": theme("colors.zinc.300"),
             "--tw-prose-kbd-bg": theme("colors.zinc.800"),
             "--tw-prose-kbd-borders": theme("colors.zinc.700"),
@@ -131,6 +133,8 @@ module.exports = {
             "--tw-prose-captions": theme("colors.zinc.400"),
             "--tw-prose-code": theme("colors.zinc.700"),
             "--tw-prose-code-bg": theme("colors.zinc.300 / 0.2"),
+            "--tw-prose-code-link": theme("colors.indigo.600"),
+            "--tw-prose-code-link-hover": theme("colors.indigo.500"),
             "--tw-prose-pre-code": theme("colors.zinc.100"),
             "--tw-prose-pre-bg": theme("colors.zinc.900"),
             "--tw-prose-kbd": theme("colors.zinc.700"),
@@ -181,7 +185,7 @@ module.exports = {
             },
 
             // Links
-            "a:not(.heading-link)": {
+            "a:not(.heading-link):not(:has(code))": {
               color: "var(--tw-prose-link)",
               fontWeight: theme("fontWeight.semibold"),
               backgroundImage: `linear-gradient(var(--tw-prose-link-bg), var(--tw-prose-link-bg))`,
@@ -228,7 +232,13 @@ module.exports = {
               lineHeight: theme("lineHeight.6"),
             },
             "a code": {
-              color: "inherit",
+              color: "var(--tw-prose-code-link)",
+            },
+            "a:has(code):hover code": {
+              color: "var(--tw-prose-code-link-hover)",
+            },
+            "a:has(code):focus code": {
+              boxShadow: `inset 0 0 0 2px ${theme("colors.indigo.500")}`,
             },
             ":is(h2, h3) code": {
               fontWeight: theme("fontWeight.bold"),
