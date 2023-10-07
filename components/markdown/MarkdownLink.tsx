@@ -12,6 +12,6 @@ export default function MarkdownLink({ href = "#", ...props }: LinkProps) {
   ) : isAnchorLink ? (
     <a href={href} {...props} />
   ) : (
-    <a href={href} rel="noopener noreferrer" {...props} />
+    <a href={href} rel="noopener noreferrer" target="_blank" {...props} />
   )
 }
