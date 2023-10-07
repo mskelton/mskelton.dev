@@ -36,7 +36,7 @@ export const getByte = cache(async (slug: string) => {
     components: {
       a: MarkdownLink,
       img: MarkdownImage,
-      pre: MarkdownPre as any,
+      pre: MarkdownPre,
     },
     options: {
       mdxOptions: {

@@ -5,10 +5,10 @@ import {
   ClipboardDocumentListIcon,
 } from "@heroicons/react/24/outline"
 import { clsx } from "clsx"
-import React, { cloneElement, useRef, useState } from "react"
+import React, { useRef, useState } from "react"
 
 export interface MarkdownPreProps extends React.HTMLAttributes<HTMLPreElement> {
-  children: React.ReactElement
+  children?: React.ReactNode
   hasFocus?: boolean
 }
 
@@ -50,19 +50,12 @@ export default function MarkdownPre({
       <pre
         ref={preRef}
         className={clsx(
-          "-mx-4 bg-zinc-950 text-sm font-medium leading-7 sm:mx-0",
           !hasFocus ? undefined : isExpanded ? "expanded" : "collapsed",
           className,
         )}
         {...props}
       >
-        {cloneElement(children, {
-          className: clsx(
-            children.props.className,
-            "grid [font-size:inherit] px-4 py-8 sm:p-8 overflow-x-auto [font-weight:inherit] bg-transparent",
-            "focus:outline-none focus-visible:ring-inset focus-visible:ring focus-visible:ring-indigo-500",
-          ),
-        })}
+        {children}
       </pre>
 
       <button

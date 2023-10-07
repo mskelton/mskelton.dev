@@ -118,6 +118,7 @@ module.exports = {
         },
         DEFAULT: {
           css: {
+            "--tw-prose-ring": `inset 0 0 0 3px ${theme("colors.indigo.500")}`,
             "--tw-prose-body": theme("colors.zinc.600"),
             "--tw-prose-headings": theme("colors.zinc.900"),
             "--tw-prose-link": theme("colors.zinc.900"),
@@ -322,9 +323,33 @@ module.exports = {
                 marginInline: `calc(${theme("spacing.8")} * -1)`,
               },
             },
+            pre: {
+              marginInline: `calc(${theme("spacing.4")} * -1)`,
+              backgroundColor: theme("colors.zinc.950"),
+              fontSize: theme("fontSize.sm")[0],
+              "@screen sm": {
+                marginInline: theme("margin.0"),
+              },
+            },
             "pre code": {
+              backgroundColor: "transparent",
               borderRadius: 0,
               color: theme("colors.zinc.100"),
+              display: "grid",
+              fontSize: "inherit",
+              fontWeight: "inherit",
+              overflowX: "auto",
+              paddingBlock: theme("spacing.8"),
+              paddingInline: theme("spacing.4"),
+              "@screen sm": {
+                padding: theme("spacing.8"),
+              },
+            },
+            "pre code:focus": {
+              outline: "none",
+            },
+            "pre code:focus-visible": {
+              boxShadow: "var(--tw-prose-ring)",
             },
             ":is(.has-title, .demo) :is(pre, code)": {
               "@screen sm": {
