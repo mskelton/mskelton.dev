@@ -238,7 +238,7 @@ module.exports = {
             "a:has(code):hover code": {
               color: "var(--tw-prose-code-link-hover)",
             },
-            "a:has(code):focus code": {
+            "a:has(code):focus-visible code": {
               boxShadow: `inset 0 0 0 2px ${theme("colors.indigo.500")}`,
             },
             ":is(h2, h3) code": {
