@@ -1,85 +1,41 @@
-import { SKIP, visit } from "unist-util-visit"
+// @ts-check
+import rehypeCallout from "@mskelton/rehype-callout"
 import { error, info, warn } from "./icons.mjs"
 
-const regex = /\[!(INFO|WARN|ERROR)(\s.*)?\]/
-
-const iconMap = {
-  ERROR: error,
-  INFO: info,
-  WARN: warn,
-}
-
-export default function rehypeCallout() {
-  const visitor = (node, index, parent) => {
-    const children = node.children
-      .filter((child) => child.type === "element")
-      .flatMap((child) => child.children)
-
-    const [first] = children
-    const match = first?.type === "text" ? first.value.match(regex) : null
-
-    if (!match) {
-      return
-    }
-
-    const [_, type, title] = match
-    const icon = iconMap[type] ?? info
-
-    parent.children.splice(index, 1, {
-      type: "element",
-      tagName: "aside",
-      children: [
-        {
-          ...icon,
-          properties: {
-            ...icon.properties,
-            class: [
-              "w-9 h-9 absolute top-1 right-1 p-1.5 transition-colors",
-              type === "INFO" && "text-indigo-600 dark:text-indigo-400",
-              type === "WARN" && "text-yellow-700 dark:text-yellow-500",
-              type === "ERROR" && "text-red-600 dark:text-red-500",
-            ].filter(Boolean),
-          },
-        },
-        {
-          type: "element",
-          tagName: "strong",
-          properties: {
-            className:
-              "text-zinc-900 dark:text-white font-bold mb-2 block transition-colors",
-          },
-          children: [{ type: "text", value: title }],
-        },
-        {
-          type: "element",
-          tagName: "div",
-          properties: {
-            className: "text-zinc-700 dark:text-zinc-200 transition-colors",
-          },
-          children: children.slice(2),
-        },
+/**
+ * @type {[
+ *   import("unified").Pluggable,
+ *   import("@mskelton/rehype-callout").Options,
+ * ]}
+ */
+const config = [
+  rehypeCallout,
+  {
+    icons: {
+      INFO: info,
+      WARN: warn,
+      ERROR: error,
+    },
+    class: {
+      default: [
+        "px-4 -mx-4 relative dark:text-white transition-colors",
+        "sm:rounded sm:-mr-6 sm:-ml-7 py-4 sm:px-6 sm:border-l-4",
       ],
-      properties: {
-        class: [
-          "px-4 -mx-4 relative dark:text-white transition-colors",
-          "sm:rounded sm:-mr-6 sm:-ml-7 py-4 sm:px-6 sm:border-l-4",
-          type === "INFO" &&
-            "bg-indigo-300/50 border-indigo-500 dark:bg-indigo-900/50 dark:border-indigo-500",
-          type === "WARN" &&
-            "bg-yellow-300/50 border-yellow-500 dark:bg-yellow-900/50 dark:border-yellow-500",
-          type === "ERROR" &&
-            "bg-red-300/50 border-red-500 dark:bg-red-900/50 dark:border-red-500",
-        ].filter(Boolean),
-      },
-    })
+      INFO: "bg-indigo-300/50 border-indigo-500 dark:bg-indigo-900/50 dark:border-indigo-500",
+      WARN: "bg-yellow-300/50 border-yellow-500 dark:bg-yellow-900/50 dark:border-yellow-500",
+      ERROR:
+        "bg-red-300/50 border-red-500 dark:bg-red-900/50 dark:border-red-500",
+    },
+    iconClass: {
+      default: "w-9 h-9 absolute top-1 right-1 p-1.5 transition-colors",
+      INFO: "text-indigo-600 dark:text-indigo-400",
+      WARN: "text-yellow-700 dark:text-yellow-500",
+      ERROR: "text-red-600 dark:text-red-500",
+    },
+    titleClass:
+      "text-zinc-900 dark:text-white font-bold mb-2 block transition-colors",
+    contentClass: "text-zinc-700 dark:text-zinc-200 transition-colors",
+  },
+]
 
-    return SKIP
-  }
-
-  return (tree) =>
-    visit(
-      tree,
-      (node) => node.type === "element" && node.tagName === "blockquote",
-      visitor,
-    )
-}
+export default config
