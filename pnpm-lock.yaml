@@ -23,6 +23,12 @@ importers:
       '@mdx-js/react':
         specifier: ^2.3.0
         version: 2.3.0(react@18.2.0)
+      '@mskelton/rehype-shiki':
+        specifier: ^0.0.1
+        version: 0.0.1(shiki@0.14.3)
+      '@mskelton/remark-extract-frontmatter':
+        specifier: ^0.0.1
+        version: 0.0.1
       '@next/mdx':
         specifier: ^13.5.2
         version: 13.5.2(@mdx-js/loader@2.3.0)(@mdx-js/react@2.3.0)
@@ -642,6 +648,22 @@ packages:
       eslint-config-prettier: 8.10.0(eslint@8.48.0)
       eslint-plugin-sort: 2.10.0(eslint@8.48.0)(typescript@5.2.2)
     dev: true
+
+  /@mskelton/rehype-shiki@0.0.1(shiki@0.14.3):
+    resolution: {integrity: sha512-xIVgi3aPBzwseoAFeACS7XW69J7DFhaXHfSek1vtfvcoTjfGddqtrtc4asjTeQmmk6Dd/GvfctbOQTyahWVS7A==}
+    peerDependencies:
+      shiki: '*'
+    dependencies:
+      hast-util-to-text: 4.0.0
+      shiki: 0.14.3
+      unist-util-visit: 5.0.0
+    dev: false
+
+  /@mskelton/remark-extract-frontmatter@0.0.1:
+    resolution: {integrity: sha512-ItqWpZJkPqX+xyjaX6LQSU4+HHhQF3s01KuJww1RJYL9/BAFbhkDhTMLOYXVTIbM00UPT1k9qORkhL6JZ4eWaw==}
+    dependencies:
+      vfile-matter: 5.0.0
+    dev: false
 
   /@next/env@13.5.2:
     resolution: {integrity: sha512-dUseBIQVax+XtdJPzhwww4GetTjlkRSsXeQnisIJWBaHsnxYcN2RGzsPHi58D6qnkATjnhuAtQTJmR1hKYQQPg==}

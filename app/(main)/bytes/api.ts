@@ -1,3 +1,4 @@
+import rehypeShiki from "@mskelton/rehype-shiki"
 import { notFound } from "next/navigation"
 import { compileMDX } from "next-mdx-remote/rsc"
 import { cache } from "react"
@@ -15,7 +16,6 @@ import rehypeCodeMeta from "../../../config/rehype-code-meta.mjs"
 import rehypeCodeTitles from "../../../config/rehype-code-titles.mjs"
 import rehypeHeaderId from "../../../config/rehype-header-id.mjs"
 import rehypeHeadings from "../../../config/rehype-headings.mjs"
-import rehypeShiki from "../../../config/rehype-shiki.mjs"
 import { ByteMeta } from "./types"
 
 // Revalidate the data at most every hour
