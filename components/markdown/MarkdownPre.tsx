@@ -5,10 +5,10 @@ import {
   ClipboardDocumentListIcon,
 } from "@heroicons/react/24/outline"
 import { clsx } from "clsx"
-import React, { useRef, useState } from "react"
+import React, { cloneElement, useRef, useState } from "react"
 
 export interface MarkdownPreProps extends React.HTMLAttributes<HTMLPreElement> {
-  children?: React.ReactNode
+  children: React.ReactElement
   hasFocus?: boolean
 }
 
@@ -55,7 +55,9 @@ export default function MarkdownPre({
         )}
         {...props}
       >
-        {children}
+        {cloneElement(children, {
+          tabIndex: 0,
+        })}
       </pre>
 
       <button

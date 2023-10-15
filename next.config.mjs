@@ -10,7 +10,6 @@ import remarkSmartypants from "remark-smartypants"
 import shiki from "shiki"
 import { redirects, rewrites } from "./config/redirects.mjs"
 import rehypeCallout from "./config/rehype-callout.mjs"
-import rehypeCodeA11y from "./config/rehype-code-a11y.mjs"
 import rehypeCodeMeta from "./config/rehype-code-meta.mjs"
 import rehypeCodeTitles from "./config/rehype-code-titles.mjs"
 import rehypeHeaderId from "./config/rehype-header-id.mjs"
@@ -47,7 +46,6 @@ const withMDX = nextMDX({
       rehypeHeaderId,
       rehypeCodeTitles,
       [rehypeShiki, { highlighter }],
-      rehypeCodeA11y,
       rehypeCodeMeta,
       rehypeCallout,
     ],
