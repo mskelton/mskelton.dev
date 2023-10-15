@@ -14,7 +14,7 @@ import rehypeCallout from "../../../config/rehype-callout.mjs"
 import rehypeCodeMeta from "../../../config/rehype-code-meta.mjs"
 import rehypeCodeTitles from "../../../config/rehype-code-titles.mjs"
 import rehypeHeaderId from "../../../config/rehype-header-id.mjs"
-import rehypeHeadings from "../../../config/rehype-headings.mjs"
+import config from "../../../config/rehype-headings.mjs"
 import { ByteMeta } from "./types"
 
 // Revalidate the data at most every hour
@@ -41,7 +41,7 @@ export const getByte = cache(async (slug: string) => {
       mdxOptions: {
         rehypePlugins: [
           rehypeSlug,
-          rehypeHeadings,
+          config,
           rehypeHeaderId,
           rehypeCodeTitles,
           [rehypeShiki, { highlighter: await getHighlighter() }],

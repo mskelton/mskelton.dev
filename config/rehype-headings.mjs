@@ -1,7 +1,13 @@
+// @ts-check
 import rehypeAutolinkHeadings from "rehype-autolink-headings"
 
-/** @type {import("unified").Pluggable<any[]>} */
-const rehypeHeadings = [
+/**
+ * @type {[
+ *   import("unified").Transformer<any>,
+ *   import("rehype-autolink-headings").Options,
+ * ]}
+ */
+const config = [
   rehypeAutolinkHeadings,
   {
     content: {
@@ -32,4 +38,4 @@ const rehypeHeadings = [
   },
 ]
 
-export default rehypeHeadings
+export default config
