@@ -1,9 +1,9 @@
 ---
-title: CSS Scroll Animations
+title: CSS Scroll-Driven Animations
 description:
-  Scroll animations is an extremely exciting feature that is coming to CSS. Join
-  me as we explore how to use scroll animations to create performant and well
-  polished user experiences.
+  Scroll-driven animations is an extremely exciting feature that is coming to
+  CSS. Join me as we explore how to use scroll-driven animations to create
+  performant and well polished user experiences.
 date: "2023-09-29"
 ---
 
@@ -12,24 +12,26 @@ import Demo from "../../components/Demo"
 import BasicScroll from "./BasicScroll"
 import BasicView from "./BasicView"
 
-In a recent project at work, I started exploring CSS scroll animations to
+In a recent project at work, I started exploring CSS scroll-driven animations to
 transition elements in a sticky header between a larger and smaller size. After
 just a couple hours of exploration I had a working prototype using scroll
 animations to replace the much less reliable and smooth JavaScript based
 animation.
 
-Having just scratched the surface of what is possible with scroll animations, I
-knew a blog post was in order to show off some of the incredible features of
-scroll animations.
+Having just scratched the surface of what is possible with scroll-driven
+animations, I knew a blog post was in order to show off some of the incredible
+features of scroll-driven animations.
 
 > [!WARN Experimental features ahead]  
-> CSS scroll animations are still experimental. At the time of writing, support
-> for scroll animations is primarily in Chromium with Firefox supporting them
-> behind a flag. Safari unfortunately does not support them at all. For more
-> details, checkout the
+> CSS scroll-driven animations are still experimental. At the time of writing,
+> support for scroll-driven animations is primarily in Chromium with Firefox
+> supporting them behind a flag. Safari unfortunately does not support them at
+> all. For more details, checkout the
 > [MDN compatibility table](https://developer.mozilla.org/en-US/docs/Web/CSS/animation-timeline#browser_compatibility).
 
-## Basic Scroll Animation
+## What are scroll timelines?
+
+## Basic scroll animation
 
 Let's start with a rather simple example showing a blue box that rotates as it's
 container scrolls. Try scrolling the container below to see it rotate!
@@ -92,9 +94,41 @@ does not make sense when the animation is linked to scroll progress.
 > To make this work properly in Firefox, we need to add an `animation-duration`
 > which we can set to `1ms`. The value doesn't actually matter, but Firefox
 > needs the property for the animation to work. Hopefully this will be fixed as
-> Firefox support for scroll animations continues to improve.
+> Firefox support for scroll-driven animations continues to improve.
 
-## Basic View Animation
+## Using the View Timeline
+
+View Timeline animations are very similar to Scroll Timeline animations, but
+instead of tracking the progress of the scroll container, view animations track
+the entry/exit progress of an element within it's parent. Some examples of this
+might include:
+
+- Adding a shadow or similar styling to a sticky header as you begin to scroll.
+-
+
+Let's go ahead and implement that first idea of adding styling to a sticky
+header as you scroll the page. Before we do, here is the kind of code you might
+be used to for a task like this:
+
+```javascript
+let [isScrolled, setIsScrolled] = useState(false)
+
+useEffect(() => {
+  function onScroll() {
+    setIsScrolled(window.scrollY > 0)
+  }
+
+  onScroll()
+  window.addEventListener("scroll", onScroll, { passive: true })
+  return () => window.removeEventListener("scroll", onScroll, { passive: true })
+}, [])
+
+return <header className={isScrolled ? "shadow-lg" : ""}></header>
+```
+
+In the code above, we are using some state to track whether the window has been
+scrolled so we can conditionally apply styles. This works okay, but scroll
+listeners have
 
 <Demo tight>
   <BasicView />
@@ -108,10 +142,14 @@ progress.
 ```html
 <div class="parent">
   <div class="sentinel" />
-  <div className="header">Lorem AI</div>
-  <div className="content">...</div>
+  <header>Lorem AI</header>
+  <main>...</main>
 </div>
 ```
+
+Now, the CSS for this is a bit complex, but I've highlighted the most important
+bits in the code block below. In addition to using View Timelines, we have to
+reach for another feature of CSS scroll-driven animations: `timeline-scope`.
 
 ```css {16,22,26-29}
 @keyframes header {
@@ -138,7 +176,7 @@ progress.
   view-timeline: --tl;
 }
 
-.header {
+header {
   animate: header linear forwards;
   animation-duration: 1ms; /* Firefox requires this to apply the animation */
   animation-range: exit;
