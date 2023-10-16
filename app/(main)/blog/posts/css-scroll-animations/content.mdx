@@ -36,12 +36,52 @@ container scrolls. Try scrolling the container below to see it rotate!
   <BasicScroll />
 </Demo>
 
+Given the following HTML:
+
+```html
+<div className="parent">
+  <div className="scroll-area">
+    <div className="box" />
+  </div>
+</div>
+```
+
 To accomplish this lovely animation, we only need to add 3 lines of CSS.
 
-<CodeBlock filename="BasicScroll.css" meta="[28-30]" />
+```css [21-23]
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.parent {
+  height: 480px;
+  overflow-y: scroll;
+}
+
+.scroll-area {
+  height: 1200px;
+}
+
+.box {
+  --size: 120px;
+  animation: spin linear;
+  animation-duration: 1ms; /* Firefox requires this to apply the animation */
+  animation-timeline: view();
+  aspect-ratio: 1;
+  left: calc(50% - var(--size) / 2);
+  position: relative;
+  top: calc(50% - var(--size) / 2);
+  width: var(--size);
+}
+```
 
 We specify the `animation` just like we would with any other CSS animation by
-referencing a set of keyframes (e.g. `rotate`), and an easing function (e.g.
+referencing a set of keyframes (e.g. `spin`), and an easing function (e.g.
 `linear`). What is missing from our `animation` property is a duration which is
 required when using standard CSS animations. This is omitted because a duration
 does not make sense when the animation is linked to scroll progress.
