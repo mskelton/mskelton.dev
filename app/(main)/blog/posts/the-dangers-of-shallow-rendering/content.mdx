@@ -25,7 +25,7 @@ see, you won't be forced to read any more. 🙂
 1. Shallow rendering decreases confidence.
 1. Shallow rendering complicates refactoring.
 
-## Shallow Rendering Creates Additional Failure Points
+## Shallow rendering creates additional failure points
 
 What is the purpose of shallow rendering in the first place? According to the
 [Enzyme docs](https://enzymejs.github.io/enzyme/docs/api/shallow.html),
@@ -51,7 +51,7 @@ using the highest level component. In addition to testing the components, this
 will verify that your components are properly integrated removing that
 additional point of failure.
 
-## Shallow Rendering Decreases Confidence
+## Shallow rendering decreases confidence
 
 When developing web applications, the end result is some form of user value.
 Whether that is a visual or functional improvement, every change that is made
@@ -74,7 +74,7 @@ won't spend as much time fixing false positives/negatives, you will have more
 time to test known edge cases and perform exploratory testing to find other edge
 cases.
 
-## Shallow Rendering Complicates Refactoring
+## Shallow rendering complicates refactoring
 
 Refactoring is a necessary part of software development and often occurs many
 times during the lifetime of an application. When refactoring code, you should
@@ -94,7 +94,7 @@ Since I used shallow rendering, my test breaks since it was expecting to find a
 don't give me confidence that the changes to the components maintained the
 expected user behavior.
 
-## A Better Way
+## A better way
 
 If you are convinced that shallow rendering is not a good testing practice, the
 next big question is what to do instead? While there are many ways to answer

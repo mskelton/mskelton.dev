@@ -15,7 +15,7 @@ have some challenges which can cause some issues in certain scenarios. In this
 article, I'll explore some of those challenges and explain why I don't use
 environment variables in my applications.
 
-## Globally Available
+## Globally available
 
 The first challenge with environment variables is the fact that they are
 globally available to all applications. The main problem this can cause is
@@ -26,7 +26,7 @@ conflict between the two applications. This might seem like a contrived example
 but it is actually one that I have faced at my job and it has caused some
 serious annoyances.
 
-## Shell Specific
+## Shell specific
 
 Another challenge with environment variables is that they are only available in
 the shell which you have configured them for. Again, this might not seem like a
@@ -34,14 +34,14 @@ big deal, but if you have to switch between shells on occasion this can be a
 real pain as the variables are not shared by both shells and must be maintained
 in each shell.
 
-## Difficult To Find
+## Difficult to find
 
 Because environment variables are configured in a file such as `~/.bashrc` it is
 harder to determine the value of each environment variable quickly. Although an
 minor inconvenience, it still adds to the list of challenges with environment
 variables.
 
-## My Solution
+## My solution
 
 My solution to this is to use `.env` files to store environment variables on a
 per-application basis. These files are not shell specific and they work across
@@ -58,7 +58,7 @@ so as to not override existing system environment variables unless explicitly
 requested. This behavior allows you to still specific environment variables on a
 per-command basis when running commands in your shell.
 
-## Should I Switch To `.env`?
+## Should I switch to `.env`?
 
 If you aren't having any issues with environment variables, I wouldn't recommend
 switching to `.env` just because it sounds neat. If however you have encountered

@@ -17,7 +17,7 @@ from my local development machine. In this article, I'll go through some basic
 jobs that you can run using GitHub Actions to simplify the process of publishing
 npm packages.
 
-## Basic Publish Action
+## Basic publish action
 
 To get our feet wet with publishing npm packages using GitHub Actions, let's
 start by creating a simple action that will publish to npm when we push a new
@@ -55,7 +55,7 @@ which is required for authenticating with npm to publish the package. The
 example above uses GitHub secrets for storing the token which can be generated
 in your npm profile.
 
-## Publishing A Release
+## Publishing a release
 
 To publish a release with our new action, we can run `yarn publish` or
 `npm publish` to increment the package version in package.json and create a new
@@ -68,7 +68,7 @@ run the git push command every time we run our publish command. That script
 would look like this `"postversion": "git push && git push --tags"` and should
 be places in the `scripts` section of your package.json_
 
-## Creating GitHub Releases
+## Creating GitHub releases
 
 Now that we have the basic publish action created, we can improve it so it will
 automatically create a GitHub release with change notes pulled automatically
@@ -92,7 +92,7 @@ so the custom action can authenticate with GitHub to create the release and
 upload the change notes. The value of this is the `GITHUB_TOKEN` secret that is
 [automatically available inside all GitHub actions](https://docs.github.com/en/actions/security-guides/automatic-token-authentication).
 
-## Running Tests
+## Running tests
 
 While the above examples work great for simple packages where you just need to
 publish and create a release, most packages will probably have a suite of tests
@@ -139,7 +139,7 @@ needs: test
 if: startsWith(github.ref, 'refs/tags/')
 ```
 
-## Putting It All together
+## Putting it all together
 
 Putting all three of these pieces together, our final action would look like
 this. In some cases, you may not need all three of the jobs so you can easily
@@ -186,7 +186,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 ```
 
-## Bonus: GitHub Actions Badge
+## Bonus: GitHub Actions badge
 
 Once you get your actions working, you may wish to add a status badge to your
 readme to show if the build is passing or failing. GitHub Actions have builtin

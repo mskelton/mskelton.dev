@@ -14,7 +14,7 @@ or all workspaces in a project. While constraints are still experimental and
 community examples of using them are a bit sparse, they are a very powerful tool
 to help you more easily manage your project.
 
-## What Are Yarn Constraints?
+## What are Yarn constraints?
 
 As previously mentioned,
 [Yarn constraints](https://yarnpkg.com/features/constraints) allow you to
@@ -24,7 +24,7 @@ when used on projects with multiple workspaces such as a component library.
 Constraints are written in Prolog which, although it has a learning curve,
 allows writing powerful rules in just a few short lines.
 
-## Let's See An Example
+## Let's see an example
 
 Alright, let's get down to business and look at an example of a constraint. For
 the rest of this article, let's assume that we are working on an open-source
@@ -73,7 +73,7 @@ Now that we've seen what Yarn constraints look like and how to check/fix them,
 let's look at a number of real world use cases where you might want to use
 constraints to enforce rules for your workspaces.
 
-## Use Case: Enforce Homepage URL
+## Use case: Enforce homepage URL
 
 Continuing with our hypothetical component library, we probably want to include
 a `homepage` field in the manifest of each workspace so that users can use the
@@ -182,7 +182,7 @@ $ yarn constraints
 
 _This constraint is also auto-fixable when you run `yarn constraints --fix`._
 
-## Use Case: Ensuring a Dependency Is a Peer Dependency
+## Use case: Ensuring a dependency is a peer dependency
 
 So, we've been using the example of a component library to demonstrate
 constraints, so let's extend the example to say that we are building a React
@@ -212,7 +212,7 @@ $ yarn constraints
 As we can see in the message, our newly created constraint prevents us from
 using `react` as a regular dependency.
 
-## Wrapping It Up
+## Wrapping it up
 
 That was a lot for a single article! I hope this article has helped you to
 understand what constraints are, when you might want to use them, and how to
