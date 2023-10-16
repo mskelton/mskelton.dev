@@ -9,7 +9,7 @@ export default function Skills() {
         return (
           <a
             key={name}
-            className="group relative flex aspect-video flex-col items-center justify-center gap-2 rounded-md border border-zinc-200/50 bg-zinc-100/50 text-white outline-none transition-all hover:bg-zinc-200 focus-visible:ring-2 focus-visible:ring-indigo-500 dark:border-zinc-700/50 dark:bg-zinc-800/50 dark:hover:bg-zinc-800"
+            className="focusable group relative flex aspect-video flex-col items-center justify-center gap-2 rounded-md border border-zinc-200/50 bg-zinc-100/50 text-white outline-none transition-all hover:bg-zinc-200 dark:border-zinc-700/50 dark:bg-zinc-800/50 dark:hover:bg-zinc-800"
             href={url}
             rel="noopener noreferrer"
             target="_blank"

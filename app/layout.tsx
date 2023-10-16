@@ -22,7 +22,7 @@ export interface RootLayoutProps {
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html
-      className={`pause-transitions h-full text-lg antialiased ${font.className}`}
+      className={`h-full text-lg antialiased ${font.className}`}
       lang="en"
       suppressHydrationWarning
     >
@@ -41,11 +41,6 @@ export default function RootLayout({ children }: RootLayoutProps) {
           href={`${siteMeta.url}/rss/feed.json`}
           rel="alternate"
           type="application/feed+json"
-        />
-        <script
-          data-domain="mskelton.dev"
-          defer
-          src="https://plausible.io/js/script.js"
         />
       </head>
 

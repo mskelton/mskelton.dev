@@ -106,7 +106,10 @@ module.exports = {
             "--tw-prose-quote-borders": theme("colors.zinc.500"),
             "--tw-prose-captions": theme("colors.zinc.500"),
             "--tw-prose-code": theme("colors.zinc.300"),
-            "--tw-prose-code-bg": theme("colors.zinc.200 / 0.05"),
+            "--tw-prose-code-bg": theme("colors.zinc.800"),
+            "--tw-prose-code-border": theme("colors.zinc.600"),
+            "--tw-prose-code-link": theme("colors.indigo.400"),
+            "--tw-prose-code-link-hover": theme("colors.indigo.500"),
             "--tw-prose-kbd": theme("colors.zinc.300"),
             "--tw-prose-kbd-bg": theme("colors.zinc.800"),
             "--tw-prose-kbd-borders": theme("colors.zinc.700"),
@@ -116,6 +119,7 @@ module.exports = {
         },
         DEFAULT: {
           css: {
+            "--tw-prose-ring": `inset 0 0 0 3px ${theme("colors.indigo.500")}`,
             "--tw-prose-body": theme("colors.zinc.600"),
             "--tw-prose-headings": theme("colors.zinc.900"),
             "--tw-prose-link": theme("colors.zinc.900"),
@@ -130,7 +134,10 @@ module.exports = {
             "--tw-prose-quote-borders": theme("colors.zinc.200"),
             "--tw-prose-captions": theme("colors.zinc.400"),
             "--tw-prose-code": theme("colors.zinc.700"),
-            "--tw-prose-code-bg": theme("colors.zinc.300 / 0.2"),
+            "--tw-prose-code-bg": theme("colors.zinc.100"),
+            "--tw-prose-code-border": theme("colors.zinc.300"),
+            "--tw-prose-code-link": theme("colors.indigo.600"),
+            "--tw-prose-code-link-hover": theme("colors.indigo.500"),
             "--tw-prose-pre-code": theme("colors.zinc.100"),
             "--tw-prose-pre-bg": theme("colors.zinc.900"),
             "--tw-prose-kbd": theme("colors.zinc.700"),
@@ -181,7 +188,7 @@ module.exports = {
             },
 
             // Links
-            "a:not(.heading-link)": {
+            "a:not(.heading-link):not(:has(code))": {
               color: "var(--tw-prose-link)",
               fontWeight: theme("fontWeight.semibold"),
               backgroundImage: `linear-gradient(var(--tw-prose-link-bg), var(--tw-prose-link-bg))`,
@@ -214,21 +221,27 @@ module.exports = {
               color: "var(--tw-prose-bold)",
               fontWeight: theme("fontWeight.semibold"),
             },
-            code: {
-              ...transition,
-              display: "inline-block",
-              color: "var(--tw-prose-code)",
-              fontWeight: theme("fontWeight.semibold"),
-              backgroundColor: "var(--tw-prose-code-bg)",
-              borderRadius: theme("borderRadius.lg"),
-              paddingInline: theme("spacing.2"),
-            },
             ":is(p, li, aside) code": {
+              ...transition,
+              backgroundColor: "var(--tw-prose-code-bg)",
+              borderColor: "var(--tw-prose-code-border)",
+              borderRadius: theme("borderRadius.md"),
+              borderWidth: theme("borderWidth.DEFAULT"),
+              color: "var(--tw-prose-code)",
+              display: "inline-block",
               fontSize: theme("fontSize.xs")[0],
-              lineHeight: theme("lineHeight.6"),
+              fontWeight: theme("fontWeight.semibold"),
+              lineHeight: theme("lineHeight.5"),
+              paddingInline: theme("spacing.1"),
             },
             "a code": {
-              color: "inherit",
+              color: "var(--tw-prose-code-link)",
+            },
+            "a:has(code):hover code": {
+              color: "var(--tw-prose-code-link-hover)",
+            },
+            "a:has(code):focus-visible code": {
+              boxShadow: `inset 0 0 0 2px ${theme("colors.indigo.500")}`,
             },
             ":is(h2, h3) code": {
               fontWeight: theme("fontWeight.bold"),
@@ -312,6 +325,34 @@ module.exports = {
                 marginInline: `calc(${theme("spacing.8")} * -1)`,
               },
             },
+            pre: {
+              marginInline: `calc(${theme("spacing.4")} * -1)`,
+              backgroundColor: theme("colors.zinc.950"),
+              fontSize: theme("fontSize.sm")[0],
+              "@screen sm": {
+                marginInline: theme("margin.0"),
+              },
+            },
+            "pre code": {
+              backgroundColor: "transparent",
+              borderRadius: 0,
+              color: theme("colors.zinc.100"),
+              display: "grid",
+              fontSize: "inherit",
+              fontWeight: "inherit",
+              overflowX: "auto",
+              paddingBlock: theme("spacing.8"),
+              paddingInline: theme("spacing.4"),
+              "@screen sm": {
+                padding: theme("spacing.8"),
+              },
+            },
+            "pre code:focus": {
+              outline: "none",
+            },
+            "pre code:focus-visible": {
+              boxShadow: "var(--tw-prose-ring)",
+            },
             ":is(.has-title, .demo) :is(pre, code)": {
               "@screen sm": {
                 borderRadius: `0 0 ${theme("borderRadius.xl")} ${theme(
@@ -323,9 +364,6 @@ module.exports = {
               "@screen sm": {
                 borderRadius: theme("borderRadius.xl"),
               },
-            },
-            "pre code": {
-              borderRadius: 0,
             },
             "pre code .line": {
               ...transition,

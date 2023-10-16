@@ -23,6 +23,15 @@ importers:
       '@mdx-js/react':
         specifier: ^2.3.0
         version: 2.3.0(react@18.2.0)
+      '@mskelton/rehype-callout':
+        specifier: ^0.0.3
+        version: 0.0.3
+      '@mskelton/rehype-shiki':
+        specifier: ^0.0.3
+        version: 0.0.3(shiki@0.14.3)
+      '@mskelton/remark-extract-frontmatter':
+        specifier: ^0.0.2
+        version: 0.0.2
       '@next/mdx':
         specifier: ^13.5.2
         version: 13.5.2(@mdx-js/loader@2.3.0)(@mdx-js/react@2.3.0)
@@ -139,8 +148,8 @@ importers:
         specifier: ^7.22.11
         version: 7.22.11(@babel/core@7.22.11)(eslint@8.48.0)
       '@mskelton/eslint-config':
-        specifier: ^8.3.0
-        version: 8.3.0(@typescript-eslint/eslint-plugin@6.5.0)(@typescript-eslint/parser@6.5.0)(eslint-plugin-sort@2.10.0)(eslint@8.48.0)
+        specifier: ^8.4.0
+        version: 8.4.0(@typescript-eslint/eslint-plugin@6.5.0)(@typescript-eslint/parser@6.5.0)(eslint-plugin-sort@2.10.0)(eslint@8.48.0)
       '@octokit/webhooks-types':
         specifier: ^7.2.0
         version: 7.2.0
@@ -615,8 +624,8 @@ packages:
       react: 18.2.0
     dev: false
 
-  /@mskelton/eslint-config@8.3.0(@typescript-eslint/eslint-plugin@6.5.0)(@typescript-eslint/parser@6.5.0)(eslint-plugin-sort@2.10.0)(eslint@8.48.0):
-    resolution: {integrity: sha512-AkEPw7XnqHORtMrp7NdET4iZUwQnMp0TsVXpFaHjZnoA5Eoy9GTA8ytMrE8MXHDOGkqfKR7uME/FDSdhEqITFA==}
+  /@mskelton/eslint-config@8.4.0(@typescript-eslint/eslint-plugin@6.5.0)(@typescript-eslint/parser@6.5.0)(eslint-plugin-sort@2.10.0)(eslint@8.48.0):
+    resolution: {integrity: sha512-243xAHuW9067zWH0FleMkKiJ4+zHMNkeYFAmm2zA143WhJVKOAn4wKllmNfqX0bHZ5K7bGTuUb3GbjZ2AfJKEw==}
     peerDependencies:
       '@typescript-eslint/eslint-plugin': '>= 5'
       '@typescript-eslint/parser': '>= 5'
@@ -642,6 +651,28 @@ packages:
       eslint-config-prettier: 8.10.0(eslint@8.48.0)
       eslint-plugin-sort: 2.10.0(eslint@8.48.0)(typescript@5.2.2)
     dev: true
+
+  /@mskelton/rehype-callout@0.0.3:
+    resolution: {integrity: sha512-t7Mqw8+dgZSqnpuS8ysX8KB92rv7nq0DiKujjVRWmYJSbTH44+HOP8tkDn5ss9cWSRVpQRoEDbWf3enJtqRVjw==}
+    dependencies:
+      unist-util-visit: 5.0.0
+    dev: false
+
+  /@mskelton/rehype-shiki@0.0.3(shiki@0.14.3):
+    resolution: {integrity: sha512-330aWio4kXBxtd3/y5VHLL8lP15KsJYZvHyO0XSn4v/bOYNu6opybPFFOCFn7eIs8EEY95J1lEaLwgBitlRDAA==}
+    peerDependencies:
+      shiki: '*'
+    dependencies:
+      hast-util-to-text: 4.0.0
+      shiki: 0.14.3
+      unist-util-visit: 5.0.0
+    dev: false
+
+  /@mskelton/remark-extract-frontmatter@0.0.2:
+    resolution: {integrity: sha512-Svhg3PZH7ngI2hC81K5bJtuWQ/fW7sZ4ME44eek1fs6dk1OzczSM6F6rMNTOv84zN0TfcSArADp13R46qd7tKg==}
+    dependencies:
+      vfile-matter: 5.0.0
+    dev: false
 
   /@next/env@13.5.2:
     resolution: {integrity: sha512-dUseBIQVax+XtdJPzhwww4GetTjlkRSsXeQnisIJWBaHsnxYcN2RGzsPHi58D6qnkATjnhuAtQTJmR1hKYQQPg==}

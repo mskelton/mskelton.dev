@@ -39,7 +39,7 @@ export default function MarkdownPre({
     <>
       {hasFocus ? (
         <button
-          className="absolute right-0 top-3 rounded-md bg-zinc-900 px-2 text-xs text-white transition-colors hover:bg-zinc-950 focus:outline-none focus-visible:ring focus-visible:ring-indigo-500 sm:right-6"
+          className="focusable absolute right-0 top-3 rounded-md bg-zinc-900 px-2 text-xs text-white transition-colors hover:bg-zinc-950 sm:right-6"
           onClick={() => setIsExpanded(!isExpanded)}
           type="button"
         >
@@ -50,25 +50,20 @@ export default function MarkdownPre({
       <pre
         ref={preRef}
         className={clsx(
-          "-mx-4 bg-zinc-950 text-sm font-medium leading-7 text-zinc-100 sm:mx-0",
           !hasFocus ? undefined : isExpanded ? "expanded" : "collapsed",
           className,
         )}
         {...props}
       >
         {cloneElement(children, {
-          className: clsx(
-            children.props.className,
-            "grid [font-size:inherit] px-4 py-8 sm:p-8 overflow-x-auto [font-weight:inherit] bg-transparent",
-            "focus:outline-none focus-visible:ring-inset focus-visible:ring focus-visible:ring-indigo-500",
-          ),
+          tabIndex: 0,
         })}
       </pre>
 
       <button
         aria-label={copied ? "Copied" : "Copy code"}
         className={clsx(
-          "absolute right-4 top-4 z-10 flex h-10 w-10 items-center justify-center rounded-lg bg-zinc-800 opacity-0 transition-all delay-100 hover:bg-zinc-700 focus:outline-none focus-visible:opacity-100 focus-visible:ring focus-visible:ring-indigo-500 group-hover:opacity-100 group-[.has-title]:top-16",
+          "focusable absolute right-4 top-4 z-10 flex h-10 w-10 items-center justify-center rounded-lg bg-zinc-800 opacity-0 transition-all delay-100 hover:bg-zinc-700 focus-visible:opacity-100 group-hover:opacity-100 group-[.has-title]:top-16",
           copied ? "text-green-400" : "text-zinc-300",
         )}
         onClick={handleCopy}

@@ -1,17 +1,20 @@
-export const themeEffect = function () {
+export type Theme = "dark" | "light"
+
+export const themeEffect = function (): Theme {
   const pref = localStorage.getItem("theme")
   const d = document.documentElement
-  let result: string
+  let result: Theme
 
   if (
     pref === "dark" ||
     (!pref && window.matchMedia("(prefers-color-scheme: dark)").matches)
   ) {
-    // TODO: Add [color-scheme:dark]
-    d.classList.add("dark")
+    d.classList.add("pause-transitions")
+    d.classList.add("dark", "[color-scheme:dark]")
     result = "dark"
   } else {
-    d.classList.remove("dark")
+    d.classList.add("pause-transitions")
+    d.classList.remove("dark", "[color-scheme:dark]")
     result = "light"
   }
 
