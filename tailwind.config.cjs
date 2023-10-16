@@ -36,7 +36,7 @@ module.exports = {
         heartbeat:
           "1s ease-in-out 0s infinite alternate none running heartbeat",
       },
-      keyframes: {
+      keyframes: ({ theme }) => ({
         "draw-stroke": {
           to: { strokeDashoffset: 0 },
         },
@@ -65,7 +65,17 @@ module.exports = {
           from: { opacity: 0 },
           to: { opacity: 1 },
         },
-      },
+        header: {
+          from: {
+            background: "transparent",
+            backdropFilter: "blur(0)",
+          },
+          to: {
+            background: theme("colors.slate.800/0.75"),
+            backdropFilter: "blur(8px)",
+          },
+        },
+      }),
     },
     fontSize: {
       "2xs": ["0.75rem", { lineHeight: "1rem" }],

@@ -31,7 +31,7 @@ export default function rehypeCodeTitles() {
     const code = Array.isArray(node.children) ? node.children[0] : node.children
     const meta = code.data?.meta
 
-    const regex = /{[\d,-]+}/
+    const regex = /[{[][\d,-]+[}\]]/
     const parsed = (typeof meta === "string" ? meta : "")
       .split(" ")
       .filter(Boolean)

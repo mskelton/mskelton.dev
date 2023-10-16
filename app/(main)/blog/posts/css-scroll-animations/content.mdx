@@ -29,6 +29,8 @@ scroll animations.
 > details, checkout the
 > [MDN compatibility table](https://developer.mozilla.org/en-US/docs/Web/CSS/animation-timeline#browser_compatibility).
 
+## Basic Scroll Animation
+
 Let's start with a rather simple example showing a blue box that rotates as it's
 container scrolls. Try scrolling the container below to see it rotate!
 
@@ -48,7 +50,7 @@ Given the following HTML:
 
 To accomplish this lovely animation, we only need to add 3 lines of CSS.
 
-```css [21-23]
+```css {21-23}
 @keyframes spin {
   from {
     transform: rotate(0deg);
@@ -92,8 +94,57 @@ does not make sense when the animation is linked to scroll progress.
 > needs the property for the animation to work. Hopefully this will be fixed as
 > Firefox support for scroll animations continues to improve.
 
-<Demo>
+## Basic View Animation
+
+<Demo tight>
   <BasicView />
 </Demo>
 
-<CodeBlock filename="BasicView.css" />
+Once again, the HTML for our demo is quite simple. We have a parent element
+which will be our scroll container, our header, and the content. The only
+special element is a "sentinel" which we will use to track the view transition
+progress.
+
+```html
+<div class="parent">
+  <div class="sentinel" />
+  <div className="header">Lorem AI</div>
+  <div className="content">...</div>
+</div>
+```
+
+```css {16,22,26-29}
+@keyframes header {
+  from {
+    backdrop-filter: blur(0);
+    background: transparent;
+  }
+  to {
+    backdrop-filter: blur(8px);
+    background: rgb(30 41 59 / 0.75);
+  }
+}
+
+.parent {
+  height: 320px;
+  overflow-y: scroll;
+  position: relative;
+  timeline-scope: --tl;
+}
+
+.sentinel {
+  height: 80px;
+  position: absolute;
+  view-timeline: --tl;
+}
+
+.header {
+  animate: header linear forwards;
+  animation-duration: 1ms; /* Firefox requires this to apply the animation */
+  animation-range: exit;
+  animation-timeline: --tl;
+  position: sticky;
+  top: 0;
+  width: 100%;
+}
+```
