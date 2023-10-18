@@ -297,10 +297,11 @@ module.exports = {
             },
             "ul, ol": {
               paddingLeft: theme("spacing.6"),
+              marginTop: theme("spacing.4"),
             },
             li: {
-              marginTop: theme("spacing.4"),
-              marginBottom: theme("spacing.4"),
+              marginTop: theme("spacing.2"),
+              marginBottom: theme("spacing.2"),
               paddingLeft: theme("spacing[3.5]"),
             },
             "li::marker": {
