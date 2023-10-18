@@ -10,7 +10,7 @@ date: "2023-09-29"
 import CodeBlock from "../../components/CodeBlock"
 import Demo from "../../components/Demo"
 import BasicScroll from "./BasicScroll"
-import BasicView from "./BasicView"
+import HeaderFade from "./HeaderFade"
 
 In a recent project at work, I started exploring CSS scroll-driven animations to
 transition elements in a sticky header between a larger and smaller size. After
@@ -127,28 +127,21 @@ Just like that, we've built our first scroll-driven animation!
 > Hopefully this will be fixed as Firefox support for scroll-driven animations
 > continues to improve.
 
-## TODO
+## More use cases for the scroll timeline
 
 That previous example was fun, but it's not all that useful to just make a box
 spin as the user scrolls down the page. There are plenty of use cases though
 where you might want to create animations using the scroll timeline, such as:
 
 - Adding a reading progress indicator for a blog post.
--
+- Applying a shadow or similar styling to a sticky header as you begin to
+  scroll.
+- Slide in a newsletter reminder when the user scrolls half way down the page.
 
-## Using the View Timeline
-
-View Timeline animations are very similar to Scroll Timeline animations, but
-instead of tracking the progress of the scroll container, view animations track
-the entry/exit progress of an element within it's parent. Some examples of this
-might include:
-
-- Adding a shadow or similar styling to a sticky header as you begin to scroll.
--
-
-Let's go ahead and implement that first idea of adding styling to a sticky
-header as you scroll the page. Before we do, here is the kind of code you might
-be used to for a task like this:
+Let's go ahead and implement that second idea of adding styling to a sticky
+header as you scroll the page. Before we see how this works with scroll
+animations, let's first take a look at the kind of code you might think of for a
+task like this.
 
 ```javascript
 let [isScrolled, setIsScrolled] = useState(false)
@@ -167,31 +160,32 @@ return <header className={isScrolled ? "shadow-lg" : ""}></header>
 ```
 
 In the code above, we are using some state to track whether the window has been
-scrolled so we can conditionally apply styles. This works okay, but scroll
-listeners have
+scrolled so we can conditionally apply styles. Those styles might be a shadow
+like shown above, or perhaps shrinking an image to a smaller size. Regardless of
+the specifics, that's how it might look.
+
+With scroll-driven animations, we can get a bit fancier. Try scrolling the
+container below to see how the header background color slowly fades in as your
+scroll the container.
 
 <Demo tight>
-  <BasicView />
+  <HeaderFade />
 </Demo>
 
-Once again, the HTML for our demo is quite simple. We have a parent element
-which will be our scroll container, our header, and the content. The only
-special element is a "sentinel" which we will use to track the view transition
-progress.
+The HTML is once again very simple, just a container `div` that holds our header
+and the main content of the page.
 
 ```html
-<div class="parent">
-  <div class="sentinel" />
+<div class="container">
   <header>Lorem AI</header>
   <main>...</main>
 </div>
 ```
 
-Now, the CSS for this is a bit complex, but I've highlighted the most important
-bits in the code block below. In addition to using View Timelines, we have to
-reach for another feature of CSS scroll-driven animations: `timeline-scope`.
+The CSS is very similar to our first example containing some keyframes, making
+our container scrollable, and some animation properties for our header.
 
-```css {16,22,26-29}
+```css {19-21}
 @keyframes header {
   from {
     backdrop-filter: blur(0);
@@ -203,26 +197,38 @@ reach for another feature of CSS scroll-driven animations: `timeline-scope`.
   }
 }
 
-.parent {
+.container {
   height: 320px;
   overflow-y: scroll;
   position: relative;
-  timeline-scope: --tl;
-}
-
-.sentinel {
-  height: 80px;
-  position: absolute;
-  view-timeline: --tl;
 }
 
 header {
-  animate: header linear forwards;
-  animation-duration: 1ms; /* Firefox requires this to apply the animation */
-  animation-range: exit;
-  animation-timeline: --tl;
+  animation: header linear forwards;
+  animation-timline: scroll();
+  animation-range: 0 80px;
   position: sticky;
   top: 0;
   width: 100%;
 }
 ```
+
+There are a couple differences with the animation declaration from our last
+example, most prominently being the new `animation-range` keyword. This
+instructs the browser the start and end scroll positions to use as the start and
+end of the animation timeline. If not specified, this would be the start and end
+of our scroll container, but by specifying a range of `0 80px`, the browser will
+start the animation immediately after starting to scroll our container, and
+finish when the user has scrolled 80px.
+
+With the addition of `animation-range`, we also need to specify an
+`animation-fill-mode` which is what we've done with the `forwards` keyword in
+the `animation` property. This ensures that once we've scrolled past 80px in the
+container, the element will retain the values from the last keyframe in the
+animation, which in our case is the background color and blur effect. If we
+don't specify this property, our element will reset back to it's initial values
+before the animation took place which is not the intended behavior.
+
+## Using the View Timeline
+
+TODO
