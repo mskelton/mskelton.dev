@@ -32,6 +32,9 @@ importers:
       '@mskelton/remark-extract-frontmatter':
         specifier: ^0.0.2
         version: 0.0.2
+      '@mskelton/tailwind-size':
+        specifier: ^0.0.2
+        version: 0.0.2(tailwindcss@3.3.3)
       '@next/mdx':
         specifier: ^13.5.2
         version: 13.5.2(@mdx-js/loader@2.3.0)(@mdx-js/react@2.3.0)
@@ -672,6 +675,14 @@ packages:
     resolution: {integrity: sha512-Svhg3PZH7ngI2hC81K5bJtuWQ/fW7sZ4ME44eek1fs6dk1OzczSM6F6rMNTOv84zN0TfcSArADp13R46qd7tKg==}
     dependencies:
       vfile-matter: 5.0.0
+    dev: false
+
+  /@mskelton/tailwind-size@0.0.2(tailwindcss@3.3.3):
+    resolution: {integrity: sha512-g138rCP8i2+a2+3cgcl+Q+tqtqWoYKhLbFz784BM2kHdGqAYgZbQA69jXimmDxLGD+ib0kNl1/9ghP9czFrj6w==}
+    peerDependencies:
+      tailwindcss: '>=3.0.0 || insiders'
+    dependencies:
+      tailwindcss: 3.3.3
     dev: false
 
   /@next/env@13.5.2:

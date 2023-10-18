@@ -129,7 +129,7 @@ export function ThemeToggle() {
                     >
                       <option.Icon
                         aria-hidden="true"
-                        className="mr-3 h-5 w-5 text-current"
+                        className="mr-3 text-current s-5"
                       />
 
                       {option.label}

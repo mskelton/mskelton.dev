@@ -15,10 +15,10 @@ export default function Skills() {
             target="_blank"
           >
             {cloneElement(icon, {
-              className: icon.props?.className ?? "h-6 w-6",
+              className: icon.props?.className ?? "s-6",
             })}
             {name}
-            <ArrowTopRightOnSquareIcon className="absolute right-2 top-2 h-4 w-4 opacity-0 transition-opacity group-hover:opacity-100 group-focus:opacity-100" />
+            <ArrowTopRightOnSquareIcon className="absolute right-2 top-2 opacity-0 transition-opacity s-4 group-hover:opacity-100 group-focus:opacity-100" />
           </a>
         )
       })}

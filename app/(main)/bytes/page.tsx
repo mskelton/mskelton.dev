@@ -101,7 +101,7 @@ export default async function Blog({
                     <Card.Tags className="order-1 mb-2 justify-self-end sm:mb-0">
                       {byte.tags.map((tag) => (
                         <Card.Tag key={tag.id} href={`/bytes?tag=${tag.name}`}>
-                          <HashtagIcon className="-ml-0.5 h-3 w-3" />
+                          <HashtagIcon className="-ml-0.5 s-3" />
                           {tag.name}
                         </Card.Tag>
                       ))}
@@ -118,13 +118,13 @@ export default async function Blog({
           {prevHref || nextHref ? (
             <div className="mt-12 flex items-center justify-center gap-6">
               <PageLink href={prevHref}>
-                <ChevronLeftIcon className="h-4 w-4 stroke-current" />
+                <ChevronLeftIcon className="stroke-current s-4" />
                 Previous page
               </PageLink>
 
               <PageLink href={nextHref}>
                 Next page
-                <ChevronRightIcon className="h-4 w-4 stroke-current" />
+                <ChevronRightIcon className="stroke-current s-4" />
               </PageLink>
             </div>
           ) : null}

@@ -27,7 +27,7 @@ const config = [
         "bg-red-300/50 border-red-500 dark:bg-red-900/50 dark:border-red-500",
     },
     iconClass: {
-      default: "w-9 h-9 absolute top-1 right-1 p-1.5 transition-colors",
+      default: "s-9 absolute top-1 right-1 p-1.5 transition-colors",
       INFO: "text-indigo-600 dark:text-indigo-400",
       WARN: "text-yellow-700 dark:text-yellow-500",
       ERROR: "text-red-600 dark:text-red-500",

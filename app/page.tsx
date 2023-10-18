@@ -35,7 +35,7 @@ function Post({ post }: PostProps) {
 function SocialLink({ icon: Icon, ...props }: SocialLinkProps) {
   return (
     <a className="focusable group -m-1 rounded-full p-1" {...props}>
-      <Icon className="h-6 w-6 text-zinc-500 transition group-hover:text-indigo-500 dark:text-zinc-400 dark:group-hover:text-indigo-400" />
+      <Icon className="text-zinc-500 transition s-6 group-hover:text-indigo-500 dark:text-zinc-400 dark:group-hover:text-indigo-400" />
     </a>
   )
 }
@@ -71,7 +71,7 @@ function Resume() {
   return (
     <div className="rounded-2xl border border-zinc-100 p-6 transition-colors @container dark:border-zinc-700/40">
       <h2 className="flex text-sm font-semibold text-zinc-900 transition-colors dark:text-zinc-100">
-        <BriefcaseIcon className="h-6 w-6 flex-none" />
+        <BriefcaseIcon className="flex-none s-6" />
         <span className="ml-3">Work</span>
       </h2>
 
@@ -79,10 +79,7 @@ function Resume() {
         {resume.map((role, roleIndex) => (
           <li key={roleIndex} className="flex gap-4">
             <div className="relative mt-1 flex h-10 w-10 flex-none items-center justify-center rounded-full shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 transition-colors dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0">
-              <role.logo
-                aria-label={`${role.company} logo`}
-                className="h-7 w-7"
-              />
+              <role.logo aria-label={`${role.company} logo`} className="s-7" />
             </div>
 
             <dl className="flex w-full flex-col flex-wrap gap-x-2 @[400px]:flex-row">
@@ -130,7 +127,7 @@ function Resume() {
         variant="secondary"
       >
         View Resume
-        <ChevronRightIcon className="h-5 w-5" />
+        <ChevronRightIcon className="s-5" />
       </Button>
     </div>
   )
@@ -172,7 +169,7 @@ export default async function Home() {
 
               <Button as={Link} href="/blog" variant="secondary">
                 <span>More posts</span>
-                <ChevronRightIcon className="h-5 w-5" />
+                <ChevronRightIcon className="s-5" />
               </Button>
             </div>
 
