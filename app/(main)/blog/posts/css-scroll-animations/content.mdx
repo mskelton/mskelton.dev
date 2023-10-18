@@ -22,37 +22,65 @@ Having just scratched the surface of what is possible with scroll-driven
 animations, I knew a blog post was in order to show off some of the incredible
 features of scroll-driven animations.
 
-> [!WARN Experimental features ahead]  
+> [!WARN Experimental features ahead!]  
 > CSS scroll-driven animations are still experimental. At the time of writing,
 > support for scroll-driven animations is primarily in Chromium with Firefox
 > supporting them behind a flag. Safari unfortunately does not support them at
 > all. For more details, checkout the
 > [MDN compatibility table](https://developer.mozilla.org/en-US/docs/Web/CSS/animation-timeline#browser_compatibility).
 
-## What are scroll timelines?
+## What are animation timelines?
 
-## Basic scroll animation
+Before diving into scroll-driven animations, we first need to understand what
+[animation timelines](https://developer.mozilla.org/en-US/docs/Web/CSS/animation-timeline)
+are. Historically, the only animation timeline that existed was the
+[document timeline](https://developer.mozilla.org/en-US/docs/Web/API/DocumentTimeline)
+which will start incrementing when the page loads. As long as the page remains
+open, the document timeline will continue to increment. We can observe this by
+logging the `document.timeline` variable in our console.
 
-Let's start with a rather simple example showing a blue box that rotates as it's
-container scrolls. Try scrolling the container below to see it rotate!
+```javascript
+console.log(document.timeline) // { currentTime: 62199.911, duration: null }
+```
+
+When you apply animations to elements, they use the document timeline to track
+the progress of the animation including any delays before starting the
+animation, and then the duration of the animation itself.
+
+Because scroll-driven animations are based on scroll progress and not time
+durations, the document timeline doesn't make sense when starting to think about
+animating elements based on scroll position. This is why scroll-driven
+animations introduced the `animation-timeline` property which allows us to
+target two new types of animation timelines that will be used to create
+scroll-driven animations.
+
+## Using the Scroll Timeline
+
+Enough talk, let's see an example! We'll start with a rather simple example
+showing a blue box that rotates as it's container scrolls. Try scrolling the
+container below to see it rotate!
 
 <Demo>
   <BasicScroll />
 </Demo>
 
-Given the following HTML:
+Let's take a look at the code for this simple animation. The HTML structure is
+quite simple, just three nested `div`s.
 
 ```html
-<div className="parent">
+<div className="container">
   <div className="scroll-area">
     <div className="box" />
   </div>
 </div>
 ```
 
-To accomplish this lovely animation, we only need to add 3 lines of CSS.
+For the CSS, we have some fairly typical code to define a set of keyframes for
+our animation, set up our container and scroll area, and then style and position
+our box in the center of the container. The highlighted lines are certainly the
+most interesting, as that's where we define our animation.
 
-```css {21-23}
+```css {20-21}
 @keyframes spin {
   from {
     transform: rotate(0deg);
@@ -62,7 +90,7 @@ To accomplish this lovely animation, we only need to add 3 lines of CSS.
   }
 }
 
-.parent {
+.container {
   height: 480px;
   overflow-y: scroll;
 }
@@ -72,29 +100,41 @@ To accomplish this lovely animation, we only need to add 3 lines of CSS.
 }
 
 .box {
-  --size: 120px;
   animation: spin linear;
-  animation-duration: 1ms; /* Firefox requires this to apply the animation */
-  animation-timeline: view();
+  animation-timeline: scroll();
   aspect-ratio: 1;
-  left: calc(50% - var(--size) / 2);
+  left: calc(50% - 60px);
   position: relative;
-  top: calc(50% - var(--size) / 2);
-  width: var(--size);
+  top: calc(50% - 60px);
+  width: 120px;
 }
 ```
 
-We specify the `animation` just like we would with any other CSS animation by
-referencing a set of keyframes (e.g. `spin`), and an easing function (e.g.
-`linear`). What is missing from our `animation` property is a duration which is
-required when using standard CSS animations. This is omitted because a duration
-does not make sense when the animation is linked to scroll progress.
+We specify the animation just like we would with any other CSS animation by
+referencing our set of keyframes (`spin`), and an easing function (`linear`).
+You may noticed that we haven't added an animation duration, which again makes
+sense since our animation is tied to scroll progress rather than a
+time-duration. Finally, the most important part is specifying
+`animation-timeline: scroll()` which tells the browser that our animation should
+be based on the scroll progress of the nearest scroll ancestor.
+
+Just like that, we've built our first scroll-driven animation!
 
 > [!ERROR Firefox bug]  
-> To make this work properly in Firefox, we need to add an `animation-duration`
-> which we can set to `1ms`. The value doesn't actually matter, but Firefox
-> needs the property for the animation to work. Hopefully this will be fixed as
-> Firefox support for scroll-driven animations continues to improve.
+> To make this work properly in Firefox, we need to add
+> `animation-duration: 1ms` to our styles. The exact value value doesn't
+> actually matter, but Firefox needs the property for the animation to work.
+> Hopefully this will be fixed as Firefox support for scroll-driven animations
+> continues to improve.
+
+## TODO
+
+That previous example was fun, but it's not all that useful to just make a box
+spin as the user scrolls down the page. There are plenty of use cases though
+where you might want to create animations using the scroll timeline, such as:
+
+- Adding a reading progress indicator for a blog post.
+-
 
 ## Using the View Timeline
 
