@@ -25,7 +25,7 @@ export default function Projects() {
               <Image
                 alt=""
                 aria-hidden="true"
-                className="h-8 w-8"
+                className="s-8"
                 src={project.logo}
                 unoptimized
               />

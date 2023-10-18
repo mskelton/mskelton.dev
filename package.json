@@ -26,6 +26,7 @@
     "@mskelton/rehype-callout": "^0.0.3",
     "@mskelton/rehype-shiki": "^0.0.3",
     "@mskelton/remark-extract-frontmatter": "^0.0.2",
+    "@mskelton/tailwind-size": "^0.0.2",
     "@next/mdx": "^13.5.2",
     "@octokit/rest": "^20.0.1",
     "@prisma/client": "^5.2.0",

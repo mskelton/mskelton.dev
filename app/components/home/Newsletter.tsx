@@ -8,7 +8,7 @@ export function Newsletter() {
       className="rounded-2xl border border-zinc-100 p-6 transition-colors dark:border-zinc-700/40"
     >
       <h2 className="flex text-sm font-semibold text-zinc-900 transition-colors dark:text-zinc-100">
-        <EnvelopeIcon className="h-6 w-6 flex-none" />
+        <EnvelopeIcon className="flex-none s-6" />
         <span className="ml-3">Stay up to date</span>
       </h2>
 

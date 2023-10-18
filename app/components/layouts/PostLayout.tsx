@@ -35,7 +35,7 @@ export function PostLayout({
             href={backHref}
             type="button"
           >
-            <ArrowLeftIcon className="h-4 w-4" />
+            <ArrowLeftIcon className="s-4" />
           </Link>
 
           <article>

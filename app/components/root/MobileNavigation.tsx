@@ -47,7 +47,7 @@ export function MobileNavigation({ className }: MobileNavigationProps) {
             >
               <div className="flex flex-row-reverse items-center justify-between">
                 <Popover.Button aria-label="Close menu" className="-m-1 p-1">
-                  <XMarkIcon className="h-6 w-6 text-zinc-500 dark:text-zinc-400" />
+                  <XMarkIcon className="text-zinc-500 s-6 dark:text-zinc-400" />
                 </Popover.Button>
 
                 <h2 className="text-sm font-medium text-zinc-600 dark:text-zinc-400">

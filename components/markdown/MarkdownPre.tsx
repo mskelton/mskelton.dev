@@ -69,7 +69,7 @@ export default function MarkdownPre({
         onClick={handleCopy}
         type="button"
       >
-        <Icon className="h-6 w-6" />
+        <Icon className="s-6" />
       </button>
     </>
   )

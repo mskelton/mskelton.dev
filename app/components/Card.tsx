@@ -111,7 +111,7 @@ Card.Cta = function CardCta({ children }: CardCtaProps) {
       className="relative z-10 mt-4 flex items-center text-sm font-medium text-indigo-500 transition-colors dark:text-indigo-400"
     >
       {children}
-      <ChevronRightIcon className="ml-1 h-5 w-5 transition-[margin] group-hover:ml-1.5" />
+      <ChevronRightIcon className="ml-1 transition-[margin] s-5 group-hover:ml-1.5" />
     </div>
   )
 }
@@ -161,7 +161,7 @@ export interface CardExternalLinkProps {
 Card.ExternalLink = function CardExternalLink({ href }: CardExternalLinkProps) {
   return (
     <p className="relative z-10 mt-auto flex items-center justify-self-end text-sm font-medium text-zinc-800 transition group-hover:text-indigo-500 dark:text-zinc-200 dark:group-hover:text-indigo-400">
-      <LinkIcon className="h-5 w-5" />
+      <LinkIcon className="s-5" />
       <span className="ml-2">{formatURL(href)}</span>
     </p>
   )
