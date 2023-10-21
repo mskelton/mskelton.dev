@@ -84,19 +84,19 @@
   transition: background-color 0.3s;
 }
 
-.rmi-dialog-overlay {
+.rmi-dialog .rmi-dialog-overlay {
   background-color: rgba(255 255 255 / 0);
 }
 
-.rmi-dialog-overlay {
+.rmi-dialog[open] .rmi-dialog-overlay {
   background-color: rgba(255 255 255 / 0.8);
 }
 
-.dark .rmi-dialog-overlay {
+.dark .rmi-dialog .rmi-dialog-overlay {
   background-color: rgba(0 0 0 / 0);
 }
 
-.dark .rmi-dialog-overlay {
+.dark .rmi-dialog[open] .rmi-dialog-overlay {
   background-color: rgba(0 0 0 / 0.8);
 }
 
