@@ -2,7 +2,7 @@
 import clsx from "clsx"
 import React, { cloneElement, useEffect, useId, useRef, useState } from "react"
 import { createPortal } from "react-dom"
-import { ExpandIcon } from "./icons.js"
+import { ZoomIcon } from "./icons.js"
 import { getImgAlt, getImgSrc } from "./utils.js"
 
 /** @type {HTMLDivElement} */
@@ -15,32 +15,20 @@ if (typeof document !== "undefined") {
 
 /**
  * @typedef {object} MediumImageProps
- * @property {import("react").ElementType} wrapElement
  * @property {import("react").ReactElement} children
+ * @property {import("react").ElementType} wrapElement
+ * @property {import("react").ReactElement | null} zoomIcon
  * @property {string | null} className
- * @property {string | null} dialogClassName
- * @property {string | null} dialogContentClassName
- * @property {string | null} dialogOverlayClassName
- * @property {string | null} expandButtonClassName
- * @property {string | null} expandButtonContainerClassName
- * @property {string} collapseImageText
- * @property {string} expandImageText
- * @property {import("react").ReactElement | null} expandIcon
+ * @property {string} zoomImageText
  */
 
 /** @param {MediumImageProps} props */
 export function MediumImage({
   children,
   className,
-  collapseImageText = "Collapse image",
-  dialogClassName,
-  dialogContentClassName,
-  dialogOverlayClassName,
-  expandButtonClassName,
-  expandButtonContainerClassName,
-  expandIcon,
-  expandImageText = "Expand image",
   wrapElement: WrapElement = "div",
+  zoomIcon,
+  zoomImageText = "Zoom image",
 }) {
   const containerRef = useRef(/** @type {HTMLDivElement | null} */ (null))
   const contentRef = useRef(/** @type {HTMLDivElement | null} */ (null))
@@ -69,33 +57,29 @@ export function MediumImage({
   }, [isOpen])
 
   return (
-    <WrapElement ref={containerRef} aria-owns={dialogId} className={className}>
+    <WrapElement
+      ref={containerRef}
+      aria-owns={dialogId}
+      className={clsx(className, "rmi")}
+    >
+      <button
+        aria-label={imgAlt ? `${zoomImageText}: ${imgAlt}` : zoomImageText}
+        className="rmi-zoom-button"
+        onClick={() => setIsOpen(true)}
+        type="button"
+      >
+        {zoomIcon ?? <ZoomIcon />}
+      </button>
+
       <WrapElement
         ref={contentRef}
         style={{ visibility: isOpen ? "hidden" : "visible" }}
       >
         {cloneElement(children, {
+          onClick: () => setIsOpen(true),
           onLoad: () => setIsImageLoaded(true),
           ref: imgRef,
         })}
-      </WrapElement>
-
-      <WrapElement
-        className={clsx(
-          "rmi-expand-button-container",
-          expandButtonContainerClassName,
-        )}
-      >
-        <button
-          aria-label={
-            imgAlt ? `${expandImageText}: ${imgAlt}` : expandImageText
-          }
-          className={clsx("rmi-expand-button", expandButtonClassName)}
-          onClick={() => setIsOpen(true)}
-          type="button"
-        >
-          {expandIcon ?? <ExpandIcon />}
-        </button>
       </WrapElement>
 
       {isImageLoaded &&
@@ -105,25 +89,21 @@ export function MediumImage({
             ref={dialogRef}
             aria-labelledby={imageId}
             aria-modal="true"
-            className={clsx("rmi-dialog", dialogClassName)}
+            className="rmi-dialog"
             id={dialogId}
             // onClick={handleDialogClick}
             onCancel={() => setIsOpen(false)}
             onClose={() => setIsOpen(false)}
             role="dialog"
           >
-            <div
-              className={clsx("rmi-dialog-overlay", dialogOverlayClassName)}
-            />
+            <div className="rmi-dialog-overlay" />
 
-            <div
-              ref={dialogContentRef}
-              className={clsx("rmi-dialog-content", dialogContentClassName)}
-            >
+            <div ref={dialogContentRef} className="rmi-dialog-content">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 // ref={refModalImg}
                 alt={imgAlt}
+                className="rmi-dialog-img"
                 id={imageId}
                 sizes={imgSizes}
                 src={imgSrc}

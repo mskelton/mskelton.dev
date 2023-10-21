@@ -17,20 +17,16 @@ export default function ZoomableImage({
 }: ZoomableImageProps) {
   const Component = isExternalImage(src) ? "img" : Image
 
+  // margin={48}
   return (
     <MediumImage
-      // IconZoom={ArrowsPointingOutIcon}
-      className="relative"
-      // // eslint-disable-next-line react/jsx-no-useless-fragment
-      // ZoomContent={({ img }) => <>{img}</>}
-      expandButtonClassName=""
-      expandButtonContainerClassName="absolute inset-0"
+      className="sm:-mx-8 sm:max-w-[calc(100%+4rem)]"
       wrapElement="span"
-      // zoomMargin={48}
+      zoomIcon={<ArrowsPointingOutIcon />}
     >
       <Component
         alt={alt ?? ""}
-        className="sm:-mx-8 sm:max-w-[calc(100%+4rem)]"
+        className=""
         placeholder="blur"
         src={src}
         {...props}

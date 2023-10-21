@@ -1,4 +1,4 @@
-export function ExpandIcon() {
+export function ZoomIcon() {
   return (
     <svg
       fill="none"

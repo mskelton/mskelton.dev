@@ -8,16 +8,16 @@
   transition: none !important;
 }
 
-[data-rmiz] {
+.rmi {
   position: relative;
 }
 
-[data-rmiz-ghost] {
+.rmi-ghost {
   pointer-events: none;
   position: absolute;
 }
 
-[data-rmiz-btn-zoom] {
+.rmi-zoom-button {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
@@ -34,7 +34,7 @@
   width: 40px;
 }
 
-[data-rmiz-btn-zoom]:not(:focus):not(:active) {
+.rmi-zoom-button:not(:focus):not(:active) {
   position: absolute;
   clip: rect(0 0 0 0);
   clip-path: inset(50%);
@@ -45,28 +45,25 @@
   width: 1px;
 }
 
-[data-rmiz-btn-zoom] {
+.rmi-zoom-button {
   cursor: zoom-in;
   inset: 10px 10px auto auto;
   position: absolute;
 }
 
-[data-rmiz-content="found"] img,
-[data-rmiz-content="found"] svg,
-[data-rmiz-content="found"] [role="img"],
-[data-rmiz-content="found"] [data-zoom] {
+.rmi img {
   cursor: zoom-in;
 }
 
-[data-rmiz-modal]::backdrop {
+.rmi-dialog::backdrop {
   display: none;
 }
 
-[data-rmiz-modal] {
+.rmi-dialog {
   outline: none;
 }
 
-[data-rmiz-modal][open] {
+.rmi-dialog[open] {
   background: transparent;
   border: 0;
   height: 100vh;
@@ -81,35 +78,35 @@
   width: 100dvw;
 }
 
-[data-rmiz-modal-overlay] {
+.rmi-dialog-overlay {
   inset: 0;
   position: absolute;
   transition: background-color 0.3s;
 }
 
-[data-rmiz-modal-overlay="hidden"] {
+.rmi-dialog-overlay {
   background-color: rgba(255 255 255 / 0);
 }
 
-[data-rmiz-modal-overlay="visible"] {
+.rmi-dialog-overlay {
   background-color: rgba(255 255 255 / 0.8);
 }
 
-.dark [data-rmiz-modal-overlay="hidden"] {
+.dark .rmi-dialog-overlay {
   background-color: rgba(0 0 0 / 0);
 }
 
-.dark [data-rmiz-modal-overlay="visible"] {
+.dark .rmi-dialog-overlay {
   background-color: rgba(0 0 0 / 0.8);
 }
 
-[data-rmiz-modal-content] {
+.rmi-dialog-content {
   height: 100%;
   position: relative;
   width: 100%;
 }
 
-[data-rmiz-modal-img] {
+.rmi-dialog-img {
   border-radius: 0.75rem;
   cursor: zoom-out;
   image-rendering: high-quality;
@@ -119,8 +116,8 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  [data-rmiz-modal-overlay],
-  [data-rmiz-modal-img] {
+  .rmi-dialog-overlay,
+  .rmi-dialog-img {
     transition-duration: 0.01ms !important;
   }
 }
