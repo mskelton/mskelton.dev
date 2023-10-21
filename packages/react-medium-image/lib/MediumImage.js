@@ -1,6 +1,6 @@
+// @ts-check
 "use client"
 
-// @ts-check
 import clsx from "clsx"
 import React, { cloneElement, useEffect, useRef, useState } from "react"
 import { ZoomIcon } from "./icons.js"
@@ -24,6 +24,9 @@ export function MediumImage({
 }) {
   const containerRef = useRef(/** @type {HTMLDivElement | null} */ (null))
   const ref = useRef(/** @type {HTMLImageElement | null} */ (null))
+  const touchYStartRef = useRef(/** @type {number | undefined} */ (undefined))
+  const touchYEndRef = useRef(/** @type {number | undefined} */ (undefined))
+
   const [isOpen, setIsOpen] = useState(false)
   const imgAlt = ref.current?.getAttribute("alt")
 
@@ -63,14 +66,49 @@ export function MediumImage({
 
       const handleClose = () => setIsOpen(false)
 
+      /** @param {TouchEvent} e */
+      const handleTouchStart = (e) => {
+        if (e.changedTouches.length === 1 && e.changedTouches[0]) {
+          touchYStartRef.current = e.changedTouches[0].screenY
+        }
+      }
+
+      /** @param {TouchEvent} e */
+      const handleTouchMove = (e) => {
+        if (touchYStartRef.current != null && e.changedTouches[0]) {
+          touchYEndRef.current = e.changedTouches[0].screenY
+
+          const max = Math.max(touchYStartRef.current, touchYEndRef.current)
+          const min = Math.min(touchYStartRef.current, touchYEndRef.current)
+          const delta = Math.abs(max - min)
+          const threshold = 10
+
+          if (delta > threshold) {
+            touchYStartRef.current = undefined
+            touchYEndRef.current = undefined
+            handleClose()
+          }
+        }
+      }
+
+      const handleTouchCancel = () => {
+        touchYStartRef.current = undefined
+        touchYEndRef.current = undefined
+      }
+
       document.addEventListener("keydown", handleKeyDown)
-      document.addEventListener("wheel", handleClose, { passive: true })
+      window.addEventListener("wheel", handleClose, { passive: true })
+      window.addEventListener("touchstart", handleTouchStart)
+      window.addEventListener("touchmove", handleTouchMove)
+      window.addEventListener("touchcancel", handleTouchCancel)
 
       return () => {
         document.removeEventListener("keydown", handleKeyDown)
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-expect-error
-        document.removeEventListener("wheel", handleClose, { passive: true })
+        // @ts-expect-error passive isn't a valid prop
+        window.removeEventListener("wheel", handleClose, { passive: true })
+        window.removeEventListener("touchstart", handleTouchStart)
+        window.removeEventListener("touchmove", handleTouchMove)
+        window.removeEventListener("touchcancel", handleTouchCancel)
       }
     } else {
       containerRef.current.style.height = ""
