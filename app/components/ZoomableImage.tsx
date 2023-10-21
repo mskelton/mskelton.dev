@@ -23,13 +23,7 @@ export default function ZoomableImage({
       margin={48}
       zoomIcon={<ArrowsPointingOutIcon />}
     >
-      <Component
-        alt={alt ?? ""}
-        className=""
-        placeholder="blur"
-        src={src}
-        {...props}
-      />
+      <Component alt={alt ?? ""} placeholder="blur" src={src} {...props} />
     </MediumImage>
   )
 }
