@@ -29,7 +29,8 @@ export default function MarkdownPre({
     // We don't want to copy code titles, so only get the text content of the
     // `<code>` element.
     const codeEl = preRef.current.querySelector("code")
-    navigator.clipboard.writeText(codeEl?.textContent ?? "")
+    const text = (codeEl?.innerText ?? "").replaceAll("\u200b", "")
+    navigator.clipboard.writeText(text)
 
     // Clear the copied state after 2 seconds
     setTimeout(() => setCopied(false), 2000)
