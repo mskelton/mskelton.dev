@@ -2,30 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer utilities {
-  .focusable {
-    @apply focus:outline-none focus-visible:ring focus-visible:ring-indigo-500;
-  }
-}
-
 :root.pause-transitions *,
 :root.pause-transitions *::before,
 :root.pause-transitions *::after {
   transition: none !important;
 }
 
-[data-rmiz] {
+.rmi {
   position: relative;
 }
 
-[data-rmiz-ghost] {
-  pointer-events: none;
-  position: absolute;
-}
-
-[data-rmiz-btn-zoom] {
-  -webkit-appearance: none;
-  -moz-appearance: none;
+.rmi-zoom-button {
   appearance: none;
   background-color: rgba(0, 0, 0, 0.7);
   border: none;
@@ -33,14 +20,16 @@
   box-shadow: 0 0 1px rgba(255, 255, 255, 0.5);
   color: #fff;
   height: 40px;
+  inset: 10px 10px auto auto;
   margin: 0;
   outline-offset: 2px;
   padding: 9px;
+  position: absolute;
   touch-action: manipulation;
   width: 40px;
 }
 
-[data-rmiz-btn-zoom]:not(:focus):not(:active) {
+.rmi-zoom-button:not(:focus):not(:active) {
   position: absolute;
   clip: rect(0 0 0 0);
   clip-path: inset(50%);
@@ -51,82 +40,38 @@
   width: 1px;
 }
 
-[data-rmiz-btn-zoom] {
-  cursor: zoom-in;
-  inset: 10px 10px auto auto;
-  position: absolute;
-}
-
-[data-rmiz-content="found"] img,
-[data-rmiz-content="found"] svg,
-[data-rmiz-content="found"] [role="img"],
-[data-rmiz-content="found"] [data-zoom] {
-  cursor: zoom-in;
-}
-
-[data-rmiz-modal]::backdrop {
-  display: none;
-}
-
-[data-rmiz-modal] {
-  outline: none;
-}
-
-[data-rmiz-modal][open] {
-  background: transparent;
-  border: 0;
-  height: 100vh;
-  height: 100dvh;
-  margin: 0;
-  max-height: none;
-  max-width: none;
-  overflow: hidden;
-  padding: 0;
-  position: fixed;
-  width: 100vw;
-  width: 100dvw;
-}
-
-[data-rmiz-modal-overlay] {
-  inset: 0;
-  position: absolute;
-  transition: background-color 0.3s;
-}
-
-[data-rmiz-modal-overlay="hidden"] {
+.rmi-overlay {
   background-color: rgba(255 255 255 / 0);
+  inset: 0;
+  transition: background-color 0.3s;
+  z-index: 999;
 }
 
-[data-rmiz-modal-overlay="visible"] {
+.rmi.open .rmi-overlay {
   background-color: rgba(255 255 255 / 0.8);
+  position: fixed;
 }
 
-.dark [data-rmiz-modal-overlay="hidden"] {
+.dark .rmi-overlay {
   background-color: rgba(0 0 0 / 0);
 }
 
-.dark [data-rmiz-modal-overlay="visible"] {
+.dark .rmi.open .rmi-overlay {
   background-color: rgba(0 0 0 / 0.8);
 }
 
-[data-rmiz-modal-content] {
-  height: 100%;
-  position: relative;
-  width: 100%;
-}
-
-[data-rmiz-modal-img] {
-  border-radius: 0.75rem;
-  cursor: zoom-out;
-  image-rendering: high-quality;
-  position: absolute;
-  transform-origin: top left;
+.rmi-image {
+  cursor: zoom-in;
   transition: transform 0.3s;
 }
 
+.rmi.open .rmi-image {
+  cursor: zoom-out;
+}
+
 @media (prefers-reduced-motion: reduce) {
-  [data-rmiz-modal-overlay],
-  [data-rmiz-modal-img] {
-    transition-duration: 0.01ms !important;
+  .rmi-overlay,
+  .rmi-img {
+    transition-duration: 0;
   }
 }

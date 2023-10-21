@@ -22,7 +22,7 @@ function FooterLink({ children, href }: FooterLinkProps) {
   return (
     <li>
       <Link
-        className="focusable group -mx-2 flex items-center rounded px-2 transition hover:text-indigo-500 dark:text-zinc-200 dark:hover:text-indigo-400"
+        className="group -mx-2 flex items-center rounded px-2 transition focusable hover:text-indigo-500 dark:text-zinc-200 dark:hover:text-indigo-400"
         href={href}
         prefetch={false}
       >
