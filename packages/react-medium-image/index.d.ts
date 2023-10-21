@@ -3,7 +3,7 @@ import React from "react"
 export interface MediumImageProps {
   children: React.ReactElement
   className?: string
-  wrapElement?: React.ElementType
+  margin?: number
   zoomIcon?: React.ReactElement
   zoomImageText?: string
 }

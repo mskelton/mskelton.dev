@@ -1,9 +1,7 @@
 // @ts-check
 import clsx from "clsx"
-import React, { cloneElement, useEffect, useId, useRef, useState } from "react"
-import { createPortal } from "react-dom"
+import React, { cloneElement, useEffect, useRef, useState } from "react"
 import { ZoomIcon } from "./icons.js"
-import { getImgAlt, getImgSrc } from "./utils.js"
 
 /** @type {HTMLDivElement} */
 let portal
@@ -16,9 +14,9 @@ if (typeof document !== "undefined") {
 /**
  * @typedef {object} MediumImageProps
  * @property {import("react").ReactElement} children
- * @property {import("react").ElementType} wrapElement
  * @property {import("react").ReactElement | null} zoomIcon
  * @property {string | null} className
+ * @property {number} margin
  * @property {string} zoomImageText
  */
 
@@ -26,41 +24,61 @@ if (typeof document !== "undefined") {
 export function MediumImage({
   children,
   className,
-  wrapElement: WrapElement = "div",
+  margin = 24,
   zoomIcon,
   zoomImageText = "Zoom image",
 }) {
   const containerRef = useRef(/** @type {HTMLDivElement | null} */ (null))
-  const contentRef = useRef(/** @type {HTMLDivElement | null} */ (null))
-  const imgRef = useRef(/** @type {HTMLImageElement | null} */ (null))
-  const dialogRef = useRef(/** @type {HTMLDialogElement | null} */ (null))
-  const dialogContentRef = useRef(/** @type {HTMLDivElement | null} */ (null))
-
-  const [isImageLoaded, setIsImageLoaded] = useState(false)
+  const ref = useRef(/** @type {HTMLImageElement | null} */ (null))
   const [isOpen, setIsOpen] = useState(false)
-
-  const id = useId()
-  const dialogId = `rmi-dialog-${id}`
-  const imageId = `rmi-img-${id}`
-
-  const imgAlt = getImgAlt(imgRef.current)
-  const imgSrc = getImgSrc(imgRef.current)
-  const imgSizes = imgRef.current?.sizes
-  const imgSrcSet = imgRef.current?.srcset
+  const imgAlt = ref.current?.getAttribute("alt")
 
   useEffect(() => {
+    if (!ref.current || !containerRef.current) return
+
     if (isOpen) {
-      dialogRef.current?.showModal?.()
+      // Set the container size to the image size
+      containerRef.current.style.height = `${ref.current.offsetHeight}px`
+      containerRef.current.style.width = `${ref.current.offsetWidth}px`
+
+      // Calculate the Y coordinate based on how far the image is from the top
+      // of the viewport.
+      const imageRect = ref.current.getBoundingClientRect()
+      const translateY =
+        (window.innerHeight - imageRect.height) / 2 - imageRect.top
+
+      // Calculate the scale based on the smallest dimension of the image and
+      // fill the viewport.
+      const scale = Math.min(
+        (window.innerWidth - margin) / imageRect.width,
+        (window.innerHeight - margin) / imageRect.height,
+      )
+
+      ref.current.style.zIndex = "999"
+      ref.current.style.position = "absolute"
+      ref.current.style.transform = `translate(0px,${translateY}px) scale(${scale})`
+
+      const handleClose = () => setIsOpen(false)
+      document.addEventListener("keydown", handleClose)
+      document.addEventListener("wheel", handleClose, { passive: true })
+
+      return () => {
+        document.addEventListener("keydown", handleClose)
+        document.addEventListener("wheel", handleClose, { passive: true })
+      }
     } else {
-      dialogRef.current?.close?.()
+      containerRef.current.style.height = ""
+      containerRef.current.style.width = ""
+      ref.current.style.position = ""
+      ref.current.style.transform = ""
+      ref.current.style.zIndex = ""
     }
-  }, [isOpen])
+  }, [isOpen, margin])
 
   return (
-    <WrapElement
+    <span
       ref={containerRef}
-      aria-owns={dialogId}
-      className={clsx(className, "rmi")}
+      className={clsx("rmi", isOpen ? "open" : "closed", className)}
     >
       <button
         aria-label={imgAlt ? `${zoomImageText}: ${imgAlt}` : zoomImageText}
@@ -71,54 +89,12 @@ export function MediumImage({
         {zoomIcon ?? <ZoomIcon />}
       </button>
 
-      <WrapElement
-        ref={contentRef}
-        style={{ visibility: isOpen ? "hidden" : "visible" }}
-      >
-        {cloneElement(children, {
-          onClick: () => setIsOpen(true),
-          onLoad: () => setIsImageLoaded(true),
-          ref: imgRef,
-        })}
-      </WrapElement>
-
-      {isImageLoaded &&
-        portal != null &&
-        createPortal(
-          <dialog
-            ref={dialogRef}
-            aria-labelledby={imageId}
-            aria-modal="true"
-            className="rmi-dialog"
-            id={dialogId}
-            // onClick={handleDialogClick}
-            onCancel={() => setIsOpen(false)}
-            onClose={() => setIsOpen(false)}
-            role="dialog"
-          >
-            <div className="rmi-dialog-overlay" />
-
-            <div ref={dialogContentRef} className="rmi-dialog-content">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                // ref={refModalImg}
-                alt={imgAlt}
-                className="rmi-dialog-img"
-                id={imageId}
-                sizes={imgSizes}
-                src={imgSrc}
-                srcSet={imgSrcSet}
-                // style={this.styleModalImg}
-                // width={this.styleModalImg.width || undefined}
-                // {...(isZoomImgLoaded && modalState === ModalState.LOADED
-                //   ? zoomImg
-                //   : {})}
-                // height={this.styleModalImg.height || undefined}
-              />
-            </div>
-          </dialog>,
-          portal,
-        )}
-    </WrapElement>
+      <span className="rmi-overlay" />
+      {cloneElement(children, {
+        className: clsx("rmi-image", children.props.className),
+        onClick: () => setIsOpen(!isOpen),
+        ref,
+      })}
+    </span>
   )
 }

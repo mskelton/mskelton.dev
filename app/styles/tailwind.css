@@ -12,14 +12,7 @@
   position: relative;
 }
 
-.rmi-ghost {
-  pointer-events: none;
-  position: absolute;
-}
-
 .rmi-zoom-button {
-  -webkit-appearance: none;
-  -moz-appearance: none;
   appearance: none;
   background-color: rgba(0, 0, 0, 0.7);
   border: none;
@@ -27,9 +20,11 @@
   box-shadow: 0 0 1px rgba(255, 255, 255, 0.5);
   color: #fff;
   height: 40px;
+  inset: 10px 10px auto auto;
   margin: 0;
   outline-offset: 2px;
   padding: 9px;
+  position: absolute;
   touch-action: manipulation;
   width: 40px;
 }
@@ -45,79 +40,38 @@
   width: 1px;
 }
 
-.rmi-zoom-button {
-  cursor: zoom-in;
-  inset: 10px 10px auto auto;
-  position: absolute;
-}
-
-.rmi img {
-  cursor: zoom-in;
-}
-
-.rmi-dialog::backdrop {
-  display: none;
-}
-
-.rmi-dialog {
-  outline: none;
-}
-
-.rmi-dialog[open] {
-  background: transparent;
-  border: 0;
-  height: 100vh;
-  height: 100dvh;
-  margin: 0;
-  max-height: none;
-  max-width: none;
-  overflow: hidden;
-  padding: 0;
-  position: fixed;
-  width: 100vw;
-  width: 100dvw;
-}
-
-.rmi-dialog-overlay {
-  inset: 0;
-  position: absolute;
-  transition: background-color 0.3s;
-}
-
-.rmi-dialog .rmi-dialog-overlay {
+.rmi-overlay {
   background-color: rgba(255 255 255 / 0);
+  inset: 0;
+  transition: background-color 0.3s;
+  z-index: 999;
 }
 
-.rmi-dialog[open] .rmi-dialog-overlay {
+.rmi.open .rmi-overlay {
   background-color: rgba(255 255 255 / 0.8);
+  position: fixed;
 }
 
-.dark .rmi-dialog .rmi-dialog-overlay {
+.dark .rmi-overlay {
   background-color: rgba(0 0 0 / 0);
 }
 
-.dark .rmi-dialog[open] .rmi-dialog-overlay {
+.dark .rmi.open .rmi-overlay {
   background-color: rgba(0 0 0 / 0.8);
 }
 
-.rmi-dialog-content {
-  height: 100%;
-  position: relative;
-  width: 100%;
-}
-
-.rmi-dialog-img {
-  border-radius: 0.75rem;
-  cursor: zoom-out;
-  image-rendering: high-quality;
-  position: absolute;
-  transform-origin: top left;
+.rmi-image {
+  cursor: zoom-in;
   transition: transform 0.3s;
 }
 
+.rmi.open .rmi-image {
+  cursor: zoom-out;
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .rmi-dialog-overlay,
-  .rmi-dialog-img {
-    transition-duration: 0.01ms !important;
+  .rmi-overlay,
+  .rmi-img {
+    transition-duration: 0;
   }
 }

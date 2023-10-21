@@ -17,11 +17,10 @@ export default function ZoomableImage({
 }: ZoomableImageProps) {
   const Component = isExternalImage(src) ? "img" : Image
 
-  // margin={48}
   return (
     <MediumImage
       className="sm:-mx-8 sm:max-w-[calc(100%+4rem)]"
-      wrapElement="span"
+      margin={48}
       zoomIcon={<ArrowsPointingOutIcon />}
     >
       <Component
