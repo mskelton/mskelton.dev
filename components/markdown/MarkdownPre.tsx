@@ -40,7 +40,7 @@ export default function MarkdownPre({
     <>
       {hasFocus ? (
         <button
-          className="focusable absolute right-0 top-3 rounded-md bg-zinc-900 px-2 text-xs text-white transition-colors hover:bg-zinc-950 sm:right-6"
+          className="absolute right-0 top-3 rounded-md bg-zinc-900 px-2 text-xs text-white transition-colors focusable hover:bg-zinc-950 sm:right-6"
           onClick={() => setIsExpanded(!isExpanded)}
           type="button"
         >
@@ -64,7 +64,7 @@ export default function MarkdownPre({
       <button
         aria-label={copied ? "Copied" : "Copy code"}
         className={clsx(
-          "focusable absolute right-4 top-4 z-10 flex h-10 w-10 items-center justify-center rounded-lg bg-zinc-800 opacity-0 transition-all delay-100 hover:bg-zinc-700 focus-visible:opacity-100 group-hover:opacity-100 group-[.has-title]:top-16",
+          "absolute right-4 top-4 z-10 flex h-10 w-10 items-center justify-center rounded-lg bg-zinc-800 opacity-0 transition-all delay-100 focusable hover:bg-zinc-700 focus-visible:opacity-100 group-hover:opacity-100 group-[.has-title]:top-16",
           copied ? "text-green-400" : "text-zinc-300",
         )}
         onClick={handleCopy}

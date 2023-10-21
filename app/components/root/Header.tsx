@@ -25,7 +25,7 @@ export function Header({ variant }: HeaderProps) {
     >
       <Container className="w-full">
         <div className="relative flex items-center gap-4">
-          <Link className="focusable -m-2 -mt-0.5 rounded p-2" href="/">
+          <Link className="-m-2 -mt-0.5 rounded p-2 focusable" href="/">
             <CursiveName
               className="w-40"
               swoop={variant === "home"}

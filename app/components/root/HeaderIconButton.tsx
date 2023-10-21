@@ -17,7 +17,7 @@ const HeaderIconButton = forwardRef<HTMLButtonElement, HeaderIconButtonProps>(
     return (
       <Component
         ref={ref}
-        className="focusable group rounded-full p-2"
+        className="group rounded-full p-2 focusable"
         type={props.href ? undefined : "button"}
         {...props}
       >
