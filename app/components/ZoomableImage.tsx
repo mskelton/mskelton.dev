@@ -3,7 +3,7 @@
 import { ArrowsPointingOutIcon } from "@heroicons/react/20/solid"
 import Image, { ImageProps } from "next/image"
 import React from "react"
-import Zoom from "react-medium-image-zoom"
+import { MediumImage } from "react-medium-image"
 import { isExternalImage } from "lib/image"
 
 export interface ZoomableImageProps extends Omit<ImageProps, "src"> {
@@ -18,14 +18,15 @@ export default function ZoomableImage({
   const Component = isExternalImage(src) ? "img" : Image
 
   return (
-    <Zoom
-      IconZoom={ArrowsPointingOutIcon}
-      // eslint-disable-next-line react/jsx-no-useless-fragment
-      ZoomContent={({ img }) => <>{img}</>}
-      a11yNameButtonUnzoom={`Collapse image: ${alt}`}
-      a11yNameButtonZoom={`Expand image: ${alt}`}
+    <MediumImage
+      // IconZoom={ArrowsPointingOutIcon}
+      className="relative"
+      // // eslint-disable-next-line react/jsx-no-useless-fragment
+      // ZoomContent={({ img }) => <>{img}</>}
+      expandButtonClassName=""
+      expandButtonContainerClassName="absolute inset-0"
       wrapElement="span"
-      zoomMargin={48}
+      // zoomMargin={48}
     >
       <Component
         alt={alt ?? ""}
@@ -34,6 +35,6 @@ export default function ZoomableImage({
         src={src}
         {...props}
       />
-    </Zoom>
+    </MediumImage>
   )
 }
