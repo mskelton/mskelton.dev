@@ -58,13 +58,25 @@ export function MediumImage({
       ref.current.style.position = "absolute"
       ref.current.style.transform = `translate(0px,${translateY}px) scale(${scale})`
 
+      /** @param {KeyboardEvent} e */
+      const handleKeyDown = (e) => {
+        if (e.key === "Escape") {
+          setIsOpen(false)
+        } else {
+          e.preventDefault()
+        }
+      }
+
       const handleClose = () => setIsOpen(false)
-      document.addEventListener("keydown", handleClose)
+
+      document.addEventListener("keydown", handleKeyDown)
       document.addEventListener("wheel", handleClose, { passive: true })
 
       return () => {
-        document.addEventListener("keydown", handleClose)
-        document.addEventListener("wheel", handleClose, { passive: true })
+        document.removeEventListener("keydown", handleKeyDown)
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-expect-error
+        document.removeEventListener("wheel", handleClose, { passive: true })
       }
     } else {
       containerRef.current.style.height = ""
