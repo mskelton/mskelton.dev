@@ -1,15 +1,9 @@
+"use client"
+
 // @ts-check
 import clsx from "clsx"
 import React, { cloneElement, useEffect, useRef, useState } from "react"
 import { ZoomIcon } from "./icons.js"
-
-/** @type {HTMLDivElement} */
-let portal
-if (typeof document !== "undefined") {
-  portal = document.createElement("div")
-  portal.className = "data-rmi-portal"
-  document.body.appendChild(portal)
-}
 
 /**
  * @typedef {object} MediumImageProps
@@ -81,6 +75,7 @@ export function MediumImage({
     } else {
       containerRef.current.style.height = ""
       containerRef.current.style.width = ""
+
       ref.current.style.position = ""
       ref.current.style.transform = ""
       ref.current.style.zIndex = ""
