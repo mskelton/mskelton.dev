@@ -14,16 +14,18 @@ module.exports = {
   plugins: [
     require("@tailwindcss/typography"),
     require("@tailwindcss/container-queries"),
-    plugin(({ matchUtilities, theme }) => {
-      matchUtilities(
-        {
-          s: (value) => ({
-            height: value,
-            width: value,
-          }),
+    require("@mskelton/tailwind-size"),
+    plugin(({ addUtilities, theme }) => {
+      addUtilities({
+        ".focusable": {
+          "&:focus": {
+            outline: "none",
+          },
+          "&:focus-visible": {
+            boxShadow: `0 0 0 3px ${theme("colors.indigo.500")}`,
+          },
         },
-        { values: theme("width") },
-      )
+      })
     }),
   ],
   theme: {

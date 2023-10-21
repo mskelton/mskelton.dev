@@ -2,12 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer utilities {
-  .focusable {
-    @apply focus:outline-none focus-visible:ring focus-visible:ring-indigo-500;
-  }
-}
-
 :root.pause-transitions *,
 :root.pause-transitions *::before,
 :root.pause-transitions *::after {
