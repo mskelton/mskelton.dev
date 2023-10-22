@@ -47,7 +47,7 @@ export function PostLayout({
                   {meta.title}
                 </PageTitle>
               ) : (
-                <Skeleton className="w-fulll h-10" />
+                <Skeleton className="mb-2 h-10" />
               )}
 
               <div>
@@ -59,7 +59,7 @@ export function PostLayout({
                     {formatDate(meta.date)}
                   </time>
                 ) : (
-                  <Skeleton className="h-4 w-40 rounded">{"\u200b"}</Skeleton>
+                  <Skeleton className="h-6 w-40 rounded">{"\u200b"}</Skeleton>
                 )}
               </div>
 
