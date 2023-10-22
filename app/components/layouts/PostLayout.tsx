@@ -16,6 +16,7 @@ export interface PostLayoutProps {
   backHref: string
   backText: string
   children: React.ReactNode
+  featuredImage?: React.ReactNode
   meta?: PostMeta
 }
 
@@ -23,6 +24,7 @@ export function PostLayout({
   backHref,
   backText,
   children,
+  featuredImage,
   meta,
 }: PostLayoutProps) {
   return (
@@ -41,26 +43,31 @@ export function PostLayout({
           <article>
             <header className="flex flex-col">
               {meta ? (
-                <PageTitle className="mt-6">{meta.title}</PageTitle>
+                <PageTitle className="text-3xl sm:text-4xl">
+                  {meta.title}
+                </PageTitle>
               ) : (
-                <Skeleton className="w-fulll mt-6 h-14" />
+                <Skeleton className="w-fulll h-10" />
               )}
 
-              <div className="order-first">
+              <div>
                 {meta ? (
                   <time
-                    className="flex items-center text-base text-zinc-500 transition-colors dark:text-zinc-400"
+                    className="text-base text-zinc-500 transition-colors dark:text-zinc-400"
                     dateTime={meta.date}
                   >
-                    <span className="h-4 w-0.5 rounded-full bg-zinc-200 transition-colors dark:bg-zinc-500" />
-                    <span className="ml-3 flex items-center">
-                      {formatDate(meta.date)}
-                    </span>
+                    {formatDate(meta.date)}
                   </time>
                 ) : (
                   <Skeleton className="h-4 w-40 rounded">{"\u200b"}</Skeleton>
                 )}
               </div>
+
+              {featuredImage ? (
+                <div className="-mx-4 mb-12 mt-8 flex aspect-video items-center justify-center overflow-hidden sm:-ml-7 sm:-mr-6 sm:rounded-xl">
+                  {featuredImage}
+                </div>
+              ) : null}
             </header>
 
             <Prose className="mt-8">{children}</Prose>

@@ -1,4 +1,4 @@
-import clsx from "clsx"
+import { twMerge } from "tailwind-merge"
 
 export interface PageTitleProps
   extends React.HTMLAttributes<HTMLHeadingElement> {}
@@ -6,7 +6,7 @@ export interface PageTitleProps
 export function PageTitle({ className, ...props }: PageTitleProps) {
   return (
     <h1
-      className={clsx(
+      className={twMerge(
         "text-4xl font-bold tracking-tight text-zinc-800 transition-colors dark:text-zinc-100 sm:text-5xl",
         className,
       )}
