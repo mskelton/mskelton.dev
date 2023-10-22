@@ -1,0 +1,234 @@
+---
+title: CSS Scroll-Driven Animations
+description:
+  Scroll-driven animations is an extremely exciting feature that is coming to
+  CSS. Join me as we explore how to use scroll-driven animations to create
+  performant and well polished user experiences.
+date: "2023-09-29"
+---
+
+import CodeBlock from "../../components/CodeBlock"
+import Demo from "../../components/Demo"
+import BasicScroll from "./BasicScroll"
+import HeaderFade from "./HeaderFade"
+
+In a recent project at work, I started exploring CSS scroll-driven animations to
+transition elements in a sticky header between a larger and smaller size. After
+just a couple hours of exploration I had a working prototype using scroll
+animations to replace the much less reliable and smooth JavaScript based
+animation.
+
+Having just scratched the surface of what is possible with scroll-driven
+animations, I knew a blog post was in order to show off some of the incredible
+features of scroll-driven animations.
+
+> [!WARN Experimental features ahead!]  
+> CSS scroll-driven animations are still experimental. At the time of writing,
+> support for scroll-driven animations is primarily in Chromium with Firefox
+> supporting them behind a flag. Safari unfortunately does not support them at
+> all. For more details, checkout the
+> [MDN compatibility table](https://developer.mozilla.org/en-US/docs/Web/CSS/animation-timeline#browser_compatibility).
+
+## What are animation timelines?
+
+Before diving into scroll-driven animations, we first need to understand what
+[animation timelines](https://developer.mozilla.org/en-US/docs/Web/CSS/animation-timeline)
+are. Historically, the only animation timeline that existed was the
+[document timeline](https://developer.mozilla.org/en-US/docs/Web/API/DocumentTimeline)
+which will start incrementing when the page loads. As long as the page remains
+open, the document timeline will continue to increment. We can observe this by
+logging the `document.timeline` variable in our console.
+
+```javascript
+console.log(document.timeline) // { currentTime: 62199.911, duration: null }
+```
+
+When you apply animations to elements, they use the document timeline to track
+the progress of the animation including any delays before starting the
+animation, and then the duration of the animation itself.
+
+Because scroll-driven animations are based on scroll progress and not time
+durations, the document timeline doesn't make sense when starting to think about
+animating elements based on scroll position. This is why scroll-driven
+animations introduced the `animation-timeline` property which allows us to
+target two new types of animation timelines that will be used to create
+scroll-driven animations.
+
+## Using the Scroll Timeline
+
+Enough talk, let's see an example! We'll start with a rather simple example
+showing a blue box that rotates as it's container scrolls. Try scrolling the
+container below to see it rotate!
+
+<Demo>
+  <BasicScroll />
+</Demo>
+
+Let's take a look at the code for this simple animation. The HTML structure is
+quite simple, just three nested `div`s.
+
+```html
+<div className="container">
+  <div className="scroll-area">
+    <div className="box" />
+  </div>
+</div>
+```
+
+For the CSS, we have some fairly typical code to define a set of keyframes for
+our animation, set up our container and scroll area, and then style and position
+our box in the center of the container. The highlighted lines are certainly the
+most interesting, as that's where we define our animation.
+
+```css {20-21}
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.container {
+  height: 480px;
+  overflow-y: scroll;
+}
+
+.scroll-area {
+  height: 1200px;
+}
+
+.box {
+  animation: spin linear;
+  animation-timeline: scroll();
+  aspect-ratio: 1;
+  left: calc(50% - 60px);
+  position: relative;
+  top: calc(50% - 60px);
+  width: 120px;
+}
+```
+
+We specify the animation just like we would with any other CSS animation by
+referencing our set of keyframes (`spin`), and an easing function (`linear`).
+You may noticed that we haven't added an animation duration, which again makes
+sense since our animation is tied to scroll progress rather than a
+time-duration. Finally, the most important part is specifying
+`animation-timeline: scroll()` which tells the browser that our animation should
+be based on the scroll progress of the nearest scroll ancestor.
+
+Just like that, we've built our first scroll-driven animation!
+
+> [!ERROR Firefox bug]  
+> To make this work properly in Firefox, we need to add
+> `animation-duration: 1ms` to our styles. The exact value value doesn't
+> actually matter, but Firefox needs the property for the animation to work.
+> Hopefully this will be fixed as Firefox support for scroll-driven animations
+> continues to improve.
+
+## More use cases for the scroll timeline
+
+That previous example was fun, but it's not all that useful to just make a box
+spin as the user scrolls down the page. There are plenty of use cases though
+where you might want to create animations using the scroll timeline, such as:
+
+- Adding a reading progress indicator for a blog post.
+- Applying a shadow or similar styling to a sticky header as you begin to
+  scroll.
+- Slide in a newsletter reminder when the user scrolls half way down the page.
+
+Let's go ahead and implement that second idea of adding styling to a sticky
+header as you scroll the page. Before we see how this works with scroll
+animations, let's first take a look at the kind of code you might think of for a
+task like this.
+
+```javascript
+let [isScrolled, setIsScrolled] = useState(false)
+
+useEffect(() => {
+  function onScroll() {
+    setIsScrolled(window.scrollY > 0)
+  }
+
+  onScroll()
+  window.addEventListener("scroll", onScroll, { passive: true })
+  return () => window.removeEventListener("scroll", onScroll, { passive: true })
+}, [])
+
+return <header className={isScrolled ? "shadow-lg" : ""}></header>
+```
+
+In the code above, we are using some state to track whether the window has been
+scrolled so we can conditionally apply styles. Those styles might be a shadow
+like shown above, or perhaps shrinking an image to a smaller size. Regardless of
+the specifics, that's how it might look.
+
+With scroll-driven animations, we can get a bit fancier. Try scrolling the
+container below to see how the header background color slowly fades in as your
+scroll the container.
+
+<Demo tight>
+  <HeaderFade />
+</Demo>
+
+The HTML is once again very simple, just a container `div` that holds our header
+and the main content of the page.
+
+```html
+<div class="container">
+  <header>Lorem AI</header>
+  <main>...</main>
+</div>
+```
+
+The CSS is very similar to our first example containing some keyframes, making
+our container scrollable, and some animation properties for our header.
+
+```css {19-21}
+@keyframes header {
+  from {
+    backdrop-filter: blur(0);
+    background: transparent;
+  }
+  to {
+    backdrop-filter: blur(8px);
+    background: rgb(30 41 59 / 0.75);
+  }
+}
+
+.container {
+  height: 320px;
+  overflow-y: scroll;
+  position: relative;
+}
+
+header {
+  animation: header linear forwards;
+  animation-timline: scroll();
+  animation-range: 0 80px;
+  position: sticky;
+  top: 0;
+  width: 100%;
+}
+```
+
+There are a couple differences with the animation declaration from our last
+example, most prominently being the new `animation-range` keyword. This
+instructs the browser the start and end scroll positions to use as the start and
+end of the animation timeline. If not specified, this would be the start and end
+of our scroll container, but by specifying a range of `0 80px`, the browser will
+start the animation immediately after starting to scroll our container, and
+finish when the user has scrolled 80px.
+
+With the addition of `animation-range`, we also need to specify an
+`animation-fill-mode` which is what we've done with the `forwards` keyword in
+the `animation` property. This ensures that once we've scrolled past 80px in the
+container, the element will retain the values from the last keyframe in the
+animation, which in our case is the background color and blur effect. If we
+don't specify this property, our element will reset back to it's initial values
+before the animation took place which is not the intended behavior.
+
+## Using the View Timeline
+
+TODO

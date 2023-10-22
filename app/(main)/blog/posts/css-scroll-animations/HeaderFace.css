@@ -1,0 +1,18 @@
+:root {
+  --header-fade-bg: rgb(191 219 254 / 0.5);
+}
+
+:root.dark {
+  --header-fade-bg: rgb(30 41 59 / 0.8);
+}
+
+@keyframes header-fade {
+  from {
+    backdrop-filter: blur(0);
+    background: transparent;
+  }
+  to {
+    backdrop-filter: blur(8px);
+    background: var(--header-fade-bg);
+  }
+}
