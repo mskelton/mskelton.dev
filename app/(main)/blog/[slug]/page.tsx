@@ -34,7 +34,11 @@ export default async function Page({ params }: { params: { slug: string } }) {
     <PostLayout
       backHref="/blog"
       backText="Go back to posts"
-      featuredImage={image ? <Image alt="Featured image" src={image} /> : null}
+      featuredImage={
+        image ? (
+          <Image alt="Featured image" placeholder="blur" src={image} />
+        ) : null
+      }
       meta={meta}
     >
       <Component />
