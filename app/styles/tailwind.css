@@ -8,6 +8,14 @@
   transition: none !important;
 }
 
+:root {
+  --tw-header-scroll-bg: theme(colors.white / 75%);
+}
+
+:root.dark {
+  --tw-header-scroll-bg: theme(colors.zinc.900 / 75%);
+}
+
 .rmi {
   position: relative;
 }

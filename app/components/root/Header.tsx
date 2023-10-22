@@ -19,7 +19,7 @@ export function Header({ variant }: HeaderProps) {
         "sticky z-50 flex flex-col pt-8",
         variant === "home"
           ? "top-0 h-40 bg-gradient-to-b from-blue-100/80 to-blue-200/80 before:absolute before:inset-0 before:z-[-1] before:bg-gradient-to-b before:from-slate-900/90 before:to-slate-800/90 before:opacity-0 before:transition-opacity before:duration-300 dark:before:opacity-100 lg:h-60"
-          : "flex h-full flex-col bg-white pb-2 transition-colors duration-300 dark:bg-zinc-900",
+          : "flex h-full animate-[header_1ms_linear_both] flex-col bg-white pb-2 transition-colors duration-300 [animation-range:0_80px] [animation-timeline:scroll()] dark:bg-zinc-900",
         variant === "main" && "-top-6",
       )}
     >

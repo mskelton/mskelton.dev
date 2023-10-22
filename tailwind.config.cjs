@@ -73,8 +73,9 @@ module.exports = {
             backdropFilter: "blur(0)",
           },
           to: {
-            background: theme("colors.slate.800/0.75"),
+            background: "var(--tw-header-scroll-bg)",
             backdropFilter: "blur(8px)",
+            boxShadow: theme("boxShadow.md"),
           },
         },
       }),
