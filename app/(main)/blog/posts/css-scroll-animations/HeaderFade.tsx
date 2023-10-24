@@ -1,9 +1,16 @@
-import "./HeaderFace.css"
+import clsx from "clsx"
+import styles from "./HeaderFade.module.css"
 
 export default function Component() {
   return (
     <div className="relative h-[320px] overflow-y-scroll">
-      <div className="sticky top-0 mb-4 w-full animate-[header-fade_1ms_linear_both] rounded-t-lg px-4 py-3 text-xl font-bold [animation-range:0_80px] [animation-timeline:scroll()]">
+      <div
+        className={clsx(
+          "sticky top-0 mb-4 w-full rounded-t-lg px-4 py-3 text-xl font-bold",
+          "[--header-fade-bg:theme(colors.blue.100/0.75)] dark:[--header-fade-bg:theme(colors.slate.800/0.75)]",
+          styles.header,
+        )}
+      >
         Lorem AI
       </div>
 
