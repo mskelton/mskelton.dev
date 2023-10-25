@@ -19,7 +19,7 @@ const config = [
     class: {
       default: [
         "px-4 -mx-4 relative dark:text-white transition-colors",
-        "sm:rounded sm:-mr-6 sm:-ml-7 py-4 sm:px-6 sm:border-l-4",
+        "sm:rounded sm:-mx-8 py-4 sm:px-8 sm:border-l-4",
       ],
       INFO: "bg-indigo-300/50 border-indigo-500 dark:bg-indigo-900/50 dark:border-indigo-500",
       WARN: "bg-yellow-300/50 border-yellow-500 dark:bg-yellow-900/50 dark:border-yellow-500",
