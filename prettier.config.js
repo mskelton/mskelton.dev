@@ -7,6 +7,7 @@ const config = {
   ],
   proseWrap: "always",
   semi: false,
+  tailwindFunctions: ["clsx"],
 }
 
 export default config
