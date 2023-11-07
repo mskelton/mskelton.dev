@@ -22,7 +22,7 @@ export interface RootLayoutProps {
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html
-      className={`h-full text-lg antialiased ${font.className}`}
+      className={`h-full overflow-y-scroll text-lg antialiased ${font.className}`}
       lang="en"
       suppressHydrationWarning
     >
