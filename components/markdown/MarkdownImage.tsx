@@ -9,7 +9,7 @@ export interface MarkdownImageProps {
 export default async function MarkdownImage({ alt, src }: MarkdownImageProps) {
   const image = isExternalImage(src)
     ? { default: src }
-    : await import(`../../app/images/blog/${src}`)
+    : await import(`../../app/(main)/blog/posts/${src}`)
 
   return (
     <span className="flex w-full flex-col items-center text-center">
