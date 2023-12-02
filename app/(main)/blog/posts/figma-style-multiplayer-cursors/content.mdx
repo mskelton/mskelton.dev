@@ -29,9 +29,58 @@ the positions of other connected users. This would result in a great deal of lag
 due to the polling delay as well as the time required for each HTTP request.
 [WebSockets](https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API)
 are much better suited for this application, but they are more complex to
-implement. Before we dive into the implementation, let's understand how
-WebSockets work.
+implement.
+
+Before we can implement WebSockets in our application, we probably should build
+the core application itself! We'll get back to WebSockets later in this post, as
+that is certainly the most interesting part of this build, but let's get some of
+the basics knocked out first.
+
+## Scaffolding the application
+
+This application is very simple, but I'm building it in a way that could fit
+easily into an existing React application. Nothing in this is React specific, so
+everything could be done with another framework or vanilla HTML and JavaScript.
+Checkout the [further reading](#further-reading) section
+
+```javascript
+function App() {
+  return (
+    <>
+      <Cursors />
+      <Tracker />
+    </>
+  )
+}
+```
 
 ## Introduction to WebSockets
 
+WebSockets are persistent HTTP connections that allow bi-directional
+communication between the client and server. By maintaining an open connection,
+they are able to achieve very low-latency which is exactly what we need given
+the high number of messages being passed between clients as users move their
+cursors and send position updates to other clients.
+
+Establishing a WebSocket connection is a bit different from a typical HTTP
+connection, as shown in this diagram:
+
 ![WebSocket lifecycle](websocket-diagram.png)
+
+Creating the connection starts like any other HTTP request. However, when the
+server receives the request, it will respond with a status code of
+`101 Switching Protocols` and return two response headers to indicate to the
+client that the request is being upgraded to a WebSocket connection.
+
+```http
+Connection: Upgrade
+Upgrade: websocket
+```
+
+After the client has successfully received this response, the WebSocket
+connection has been made and messages can now be passed from the client to the
+server or vice versa.
+
+## Further reading
+
+- [GitHub repo - React version](https://github.com/mskelton/cursed)
