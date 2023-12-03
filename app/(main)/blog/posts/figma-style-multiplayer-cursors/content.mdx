@@ -41,9 +41,21 @@ the basics knocked out first.
 This application is very simple, but I'm building it in a way that could fit
 easily into an existing React application. Nothing in this is React specific, so
 everything could be done with another framework or vanilla HTML and JavaScript.
-Checkout the [further reading](#further-reading) section
+Checkout the [further reading](#further-reading) section for links to the source
+code on GitHub for both this React version as well as other frameworks. The
+frameworks and tools I'm using for this application include:
 
-```javascript
+- [Tailwind CSS](https://tailwindcss.com) for styling
+- [Rsbuild](https://rsbuild.dev) for bundling
+- [Bun](https://bun.sh) as the server
+
+Starting at the root of the application, there are two primary components we
+need to build: `Cursors` and `Tracker`. The `Cursors` component will be
+responsible for showing the cursors of **other** users that are connected and
+the `Tracker` component will be responsible for sending updates from **us** to
+other users.
+
+```tsx
 function App() {
   return (
     <>
@@ -52,6 +64,77 @@ function App() {
     </>
   )
 }
+```
+
+Let's start with the implementation of `Tracker` as it's the simpler of the two.
+This component will need to listen to changes to cursor position and publish
+that information to the server so other users can receive the updated cursor
+position. We can do this by registering a
+[`mousemove`](https://developer.mozilla.org/en-US/docs/Web/API/Element/mousemove_event)
+listener inside of a `useEffect` hook.
+
+```ts
+export function Tracker() {
+  useEffect(() => {
+    function handleMove(event: MouseEvent) {
+      console.log(`X:${event.clientX}, Y:${event.clientY}`)
+    }
+
+    window.addEventListener("mousemove", handleMove)
+
+    return () => {
+      window.removeEventListener("mousemove", handleMove)
+    }
+  }, [])
+
+  return null
+}
+```
+
+Now that we are listening to `mousemove` events, you should see logs in the
+browser console every time that you move your cursor in the app. This isn't that
+useful since that only shows up for us, but it's a great first step. We'll fill
+in the rest later in this post after we setup our WebSocket so we can publish
+our cursor position to other users.
+
+### Supporting touch devices
+
+Before moving on, let's take a moment to consider mobile devices. While this
+code works great for a laptop or desktop computer, if you try to run it on a
+phone or tablet, you'll notice that it doesn't print anything to the console.
+Mobile devices don't actually fire `mousemove` (or related events) when you
+touch or drag your finger around the screen. This is because mouse and touch
+interactions are fundamentally different, so they cannot both be represented by
+the same event object.
+
+One of the key differences between mouse and touch events is that touch events
+can have more than one set of coordinates given that you can touch the screen
+with multiple fingers at the same time. You can access each set of coordinates
+via the `event.touches` property which is a list of individual touches each of
+which contain their coordinates.
+
+For our application, we don't _really_ care if the user is touching the screen
+with one finger, or three fingers, in both cases we only want to show a single
+cursor to other users. So while there may be more than one touch in
+`event.touches`, we can simply use the first touch in the list to track cursor
+(or I suppose more properly finger) movement.
+
+```ts
+useEffect(() => {
+  function handleMove(event: MouseEvent | TouchEvent) {
+    const source = "touches" in event ? event.touches[0] : event
+
+    console.log(`X:${source.clientX}, Y:${source.clientY}`)
+  }
+
+  window.addEventListener("mousemove", handleMove)
+  window.addEventListener("touchmove", handleTouch)
+
+  return () => {
+    window.removeEventListener("mousemove", handleMove)
+    window.removeEventListener("touchmove", handleTouch)
+  }
+}, [socket])
 ```
 
 ## Introduction to WebSockets
