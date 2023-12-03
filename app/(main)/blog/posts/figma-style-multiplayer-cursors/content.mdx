@@ -66,6 +66,8 @@ function App() {
 }
 ```
 
+### Tracking cursor movement
+
 Let's start with the implementation of `Tracker` as it's the simpler of the two.
 This component will need to listen to changes to cursor position and publish
 that information to the server so other users can receive the updated cursor
@@ -137,7 +139,117 @@ useEffect(() => {
 }, [socket])
 ```
 
+### Displaying cursors
+
+To display the cursors of other users, we need to build two new components: a
+component which displays a user's cursor on the screen, and a component that
+manages all the cursors including adding cursors when users connect and removing
+cursors when users disconnect.
+
+For our single `Cursor` component, we want to show both an
+[arrow shape](https://github.com/mskelton/cursed/blob/main/src/components/Arrow.tsx)
+and the user's name so we know which cursors belong to who. To give our
+application a bit of color, I'm using the [hashbow](https://npm.im/hashbow)
+package to generate a random color based on the name of the user. We'll use this
+color as the background of the arrow and the user's name.
+
+The position of the cursor is controlled by the
+[custom properties](https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties)
+`--x` and `--y` which are used to translate the cursor from it's fixed position
+on the page. The use of
+[viewport units](https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Values_and_units)
+(`vw` and `vh`) allows us to express the coordinates of each cursor as a
+percentage of the page width/height, rather than a fixed offset. This is
+important as each user who visits our application may have different screen
+sizes, but the positions of each cursor should match the relative position on
+the source device.
+
+The `Cursor` component also uses
+[forwardRef](https://react.dev/reference/react/forwardRef) which we'll need
+later when updating cursor position from incoming WebSocket messages.
+
+```tsx
+interface CursorProps {
+  connection: ClientConnection
+}
+
+export const Cursor = forwardRef<HTMLDivElement, CursorProps>(function Cursor(
+  { connection },
+  ref,
+) {
+  const color = hashbow(connection.user.name, 100, 30)
+
+  return (
+    <div
+      ref={ref}
+      className={clsx(
+        "fixed flex translate-x-[--x] translate-y-[--y] gap-1 rounded text-xs",
+        // If we don't have any initial coordinates for the user, hide this
+        // cursor. This happens when a new client first connects.
+        connection.coords.x ? "visible" : "invisible",
+      )}
+      style={
+        {
+          "--x": `${connection.coords.x}vw`,
+          "--y": `${connection.coords.y}vh`,
+        } as React.CSSProperties
+      }
+    >
+      <Arrow color={color} />
+
+      <span
+        className="relative -left-1.5 top-4 rounded-sm px-1.5 py-0.5 text-white"
+        style={{ backgroundColor: color }}
+      >
+        {connection.user.name}
+      </span>
+    </div>
+  )
+})
+```
+
+Now that we can display a single cursor, it's time to display them all! Let's
+create a `Cursors` component which will display a single `Cursor` for all
+connected users. For reasons we'll see later, we want to store the cursors as an
+object with the keys representing a user's connection id (more on that later),
+and the value representing information about the user's connection such as their
+name, last known coordinates, and a
+[React ref](https://react.dev/learn/manipulating-the-dom-with-refs) that we will
+use later to update cursor position on the fly.
+
+We can use `Object.values` to get a list of connections when can then map
+through and render the individual `Cursor` components. We can see now why the
+`Cursor` component needed to use `forwardRef` as we are passing the ref stored
+in our connection object to the cursor to allow updating it's position on the
+fly. Once again, more on this later in the post!
+
+```tsx
+export function Cursors() {
+  const [cursors, setCursors] = useState<Record<string, ClientConnection>>({})
+
+  return (
+    <>
+      {Object.values(cursors).map((connection) => (
+        <Cursor
+          key={connection.id}
+          ref={connection.ref}
+          connection={connection}
+        />
+      ))}
+    </>
+  )
+}
+```
+
 ## Introduction to WebSockets
+
+At this point, the scaffolding for our project is setup, and we can now begin
+the work of connecting users via WebSockets. While there are many great
+WebSocket libraries such as [socket.io](https://socket.io), in this application
+we are going to setup our WebSocket from scratch to better understand how
+WebSockets work and the low-level APIs the browser provides for using them.
+However, before we can implement our first WebSocket, let's take a step back and
+understand how WebSockets actually work.
 
 WebSockets are persistent HTTP connections that allow bi-directional
 communication between the client and server. By maintaining an open connection,
