@@ -149,9 +149,10 @@ cursors when users disconnect.
 For our single `Cursor` component, we want to show both an
 [arrow shape](https://github.com/mskelton/cursed/blob/main/src/components/Arrow.tsx)
 and the user's name so we know which cursors belong to who. To give our
-application a bit of color, I'm using the [hashbow](https://npm.im/hashbow)
-package to generate a random color based on the name of the user. We'll use this
-color as the background of the arrow and the user's name.
+application a bit of color, I'm using the
+[color-hash](https://npm.im/color-hash) package to generate a random color based
+on the name of the user. We'll use this color as the background of the arrow and
+the user's name.
 
 The position of the cursor is controlled by the
 [custom properties](https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties)
@@ -177,7 +178,8 @@ export const Cursor = forwardRef<HTMLDivElement, CursorProps>(function Cursor(
   { connection },
   ref,
 ) {
-  const color = hashbow(connection.user.name, 100, 30)
+  const hash = new ColorHash({ lightness: 0.3 })
+  const color = hash(connection.user.name)
 
   return (
     <div
