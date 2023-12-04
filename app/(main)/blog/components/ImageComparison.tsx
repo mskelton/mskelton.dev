@@ -26,7 +26,7 @@ function CompareImage({
       alt={alt ?? ""}
       onLoad={onLoad}
       placeholder="blur"
-      src={require(`../../../images/blog/${slug}/${src}`)}
+      src={require(`../posts/${slug}/${src}`)}
       style={styleFitContainer()}
     />
   )
