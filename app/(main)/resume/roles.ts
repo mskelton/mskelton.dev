@@ -1,0 +1,46 @@
+export const roles = [
+  {
+    company: "Federato",
+    date: "March 2023 - Present",
+    href: "https://federato.ai",
+    responsibilities: [
+      "Architecting a layout system allowing customers to customize the structure and appearance of the application",
+      "Construction of a UI component library using React, Tailwind, and Storybook",
+      "Developing user-configurable data tables with advanced customization and data connectivity",
+      "Reducing page load times by implementing advanced GraphQL caching strategies",
+      "Improving local development and CI workflows to increase throughput and reduce bugs",
+      "Mentoring developers, knowledge sharing, and teaching techniques for improving engineering skills",
+    ],
+    title: "Senior Frontend Enginer",
+  },
+  {
+    company: "Widen, an Acquia Company",
+    date: "January 2019 - February 2023",
+    href: "https://www.acquia.com/products/acquia-dam",
+    responsibilities: [
+      "Refactoring large portions of a legacy monolith into microservices",
+      "Developing frontend React applications in collaboration with designers",
+      "Lead developer of component and utility libraries used by the company",
+      "Subject matter expert in TypeScript, end-to-end testing, and build tooling",
+      "Driving company-wide frontend architecture planning",
+      "Creating a distributed frontend architecture using webpack module federation",
+      "Contributing to open source both personally and professionally",
+      "Developing a internal browser extension to simplify common development tasks",
+      "Architecting and developing a bulk data import tool capable of processing a quarter million records",
+    ],
+    title: "Staff Software Engineer",
+  },
+  {
+    company: "Computer Know How",
+    date: "August 2016 - January 2019",
+    href: "https://ckhconsulting.com",
+    responsibilities: [
+      "Developing an enterprise-level Single Sign-On application including reporting and analytics",
+      "Building a time tracking mobile app to support customer billing and reporting initiatives",
+      "Creating a bi-directional payment processing API gateway supporting multiple downstream payment processors",
+      "Consulting with customers to define their technical needs, then designing and executing a solution to meet them",
+      "Traveling onsite to customers for troubleshooting and consulting",
+    ],
+    title: "Web Developer",
+  },
+]
