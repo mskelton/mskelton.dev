@@ -15,26 +15,43 @@ export const metadata: Metadata = {
 }
 
 export default function Projects() {
+  const work = (
+    <>
+      <h2>Education</h2>
+      <p>
+        <span className="block">B.A. Computer Science</span>
+        <span className="block">Thomas Edison State University</span>
+      </p>
+    </>
+  )
+
   return (
-    <Container className="mx-auto mt-16 max-w-6xl sm:mt-20">
-      <div className="grid grid-cols-[auto,1fr] gap-x-8">
+    <Container className="mx-auto mt-16 max-w-6xl md:mt-20">
+      <div className="grid-cols-[auto,1fr] gap-x-8 lg:grid">
         <Image
           alt="Mark Skelton"
-          className="row-span-2 aspect-square rounded-md bg-zinc-100 object-cover dark:bg-zinc-800 sm:h-32 sm:w-32"
+          className="row-span-2 hidden aspect-square rounded-md bg-zinc-100 object-cover s-32 dark:bg-zinc-800 lg:block"
           priority
           src={avatar}
         />
 
-        <PageTitle>Hi, I’m Mark 👋</PageTitle>
-        <p className="text-gray-300 [text-wrap:balance]">
+        <PageTitle className="mb-6 lg:mb-0">Hi, I’m Mark 👋</PageTitle>
+        <p className="text-gray-300 lg:[text-wrap:balance]">
           Experienced software engineer with over seven years of experience
           building scalable web apps. Dedicated team leader and mentor
           passionate about teaching, developer experience, and high-quality UX.
         </p>
       </div>
 
-      <Prose className="flex gap-20 prose-h2:mt-8 prose-li:my-2">
-        <div className="m-0">
+      <Prose className="grid gap-x-20 prose-h2:mt-8 prose-li:my-2 lg:grid-cols-[1fr,280px]">
+        <div className="m-0 text-center lg:col-start-2">
+          <h2>Skills</h2>
+          <Skills />
+
+          <div className="m-0 hidden text-center lg:block">{work}</div>
+        </div>
+
+        <div className="m-0 lg:row-start-1">
           {roles.map((role) => (
             <Fragment key={role.title}>
               <h2>
@@ -50,16 +67,7 @@ export default function Projects() {
           ))}
         </div>
 
-        <div className="m-0 min-w-[280px] text-center">
-          <h2>Skills</h2>
-          <Skills />
-
-          <h2>Education</h2>
-          <p>
-            <span className="block">B.A. Computer Science</span>
-            <span className="block">Thomas Edison State University</span>
-          </p>
-        </div>
+        <div className="m-0 text-center lg:hidden">{work}</div>
       </Prose>
     </Container>
   )
