@@ -34,7 +34,7 @@ export default function Projects() {
       </div>
 
       <Prose className="flex gap-20 prose-h2:mt-8 prose-li:my-2">
-        <div>
+        <div className="m-0">
           {roles.map((role) => (
             <Fragment key={role.title}>
               <h2>
@@ -50,7 +50,7 @@ export default function Projects() {
           ))}
         </div>
 
-        <div className="min-w-[280px] text-center">
+        <div className="m-0 min-w-[280px] text-center">
           <h2>Skills</h2>
           <Skills />
 
