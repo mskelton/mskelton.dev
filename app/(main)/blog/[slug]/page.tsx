@@ -26,19 +26,15 @@ export async function generateMetadata({ params }: PageProps) {
 
 export default async function Page({ params }: { params: { slug: string } }) {
   const { component: Component, ...meta } = await getPost(params.slug)
-  const image = await import(
-    `../posts/${params.slug}/opengraph-image.png`
-  ).catch(() => null)
+  const image = await import(`../posts/${params.slug}/opengraph-image.png`)
+    .then((mod) => mod.default)
+    .catch(() => null)
 
   return (
     <PostLayout
       backHref="/blog"
       backText="Go back to posts"
-      featuredImage={
-        image ? (
-          <Image alt="Featured image" placeholder="blur" src={image} />
-        ) : null
-      }
+      featuredImage={image}
       meta={meta}
     >
       <Component />
