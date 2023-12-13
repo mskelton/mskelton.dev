@@ -1,5 +1,5 @@
 ---
-title: Building Figma-Style Multiplayer Cursors
+title: Building Figma Multiplayer Cursors
 description:
 date: "2023-11-26"
 ---
@@ -46,7 +46,7 @@ code on GitHub for both this React version as well as other frameworks. The
 frameworks and tools I'm using for this application include:
 
 - [Tailwind CSS](https://tailwindcss.com) for styling
-- [Rsbuild](https://rsbuild.dev) for bundling
+- [Vite](https://vitejs.dev) for bundling
 - [Bun](https://bun.sh) as the server
 
 Starting at the root of the application, there are two primary components we
@@ -277,6 +277,118 @@ Upgrade: websocket
 After the client has successfully received this response, the WebSocket
 connection has been made and messages can now be passed from the client to the
 server or vice versa.
+
+## Setting up the WebSocket server
+
+For this application, I decided to use [Bun](https://bun.sh/) as the WebSocket
+server as it makes the setup extremely simple. The
+[ws](https://www.npmjs.com/package/ws) library is an extremely popular WebSocket
+implementation for Node if you want to go that route, but for this application,
+the simpler the better.
+
+Let's get started with some boilerplate.
+
+```ts
+const server = Bun.serve<{ connectionId: string }>({
+  port: 8081,
+  fetch(req, server) {
+    const url = new URL(req.url)
+
+    if (url.pathname === "/chat") {
+      const name = url.searchParams.get("name")
+      const connectionId = Math.random().toString(36).slice(2)
+
+      const success = server.upgrade(req, { data: { connectionId } })
+      return success
+        ? undefined
+        : new Response("WebSocket upgrade error", { status: 400 })
+    }
+
+    return new Response("Hello world")
+  },
+  websocket: {
+    open(ws) {},
+    message(ws, raw) {},
+    close(ws) {},
+  },
+})
+```
+
+When we create a server using `Bun.serve`, all traffic will flow through the
+`fetch` method that we define. Inside this function we use the `server.upgrade`
+method to upgrade to a WebSocket connection. When we do this, Bun handles the
+details of sending the `101 Switching Protocols` response that we saw in the
+previous section and attaches the proper response headers to upgrade to a
+WebSocket connection.
+
+> [!INFO Why check the URL pathname?]  
+> For this application, we are only using this server for WebSocket connections,
+> so technically we could unconditionally upgrade any HTTP connection to our
+> server regardless of the path. However, in a real world, it's pretty unlikely
+> that you will be using the server only for WebSocket connections, so I've
+> included the pathname check for completeness.
+
+When we upgrade the request, Bun allows us to set "contextual data" that is
+associated with the WebSocket connection. We can use this to create a unique id
+for each connection which allows us to associated data such as the username and
+cursor coordinates that we can update as the user sends future messages.
+
+### Storing coordinates
+
+With the basic server setup, we can now work on making it functional. Let's
+start by creating a map of connection ids to the associated connection data.
+
+```ts
+interface ServerConnection {
+  coords: { x: number; y: number }
+  id: string
+  username: string
+}
+
+const connections = new Map<string, ServerConnection>()
+```
+
+Now, inside of the `fetch` function of the server, after creating the
+`connectionId`, we can add our new connection to the map with the username and
+initial coordinates which we set to `0,0`. While we could have the client send
+the initial cursor position when it creates the WebSocket connection,
+initializing to `0,0` is a bit simpler for our use case.
+
+```ts
+connections.set(connectionId, {
+  id: connectionId,
+  coords: { x: 0, y: 0 },
+  username: name || "Anonymous",
+})
+```
+
+### Subscribing to messages
+
+Now that we have our connection information stored, let's make sure the client
+is able to receive messages from other users and also publish a message to other
+users indicating that we've connected to the server. To do this, we'll first
+modify the `websocket.open()` method:
+
+```ts
+const GROUP_ID = "cursors"
+
+Bun.serve({
+  // ...
+  websocket: {
+    open(ws) {
+      // If the connection isn't found, something went wrong so let's just bail
+      const connection = connections.get(ws.data.connectionId)
+      if (!connection) return
+
+      // Subscribe the new user to the group
+      ws.subscribe(GROUP_ID)
+
+      // Notify other connections of the new connection
+      ws.publish(GROUP_ID, JSON.stringify({ type: "connect", connection }))
+    },
+  },
+})
+```
 
 ## Further reading
 
