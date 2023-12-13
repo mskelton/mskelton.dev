@@ -208,6 +208,7 @@ module.exports = {
               backgroundPosition: "bottom 2px left 100%",
               backgroundRepeat: "no-repeat",
               backgroundSize: `100% 3px`,
+              boxDecorationBreak: "clone",
               transitionProperty: "all",
               transitionDuration: theme("transitionDuration.150"),
               transitionTimingFunction: theme(
