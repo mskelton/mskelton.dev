@@ -366,8 +366,8 @@ connections.set(connectionId, {
 
 Now that we have our connection information stored, let's make sure the client
 is able to receive messages from other users and also publish a message to other
-users indicating that we've connected to the server. To do this, we'll first
-modify the `websocket.open()` method:
+users indicating that we've connected to the server. To do this, we'll modify
+the `websocket.open()` method:
 
 ```ts
 const GROUP_ID = "cursors"
@@ -376,20 +376,111 @@ Bun.serve({
   // ...
   websocket: {
     open(ws) {
-      // If the connection isn't found, something went wrong so let's just bail
+      // If the user isn't found, something went wrong so let's just bail
       const connection = connections.get(ws.data.connectionId)
       if (!connection) return
 
       // Subscribe the new user to the group
       ws.subscribe(GROUP_ID)
 
-      // Notify other connections of the new connection
+      // Notify other users of the new user
       ws.publish(GROUP_ID, JSON.stringify({ type: "connect", connection }))
     },
   },
 })
 ```
 
+We also should ensure that when a user loses connection to the server, either by
+closing the tab or network issues, their connection will be removed from the
+server and other users will be notified that they are no longer connected. We
+can use the `websocket.close()` method to handle these scenarios:
+
+```ts
+Bun.serve({
+  // ...
+  websocket: {
+    close(ws) {
+      // Remove the user from the list of users
+      connections.delete(ws.data.connectionId)
+
+      // Unsubscribe the user from the group
+      ws.unsubscribe(GROUP_ID)
+
+      // Notify other users that this user has disconnected
+      server.publish(
+        GROUP_ID,
+        JSON.stringify({
+          type: "disconnect",
+          connectionId: ws.data.connectionId,
+        }),
+      )
+    },
+  },
+})
+```
+
+> [!INFO What's the difference between ws and server?]  
+> You might have noticed in the previous two code blocks, we used two different
+> methods for publishing WebSocket messages: `ws.publish` will send the message
+> to _other_ users while `server.publish` will send the message to _all_ users.
+> In our case, the only time when `server.publish` makes sense is when a user is
+> disconnecting as in that case `ws.publish` will not work at all.
+
+### Updating cursor position
+
+The final step of building our WebSocket server is handling cursor position
+messages to notify other users when a user is moving their cursor. We can do
+this inside of the `websocket.message()` method:
+
+```ts
+Bun.serve({
+  // ...
+  websocket: {
+    message(ws, message) {
+      if (message.type !== "move") return
+
+      // Ignore users we don't recognize
+      const connection = connections.get(ws.data.connectionId)
+      if (!connection) return
+
+      // Update the saved coordinates for this user
+      connections.set(ws.data.connectionId, {
+        ...connection,
+        coords: message.coords,
+      })
+
+      // Send the updated coordinates to all other users
+      ws.publish(
+        GROUP_ID,
+        JSON.stringify({
+          type: "move",
+          connectionId: ws.data.connectionId,
+          coords: message.coords,
+        }),
+      )
+    },
+  },
+})
+```
+
+We'll see later why we are updating the `connections` map with the coordinates
+from the message. For now, the important piece is the `ws.publish` call where we
+send a message to other users indicating that a specific user moved their cursor
+to a new position on the screen.
+
+## Creating a WebSocket connection on the frontend
+
+## Finalizing move
+
+```ts
+function handleMove(event: MouseEvent | TouchEvent) {
+  const source = "touches" in event ? event.touches[0] : event
+
+  console.log(`X:${source.clientX}, Y:${source.clientY}`)
+}
+```
+
 ## Further reading
 
-- [GitHub repo - React version](https://github.com/mskelton/cursed)
+- [React source](https://github.com/mskelton/cursed/tree/main/apps/react)
+- [Svelte source](https://github.com/mskelton/cursed/tree/main/apps/svelte)
