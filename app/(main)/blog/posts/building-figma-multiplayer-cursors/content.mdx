@@ -470,100 +470,112 @@ to a new position on the screen.
 
 ## Creating a WebSocket connection on the frontend
 
+The code for creating a WebSocket connection on the frontend is a bit more
+complex than much of the rest of the code we've see so far, so let's break it up
+into some small pieces. First, we need to setup some variables that we'll use
+for managing our WebSocket connection:
+
 ```ts
-import { useEffect, useState } from "react"
+import { faker } from "@faker-js/faker"
 
-interface Subscriber<
-  T extends keyof WebSocketEventMap = keyof WebSocketEventMap,
-> {
-  (type: T, socket: WebSocket, e: WebSocketEventMap[T]): void
+type Subscriber = (event: MessageEvent) => void
+
+const subscribers: Set<Subscriber> = new Set()
+let socket: WebSocket | null = null
+
+const name = `${faker.person.firstName()} ${faker.person.lastName()}`
+const url = `ws://${location.hostname}:8081/chat?name=${name}`
+```
+
+The important parts of this code block are creating a set of subscribers which
+we will publish messages to when they are received from the server. We also need
+to store our WebSocket as a global variable for our application. The rest is
+just generating a fake name an creating the WebSocket URL that we will be
+connecting to.
+
+Next, we can build a `connect` function which will initiate the connection to
+our server:
+
+```ts
+function connect() {
+  socket = new WebSocket(url)
+
+  socket.addEventListener("message", (event) => {
+    subscribers.forEach((callback) => callback(event))
+  })
+
+  socket.addEventListener("close", () => {
+    console.error("Lost connection to server. Retrying in 1 second...")
+    setTimeout(connect, 1000)
+  })
 }
 
-const sockets = new Map<string, WebSocket>()
-const subscribers = new Map<string, Set<Subscriber>>()
+connect()
+```
 
-function join(url: string) {
-  if (sockets.has(url)) {
-    return sockets.get(url)!
-  }
+After creating the WebSocket, we will publish all new messages to each
+subscriber and also I've implemented auto-reconnect logic when we receive a
+`close` event. This can happen if the server restarts, or our client loses
+network connectivity. Without auto-reconnect, the client would have to refresh
+the page which would not provide a great user experience.
 
-  let disconnected = false
-  function connect() {
-    const socket = new WebSocket(url)
+Finally, we can setup two utility functions to send and subscribe to messages:
 
-    socket.addEventListener("open", (e) => {
-      if (disconnected) {
-        console.log("Reconnected to server.")
-        disconnected = false
-      }
-
-      subscribers.get(url)?.forEach((fn) => fn("open", socket, e))
-    })
-
-    socket.addEventListener("close", (e) => {
-      console.error("Lost connection to server. Retrying in 1 second...")
-      disconnected = true
-
-      sockets.delete(url)
-      subscribers.get(url)?.forEach((fn) => fn("close", socket, e))
-
-      setTimeout(connect, 1000)
-    })
-
-    return socket
-  }
-
-  const socket = connect()
-  sockets.set(url, socket)
-  return socket
+```ts
+export function send(message: Record<string, unknown>) {
+  if (socket?.readyState !== WebSocket.OPEN) return
+  socket.send(JSON.stringify(message))
 }
 
-function subscribe(url: string, fn: Subscriber) {
-  join(url)
-
-  if (!subscribers.has(url)) {
-    subscribers.set(url, new Set())
-  }
-
-  subscribers.get(url)?.add(fn)
-  return () => {
-    subscribers.get(url)?.delete(fn)
-  }
-}
-
-export function useSocket() {
-  const { name } = useUser()
-  const [socket, setSocket] = useState<WebSocket | null>(null)
-
-  useEffect(() => {
-    const url = `ws://${location.hostname}:8081/chat?name=${name}`
-
-    return subscribe(url, (type, socket) => {
-      switch (type) {
-        case "open":
-          setSocket(socket)
-          break
-
-        case "close":
-          setSocket(null)
-          break
-      }
-    })
-  }, [name])
-
-  return { socket }
+export function subscribe(callback: Subscriber) {
+  subscribers.add(callback)
+  return () => subscribers.delete(callback)
 }
 ```
 
-## Finalizing move
+In the `send` method, we'll check to ensure the WebSocket is open (this prevents
+errors when the WebSocket is initiating the connection or re-connecting) and
+then we can call `socket.send` with our message. The `subscribe` method will add
+a new subscription function to receive messages and return a callback function
+to unsubscribe from receiving messages. We'll use this a bit later to create a
+React hook to receive messages from other users.
+
+> [!INFO A more complete implementation]  
+> The above WebSocket implementation is admittedly not the best for production
+> use. It only supports a single WebSocket connection, it doesn't disconnect
+> when there are no more subscribers, and the logging is fairly minimal. For a
+> more complete example, checkout the
+> [`useSocket`](https://github.com/mskelton/cursed/blob/main/apps/react/src/hooks/useSocket.ts)
+> hook in the source repo for this project.
+
+## Sending move events to other users
+
+Now that we have our WebSocket connection setup, we can update our `handleMove`
+function to send messages to other users with our new cursor position. We can do
+this by using our `send` method that we created to send the x/y coordinates of
+our cursor.
 
 ```ts
 function handleMove(event: MouseEvent | TouchEvent) {
   const source = "touches" in event ? event.touches[0] : event
+  if (!source) return
 
-  console.log(`X:${source.clientX}, Y:${source.clientY}`)
+  send({
+    type: "move",
+    coords: {
+      x: (source.clientX / window.innerWidth) * 100,
+      y: (source.clientY / window.innerHeight) * 100,
+    },
+  })
 }
 ```
+
+One thing you'll notice in this code block is that we are dividing `clientX` and
+`clientY` with `window.innerWidth` and `window.innerHeight` respectively. This
+is to account for different users having different screen sizes, so we actually
+want to represent the coordinates as a percentage of the screen rather than a
+fixed pixel size. We already setup our code to use percentages by using `vw` and
+`vh` units in our `Cursor` component.
 
 ## Further reading
 
