@@ -1,3 +1,4 @@
+import Image from "next/image"
 import { PostLayout } from "components/layouts/PostLayout"
 import { withOpenGraph } from "lib/metadata"
 import { getAllPostSlugs, getPost } from "lib/posts"
@@ -33,7 +34,9 @@ export default async function Page({ params }: { params: { slug: string } }) {
     <PostLayout
       backHref="/blog"
       backText="Go back to posts"
-      featuredImage={image}
+      featuredImage={
+        <Image alt="Featured image" placeholder="blur" src={image} />
+      }
       meta={meta}
     >
       <Component />
