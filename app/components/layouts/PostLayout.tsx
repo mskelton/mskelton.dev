@@ -1,5 +1,4 @@
 import { ArrowLeftIcon } from "@heroicons/react/20/solid"
-import Image from "next/image"
 import Link from "next/link"
 import { Container } from "components/Container"
 import { PageTitle } from "components/PageTitle"
@@ -66,11 +65,7 @@ export function PostLayout({
 
               {featuredImage ? (
                 <div className="-mx-4 mb-12 mt-8 flex aspect-video items-center justify-center overflow-hidden sm:-ml-7 sm:-mr-6 sm:rounded-xl">
-                  <Image
-                    alt="Featured image"
-                    placeholder="blur"
-                    src={featuredImage}
-                  />
+                  {featuredImage}
                 </div>
               ) : null}
             </header>
