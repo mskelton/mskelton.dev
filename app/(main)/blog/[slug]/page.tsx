@@ -35,7 +35,9 @@ export default async function Page({ params }: { params: { slug: string } }) {
       backHref="/blog"
       backText="Go back to posts"
       featuredImage={
-        <Image alt="Featured image" placeholder="blur" src={image} />
+        image ? (
+          <Image alt="Featured image" placeholder="blur" src={image} />
+        ) : undefined
       }
       meta={meta}
     >
