@@ -32,9 +32,6 @@ importers:
       '@mskelton/remark-extract-frontmatter':
         specifier: ^0.0.2
         version: 0.0.2
-      '@mskelton/tailwind-size':
-        specifier: ^0.0.2
-        version: 0.0.2(tailwindcss@3.3.4)
       '@next/mdx':
         specifier: ^13.5.6
         version: 13.5.6(@mdx-js/loader@2.3.0)(@mdx-js/react@2.3.0)
@@ -46,10 +43,10 @@ importers:
         version: 5.5.1(prisma@5.5.1)
       '@tailwindcss/container-queries':
         specifier: ^0.1.1
-        version: 0.1.1(tailwindcss@3.3.4)
+        version: 0.1.1(tailwindcss@3.4.0)
       '@tailwindcss/typography':
         specifier: ^0.5.10
-        version: 0.5.10(tailwindcss@3.3.4)
+        version: 0.5.10(tailwindcss@3.4.0)
       autoprefixer:
         specifier: ^10.4.16
         version: 10.4.16(postcss@8.4.31)
@@ -126,8 +123,8 @@ importers:
         specifier: ^1.14.0
         version: 1.14.0
       tailwindcss:
-        specifier: ^3.3.4
-        version: 3.3.4
+        specifier: ^3.4.0
+        version: 3.4.0
       unified:
         specifier: ^11.0.3
         version: 11.0.3
@@ -211,8 +208,8 @@ importers:
         specifier: ^1.1.1
         version: 1.1.1(prettier@3.0.3)
       prettier-plugin-tailwindcss:
-        specifier: ^0.5.6
-        version: 0.5.6(prettier-plugin-css-order@2.0.1)(prettier-plugin-jsdoc@1.1.1)(prettier@3.0.3)
+        specifier: ^0.5.10
+        version: 0.5.10(prettier-plugin-css-order@2.0.1)(prettier-plugin-jsdoc@1.1.1)(prettier@3.0.3)
       prisma:
         specifier: ^5.5.1
         version: 5.5.1
@@ -723,14 +720,6 @@ packages:
       vfile-matter: 5.0.0
     dev: false
 
-  /@mskelton/tailwind-size@0.0.2(tailwindcss@3.3.4):
-    resolution: {integrity: sha512-g138rCP8i2+a2+3cgcl+Q+tqtqWoYKhLbFz784BM2kHdGqAYgZbQA69jXimmDxLGD+ib0kNl1/9ghP9czFrj6w==}
-    peerDependencies:
-      tailwindcss: '>=3.0.0 || insiders'
-    dependencies:
-      tailwindcss: 3.3.4
-    dev: false
-
   /@next/env@13.5.6:
     resolution: {integrity: sha512-Yac/bV5sBGkkEXmAX5FWPS9Mmo2rthrOPRQQNfycJPkjUAUclomCPH7QFVCDQ4Mp2k2K1SSM6m0zrxYrOwtFQw==}
     dev: false
@@ -1011,15 +1000,15 @@ packages:
       tslib: 2.6.2
     dev: false
 
-  /@tailwindcss/container-queries@0.1.1(tailwindcss@3.3.4):
+  /@tailwindcss/container-queries@0.1.1(tailwindcss@3.4.0):
     resolution: {integrity: sha512-p18dswChx6WnTSaJCSGx6lTmrGzNNvm2FtXmiO6AuA1V4U5REyoqwmT6kgAsIMdjo07QdAfYXHJ4hnMtfHzWgA==}
     peerDependencies:
       tailwindcss: '>=3.2.0'
     dependencies:
-      tailwindcss: 3.3.4
+      tailwindcss: 3.4.0
     dev: false
 
-  /@tailwindcss/typography@0.5.10(tailwindcss@3.3.4):
+  /@tailwindcss/typography@0.5.10(tailwindcss@3.4.0):
     resolution: {integrity: sha512-Pe8BuPJQJd3FfRnm6H0ulKIGoMEQS+Vq01R6M5aCrFB/ccR/shT+0kXLjouGC1gFLm9hopTFN+DMP0pfwRWzPw==}
     peerDependencies:
       tailwindcss: '>=3.0.0 || insiders'
@@ -1028,7 +1017,7 @@ packages:
       lodash.isplainobject: 4.0.6
       lodash.merge: 4.6.2
       postcss-selector-parser: 6.0.10
-      tailwindcss: 3.3.4
+      tailwindcss: 3.4.0
     dev: false
 
   /@types/acorn@4.0.6:
@@ -4844,14 +4833,13 @@ packages:
       - supports-color
     dev: true
 
-  /prettier-plugin-tailwindcss@0.5.6(prettier-plugin-css-order@2.0.1)(prettier-plugin-jsdoc@1.1.1)(prettier@3.0.3):
-    resolution: {integrity: sha512-2Xgb+GQlkPAUCFi3sV+NOYcSI5XgduvDBL2Zt/hwJudeKXkyvRS65c38SB0yb9UB40+1rL83I6m0RtlOQ8eHdg==}
+  /prettier-plugin-tailwindcss@0.5.10(prettier-plugin-css-order@2.0.1)(prettier-plugin-jsdoc@1.1.1)(prettier@3.0.3):
+    resolution: {integrity: sha512-9UGSejqFxGG6brYjFfTYlJ8zs4L/lvZg1AngFfaC5Fs1otSskASv5IWKmjPu5MlABQUtTKtMArKyYr/hWpXSUg==}
     engines: {node: '>=14.21.3'}
     peerDependencies:
       '@ianvs/prettier-plugin-sort-imports': '*'
       '@prettier/plugin-pug': '*'
       '@shopify/prettier-plugin-liquid': '*'
-      '@shufo/prettier-plugin-blade': '*'
       '@trivago/prettier-plugin-sort-imports': '*'
       prettier: ^3.0
       prettier-plugin-astro: '*'
@@ -4870,8 +4858,6 @@ packages:
       '@prettier/plugin-pug':
         optional: true
       '@shopify/prettier-plugin-liquid':
-        optional: true
-      '@shufo/prettier-plugin-blade':
         optional: true
       '@trivago/prettier-plugin-sort-imports':
         optional: true
@@ -5558,8 +5544,8 @@ packages:
     resolution: {integrity: sha512-3mFKyCo/MBcgyOTlrY8T7odzZFx+w+qKSMAmdFzRvqBfLlSigU6TZnlFHK0lkMwj9Bj8OYU+9yW9lmGuS0QEnQ==}
     dev: false
 
-  /tailwindcss@3.3.4:
-    resolution: {integrity: sha512-JXZNOkggUAc9T5E7nCrimoXHcSf9h3NWFe5sh36CGD/3M5TRLuQeFnQoDsit2uVTqgoOZHLx5rTykLUu16vsMQ==}
+  /tailwindcss@3.4.0:
+    resolution: {integrity: sha512-VigzymniH77knD1dryXbyxR+ePHihHociZbXnLZHUyzf2MMs2ZVqlUrZ3FvpXP8pno9JzmILt1sZPD19M3IxtA==}
     engines: {node: '>=14.0.0'}
     hasBin: true
     dependencies:

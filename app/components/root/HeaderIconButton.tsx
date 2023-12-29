@@ -24,7 +24,7 @@ const HeaderIconButton = forwardRef<HTMLButtonElement, HeaderIconButtonProps>(
         {Children.map(children, (child) =>
           cloneElement(child, {
             className: clsx(
-              "text-zinc-700 transition-colors s-5 group-hover:text-black dark:text-zinc-300 dark:group-hover:text-white",
+              "size-5 text-zinc-700 transition-colors group-hover:text-black dark:text-zinc-300 dark:group-hover:text-white",
               child.props.className,
             ),
           }),

@@ -14,7 +14,6 @@ module.exports = {
   plugins: [
     require("@tailwindcss/typography"),
     require("@tailwindcss/container-queries"),
-    require("@mskelton/tailwind-size"),
     plugin(({ addUtilities, theme }) => {
       addUtilities({
         ".focusable": {
