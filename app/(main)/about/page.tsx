@@ -33,7 +33,7 @@ function SocialLink({
         className="group -m-1 flex rounded p-1 text-sm font-medium text-zinc-800 transition focusable hover:text-indigo-500 dark:text-zinc-200 dark:hover:text-indigo-400"
         href={href}
       >
-        <Icon className="flex-none fill-zinc-500 transition s-6 group-hover:fill-indigo-500 dark:group-hover:fill-indigo-400" />
+        <Icon className="size-6 flex-none fill-zinc-500 transition group-hover:fill-indigo-500 dark:group-hover:fill-indigo-400" />
         <span className="ml-4">{children}</span>
       </a>
     </li>

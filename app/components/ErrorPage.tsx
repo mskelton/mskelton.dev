@@ -21,7 +21,7 @@ export default function ErrorPage({
           {code}
         </p>
 
-        <h1 className="mt-4 text-3xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100 sm:text-5xl">
+        <h1 className="mt-4 text-3xl font-bold tracking-tight text-zinc-900 sm:text-5xl dark:text-zinc-100">
           {title}
         </h1>
 

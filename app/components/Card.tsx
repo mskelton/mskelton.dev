@@ -37,7 +37,7 @@ Card.Link = function CardLink({
 }: CardLinkProps) {
   return (
     <>
-      <div className="absolute -inset-x-4 -inset-y-6 z-0 scale-95 bg-zinc-50 opacity-0 transition group-hover:scale-100 group-hover:opacity-100 dark:bg-zinc-800/50 sm:-inset-x-6 sm:rounded-2xl" />
+      <div className="absolute -inset-x-4 -inset-y-6 z-0 scale-95 bg-zinc-50 opacity-0 transition group-hover:scale-100 group-hover:opacity-100 sm:-inset-x-6 sm:rounded-2xl dark:bg-zinc-800/50" />
       <Link
         className={clsx("-mx-2 rounded px-2 py-1 focusable", className)}
         {...props}
@@ -111,7 +111,7 @@ Card.Cta = function CardCta({ children }: CardCtaProps) {
       className="relative z-10 mt-4 flex items-center text-sm font-medium text-indigo-500 transition-colors dark:text-indigo-400"
     >
       {children}
-      <ChevronRightIcon className="ml-1 transition-[margin] s-5 group-hover:ml-1.5" />
+      <ChevronRightIcon className="ml-1 size-5 transition-[margin] group-hover:ml-1.5" />
     </div>
   )
 }
@@ -161,7 +161,7 @@ export interface CardExternalLinkProps {
 Card.ExternalLink = function CardExternalLink({ href }: CardExternalLinkProps) {
   return (
     <p className="relative z-10 mt-auto flex items-center justify-self-end text-sm font-medium text-zinc-800 transition group-hover:text-indigo-500 dark:text-zinc-200 dark:group-hover:text-indigo-400">
-      <LinkIcon className="s-5" />
+      <LinkIcon className="size-5" />
       <span className="ml-2">{formatURL(href)}</span>
     </p>
   )

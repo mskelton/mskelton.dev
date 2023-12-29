@@ -7,7 +7,7 @@ export function PageTitle({ className, ...props }: PageTitleProps) {
   return (
     <h1
       className={twMerge(
-        "text-4xl font-bold tracking-tight text-zinc-800 transition-colors dark:text-zinc-100 sm:text-5xl",
+        "text-4xl font-bold tracking-tight text-zinc-800 transition-colors sm:text-5xl dark:text-zinc-100",
         className,
       )}
       {...props}

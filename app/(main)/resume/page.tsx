@@ -30,7 +30,7 @@ export default function Projects() {
       <div className="grid-cols-[auto,1fr] gap-x-8 lg:grid">
         <Image
           alt="Mark Skelton"
-          className="row-span-2 hidden aspect-square rounded-md bg-zinc-100 object-cover s-32 dark:bg-zinc-800 lg:block"
+          className="row-span-2 hidden aspect-square size-32 rounded-md bg-zinc-100 object-cover lg:block dark:bg-zinc-800"
           priority
           src={avatar}
         />
