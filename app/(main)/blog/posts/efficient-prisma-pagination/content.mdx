@@ -47,7 +47,7 @@ There are two main challenges we have to solve to make the pagination work: the
 query itself, and managing when to enable/disable the previous/next links. Let's
 start with the query which should look something like this.
 
-```typescript showLineNumbers showLineNumbers
+```typescript showLineNumbers
 type Direction = "none" | "forward" | "backward"
 
 function searchBytes({ before, after }: { before?: string; after?: string }) {
@@ -70,7 +70,7 @@ than the page size. More on that in a moment.
 The next direction is `forward`, which functionally is very similar to `none`,
 with the slight difference being that we need to skip an item.
 
-```typescript showLineNumbers showLineNumbers {3}
+```typescript showLineNumbers {3}
 const res = await prisma.byte.findMany({
   cursor: cursor ? { id: cursor } : undefined,
   skip: direction === "none" ? undefined : 1,
@@ -96,7 +96,7 @@ return from the database query. As you can see we are taking one more record
 than the page size, which we will need in the next section, so more on that in
 just a moment.
 
-```typescript showLineNumbers showLineNumbers {4}
+```typescript showLineNumbers {4}
 const res = await prisma.byte.findMany({
   cursor: cursor ? { id: cursor } : undefined,
   skip: direction === "none" ? undefined : 1,
@@ -124,7 +124,7 @@ This is where our one extra item comes into play.
 First though, we need to trim the extra item from the array of results. We can
 do this using `slice()` to either remove from the start or end of the array.
 
-```typescript showLineNumbers showLineNumbers
+```typescript
 const bytes =
   direction === "backward" ? res.slice(0, PAGE_SIZE) : res.slice(-PAGE_SIZE)
 ```
@@ -135,7 +135,7 @@ number of items from the database is greater than the page size. If it was, then
 we know there are more items. We don't know how many, but that doesn't matter,
 we only care there is _some_ number of results we haven't yet seen.
 
-```typescript showLineNumbers showLineNumbers
+```typescript
 const hasMore = res.length > PAGE_SIZE
 ```
 
@@ -150,7 +150,7 @@ needing any information at all:
 Armed with this information, the logic for determining the next/previous page
 links becomes fairly simple.
 
-```typescript showLineNumbers showLineNumbers {2,7}
+```typescript showLineNumbers {2,7}
 const nextHref =
   direction === "backward" || hasMore
     ? `/bytes?after=${bytes.at(-1)?.id}`
