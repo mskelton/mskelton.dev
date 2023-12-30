@@ -1,16 +1,15 @@
-import rangeParser from "parse-numeric-range"
 import { SKIP, visit } from "unist-util-visit"
 
-function calculateLines(meta, char) {
-  const [range] = meta
-    .filter((item) => item.startsWith(char))
-    .map((item) => item.slice(1, -1))
+function calculateLines(range) {
+  let hasHighlights = false
 
-  if (range) {
-    const lineNumbers = rangeParser(range)
-    return (index) => lineNumbers.includes(index + 1)
-  } else {
-    return () => false
+  return {
+    test: (index) => {
+      const match = range?.includes(index + 1)
+      hasHighlights = hasHighlights || match
+      return match
+    },
+    highlighted: () => hasHighlights,
   }
 }
 
@@ -20,9 +19,13 @@ export default function rehypeCodeMeta() {
       tree,
       (node) => node.type === "element" && node.tagName === "pre",
       (node) => {
-        const attrs = node.data?.attributes ?? []
-        const shouldHighlight = calculateLines(attrs, "{")
-        const shouldFocus = calculateLines(attrs, "[")
+        const highlight = calculateLines(node.data?.highlight)
+        const focus = calculateLines(node.data?.focus)
+
+        if (node.data?.showLineNumbers) {
+          node.properties.className ??= []
+          node.properties.className.push("line-numbers")
+        }
 
         visit(
           node,
@@ -34,12 +37,16 @@ export default function rehypeCodeMeta() {
               line.children.push({ type: "text", value: "\u200b" })
             }
 
-            if (shouldHighlight(index)) {
+            if (highlight.test(index)) {
               line.properties.className ??= []
               line.properties.className.push("highlight")
+
+              // Add a prop that indicates that this code block has focused
+              // so we can display an expand/collapse button.
+              node.properties.hasHighlight = true
             }
 
-            if (shouldFocus(index)) {
+            if (focus.test(index)) {
               line.properties.className ??= []
               line.properties.className.push("focus")
 
@@ -49,6 +56,16 @@ export default function rehypeCodeMeta() {
             }
           },
         )
+
+        if (highlight.highlighted()) {
+          node.properties.className ??= []
+          node.properties.className.push("highlight")
+        }
+
+        if (focus.highlighted()) {
+          node.properties.className ??= []
+          node.properties.className.push("focus")
+        }
 
         return SKIP
       },

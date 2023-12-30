@@ -55,7 +55,7 @@ responsible for showing the cursors of **other** users that are connected and
 the `Tracker` component will be responsible for sending updates from **us** to
 other users.
 
-```tsx
+```tsx showLineNumbers
 function App() {
   return (
     <>
@@ -75,7 +75,7 @@ position. We can do this by registering a
 [`mousemove`](https://developer.mozilla.org/en-US/docs/Web/API/Element/mousemove_event)
 listener inside of a `useEffect` hook.
 
-```ts
+```ts showLineNumbers
 export function Tracker() {
   useEffect(() => {
     function handleMove(event: MouseEvent) {
@@ -121,7 +121,7 @@ cursor to other users. So while there may be more than one touch in
 `event.touches`, we can simply use the first touch in the list to track cursor
 (or I suppose more properly finger) movement.
 
-```ts
+```ts showLineNumbers
 useEffect(() => {
   function handleMove(event: MouseEvent | TouchEvent) {
     const source = "touches" in event ? event.touches[0] : event
@@ -169,7 +169,7 @@ The `Cursor` component also uses
 [forwardRef](https://react.dev/reference/react/forwardRef) which we'll need
 later when updating cursor position from incoming WebSocket messages.
 
-```tsx
+```tsx showLineNumbers
 interface CursorProps {
   connection: ClientConnection
 }
@@ -225,7 +225,7 @@ through and render the individual `Cursor` components. We can see now why the
 in our connection object to the cursor to allow updating it's position on the
 fly. Once again, more on this later in the post!
 
-```tsx
+```tsx showLineNumbers
 export function Cursors() {
   const [cursors, setCursors] = useState<Record<string, ClientConnection>>({})
 
@@ -269,7 +269,7 @@ server receives the request, it will respond with a status code of
 `101 Switching Protocols` and return two response headers to indicate to the
 client that the request is being upgraded to a WebSocket connection.
 
-```http
+```http showLineNumbers
 Connection: Upgrade
 Upgrade: websocket
 ```

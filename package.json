@@ -25,7 +25,7 @@
     "@mdx-js/loader": "^2.3.0",
     "@mdx-js/react": "^2.3.0",
     "@mskelton/rehype-callout": "^0.0.4",
-    "@mskelton/rehype-shiki": "^0.0.3",
+    "@mskelton/rehype-shiki": "^0.1.0",
     "@mskelton/remark-extract-frontmatter": "^0.0.2",
     "@next/mdx": "^13.5.6",
     "@octokit/rest": "^20.0.2",

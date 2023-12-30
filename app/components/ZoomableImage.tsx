@@ -20,7 +20,7 @@ export default function ZoomableImage({
 
   return (
     <MediumImage
-      className="sm:-mx-8 sm:max-w-[calc(100%+4rem)]"
+      className="sm:max-w-[calc(100%+4rem)]"
       margin={48}
       zoomIcon={<ArrowsPointingOutIcon />}
     >

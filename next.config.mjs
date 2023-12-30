@@ -14,6 +14,7 @@ import rehypeCodeMeta from "./config/rehype-code-meta.mjs"
 import rehypeCodeTitles from "./config/rehype-code-titles.mjs"
 import rehypeHeaderId from "./config/rehype-header-id.mjs"
 import rehypeHeadings from "./config/rehype-headings.mjs"
+import rehypeParseCodeMeta from "./config/rehype-parse-code-meta.mjs"
 import remarkAutoImagePath from "./config/remark-auto-image-path.mjs"
 import remarkCodeBlock from "./config/remark-code-block.mjs"
 
@@ -44,6 +45,7 @@ const withMDX = nextMDX({
       rehypeSlug,
       rehypeHeadings,
       rehypeHeaderId,
+      rehypeParseCodeMeta,
       rehypeCodeTitles,
       [rehypeShiki, { highlighter }],
       rehypeCodeMeta,

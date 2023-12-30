@@ -1,27 +1,28 @@
 "use client"
 
-import {
-  ClipboardDocumentCheckIcon,
-  ClipboardDocumentListIcon,
-} from "@heroicons/react/24/outline"
+import { CheckIcon, ClipboardIcon } from "@heroicons/react/24/outline"
 import { clsx } from "clsx"
 import React, { cloneElement, useRef, useState } from "react"
 
 export interface MarkdownPreProps extends React.HTMLAttributes<HTMLPreElement> {
   children: React.ReactElement
   hasFocus?: boolean
+  hasHighlight?: boolean
+  hasTitle?: boolean
 }
 
 export default function MarkdownPre({
   children,
   className,
   hasFocus,
+  hasHighlight: _,
+  hasTitle,
   ...props
 }: MarkdownPreProps) {
   const preRef = useRef<HTMLPreElement>(null!)
   const [isExpanded, setIsExpanded] = useState(false)
   const [copied, setCopied] = useState(false)
-  const Icon = copied ? ClipboardDocumentCheckIcon : ClipboardDocumentListIcon
+  const Icon = copied ? CheckIcon : ClipboardIcon
 
   function handleCopy() {
     setCopied(true)
@@ -64,13 +65,16 @@ export default function MarkdownPre({
       <button
         aria-label={copied ? "Copied" : "Copy code"}
         className={clsx(
-          "absolute right-4 top-4 z-10 flex h-10 w-10 items-center justify-center rounded-lg bg-zinc-800 opacity-0 transition-all delay-100 focusable hover:bg-zinc-700 focus-visible:opacity-100 group-hover:opacity-100 group-[.has-title]:top-16",
+          "absolute z-10 flex size-8 items-center justify-center rounded-md border border-zinc-700 bg-zinc-900 transition-all delay-100 focusable hover:bg-zinc-800 focus-visible:opacity-100 group-hover:opacity-100",
           copied ? "text-green-400" : "text-zinc-300",
+          hasTitle
+            ? "right-[10px] top-[10px]"
+            : "right-[15px] top-[15px] opacity-0",
         )}
         onClick={handleCopy}
         type="button"
       >
-        <Icon className="size-6" />
+        <Icon className="size-4" />
       </button>
     </>
   )

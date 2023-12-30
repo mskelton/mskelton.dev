@@ -41,7 +41,7 @@ of this might be removing an imported variable from a library and instead
 importing it from a file in your project. The code block below demonstrates this
 example, which I'll use for the remainder of this article.
 
-```javascript
+```javascript showLineNumbers
 // Input
 import { useQuery, queryCache } from "react-query"
 
@@ -66,7 +66,7 @@ This will install jscodeshift globally so we can run it for any project. Next,
 let's create a file called `transform.js` with the following boilerplate for our
 codemod.
 
-```javascript transform.js
+```javascript showLineNumbers transform.js
 module.exports = function (fileInfo, api) {
   const j = api.jscodeshift
   const source = j(fileInfo.source)
@@ -147,7 +147,7 @@ using the following three steps.
 
 This would look like this in our `transform.js` file.
 
-```javascript
+```javascript showLineNumbers
 // Your transformations go here
 source
   .find(j.ImportSpecifier)
@@ -188,7 +188,7 @@ To add the new import, we first need to track if we removed a queryCache
 variable from the `react-query` import. Do this by checking the `length`
 property of the collection returned from our code in step 1.
 
-```javascript
+```javascript showLineNumbers
 const specifiers = source
   .find(j.ImportSpecifier)
   .filter((path) => path.parent.value.source.value === "react-query")
@@ -204,7 +204,7 @@ Next, we need to find the `react-query` import so we can insert our new import
 after it. This logic will look very similar to our logic in step 1 where we
 found the import specifier.
 
-```javascript
+```javascript showLineNumbers
 // Add new import
 source
   .find(j.ImportDeclaration)
@@ -216,7 +216,7 @@ the existing `react-query` import. The value that we pass to `insertAfter` can
 be any valid AST node, which we can easily create thanks to the helper functions
 provided by jscodeshift.
 
-```javascript
+```javascript showLineNumbers
 source
   .find(j.ImportDeclaration)
   .filter((path) => path.value.source.value === "react-query")
@@ -241,7 +241,7 @@ methods._
 
 If we put all of this together, our final file should look something like this:
 
-```javascript
+```javascript showLineNumbers
 module.exports = function (file, api) {
   const j = api.jscodeshift
   const source = j(file.source)
@@ -291,7 +291,7 @@ provides type definitions out of the box! All you have to do is add a JSDoc
 comment to specify the types of the parameters and your editor will now
 autocomplete the available methods!
 
-```javascript
+```javascript showLineNumbers
 /**
  * @param {import("jscodeshift").FileInfo} fileInfo
  * @param {import("jscodeshift").API} api
