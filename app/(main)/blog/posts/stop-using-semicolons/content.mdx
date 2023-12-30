@@ -59,7 +59,7 @@ methods and want to add another, if you don't have semicolons you can simply add
 a new line below the last line of the chain and start typing, no need to remove
 the semicolon on the previous line.
 
-```javascript showLineNumbers
+```javascript
 const foo = bar.filter(...)
   .map(...);
   .reduce(...) // Oops! Forgot to remove the semicolon on the last line!
@@ -68,7 +68,7 @@ const foo = bar.filter(...)
 Another example is when wrapping a statement in a function call, such as
 `console.log` (we can talk about `console.log` vs debuggers later).
 
-```javascript showLineNumbers
+```javascript
 const foo = console.log(doWork();) // Oops! Wrapped to much!
 ```
 

@@ -22,7 +22,7 @@ type `MixedArgs`, which is a union type containing four different members of
 various types. Our goal is to "extract" the members of the union that are
 functions, which we can do using `Extract`. This would look something like this:
 
-```typescript showLineNumbers
+```typescript
 type MixedArgs = string | number | () => string | () => number
 type FunctionArgs = Extract<MixedArgs, Function>
 ```
@@ -38,7 +38,7 @@ Since `string` and `number` are not assignable to `Function,` they will not be
 included in the resulting type. This results in `FunctionArgs` evaluating to the
 following type:
 
-```typescript showLineNumbers
+```typescript
 type FunctionArgs = () => string | () => number
 ```
 
@@ -49,7 +49,7 @@ Say we have an array of products, each of which contains a key `type` which is a
 string to determine what type of object it is. This would look something like
 this:
 
-```typescript showLineNumbers
+```typescript
 type Product =
   | { type: "book"; author: string }
   | { type: "movie"; producer: string }
@@ -60,7 +60,7 @@ Let's say we want to create a function that takes an array of `Product`s and
 returns only those which match a specified type. This would look something like
 this:
 
-```typescript showLineNumbers
+```typescript
 function filterProducts(products: Product[], type: Product["type"]) {
   return products.filter((item) => item.type === type)
 }
@@ -71,7 +71,7 @@ from calling `filterProducts(products, 'book')` will be `Product[]` even though
 we know that the resulting array won't contain any `movie`s or `appliance`s.
 With the power of `Extract`, we can improve this:
 
-```typescript showLineNumbers
+```typescript
 function filterProducts<T extends Product, U extends T["type"]>(
   products: T[],
   type: U,
@@ -107,7 +107,7 @@ something like this: `{ type: 'book' }`. Just like our previous example with
 `{ type: 'book' }` is assignable to. Our final resulting type when calling our
 function will look like this:
 
-```typescript showLineNumbers
+```typescript
 type Result = { type: "book"; author: string }[]
 ```
 
@@ -122,7 +122,7 @@ to extract keys from an object with keys matching a specific pattern.
 
 Let's say we have a `Person` type that contains some details about the user.
 
-```typescript showLineNumbers
+```typescript
 type Person = {
   name: string
   email: string
@@ -136,7 +136,7 @@ Now, further suppose that we want to create a type from `Person` that contains
 only the phone number keys. This would be fairly simple with `Pick` as we could
 do this:
 
-```typescript showLineNumbers
+```typescript
 type PhoneInfo = Pick<Person, "homePhone" | "mobilePhone" | "workPhone">
 ```
 
@@ -144,7 +144,7 @@ However, if we have a large number of phone number keys, this will be difficult
 to maintain and prone to errors. With `Extract` and template literal types we
 can create the `PhoneInfo` type very easily with the following code:
 
-```typescript showLineNumbers
+```typescript
 type PhoneInfo = {
   [key in Extract<keyof Person, `${string}Phone`>]: Person[key]
 }
@@ -152,7 +152,7 @@ type PhoneInfo = {
 
 The resulting type of `PhoneInfo` is the following:
 
-```typescript showLineNumbers
+```typescript
 type PhoneInfo = {
   homePhone: number
   mobilePhone: number

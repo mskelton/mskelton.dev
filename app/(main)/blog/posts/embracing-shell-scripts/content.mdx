@@ -77,7 +77,7 @@ create an associated "helper" script that would be named the same with a `!` as
 a postfix. This helper script would simply call the main script and pipe the
 output through `pbcopy` automatically.
 
-```bash showLineNumbers
+```bash
 commit-url $1 | pbcopy
 ```
 
@@ -138,7 +138,7 @@ is working properly, run this script which I have named `ding` to send a simple
 push notification with sound. This is exclusive to macOS, but the concept could
 easily be ported to other operating systems.
 
-```bash showLineNumbers
+```bash
 osascript -e 'display notification "Did you hear it?" with title "Sound test" sound name "Glass"'
 ```
 

@@ -58,7 +58,7 @@ the last code block.
 
 First, we need to install jscodeshift.
 
-```bash showLineNumbers
+```bash
 npm install -g jscodeshift
 ```
 
@@ -162,20 +162,20 @@ Before we move on, let's test our change to verify it's correctly removing the
 `queryCache` variable. To do this, create a file called `test.js` and add the
 following content:
 
-```javascript showLineNumbers
+```javascript
 import { useQuery, queryCache } from "react-query"
 ```
 
 Next, transform the file using the following shell command:
 
-```bash showLineNumbers
+```bash
 jscodeshift -t transform.js test.js
 ```
 
 After running that command, we should see that `test.js` has changed to the
 following:
 
-```javascript showLineNumbers
+```javascript
 import { useQuery } from "react-query"
 ```
 
