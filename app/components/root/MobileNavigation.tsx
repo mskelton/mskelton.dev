@@ -15,7 +15,7 @@ export function MobileNavigation({ className }: MobileNavigationProps) {
   return (
     <Popover className={className}>
       <Popover.Button aria-label="Menu" as={HeaderIconButton}>
-        <Bars3Icon className="h-auto w-4" />
+        <Bars3Icon className="size-4" />
       </Popover.Button>
 
       <Portal>

@@ -11,14 +11,13 @@ function createTitle(title) {
         "right-0",
         "py-3",
         "px-4",
-        "-mx-4",
-        "bg-zinc-800",
-        "text-white",
-        "text-sm",
+        "bg-zinc-950",
+        "border",
+        "border-zinc-700",
+        "text-zinc-300",
+        "text-xs",
         "font-mono",
-        "sm:mx-0",
-        "sm:rounded-t-2xl",
-        "sm:px-8",
+        "rounded-t-lg",
       ],
     },
     tagName: "div",
@@ -41,6 +40,9 @@ export default function rehypeCodeTitles() {
     // Add remaining metadata to the pre element
     node.data ??= {}
     node.data.attributes = rest
+
+    // Add a prop that indicates that this code block has a title
+    node.properties.hasTitle = !!title
 
     // Wrap the code block in a div with the title
     parent.children[index] = {

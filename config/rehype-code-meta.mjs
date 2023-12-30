@@ -2,15 +2,19 @@ import rangeParser from "parse-numeric-range"
 import { SKIP, visit } from "unist-util-visit"
 
 function calculateLines(meta, char) {
+  let hasHighlights = false
   const [range] = meta
     .filter((item) => item.startsWith(char))
     .map((item) => item.slice(1, -1))
 
-  if (range) {
-    const lineNumbers = rangeParser(range)
-    return (index) => lineNumbers.includes(index + 1)
-  } else {
-    return () => false
+  const lineNumbers = range ? rangeParser(range) : []
+  return {
+    test: (index) => {
+      const match = lineNumbers.includes(index + 1)
+      hasHighlights = hasHighlights || match
+      return match
+    },
+    highlighted: () => hasHighlights,
   }
 }
 
@@ -21,8 +25,13 @@ export default function rehypeCodeMeta() {
       (node) => node.type === "element" && node.tagName === "pre",
       (node) => {
         const attrs = node.data?.attributes ?? []
-        const shouldHighlight = calculateLines(attrs, "{")
-        const shouldFocus = calculateLines(attrs, "[")
+        const highlight = calculateLines(attrs, "{")
+        const focus = calculateLines(attrs, "[")
+
+        if (attrs.includes("showLineNumbers")) {
+          node.properties.className ??= []
+          node.properties.className.push("line-numbers")
+        }
 
         visit(
           node,
@@ -34,21 +43,35 @@ export default function rehypeCodeMeta() {
               line.children.push({ type: "text", value: "\u200b" })
             }
 
-            if (shouldHighlight(index)) {
+            if (highlight.test(index)) {
               line.properties.className ??= []
               line.properties.className.push("highlight")
+
+              // Add a prop that indicates that this code block has focused
+              // so we can display an expand/collapse button.
+              node.properties.highlight = true
             }
 
-            if (shouldFocus(index)) {
+            if (focus.test(index)) {
               line.properties.className ??= []
               line.properties.className.push("focus")
 
               // Add a prop that indicates that this code block has focused
               // so we can display an expand/collapse button.
-              node.properties.hasFocus = true
+              node.properties.focus = true
             }
           },
         )
+
+        if (highlight.highlighted()) {
+          node.properties.className ??= []
+          node.properties.className.push("highlight")
+        }
+
+        if (focus.highlighted()) {
+          node.properties.className ??= []
+          node.properties.className.push("focus")
+        }
 
         return SKIP
       },
