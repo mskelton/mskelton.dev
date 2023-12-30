@@ -1,4 +1,29 @@
-import { SKIP, visit } from "unist-util-visit"
+import rangeParser from "parse-numeric-range"
+import { visit } from "unist-util-visit"
+
+/**
+ * Get the value given a regex. If the regex has a capture group, use the
+ * captured value instead of the entire value. The matched value is removed from
+ * the source string to allow for incremental parsing.
+ */
+function getValue(str, regex) {
+  const match = regex.exec(str)
+  const value = match?.[1] ?? match?.[0]
+
+  return [value?.trim(), str.replace(regex, "")]
+}
+
+/**
+ * Creates a builder for parsing meta objects. Parsing happens incrementally so
+ * the order of items should be from most to least specific.
+ */
+const builder = (meta, result = {}) => ({
+  add: (name, regex) => {
+    const [value, rest] = getValue(meta, regex ?? new RegExp(name))
+    return builder(rest, { ...result, [name]: value })
+  },
+  build: () => result,
+})
 
 export default function rehypeParseCodeMeta() {
   return (tree) => {
@@ -6,56 +31,22 @@ export default function rehypeParseCodeMeta() {
       tree,
       (node) => node.type === "element" && node.tagName === "pre",
       (node) => {
-        // const attrs = node.data?.attributes ?? []
-        // const highlight = calculateLines(attrs, "{")
-        // const focus = calculateLines(attrs, "[")
-        //
-        // if (attrs.includes("showLineNumbers")) {
-        //   node.properties.className ??= []
-        //   node.properties.className.push("line-numbers")
-        // }
-        //
-        // visit(
-        //   node,
-        //   (t) =>
-        //     t.type === "element" && t.properties?.className?.includes("line"),
-        //   (line, index, parent) => {
-        //     if (!line.children.length && index !== parent.children.length - 1) {
-        //       // Add a zero-width space to allow highlighting over empty lines
-        //       line.children.push({ type: "text", value: "\u200b" })
-        //     }
-        //
-        //     if (highlight.test(index)) {
-        //       line.properties.className ??= []
-        //       line.properties.className.push("highlight")
-        //
-        //       // Add a prop that indicates that this code block has focused
-        //       // so we can display an expand/collapse button.
-        //       node.properties.hasHighlight = true
-        //     }
-        //
-        //     if (focus.test(index)) {
-        //       line.properties.className ??= []
-        //       line.properties.className.push("focus")
-        //
-        //       // Add a prop that indicates that this code block has focused
-        //       // so we can display an expand/collapse button.
-        //       node.properties.hasFocus = true
-        //     }
-        //   },
-        // )
-        //
-        // if (highlight.highlighted()) {
-        //   node.properties.className ??= []
-        //   node.properties.className.push("highlight")
-        // }
-        //
-        // if (focus.highlighted()) {
-        //   node.properties.className ??= []
-        //   node.properties.className.push("focus")
-        // }
-        //
-        // return SKIP
+        const code = Array.isArray(node.children)
+          ? node.children[0]
+          : node.children
+
+        const meta = builder(code.data?.meta ?? "")
+          .add("showLineNumbers")
+          .add("highlight", /\{([0-9,-]+)\}/)
+          .add("focus", /\[([0-9,-]+)\]/)
+          .add("title", /.*/)
+          .build()
+
+        node.data ??= {}
+        node.data.showLineNumbers = !!meta.showLineNumbers
+        node.data.highlight = meta.highlight ? rangeParser(meta.highlight) : []
+        node.data.focus = meta.focus ? rangeParser(meta.focus) : []
+        node.data.title = meta.title
       },
     )
   }

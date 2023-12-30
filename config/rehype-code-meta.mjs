@@ -1,16 +1,11 @@
-import rangeParser from "parse-numeric-range"
 import { SKIP, visit } from "unist-util-visit"
 
-function calculateLines(meta, char) {
+function calculateLines(range) {
   let hasHighlights = false
-  const [range] = meta
-    .filter((item) => item.startsWith(char))
-    .map((item) => item.slice(1, -1))
 
-  const lineNumbers = range ? rangeParser(range) : []
   return {
     test: (index) => {
-      const match = lineNumbers.includes(index + 1)
+      const match = range?.includes(index + 1)
       hasHighlights = hasHighlights || match
       return match
     },
@@ -24,11 +19,10 @@ export default function rehypeCodeMeta() {
       tree,
       (node) => node.type === "element" && node.tagName === "pre",
       (node) => {
-        const attrs = node.data?.attributes ?? []
-        const highlight = calculateLines(attrs, "{")
-        const focus = calculateLines(attrs, "[")
+        const highlight = calculateLines(node.data?.highlight)
+        const focus = calculateLines(node.data?.focus)
 
-        if (attrs.includes("showLineNumbers")) {
+        if (node.data?.showLineNumbers) {
           node.properties.className ??= []
           node.properties.className.push("line-numbers")
         }
