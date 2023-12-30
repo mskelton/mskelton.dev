@@ -49,7 +49,7 @@ export default function rehypeCodeMeta() {
 
               // Add a prop that indicates that this code block has focused
               // so we can display an expand/collapse button.
-              node.properties.highlight = true
+              node.properties.hasHighlight = true
             }
 
             if (focus.test(index)) {
@@ -58,7 +58,7 @@ export default function rehypeCodeMeta() {
 
               // Add a prop that indicates that this code block has focused
               // so we can display an expand/collapse button.
-              node.properties.focus = true
+              node.properties.hasFocus = true
             }
           },
         )
