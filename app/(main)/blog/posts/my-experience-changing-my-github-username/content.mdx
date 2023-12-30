@@ -72,7 +72,7 @@ on one of my repos!
 Updating my Git config files was fairly painless by running `grep` to find which
 of my projects needed updating.
 
-```bash
+```bash showLineNumbers
 grep markypython */.git/config
 ```
 
@@ -80,7 +80,7 @@ After getting that list, I just did some VS Code multi-cursor editing to
 generate a list of `sed` commands that looked like this. _This worked on macOS,
 but if you use another Unix-based OS, your mileage may vary._
 
-```bash
+```bash showLineNumbers
 sed -i '' -e 's/markypython/mskelton/' dotfiles/.git/config
 ```
 

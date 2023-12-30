@@ -50,7 +50,7 @@ the latest commit in my repository. This makes it as simple as running
 `commit-url | pbcopy` to print and then copy the commit URL to my clipboard to
 send to my coworkers.
 
-```bash
+```bash showLineNumbers
 # Get the SHA (e.g. ) of the latest commit in the repository unless a SHA was
 # provided as an argument to this script.
 commit=${1:-$(git rev-parse --short HEAD)}
@@ -77,7 +77,7 @@ create an associated "helper" script that would be named the same with a `!` as
 a postfix. This helper script would simply call the main script and pipe the
 output through `pbcopy` automatically.
 
-```bash
+```bash showLineNumbers
 commit-url $1 | pbcopy
 ```
 
@@ -93,7 +93,7 @@ all the time. When moving between projects, I don't always remember what scripts
 are available to start the project, run tests, etc. That's where this script
 comes in handy.
 
-```bash
+```bash showLineNumbers
 # Check if there is a package.json file in the current directory
 if [[ -f package.json ]]; then
   # Parse the package.json file with jq
@@ -113,7 +113,7 @@ simple, yet very useful.
 Sometimes, I have a piece of text that contains one or more URLs that I wish to
 extract. With a few lines of bash, this is a very simple task.
 
-```bash
+```bash showLineNumbers
 # Loop through each line of the input stream
 while IFS= read line; do
   # Print URLs matching the regex pattern
@@ -124,7 +124,7 @@ done
 Just like `commit-url`, I employ a similar concept where I can use `url!` to
 automatically open the URLs found in the text.
 
-```bash
+```bash showLineNumbers
 while IFS= read line; do
 	echo $line | url | xargs open
 done
@@ -138,7 +138,7 @@ is working properly, run this script which I have named `ding` to send a simple
 push notification with sound. This is exclusive to macOS, but the concept could
 easily be ported to other operating systems.
 
-```bash
+```bash showLineNumbers
 osascript -e 'display notification "Did you hear it?" with title "Sound test" sound name "Glass"'
 ```
 
