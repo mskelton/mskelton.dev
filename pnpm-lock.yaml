@@ -27,8 +27,8 @@ importers:
         specifier: ^0.0.4
         version: 0.0.4
       '@mskelton/rehype-shiki':
-        specifier: ^0.0.3
-        version: 0.0.3(shiki@0.14.5)
+        specifier: ^0.1.0
+        version: 0.1.0(shiki@0.14.5)
       '@mskelton/remark-extract-frontmatter':
         specifier: ^0.0.2
         version: 0.0.2
@@ -704,8 +704,8 @@ packages:
       unist-util-visit: 5.0.0
     dev: false
 
-  /@mskelton/rehype-shiki@0.0.3(shiki@0.14.5):
-    resolution: {integrity: sha512-330aWio4kXBxtd3/y5VHLL8lP15KsJYZvHyO0XSn4v/bOYNu6opybPFFOCFn7eIs8EEY95J1lEaLwgBitlRDAA==}
+  /@mskelton/rehype-shiki@0.1.0(shiki@0.14.5):
+    resolution: {integrity: sha512-JGAyX+IjygMOSJ7bq/ihCeBZlAbBjM/QSFtEOMTJI63RoVJrZtQvnwByBptwQorJ94wUceaLBLDbfImh9aHz8Q==}
     peerDependencies:
       shiki: '*'
     dependencies:

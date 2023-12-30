@@ -102,6 +102,11 @@ module.exports = {
         transitionTimingFunction: theme("transitionTimingFunction.in-out"),
       }
 
+      const font = (size) => {
+        const [fontSize, { lineHeight }] = theme(`fontSize.${size}`)
+        return { fontSize, lineHeight }
+      }
+
       return {
         invert: {
           css: {
@@ -125,7 +130,7 @@ module.exports = {
             "--tw-prose-kbd": theme("colors.zinc.300"),
             "--tw-prose-kbd-bg": theme("colors.zinc.800"),
             "--tw-prose-kbd-borders": theme("colors.zinc.700"),
-            "--tw-prose-hl-bg": theme("colors.slate.800 / 40%"),
+            "--tw-prose-hl-bg": theme("colors.slate.800 / 50%"),
             "--tw-prose-hl-border": theme("colors.indigo.500"),
           },
         },
@@ -329,37 +334,27 @@ module.exports = {
             // Code blocks
             ".code-block": {
               position: "relative",
+              marginBlock: theme("spacing.7"),
             },
             ".code-block.has-title": {
               paddingTop: theme("spacing.12"),
             },
-            ".code-block:not(.demo)": {
-              marginInline: 0,
-              "@screen sm": {
-                marginInline: `calc(${theme("spacing.8")} * -1)`,
-              },
-            },
             pre: {
-              marginInline: `calc(${theme("spacing.4")} * -1)`,
               backgroundColor: theme("colors.zinc.950"),
               fontSize: theme("fontSize.sm")[0],
-              "@screen sm": {
-                marginInline: theme("margin.0"),
-              },
             },
             "pre code": {
+              ...font("xs"),
               backgroundColor: "transparent",
+              border: `1px solid ${theme("colors.zinc.700")}`,
               borderRadius: 0,
               color: theme("colors.zinc.100"),
               display: "grid",
-              fontSize: "inherit",
               fontWeight: "inherit",
-              overflowX: "auto",
-              paddingBlock: theme("spacing.8"),
+              maxHeight: "800px",
+              overflow: "auto",
+              paddingBlock: theme("spacing.4"),
               paddingInline: theme("spacing.4"),
-              "@screen sm": {
-                padding: theme("spacing.8"),
-              },
             },
             "pre code:focus": {
               outline: "none",
@@ -368,16 +363,12 @@ module.exports = {
               boxShadow: "var(--tw-prose-ring)",
             },
             ":is(.has-title, .demo) :is(pre, code)": {
-              "@screen sm": {
-                borderRadius: `0 0 ${theme("borderRadius.xl")} ${theme(
-                  "borderRadius.xl",
-                )}`,
-              },
+              borderRadius: `0 0 ${theme("borderRadius.lg")} ${theme(
+                "borderRadius.lg",
+              )}`,
             },
             ".code-block:not(:is(.has-title, .demo)) :is(pre, code)": {
-              "@screen sm": {
-                borderRadius: theme("borderRadius.xl"),
-              },
+              borderRadius: theme("borderRadius.lg"),
             },
             "pre code .line": {
               ...transition,
@@ -388,7 +379,7 @@ module.exports = {
               borderLeftWidth: theme("borderWidth.4"),
               clipPath: "inset(0 0 0 0)",
               display: "inline-block",
-              height: theme("spacing.7"),
+              height: `calc(${theme("lineHeight.6")} + 1px)`,
               marginInline: `calc(${theme("spacing.4")} * -1)`,
               paddingLeft: `calc(${theme("spacing.4")} - ${theme(
                 "borderWidth.4",
@@ -396,25 +387,47 @@ module.exports = {
               paddingRight: theme("spacing.4"),
 
               "@screen sm": {
-                marginInline: `calc(${theme("spacing.8")} * -1)`,
-                paddingLeft: `calc(${theme("spacing.8")} - ${theme(
+                marginInline: `calc(${theme("spacing.4")} * -1)`,
+                paddingLeft: `calc(${theme("spacing.4")} - ${theme(
                   "borderWidth.4",
                 )})`,
-                paddingRight: theme("spacing.8"),
+                paddingRight: theme("spacing.4"),
               },
             },
+            // Highlighted lines
             "pre:not(.collapsed) code .line:is(.highlight, .focus)": {
               width: `calc(100% + ${theme("spacing.8")})`,
               backgroundColor: "var(--tw-prose-hl-bg)",
               borderColor: "var(--tw-prose-hl-border)",
-
-              "@screen sm": {
-                width: `calc(100% + ${theme("spacing.16")})`,
-              },
             },
+
+            // Dim non-highlighted lines when at least one line is highlighted
+            "pre.highlight:not(.collapsed) code .line:not(:is(.highlight, .focus))":
+              {
+                opacity: 0.7,
+              },
+
             "pre.collapsed code .line:not(.focus)": {
               clipPath: "inset(100% 0 0 0)",
               height: 0,
+            },
+
+            // Line numbers
+            "pre.line-numbers code": {
+              counterReset: "line",
+
+              ".line:before": {
+                display: "inline-block",
+                counterIncrement: "line",
+                width: theme("spacing.4"),
+                fontSize: theme("fontSize.xs")[0],
+                color: theme("colors.zinc.400"),
+                userSelect: "none",
+                textAlign: "right",
+                flexShrink: 0,
+                marginRight: theme("spacing.4"),
+                content: "counter(line)",
+              },
             },
 
             // Horizontal rules
