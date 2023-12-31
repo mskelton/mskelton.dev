@@ -2,13 +2,17 @@
 export const langs = [
   "bash",
   "css",
+  "fish",
   "http",
   "javascript",
   "json",
+  "lua",
   "markdown",
   "prolog",
   "tsx",
   "typescript",
+  "vim",
+  "xml",
   "yaml",
 ]
 

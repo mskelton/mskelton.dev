@@ -33,11 +33,7 @@ const nextConfig = {
   rewrites: () => Promise.resolve(rewrites),
 }
 
-const highlighter = await getHighlighter({
-  langs,
-  themes,
-})
-
+const highlighter = await getHighlighter({ langs, themes })
 const withMDX = nextMDX({
   extension: /\.mdx?$/,
   options: {
