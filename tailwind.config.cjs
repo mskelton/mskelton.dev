@@ -364,7 +364,6 @@ module.exports = {
               backgroundColor: "var(--tw-prose-pre-bg)",
               border: "1px solid var(--tw-prose-code-border)",
               borderRadius: 0,
-              color: theme("colors.zinc.100"),
               display: "grid",
               fontWeight: "inherit",
               isolation: "isolate",
