@@ -133,7 +133,6 @@ module.exports = {
             "--tw-prose-kbd-borders": theme("colors.zinc.700"),
             "--tw-prose-hl-bg": theme("colors.slate.800 / 50%"),
             "--tw-prose-hl-border": theme("colors.indigo.500"),
-
             ":is(.shiki, .shiki span)": {
               color: "var(--shiki-dark) !important",
             },
@@ -164,12 +163,8 @@ module.exports = {
             "--tw-prose-kbd": theme("colors.zinc.700"),
             "--tw-prose-kbd-bg": theme("colors.zinc.50"),
             "--tw-prose-kbd-borders": theme("colors.zinc.200"),
-            "--tw-prose-hl-bg": theme("colors.slate.800 / 60%"),
+            "--tw-prose-hl-bg": theme("colors.indigo.200 / 50%"),
             "--tw-prose-hl-border": theme("colors.indigo.500"),
-
-            ":is(.shiki, .shiki span)": {
-              backgroundColor: "var(--tw-prose-pre-bg) !important",
-            },
 
             // Base
             color: "var(--tw-prose-body)",
@@ -353,7 +348,7 @@ module.exports = {
             },
             "pre code": {
               ...font("xs"),
-              backgroundColor: "transparent",
+              backgroundColor: "var(--tw-prose-pre-bg)",
               border: "1px solid var(--tw-prose-code-border)",
               borderRadius: 0,
               color: theme("colors.zinc.100"),
@@ -385,10 +380,11 @@ module.exports = {
                 "height, border-color, background-color, clip-path",
               borderColor: "transparent",
               borderLeftWidth: theme("borderWidth.4"),
-              clipPath: "inset(0 0 0 0)",
+              // This causes slight gap between lines
+              // clipPath: "inset(0 0 0 0)",
               display: "inline-block",
               height: `calc(${theme("lineHeight.6")} + 1px)`,
-              marginInline: `calc(${theme("spacing.4")} * -1)`,
+              marginInline: theme("spacing.4"),
               paddingLeft: `calc(${theme("spacing.4")} - ${theme(
                 "borderWidth.4",
               )})`,
@@ -409,12 +405,7 @@ module.exports = {
               borderColor: "var(--tw-prose-hl-border)",
             },
 
-            // Dim non-highlighted lines when at least one line is highlighted
-            "pre.highlight:not(.collapsed) code .line:not(:is(.highlight, .focus))":
-              {
-                opacity: 0.7,
-              },
-
+            // Collapse non-focused lines
             "pre.collapsed code .line:not(.focus)": {
               clipPath: "inset(100% 0 0 0)",
               height: 0,
