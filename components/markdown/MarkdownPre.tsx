@@ -49,6 +49,21 @@ export default function MarkdownPre({
         </button>
       ) : null}
 
+      <button
+        aria-label={copied ? "Copied" : "Copy code"}
+        className={clsx(
+          "absolute z-10 flex size-8 items-center justify-center rounded-md border border-zinc-300 bg-zinc-100 transition-colors delay-100 focusable hover:bg-zinc-200 focus-visible:opacity-100 group-hover:opacity-100 dark:border-zinc-700 dark:bg-zinc-800 dark:hover:bg-zinc-900",
+          copied ? "text-green-400" : "text-zinc-700 dark:text-zinc-300",
+          hasTitle
+            ? "right-[10px] top-[10px]"
+            : "right-[15px] top-[15px] opacity-0",
+        )}
+        onClick={handleCopy}
+        type="button"
+      >
+        <Icon className="size-4" />
+      </button>
+
       <pre
         ref={preRef}
         className={clsx(
@@ -61,21 +76,6 @@ export default function MarkdownPre({
           tabIndex: 0,
         })}
       </pre>
-
-      <button
-        aria-label={copied ? "Copied" : "Copy code"}
-        className={clsx(
-          "absolute z-10 flex size-8 items-center justify-center rounded-md border border-zinc-700 bg-zinc-900 transition-all delay-100 focusable hover:bg-zinc-800 focus-visible:opacity-100 group-hover:opacity-100",
-          copied ? "text-green-400" : "text-zinc-300",
-          hasTitle
-            ? "right-[10px] top-[10px]"
-            : "right-[15px] top-[15px] opacity-0",
-        )}
-        onClick={handleCopy}
-        type="button"
-      >
-        <Icon className="size-4" />
-      </button>
     </>
   )
 }

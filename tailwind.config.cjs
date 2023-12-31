@@ -124,7 +124,7 @@ module.exports = {
             "--tw-prose-captions": theme("colors.zinc.500"),
             "--tw-prose-code": theme("colors.zinc.300"),
             "--tw-prose-code-bg": theme("colors.zinc.800"),
-            "--tw-prose-code-border": theme("colors.zinc.600"),
+            "--tw-prose-code-border": theme("colors.zinc.700"),
             "--tw-prose-code-link": theme("colors.indigo.400"),
             "--tw-prose-code-link-hover": theme("colors.indigo.500"),
             "--tw-prose-kbd": theme("colors.zinc.300"),
@@ -132,11 +132,16 @@ module.exports = {
             "--tw-prose-kbd-borders": theme("colors.zinc.700"),
             "--tw-prose-hl-bg": theme("colors.slate.800 / 50%"),
             "--tw-prose-hl-border": theme("colors.indigo.500"),
+
+            ":is(.shiki, .shiki span)": {
+              color: "var(--shiki-dark) !important",
+              backgroundColor: "var(--shiki-dark-bg) !important",
+            },
           },
         },
         DEFAULT: {
           css: {
-            "--tw-prose-ring": `inset 0 0 0 3px ${theme("colors.indigo.500")}`,
+            "--tw-prose-ring": `0 0 0 3px ${theme("colors.indigo.500")}`,
             "--tw-prose-body": theme("colors.zinc.600"),
             "--tw-prose-headings": theme("colors.zinc.900"),
             "--tw-prose-link": theme("colors.zinc.900"),
@@ -346,13 +351,13 @@ module.exports = {
             "pre code": {
               ...font("xs"),
               backgroundColor: "transparent",
-              border: `1px solid ${theme("colors.zinc.700")}`,
+              border: "1px solid var(--tw-prose-code-border)",
               borderRadius: 0,
               color: theme("colors.zinc.100"),
               display: "grid",
               fontWeight: "inherit",
-              maxHeight: "800px",
-              overflow: "auto",
+              isolation: "isolate",
+              overflowX: "auto",
               paddingBlock: theme("spacing.4"),
               paddingInline: theme("spacing.4"),
             },
