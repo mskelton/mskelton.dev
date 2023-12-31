@@ -58,7 +58,7 @@ export const getByte = cache(async (slug: string) => {
     byte.content = (await loadLocalByteContent(byte.id)) ?? byte.content
   }
 
-  const highlighter = await getHighlighter({ langs, themes })
+  const highlighter = await getHighlighter({ langs, themes: themes as any })
 
   const { content } = await compileMDX<ByteMeta>({
     components: {
