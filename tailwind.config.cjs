@@ -334,16 +334,29 @@ module.exports = {
               marginBottom: theme("spacing.3"),
             },
 
-            // Code blocks
+            // Code block is a wrapper around the `pre` tag as well as the title
+            // and copy button.
             ".code-block": {
               position: "relative",
-              marginBlock: theme("spacing.7"),
+              marginBottom: theme("spacing.8"),
+              marginTop: 0,
             },
             ".code-block.has-title": {
               paddingTop: theme("spacing.12"),
             },
+
+            // When a code block follows a paragraph, reduce the margin a touch
+            // to make it feel more connected.
+            "p:has(+ .code-block)": {
+              marginBottom: theme("spacing.4"),
+            },
+
             pre: {
-              backgroundColor: theme("colors.zinc.950"),
+              // Shiki applies the background color of the theme to the `pre`
+              // tag. However, I override this color and thus need to set it to
+              // transparent otherwise a very subtle white background will slip
+              // through the border radius.
+              backgroundColor: "transparent !important",
               fontSize: theme("fontSize.sm")[0],
             },
             "pre code": {
@@ -356,15 +369,17 @@ module.exports = {
               fontWeight: "inherit",
               isolation: "isolate",
               overflowX: "auto",
-              paddingBlock: theme("spacing.4"),
-              paddingInline: theme("spacing.4"),
+              padding: theme("spacing.4"),
             },
+
+            // Use a custom focus ring for code blocks
             "pre code:focus": {
               outline: "none",
             },
             "pre code:focus-visible": {
               boxShadow: "var(--tw-prose-ring)",
             },
+
             ":is(.has-title, .demo) :is(pre, code)": {
               borderRadius: `0 0 ${theme("borderRadius.lg")} ${theme(
                 "borderRadius.lg",

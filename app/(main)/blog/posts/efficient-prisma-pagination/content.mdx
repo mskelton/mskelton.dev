@@ -47,7 +47,7 @@ There are two main challenges we have to solve to make the pagination work: the
 query itself, and managing when to enable/disable the previous/next links. Let's
 start with the query which should look something like this.
 
-```ts hi showLineNumbers
+```ts showLineNumbers
 type Direction = "none" | "forward" | "backward"
 
 function searchBytes({ before, after }: { before?: string; after?: string }) {
