@@ -2,62 +2,62 @@
 title: "Stop Using Semicolons"
 description:
   The JavaScript community loves to debate about semicolons thanks to
-  JavaScript's ability to use them or not. In this article, I give some thoughts
-  on the two camps in this debate as well as what I believe to be a more
-  reasonable approach to this debate.
+  JavaScript's ability to use them or not. In this article, I give some
+  thoughts on the two camps in this debate as well as what I believe to be
+  a more reasonable approach to this debate.
 date: "2023-02-11"
 ---
 
-Yeah, I know, the title is kind of click bait, but don't click away just yet. I
-think you'll find that my thoughts on this topic are actually quite reasonable.
-If you aren't familiar with the semicolon debate in the JavaScript ecosystem,
-it's nearly as bad as the tabs vs spaces debate of every other language. So,
-buckle up, this might be a wild ride.
+Yeah, I know, the title is kind of click bait, but don't click away just
+yet. I think you'll find that my thoughts on this topic are actually quite
+reasonable. If you aren't familiar with the semicolon debate in the
+JavaScript ecosystem, it's nearly as bad as the tabs vs spaces debate of
+every other language. So, buckle up, this might be a wild ride.
 
 ## The semicolon camp
 
-The semicolon camp is made up of those who believe that semicolons should always
-be used in JavaScript, regardless of if they are needed. The arguments from
-those in this camp typically tend to revolve around preventing a category of
-bugs that can occur with
+The semicolon camp is made up of those who believe that semicolons should
+always be used in JavaScript, regardless of if they are needed. The
+arguments from those in this camp typically tend to revolve around
+preventing a category of bugs that can occur with
 [automatic semicolon insertion (ASI)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Lexical_grammar#automatic_semicolon_insertion).
 Additionally, I've noticed that tooling authors tend to favor explicit
-semicolons as ASI is more difficult to manage as the compiler has more rules it
-has to understand regarding when a statement ends rather than simply finding the
-semicolon and calling it a day.
+semicolons as ASI is more difficult to manage as the compiler has more
+rules it has to understand regarding when a statement ends rather than
+simply finding the semicolon and calling it a day.
 
 ## The anti-semicolon camp
 
-This camp is made up of people who tend to argue about this topic stylistically,
-such as "semicolons look worse", or perhaps argue that they require more typing.
-In my experience hearing arguments from those in this camp, they tend to be
-quite weak and extremely subjective as opposed to the much more concrete reasons
-given by the semicolon camp.
+This camp is made up of people who tend to argue about this topic
+stylistically, such as "semicolons look worse", or perhaps argue that they
+require more typing. In my experience hearing arguments from those in this
+camp, they tend to be quite weak and extremely subjective as opposed to the
+much more concrete reasons given by the semicolon camp.
 
 ## Where I stand on the issue
 
-Reading my last sentence, you may think that I fit in the semicolon camp, but
-don't jump to conclusions to quickly. My thoughts on this subject are more
-complex than just that.
+Reading my last sentence, you may think that I fit in the semicolon camp,
+but don't jump to conclusions to quickly. My thoughts on this subject are
+more complex than just that.
 
-First, I do believe that those in the semicolon camp do have good points to be
-made about correctness and bug prevention by enforcing semicolon use. I mean,
-does any engineer want more bugs? Additionally, I think that those in both camps
-forget something quite important to this debate: auto-fixing.
+First, I do believe that those in the semicolon camp do have good points to
+be made about correctness and bug prevention by enforcing semicolon use. I
+mean, does any engineer want more bugs? Additionally, I think that those in
+both camps forget something quite important to this debate: auto-fixing.
 
-For those that don't want to take the extra effort to type semicolons, simply
-let a tool like [Prettier](https://prettier.io) do it for you. Likewise, for
-those in the semicolon camp, Prettier will just as easily add semicolons to
-places in your code that could result in bugs from incorrect ASI. So to both
-camps, I think these arguments aren't valid.
+For those that don't want to take the extra effort to type semicolons,
+simply let a tool like [Prettier](https://prettier.io) do it for you.
+Likewise, for those in the semicolon camp, Prettier will just as easily add
+semicolons to places in your code that could result in bugs from incorrect
+ASI. So to both camps, I think these arguments aren't valid.
 
-As for readability and code "beauty", I think that saying that semicolons make
-your code look worse is totally not what the anti-semicolon camp should be
-arguing for. There is a much more tangible reason why you might want to not use
-semicolons which is method chaining or wrapping. If you have a chain of array
-methods and want to add another, if you don't have semicolons you can simply add
-a new line below the last line of the chain and start typing, no need to remove
-the semicolon on the previous line.
+As for readability and code "beauty", I think that saying that semicolons
+make your code look worse is totally not what the anti-semicolon camp
+should be arguing for. There is a much more tangible reason why you might
+want to not use semicolons which is method chaining or wrapping. If you
+have a chain of array methods and want to add another, if you don't have
+semicolons you can simply add a new line below the last line of the chain
+and start typing, no need to remove the semicolon on the previous line.
 
 ```javascript
 const foo = bar.filter(...)
@@ -75,9 +75,10 @@ const foo = console.log(doWork();) // Oops! Wrapped to much!
 ## What's my point?
 
 So, why even bring this whole debate up? My hope is that both sides of this
-argument will use good arguments since both sides can actually have good reasons
-for why they chose a particular style. While I prefer to let Prettier to add
-semicolons in the few places where I need them but leave them out the rest of
-the time, I totally respect those who enforce semicolons.
+argument will use good arguments since both sides can actually have good
+reasons for why they chose a particular style. While I prefer to let
+Prettier to add semicolons in the few places where I need them but leave
+them out the rest of the time, I totally respect those who enforce
+semicolons.
 
 Cheers, y'all!

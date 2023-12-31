@@ -1,22 +1,23 @@
 ---
 title: Automating npm Package Releases
 description:
-  Releasing npm packages can be a challenge. There are often many steps in the
-  process and forgetting a step can result in a package being released
-  incorrectly. In this article, I will show how to implement semantic-release in
-  your project to fully automate your npm package releases.
+  Releasing npm packages can be a challenge. There are often many steps in
+  the process and forgetting a step can result in a package being released
+  incorrectly. In this article, I will show how to implement
+  semantic-release in your project to fully automate your npm package
+  releases.
 date: "2020-05-25"
 ---
 
-semantic-release is a tool which fully automates the process of releasing your
-code to the world. It determines the next version based on the commit messages
-(e.g. `fix`, `feat`) giving you full control over the next version but still
-automating the release process. This short article shows how to setup
-semantic-release for an npm package using GitHub Actions.
+semantic-release is a tool which fully automates the process of releasing
+your code to the world. It determines the next version based on the commit
+messages (e.g. `fix`, `feat`) giving you full control over the next version
+but still automating the release process. This short article shows how to
+setup semantic-release for an npm package using GitHub Actions.
 
 First, create a GitHub Action which calls `npx semantic-release` (or
-`yarn semantic-release` if you use Yarn). This should be run after any other
-pre-release steps such as `npm run build` and `npm test`.
+`yarn semantic-release` if you use Yarn). This should be run after any
+other pre-release steps such as `npm run build` and `npm test`.
 
 ```yaml showLineNumbers .github/workflows/release.yml
 name: Release
@@ -33,19 +34,19 @@ jobs:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 ```
 
-Next, update your package changelog to indicate that change notes can be viewed
-on the releases tab.
+Next, update your package changelog to indicate that change notes can be
+viewed on the releases tab.
 
 ```markdown showLineNumbers CHANGELOG.md
 # Changelog
 
 The changelog is automatically updated using
-[semantic-release](https://github.com/semantic-release/semantic-release). You
-can see it on the [releases page](../../releases).
+[semantic-release](https://github.com/semantic-release/semantic-release).
+You can see it on the [releases page](../../releases).
 ```
 
-Finally, update the version in your package.json to something that indicates
-your package is versioned using semantic release.
+Finally, update the version in your package.json to something that
+indicates your package is versioned using semantic release.
 
 ```json showLineNumbers package.json
 {
