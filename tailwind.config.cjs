@@ -122,9 +122,10 @@ module.exports = {
             "--tw-prose-hr": theme("colors.zinc.700 / 0.4"),
             "--tw-prose-quote-borders": theme("colors.zinc.500"),
             "--tw-prose-captions": theme("colors.zinc.500"),
+            "--tw-prose-pre-bg": theme("colors.zinc.950"),
             "--tw-prose-code": theme("colors.zinc.300"),
             "--tw-prose-code-bg": theme("colors.zinc.800"),
-            "--tw-prose-code-border": theme("colors.zinc.600"),
+            "--tw-prose-code-border": theme("colors.zinc.700"),
             "--tw-prose-code-link": theme("colors.indigo.400"),
             "--tw-prose-code-link-hover": theme("colors.indigo.500"),
             "--tw-prose-kbd": theme("colors.zinc.300"),
@@ -132,11 +133,14 @@ module.exports = {
             "--tw-prose-kbd-borders": theme("colors.zinc.700"),
             "--tw-prose-hl-bg": theme("colors.slate.800 / 50%"),
             "--tw-prose-hl-border": theme("colors.indigo.500"),
+            ":is(.shiki, .shiki span)": {
+              color: "var(--shiki-dark) !important",
+            },
           },
         },
         DEFAULT: {
           css: {
-            "--tw-prose-ring": `inset 0 0 0 3px ${theme("colors.indigo.500")}`,
+            "--tw-prose-ring": `0 0 0 3px ${theme("colors.indigo.500")}`,
             "--tw-prose-body": theme("colors.zinc.600"),
             "--tw-prose-headings": theme("colors.zinc.900"),
             "--tw-prose-link": theme("colors.zinc.900"),
@@ -155,12 +159,11 @@ module.exports = {
             "--tw-prose-code-border": theme("colors.zinc.300"),
             "--tw-prose-code-link": theme("colors.indigo.600"),
             "--tw-prose-code-link-hover": theme("colors.indigo.500"),
-            "--tw-prose-pre-code": theme("colors.zinc.100"),
-            "--tw-prose-pre-bg": theme("colors.zinc.900"),
+            "--tw-prose-pre-bg": theme("colors.white"),
             "--tw-prose-kbd": theme("colors.zinc.700"),
             "--tw-prose-kbd-bg": theme("colors.zinc.50"),
             "--tw-prose-kbd-borders": theme("colors.zinc.200"),
-            "--tw-prose-hl-bg": theme("colors.slate.800 / 60%"),
+            "--tw-prose-hl-bg": theme("colors.indigo.200 / 50%"),
             "--tw-prose-hl-border": theme("colors.indigo.500"),
 
             // Base
@@ -331,37 +334,52 @@ module.exports = {
               marginBottom: theme("spacing.3"),
             },
 
-            // Code blocks
+            // Code block is a wrapper around the `pre` tag as well as the title
+            // and copy button.
             ".code-block": {
               position: "relative",
-              marginBlock: theme("spacing.7"),
+              marginBottom: theme("spacing.8"),
+              marginTop: 0,
             },
             ".code-block.has-title": {
               paddingTop: theme("spacing.12"),
             },
+
+            // When a code block follows a paragraph, reduce the margin a touch
+            // to make it feel more connected.
+            "p:has(+ .code-block)": {
+              marginBottom: theme("spacing.4"),
+            },
+
             pre: {
-              backgroundColor: theme("colors.zinc.950"),
+              // Shiki applies the background color of the theme to the `pre`
+              // tag. However, I override this color and thus need to set it to
+              // transparent otherwise a very subtle white background will slip
+              // through the border radius.
+              backgroundColor: "transparent !important",
               fontSize: theme("fontSize.sm")[0],
             },
             "pre code": {
               ...font("xs"),
-              backgroundColor: "transparent",
-              border: `1px solid ${theme("colors.zinc.700")}`,
+              backgroundColor: "var(--tw-prose-pre-bg)",
+              border: "1px solid var(--tw-prose-code-border)",
               borderRadius: 0,
               color: theme("colors.zinc.100"),
               display: "grid",
               fontWeight: "inherit",
-              maxHeight: "800px",
-              overflow: "auto",
-              paddingBlock: theme("spacing.4"),
-              paddingInline: theme("spacing.4"),
+              isolation: "isolate",
+              overflowX: "auto",
+              padding: theme("spacing.4"),
             },
+
+            // Use a custom focus ring for code blocks
             "pre code:focus": {
               outline: "none",
             },
             "pre code:focus-visible": {
               boxShadow: "var(--tw-prose-ring)",
             },
+
             ":is(.has-title, .demo) :is(pre, code)": {
               borderRadius: `0 0 ${theme("borderRadius.lg")} ${theme(
                 "borderRadius.lg",
@@ -377,10 +395,11 @@ module.exports = {
                 "height, border-color, background-color, clip-path",
               borderColor: "transparent",
               borderLeftWidth: theme("borderWidth.4"),
-              clipPath: "inset(0 0 0 0)",
+              // This causes slight gap between lines
+              // clipPath: "inset(0 0 0 0)",
               display: "inline-block",
               height: `calc(${theme("lineHeight.6")} + 1px)`,
-              marginInline: `calc(${theme("spacing.4")} * -1)`,
+              marginInline: theme("spacing.4"),
               paddingLeft: `calc(${theme("spacing.4")} - ${theme(
                 "borderWidth.4",
               )})`,
@@ -401,12 +420,7 @@ module.exports = {
               borderColor: "var(--tw-prose-hl-border)",
             },
 
-            // Dim non-highlighted lines when at least one line is highlighted
-            "pre.highlight:not(.collapsed) code .line:not(:is(.highlight, .focus))":
-              {
-                opacity: 0.7,
-              },
-
+            // Collapse non-focused lines
             "pre.collapsed code .line:not(.focus)": {
               clipPath: "inset(100% 0 0 0)",
               height: 0,
