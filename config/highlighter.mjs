@@ -1,4 +1,5 @@
-import { tokyonight } from "./tokyonight.js"
+import { tokyolight } from "./themes/tokyolight.mjs"
+import { tokyonight } from "./themes/tokyonight.mjs"
 
 /** @type {import("shikiji").BundledLanguage[]} */
 export const langs = [
@@ -19,8 +20,8 @@ export const langs = [
 ]
 
 export const themeMap = {
-  light: "github-light",
+  light: "tokyolight",
   dark: "tokyonight",
 }
 
-export const themes = ["github-light", tokyonight]
+export const themes = [tokyolight, tokyonight]
