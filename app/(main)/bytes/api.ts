@@ -8,11 +8,12 @@ import { cache } from "react"
 import rehypeSlug from "rehype-slug"
 import remarkGfm from "remark-gfm"
 import remarkSmartypants from "remark-smartypants"
-import { getHighlighter } from "lib/mdx"
+import { getHighlighter } from "shikiji"
 import prisma from "lib/prisma"
 import MarkdownImage from "../../../components/markdown/MarkdownImage"
 import MarkdownLink from "../../../components/markdown/MarkdownLink"
 import MarkdownPre from "../../../components/markdown/MarkdownPre"
+import { langs, themeMap, themes } from "../../../config/highlighter.mjs"
 import rehypeCallout from "../../../config/rehype-callout.mjs"
 import rehypeCodeMeta from "../../../config/rehype-code-meta.mjs"
 import rehypeCodeTitles from "../../../config/rehype-code-titles.mjs"
@@ -57,6 +58,8 @@ export const getByte = cache(async (slug: string) => {
     byte.content = (await loadLocalByteContent(byte.id)) ?? byte.content
   }
 
+  const highlighter = await getHighlighter({ langs, themes })
+
   const { content } = await compileMDX<ByteMeta>({
     components: {
       a: MarkdownLink,
@@ -70,8 +73,8 @@ export const getByte = cache(async (slug: string) => {
           config,
           rehypeHeaderId,
           rehypeParseCodeMeta,
+          [rehypeShiki as any, { highlighter, themes: themeMap }],
           rehypeCodeTitles,
-          [rehypeShiki as any, { highlighter: await getHighlighter() }],
           rehypeCodeMeta,
           rehypeCallout as any,
         ],

@@ -22,15 +22,16 @@ export default function rehypeCodeMeta() {
         const highlight = calculateLines(node.data?.highlight)
         const focus = calculateLines(node.data?.focus)
 
+        // Remove the tabIndex property, we handle this ourselves
+        delete node.properties.tabindex
+
         if (node.data?.showLineNumbers) {
-          node.properties.className ??= []
-          node.properties.className.push("line-numbers")
+          node.properties.class += " line-numbers"
         }
 
         visit(
           node,
-          (t) =>
-            t.type === "element" && t.properties?.className?.includes("line"),
+          (t) => t.type === "element" && t.properties?.class?.includes("line"),
           (line, index, parent) => {
             if (!line.children.length && index !== parent.children.length - 1) {
               // Add a zero-width space to allow highlighting over empty lines
@@ -38,8 +39,7 @@ export default function rehypeCodeMeta() {
             }
 
             if (highlight.test(index)) {
-              line.properties.className ??= []
-              line.properties.className.push("highlight")
+              line.properties.class += " highlight"
 
               // Add a prop that indicates that this code block has focused
               // so we can display an expand/collapse button.
@@ -47,8 +47,7 @@ export default function rehypeCodeMeta() {
             }
 
             if (focus.test(index)) {
-              line.properties.className ??= []
-              line.properties.className.push("focus")
+              line.properties.class += " focus"
 
               // Add a prop that indicates that this code block has focused
               // so we can display an expand/collapse button.
@@ -58,13 +57,11 @@ export default function rehypeCodeMeta() {
         )
 
         if (highlight.highlighted()) {
-          node.properties.className ??= []
-          node.properties.className.push("highlight")
+          node.properties.class += " highlight"
         }
 
         if (focus.highlighted()) {
-          node.properties.className ??= []
-          node.properties.className.push("focus")
+          node.properties.class += " focus"
         }
 
         return SKIP

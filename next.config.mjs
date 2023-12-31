@@ -1,13 +1,13 @@
 import rehypeShiki from "@mskelton/rehype-shiki"
 import remarkExtractFrontmatter from "@mskelton/remark-extract-frontmatter"
 import nextMDX from "@next/mdx"
-import { fileURLToPath } from "node:url"
 import rehypeSlug from "rehype-slug"
 import remarkFrontmatter from "remark-frontmatter"
 import remarkGfm from "remark-gfm"
 import remarkMdxFrontmatter from "remark-mdx-frontmatter"
 import remarkSmartypants from "remark-smartypants"
-import shiki from "shiki"
+import { getHighlighter } from "shikiji"
+import { langs, themeMap, themes } from "./config/highlighter.mjs"
 import { redirects, rewrites } from "./config/redirects.mjs"
 import rehypeCallout from "./config/rehype-callout.mjs"
 import rehypeCodeMeta from "./config/rehype-code-meta.mjs"
@@ -33,11 +33,7 @@ const nextConfig = {
   rewrites: () => Promise.resolve(rewrites),
 }
 
-const themeURL = new URL("./config/tokyonight.json", import.meta.url)
-const highlighter = await shiki.getHighlighter({
-  theme: await shiki.loadTheme(fileURLToPath(themeURL)),
-})
-
+const highlighter = await getHighlighter({ langs, themes })
 const withMDX = nextMDX({
   extension: /\.mdx?$/,
   options: {
@@ -46,8 +42,8 @@ const withMDX = nextMDX({
       rehypeHeadings,
       rehypeHeaderId,
       rehypeParseCodeMeta,
+      [rehypeShiki, { highlighter, themes: themeMap }],
       rehypeCodeTitles,
-      [rehypeShiki, { highlighter }],
       rehypeCodeMeta,
       rehypeCallout,
     ],
