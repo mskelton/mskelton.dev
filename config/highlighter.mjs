@@ -1,3 +1,5 @@
+import { tokyonight } from "./themes/tokyonight.js"
+
 /** @type {import("shikiji").BundledLanguage[]} */
 export const langs = [
   "bash",
@@ -12,7 +14,9 @@ export const langs = [
   "yaml",
 ]
 
-export const themes = {
+export const themeMap = {
   light: "github-light",
   dark: "github-dark",
 }
+
+export const themes = ["github-light", "github-dark", tokyonight]

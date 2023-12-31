@@ -52,8 +52,10 @@ export default function MarkdownPre({
       <button
         aria-label={copied ? "Copied" : "Copy code"}
         className={clsx(
-          "absolute z-10 flex size-8 items-center justify-center rounded-md border border-zinc-300 bg-zinc-100 transition-colors delay-100 focusable hover:bg-zinc-200 focus-visible:opacity-100 group-hover:opacity-100 dark:border-zinc-700 dark:bg-zinc-800 dark:hover:bg-zinc-900",
-          copied ? "text-green-400" : "text-zinc-700 dark:text-zinc-300",
+          "absolute z-10 flex size-8 items-center justify-center rounded-md border border-zinc-300 bg-zinc-100 transition-[background-color] delay-100 focusable hover:bg-zinc-200 focus-visible:opacity-100 group-hover:opacity-100 dark:border-zinc-700 dark:bg-zinc-900 dark:hover:bg-zinc-800",
+          copied
+            ? "text-green-600 dark:text-green-400"
+            : "text-zinc-700 dark:text-zinc-300",
           hasTitle
             ? "right-[10px] top-[10px]"
             : "right-[15px] top-[15px] opacity-0",

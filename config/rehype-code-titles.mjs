@@ -12,7 +12,7 @@ function createTitle(title) {
         "py-3",
         "px-4",
         "bg-white",
-        "dark:bg-[#24292e]",
+        "dark:bg-zinc-950",
         "border-t",
         "border-x",
         "border-zinc-300",

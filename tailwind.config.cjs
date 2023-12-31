@@ -122,6 +122,7 @@ module.exports = {
             "--tw-prose-hr": theme("colors.zinc.700 / 0.4"),
             "--tw-prose-quote-borders": theme("colors.zinc.500"),
             "--tw-prose-captions": theme("colors.zinc.500"),
+            "--tw-prose-pre-bg": theme("colors.zinc.950"),
             "--tw-prose-code": theme("colors.zinc.300"),
             "--tw-prose-code-bg": theme("colors.zinc.800"),
             "--tw-prose-code-border": theme("colors.zinc.700"),
@@ -135,7 +136,6 @@ module.exports = {
 
             ":is(.shiki, .shiki span)": {
               color: "var(--shiki-dark) !important",
-              backgroundColor: "var(--shiki-dark-bg) !important",
             },
           },
         },
@@ -160,13 +160,16 @@ module.exports = {
             "--tw-prose-code-border": theme("colors.zinc.300"),
             "--tw-prose-code-link": theme("colors.indigo.600"),
             "--tw-prose-code-link-hover": theme("colors.indigo.500"),
-            "--tw-prose-pre-code": theme("colors.zinc.100"),
-            "--tw-prose-pre-bg": theme("colors.zinc.900"),
+            "--tw-prose-pre-bg": theme("colors.white"),
             "--tw-prose-kbd": theme("colors.zinc.700"),
             "--tw-prose-kbd-bg": theme("colors.zinc.50"),
             "--tw-prose-kbd-borders": theme("colors.zinc.200"),
             "--tw-prose-hl-bg": theme("colors.slate.800 / 60%"),
             "--tw-prose-hl-border": theme("colors.indigo.500"),
+
+            ":is(.shiki, .shiki span)": {
+              backgroundColor: "var(--tw-prose-pre-bg) !important",
+            },
 
             // Base
             color: "var(--tw-prose-body)",

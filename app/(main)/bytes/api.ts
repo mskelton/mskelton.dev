@@ -13,7 +13,7 @@ import prisma from "lib/prisma"
 import MarkdownImage from "../../../components/markdown/MarkdownImage"
 import MarkdownLink from "../../../components/markdown/MarkdownLink"
 import MarkdownPre from "../../../components/markdown/MarkdownPre"
-import { langs, themes } from "../../../config/highlighter.mjs"
+import { langs, themeMap, themes } from "../../../config/highlighter.mjs"
 import rehypeCallout from "../../../config/rehype-callout.mjs"
 import rehypeCodeMeta from "../../../config/rehype-code-meta.mjs"
 import rehypeCodeTitles from "../../../config/rehype-code-titles.mjs"
@@ -58,10 +58,7 @@ export const getByte = cache(async (slug: string) => {
     byte.content = (await loadLocalByteContent(byte.id)) ?? byte.content
   }
 
-  const highlighter = await getHighlighter({
-    langs,
-    themes: Object.values(themes),
-  })
+  const highlighter = await getHighlighter({ langs, themes })
 
   const { content } = await compileMDX<ByteMeta>({
     components: {
@@ -76,7 +73,7 @@ export const getByte = cache(async (slug: string) => {
           config,
           rehypeHeaderId,
           rehypeParseCodeMeta,
-          [rehypeShiki as any, { highlighter, themes }],
+          [rehypeShiki as any, { highlighter, themes: themeMap }],
           rehypeCodeTitles,
           rehypeCodeMeta,
           rehypeCallout as any,
