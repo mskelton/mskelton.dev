@@ -36,6 +36,8 @@ module.exports = {
         "draw-stroke": "300ms ease-in-out 700ms forwards draw-stroke",
         heartbeat:
           "1s ease-in-out 0s infinite alternate none running heartbeat",
+        "popover-enter": "popover-slide 200ms",
+        "popover-exit": "popover-slide 200ms reverse ease-in",
       },
       keyframes: ({ theme }) => ({
         "draw-stroke": {
@@ -75,6 +77,16 @@ module.exports = {
             background: "var(--tw-header-scroll-bg)",
             backdropFilter: "blur(8px)",
             boxShadow: theme("boxShadow.md"),
+          },
+        },
+        "popover-slide": {
+          from: {
+            transform: "var(--origin)",
+            opacity: 0,
+          },
+          to: {
+            transform: "translateY(0)",
+            opacity: 1,
           },
         },
       }),

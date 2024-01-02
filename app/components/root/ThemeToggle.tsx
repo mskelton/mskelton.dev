@@ -1,34 +1,39 @@
 "use client"
 
 import {
-  FloatingOverlay,
-  FloatingPortal,
-  useFloating,
-} from "@floating-ui/react"
-import { Listbox, Transition } from "@headlessui/react"
-import {
   ComputerDesktopIcon,
   MoonIcon,
   SunIcon,
 } from "@heroicons/react/20/solid"
-import { Fragment, useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
+import { useMenuTrigger } from "react-aria"
+import {
+  Menu,
+  MenuItem,
+  MenuTriggerProps,
+  PressEvent,
+} from "react-aria-components"
+import {
+  ButtonContext,
+  MenuContext,
+  OverlayTriggerStateContext,
+  PopoverContext,
+  Provider,
+} from "react-aria-components"
+import { useMenuTriggerState } from "react-stately"
 import { twMerge } from "tailwind-merge"
 import { themeEffect } from "../../lib/themeEffect"
-import HeaderIconButton from "./HeaderIconButton"
+import { Popover } from "../Popover"
+import { HeaderIconButton } from "./HeaderIconButton"
 
-const options = [
-  { Icon: ComputerDesktopIcon, label: "System", value: null },
+const items = [
+  { Icon: ComputerDesktopIcon, label: "System", value: "system" },
   { Icon: MoonIcon, label: "Dark", value: "dark" },
   { Icon: SunIcon, label: "Light", value: "light" },
 ]
 
 export function ThemeToggle() {
   const [preference, setPreference] = useState<string | null>(null)
-  const { refs, strategy, x, y } = useFloating({
-    middleware: [],
-    placement: "bottom-end",
-    strategy: "fixed",
-  })
 
   // React to storage changes in other tabs
   useEffect(() => {
@@ -56,7 +61,7 @@ export function ThemeToggle() {
   }, [])
 
   function handleChange(value: string) {
-    if (value === null) {
+    if (value === "system") {
       localStorage.removeItem("theme")
     } else {
       localStorage.setItem("theme", value)
@@ -65,85 +70,90 @@ export function ThemeToggle() {
     setPreference(value)
   }
 
-  function handleClick(e: React.MouseEvent) {
+  function handlePress(e: PressEvent) {
     // Allow quick switching the theme when holding down cmd/ctrl
     if (e.metaKey || e.ctrlKey) {
-      e.preventDefault()
       handleChange(themeEffect() === "dark" ? "light" : "dark")
       themeEffect()
     }
   }
 
+  //           // Run the theme effect after the transition exists. This ensures
+  //           // that we don't get any unwanted flashing when the menu closes.
+  //           afterLeave={themeEffect}
+
   return (
-    <Listbox onChange={handleChange} value={preference}>
-      {({ open }) => (
-        <>
-          <Listbox.Button
-            ref={refs.setReference}
-            aria-label="Set website theme"
-            as={HeaderIconButton}
-            onClick={handleClick}
-          >
-            <SunIcon className="dark:hidden" />
-            <MoonIcon className="hidden dark:block" />
-          </Listbox.Button>
+    <ThemeMenuTrigger>
+      <HeaderIconButton aria-label="Set website theme" onPress={handlePress}>
+        <SunIcon className="dark:hidden" />
+        <MoonIcon className="hidden dark:block" />
+      </HeaderIconButton>
 
-          <FloatingPortal>
-            <Transition
-              // Run the theme effect after the transition exists. This ensures
-              // that we don't get any unwanted flashing when the menu closes.
-              afterLeave={themeEffect}
-              as={Fragment}
-              enter="transition duration-100 ease-out"
-              enterFrom="transform scale-95 opacity-0"
-              enterTo="transform scale-100 opacity-100"
-              leave="transition duration-0 ease-out"
-              leaveFrom="transform scale-100 opacity-100"
-              leaveTo="transform scale-95 opacity-0"
-              show={open}
+      <Popover placement="bottom right">
+        <Menu
+          className="mt-2 w-40 rounded-xl bg-white p-1 shadow-lg ring-1 ring-zinc-900 ring-opacity-5 focus:outline-none dark:bg-zinc-800"
+          items={items}
+          onAction={(value) => handleChange(value as string)}
+          selectedKeys={preference ? [preference] : undefined}
+          selectionMode="single"
+        >
+          {(item) => (
+            <MenuItem
+              className={({ isFocused, isSelected }) =>
+                twMerge(
+                  "group flex w-full cursor-default items-center rounded-lg px-4 py-2 text-xs font-medium outline-none",
+                  isFocused
+                    ? "bg-zinc-100 text-zinc-900 dark:bg-zinc-900 dark:text-zinc-100"
+                    : "text-zinc-700 dark:text-zinc-300",
+                  isSelected && "text-indigo-700 dark:text-indigo-300",
+                )
+              }
+              id={item.value}
             >
-              <Listbox.Options
-                ref={refs.setFloating}
-                className="z-[60] mt-2 w-40 rounded-xl bg-white shadow-lg ring-1 ring-zinc-900 ring-opacity-5 focus:outline-none dark:bg-zinc-800"
-                static
-                style={{
-                  left: x ?? 0,
-                  position: strategy,
-                  top: y ?? 0,
-                }}
-              >
-                <div className="p-1">
-                  {options.map((option) => (
-                    <Listbox.Option
-                      key={option.label}
-                      className={({ active, selected }) =>
-                        twMerge(
-                          "group flex w-full items-center rounded-lg px-4 py-2 text-xs font-medium",
-                          active
-                            ? "bg-zinc-100 text-zinc-900 dark:bg-zinc-900 dark:text-zinc-100"
-                            : "text-zinc-700 dark:text-zinc-300",
-                          selected && "text-indigo-700 dark:text-indigo-300",
-                        )
-                      }
-                      value={option.value}
-                    >
-                      <option.Icon
-                        aria-hidden="true"
-                        className="mr-3 size-5 text-current"
-                      />
+              <item.Icon
+                aria-hidden="true"
+                className="mr-3 size-5 text-current"
+              />
 
-                      {option.label}
-                    </Listbox.Option>
-                  ))}
-                </div>
-              </Listbox.Options>
-            </Transition>
-          </FloatingPortal>
+              {item.label}
+            </MenuItem>
+          )}
+        </Menu>
+      </Popover>
+    </ThemeMenuTrigger>
+  )
+}
 
-          {/* Lock scrolling to prevent the header overlapping when the toggle is open */}
-          {open ? <FloatingOverlay lockScroll /> : null}
-        </>
-      )}
-    </Listbox>
+function ThemeMenuTrigger(props: MenuTriggerProps) {
+  const state = useMenuTriggerState(props)
+  const ref = useRef(null)
+  const { menuProps, menuTriggerProps } = useMenuTrigger(props, state, ref)
+
+  /** Allow events only if they are not theme toggle events (cmd/ctrl) */
+  const allow = (e: Pick<KeyboardEvent, "ctrlKey" | "metaKey">) =>
+    !e.ctrlKey && !e.metaKey
+
+  return (
+    <Provider
+      values={[
+        [
+          ButtonContext,
+          {
+            ...menuTriggerProps,
+            isPressed: state.isOpen,
+            onKeyDown: (e) => allow(e) && menuTriggerProps.onKeyDown?.(e),
+            onPress: (e) => allow(e) && menuTriggerProps.onPress?.(e),
+            onPressStart: (e) => allow(e) && menuTriggerProps.onPressStart?.(e),
+            ref,
+          },
+        ],
+        [OverlayTriggerStateContext, state],
+        [PopoverContext, { placement: "bottom start", triggerRef: ref }],
+        [MenuContext, menuProps],
+      ]}
+    >
+      {/* eslint-disable-next-line react/destructuring-assignment */}
+      {props.children}
+    </Provider>
   )
 }
