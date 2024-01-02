@@ -16,8 +16,8 @@ import {
   Provider,
 } from "react-aria-components"
 import { useMenuTriggerState } from "react-stately"
-import { NavMenu, NavMenuItem } from "../../../NavMenu"
 import { themeEffect } from "../../lib/themeEffect"
+import { NavMenu, NavMenuItem } from "../NavMenu"
 import { Popover } from "../Popover"
 import { HeaderIconButton } from "./HeaderIconButton"
 

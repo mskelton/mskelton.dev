@@ -2,7 +2,7 @@
 
 import { Bars3Icon } from "@heroicons/react/20/solid"
 import { MenuTrigger } from "react-aria-components"
-import { NavMenu, NavMenuItem } from "../../../NavMenu"
+import { NavMenu, NavMenuItem } from "../NavMenu"
 import { Popover } from "../Popover"
 import { HeaderIconButton } from "./HeaderIconButton"
 import { navItems } from "./navItems"
