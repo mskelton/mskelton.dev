@@ -7,12 +7,7 @@ import {
 } from "@heroicons/react/20/solid"
 import { useEffect, useRef, useState } from "react"
 import { useMenuTrigger } from "react-aria"
-import {
-  Menu,
-  MenuItem,
-  MenuTriggerProps,
-  PressEvent,
-} from "react-aria-components"
+import { MenuTriggerProps, PressEvent } from "react-aria-components"
 import {
   ButtonContext,
   MenuContext,
@@ -21,7 +16,7 @@ import {
   Provider,
 } from "react-aria-components"
 import { useMenuTriggerState } from "react-stately"
-import { twMerge } from "tailwind-merge"
+import { NavMenu, NavMenuItem } from "../../../NavMenu"
 import { themeEffect } from "../../lib/themeEffect"
 import { Popover } from "../Popover"
 import { HeaderIconButton } from "./HeaderIconButton"
@@ -86,36 +81,23 @@ export function ThemeToggle() {
         <MoonIcon className="hidden dark:block" />
       </HeaderIconButton>
 
-      <Popover placement="bottom right">
-        <Menu
-          className="mt-2 w-40 rounded-xl bg-white p-1 shadow-lg ring-1 ring-zinc-900 ring-opacity-5 focus:outline-none dark:bg-zinc-800"
+      <Popover disableExitAnimation placement="bottom right">
+        <NavMenu
           items={items}
           onAction={(value) => handleChange(value as string)}
           selectedKeys={preference ? [preference] : undefined}
-          selectionMode="single"
         >
           {(item) => (
-            <MenuItem
-              className={({ isFocused, isSelected }) =>
-                twMerge(
-                  "group flex w-full cursor-default items-center rounded-lg px-4 py-2 text-xs font-medium outline-none",
-                  isFocused
-                    ? "bg-zinc-100 text-zinc-900 dark:bg-zinc-900 dark:text-zinc-100"
-                    : "text-zinc-700 dark:text-zinc-300",
-                  isSelected && "text-indigo-700 dark:text-indigo-300",
-                )
-              }
-              id={item.value}
-            >
+            <NavMenuItem id={item.value}>
               <item.Icon
                 aria-hidden="true"
                 className="mr-3 size-5 text-current"
               />
 
               {item.label}
-            </MenuItem>
+            </NavMenuItem>
           )}
-        </Menu>
+        </NavMenu>
       </Popover>
     </ThemeMenuTrigger>
   )

@@ -6,14 +6,20 @@ import { twMerge } from "tailwind-merge"
 
 export interface PopoverProps extends BasePopoverProps {
   className?: string
+  disableExitAnimation?: boolean
 }
 
-export function Popover({ className, ...props }: PopoverProps) {
+export function Popover({
+  className,
+  disableExitAnimation,
+  ...props
+}: PopoverProps) {
   return (
     <BasePopover
-      className={({ isEntering, placement }) =>
+      className={({ isEntering, isExiting, placement }) =>
         twMerge(
           isEntering && "animate-popover-enter",
+          isExiting && !disableExitAnimation && "animate-popover-exit",
           placement === "top" && "[--origin:translateY(8px)]",
           placement === "bottom" && "[--origin:translateY(-8px)]",
           placement === "left" && "[--origin:translateX(8px)]",

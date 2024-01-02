@@ -13,13 +13,13 @@ export const HeaderIconButton = forwardRef<
   HTMLButtonElement,
   HeaderIconButtonProps
 >(function HeaderIconButton(
-  { as: Component = Button, children, ...props },
+  { as: Component = Button, children, className, ...props },
   ref,
 ) {
   return (
     <Component
       ref={ref}
-      className="group rounded-full p-2 focusable"
+      className={clsx("group rounded-full p-2 focusable", className)}
       type={props.href ? undefined : "button"}
       {...props}
     >
@@ -34,5 +34,3 @@ export const HeaderIconButton = forwardRef<
     </Component>
   )
 })
-
-export default HeaderIconButton
