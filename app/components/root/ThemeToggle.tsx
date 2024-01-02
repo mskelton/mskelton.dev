@@ -68,6 +68,7 @@ export function ThemeToggle() {
     }
 
     setPreference(value)
+    themeEffect()
   }
 
   function handlePress(e: PressEvent) {
@@ -77,10 +78,6 @@ export function ThemeToggle() {
       themeEffect()
     }
   }
-
-  //           // Run the theme effect after the transition exists. This ensures
-  //           // that we don't get any unwanted flashing when the menu closes.
-  //           afterLeave={themeEffect}
 
   return (
     <ThemeMenuTrigger>
