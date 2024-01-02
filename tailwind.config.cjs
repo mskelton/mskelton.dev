@@ -398,19 +398,11 @@ module.exports = {
               // clipPath: "inset(0 0 0 0)",
               display: "inline-block",
               height: `calc(${theme("lineHeight.6")} + 1px)`,
-              marginInline: theme("spacing.4"),
+              marginInline: `calc(${theme("spacing.4")} * -1)`,
               paddingLeft: `calc(${theme("spacing.4")} - ${theme(
                 "borderWidth.4",
               )})`,
               paddingRight: theme("spacing.4"),
-
-              "@screen sm": {
-                marginInline: `calc(${theme("spacing.4")} * -1)`,
-                paddingLeft: `calc(${theme("spacing.4")} - ${theme(
-                  "borderWidth.4",
-                )})`,
-                paddingRight: theme("spacing.4"),
-              },
             },
             // Highlighted lines
             "pre:not(.collapsed) code .line:is(.highlight, .focus)": {
