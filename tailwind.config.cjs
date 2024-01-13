@@ -89,6 +89,46 @@ module.exports = {
             opacity: 1,
           },
         },
+        "copy-hide": {
+          "0%": {
+            opacity: 1,
+            transform: "translate(-50%, -50%)",
+          },
+          "20%": {
+            opacity: 0,
+            transform: "translate(-50%, -50%) scale(.5)",
+          },
+          "80%": {
+            opacity: 0,
+            transform: "translate(-50%,-50%) scale(.5)",
+          },
+          to: {
+            opacity: 1,
+            transform: "translate(-50%, -50%)",
+          },
+        },
+        "copy-show": {
+          "0%": {
+            opacity: 0,
+            transform: "translate(-50%, -50%) scale(.5)",
+          },
+          "20%": {
+            opacity: 1,
+            transform: "translate(-50%, -50%)",
+          },
+          "60%": {
+            opacity: 1,
+            transform: "translate(-50%, -50%)",
+          },
+          "80%": {
+            opacity: 0,
+            transform: "translate(-50%,-50%) scale(.5)",
+          },
+          to: {
+            opacity: 0,
+            transform: "translate(-50%,-50%) scale(.5)",
+          },
+        },
       }),
     },
     fontSize: {
