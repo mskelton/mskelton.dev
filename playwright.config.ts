@@ -1,14 +1,15 @@
-import { expect, PlaywrightTestConfig } from "@playwright/test"
+import { defineConfig, expect } from "@playwright/test"
 import axeMatchers from "expect-axe-playwright"
 import { fileURLToPath } from "node:url"
 
 expect.extend(axeMatchers)
 
-const config: PlaywrightTestConfig = {
+export default defineConfig({
   forbidOnly: !!process.env.CI,
   fullyParallel: true,
   reporter: process.env.CI ? "dot" : "list",
   retries: process.env.CI ? 2 : 0,
+  snapshotPathTemplate: "{testDir}/__snapshots__/{testFilePath}/{arg}{ext}",
   testDir: fileURLToPath(new URL("./e2e/test", import.meta.url)),
   use: {
     axeOptions: {
@@ -27,6 +28,4 @@ const config: PlaywrightTestConfig = {
     stdout: "ignore",
     url: "http://127.0.0.1:3000",
   },
-}
-
-export default config
+})
