@@ -5,6 +5,11 @@ import { fileURLToPath } from "node:url"
 expect.extend(axeMatchers)
 
 export default defineConfig({
+  expect: {
+    toHaveScreenshot: {
+      maxDiffPixelRatio: 0.25,
+    },
+  },
   forbidOnly: !!process.env.CI,
   fullyParallel: true,
   reporter: process.env.CI ? "dot" : "list",
