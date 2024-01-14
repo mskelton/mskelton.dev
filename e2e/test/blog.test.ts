@@ -62,7 +62,7 @@ test.describe("Blog page", async () => {
     test("basic code block", async ({ blogPage }) => {
       await blogPage.goto("/efficient-prisma-pagination")
       const single = blogPage.codeBlock("Representing state in the URL").first()
-      const multi = blogPage.codeBlock("Previous/next links").last()
+      const multi = blogPage.codeBlock("Previous/next links").first()
       const lineNumbers = blogPage.codeBlock("The search query")
 
       await expect(single).toHaveScreenshot("single-line.png")
