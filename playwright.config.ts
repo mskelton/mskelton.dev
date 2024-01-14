@@ -9,7 +9,7 @@ const config: PlaywrightTestConfig = {
   fullyParallel: true,
   reporter: process.env.CI ? "dot" : "list",
   retries: process.env.CI ? 2 : 0,
-  testDir: fileURLToPath(new URL("./e2e/spec", import.meta.url)),
+  testDir: fileURLToPath(new URL("./e2e/test", import.meta.url)),
   use: {
     axeOptions: {
       rules: {
