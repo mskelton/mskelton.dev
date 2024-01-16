@@ -4,7 +4,7 @@ import { Container } from "../Container"
 import { GitHubIcon } from "../SocialIcons"
 import { CursiveName } from "./CursiveName"
 import { DesktopNavigation } from "./DesktopNavigation"
-import HeaderIconButton from "./HeaderIconButton"
+import { HeaderIconButton } from "./HeaderIconButton"
 import { MobileNavigation } from "./MobileNavigation"
 import { ThemeToggle } from "./ThemeToggle"
 
@@ -46,7 +46,7 @@ export function Header({ variant }: HeaderProps) {
             </HeaderIconButton>
 
             <ThemeToggle />
-            <MobileNavigation className="lg:hidden" />
+            <MobileNavigation />
           </div>
         </div>
       </Container>

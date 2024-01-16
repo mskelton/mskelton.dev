@@ -4,6 +4,8 @@ import { CheckIcon, ClipboardIcon } from "@heroicons/react/24/outline"
 import { clsx } from "clsx"
 import React, { cloneElement, useRef, useState } from "react"
 
+const iconStyle = "absolute size-4 inset-[50%] [transform:translate(-50%,-50%)]"
+
 export interface MarkdownPreProps extends React.HTMLAttributes<HTMLPreElement> {
   children: React.ReactElement
   hasFocus?: boolean
@@ -22,7 +24,6 @@ export default function MarkdownPre({
   const preRef = useRef<HTMLPreElement>(null!)
   const [isExpanded, setIsExpanded] = useState(false)
   const [copied, setCopied] = useState(false)
-  const Icon = copied ? CheckIcon : ClipboardIcon
 
   function handleCopy() {
     setCopied(true)
@@ -32,9 +33,6 @@ export default function MarkdownPre({
     const codeEl = preRef.current.querySelector("code")
     const text = (codeEl?.innerText ?? "").replaceAll("\u200b", "")
     navigator.clipboard.writeText(text)
-
-    // Clear the copied state after 2 seconds
-    setTimeout(() => setCopied(false), 2000)
   }
 
   return (
@@ -52,10 +50,7 @@ export default function MarkdownPre({
       <button
         aria-label={copied ? "Copied" : "Copy code"}
         className={clsx(
-          "absolute z-10 flex size-8 items-center justify-center rounded-md border border-zinc-300 bg-zinc-100 transition-[background-color] delay-100 focusable hover:bg-zinc-200 focus-visible:opacity-100 group-hover:opacity-100 dark:border-zinc-700 dark:bg-zinc-900 dark:hover:bg-zinc-800",
-          copied
-            ? "text-green-600 dark:text-green-400"
-            : "text-zinc-700 dark:text-zinc-300",
+          "absolute z-10 flex size-8 items-center justify-center rounded-md border border-zinc-300 bg-zinc-100 transition-[background-color,opacity] delay-100 focusable hover:bg-zinc-200 focus-visible:opacity-100 group-hover:opacity-100 dark:border-zinc-700 dark:bg-zinc-900 dark:hover:bg-zinc-800",
           hasTitle
             ? "right-[10px] top-[10px]"
             : "right-[15px] top-[15px] opacity-0",
@@ -63,7 +58,22 @@ export default function MarkdownPre({
         onClick={handleCopy}
         type="button"
       >
-        <Icon className="size-4" />
+        <ClipboardIcon
+          className={clsx(
+            iconStyle,
+            copied && "animate-[1s_linear_copy-hide_forwards]",
+            "text-zinc-700 opacity-100 dark:text-zinc-300",
+          )}
+          onAnimationEnd={() => setCopied(false)}
+        />
+
+        <CheckIcon
+          className={clsx(
+            iconStyle,
+            copied && "animate-[1s_.15s_linear_copy-show_forwards]",
+            "text-green-600 opacity-0 dark:text-green-400",
+          )}
+        />
       </button>
 
       <pre

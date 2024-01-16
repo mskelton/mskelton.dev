@@ -36,6 +36,8 @@ module.exports = {
         "draw-stroke": "300ms ease-in-out 700ms forwards draw-stroke",
         heartbeat:
           "1s ease-in-out 0s infinite alternate none running heartbeat",
+        "popover-enter": "popover-slide 200ms",
+        "popover-exit": "popover-slide 200ms reverse ease-in",
       },
       keyframes: ({ theme }) => ({
         "draw-stroke": {
@@ -75,6 +77,56 @@ module.exports = {
             background: "var(--tw-header-scroll-bg)",
             backdropFilter: "blur(8px)",
             boxShadow: theme("boxShadow.md"),
+          },
+        },
+        "popover-slide": {
+          from: {
+            transform: "var(--origin)",
+            opacity: 0,
+          },
+          to: {
+            transform: "translateY(0)",
+            opacity: 1,
+          },
+        },
+        "copy-hide": {
+          "0%": {
+            opacity: 1,
+            transform: "translate(-50%, -50%)",
+          },
+          "20%": {
+            opacity: 0,
+            transform: "translate(-50%, -50%) scale(.5)",
+          },
+          "80%": {
+            opacity: 0,
+            transform: "translate(-50%,-50%) scale(.5)",
+          },
+          to: {
+            opacity: 1,
+            transform: "translate(-50%, -50%)",
+          },
+        },
+        "copy-show": {
+          "0%": {
+            opacity: 0,
+            transform: "translate(-50%, -50%) scale(.5)",
+          },
+          "20%": {
+            opacity: 1,
+            transform: "translate(-50%, -50%)",
+          },
+          "60%": {
+            opacity: 1,
+            transform: "translate(-50%, -50%)",
+          },
+          "80%": {
+            opacity: 0,
+            transform: "translate(-50%,-50%) scale(.5)",
+          },
+          to: {
+            opacity: 0,
+            transform: "translate(-50%,-50%) scale(.5)",
           },
         },
       }),
@@ -398,19 +450,11 @@ module.exports = {
               // clipPath: "inset(0 0 0 0)",
               display: "inline-block",
               height: `calc(${theme("lineHeight.6")} + 1px)`,
-              marginInline: theme("spacing.4"),
+              marginInline: `calc(${theme("spacing.4")} * -1)`,
               paddingLeft: `calc(${theme("spacing.4")} - ${theme(
                 "borderWidth.4",
               )})`,
               paddingRight: theme("spacing.4"),
-
-              "@screen sm": {
-                marginInline: `calc(${theme("spacing.4")} * -1)`,
-                paddingLeft: `calc(${theme("spacing.4")} - ${theme(
-                  "borderWidth.4",
-                )})`,
-                paddingRight: theme("spacing.4"),
-              },
             },
             // Highlighted lines
             "pre:not(.collapsed) code .line:is(.highlight, .focus)": {
