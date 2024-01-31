@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   title: "Bytes | Mark Skelton",
 }
 
-export default async function Blog({
+export default async function Bytes({
   searchParams,
 }: {
   searchParams: {
