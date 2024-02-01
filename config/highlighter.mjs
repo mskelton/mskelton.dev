@@ -1,7 +1,7 @@
 import { tokyolight } from "./themes/tokyolight.mjs"
 import { tokyonight } from "./themes/tokyonight.mjs"
 
-/** @type {import("shikiji").BundledLanguage[]} */
+/** @type {import("shiki").BundledLanguage[]} */
 export const langs = [
   "bash",
   "css",
