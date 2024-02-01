@@ -21,8 +21,8 @@ importers:
         specifier: ^0.0.4
         version: 0.0.4
       '@mskelton/rehype-shiki':
-        specifier: ^0.2.2
-        version: 0.2.2(shikiji@0.9.15)
+        specifier: ^0.3.0
+        version: 0.3.0(shiki@1.0.0-beta.2)
       '@mskelton/remark-extract-frontmatter':
         specifier: ^0.0.2
         version: 0.0.2
@@ -119,9 +119,9 @@ importers:
       sharp:
         specifier: ^0.32.6
         version: 0.32.6
-      shikiji:
-        specifier: ^0.9.15
-        version: 0.9.15
+      shiki:
+        specifier: 1.0.0-beta.2
+        version: 1.0.0-beta.2
       tailwind-merge:
         specifier: ^1.14.0
         version: 1.14.0
@@ -713,13 +713,13 @@ packages:
       unist-util-visit: 5.0.0
     dev: false
 
-  /@mskelton/rehype-shiki@0.2.2(shikiji@0.9.15):
-    resolution: {integrity: sha512-CcppQ2CjzYR0KNC/56R2W0m75Hvuv+lJScmwsHYDGlGeaCeJGcYEgqnI73D6ZdPBUbtcSIhCmdePEzeJAhxLPQ==}
+  /@mskelton/rehype-shiki@0.3.0(shiki@1.0.0-beta.2):
+    resolution: {integrity: sha512-VS6raiPw0DBp7KQxE73X0NVgkgA3Iag7rod5kz2p3joN6qrXlkFsvY/JCMD115peDdQklQS8e4B2E4CuaqoOqQ==}
     peerDependencies:
-      shikiji: '>=0.9.15'
+      shiki: '>=1.0.0-beta.2'
     dependencies:
       hast-util-to-text: 4.0.0
-      shikiji: 0.9.15
+      shiki: 1.0.0-beta.2
       unist-util-visit: 5.0.0
     dev: false
 
@@ -2242,6 +2242,10 @@ packages:
   /@rushstack/eslint-patch@1.5.1:
     resolution: {integrity: sha512-6i/8UoL0P5y4leBIGzvkZdS85RDMG9y1ihZzmTZQ5LdHUYmZ7pKFoj8X0236s3lusPs1Fa5HTQUpwI+UfTcmeA==}
     dev: true
+
+  /@shikijs/core@1.0.0-beta.2:
+    resolution: {integrity: sha512-H0r+V4/47hXZzFW2qXRqjLwNtiUE5bQankMw2m2RE1hLgHSjp/skyBZYDXjhG9y7ei3sIZAj8s4vx31EzxxrhQ==}
+    dev: false
 
   /@swc/helpers@0.4.14:
     resolution: {integrity: sha512-4C7nX/dvpzB7za4Ql9K81xK3HPxCpHMgwTZVyf+9JQ6VUbn9jjZVN7/Nkdz/Ugzs2CSjqnL/UPXroiVBVHUWUw==}
@@ -6683,14 +6687,10 @@ packages:
     resolution: {integrity: sha512-7++dFhtcx3353uBaq8DDR4NuxBetBzC7ZQOhmTQInHEd6bSrXdiEyzCvG07Z44UYdLShWUyXt5M/yhz8ekcb1A==}
     engines: {node: '>=8'}
 
-  /shikiji-core@0.9.15:
-    resolution: {integrity: sha512-7hqIcUKS15OMs/61Qp2GvO1fSajBB36bDqi8vexIg5kp80V6v6SGtBrlq+nLlo7erMG2d1kvIuTIq1bwKI6fEg==}
-    dev: false
-
-  /shikiji@0.9.15:
-    resolution: {integrity: sha512-+inN4cN+nY7b0uCPOiqFHAk+cn2DEdM3AIQgPhAV7QKqhww/o7OGS5xvLh3SNnjke9C/HispALqGOQGYHVq7KQ==}
+  /shiki@1.0.0-beta.2:
+    resolution: {integrity: sha512-hPJcD6F5BRp2yfeBcERqQIVeEPjE2g+r5MVq/tonz2SxT6o79e84Y9iW+a5TyGXWtXAKiW5jd4lGevJ4yIUixA==}
     dependencies:
-      shikiji-core: 0.9.15
+      '@shikijs/core': 1.0.0-beta.2
     dev: false
 
   /side-channel@1.0.4:
