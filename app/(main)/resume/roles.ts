@@ -11,7 +11,7 @@ export const roles = [
       "Improving local development and CI workflows to increase throughput and reduce bugs",
       "Mentoring developers, knowledge sharing, and teaching techniques for improving engineering skills",
     ],
-    title: "Senior Frontend Enginer",
+    title: "Staff Frontend Enginer",
   },
   {
     company: "Widen, an Acquia Company",

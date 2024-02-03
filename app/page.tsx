@@ -47,7 +47,7 @@ const resume = [
     href: "https://www.federato.ai",
     logo: LogoFederato,
     start: "2023",
-    title: "Senior software engineer",
+    title: "Staff software engineer",
   },
   {
     company: "Widen, an Acquia Company",
