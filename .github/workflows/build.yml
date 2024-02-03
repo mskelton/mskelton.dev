@@ -21,7 +21,7 @@ jobs:
         run: pnpm ts
   test:
     name: Test
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
     steps:
       - uses: mskelton/setup-pnpm@v2
       - run: pnpm playwright install chromium --with-deps
