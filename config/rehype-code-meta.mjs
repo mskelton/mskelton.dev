@@ -5,7 +5,9 @@ function calculateLines(range) {
 
   return {
     test: (index) => {
-      const match = range?.includes(index + 1)
+      // There are newlines between each line, so we need to divide by 2
+      // to get the actual line number.
+      const match = range?.includes(index / 2 + 1)
       hasHighlights = hasHighlights || match
       return match
     },
