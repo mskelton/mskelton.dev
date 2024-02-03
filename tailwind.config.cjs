@@ -79,6 +79,16 @@ module.exports = {
             boxShadow: theme("boxShadow.md"),
           },
         },
+        "tooltip-slide": {
+          "0%": {
+            opacity: 0,
+            transform: "var(--origin)",
+          },
+          "100%": {
+            opacity: 1,
+            transform: "translateY(0)",
+          },
+        },
         "popover-slide": {
           from: {
             transform: "var(--origin)",
