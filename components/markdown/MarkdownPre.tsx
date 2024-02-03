@@ -39,7 +39,7 @@ export default function MarkdownPre({
     <>
       <div
         className={clsx(
-          "absolute z-10 flex gap-3 ",
+          "absolute z-10 flex gap-3 transition-opacity delay-100 group-hover:opacity-100",
           hasTitle
             ? "right-[10px] top-[10px]"
             : "right-[15px] top-[15px] opacity-0",
@@ -113,7 +113,7 @@ function ToolbarButton({
   return (
     <button
       aria-label={label}
-      className="relative flex size-8 items-center justify-center rounded-md border border-zinc-300 bg-zinc-100 transition-[background-color,opacity] delay-100 focusable hover:bg-zinc-200 focus-visible:opacity-100 group-hover:opacity-100 dark:border-zinc-700 dark:bg-zinc-900 dark:hover:bg-zinc-800"
+      className="relative flex size-8 items-center justify-center rounded-md border border-zinc-300 bg-zinc-100 transition-[background-color] focusable hover:bg-zinc-200 focus-visible:opacity-100 dark:border-zinc-700 dark:bg-zinc-900 dark:hover:bg-zinc-800"
       type="button"
       {...props}
     />
