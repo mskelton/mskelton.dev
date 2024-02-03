@@ -184,7 +184,7 @@ The `Cursor` component also uses
 [forwardRef](https://react.dev/reference/react/forwardRef) which we'll need
 later when updating cursor position from incoming WebSocket messages.
 
-```tsx showLineNumbers ./Cursor.tsx
+```tsx showLineNumbers ./Cursor.tsx [9-41]
 export interface ClientConnection extends ServerConnection {
   ref: React.RefObject<HTMLDivElement>
 }
