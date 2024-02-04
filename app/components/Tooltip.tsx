@@ -2,15 +2,10 @@ import React from "react"
 import {
   Tooltip as AriaTooltip,
   TooltipProps as AriaTooltipProps,
+  TooltipTrigger,
 } from "react-aria-components"
 import { tv } from "tailwind-variants"
 import { OverlayArrow } from "./OverlayArrow"
-
-export interface TooltipProps
-  extends Omit<AriaTooltipProps, "children" | "className"> {
-  children: React.ReactNode
-  className?: string
-}
 
 const styles = tv({
   base: "group bg-gray-900 dark:bg-white dark:text-gray-900 text-white text-sm font-medium rounded-lg shadow-sm px-3 py-1.5 max-w-xs [overflow-wrap:anywhere]",
@@ -31,14 +26,30 @@ const styles = tv({
   },
 })
 
-export function Tooltip({ children, className, ...props }: TooltipProps) {
+export interface TooltipProps
+  extends Omit<AriaTooltipProps, "children" | "className"> {
+  children: React.ReactNode
+  className?: string
+  content: React.ReactNode
+}
+
+export function Tooltip({
+  children,
+  className,
+  content,
+  ...props
+}: TooltipProps) {
   return (
-    <AriaTooltip
-      {...props}
-      className={(props) => styles({ ...props, className })}
-    >
-      <OverlayArrow />
+    <TooltipTrigger closeDelay={200} delay={500}>
       {children}
-    </AriaTooltip>
+
+      <AriaTooltip
+        {...props}
+        className={(props) => styles({ ...props, className })}
+      >
+        <OverlayArrow />
+        {content}
+      </AriaTooltip>
+    </TooltipTrigger>
   )
 }

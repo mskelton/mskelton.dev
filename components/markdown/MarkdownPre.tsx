@@ -3,6 +3,8 @@
 import { CheckIcon, ClipboardIcon } from "@heroicons/react/24/outline"
 import { clsx } from "clsx"
 import React, { cloneElement, useRef, useState } from "react"
+import { Button, ButtonProps, TooltipTrigger } from "react-aria-components"
+import { Tooltip } from "components/Tooltip"
 
 const iconStyle = "absolute size-4 inset-[50%] [transform:translate(-50%,-50%)]"
 
@@ -49,7 +51,7 @@ export default function MarkdownPre({
         {hasFocus ? (
           <ToolbarButton
             aria-label={isExpanded ? "Collapse code" : "Expand code"}
-            onClick={() => setIsExpanded(!isExpanded)}
+            onPress={() => setIsExpanded(!isExpanded)}
           >
             <svg
               fill="none"
@@ -69,7 +71,7 @@ export default function MarkdownPre({
 
         <ToolbarButton
           aria-label={copied ? "Copied" : "Copy code"}
-          onClick={handleCopy}
+          onPress={handleCopy}
         >
           <ClipboardIcon
             className={clsx(
@@ -106,17 +108,21 @@ export default function MarkdownPre({
   )
 }
 
-function ToolbarButton({
-  "aria-label": label,
-  ...props
-}: React.ButtonHTMLAttributes<HTMLButtonElement>) {
+function ToolbarButton({ "aria-label": label, ...props }: ButtonProps) {
   return (
-    <button
-      aria-label={label}
-      className="relative flex size-8 items-center justify-center rounded-md border border-zinc-300 bg-zinc-100 transition-[background-color] focusable hover:bg-zinc-200 focus-visible:opacity-100 dark:border-zinc-700 dark:bg-zinc-900 dark:hover:bg-zinc-800"
-      type="button"
-      {...props}
-    />
+    <Tooltip content={label}>
+      <Button
+        aria-label={label}
+        className={({ isFocusVisible }) =>
+          clsx(
+            "relative flex size-8 items-center justify-center rounded-md border border-zinc-300 bg-zinc-100 transition-[background-color] hover:bg-zinc-200 focus:outline-none dark:border-zinc-700 dark:bg-zinc-900 dark:hover:bg-zinc-800",
+            isFocusVisible && "opacity-100 ring ring-indigo-500",
+          )
+        }
+        type="button"
+        {...props}
+      />
+    </Tooltip>
   )
 }
 
