@@ -25,6 +25,7 @@
     "@mskelton/rehype-shiki": "^0.3.0",
     "@mskelton/remark-extract-frontmatter": "^0.0.2",
     "@next/mdx": "^13.5.6",
+    "@next/third-parties": "^14.1.0",
     "@octokit/rest": "^20.0.2",
     "@prisma/client": "^5.5.1",
     "@tailwindcss/container-queries": "^0.1.1",
