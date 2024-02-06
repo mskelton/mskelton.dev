@@ -17,6 +17,9 @@ WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
+# Public environment variables
+ARG NEXT_PUBLIC_GA_ID
+
 # Build the app
 RUN yarn build
 
