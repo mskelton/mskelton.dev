@@ -402,6 +402,10 @@ module.exports = {
               position: "relative",
               marginBottom: theme("spacing.8"),
               marginTop: 0,
+              marginInline: `calc(${theme("spacing.4")} * -1)`,
+              "@screen sm": {
+                marginInline: 0,
+              },
             },
             ".code-block.has-title": {
               paddingTop: theme("spacing.12"),
@@ -424,13 +428,15 @@ module.exports = {
             "pre code": {
               ...font("xs"),
               backgroundColor: "var(--tw-prose-pre-bg)",
-              border: "1px solid var(--tw-prose-code-border)",
               borderRadius: 0,
               display: "grid",
               fontWeight: "inherit",
               isolation: "isolate",
               overflowX: "auto",
               padding: theme("spacing.4"),
+              "@screen sm": {
+                border: "1px solid var(--tw-prose-code-border)",
+              },
             },
 
             // Use a custom focus ring for code blocks
@@ -442,12 +448,18 @@ module.exports = {
             },
 
             ":is(.has-title, .demo) :is(pre, code)": {
-              borderRadius: `0 0 ${theme("borderRadius.lg")} ${theme(
-                "borderRadius.lg",
-              )}`,
+              borderRadius: 0,
+              "@screen sm": {
+                borderRadius: `0 0 ${theme("borderRadius.lg")} ${theme(
+                  "borderRadius.lg",
+                )}`,
+              },
             },
             ".code-block:not(:is(.has-title, .demo)) :is(pre, code)": {
-              borderRadius: theme("borderRadius.lg"),
+              borderRadius: 0,
+              "@screen sm": {
+                borderRadius: theme("borderRadius.lg"),
+              },
             },
             "pre code .line": {
               ...transition,
@@ -483,17 +495,19 @@ module.exports = {
             "pre.line-numbers code": {
               counterReset: "line",
 
-              ".line:before": {
-                display: "inline-block",
-                counterIncrement: "line",
-                width: theme("spacing.4"),
-                fontSize: theme("fontSize.xs")[0],
-                color: theme("colors.zinc.400"),
-                userSelect: "none",
-                textAlign: "right",
-                flexShrink: 0,
-                marginRight: theme("spacing.4"),
-                content: "counter(line)",
+              "@screen md": {
+                ".line:before": {
+                  display: "inline-block",
+                  counterIncrement: "line",
+                  width: theme("spacing.4"),
+                  fontSize: theme("fontSize.xs")[0],
+                  color: theme("colors.zinc.400"),
+                  userSelect: "none",
+                  textAlign: "right",
+                  flexShrink: 0,
+                  marginRight: theme("spacing.4"),
+                  content: "counter(line)",
+                },
               },
             },
 
