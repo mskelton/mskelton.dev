@@ -53,7 +53,7 @@ export function PostLayout({
               <div>
                 {meta ? (
                   <time
-                    className="text-base text-zinc-500 transition-colors dark:text-zinc-400"
+                    className="text-base text-zinc-500 transition-colors dark:text-zinc-300"
                     dateTime={meta.date}
                   >
                     {formatDate(meta.date)}

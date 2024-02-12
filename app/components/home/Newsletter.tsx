@@ -12,7 +12,7 @@ export function Newsletter() {
         <span className="ml-3">Stay up to date</span>
       </h2>
 
-      <p className="mt-2 text-sm text-zinc-600 transition-colors dark:text-zinc-400">
+      <p className="mt-2 text-sm text-zinc-700 transition-colors dark:text-zinc-300">
         Get notified when I publish something new, and unsubscribe at any time.
       </p>
 

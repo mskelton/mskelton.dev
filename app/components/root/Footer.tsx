@@ -55,7 +55,7 @@ export function Footer({ variant }: FooterProps) {
                   textClassName="text-zinc-800 dark:text-zinc-100"
                 />
 
-                <p className="text-center text-zinc-600 transition-colors md:text-left dark:text-zinc-300">
+                <p className="text-center text-zinc-700 transition-colors md:text-left dark:text-zinc-300">
                   Made with <HeartIcon className="inline size-4 text-red-500" />{" "}
                   in Wisconsin.
                 </p>

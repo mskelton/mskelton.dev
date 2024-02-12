@@ -90,7 +90,7 @@ Card.Description = function CardDescription({
   return (
     <p
       className={clsx(
-        "relative z-10 mt-2 text-sm text-zinc-600 transition-colors dark:text-zinc-400",
+        "relative z-10 mt-2 text-sm text-zinc-700 transition-colors dark:text-zinc-300",
         className,
       )}
       data-testid="card-description"
@@ -132,7 +132,7 @@ Card.Eyebrow = function CardEyebrow({
   return (
     <Component
       className={twMerge(
-        "relative z-10 order-first mb-3 flex items-center text-sm text-zinc-400 transition-colors dark:text-zinc-500",
+        "relative z-10 order-first mb-3 flex items-center text-sm text-zinc-500 transition-colors dark:text-zinc-400",
         decorate && "pl-3.5",
         className,
       )}

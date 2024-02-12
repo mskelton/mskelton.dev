@@ -172,7 +172,7 @@ module.exports = {
       return {
         invert: {
           css: {
-            "--tw-prose-body": theme("colors.zinc.400"),
+            "--tw-prose-body": theme("colors.zinc.300"),
             "--tw-prose-headings": theme("colors.zinc.200"),
             "--tw-prose-link": theme("colors.zinc.100"),
             "--tw-prose-link-bg": theme("colors.indigo.500"),
@@ -203,7 +203,7 @@ module.exports = {
         DEFAULT: {
           css: {
             "--tw-prose-ring": `0 0 0 3px ${theme("colors.indigo.500")}`,
-            "--tw-prose-body": theme("colors.zinc.600"),
+            "--tw-prose-body": theme("colors.zinc.700"),
             "--tw-prose-headings": theme("colors.zinc.900"),
             "--tw-prose-link": theme("colors.zinc.900"),
             "--tw-prose-link-hover": theme("colors.zinc.100"),
