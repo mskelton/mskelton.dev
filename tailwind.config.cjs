@@ -429,13 +429,15 @@ module.exports = {
               ...font("xs"),
               backgroundColor: "var(--tw-prose-pre-bg)",
               borderRadius: 0,
+              border: "solid var(--tw-prose-code-border)",
+              borderWidth: "1px 0 1px 0",
               display: "grid",
               fontWeight: "inherit",
               isolation: "isolate",
               overflowX: "auto",
               padding: theme("spacing.4"),
               "@screen sm": {
-                border: "1px solid var(--tw-prose-code-border)",
+                borderWidth: "1px",
               },
             },
 
