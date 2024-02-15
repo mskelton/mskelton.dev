@@ -1,7 +1,6 @@
 /** @type {import("prettier").Config} */
 const config = {
   cssDeclarationSorterOrder: "alphabetical",
-  experimentalTernaries: true,
   overrides: [
     {
       files: "*.mdx",

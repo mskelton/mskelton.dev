@@ -153,9 +153,8 @@ export const searchBytes = cache(
       take: (direction === "left" ? -1 : 1) * (PAGE_SIZE + 1),
       // Search by tag, or by title/description
       where: {
-        OR:
-          query ?
-            [
+        OR: query
+          ? [
               { title: { contains: query } },
               { description: { contains: query } },
             ]
@@ -178,15 +177,15 @@ export const searchBytes = cache(
       nextHref:
         // The next button is enabled when we are moving left, or there are more
         // pages to the right.
-        direction === "left" || hasMore ?
-          `${prefix}after=${bytes.at(-1)?.id}`
-        : undefined,
+        direction === "left" || hasMore
+          ? `${prefix}after=${bytes.at(-1)?.id}`
+          : undefined,
       prevHref:
         // The previous button is enabled when we are moving right, or there
         // are more pages to the left.
-        direction === "right" || (direction === "left" && hasMore) ?
-          `${prefix}before=${bytes.at(0)?.id}`
-        : undefined,
+        direction === "right" || (direction === "left" && hasMore)
+          ? `${prefix}before=${bytes.at(0)?.id}`
+          : undefined,
     }
   },
 )

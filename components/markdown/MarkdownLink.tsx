@@ -7,9 +7,11 @@ export default function MarkdownLink({ href = "#", ...props }: LinkProps) {
   const isInternalLink = href.startsWith("/")
   const isAnchorLink = href.startsWith("#")
 
-  return (
-    isInternalLink ? <Link href={href} {...props} />
-    : isAnchorLink ? <a href={href} {...props} />
-    : <a href={href} rel="noopener noreferrer" target="_blank" {...props} />
+  return isInternalLink ? (
+    <Link href={href} {...props} />
+  ) : isAnchorLink ? (
+    <a href={href} {...props} />
+  ) : (
+    <a href={href} rel="noopener noreferrer" target="_blank" {...props} />
   )
 }

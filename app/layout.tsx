@@ -50,9 +50,9 @@ export default function RootLayout({ children }: RootLayoutProps) {
         <Providers>{children}</Providers>
       </body>
 
-      {process.env.NEXT_PUBLIC_GA_ID ?
+      {process.env.NEXT_PUBLIC_GA_ID ? (
         <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />
-      : null}
+      ) : null}
     </html>
   )
 }

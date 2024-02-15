@@ -7,9 +7,9 @@ export function isExternalImage(src: ImageProps["src"] | undefined) {
 export function getSrc(src: ImageProps["src"] | undefined) {
   if (!src) return undefined
 
-  return (
-    typeof src === "string" ? src
-    : "default" in src ? src.default.src
-    : src.src
-  )
+  return typeof src === "string"
+    ? src
+    : "default" in src
+      ? src.default.src
+      : src.src
 }

@@ -333,9 +333,9 @@ const server = Bun.serve<{ connectionId: string }>({
       const connectionId = Math.random().toString(36).slice(2)
 
       const success = server.upgrade(req, { data: { connectionId } })
-      return success ? undefined : (
-          new Response("WebSocket upgrade error", { status: 400 })
-        )
+      return success
+        ? undefined
+        : new Response("WebSocket upgrade error", { status: 400 })
     }
 
     return new Response("Hello world")

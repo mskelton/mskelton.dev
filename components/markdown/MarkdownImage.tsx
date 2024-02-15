@@ -13,9 +13,8 @@ export default async function MarkdownImage({
   const isAltHidden = altProp?.startsWith("!")
   const alt = isAltHidden ? altProp.slice(1) : altProp
 
-  const image =
-    isExternalImage(src) ?
-      { default: src }
+  const image = isExternalImage(src)
+    ? { default: src }
     : await import(`../../app/(main)/blog/posts/${src}`)
 
   return (

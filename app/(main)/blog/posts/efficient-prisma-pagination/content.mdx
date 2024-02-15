@@ -57,10 +57,11 @@ type SearchBytesProps = {
 
 function searchBytes({ before, after }: SearchBytesProps) {
   const cursor = after ?? before
-  const direction: Direction =
-    after ? "forward"
-    : before ? "backward"
-    : "none"
+  const direction: Direction = after
+    ? "forward"
+    : before
+      ? "backward"
+      : "none"
 
   const res = await prisma.byte.findMany({
     cursor: cursor ? { id: cursor } : undefined,
@@ -137,9 +138,9 @@ array.
 
 ```typescript
 const bytes =
-  direction === "backward" ?
-    res.slice(0, PAGE_SIZE)
-  : res.slice(-PAGE_SIZE)
+  direction === "backward"
+    ? res.slice(0, PAGE_SIZE)
+    : res.slice(-PAGE_SIZE)
 ```
 
 Okay, it's finally time to use that extra result that we've been talking
@@ -166,14 +167,14 @@ page links becomes fairly simple.
 
 ```typescript showLineNumbers {2,7}
 const nextHref =
-  direction === "backward" || hasMore ?
-    `/bytes?after=${bytes.at(-1)?.id}`
-  : undefined
+  direction === "backward" || hasMore
+    ? `/bytes?after=${bytes.at(-1)?.id}`
+    : undefined
 
 const prevHref =
-  direction === "forward" || (direction === "backward" && hasMore) ?
-    `/bytes?before=${bytes.at(0)?.id}`
-  : undefined
+  direction === "forward" || (direction === "backward" && hasMore)
+    ? `/bytes?before=${bytes.at(0)?.id}`
+    : undefined
 ```
 
 ## Conclusion

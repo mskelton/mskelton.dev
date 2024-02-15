@@ -40,13 +40,13 @@ export default function MarkdownPre({
       <div
         className={clsx(
           "absolute z-10 flex gap-3 transition-opacity delay-100 group-hover:opacity-100",
-          hasTitle ?
-            "right-[10px] top-[10px]"
-          : "right-[15px] top-[15px] opacity-0",
+          hasTitle
+            ? "right-[10px] top-[10px]"
+            : "right-[15px] top-[15px] opacity-0",
         )}
         data-testid="toolbar"
       >
-        {hasFocus ?
+        {hasFocus ? (
           <ToolbarButton
             aria-label={isExpanded ? "Collapse code" : "Expand code"}
             onClick={() => setIsExpanded(!isExpanded)}
@@ -65,7 +65,7 @@ export default function MarkdownPre({
               />
             </svg>
           </ToolbarButton>
-        : null}
+        ) : null}
 
         <ToolbarButton
           aria-label={copied ? "Copied" : "Copy code"}
@@ -93,9 +93,7 @@ export default function MarkdownPre({
       <pre
         ref={preRef}
         className={clsx(
-          !hasFocus ? undefined
-          : isExpanded ? "expanded"
-          : "collapsed",
+          !hasFocus ? undefined : isExpanded ? "expanded" : "collapsed",
           className,
         )}
         {...props}

@@ -42,28 +42,32 @@ export function PostLayout({
 
           <article>
             <header className="flex flex-col">
-              {meta ?
+              {meta ? (
                 <PageTitle className="text-3xl sm:text-4xl">
                   {meta.title}
                 </PageTitle>
-              : <Skeleton className="mb-2 h-10" />}
+              ) : (
+                <Skeleton className="mb-2 h-10" />
+              )}
 
               <div>
-                {meta ?
+                {meta ? (
                   <time
                     className="text-base text-zinc-500 transition-colors dark:text-zinc-300"
                     dateTime={meta.date}
                   >
                     {formatDate(meta.date)}
                   </time>
-                : <Skeleton className="h-6 w-40 rounded">{"\u200b"}</Skeleton>}
+                ) : (
+                  <Skeleton className="h-6 w-40 rounded">{"\u200b"}</Skeleton>
+                )}
               </div>
 
-              {featuredImage ?
+              {featuredImage ? (
                 <div className="-mx-4 mb-12 mt-8 flex aspect-video items-center justify-center overflow-hidden sm:-ml-7 sm:-mr-6 sm:rounded-xl">
                   {featuredImage}
                 </div>
-              : null}
+              ) : null}
             </header>
 
             <Prose className="mt-8">{children}</Prose>
