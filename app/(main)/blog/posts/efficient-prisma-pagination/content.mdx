@@ -60,8 +60,8 @@ function searchBytes({ before, after }: SearchBytesProps) {
   const direction: Direction = after
     ? "forward"
     : before
-    ? "backward"
-    : "none"
+      ? "backward"
+      : "none"
 
   const res = await prisma.byte.findMany({
     cursor: cursor ? { id: cursor } : undefined,

@@ -10,6 +10,6 @@ export function getSrc(src: ImageProps["src"] | undefined) {
   return typeof src === "string"
     ? src
     : "default" in src
-    ? src.default.src
-    : src.src
+      ? src.default.src
+      : src.src
 }

@@ -30,6 +30,7 @@ test.describe("Blog page", async () => {
     slugs.forEach((slug) => {
       const path = `/${slug}`
 
+      // eslint-disable-next-line playwright/valid-title
       test.describe(path, () => {
         test.beforeEach(async ({ blogPage }) => {
           await blogPage.goto(path)
