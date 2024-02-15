@@ -40,9 +40,9 @@ export function Footer({ variant }: FooterProps) {
   return (
     <footer
       className={clsx(
-        variant === "home"
-          ? "bg-blue-100/80 transition-colors dark:bg-slate-800"
-          : "mt-16 lg:mt-32",
+        variant === "home" ?
+          "bg-blue-100/80 transition-colors dark:bg-slate-800"
+        : "mt-16 lg:mt-32",
       )}
     >
       <Container>

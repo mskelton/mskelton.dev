@@ -35,7 +35,9 @@ function Tool({ children, href, title }: ToolProps) {
         {children}
       </Card.Description>
 
-      {href ? <Card.ExternalLink href={href} /> : null}
+      {href ?
+        <Card.ExternalLink href={href} />
+      : null}
     </Card>
   )
 }

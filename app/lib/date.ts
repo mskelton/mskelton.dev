@@ -19,8 +19,8 @@ export function formatDate(date: string | Date) {
 
 export function parseDate(date: string | Date) {
   if (typeof date === "string") {
-    return date.includes("T")
-      ? new Date(date)
+    return date.includes("T") ?
+        new Date(date)
       : new Date(`${date}T08:00:00-06:00`)
   }
 

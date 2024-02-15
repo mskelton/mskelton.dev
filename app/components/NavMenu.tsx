@@ -21,9 +21,9 @@ export function NavMenuItem<T extends object>(props: NavMenuItemProps<T>) {
       className={({ isFocused, isSelected }) =>
         twMerge(
           "group flex w-full cursor-default items-center rounded-lg px-4 py-2 text-xs font-medium outline-none",
-          isFocused
-            ? "bg-zinc-100 text-zinc-900 dark:bg-zinc-900 dark:text-zinc-100"
-            : "text-zinc-700 dark:text-zinc-300",
+          isFocused ?
+            "bg-zinc-100 text-zinc-900 dark:bg-zinc-900 dark:text-zinc-100"
+          : "text-zinc-700 dark:text-zinc-300",
           isSelected && "text-indigo-700 dark:text-indigo-300",
         )
       }

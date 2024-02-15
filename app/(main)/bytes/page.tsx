@@ -30,7 +30,10 @@ export default async function Blog({
   }
 }) {
   const { after, before, q: query, tag } = searchParams
-  const direction: Direction = after ? "right" : before ? "left" : "none"
+  const direction: Direction =
+    after ? "right"
+    : before ? "left"
+    : "none"
   const { bytes, nextHref, prevHref } = await searchBytes({
     cursor: after ?? before,
     direction,
@@ -55,7 +58,7 @@ export default async function Blog({
           />
         </form>
 
-        {query || tag ? (
+        {query || tag ?
           <div className="mt-2 flex justify-between px-2 text-sm">
             <p
               className="transition-colors dark:text-zinc-200"
@@ -74,10 +77,10 @@ export default async function Blog({
               Clear
             </Link>
           </div>
-        ) : null}
+        : null}
       </div>
 
-      {bytes.length ? (
+      {bytes.length ?
         <div className="mt-16 flex flex-col gap-16 sm:mt-20">
           {bytes.map((byte) => {
             const date = toDateString(byte.createdAt)
@@ -115,7 +118,7 @@ export default async function Blog({
             )
           })}
 
-          {prevHref || nextHref ? (
+          {prevHref || nextHref ?
             <div className="mt-12 flex items-center justify-center gap-6">
               <PageLink href={prevHref}>
                 <ChevronLeftIcon className="size-4 stroke-current" />
@@ -127,10 +130,9 @@ export default async function Blog({
                 <ChevronRightIcon className="size-4 stroke-current" />
               </PageLink>
             </div>
-          ) : null}
+          : null}
         </div>
-      ) : (
-        <p className="mx-auto mt-24 flex max-w-xl flex-col items-center text-center text-base text-zinc-700 transition-colors dark:text-zinc-300">
+      : <p className="mx-auto mt-24 flex max-w-xl flex-col items-center text-center text-base text-zinc-700 transition-colors dark:text-zinc-300">
           <FaceFrownIcon className="mb-3 h-12 w-12" />
           <span className="mb-1">
             We couldn’t find any bytes matching{" "}
@@ -138,7 +140,7 @@ export default async function Blog({
           </span>
           <span>Try another query or reset your search to view all bytes.</span>
         </p>
-      )}
+      }
     </SimpleLayout>
   )
 }

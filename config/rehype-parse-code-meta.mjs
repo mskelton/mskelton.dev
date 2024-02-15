@@ -31,9 +31,8 @@ export default function rehypeParseCodeMeta() {
       tree,
       (node) => node.type === "element" && node.tagName === "pre",
       (node) => {
-        const code = Array.isArray(node.children)
-          ? node.children[0]
-          : node.children
+        const code =
+          Array.isArray(node.children) ? node.children[0] : node.children
 
         const meta = builder(code.data?.meta ?? "")
           .add("showLineNumbers")
