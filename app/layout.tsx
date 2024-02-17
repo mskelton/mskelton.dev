@@ -1,4 +1,5 @@
 import "./styles/tailwind.css"
+import { GoogleAnalytics } from "@next/third-parties/google"
 import { Metadata } from "next"
 import { Rubik } from "next/font/google"
 import { siteMeta } from "./lib/siteMeta"
@@ -48,6 +49,10 @@ export default function RootLayout({ children }: RootLayoutProps) {
       <body className="relative flex min-h-full flex-col bg-white transition-colors duration-300 dark:bg-zinc-900">
         <Providers>{children}</Providers>
       </body>
+
+      {process.env.NEXT_PUBLIC_GA_ID ? (
+        <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />
+      ) : null}
     </html>
   )
 }

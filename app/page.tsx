@@ -35,7 +35,7 @@ function Post({ post }: PostProps) {
 function SocialLink({ icon: Icon, ...props }: SocialLinkProps) {
   return (
     <a className="group -m-1 rounded-full p-1 focusable" {...props}>
-      <Icon className="size-6 text-zinc-500 transition group-hover:text-indigo-500 dark:text-zinc-400 dark:group-hover:text-indigo-400" />
+      <Icon className="size-6 text-zinc-500 transition group-hover:text-indigo-500 dark:text-zinc-300 dark:group-hover:text-indigo-400" />
     </a>
   )
 }
@@ -99,7 +99,7 @@ function Resume() {
               </dd>
 
               <dt className="sr-only">Role</dt>
-              <dd className="text-xs text-zinc-500 transition-colors dark:text-zinc-400">
+              <dd className="text-xs text-zinc-500 transition-colors dark:text-zinc-300">
                 {role.title}
               </dd>
 

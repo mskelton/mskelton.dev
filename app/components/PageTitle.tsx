@@ -21,7 +21,7 @@ export interface PageSubtitleProps
 export function PageSubtitle(props: PageSubtitleProps) {
   return (
     <p
-      className="mt-6 text-base text-zinc-600 transition-colors dark:text-zinc-400"
+      className="mt-6 text-base text-zinc-700 transition-colors dark:text-zinc-300"
       {...props}
     />
   )

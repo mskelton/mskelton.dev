@@ -172,7 +172,7 @@ module.exports = {
       return {
         invert: {
           css: {
-            "--tw-prose-body": theme("colors.zinc.400"),
+            "--tw-prose-body": theme("colors.zinc.300"),
             "--tw-prose-headings": theme("colors.zinc.200"),
             "--tw-prose-link": theme("colors.zinc.100"),
             "--tw-prose-link-bg": theme("colors.indigo.500"),
@@ -203,7 +203,7 @@ module.exports = {
         DEFAULT: {
           css: {
             "--tw-prose-ring": `0 0 0 3px ${theme("colors.indigo.500")}`,
-            "--tw-prose-body": theme("colors.zinc.600"),
+            "--tw-prose-body": theme("colors.zinc.700"),
             "--tw-prose-headings": theme("colors.zinc.900"),
             "--tw-prose-link": theme("colors.zinc.900"),
             "--tw-prose-link-hover": theme("colors.zinc.100"),
@@ -402,6 +402,10 @@ module.exports = {
               position: "relative",
               marginBottom: theme("spacing.8"),
               marginTop: 0,
+              marginInline: `calc(${theme("spacing.4")} * -1)`,
+              "@screen sm": {
+                marginInline: 0,
+              },
             },
             ".code-block.has-title": {
               paddingTop: theme("spacing.12"),
@@ -424,13 +428,17 @@ module.exports = {
             "pre code": {
               ...font("xs"),
               backgroundColor: "var(--tw-prose-pre-bg)",
-              border: "1px solid var(--tw-prose-code-border)",
               borderRadius: 0,
+              border: "solid var(--tw-prose-code-border)",
+              borderWidth: "1px 0 1px 0",
               display: "grid",
               fontWeight: "inherit",
               isolation: "isolate",
               overflowX: "auto",
               padding: theme("spacing.4"),
+              "@screen sm": {
+                borderWidth: "1px",
+              },
             },
 
             // Use a custom focus ring for code blocks
@@ -442,12 +450,18 @@ module.exports = {
             },
 
             ":is(.has-title, .demo) :is(pre, code)": {
-              borderRadius: `0 0 ${theme("borderRadius.lg")} ${theme(
-                "borderRadius.lg",
-              )}`,
+              borderRadius: 0,
+              "@screen sm": {
+                borderRadius: `0 0 ${theme("borderRadius.lg")} ${theme(
+                  "borderRadius.lg",
+                )}`,
+              },
             },
             ".code-block:not(:is(.has-title, .demo)) :is(pre, code)": {
-              borderRadius: theme("borderRadius.lg"),
+              borderRadius: 0,
+              "@screen sm": {
+                borderRadius: theme("borderRadius.lg"),
+              },
             },
             "pre code .line": {
               ...transition,
@@ -483,17 +497,19 @@ module.exports = {
             "pre.line-numbers code": {
               counterReset: "line",
 
-              ".line:before": {
-                display: "inline-block",
-                counterIncrement: "line",
-                width: theme("spacing.4"),
-                fontSize: theme("fontSize.xs")[0],
-                color: theme("colors.zinc.400"),
-                userSelect: "none",
-                textAlign: "right",
-                flexShrink: 0,
-                marginRight: theme("spacing.4"),
-                content: "counter(line)",
+              "@screen md": {
+                ".line:before": {
+                  display: "inline-block",
+                  counterIncrement: "line",
+                  width: theme("spacing.4"),
+                  fontSize: theme("fontSize.xs")[0],
+                  color: theme("colors.zinc.400"),
+                  userSelect: "none",
+                  textAlign: "right",
+                  flexShrink: 0,
+                  marginRight: theme("spacing.4"),
+                  content: "counter(line)",
+                },
               },
             },
 

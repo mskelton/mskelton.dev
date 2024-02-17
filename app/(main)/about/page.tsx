@@ -59,7 +59,7 @@ export default function About() {
         <div className="lg:order-first lg:row-span-2">
           <PageTitle className="mb-12">Hi, I’m Mark 👋</PageTitle>
 
-          <div className="space-y-7 text-base text-zinc-600 transition-colors dark:text-zinc-400">
+          <div className="space-y-7 text-base text-zinc-700 transition-colors dark:text-zinc-300">
             <Content />
           </div>
         </div>

@@ -130,7 +130,7 @@ export default async function Blog({
           ) : null}
         </div>
       ) : (
-        <p className="mx-auto mt-24 flex max-w-xl flex-col items-center text-center text-base text-zinc-600 transition-colors dark:text-zinc-400">
+        <p className="mx-auto mt-24 flex max-w-xl flex-col items-center text-center text-base text-zinc-700 transition-colors dark:text-zinc-300">
           <FaceFrownIcon className="mb-3 h-12 w-12" />
           <span className="mb-1">
             We couldn’t find any bytes matching{" "}
