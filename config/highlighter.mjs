@@ -12,6 +12,7 @@ export const langs = [
   "lua",
   "markdown",
   "prolog",
+  "rust",
   "tsx",
   "typescript",
   "vim",
