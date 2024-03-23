@@ -25,11 +25,11 @@ jobs:
     name: Test
     runs-on: ubuntu-latest
     env:
-      DATABASE_URL: file:/var/test.db
+      DATABASE_URL: file:/var/lib/test.db
     steps:
       - uses: mskelton/setup-pnpm@v2
       - run: pnpm playwright install chromium --with-deps
-      - run: pnpm prisma db push
+      - run: pnpm prisma migrate dev
       - run: pnpm test
       - name: Upload test results
         uses: actions/upload-artifact@v2
