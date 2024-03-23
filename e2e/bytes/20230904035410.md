@@ -1,0 +1,40 @@
+---
+title: Better Shell Aliases
+tags: [fish, cli]
+---
+
+I use shell aliases quite heavily to simplify common CLI commands. However, one
+of my biggest pain points when using them is they didn't work as well in certain
+complex commands.
+
+For example, suppose I have the following alias in my Fish config that assigns
+the `task` command to an alias `t`:
+
+```bash
+alias t="task"
+```
+
+Now I can run commands like this:
+
+```bash
+t add New task
+```
+
+But with a complex command like this, it doesn't work:
+
+```fish
+seq 10 | xargs -I {} t add Testing {}
+```
+
+I found that a simple solution was to simple create a binary in addition to the
+alias. For the `t` alias, this would look like this:
+
+```bash
+#!/usr/bin/env bash
+
+task "$@"
+```
+
+Now, you could just create the binary and remove the alias, but the alias
+ensures fish can provide autocompletion properly, so I find that the combination
+of both gives the best of both worlds.

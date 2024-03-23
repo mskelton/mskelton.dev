@@ -1,3 +1,4 @@
+import { headers } from "next/headers"
 import { NextResponse } from "next/server"
 import { upsertByte } from "lib/api/bytes"
 import { getByteSource, octokit } from "lib/api/github"
@@ -22,11 +23,13 @@ async function getAllByteIds() {
 }
 
 export async function POST() {
-  if (process.env.NODE_ENV === "production") {
-    return NextResponse.json(
-      { message: "Reindexing is not allowed in production." },
-      { status: 400 },
-    )
+  const token = headers().get("Authorization")?.replace("Bearer ", "")
+
+  if (
+    process.env.NODE_ENV === "production" &&
+    process.env.API_AUTH_TOKEN !== token
+  ) {
+    return NextResponse.json({ message: "Forbidden" }, { status: 403 })
   }
 
   // Prep the reindexing before clearing content. Make sure we get all the
