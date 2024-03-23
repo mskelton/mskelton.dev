@@ -1,5 +1,6 @@
 fuse:
   dir: "/litefs"
+  allow-other: true
 
 data:
   dir: "/var/lib/litefs"
@@ -8,7 +9,7 @@ exit-on-error: false
 
 proxy:
   addr: ":8080"
-  target: "127.0.0.1:3000"
+  target: "localhost:3000"
   db: "prod.db"
 
 exec:

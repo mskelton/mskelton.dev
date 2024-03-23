@@ -21,13 +21,14 @@ COPY . .
 ARG NEXT_PUBLIC_GA_ID
 
 # Build the app
-RUN yarn build
+RUN npm run build
 
 # Production image, copy all the files and run next
 FROM base AS runner
 WORKDIR /app
 
-ENV NODE_ENV production
+# Install LiteFS and SQLite3
+RUN apk add ca-certificates fuse3 sqlite
 
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
@@ -43,21 +44,28 @@ RUN chown nextjs:nodejs .next
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 
-USER nextjs
-
-EXPOSE 3000
-
+# Set environment variables for Next.js
 ENV PORT 3000
-ENV HOSTNAME "0.0.0.0"
-
-# Install LiteFS and SQLite3
-RUN apt-get update -y && apt-get install -y ca-certificates fuse3 sqlite3
+ENV HOSTNAME "127.0.0.1"
+ENV NODE_ENV production
+ENV DATABASE_URL "file:/litefs/mskelton.dev.db"
 
 # Copy LiteFS binary
 COPY --from=flyio/litefs:0.5 /usr/local/bin/litefs /usr/local/bin/litefs
 
-# Move the appropriate LiteFS config file to /etc/ (this one will be used by LiteFS).
-COPY litefs.yml /etc/litefs.yml
+# Move the appropriate LiteFS config files to /etc
+COPY etc/fuse.conf /etc/fuse.conf
+COPY etc/litefs.yml /etc/litefs.yml
+
+# Copy Prisma migrations
+COPY prisma /app/prisma
+
+# Run as a non-root user
+# TODO
+# USER nextjs
+
+# Expose port 8080 that LiteFS will listen on
+EXPOSE 8080
 
 # Run LiteFS as the entrypoint. After it has connected and sync'd with the
 # cluster, it will run the commands listed in the "exec" field of the config.
