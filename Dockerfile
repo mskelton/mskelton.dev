@@ -50,4 +50,15 @@ EXPOSE 3000
 ENV PORT 3000
 ENV HOSTNAME "0.0.0.0"
 
-CMD ["node", "server.js"]
+# Install LiteFS and SQLite3
+RUN apt-get update -y && apt-get install -y ca-certificates fuse3 sqlite3
+
+# Copy LiteFS binary
+COPY --from=flyio/litefs:0.5 /usr/local/bin/litefs /usr/local/bin/litefs
+
+# Move the appropriate LiteFS config file to /etc/ (this one will be used by LiteFS).
+COPY etc/litefs.yml /etc/litefs.yml
+
+# Run LiteFS as the entrypoint. After it has connected and sync'd with the
+# cluster, it will run the commands listed in the "exec" field of the config.
+ENTRYPOINT litefs mount

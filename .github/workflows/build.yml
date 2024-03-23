@@ -22,13 +22,13 @@ jobs:
   test:
     name: Test
     runs-on: ubuntu-latest
+    env:
+      DATABASE_URL: /data/test.db
     steps:
       - uses: mskelton/setup-pnpm@v2
       - run: pnpm playwright install chromium --with-deps
-      - run: pnpm db:generate
+      - run: pnpm prisma db push
       - run: pnpm test
-        env:
-          DATABASE_URL: ${{ secrets.DATABASE_URL }}
       - name: Upload test results
         uses: actions/upload-artifact@v2
         if: ${{ failure() }}

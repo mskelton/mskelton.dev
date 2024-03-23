@@ -12,6 +12,7 @@ export default defineConfig({
   },
   forbidOnly: !!process.env.CI,
   fullyParallel: true,
+  globalSetup: require.resolve("./global-setup"),
   reporter: process.env.CI ? "dot" : "list",
   retries: process.env.CI ? 2 : 0,
   snapshotPathTemplate: "{testDir}/__snapshots__/{testFilePath}/{arg}{ext}",
