@@ -25,7 +25,7 @@ jobs:
     name: Test
     runs-on: ubuntu-latest
     env:
-      DATABASE_URL: file:/var/lib/test.db
+      DATABASE_URL: file:/var/test.db
     steps:
       - uses: mskelton/setup-pnpm@v2
       - run: pnpm playwright install chromium --with-deps
