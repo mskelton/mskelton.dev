@@ -10,6 +10,7 @@ jobs:
         run: pnpm lint
       - name: Check formatting
         run: pnpm prettier --check .
+
   ts:
     name: Type Check
     runs-on: ubuntu-latest
@@ -19,11 +20,12 @@ jobs:
         run: pnpm db:generate
       - name: Type check
         run: pnpm ts
+
   test:
     name: Test
     runs-on: ubuntu-latest
     env:
-      DATABASE_URL: file:/data/test.db
+      DATABASE_URL: file:/var/lib/test.db
     steps:
       - uses: mskelton/setup-pnpm@v2
       - run: pnpm playwright install chromium --with-deps
@@ -35,6 +37,7 @@ jobs:
         with:
           name: test-results
           path: test-results
+
   deploy:
     name: Deploy
     if: github.ref == 'refs/heads/main'
