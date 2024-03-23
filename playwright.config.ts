@@ -12,7 +12,6 @@ export default defineConfig({
   },
   forbidOnly: !!process.env.CI,
   fullyParallel: true,
-  globalSetup: fileURLToPath(new URL("./e2e/global-setup.ts", import.meta.url)),
   reporter: process.env.CI ? "dot" : "list",
   retries: process.env.CI ? 2 : 0,
   snapshotPathTemplate: "{testDir}/__snapshots__/{testFilePath}/{arg}{ext}",
