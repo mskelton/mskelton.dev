@@ -17,4 +17,4 @@ out/
 !.env.example
 
 # DB
-prisma/*.db
+prisma/*.db*
