@@ -7,7 +7,7 @@ data:
 exit-on-error: false
 
 proxy:
-  addr: ":3000"
+  addr: ":8080"
   target: "127.0.0.1:3000"
   db: "prod.db"
 
