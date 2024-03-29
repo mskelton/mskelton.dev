@@ -10,7 +10,7 @@ exit-on-error: false
 proxy:
   addr: ":8080"
   target: "localhost:3000"
-  db: "prod.db"
+  db: "mskelton.dev.db"
 
 exec:
   - cmd: "npx prisma migrate deploy"
