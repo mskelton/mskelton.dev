@@ -8,7 +8,7 @@ import { cache } from "react"
 import rehypeSlug from "rehype-slug"
 import remarkGfm from "remark-gfm"
 import remarkSmartypants from "remark-smartypants"
-import { getHighlighter } from "shiki"
+import { getHighlighter, Highlighter } from "shiki"
 import prisma from "lib/prisma"
 import MarkdownImage from "../../../components/markdown/MarkdownImage"
 import MarkdownLink from "../../../components/markdown/MarkdownLink"
@@ -24,6 +24,8 @@ import { ByteMeta } from "./types"
 
 // Revalidate the data at most every hour
 export const revalidate = 3600
+
+let highlighter: Highlighter | null
 
 const loadLocalByteContent = async (id: string) => {
   const dir = process.env.BYTES_DIR
@@ -58,7 +60,11 @@ export const getByte = cache(async (slug: string) => {
     byte.content = (await loadLocalByteContent(byte.id)) ?? byte.content
   }
 
-  const highlighter = await getHighlighter({ langs, themes: themes as any })
+  // Load the highlighter once and reuse it for all requests. Hopefully this
+  // fixes the memory leak issue with shiki and vscode-oniguruma.
+  if (!highlighter) {
+    highlighter = await getHighlighter({ langs, themes: themes as any })
+  }
 
   const { content } = await compileMDX<ByteMeta>({
     components: {
