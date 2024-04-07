@@ -3,10 +3,12 @@ export const redirects = [
   {
     destination: "https://termicons.mskelton.dev",
     source: "/termicons",
+    permanent: true,
   },
   {
     destination: "https://ratchet.mskelton.dev",
     source: "/ratchet",
+    permanent: true,
   },
 ]
 
