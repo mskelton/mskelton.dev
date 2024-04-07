@@ -29,8 +29,8 @@ const nextConfig = {
   output: "standalone",
   pageExtensions: ["ts", "tsx", "md", "mdx"],
   reactStrictMode: true,
-  redirects: () => Promise.resolve(redirects),
-  rewrites: () => Promise.resolve(rewrites),
+  redirects: async () => redirects,
+  rewrites: async () => rewrites,
 }
 
 const highlighter = await getHighlighter({ langs, themes })
