@@ -2,7 +2,7 @@
   "name": "mskelton.dev",
   "description": "Source code for my personal website.",
   "type": "module",
-  "packageManager": "pnpm@8.7.6",
+  "packageManager": "pnpm@9.0.1",
   "scripts": {
     "build": "prisma generate && next build",
     "db:generate": "prisma generate",

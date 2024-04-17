@@ -8,7 +8,7 @@ WORKDIR /app
 
 # Install dependencies
 COPY package.json pnpm-lock.yaml ./
-RUN yarn global add pnpm
+RUN yarn global add pnpm@9.0.1
 RUN pnpm install --frozen-lockfile
 
 # Rebuild the source code only when needed
