@@ -6,7 +6,7 @@ export const roles = [
     responsibilities: [
       "Developed an admin portal which significantly improved time to delivery of customization and features",
       "Built and maintained a design system using React, Tailwind, and Storybook",
-      "Constructed a high throughput GraphQL federated gateway using Apollo with custom plugins developed in Rust",
+      "Constructed a GraphQL federated gateway using Apollo with custom plugins developed in Rust decreasing average latency by 7x and maximum latency from ~10s to ~40ms",
       "Architected a database introspection and query tool with capabilities to support custom data schemas for customers with tight integration into frontend components",
       "Maintained an extremely feature rich and highly configurable data table used in roughly 70% of the application for customers to manage their data",
       "Implemented significant improvements to build process to improve developer efficiency",
