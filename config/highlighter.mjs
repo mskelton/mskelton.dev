@@ -7,6 +7,7 @@ export const langs = [
   "css",
   "fish",
   "go",
+  "html",
   "http",
   "javascript",
   "json",
