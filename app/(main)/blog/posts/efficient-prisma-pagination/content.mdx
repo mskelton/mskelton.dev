@@ -139,8 +139,8 @@ array.
 ```typescript
 const bytes =
   direction === "backward"
-    ? res.slice(0, PAGE_SIZE)
-    : res.slice(-PAGE_SIZE)
+    ? res.slice(-PAGE_SIZE)
+    : res.slice(0, PAGE_SIZE)
 ```
 
 Okay, it's finally time to use that extra result that we've been talking
