@@ -1,7 +1,14 @@
 export const roles = [
   {
+    company: "Ramp",
+    date: "July 2024 - Present",
+    href: "https://ramp.com",
+    responsibilities: [],
+    title: "Staff Frontend Enginer",
+  },
+  {
     company: "Federato",
-    date: "March 2023 - Present",
+    date: "March 2023 - July 2024",
     href: "https://federato.ai",
     responsibilities: [
       "Developed an admin portal which significantly improved time to delivery of customization and features",

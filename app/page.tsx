@@ -8,6 +8,7 @@ import { Container } from "./components/Container"
 import { BriefcaseIcon } from "./components/icons"
 import { LogoCKH } from "./components/logos/LogoCKH"
 import { LogoFederato } from "./components/logos/LogoFederato"
+import { LogoRamp } from "./components/logos/LogoRamp"
 import { LogoWiden } from "./components/logos/LogoWiden"
 import { PageSubtitle, PageTitle } from "./components/PageTitle"
 import { Footer } from "./components/root/Footer"
@@ -42,8 +43,16 @@ function SocialLink({ icon: Icon, ...props }: SocialLinkProps) {
 
 const resume = [
   {
+    company: "Ramp",
+    end: "2024",
+    href: "https://ramp.com",
+    logo: LogoRamp,
+    start: "2023",
+    title: "Staff frontend engineer",
+  },
+  {
     company: "Federato",
-    end: "Present",
+    end: "2024",
     href: "https://www.federato.ai",
     logo: LogoFederato,
     start: "2023",
