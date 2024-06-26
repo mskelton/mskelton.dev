@@ -7,7 +7,7 @@ import remarkGfm from "remark-gfm"
 import remarkMdxFrontmatter from "remark-mdx-frontmatter"
 import remarkSmartypants from "remark-smartypants"
 import { getHighlighter } from "shiki"
-import { langs, themeMap, themes } from "./config/highlighter.mjs"
+import { langAlias, langs, themeMap, themes } from "./config/highlighter.mjs"
 import { redirects, rewrites } from "./config/redirects.mjs"
 import rehypeCallout from "./config/rehype-callout.mjs"
 import rehypeCodeMeta from "./config/rehype-code-meta.mjs"
@@ -33,7 +33,7 @@ const nextConfig = {
   rewrites: async () => rewrites,
 }
 
-const highlighter = await getHighlighter({ langs, themes })
+const highlighter = await getHighlighter({ langAlias, langs, themes })
 const withMDX = nextMDX({
   extension: /\.mdx?$/,
   options: {

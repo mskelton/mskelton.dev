@@ -13,7 +13,12 @@ import prisma from "lib/prisma"
 import MarkdownImage from "../../../components/markdown/MarkdownImage"
 import MarkdownLink from "../../../components/markdown/MarkdownLink"
 import MarkdownPre from "../../../components/markdown/MarkdownPre"
-import { langs, themeMap, themes } from "../../../config/highlighter.mjs"
+import {
+  langAlias,
+  langs,
+  themeMap,
+  themes,
+} from "../../../config/highlighter.mjs"
 import rehypeCallout from "../../../config/rehype-callout.mjs"
 import rehypeCodeMeta from "../../../config/rehype-code-meta.mjs"
 import rehypeCodeTitles from "../../../config/rehype-code-titles.mjs"
@@ -63,7 +68,11 @@ export const getByte = cache(async (slug: string) => {
   // Load the highlighter once and reuse it for all requests. Hopefully this
   // fixes the memory leak issue with shiki and vscode-oniguruma.
   if (!highlighter) {
-    highlighter = await getHighlighter({ langs, themes: themes as any })
+    highlighter = await getHighlighter({
+      langAlias,
+      langs,
+      themes: themes as any,
+    })
   }
 
   const { content } = await compileMDX<ByteMeta>({
