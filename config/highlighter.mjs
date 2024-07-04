@@ -15,12 +15,17 @@ export const langs = [
   "markdown",
   "prolog",
   "rust",
+  "scheme",
   "tsx",
   "typescript",
   "vim",
   "xml",
   "yaml",
 ]
+
+export const langAlias = {
+  query: "scheme",
+}
 
 export const themeMap = {
   light: "tokyolight",
