@@ -15,7 +15,7 @@ function reportUnescaped(context, node) {
   if (!node.loc) return
 
   // HTML entities are already escaped in node.value (as well as node.raw),
-  // so pull the raw text from context.getSourceCode()
+  // so pull the raw text from context.sourceCode
   for (let i = node.loc.start.line; i <= node.loc.end.line; i++) {
     let rawLine = context.sourceCode.lines[i - 1]
     const start = i === node.loc.start.line ? node.loc.start.column : 0
