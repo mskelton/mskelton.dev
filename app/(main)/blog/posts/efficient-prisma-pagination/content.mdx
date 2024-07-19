@@ -1,30 +1,31 @@
 ---
 title: Efficient Pagination With Prisma
 description:
-  When adding pagination to the Bytes section of my website, I didn't want to
-  use traditional limit/offset pagination, instead I wanted to experiment with
-  cursor based pagination which scales significantly better than limit/offset
-  pagination. In this post, we explore how to do this with Prisma.
+  When adding pagination to the Bytes section of my website, I didn't want
+  to use traditional limit/offset pagination, instead I wanted to
+  experiment with cursor based pagination which scales significantly better
+  than limit/offset pagination. In this post, we explore how to do this
+  with Prisma.
 date: "2023-09-24"
 ---
 
-When adding pagination to the [Bytes](/bytes) section of my website, I didn't
-want to use traditional limit/offset pagination, instead I wanted to experiment
-with cursor based pagination which scales significantly better than limit/offset
-pagination.
+When adding pagination to the [Bytes](/bytes) section of my website, I
+didn't want to use traditional limit/offset pagination, instead I wanted to
+experiment with cursor based pagination which scales significantly better
+than limit/offset pagination.
 
-One of the challenges with cursor based pagination is knowing the pagination
-boundaries. For example, when are you at the last page? Or, if navigating back
-towards the beginning, how do you know when you reach the beginning? With a
-little creativity we can solve this problem very efficient even with a
-significant number of database records.
+One of the challenges with cursor based pagination is knowing the
+pagination boundaries. For example, when are you at the last page? Or, if
+navigating back towards the beginning, how do you know when you reach the
+beginning? With a little creativity we can solve this problem very
+efficient even with a significant number of database records.
 
 ## Representing state in the URL
 
-First, let's review the way we will store the state of the current page in the
-URL query string. If there are no query params, we will default to the first
-page of results. If there is an `after=<id>` query param, we will fetch the next
-page of results following the `id` specified.
+First, let's review the way we will store the state of the current page in
+the URL query string. If there are no query params, we will default to the
+first page of results. If there is an `after=<id>` query param, we will
+fetch the next page of results following the `id` specified.
 
 ```
 /bytes?after=20230920211722
@@ -32,8 +33,8 @@ page of results following the `id` specified.
 
 > [!INFO Why is the id a date?]  
 > There is no significance to the fact that the id in this example is a
-> date-like string. I happen to store bytes with a date like id, but any unique
-> id would work in the exact same way.
+> date-like string. I happen to store bytes with a date like id, but any
+> unique id would work in the exact same way.
 
 When paginating backwards, we swap the `after` param with a `before` param.
 
@@ -43,16 +44,24 @@ When paginating backwards, we swap the `after` param with a `before` param.
 
 ## The search query
 
-There are two main challenges we have to solve to make the pagination work: the
-query itself, and managing when to enable/disable the previous/next links. Let's
-start with the query which should look something like this.
+There are two main challenges we have to solve to make the pagination work:
+the query itself, and managing when to enable/disable the previous/next
+links. Let's start with the query which should look something like this.
 
-```typescript
+```typescript showLineNumbers
 type Direction = "none" | "forward" | "backward"
+type SearchBytesProps = {
+  before?: string
+  after?: string
+}
 
-function searchBytes({ before, after }: { before?: string; after?: string }) {
-  const direction: Direction = after ? "forward" : before ? "backward" : "none"
+function searchBytes({ before, after }: SearchBytesProps) {
   const cursor = after ?? before
+  const direction: Direction = after
+    ? "forward"
+    : before
+      ? "backward"
+      : "none"
 
   const res = await prisma.byte.findMany({
     cursor: cursor ? { id: cursor } : undefined,
@@ -62,15 +71,15 @@ function searchBytes({ before, after }: { before?: string; after?: string }) {
 }
 ```
 
-There are three search "directions" that are possible. The default is `none`
-indicating we are on the root page without having ever paginated through
-results. In this case, we don't want to skip any items, and we pull one more
-than the page size. More on that in a moment.
+There are three search "directions" that are possible. The default is
+`none` indicating we are on the root page without having ever paginated
+through results. In this case, we don't want to skip any items, and we pull
+one more than the page size. More on that in a moment.
 
-The next direction is `forward`, which functionally is very similar to `none`,
-with the slight difference being that we need to skip an item.
+The next direction is `forward`, which functionally is very similar to
+`none`, with the slight difference being that we need to skip an item.
 
-```typescript {3}
+```typescript showLineNumbers {3}
 const res = await prisma.byte.findMany({
   cursor: cursor ? { id: cursor } : undefined,
   skip: direction === "none" ? undefined : 1,
@@ -84,19 +93,20 @@ This is due to the fact that when we navigate to a URL like this:
 /bytes?after=20230920211722
 ```
 
-We are indicating we want to get a page of results after the item with the id of
-`20230920211722`. Later when we build the previous/next links, we'll use the
-last item in the page of results to make our link. As a result, we don't want
-the query to return the last item of the previous page on the next page, since
-we've already seen that item. So, applying `skip: 1` will ensure we skip to the
-first item after the given id, just as the query string would imply.
+We are indicating we want to get a page of results after the item with the
+id of `20230920211722`. Later when we build the previous/next links, we'll
+use the last item in the page of results to make our link. As a result, we
+don't want the query to return the last item of the previous page on the
+next page, since we've already seen that item. So, applying `skip: 1` will
+ensure we skip to the first item after the given id, just as the query
+string would imply.
 
-The other important argument is `take`, which specifies the number of records to
-return from the database query. As you can see we are taking one more record
-than the page size, which we will need in the next section, so more on that in
-just a moment.
+The other important argument is `take`, which specifies the number of
+records to return from the database query. As you can see we are taking one
+more record than the page size, which we will need in the next section, so
+more on that in just a moment.
 
-```typescript {4}
+```typescript showLineNumbers {4}
 const res = await prisma.byte.findMany({
   cursor: cursor ? { id: cursor } : undefined,
   skip: direction === "none" ? undefined : 1,
@@ -104,36 +114,41 @@ const res = await prisma.byte.findMany({
 })
 ```
 
-When the `before` param is passed, this logic is very similar with the slight
-exception that we are using a negative value for `take` which indicates we need
-to get records before the specified cursor.
+When the `before` param is passed, this logic is very similar with the
+slight exception that we are using a negative value for `take` which
+indicates we need to get records before the specified cursor.
 
 ## Previous/next links
 
-Now comes the fun part, generating previous/next links. If we are on the first
-or the last page, we want to disable our previous/next buttons since we never
-want a user navigating past the first or last item. This is typically quite easy
-with limit/offset pagination since you pull the total count which you can use to
-calculate if there are more items before or after the current page.
+Now comes the fun part, generating previous/next links. If we are on the
+first or the last page, we want to disable our previous/next buttons since
+we never want a user navigating past the first or last item. This is
+typically quite easy with limit/offset pagination since you pull the total
+count which you can use to calculate if there are more items before or
+after the current page.
 
-However, cursor based pagination makes this a tad more tricky. Even if we pull
-the total count, that doesn't really help us since we don't know the index of
-the current page of items, we just know they come before or after a given id.
-This is where our one extra item comes into play.
+However, cursor based pagination makes this a tad more tricky. Even if we
+pull the total count, that doesn't really help us since we don't know the
+index of the current page of items, we just know they come before or after
+a given id. This is where our one extra item comes into play.
 
-First though, we need to trim the extra item from the array of results. We can
-do this using `slice()` to either remove from the start or end of the array.
+First though, we need to trim the extra item from the array of results. We
+can do this using `slice()` to either remove from the start or end of the
+array.
 
 ```typescript
 const bytes =
-  direction === "backward" ? res.slice(0, PAGE_SIZE) : res.slice(-PAGE_SIZE)
+  direction === "backward"
+    ? res.slice(-PAGE_SIZE)
+    : res.slice(0, PAGE_SIZE)
 ```
 
-Okay, it's finally time to use that extra result that we've been talking about.
-While it's not going to be displayed, we'll go ahead and check to see if the
-number of items from the database is greater than the page size. If it was, then
-we know there are more items. We don't know how many, but that doesn't matter,
-we only care there is _some_ number of results we haven't yet seen.
+Okay, it's finally time to use that extra result that we've been talking
+about. While it's not going to be displayed, we'll go ahead and check to
+see if the number of items from the database is greater than the page size.
+If it was, then we know there are more items. We don't know how many, but
+that doesn't matter, we only care there is _some_ number of results we
+haven't yet seen.
 
 ```typescript
 const hasMore = res.length > PAGE_SIZE
@@ -142,15 +157,15 @@ const hasMore = res.length > PAGE_SIZE
 This helps, but we also can make a few assumptions about our data without
 needing any information at all:
 
-- When no `before`/`after` params are specified, we are on the first page, thus
-  there is **no** previous page.
+- When no `before`/`after` params are specified, we are on the first page,
+  thus there is **no** previous page.
 - When navigating forwards, there will **always** be a previous page.
 - When navigating backwards, there will **always** be a next page.
 
-Armed with this information, the logic for determining the next/previous page
-links becomes fairly simple.
+Armed with this information, the logic for determining the next/previous
+page links becomes fairly simple.
 
-```typescript {2,7}
+```typescript showLineNumbers {2,7}
 const nextHref =
   direction === "backward" || hasMore
     ? `/bytes?after=${bytes.at(-1)?.id}`
@@ -164,16 +179,16 @@ const prevHref =
 
 ## Conclusion
 
-So, it's fair to say that using cursor-based pagination is definitely overkill
-for a simple site like mine, but the learning experience was definitely worth
-it. In a production system where there is extremely high volumes of data, this
-strategy is very effective for providing a rich pagination experience without
-sacrificing performance.
+So, it's fair to say that using cursor-based pagination is definitely
+overkill for a simple site like mine, but the learning experience was
+definitely worth it. In a production system where there is extremely high
+volumes of data, this strategy is very effective for providing a rich
+pagination experience without sacrificing performance.
 
 It's also helpful to note that using cursor based pagination produces more
 consistent results. Navigating to `/bytes?after=20230920211722` will always
-return the same set of results assuming stable sorting, but `/bytes?page=2` will
-produce different results as content is added or removed.
+return the same set of results assuming stable sorting, but `/bytes?page=2`
+will produce different results as content is added or removed.
 
-I hope you enjoyed this post, if you did please feel free to share it! Cheers
-y'all!
+I hope you enjoyed this post, if you did please feel free to share it!
+Cheers y'all!

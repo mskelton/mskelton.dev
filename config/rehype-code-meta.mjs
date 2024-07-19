@@ -1,16 +1,17 @@
-import rangeParser from "parse-numeric-range"
 import { SKIP, visit } from "unist-util-visit"
 
-function calculateLines(meta, char) {
-  const [range] = meta
-    .filter((item) => item.startsWith(char))
-    .map((item) => item.slice(1, -1))
+function calculateLines(range) {
+  let hasHighlights = false
 
-  if (range) {
-    const lineNumbers = rangeParser(range)
-    return (index) => lineNumbers.includes(index + 1)
-  } else {
-    return () => false
+  return {
+    test: (index) => {
+      // There are newlines between each line, so we need to divide by 2
+      // to get the actual line number.
+      const match = range?.includes(index / 2 + 1)
+      hasHighlights = hasHighlights || match
+      return match
+    },
+    highlighted: () => hasHighlights,
   }
 }
 
@@ -20,28 +21,35 @@ export default function rehypeCodeMeta() {
       tree,
       (node) => node.type === "element" && node.tagName === "pre",
       (node) => {
-        const attrs = node.data?.attributes ?? []
-        const shouldHighlight = calculateLines(attrs, "{")
-        const shouldFocus = calculateLines(attrs, "[")
+        const highlight = calculateLines(node.data?.highlight)
+        const focus = calculateLines(node.data?.focus)
+
+        // Remove the tabIndex property, we handle this ourselves
+        delete node.properties.tabindex
+
+        if (node.data?.showLineNumbers) {
+          node.properties.class += " line-numbers"
+        }
 
         visit(
           node,
-          (t) =>
-            t.type === "element" && t.properties?.className?.includes("line"),
+          (t) => t.type === "element" && t.properties?.class?.includes("line"),
           (line, index, parent) => {
             if (!line.children.length && index !== parent.children.length - 1) {
               // Add a zero-width space to allow highlighting over empty lines
               line.children.push({ type: "text", value: "\u200b" })
             }
 
-            if (shouldHighlight(index)) {
-              line.properties.className ??= []
-              line.properties.className.push("highlight")
+            if (highlight.test(index)) {
+              line.properties.class += " highlight"
+
+              // Add a prop that indicates that this code block has focused
+              // so we can display an expand/collapse button.
+              node.properties.hasHighlight = true
             }
 
-            if (shouldFocus(index)) {
-              line.properties.className ??= []
-              line.properties.className.push("focus")
+            if (focus.test(index)) {
+              line.properties.class += " focus"
 
               // Add a prop that indicates that this code block has focused
               // so we can display an expand/collapse button.
@@ -49,6 +57,14 @@ export default function rehypeCodeMeta() {
             }
           },
         )
+
+        if (highlight.highlighted()) {
+          node.properties.class += " highlight"
+        }
+
+        if (focus.highlighted()) {
+          node.properties.class += " focus"
+        }
 
         return SKIP
       },

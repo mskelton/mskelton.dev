@@ -1,27 +1,29 @@
 "use client"
 
-import {
-  ClipboardDocumentCheckIcon,
-  ClipboardDocumentListIcon,
-} from "@heroicons/react/24/outline"
+import { CheckIcon, ClipboardIcon } from "@heroicons/react/24/outline"
 import { clsx } from "clsx"
 import React, { cloneElement, useRef, useState } from "react"
+
+const iconStyle = "absolute size-4 inset-[50%] [transform:translate(-50%,-50%)]"
 
 export interface MarkdownPreProps extends React.HTMLAttributes<HTMLPreElement> {
   children: React.ReactElement
   hasFocus?: boolean
+  hasHighlight?: boolean
+  hasTitle?: boolean
 }
 
 export default function MarkdownPre({
   children,
   className,
   hasFocus,
+  hasHighlight: _,
+  hasTitle,
   ...props
 }: MarkdownPreProps) {
   const preRef = useRef<HTMLPreElement>(null!)
   const [isExpanded, setIsExpanded] = useState(false)
   const [copied, setCopied] = useState(false)
-  const Icon = copied ? ClipboardDocumentCheckIcon : ClipboardDocumentListIcon
 
   function handleCopy() {
     setCopied(true)
@@ -31,22 +33,62 @@ export default function MarkdownPre({
     const codeEl = preRef.current.querySelector("code")
     const text = (codeEl?.innerText ?? "").replaceAll("\u200b", "")
     navigator.clipboard.writeText(text)
-
-    // Clear the copied state after 2 seconds
-    setTimeout(() => setCopied(false), 2000)
   }
 
   return (
     <>
-      {hasFocus ? (
-        <button
-          className="absolute right-0 top-3 rounded-md bg-zinc-900 px-2 text-xs text-white transition-colors focusable hover:bg-zinc-950 sm:right-6"
-          onClick={() => setIsExpanded(!isExpanded)}
-          type="button"
+      <div
+        className={clsx(
+          "absolute z-10 flex gap-3 transition-opacity delay-100 group-hover:opacity-100",
+          hasTitle
+            ? "right-[10px] top-[10px]"
+            : "right-[15px] top-[15px] opacity-0",
+        )}
+        data-testid="toolbar"
+      >
+        {hasFocus ? (
+          <ToolbarButton
+            aria-label={isExpanded ? "Collapse code" : "Expand code"}
+            onClick={() => setIsExpanded(!isExpanded)}
+          >
+            <svg
+              fill="none"
+              height="24"
+              viewBox="0 0 24 24"
+              width="24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <ExpandPath d="M8.25 9L12 5.25L15.75 9" isExpanded={isExpanded} />
+              <ExpandPath
+                d="M8.25 15L12 18.75L15.75 15"
+                isExpanded={isExpanded}
+              />
+            </svg>
+          </ToolbarButton>
+        ) : null}
+
+        <ToolbarButton
+          aria-label={copied ? "Copied" : "Copy code"}
+          onClick={handleCopy}
         >
-          {isExpanded ? "Collapse code" : "Expand code"}
-        </button>
-      ) : null}
+          <ClipboardIcon
+            className={clsx(
+              iconStyle,
+              copied && "animate-[1s_linear_copy-hide_forwards]",
+              "text-zinc-700 opacity-100 dark:text-zinc-300",
+            )}
+            onAnimationEnd={() => setCopied(false)}
+          />
+
+          <CheckIcon
+            className={clsx(
+              iconStyle,
+              copied && "animate-[1s_.15s_linear_copy-show_forwards]",
+              "text-green-600 opacity-0 dark:text-green-400",
+            )}
+          />
+        </ToolbarButton>
+      </div>
 
       <pre
         ref={preRef}
@@ -60,18 +102,36 @@ export default function MarkdownPre({
           tabIndex: 0,
         })}
       </pre>
-
-      <button
-        aria-label={copied ? "Copied" : "Copy code"}
-        className={clsx(
-          "absolute right-4 top-4 z-10 flex h-10 w-10 items-center justify-center rounded-lg bg-zinc-800 opacity-0 transition-all delay-100 focusable hover:bg-zinc-700 focus-visible:opacity-100 group-hover:opacity-100 group-[.has-title]:top-16",
-          copied ? "text-green-400" : "text-zinc-300",
-        )}
-        onClick={handleCopy}
-        type="button"
-      >
-        <Icon className="s-6" />
-      </button>
     </>
+  )
+}
+
+function ToolbarButton({
+  "aria-label": label,
+  ...props
+}: React.ButtonHTMLAttributes<HTMLButtonElement>) {
+  return (
+    <button
+      aria-label={label}
+      className="relative flex size-8 items-center justify-center rounded-md border border-zinc-300 bg-zinc-100 transition-[background-color] focusable hover:bg-zinc-200 focus-visible:opacity-100 dark:border-zinc-700 dark:bg-zinc-900 dark:hover:bg-zinc-800"
+      type="button"
+      {...props}
+    />
+  )
+}
+
+function ExpandPath({ d, isExpanded }: { d: string; isExpanded: boolean }) {
+  return (
+    <path
+      className={clsx(
+        "origin-center transition-transform duration-500 [transform-box:fill-box]",
+        isExpanded && "[transform:rotateX(180deg)]",
+      )}
+      d={d}
+      stroke="currentColor"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="1.5"
+    />
   )
 }

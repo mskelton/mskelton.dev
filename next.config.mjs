@@ -1,19 +1,20 @@
 import rehypeShiki from "@mskelton/rehype-shiki"
 import remarkExtractFrontmatter from "@mskelton/remark-extract-frontmatter"
 import nextMDX from "@next/mdx"
-import { fileURLToPath } from "node:url"
 import rehypeSlug from "rehype-slug"
 import remarkFrontmatter from "remark-frontmatter"
 import remarkGfm from "remark-gfm"
 import remarkMdxFrontmatter from "remark-mdx-frontmatter"
 import remarkSmartypants from "remark-smartypants"
-import shiki from "shiki"
+import { getHighlighter } from "shiki"
+import { langAlias, langs, themeMap, themes } from "./config/highlighter.mjs"
 import { redirects, rewrites } from "./config/redirects.mjs"
 import rehypeCallout from "./config/rehype-callout.mjs"
 import rehypeCodeMeta from "./config/rehype-code-meta.mjs"
 import rehypeCodeTitles from "./config/rehype-code-titles.mjs"
 import rehypeHeaderId from "./config/rehype-header-id.mjs"
 import rehypeHeadings from "./config/rehype-headings.mjs"
+import rehypeParseCodeMeta from "./config/rehype-parse-code-meta.mjs"
 import remarkAutoImagePath from "./config/remark-auto-image-path.mjs"
 import remarkCodeBlock from "./config/remark-code-block.mjs"
 
@@ -28,15 +29,11 @@ const nextConfig = {
   output: "standalone",
   pageExtensions: ["ts", "tsx", "md", "mdx"],
   reactStrictMode: true,
-  redirects: () => Promise.resolve(redirects),
-  rewrites: () => Promise.resolve(rewrites),
+  redirects: async () => redirects,
+  rewrites: async () => rewrites,
 }
 
-const themeURL = new URL("./config/tokyonight.json", import.meta.url)
-const highlighter = await shiki.getHighlighter({
-  theme: await shiki.loadTheme(fileURLToPath(themeURL)),
-})
-
+const highlighter = await getHighlighter({ langAlias, langs, themes })
 const withMDX = nextMDX({
   extension: /\.mdx?$/,
   options: {
@@ -44,8 +41,9 @@ const withMDX = nextMDX({
       rehypeSlug,
       rehypeHeadings,
       rehypeHeaderId,
+      rehypeParseCodeMeta,
+      [rehypeShiki, { highlighter, themes: themeMap }],
       rehypeCodeTitles,
-      [rehypeShiki, { highlighter }],
       rehypeCodeMeta,
       rehypeCallout,
     ],

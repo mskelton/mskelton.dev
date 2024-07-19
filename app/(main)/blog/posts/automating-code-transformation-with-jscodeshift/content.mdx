@@ -7,41 +7,43 @@ description:
 date: "2021-01-21"
 ---
 
-The JavaScript ecosystem is fast paced and continuously changing. By the time
-you finish adopting some fancy new library, another library has come along with
-people telling you to drop everything and adopt it. Even if you pick a library
-and stick with it, breaking changes happen from time to time, which add great
-new features but sometimes mean a long or painful refactor.
+The JavaScript ecosystem is fast paced and continuously changing. By the
+time you finish adopting some fancy new library, another library has come
+along with people telling you to drop everything and adopt it. Even if you
+pick a library and stick with it, breaking changes happen from time to
+time, which add great new features but sometimes mean a long or painful
+refactor.
 
-As a developer, there are a few ways of dealing with this problem. The first
-approach would be to never update your libraries so you don't have to spend time
-on updates. While this might save you some time, it also means you won't be
-getting security updates or access to new features that could save time in other
-ways. Another approach would be to always update your libraries to the latest
-versions soon after they come out. While this is better than the previous
-approach, it also means you will be spending a lot of extra time refactoring
-your applications.
+As a developer, there are a few ways of dealing with this problem. The
+first approach would be to never update your libraries so you don't have to
+spend time on updates. While this might save you some time, it also means
+you won't be getting security updates or access to new features that could
+save time in other ways. Another approach would be to always update your
+libraries to the latest versions soon after they come out. While this is
+better than the previous approach, it also means you will be spending a lot
+of extra time refactoring your applications.
 
 In this article, I'll discuss a third approach, which uses a tool called
-jscodeshift to automate code transformation to speed up refactoring so you can
-take advantage of new libraries or updates without having to manually migrate
-your project(s).
+jscodeshift to automate code transformation to speed up refactoring so you
+can take advantage of new libraries or updates without having to manually
+migrate your project(s).
 
-_You can find the code from this article, as well as an example Jest test suite,
-in the
+_You can find the code from this article, as well as an example Jest test
+suite, in the
 [accompanying GitHub repo](https://github.com/mskelton/jscodeshift-example)._
 
 ## Introduction to jscodeshift
 
 [jscodeshift](https://github.com/facebook/jscodeshift) is a tool created by
 Facebook that provides a simple API to perform abstract syntax tree (AST)
-transformations on your project's source files. We can use these APIs to create
-custom "codemods" to transform our code for whatever needs we have. An example
-of this might be removing an imported variable from a library and instead
-importing it from a file in your project. The code block below demonstrates this
-example, which I'll use for the remainder of this article.
+transformations on your project's source files. We can use these APIs to
+create custom "codemods" to transform our code for whatever needs we have.
+An example of this might be removing an imported variable from a library
+and instead importing it from a file in your project. The code block below
+demonstrates this example, which I'll use for the remainder of this
+article.
 
-```javascript
+```javascript showLineNumbers
 // Input
 import { useQuery, queryCache } from "react-query"
 
@@ -52,9 +54,9 @@ import { queryClient as queryCache } from "common/queryClient"
 
 ## Getting started with jscodeshift
 
-Hopefully, by now, you have an idea of the purpose of jscodeshift, so let's dive
-in and write an example codemod from scratch to solve the use case I showed in
-the last code block.
+Hopefully, by now, you have an idea of the purpose of jscodeshift, so let's
+dive in and write an example codemod from scratch to solve the use case I
+showed in the last code block.
 
 First, we need to install jscodeshift.
 
@@ -62,11 +64,11 @@ First, we need to install jscodeshift.
 npm install -g jscodeshift
 ```
 
-This will install jscodeshift globally so we can run it for any project. Next,
-let's create a file called `transform.js` with the following boilerplate for our
-codemod.
+This will install jscodeshift globally so we can run it for any project.
+Next, let's create a file called `transform.js` with the following
+boilerplate for our codemod.
 
-```javascript transform.js
+```javascript showLineNumbers transform.js
 module.exports = function (fileInfo, api) {
   const j = api.jscodeshift
   const source = j(fileInfo.source)
@@ -82,30 +84,32 @@ explanation of its purpose doesn't hurt. jscodeshift expects that transform
 scripts export a function that will accept two arguments with the file
 information and the jscodeshift API. We can then call the `api.jscodeshift`
 method (which we alias as `j`), passing it the input file source code. Our
-transformations would be the next step of the codemod, but for now we won't do
-anything. Finally, we'll call `toSource()`, which will convert the transformed
-AST back into a string, which jscodeshift will write back to the input file.
+transformations would be the next step of the codemod, but for now we won't
+do anything. Finally, we'll call `toSource()`, which will convert the
+transformed AST back into a string, which jscodeshift will write back to
+the input file.
 
-If any of that was confusing, don't worry. This boilerplate is pretty much the
-same for all codemods, so the important part to learn is the actual code
-transformation portion.
+If any of that was confusing, don't worry. This boilerplate is pretty much
+the same for all codemods, so the important part to learn is the actual
+code transformation portion.
 
 ## Applying transformations
 
-When writing codemods, it's often best to break up the problem into each part
-and then tackle each part separately. This is especially helpful when writing a
-large codemod with lots of steps and options. For this codemod, there are two
-steps we need to take:
+When writing codemods, it's often best to break up the problem into each
+part and then tackle each part separately. This is especially helpful when
+writing a large codemod with lots of steps and options. For this codemod,
+there are two steps we need to take:
 
-1. Remove the `queryCache` variable from the `react-query` import, if it exists.
-1. If `queryCache` was imported, add a new import declaration to import it from
-   the new location.
+1. Remove the `queryCache` variable from the `react-query` import, if it
+   exists.
+1. If `queryCache` was imported, add a new import declaration to import it
+   from the new location.
 
-We'll start with step 1, but first let's do a quick review of the AST for our
-example file. Below is a rough outline of the AST, which shows that our file has
-an `ImportDeclaration` node that contains two `ImportSpecifier` nodes. Each
-{"import"} specifier has an `imported` name and a `local` name that will be
-important for step 2.
+We'll start with step 1, but first let's do a quick review of the AST for
+our example file. Below is a rough outline of the AST, which shows that our
+file has an `ImportDeclaration` node that contains two `ImportSpecifier`
+nodes. Each {"import"} specifier has an `imported` name and a `local` name
+that will be important for step 2.
 
 ```
 - ImportDeclaration:
@@ -135,10 +139,10 @@ visualizer._
 
 ## Removing the `queryCache` variable
 
-Now that we know what our AST looks like, we can get down to business writing
-our transformation. To remove the `queryCache` import specifier from the
-`react-query` import, use the jscodeshift `find`, `filter`, and `remove` methods
-using the following three steps.
+Now that we know what our AST looks like, we can get down to business
+writing our transformation. To remove the `queryCache` import specifier
+from the `react-query` import, use the jscodeshift `find`, `filter`, and
+`remove` methods using the following three steps.
 
 1. Find all the import specifiers in the file.
 1. Filter to just the `queryCache` import specifier from the `react-query`
@@ -147,7 +151,7 @@ using the following three steps.
 
 This would look like this in our `transform.js` file.
 
-```javascript
+```javascript showLineNumbers
 // Your transformations go here
 source
   .find(j.ImportSpecifier)
@@ -158,9 +162,9 @@ source
 
 ## Testing our first change
 
-Before we move on, let's test our change to verify it's correctly removing the
-`queryCache` variable. To do this, create a file called `test.js` and add the
-following content:
+Before we move on, let's test our change to verify it's correctly removing
+the `queryCache` variable. To do this, create a file called `test.js` and
+add the following content:
 
 ```javascript
 import { useQuery, queryCache } from "react-query"
@@ -180,7 +184,8 @@ import { useQuery } from "react-query"
 ```
 
 Awesome! We've now successfully completed the first step of removing the
-`queryCache` variable from the react-query import. Now, let's move on to step 2.
+`queryCache` variable from the react-query import. Now, let's move on to
+step 2.
 
 ## Adding the new import
 
@@ -188,7 +193,7 @@ To add the new import, we first need to track if we removed a queryCache
 variable from the `react-query` import. Do this by checking the `length`
 property of the collection returned from our code in step 1.
 
-```javascript
+```javascript showLineNumbers
 const specifiers = source
   .find(j.ImportSpecifier)
   .filter((path) => path.parent.value.source.value === "react-query")
@@ -200,23 +205,23 @@ if (specifiers.length) {
 }
 ```
 
-Next, we need to find the `react-query` import so we can insert our new import
-after it. This logic will look very similar to our logic in step 1 where we
-found the import specifier.
+Next, we need to find the `react-query` import so we can insert our new
+import after it. This logic will look very similar to our logic in step 1
+where we found the import specifier.
 
-```javascript
+```javascript showLineNumbers
 // Add new import
 source
   .find(j.ImportDeclaration)
   .filter((path) => path.value.source.value === "react-query")
 ```
 
-Finally, we can call the `insertAfter` function to insert our new import after
-the existing `react-query` import. The value that we pass to `insertAfter` can
-be any valid AST node, which we can easily create thanks to the helper functions
-provided by jscodeshift.
+Finally, we can call the `insertAfter` function to insert our new import
+after the existing `react-query` import. The value that we pass to
+`insertAfter` can be any valid AST node, which we can easily create thanks
+to the helper functions provided by jscodeshift.
 
-```javascript
+```javascript showLineNumbers
 source
   .find(j.ImportDeclaration)
   .filter((path) => path.value.source.value === "react-query")
@@ -233,15 +238,16 @@ source
   )
 ```
 
-_When creating new AST nodes, using AST Explorer helps to understand the shape
-of nodes so you can more easily create them using the jscodeshift helper
-methods._
+_When creating new AST nodes, using AST Explorer helps to understand the
+shape of nodes so you can more easily create them using the jscodeshift
+helper methods._
 
 ## Putting it all together
 
-If we put all of this together, our final file should look something like this:
+If we put all of this together, our final file should look something like
+this:
 
-```javascript
+```javascript showLineNumbers
 module.exports = function (file, api) {
   const j = api.jscodeshift
   const source = j(file.source)
@@ -278,20 +284,20 @@ Congratulations! We've just created our first codemod using jscodeshift!
 ## Conclusion
 
 In this article, we explored how to use jscodeshift to automate code
-transformations to simplify refactors. While the example I showed might not be
-useful to you, it should give you an idea of what you can do with jscodeshift.
-If you want to see a more complex codemod, check out
+transformations to simplify refactors. While the example I showed might not
+be useful to you, it should give you an idea of what you can do with
+jscodeshift. If you want to see a more complex codemod, check out
 [Ratchet](https://github.com/mskelton/ratchet), a project I created that
 automatically converts React PropTypes to TypeScript definitions.
 
 ## Bonus: Type definitions
 
-Since remembering all the available jscodeshift methods is not easy, jscodeshift
-provides type definitions out of the box! All you have to do is add a JSDoc
-comment to specify the types of the parameters and your editor will now
-autocomplete the available methods!
+Since remembering all the available jscodeshift methods is not easy,
+jscodeshift provides type definitions out of the box! All you have to do is
+add a JSDoc comment to specify the types of the parameters and your editor
+will now autocomplete the available methods!
 
-```javascript
+```javascript showLineNumbers
 /**
  * @param {import("jscodeshift").FileInfo} fileInfo
  * @param {import("jscodeshift").API} api

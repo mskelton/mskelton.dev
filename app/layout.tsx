@@ -1,8 +1,10 @@
 import "./styles/tailwind.css"
+import { GoogleAnalytics } from "@next/third-parties/google"
 import { Metadata } from "next"
 import { Rubik } from "next/font/google"
 import { siteMeta } from "./lib/siteMeta"
 import { themeEffect } from "./lib/themeEffect"
+import { Providers } from "./Providers"
 
 export const metadata: Metadata = {
   description: siteMeta.description,
@@ -22,7 +24,7 @@ export interface RootLayoutProps {
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html
-      className={`h-full text-lg antialiased ${font.className}`}
+      className={`h-full overflow-y-scroll text-lg antialiased ${font.className}`}
       lang="en"
       suppressHydrationWarning
     >
@@ -45,8 +47,12 @@ export default function RootLayout({ children }: RootLayoutProps) {
       </head>
 
       <body className="relative flex min-h-full flex-col bg-white transition-colors duration-300 dark:bg-zinc-900">
-        {children}
+        <Providers>{children}</Providers>
       </body>
+
+      {process.env.NEXT_PUBLIC_GA_ID ? (
+        <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />
+      ) : null}
     </html>
   )
 }

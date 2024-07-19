@@ -1,24 +1,51 @@
 import rehypeShiki from "@mskelton/rehype-shiki"
+import matter from "gray-matter"
 import { notFound } from "next/navigation"
 import { compileMDX } from "next-mdx-remote/rsc"
+import fs from "node:fs/promises"
+import path from "node:path"
 import { cache } from "react"
 import rehypeSlug from "rehype-slug"
 import remarkGfm from "remark-gfm"
 import remarkSmartypants from "remark-smartypants"
-import { getHighlighter } from "lib/mdx"
+import { getHighlighter, Highlighter } from "shiki"
 import prisma from "lib/prisma"
 import MarkdownImage from "../../../components/markdown/MarkdownImage"
 import MarkdownLink from "../../../components/markdown/MarkdownLink"
 import MarkdownPre from "../../../components/markdown/MarkdownPre"
+import {
+  langAlias,
+  langs,
+  themeMap,
+  themes,
+} from "../../../config/highlighter.mjs"
 import rehypeCallout from "../../../config/rehype-callout.mjs"
 import rehypeCodeMeta from "../../../config/rehype-code-meta.mjs"
 import rehypeCodeTitles from "../../../config/rehype-code-titles.mjs"
 import rehypeHeaderId from "../../../config/rehype-header-id.mjs"
 import config from "../../../config/rehype-headings.mjs"
+import rehypeParseCodeMeta from "../../../config/rehype-parse-code-meta.mjs"
 import { ByteMeta } from "./types"
 
 // Revalidate the data at most every hour
 export const revalidate = 3600
+
+let highlighter: Highlighter | null
+
+const loadLocalByteContent = async (id: string) => {
+  const dir = process.env.BYTES_DIR
+  if (!dir) return
+
+  try {
+    const filename = path.join(dir, "bytes", `${id}.md`)
+    const raw = await fs.readFile(filename, "utf8")
+    const { content } = matter(raw)
+
+    return Buffer.from(content)
+  } catch {
+    console.warn("Could not load local byte content. Falling back to database.")
+  }
+}
 
 export const getByte = cache(async (slug: string) => {
   const byte = await prisma.byte.findFirst({
@@ -29,6 +56,23 @@ export const getByte = cache(async (slug: string) => {
 
   if (!byte) {
     notFound()
+  }
+
+  // If running locally, attempt to load the byte content from the local
+  // file system. This allows for easier development of bytes before publishing
+  // the final content to the database.
+  if (process.env.NODE_ENV === "development") {
+    byte.content = (await loadLocalByteContent(byte.id)) ?? byte.content
+  }
+
+  // Load the highlighter once and reuse it for all requests. Hopefully this
+  // fixes the memory leak issue with shiki and vscode-oniguruma.
+  if (!highlighter) {
+    highlighter = await getHighlighter({
+      langAlias,
+      langs,
+      themes: themes as any,
+    })
   }
 
   const { content } = await compileMDX<ByteMeta>({
@@ -43,8 +87,9 @@ export const getByte = cache(async (slug: string) => {
           rehypeSlug,
           config,
           rehypeHeaderId,
+          rehypeParseCodeMeta,
+          [rehypeShiki as any, { highlighter, themes: themeMap }],
           rehypeCodeTitles,
-          [rehypeShiki as any, { highlighter: await getHighlighter() }],
           rehypeCodeMeta,
           rehypeCallout as any,
         ],

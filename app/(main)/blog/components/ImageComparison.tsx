@@ -26,7 +26,7 @@ function CompareImage({
       alt={alt ?? ""}
       onLoad={onLoad}
       placeholder="blur"
-      src={require(`../../../images/blog/${slug}/${src}`)}
+      src={require(`../posts/${slug}/${src}`)}
       style={styleFitContainer()}
     />
   )
@@ -51,7 +51,7 @@ export default function ImageComparison({
 
   return (
     <ReactCompareSlider
-      className="rounded-xl sm:-mx-8 sm:max-w-[calc(100%+4rem)]"
+      className="rounded-xl sm:max-w-[calc(100%+4rem)]"
       handle={
         <Handle
           buttonStyle={{ borderColor: "currentcolor" }}

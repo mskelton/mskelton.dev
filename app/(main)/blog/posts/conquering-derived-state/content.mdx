@@ -2,35 +2,36 @@
 title: Conquering Derived State
 description:
   Derived state in React is generally considered to be an anti-pattern that
-  should be avoided. In this article, I show how to recognize derived state in
-  your components and alternative ways to write your components to avoid using
-  derived state.
+  should be avoided. In this article, I show how to recognize derived state
+  in your components and alternative ways to write your components to avoid
+  using derived state.
 date: "2020-04-03"
 ---
 
 A couple weeks ago, my fellow front-end developers at
-[Widen](https://www.widen.com) had a conversation regarding one of our shared
-React components which we were struggling to implement in one of our
-applications. While most React components are fully controlled (via props) or
-fully uncontrolled (internal state), this component used what is known as
-"derived state" which is internal state that is controlled to some degree by
-props. Although derived state might seem like a good solution, it often causes
-many more problems than it attempts to solve.
+[Widen](https://www.widen.com) had a conversation regarding one of our
+shared React components which we were struggling to implement in one of our
+applications. While most React components are fully controlled (via props)
+or fully uncontrolled (internal state), this component used what is known
+as "derived state" which is internal state that is controlled to some
+degree by props. Although derived state might seem like a good solution, it
+often causes many more problems than it attempts to solve.
 
 My goal in this article is not to convince you that derived state should be
 avoided. React has an excellent
 [article on derived state](https://reactjs.org/blog/2018/06/07/you-probably-dont-need-derived-state.html)
-which does a great job of explaining why derived state is an anti-pattern. The
-focus of this article will be about how to recognize derived state in your
-components and several alternatives to derived state.
+which does a great job of explaining why derived state is an anti-pattern.
+The focus of this article will be about how to recognize derived state in
+your components and several alternatives to derived state.
 
 ## Recognizing derived state
 
-Before I go any further, let me provide a few examples of derived state to help
-you start recognizing derived state patterns. I'll begin with class based
-components as they are easier to recognize than function based components.
+Before I go any further, let me provide a few examples of derived state to
+help you start recognizing derived state patterns. I'll begin with class
+based components as they are easier to recognize than function based
+components.
 
-```javascript
+```javascript showLineNumbers
 class PartiallyControlledInput extends React.Component {
   state = {
     value: this.props.value,
@@ -54,16 +55,16 @@ class PartiallyControlledInput extends React.Component {
 ```
 
 In this example, we have a component which is a partially controlled input
-field. The component manages its state internally but it also allows the parent
-component to update the state by changing the `value` prop. The key part of this
-example is `componentWillReceiveProps` which is the red flag indicating the
-component derives its state from props.
+field. The component manages its state internally but it also allows the
+parent component to update the state by changing the `value` prop. The key
+part of this example is `componentWillReceiveProps` which is the red flag
+indicating the component derives its state from props.
 
 Because `componentWillReceiveProps` is being deprecated, React has a newer
-lifecycle method named `getDerivedStateFromProps`. This method almost needs no
-example as its name speaks for itself, but a quick example won't hurt.
+lifecycle method named `getDerivedStateFromProps`. This method almost needs
+no example as its name speaks for itself, but a quick example won't hurt.
 
-```javascript
+```javascript showLineNumbers
 class PartiallyControlledInput extends React.Component {
   state = {
     value: this.props.value,
@@ -93,14 +94,14 @@ class PartiallyControlledInput extends React.Component {
 ```
 
 As you can see, `getDerivedStateFromProps` gets even more complex as we are
-required to store a prop value in state so when that prop changes we can reset
-state based on props.
+required to store a prop value in state so when that prop changes we can
+reset state based on props.
 
-As we move on to function based components, derived state is a bit tougher to
-spot as you have to look for more than just `componentWillReceiveProps` or
-`getDerivedStateFromProps`.
+As we move on to function based components, derived state is a bit tougher
+to spot as you have to look for more than just `componentWillReceiveProps`
+or `getDerivedStateFromProps`.
 
-```javascript
+```javascript showLineNumbers
 function PartiallyControlledInput(props) {
   const [value, setValue] = useState(props.value)
 
@@ -112,12 +113,12 @@ function PartiallyControlledInput(props) {
 }
 ```
 
-As you can see, the previous example is a more subtle use of derived state. When
-`props.value` changes, an effect will run which will set the value of the input
-with the new prop value. This is essentially the same as the first example we
-showed above and suffers from the exact same problems. Just because it is
-written with hooks doesn't mean it is magically better than its class based
-equivalent!
+As you can see, the previous example is a more subtle use of derived state.
+When `props.value` changes, an effect will run which will set the value of
+the input with the new prop value. This is essentially the same as the
+first example we showed above and suffers from the exact same problems.
+Just because it is written with hooks doesn't mean it is magically better
+than its class based equivalent!
 
 ## Alternatives to derived state
 
@@ -127,11 +128,11 @@ alternative solutions.
 ### Fully uncontrolled component with a key
 
 The first option would be to make the component fully uncontrolled and use
-React's special `key` prop which will create a new instance of the component
-rather than updating the existing one. This includes re-initializing component
-state with the initial values provided.
+React's special `key` prop which will create a new instance of the
+component rather than updating the existing one. This includes
+re-initializing component state with the initial values provided.
 
-```javascript
+```javascript showLineNumbers
 function FullyUncontrolledInput({ initialValue }) {
   const [value, setValue] = useState(initialValue)
 
@@ -139,32 +140,34 @@ function FullyUncontrolledInput({ initialValue }) {
 }
 ```
 
-To use the component, we simply need to provide an initialValue prop as well as
-a `key` prop. To re-initialize the internal state of the input, we simply need
-to change the `key`. In the following code block, we use a variable named
-`formId` which we can change when the form needs to be reset.
+To use the component, we simply need to provide an initialValue prop as
+well as a `key` prop. To re-initialize the internal state of the input, we
+simply need to change the `key`. In the following code block, we use a
+variable named `formId` which we can change when the form needs to be
+reset.
 
-```javascript
+```javascript showLineNumbers
 function Form() {
   return <FullyUncontrolledInput key={formId} initialValue="Initial" />
 }
 ```
 
-Fully controlled component The next option is to make the input fully controlled
-and let the parent component manage its state. This option will require us to
-add an `onChange` prop to the input component so the parent can listen to
-changes and update state accordingly.
+Fully controlled component The next option is to make the input fully
+controlled and let the parent component manage its state. This option will
+require us to add an `onChange` prop to the input component so the parent
+can listen to changes and update state accordingly.
 
-```javascript
+```javascript showLineNumbers
 function FullyControlledInput({ value, onChange }) {
   return <input onChange={(e) => onChange(e.target.value)} value={value} />
 }
 ```
 
-With our fully controlled input component, we now can add a simple `useState`
-hook to our form component which will manage the state of our input.
+With our fully controlled input component, we now can add a simple
+`useState` hook to our form component which will manage the state of our
+input.
 
-```javascript
+```javascript showLineNumbers
 function Form() {
   const [value, setValue] = useState("Initial")
 
@@ -176,15 +179,16 @@ function Form() {
 
 While the previous examples sound like easy solutions, many real-world
 components are much more complex than those simple examples. In these
-situations, creating a custom hook might just be what you need to achieve a high
-level of customization without large boilerplate.
+situations, creating a custom hook might just be what you need to achieve a
+high level of customization without large boilerplate.
 
 For example, consider a date picker component which accepts props for the
-currently selected day and month as well as event handlers when the user changes
-the day or month. Rather than making our form component manage all the state and
-event handlers, we can wrap that logic in a custom `useDatePicker` hook!
+currently selected day and month as well as event handlers when the user
+changes the day or month. Rather than making our form component manage all
+the state and event handlers, we can wrap that logic in a custom
+`useDatePicker` hook!
 
-```javascript
+```javascript showLineNumbers
 function useDatePicker(initialValues = { day: 1, month: "Jan" }) {
   const [month, setMonth] = useState(initialValues.month)
   const [day, setDay] = useState(initialValues.day)
@@ -204,11 +208,11 @@ function useDatePicker(initialValues = { day: 1, month: "Jan" }) {
 }
 ```
 
-Now, we can very easily call the `useDatePicker` hook inside our form component
-and pass `datePickerProps` to the date picker component which will add all the
-necessary props for managing the state of the component.
+Now, we can very easily call the `useDatePicker` hook inside our form
+component and pass `datePickerProps` to the date picker component which
+will add all the necessary props for managing the state of the component.
 
-```javascript
+```javascript showLineNumbers
 function Form() {
   const { datePickerProps, day, month } = useDatePicker()
 
@@ -220,12 +224,13 @@ function Form() {
 }
 ```
 
-Because the hook isn't directly tied to the component, we can achieve a high
-level of customization. For example, if we want to trigger some side effect when
-the day changes, we can simply add a `useEffect` hook with a dependency on the
-`day` variable. Or, if we needed to customize the `onDayChange` logic, we could
-override the prop returned in `datePickerProps` with a custom `onDayChange`
-prop. We could even create a reset button in the form component which when
-clicked uses the `setDay` and `setMonth` functions to reset the date picker to
-the current day. The possibilities are endless, so use your imagination and come
-up with something great!
+Because the hook isn't directly tied to the component, we can achieve a
+high level of customization. For example, if we want to trigger some side
+effect when the day changes, we can simply add a `useEffect` hook with a
+dependency on the `day` variable. Or, if we needed to customize the
+`onDayChange` logic, we could override the prop returned in
+`datePickerProps` with a custom `onDayChange` prop. We could even create a
+reset button in the form component which when clicked uses the `setDay` and
+`setMonth` functions to reset the date picker to the current day. The
+possibilities are endless, so use your imagination and come up with
+something great!

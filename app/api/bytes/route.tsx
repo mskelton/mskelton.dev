@@ -28,9 +28,11 @@ export async function POST(req: Request) {
 
   const { commits } = body
   await remove(commits.flatMap((c) => c.removed))
-  await Promise.all(
-    commits.flatMap((c) => [...c.added, ...c.modified]).map(upsert),
-  )
+
+  const bytes = commits.flatMap((c) => [...c.added, ...c.modified])
+  for await (const byte of bytes) {
+    await upsert(byte)
+  }
 
   return NextResponse.json({ message: "ok" })
 }

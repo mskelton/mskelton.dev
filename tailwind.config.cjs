@@ -14,7 +14,6 @@ module.exports = {
   plugins: [
     require("@tailwindcss/typography"),
     require("@tailwindcss/container-queries"),
-    require("@mskelton/tailwind-size"),
     plugin(({ addUtilities, theme }) => {
       addUtilities({
         ".focusable": {
@@ -37,6 +36,8 @@ module.exports = {
         "draw-stroke": "300ms ease-in-out 700ms forwards draw-stroke",
         heartbeat:
           "1s ease-in-out 0s infinite alternate none running heartbeat",
+        "popover-enter": "popover-slide 200ms",
+        "popover-exit": "popover-slide 200ms reverse ease-in",
       },
       keyframes: ({ theme }) => ({
         "draw-stroke": {
@@ -78,6 +79,66 @@ module.exports = {
             boxShadow: theme("boxShadow.md"),
           },
         },
+        "tooltip-slide": {
+          "0%": {
+            opacity: 0,
+            transform: "var(--origin)",
+          },
+          "100%": {
+            opacity: 1,
+            transform: "translateY(0)",
+          },
+        },
+        "popover-slide": {
+          from: {
+            transform: "var(--origin)",
+            opacity: 0,
+          },
+          to: {
+            transform: "translateY(0)",
+            opacity: 1,
+          },
+        },
+        "copy-hide": {
+          "0%": {
+            opacity: 1,
+            transform: "translate(-50%, -50%)",
+          },
+          "20%": {
+            opacity: 0,
+            transform: "translate(-50%, -50%) scale(.5)",
+          },
+          "80%": {
+            opacity: 0,
+            transform: "translate(-50%,-50%) scale(.5)",
+          },
+          to: {
+            opacity: 1,
+            transform: "translate(-50%, -50%)",
+          },
+        },
+        "copy-show": {
+          "0%": {
+            opacity: 0,
+            transform: "translate(-50%, -50%) scale(.5)",
+          },
+          "20%": {
+            opacity: 1,
+            transform: "translate(-50%, -50%)",
+          },
+          "60%": {
+            opacity: 1,
+            transform: "translate(-50%, -50%)",
+          },
+          "80%": {
+            opacity: 0,
+            transform: "translate(-50%,-50%) scale(.5)",
+          },
+          to: {
+            opacity: 0,
+            transform: "translate(-50%,-50%) scale(.5)",
+          },
+        },
       }),
     },
     fontSize: {
@@ -103,10 +164,15 @@ module.exports = {
         transitionTimingFunction: theme("transitionTimingFunction.in-out"),
       }
 
+      const font = (size) => {
+        const [fontSize, { lineHeight }] = theme(`fontSize.${size}`)
+        return { fontSize, lineHeight }
+      }
+
       return {
         invert: {
           css: {
-            "--tw-prose-body": theme("colors.zinc.400"),
+            "--tw-prose-body": theme("colors.zinc.300"),
             "--tw-prose-headings": theme("colors.zinc.200"),
             "--tw-prose-link": theme("colors.zinc.100"),
             "--tw-prose-link-bg": theme("colors.indigo.500"),
@@ -118,22 +184,26 @@ module.exports = {
             "--tw-prose-hr": theme("colors.zinc.700 / 0.4"),
             "--tw-prose-quote-borders": theme("colors.zinc.500"),
             "--tw-prose-captions": theme("colors.zinc.500"),
+            "--tw-prose-pre-bg": theme("colors.zinc.950"),
             "--tw-prose-code": theme("colors.zinc.300"),
             "--tw-prose-code-bg": theme("colors.zinc.800"),
-            "--tw-prose-code-border": theme("colors.zinc.600"),
+            "--tw-prose-code-border": theme("colors.zinc.700"),
             "--tw-prose-code-link": theme("colors.indigo.400"),
             "--tw-prose-code-link-hover": theme("colors.indigo.500"),
             "--tw-prose-kbd": theme("colors.zinc.300"),
             "--tw-prose-kbd-bg": theme("colors.zinc.800"),
             "--tw-prose-kbd-borders": theme("colors.zinc.700"),
-            "--tw-prose-hl-bg": theme("colors.slate.800 / 40%"),
+            "--tw-prose-hl-bg": theme("colors.slate.800 / 50%"),
             "--tw-prose-hl-border": theme("colors.indigo.500"),
+            ":is(.shiki, .shiki span)": {
+              color: "var(--shiki-dark) !important",
+            },
           },
         },
         DEFAULT: {
           css: {
-            "--tw-prose-ring": `inset 0 0 0 3px ${theme("colors.indigo.500")}`,
-            "--tw-prose-body": theme("colors.zinc.600"),
+            "--tw-prose-ring": `0 0 0 3px ${theme("colors.indigo.500")}`,
+            "--tw-prose-body": theme("colors.zinc.700"),
             "--tw-prose-headings": theme("colors.zinc.900"),
             "--tw-prose-link": theme("colors.zinc.900"),
             "--tw-prose-link-hover": theme("colors.zinc.100"),
@@ -151,12 +221,11 @@ module.exports = {
             "--tw-prose-code-border": theme("colors.zinc.300"),
             "--tw-prose-code-link": theme("colors.indigo.600"),
             "--tw-prose-code-link-hover": theme("colors.indigo.500"),
-            "--tw-prose-pre-code": theme("colors.zinc.100"),
-            "--tw-prose-pre-bg": theme("colors.zinc.900"),
+            "--tw-prose-pre-bg": theme("colors.white"),
             "--tw-prose-kbd": theme("colors.zinc.700"),
             "--tw-prose-kbd-bg": theme("colors.zinc.50"),
             "--tw-prose-kbd-borders": theme("colors.zinc.200"),
-            "--tw-prose-hl-bg": theme("colors.slate.800 / 60%"),
+            "--tw-prose-hl-bg": theme("colors.indigo.200 / 50%"),
             "--tw-prose-hl-border": theme("colors.indigo.500"),
 
             // Base
@@ -208,6 +277,7 @@ module.exports = {
               backgroundPosition: "bottom 2px left 100%",
               backgroundRepeat: "no-repeat",
               backgroundSize: `100% 3px`,
+              boxDecorationBreak: "clone",
               transitionProperty: "all",
               transitionDuration: theme("transitionDuration.150"),
               transitionTimingFunction: theme(
@@ -326,57 +396,71 @@ module.exports = {
               marginBottom: theme("spacing.3"),
             },
 
-            // Code blocks
+            // Code block is a wrapper around the `pre` tag as well as the title
+            // and copy button.
             ".code-block": {
               position: "relative",
+              marginBottom: theme("spacing.8"),
+              marginTop: 0,
+              marginInline: `calc(${theme("spacing.4")} * -1)`,
+              "@screen sm": {
+                marginInline: 0,
+              },
             },
             ".code-block.has-title": {
               paddingTop: theme("spacing.12"),
             },
-            ".code-block:not(.demo)": {
-              marginInline: 0,
-              "@screen sm": {
-                marginInline: `calc(${theme("spacing.8")} * -1)`,
-              },
+
+            // When a code block follows a paragraph, reduce the margin a touch
+            // to make it feel more connected.
+            "p:has(+ .code-block)": {
+              marginBottom: theme("spacing.4"),
             },
+
             pre: {
-              marginInline: `calc(${theme("spacing.4")} * -1)`,
-              backgroundColor: theme("colors.zinc.950"),
+              // Shiki applies the background color of the theme to the `pre`
+              // tag. However, I override this color and thus need to set it to
+              // transparent otherwise a very subtle white background will slip
+              // through the border radius.
+              backgroundColor: "transparent !important",
               fontSize: theme("fontSize.sm")[0],
-              "@screen sm": {
-                marginInline: theme("margin.0"),
-              },
             },
             "pre code": {
-              backgroundColor: "transparent",
+              ...font("xs"),
+              backgroundColor: "var(--tw-prose-pre-bg)",
               borderRadius: 0,
-              color: theme("colors.zinc.100"),
+              border: "solid var(--tw-prose-code-border)",
+              borderWidth: "1px 0 1px 0",
               display: "grid",
-              fontSize: "inherit",
               fontWeight: "inherit",
+              isolation: "isolate",
               overflowX: "auto",
-              paddingBlock: theme("spacing.8"),
-              paddingInline: theme("spacing.4"),
+              padding: theme("spacing.4"),
               "@screen sm": {
-                padding: theme("spacing.8"),
+                borderWidth: "1px",
               },
             },
+
+            // Use a custom focus ring for code blocks
             "pre code:focus": {
               outline: "none",
             },
             "pre code:focus-visible": {
               boxShadow: "var(--tw-prose-ring)",
             },
+
             ":is(.has-title, .demo) :is(pre, code)": {
+              borderRadius: 0,
               "@screen sm": {
-                borderRadius: `0 0 ${theme("borderRadius.xl")} ${theme(
-                  "borderRadius.xl",
+                borderRadius: `0 0 ${theme("borderRadius.lg")} ${theme(
+                  "borderRadius.lg",
                 )}`,
               },
             },
             ".code-block:not(:is(.has-title, .demo)) :is(pre, code)": {
+              borderRadius: 0,
               "@screen sm": {
-                borderRadius: theme("borderRadius.xl"),
+                borderRadius: theme("borderRadius.lg"),
               },
             },
             "pre code .line": {
@@ -386,35 +470,47 @@ module.exports = {
                 "height, border-color, background-color, clip-path",
               borderColor: "transparent",
               borderLeftWidth: theme("borderWidth.4"),
-              clipPath: "inset(0 0 0 0)",
+              // This causes slight gap between lines
+              // clipPath: "inset(0 0 0 0)",
               display: "inline-block",
-              height: theme("spacing.7"),
+              height: `calc(${theme("lineHeight.6")} + 1px)`,
               marginInline: `calc(${theme("spacing.4")} * -1)`,
               paddingLeft: `calc(${theme("spacing.4")} - ${theme(
                 "borderWidth.4",
               )})`,
               paddingRight: theme("spacing.4"),
-
-              "@screen sm": {
-                marginInline: `calc(${theme("spacing.8")} * -1)`,
-                paddingLeft: `calc(${theme("spacing.8")} - ${theme(
-                  "borderWidth.4",
-                )})`,
-                paddingRight: theme("spacing.8"),
-              },
             },
+            // Highlighted lines
             "pre:not(.collapsed) code .line:is(.highlight, .focus)": {
               width: `calc(100% + ${theme("spacing.8")})`,
               backgroundColor: "var(--tw-prose-hl-bg)",
               borderColor: "var(--tw-prose-hl-border)",
-
-              "@screen sm": {
-                width: `calc(100% + ${theme("spacing.16")})`,
-              },
             },
+
+            // Collapse non-focused lines
             "pre.collapsed code .line:not(.focus)": {
               clipPath: "inset(100% 0 0 0)",
               height: 0,
+            },
+
+            // Line numbers
+            "pre.line-numbers code": {
+              counterReset: "line",
+
+              "@screen md": {
+                ".line:before": {
+                  display: "inline-block",
+                  counterIncrement: "line",
+                  width: theme("spacing.4"),
+                  fontSize: theme("fontSize.xs")[0],
+                  color: theme("colors.zinc.400"),
+                  userSelect: "none",
+                  textAlign: "right",
+                  flexShrink: 0,
+                  marginRight: theme("spacing.4"),
+                  content: "counter(line)",
+                },
+              },
             },
 
             // Horizontal rules

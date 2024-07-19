@@ -1,29 +1,29 @@
 ---
 title: Automated npm Publishing Using GitHub Actions
 description:
-  Releasing npm packages can be a challenge. There are often many steps in the
-  process and forgetting a step can result in a package being released
+  Releasing npm packages can be a challenge. There are often many steps in
+  the process and forgetting a step can result in a package being released
   incorrectly. In this article, I will show how to use GitHub Actions to
-  automate some of the manual steps required to simplify your npm publishing
-  workflow.
+  automate some of the manual steps required to simplify your npm
+  publishing workflow.
 date: "2019-11-16"
 ---
 
 GitHub Actions are a great way to setup CI/CD tasks directly in your GitHub
-repos for running tests, deploying code, publishing packages, and so much more.
-I've recently done some work to setup actions in my open source repositories for
-easily publishing npm packages without forcing me to run a bunch of commands
-from my local development machine. In this article, I'll go through some basic
-jobs that you can run using GitHub Actions to simplify the process of publishing
-npm packages.
+repos for running tests, deploying code, publishing packages, and so much
+more. I've recently done some work to setup actions in my open source
+repositories for easily publishing npm packages without forcing me to run a
+bunch of commands from my local development machine. In this article, I'll
+go through some basic jobs that you can run using GitHub Actions to
+simplify the process of publishing npm packages.
 
 ## Basic publish action
 
-To get our feet wet with publishing npm packages using GitHub Actions, let's
-start by creating a simple action that will publish to npm when we push a new
-version tag.
+To get our feet wet with publishing npm packages using GitHub Actions,
+let's start by creating a simple action that will publish to npm when we
+push a new version tag.
 
-```yaml .github/workflows/publish.yml
+```yaml showLineNumbers .github/workflows/publish.yml
 name: Publish
 on:
   push:
@@ -44,39 +44,43 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 ```
 
-This action is pretty basic and easy to understand. For the trigger, we use the
-tag pattern of `v*.*.*` to match semantic version tags (i.e. v1.0.0). When the
-action is triggered, we install dependencies by running `yarn` and then publish
-the package to npm using `yarn publish`. This could be modified to use
-`npm install` and `npm publish` if you prefer npm over Yarn.
+This action is pretty basic and easy to understand. For the trigger, we use
+the tag pattern of `v*.*.*` to match semantic version tags (i.e. v1.0.0).
+When the action is triggered, we install dependencies by running `yarn` and
+then publish the package to npm using `yarn publish`. This could be
+modified to use `npm install` and `npm publish` if you prefer npm over
+Yarn.
 
-An important part of this action is the `NODE_AUTH_TOKEN` environment variable
-which is required for authenticating with npm to publish the package. The
-example above uses GitHub secrets for storing the token which can be generated
-in your npm profile.
+An important part of this action is the `NODE_AUTH_TOKEN` environment
+variable which is required for authenticating with npm to publish the
+package. The example above uses GitHub secrets for storing the token which
+can be generated in your npm profile.
 
 ## Publishing a release
 
 To publish a release with our new action, we can run `yarn publish` or
-`npm publish` to increment the package version in package.json and create a new
-git tag which we will use to trigger our action. After running the publish
-command, we can run `git push && git push --tags` to push our tag to GitHub and
-fire off our action!
+`npm publish` to increment the package version in package.json and create a
+new git tag which we will use to trigger our action. After running the
+publish command, we can run `git push && git push --tags` to push our tag
+to GitHub and fire off our action!
 
-_Hint: adding a `postversion` script to package.json will save us from having to
-run the git push command every time we run our publish command. That script
-would look like this `"postversion": "git push && git push --tags"` and should
-be places in the `scripts` section of your package.json_
+_Hint: adding a `postversion` script to package.json will save us from
+having to run the git push command every time we run our publish command.
+That script would look like this
+`"postversion": "git push && git push --tags"` and should be places in the
+`scripts` section of your package.json_
 
 ## Creating GitHub releases
 
-Now that we have the basic publish action created, we can improve it so it will
-automatically create a GitHub release with change notes pulled automatically
-from a `CHANGELOG.md` file. To make this easy, we will be using a custom GitHub
-action by [Roang-zero1](https://github.com/Roang-zero1) that will automate this
-entire process for us. To set this up, add the following job to your action.
+Now that we have the basic publish action created, we can improve it so it
+will automatically create a GitHub release with change notes pulled
+automatically from a `CHANGELOG.md` file. To make this easy, we will be
+using a custom GitHub action by
+[Roang-zero1](https://github.com/Roang-zero1) that will automate this
+entire process for us. To set this up, add the following job to your
+action.
 
-```yaml .github/workflows/publish.yml
+```yaml showLineNumbers .github/workflows/publish.yml
 create-release:
   runs-on: ubuntu-latest
   steps:
@@ -87,31 +91,32 @@ create-release:
 ```
 
 As you can see, the only thing we need to do is use the
-`github-create-release-action` and set the `GITHUB_TOKEN` environment variable
-so the custom action can authenticate with GitHub to create the release and
-upload the change notes. The value of this is the `GITHUB_TOKEN` secret that is
+`github-create-release-action` and set the `GITHUB_TOKEN` environment
+variable so the custom action can authenticate with GitHub to create the
+release and upload the change notes. The value of this is the
+`GITHUB_TOKEN` secret that is
 [automatically available inside all GitHub actions](https://docs.github.com/en/actions/security-guides/automatic-token-authentication).
 
 ## Running tests
 
-While the above examples work great for simple packages where you just need to
-publish and create a release, most packages will probably have a suite of tests
-that you will want to run before publishing and releasing. To update our action,
-we are going to need to make a few changes.
+While the above examples work great for simple packages where you just need
+to publish and create a release, most packages will probably have a suite
+of tests that you will want to run before publishing and releasing. To
+update our action, we are going to need to make a few changes.
 
-First, we will need to change the action trigger from on tags to on push. This
-way we can use the same action to run our tests on branches and pull requests.
-The trigger should now look like this.
+First, we will need to change the action trigger from on tags to on push.
+This way we can use the same action to run our tests on branches and pull
+requests. The trigger should now look like this.
 
 ```yaml .github/workflows/publish.yml
 on: [push]
 ```
 
-Next, we will add a `test` job to the action that uses a matrix strategy to test
-our package against multiple node versions. You could also add OS versions to
-the matrix but for our example we'll keep it simple.
+Next, we will add a `test` job to the action that uses a matrix strategy to
+test our package against multiple node versions. You could also add OS
+versions to the matrix but for our example we'll keep it simple.
 
-```yaml .github/workflows/publish.yml
+```yaml showLineNumbers .github/workflows/publish.yml
 test:
   runs-on: ubuntu-latest
   strategy:
@@ -126,26 +131,26 @@ test:
     - run: yarn test
 ```
 
-The last step is to update our other two jobs to depend on the test job and only
-run on tags. By depending on the test job we can ensure that we don't publish a
-package until the tests have run and passed. Additionally, since we changed our
-trigger from tags to any push, we need to add a conditional to ensure that the
-publish and release steps will only run for tags while the test can still run
-for any push. We will need to add the following two lines to both the publish
-and release jobs.
+The last step is to update our other two jobs to depend on the test job and
+only run on tags. By depending on the test job we can ensure that we don't
+publish a package until the tests have run and passed. Additionally, since
+we changed our trigger from tags to any push, we need to add a conditional
+to ensure that the publish and release steps will only run for tags while
+the test can still run for any push. We will need to add the following two
+lines to both the publish and release jobs.
 
-```yaml .github/workflows/publish.yml
+```yaml showLineNumbers .github/workflows/publish.yml
 needs: test
 if: startsWith(github.ref, 'refs/tags/')
 ```
 
 ## Putting it all together
 
-Putting all three of these pieces together, our final action would look like
-this. In some cases, you may not need all three of the jobs so you can easily
-mix and match to suit you needs.
+Putting all three of these pieces together, our final action would look
+like this. In some cases, you may not need all three of the jobs so you can
+easily mix and match to suit you needs.
 
-```yaml .github/workflows/publish.yml
+```yaml showLineNumbers .github/workflows/publish.yml
 name: Test, Publish, & Release
 on: [push]
 jobs:
@@ -188,7 +193,7 @@ jobs:
 
 ## Bonus: GitHub Actions badge
 
-Once you get your actions working, you may wish to add a status badge to your
-readme to show if the build is passing or failing. GitHub Actions have builtin
-support for this which you can read more about on their
+Once you get your actions working, you may wish to add a status badge to
+your readme to show if the build is passing or failing. GitHub Actions have
+builtin support for this which you can read more about on their
 [official documentation](https://docs.github.com/en/actions/learn-github-actions#adding-a-workflow-status-badge-to-your-repository).
