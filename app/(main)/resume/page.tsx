@@ -52,19 +52,21 @@ export default function Projects() {
         </div>
 
         <div className="m-0 lg:row-start-1">
-          {roles.map((role) => (
-            <Fragment key={role.title}>
-              <h2>
-                {role.title} at <a href={role.href}>{role.company}</a>
-              </h2>
-              <Date>{role.date}</Date>
-              <ul>
-                {role.responsibilities.map((responsibility) => (
-                  <li key={responsibility}>{responsibility}</li>
-                ))}
-              </ul>
-            </Fragment>
-          ))}
+          {roles
+            .filter((role) => role.responsibilities.length)
+            .map((role) => (
+              <Fragment key={role.title}>
+                <h2>
+                  {role.title} at <a href={role.href}>{role.company}</a>
+                </h2>
+                <Date>{role.date}</Date>
+                <ul>
+                  {role.responsibilities.map((responsibility) => (
+                    <li key={responsibility}>{responsibility}</li>
+                  ))}
+                </ul>
+              </Fragment>
+            ))}
         </div>
 
         <div className="m-0 text-center lg:hidden">{work}</div>
