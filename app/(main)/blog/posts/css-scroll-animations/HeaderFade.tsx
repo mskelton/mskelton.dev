@@ -6,7 +6,7 @@ export default function Component() {
     <div className="relative h-[320px] overflow-y-scroll">
       <div
         className={clsx(
-          "sticky top-0 mb-4 w-full rounded-t-lg px-4 py-3 text-xl font-bold",
+          "sticky top-0 mb-4 w-full px-4 py-3 text-xl font-bold",
           "[--header-fade-bg:theme(colors.blue.100/0.75)] dark:[--header-fade-bg:theme(colors.slate.800/0.75)]",
           styles.header,
         )}
