@@ -11,6 +11,7 @@ import CodeBlock from "../../components/CodeBlock"
 import Demo from "../../components/Demo"
 import BasicScroll from "./BasicScroll"
 import HeaderFade from "./HeaderFade"
+import ImagePop from "./ImagePop"
 
 In a recent project at work, I started exploring CSS scroll-driven
 animations to transition elements in a sticky header between a larger and
@@ -237,4 +238,53 @@ intended behavior.
 
 ## Using the View Timeline
 
-TODO: Image slight slide in from right.
+<Demo tight>
+  <ImagePop />
+</Demo>
+
+The HTML is again fairly simple, a container with some paragraphs and an
+image.
+
+```html
+<div class="container">
+  <p>...</p>
+  <img />
+  <p>...</p>
+</div>
+```
+
+The CSS will also look quite similar to the example previously with the
+`scroll()` timeline, except in this case we are using the `view()`
+timeline. The view timeline starts when the element enters the viewport,
+and ends when the element leaves the viewport.
+
+By adjusting the `animation-range`, we are able to adjust how quickly the
+animation completes. Using the value of `0 50%`, the image will be fully
+animated in when 50% of it is in the viewport. This could be adjusted
+higher or lower based on your use case, but a value between 30-50 is a good
+starting point to provide some visual flair, without harming the user
+experience.
+
+```css {18-20}
+@keyframes pop {
+  from {
+    opacity: 0;
+    transform: scaleX(90%);
+  }
+  to {
+    opacity: 1;
+    transform: scaleX(100%);
+  }
+}
+
+.container {
+  height: 400px;
+  overflow: none scroll;
+}
+
+img {
+  animation: pop linear;
+  animation-range: 0 50%;
+  animation-timeline: view();
+}
+```
