@@ -4,7 +4,7 @@ description:
   Scroll-driven animations is an extremely exciting feature that is coming
   to CSS. Join me as we explore how to use scroll-driven animations to
   create performant and well polished user experiences.
-date: "2024-07-20"
+date: "2024-07-30"
 ---
 
 import CodeBlock from "../../components/CodeBlock"
@@ -246,7 +246,9 @@ in our app.
 
 The view timeline is another scroll-driven animation timeline, however
 rather than based on the scroll progress of the scroll container, it is
-based on the progress of a given element within the viewport.
+based on the progress of a given element within the viewport. In the demo
+below, as the image scrolls into the viewport, it scales to full size and
+increases opacity to 100% to give a nice "pop" effect.
 
 <Demo tight>
   <ImagePop />
@@ -298,3 +300,23 @@ img {
   animation-timeline: view();
 }
 ```
+
+What once took heavy JavaScript libraries is now something we can do with a
+few lines of HTML and CSS.
+
+## Wrapping Up
+
+This blog post has been sitting on the shelf for a bit as my initial
+ambitions for it were more than I was able to feasibly accomplish when I
+started writing it. Also, there is only so much you can show with
+scroll-driven animations before it all is just the same thing done ever so
+slightly differently. So while I'd love to provide some more demos and neat
+visual effects, it's time to call it a wrap, and ship this post already.
+
+I really do hope you give scroll-driven animations a try, they are a
+remarkable new feature of the web platform, and something I'm excited to
+see slowly become a normal part of building websites and web apps. When I
+starting writing this post, I actually used it as an opportunity to update
+the header of this site to use scroll driven animations for the header blur
+effect. Simple animations like that can go a long way to making your site
+just a bit more pleasing to use. Just give it a try, it'll be worth it.
