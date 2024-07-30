@@ -1,0 +1,16 @@
+@keyframes header-fade {
+  from {
+    backdrop-filter: blur(0);
+    background: transparent;
+  }
+  to {
+    backdrop-filter: blur(8px);
+    background: var(--header-fade-bg);
+  }
+}
+
+.header {
+  animation: header-fade 1ms linear both;
+  animation-range: 0 80px;
+  animation-timeline: scroll();
+}

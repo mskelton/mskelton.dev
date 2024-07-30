@@ -12,7 +12,7 @@ export default function Demo({
   tight = false,
 }: DemoProps) {
   return (
-    <div className="relative rounded-lg border border-zinc-200 transition-colors dark:border-zinc-700/80">
+    <div className="relative overflow-hidden rounded-lg border border-zinc-200 transition-colors dark:border-zinc-700/80">
       <div
         className={clsx(
           "not-prose w-full",
