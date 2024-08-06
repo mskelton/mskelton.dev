@@ -1,26 +1,41 @@
 datasource db {
-  provider     = "sqlite"
-  url          = env("DATABASE_URL")
-  relationMode = "prisma"
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
 }
 
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
+  previewFeatures = ["driverAdapters"]
 }
 
 model Byte {
-  id          String   @id
-  slug        String   @unique
-  createdAt   DateTime @default(now())
+  id          String      @id
+  slug        String      @unique
+  createdAt   DateTime    @default(now()) @map("created_at")
   title       String
   description String
   content     Bytes
-  tags        Tag[]
+  tags        TagOnByte[]
+
+  @@map("byte")
 }
 
 model Tag {
-  id        Int      @id @default(autoincrement())
-  createdAt DateTime @default(now())
-  name      String   @unique
-  bytes     Byte[]
+  id        Int         @id @default(autoincrement())
+  createdAt DateTime    @default(now()) @map("created_at")
+  name      String      @unique
+  bytes     TagOnByte[]
+
+  @@map("tag")
+}
+
+model TagOnByte {
+  tagId  Int    @map("tag_id")
+  byteId String @map("byte_id")
+
+  tag  Tag  @relation(fields: [tagId], references: [id])
+  byte Byte @relation(fields: [byteId], references: [id])
+
+  @@id([tagId, byteId])
+  @@map("tag_on_byte")
 }

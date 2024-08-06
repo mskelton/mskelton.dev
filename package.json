@@ -18,6 +18,7 @@
   },
   "dependencies": {
     "@heroicons/react": "^2.0.18",
+    "@libsql/client": "^0.8.1",
     "@mdx-js/loader": "^2.3.0",
     "@mdx-js/react": "^2.3.0",
     "@mskelton/rehype-callout": "^0.0.4",
@@ -26,7 +27,8 @@
     "@next/mdx": "^13.5.6",
     "@next/third-parties": "^14.1.0",
     "@octokit/rest": "^20.0.2",
-    "@prisma/client": "^5.5.1",
+    "@prisma/adapter-libsql": "^5.17.0",
+    "@prisma/client": "^5.17.0",
     "@tailwindcss/container-queries": "^0.1.1",
     "@tailwindcss/typography": "^0.5.10",
     "autoprefixer": "^10.4.16",
@@ -89,7 +91,7 @@
     "prettier-plugin-css-order": "^2.0.1",
     "prettier-plugin-jsdoc": "^1.3.0",
     "prettier-plugin-tailwindcss": "^0.5.11",
-    "prisma": "^5.5.1",
+    "prisma": "^5.17.0",
     "tsx": "^4.7.1",
     "typescript": "^5.3.3"
   }
