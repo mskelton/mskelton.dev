@@ -1,10 +1,11 @@
+import { inArray } from "drizzle-orm"
 import { NextResponse } from "next/server"
 import { PushEvent } from "@octokit/webhooks-types"
 import { upsertByte } from "lib/api/bytes"
 import { getByteSource } from "lib/api/github"
 import { verifySignature } from "lib/api/signature"
+import { db, schema } from "lib/db"
 import { toId } from "lib/parser"
-import prisma from "lib/prisma"
 
 async function upsert(file: string) {
   const id = toId(file)
@@ -12,11 +13,7 @@ async function upsert(file: string) {
 }
 
 async function remove(files: string[]) {
-  const ids = files.map(toId)
-
-  await prisma.byte.deleteMany({
-    where: { id: { in: ids } },
-  })
+  await db.delete(schema.bytes).where(inArray(schema.bytes.id, files.map(toId)))
 }
 
 export async function POST(req: Request) {
