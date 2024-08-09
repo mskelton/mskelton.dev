@@ -1,7 +1,5 @@
 name: Build
 on: [push]
-env:
-  DATABASE_URL: file:./data/mskelton.db
 jobs:
   lint:
     name: Lint
@@ -24,6 +22,8 @@ jobs:
   test:
     name: Test
     runs-on: ubuntu-latest
+    env:
+      DATABASE_URL: file:./data/mskelton.db
     steps:
       - uses: mskelton/setup-pnpm@v3
       - run: pnpm playwright install chromium --with-deps
@@ -49,6 +49,9 @@ jobs:
         uses: superfly/flyctl-actions/setup-flyctl@master
       - name: Deploy
         run: |
-          flyctl deploy --remote-only --build-arg "NEXT_PUBLIC_GA_ID=${{ vars.NEXT_PUBLIC_GA_ID }}"
+          flyctl deploy --remote-only \
+            --build-arg "TURSO_AUTH_TOKEN=${{ secrets.TURSO_AUTH_TOKEN }}" \
+            --build-arg "TURSO_DATABASE_URL=${{ secrets.TURSO_DATABASE_URL }}" \
+            --build-arg "NEXT_PUBLIC_GA_ID=${{ vars.NEXT_PUBLIC_GA_ID }}"
         env:
           FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
