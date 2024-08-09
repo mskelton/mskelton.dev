@@ -38,12 +38,6 @@ importers:
       '@octokit/rest':
         specifier: ^20.0.2
         version: 20.0.2
-      '@prisma/adapter-libsql':
-        specifier: ^5.17.0
-        version: 5.17.0(@libsql/client@0.8.1)
-      '@prisma/client':
-        specifier: ^5.17.0
-        version: 5.17.0(prisma@5.17.0)
       '@tailwindcss/container-queries':
         specifier: ^0.1.1
         version: 0.1.1(tailwindcss@3.4.0)
@@ -231,9 +225,6 @@ importers:
       prettier-plugin-tailwindcss:
         specifier: ^0.5.11
         version: 0.5.11(prettier-plugin-css-order@2.0.1(postcss@8.4.31)(prettier@3.2.5))(prettier-plugin-jsdoc@1.3.0(prettier@3.2.5))(prettier@3.2.5)
-      prisma:
-        specifier: ^5.17.0
-        version: 5.17.0
       tsx:
         specifier: ^4.7.1
         version: 4.7.1
@@ -1013,11 +1004,6 @@ packages:
     engines: {node: '>=16'}
     hasBin: true
 
-  '@prisma/adapter-libsql@5.17.0':
-    resolution: {integrity: sha512-wTeB77G9NveTkF28b9FdTw0ZdgTljB0Qf2R7w9cJ82EE7R6Vovs4SPsSU4mdgDv9HBK9HdJovGDESnTNKpXYVQ==}
-    peerDependencies:
-      '@libsql/client': ^0.3.5 || ^0.4.0 || ^0.5.0 || ^0.6.0
-
   '@prisma/client@5.17.0':
     resolution: {integrity: sha512-N2tnyKayT0Zf7mHjwEyE8iG7FwTmXDHFZ1GnNhQp0pJUObsuel4ZZ1XwfuAYkq5mRIiC/Kot0kt0tGCfLJ70Jw==}
     engines: {node: '>=16.13'}
@@ -1029,9 +1015,6 @@ packages:
 
   '@prisma/debug@5.17.0':
     resolution: {integrity: sha512-l7+AteR3P8FXiYyo496zkuoiJ5r9jLQEdUuxIxNCN1ud8rdbH3GTxm+f+dCyaSv9l9WY+29L9czaVRXz9mULfg==}
-
-  '@prisma/driver-adapter-utils@5.17.0':
-    resolution: {integrity: sha512-ivelC8JJg88krvuf3rGF82J3CYwYFmLhhAUdNnkr9LTjS30U5r8AYDhV12/TdmnwzgWZNqHA+icg2Vm+vmRBLw==}
 
   '@prisma/engines-version@5.17.0-31.393aa359c9ad4a4bb28630fb5613f9c281cde053':
     resolution: {integrity: sha512-tUuxZZysZDcrk5oaNOdrBnnkoTtmNQPkzINFDjz7eG6vcs9AVDmA/F6K5Plsb2aQc/l5M2EnFqn3htng9FA4hg==}
@@ -1937,9 +1920,6 @@ packages:
   astring@1.8.6:
     resolution: {integrity: sha512-ISvCdHdlTDlH5IpxQJIex7BWBywFWgjJSVdwst+/iQCoEYnyOaQ95+X1JGshuBjGp6nxKUy1jMgE3zPqN7fQdg==}
     hasBin: true
-
-  async-mutex@0.5.0:
-    resolution: {integrity: sha512-1A94B18jkJ3DYq284ohPxoXbfTA5HsQ7/Mf4DEhcyLx3Bz27Rh59iScbB6EPiP+B+joue6YCxcMXSbFC1tZKwA==}
 
   async@3.2.4:
     resolution: {integrity: sha512-iAB+JbDEGXhyIUavoDl9WP/Jj106Kz9DEn1DPgYw5ruDn0e3Wgi3sKFm55sASdGBNOQB8F59d9qQ7deqrHA8wQ==}
@@ -5350,23 +5330,16 @@ snapshots:
     dependencies:
       playwright: 1.41.2
 
-  '@prisma/adapter-libsql@5.17.0(@libsql/client@0.8.1)':
-    dependencies:
-      '@libsql/client': 0.8.1
-      '@prisma/driver-adapter-utils': 5.17.0
-      async-mutex: 0.5.0
-
   '@prisma/client@5.17.0(prisma@5.17.0)':
     optionalDependencies:
       prisma: 5.17.0
+    optional: true
 
-  '@prisma/debug@5.17.0': {}
+  '@prisma/debug@5.17.0':
+    optional: true
 
-  '@prisma/driver-adapter-utils@5.17.0':
-    dependencies:
-      '@prisma/debug': 5.17.0
-
-  '@prisma/engines-version@5.17.0-31.393aa359c9ad4a4bb28630fb5613f9c281cde053': {}
+  '@prisma/engines-version@5.17.0-31.393aa359c9ad4a4bb28630fb5613f9c281cde053':
+    optional: true
 
   '@prisma/engines@5.17.0':
     dependencies:
@@ -5374,16 +5347,19 @@ snapshots:
       '@prisma/engines-version': 5.17.0-31.393aa359c9ad4a4bb28630fb5613f9c281cde053
       '@prisma/fetch-engine': 5.17.0
       '@prisma/get-platform': 5.17.0
+    optional: true
 
   '@prisma/fetch-engine@5.17.0':
     dependencies:
       '@prisma/debug': 5.17.0
       '@prisma/engines-version': 5.17.0-31.393aa359c9ad4a4bb28630fb5613f9c281cde053
       '@prisma/get-platform': 5.17.0
+    optional: true
 
   '@prisma/get-platform@5.17.0':
     dependencies:
       '@prisma/debug': 5.17.0
+    optional: true
 
   '@react-aria/breadcrumbs@3.5.9(react@18.2.0)':
     dependencies:
@@ -6773,10 +6749,6 @@ snapshots:
   ast-types-flow@0.0.8: {}
 
   astring@1.8.6: {}
-
-  async-mutex@0.5.0:
-    dependencies:
-      tslib: 2.6.3
 
   async@3.2.4: {}
 
@@ -9286,6 +9258,7 @@ snapshots:
   prisma@5.17.0:
     dependencies:
       '@prisma/engines': 5.17.0
+    optional: true
 
   promise-limit@2.7.0: {}
 

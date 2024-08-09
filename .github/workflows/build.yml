@@ -29,7 +29,7 @@ jobs:
     steps:
       - uses: mskelton/setup-pnpm@v2
       - run: pnpm playwright install chromium --with-deps
-      - run: pnpm prisma migrate dev
+      - run: pnpm drizzle-kit push
       - run: pnpm db:seed
       - run: pnpm test
       - name: Upload test results
