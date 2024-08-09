@@ -6,7 +6,7 @@ function create() {
   return createClient({
     authToken: process.env.TURSO_AUTH_TOKEN,
     syncUrl: process.env.TURSO_DATABASE_URL,
-    url: "file:./data/mskelton.db",
+    url: process.env.DATABASE_URL!,
   })
 }
 
