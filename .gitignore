@@ -17,4 +17,5 @@ out/
 !.env.example
 
 # DB
-*.db
+data/*
+!data/.gitkeep
