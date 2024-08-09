@@ -17,4 +17,5 @@ out/
 !.env.example
 
 # DB
-prisma/*.db*
+data/*
+!data/.gitkeep

@@ -1,4 +1,5 @@
 import rehypeShiki from "@mskelton/rehype-shiki"
+import { and, asc, desc, eq, gt, like, lt, or, sql } from "drizzle-orm"
 import matter from "gray-matter"
 import { notFound } from "next/navigation"
 import { compileMDX } from "next-mdx-remote/rsc"
@@ -9,7 +10,7 @@ import rehypeSlug from "rehype-slug"
 import remarkGfm from "remark-gfm"
 import remarkSmartypants from "remark-smartypants"
 import { getHighlighter, Highlighter } from "shiki"
-import prisma from "lib/prisma"
+import { db, schema } from "lib/db"
 import MarkdownImage from "../../../components/markdown/MarkdownImage"
 import MarkdownLink from "../../../components/markdown/MarkdownLink"
 import MarkdownPre from "../../../components/markdown/MarkdownPre"
@@ -48,10 +49,8 @@ const loadLocalByteContent = async (id: string) => {
 }
 
 export const getByte = cache(async (slug: string) => {
-  const byte = await prisma.byte.findFirst({
-    where: {
-      OR: [{ id: slug }, { slug }],
-    },
+  const byte = await db.query.bytes.findFirst({
+    where: or(eq(schema.bytes.id, slug), eq(schema.bytes.slug, slug)),
   })
 
   if (!byte) {
@@ -96,7 +95,7 @@ export const getByte = cache(async (slug: string) => {
         remarkPlugins: [remarkGfm, remarkSmartypants as any],
       },
     },
-    source: byte.content,
+    source: byte.content as string,
   })
 
   return { ...byte, content }
@@ -119,16 +118,16 @@ function getPrefix({ query, tag }: Pick<SearchBytesRequest, "query" | "tag">) {
 }
 
 export function getAllBytes() {
-  return prisma.byte.findMany({
-    orderBy: { createdAt: "desc" },
-    select: {
-      createdAt: true,
-      description: true,
-      id: true,
-      slug: true,
-      title: true,
-    },
-  })
+  return db
+    .select({
+      createdAt: schema.bytes.createdAt,
+      description: schema.bytes.description,
+      id: schema.bytes.id,
+      slug: schema.bytes.slug,
+      title: schema.bytes.title,
+    })
+    .from(schema.bytes)
+    .orderBy(desc(schema.bytes.createdAt))
 }
 
 export interface SearchBytesRequest {
@@ -142,50 +141,61 @@ export const PAGE_SIZE = 10
 
 export const searchBytes = cache(
   async ({ cursor, direction, query, tag }: SearchBytesRequest) => {
-    const res = await prisma.byte.findMany({
-      cursor: cursor ? { id: cursor } : undefined,
-      orderBy: { createdAt: "desc" },
-      select: {
-        createdAt: true,
-        description: true,
-        id: true,
-        slug: true,
-        tags: {
-          select: {
-            id: true,
-            name: true,
-          },
-        },
-        title: true,
-      },
-      // When using a cursor, we want to skip the current record since we don't
-      // want it on multiple pages. This doesn't apply when we are on the root
-      // page without a cursor.
-      skip: direction === "none" ? undefined : 1,
+    const res = await db
+      .select({
+        createdAt: schema.bytes.createdAt,
+        description: schema.bytes.description,
+        id: schema.bytes.id,
+        slug: schema.bytes.slug,
+        tags: sql`json_group_array(json_object('id', ${schema.tags.id}, 'name', ${schema.tags.name}))`.mapWith(
+          (val) => JSON.parse(val) as { id: string; name: string }[],
+        ),
+        title: schema.bytes.title,
+      })
+      .from(schema.bytes)
+      .innerJoin(
+        schema.bytesToTags,
+        eq(schema.bytesToTags.byteId, schema.bytes.id),
+      )
+      .innerJoin(schema.tags, eq(schema.bytesToTags.tagId, schema.tags.id))
+      .where(
+        and(
+          cursor
+            ? direction === "left"
+              ? gt(schema.bytes.id, cursor)
+              : lt(schema.bytes.id, cursor)
+            : undefined,
+          query
+            ? or(
+                like(schema.bytes.title, `%${query}%`),
+                like(schema.bytes.description, `%${query}%`),
+              )
+            : undefined,
+          tag ? eq(schema.tags.name, tag) : undefined,
+        ),
+      )
+      .groupBy(schema.bytes.id)
       // To know if there are more pages, we fetch one more record than we need
       // and use the total count to determine if there are more pages. This has
       // to account for the cursor direction as well.
-      take: (direction === "left" ? -1 : 1) * (PAGE_SIZE + 1),
-      // Search by tag, or by title/description
-      where: {
-        OR: query
-          ? [
-              { title: { contains: query } },
-              { description: { contains: query } },
-            ]
-          : undefined,
-        tags: tag ? { some: { name: { equals: tag } } } : undefined,
-      },
-    })
+      .limit(PAGE_SIZE + 1)
+      // When paging backwards, we have to sort backwards to allow our limit
+      // to work correctly.
+      .orderBy((direction === "left" ? asc : desc)(schema.bytes.id))
+      .execute()
 
     const prefix = getPrefix({ query, tag })
     const hasMore = res.length > PAGE_SIZE
 
-    // Since we fetch extra records, we need to slice the result to the correct
-    // size. Again, we have to account for cursor direction and trim the first
-    // or last item accordingly.
-    const bytes =
-      direction === "left" ? res.slice(-PAGE_SIZE) : res.slice(0, PAGE_SIZE)
+    // Since we fetch extra records, we need to slice the result to the correct size.
+    const bytes = res.slice(0, PAGE_SIZE)
+
+    // If paging backwards, we need to reverse the result set to maintain the
+    // correct order. Mutating arrays isn't that cool, but what do I care about
+    // being cool, I know what I'm doing.
+    if (direction === "left") {
+      bytes.reverse()
+    }
 
     return {
       bytes,

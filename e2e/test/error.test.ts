@@ -1,6 +1,6 @@
 import { expect, test } from "../fixtures/index.js"
 
-test.describe("Errors", async () => {
+test.describe("Errors", () => {
   test("404 page", async ({ notFoundPage, page }) => {
     await page.goto("/asdf")
     await expect(notFoundPage.code).toHaveText("404")

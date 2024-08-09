@@ -5,7 +5,7 @@ jobs:
     name: Lint
     runs-on: ubuntu-latest
     steps:
-      - uses: mskelton/setup-pnpm@v2
+      - uses: mskelton/setup-pnpm@v3
       - name: Lint
         run: pnpm lint
       - name: Check formatting
@@ -15,21 +15,17 @@ jobs:
     name: Type Check
     runs-on: ubuntu-latest
     steps:
-      - uses: mskelton/setup-pnpm@v2
-      - name: Build
-        run: pnpm db:generate
+      - uses: mskelton/setup-pnpm@v3
       - name: Type check
         run: pnpm ts
 
   test:
     name: Test
     runs-on: ubuntu-latest
-    env:
-      DATABASE_URL: file:./test.db
     steps:
-      - uses: mskelton/setup-pnpm@v2
+      - uses: mskelton/setup-pnpm@v3
       - run: pnpm playwright install chromium --with-deps
-      - run: pnpm prisma migrate dev
+      - run: pnpm drizzle-kit push
       - run: pnpm db:seed
       - run: pnpm test
       - name: Upload test results

@@ -2,8 +2,8 @@ import { NextResponse } from "next/server"
 import { requireToken } from "api/utils/auth"
 import { upsertByte } from "lib/api/bytes"
 import { getByteSource, octokit } from "lib/api/github"
+import { db, schema } from "lib/db"
 import { toId } from "lib/parser"
-import prisma from "lib/prisma"
 
 async function getAllByteIds() {
   const path = "bytes"
@@ -31,7 +31,9 @@ export async function POST(request: Request) {
   const sources = await Promise.all(ids.map(getByteSource))
 
   // Clear all bytes from the database
-  await prisma.byte.deleteMany()
+  await db.delete(schema.bytesToTags)
+  await db.delete(schema.bytes)
+  await db.delete(schema.tags)
 
   // Add all bytes to the database
   for (let i = 0; i < ids.length; i++) {

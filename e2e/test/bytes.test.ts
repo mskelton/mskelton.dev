@@ -1,6 +1,6 @@
 import { expect, test } from "../fixtures/index.js"
 
-test.describe("Bytes page", async () => {
+test.describe("Bytes page", () => {
   test("should be accessible", async ({ bytesPage }) => {
     await bytesPage.goto()
     await expect(bytesPage.root).toPassAxe()

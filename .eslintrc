@@ -1,5 +1,5 @@
 {
-  "extends": ["@mskelton", "@mskelton/eslint-config/react", "next"],
+  "extends": ["@mskelton", "@mskelton/eslint-config/react"],
   "plugins": ["mskelton"],
   "rules": {
     "react/no-unescaped-entities": "off",

@@ -80,10 +80,10 @@ goals.
 With these goals in mind, I decided that it would make the most sense to
 host the content for bytes in a separate repo. These files get indexed into
 a [SQLite](https://www.sqlite.org) database (backed by
-[LiteFS](https://fly.io/docs/litefs)) which makes it very simple to search
-and reduces the dependency on using the GitHub API for requests. Not to
-mention that searching through raw files on GitHub is kind of tricky if you
-want to build any kind of search experience.
+[Turso](https://turso.tech)) which makes it very simple to search and
+reduces the dependency on using the GitHub API for requests. Not to mention
+that searching through raw files on GitHub is kind of tricky if you want to
+build any kind of search experience.
 
 Now with the contents of the [bytes](https://github.com/mskelton/bytes)
 repo being indexed to the website, I then setup a webhook so that new

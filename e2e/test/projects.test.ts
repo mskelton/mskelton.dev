@@ -1,6 +1,6 @@
 import { expect, test } from "../fixtures/index.js"
 
-test.describe("Projects page", async () => {
+test.describe("Projects page", () => {
   test.beforeEach(async ({ projectsPage }) => {
     await projectsPage.goto()
   })
