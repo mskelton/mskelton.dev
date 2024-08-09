@@ -28,9 +28,6 @@ export default defineConfig({
   },
   webServer: {
     command: "pnpm dev",
-    env: {
-      NODE_ENV: "test",
-    },
     reuseExistingServer: !process.env.CI,
     stderr: "pipe",
     stdout: "ignore",
