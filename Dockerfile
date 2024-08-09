@@ -9,7 +9,7 @@ WORKDIR /app
 
 # Install dependencies
 COPY package.json pnpm-lock.yaml ./
-RUN yarn global add pnpm
+RUN corepack enable
 RUN pnpm install --frozen-lockfile
 
 # Rebuild the source code only when needed
@@ -22,7 +22,7 @@ COPY . .
 ARG NEXT_PUBLIC_GA_ID
 
 # Build the app
-RUN yarn build
+RUN npm run build
 
 # Production image, copy all the files and run next
 FROM base AS runner
