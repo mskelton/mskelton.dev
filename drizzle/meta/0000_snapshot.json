@@ -53,9 +53,7 @@
       "indexes": {
         "bytes_slug_unique": {
           "name": "bytes_slug_unique",
-          "columns": [
-            "slug"
-          ],
+          "columns": ["slug"],
           "isUnique": true
         }
       },
@@ -87,12 +85,8 @@
           "name": "bytes_to_tags_byte_id_bytes_id_fk",
           "tableFrom": "bytes_to_tags",
           "tableTo": "bytes",
-          "columnsFrom": [
-            "byte_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["byte_id"],
+          "columnsTo": ["id"],
           "onDelete": "no action",
           "onUpdate": "no action"
         },
@@ -100,22 +94,15 @@
           "name": "bytes_to_tags_tag_id_tags_id_fk",
           "tableFrom": "bytes_to_tags",
           "tableTo": "tags",
-          "columnsFrom": [
-            "tag_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["tag_id"],
+          "columnsTo": ["id"],
           "onDelete": "no action",
           "onUpdate": "no action"
         }
       },
       "compositePrimaryKeys": {
         "bytes_to_tags_byte_id_tag_id_pk": {
-          "columns": [
-            "byte_id",
-            "tag_id"
-          ],
+          "columns": ["byte_id", "tag_id"],
           "name": "bytes_to_tags_byte_id_tag_id_pk"
         }
       },
@@ -149,9 +136,7 @@
       "indexes": {
         "tags_name_unique": {
           "name": "tags_name_unique",
-          "columns": [
-            "name"
-          ],
+          "columns": ["name"],
           "isUnique": true
         }
       },

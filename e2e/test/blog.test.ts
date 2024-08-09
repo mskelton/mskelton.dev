@@ -11,7 +11,7 @@ const slugs = [
   "why-i-use-the-fish-shell",
 ]
 
-test.describe("Blog page", async () => {
+test.describe("Blog page", () => {
   test("should be accessible", async ({ blogPage }) => {
     await blogPage.goto()
     await expect(blogPage.root).toPassAxe()

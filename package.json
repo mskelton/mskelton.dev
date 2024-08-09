@@ -9,7 +9,7 @@
     "db:seed": "tsx scripts/seed.ts",
     "dev": "next dev",
     "serve": "next start",
-    "lint": "next lint",
+    "lint": "eslint .",
     "fmt": "prettier --write .",
     "fmt:check": "prettier --check .",
     "test": "playwright test",
