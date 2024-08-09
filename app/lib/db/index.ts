@@ -4,8 +4,9 @@ import * as schema from "./schema"
 
 function create() {
   return createClient({
-    authToken: process.env.DATABASE_AUTH_TOKEN,
-    url: process.env.DATABASE_URL!,
+    authToken: process.env.TURSO_AUTH_TOKEN,
+    syncUrl: process.env.TURSO_DATABASE_URL!,
+    url: "file:./mskelton.db",
   })
 }
 

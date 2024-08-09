@@ -2,8 +2,7 @@ import { defineConfig } from "drizzle-kit"
 
 export default defineConfig({
   dbCredentials: {
-    authToken: process.env.DATABASE_AUTH_TOKEN!,
-    url: process.env.DATABASE_URL!,
+    url: "file:./dev.db",
   },
   dialect: "sqlite",
   driver: "turso",
