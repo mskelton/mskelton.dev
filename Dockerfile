@@ -20,8 +20,10 @@ WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
-# Public environment variables
+# Runtime environment variables
 ARG NEXT_PUBLIC_GA_ID
+ARG TURSO_AUTH_TOKEN
+ARG TURSO_DATABASE_URL
 
 # Build the app
 RUN npm run build
