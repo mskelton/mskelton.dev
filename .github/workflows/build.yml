@@ -50,8 +50,6 @@ jobs:
       - name: Deploy
         run: |
           flyctl deploy --remote-only \
-            --build-arg "TURSO_AUTH_TOKEN=${{ secrets.TURSO_AUTH_TOKEN }}" \
-            --build-arg "TURSO_DATABASE_URL=${{ secrets.TURSO_DATABASE_URL }}" \
             --build-arg "NEXT_PUBLIC_GA_ID=${{ vars.NEXT_PUBLIC_GA_ID }}"
         env:
           FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}

@@ -59,10 +59,6 @@ USER nextjs
 
 EXPOSE 3000
 
-# Runtime environment variables
-ARG TURSO_AUTH_TOKEN
-ARG TURSO_DATABASE_URL
-
 ENV PORT 3000
 ENV HOSTNAME "0.0.0.0"
 
