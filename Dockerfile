@@ -25,10 +25,8 @@ WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
-# Runtime environment variables
+# Build time environment variables
 ARG NEXT_PUBLIC_GA_ID
-ARG TURSO_AUTH_TOKEN
-ARG TURSO_DATABASE_URL
 
 # Build the app
 RUN npm run build
@@ -60,6 +58,10 @@ COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 USER nextjs
 
 EXPOSE 3000
+
+# Runtime environment variables
+ARG TURSO_AUTH_TOKEN
+ARG TURSO_DATABASE_URL
 
 ENV PORT 3000
 ENV HOSTNAME "0.0.0.0"
