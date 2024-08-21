@@ -4,7 +4,7 @@ export const roles = [
     date: "July 2024 - Present",
     href: "https://ramp.com",
     responsibilities: [],
-    title: "Staff Frontend Enginer",
+    title: "Staff Software Engineer",
   },
   {
     company: "Federato",
@@ -19,7 +19,7 @@ export const roles = [
       "Implemented significant improvements to build process to improve developer efficiency",
       "Mentoring developers, knowledge sharing, and teaching techniques for improving engineering skills",
     ],
-    title: "Staff Software Enginer",
+    title: "Staff Software Engineer",
   },
   {
     company: "Widen, an Acquia Company",

@@ -44,11 +44,10 @@ function SocialLink({ icon: Icon, ...props }: SocialLinkProps) {
 const resume = [
   {
     company: "Ramp",
-    end: "2024",
     href: "https://ramp.com",
     logo: LogoRamp,
-    start: "2023",
-    title: "Staff frontend engineer",
+    start: "2024",
+    title: "Staff software engineer",
   },
   {
     company: "Federato",
