@@ -3,7 +3,7 @@ import { AnchorHTMLAttributes } from "react"
 import { siteMeta } from "lib/siteMeta"
 
 function normalizeHref(href: string) {
-  return href.startsWith(siteMeta.url) ? href.replace(siteMeta.url, "") : ""
+  return href.startsWith(siteMeta.url) ? href.replace(siteMeta.url, "") : href
 }
 
 export interface LinkProps extends AnchorHTMLAttributes<HTMLAnchorElement> {}
