@@ -46,7 +46,7 @@ export const getFeed = cache(async () => {
       ...byte,
       category: "Bytes",
       date: byte.createdAt,
-      url: `${siteMeta.url}/bytes/${byte.slug}`,
+      url: `${siteMeta.url}/bytes/${byte.id}`,
     })),
   ].sort((a, b) => b.date.getTime() - a.date.getTime())
 

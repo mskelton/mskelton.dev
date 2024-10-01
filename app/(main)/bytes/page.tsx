@@ -86,7 +86,7 @@ export default async function Bytes({
               <article key={byte.id}>
                 <Card>
                   <div className="w-full grid-cols-[1fr,auto] sm:grid">
-                    <Card.Title href={`/bytes/${byte.slug}`}>
+                    <Card.Title href={`/bytes/${byte.id}`}>
                       {byte.title}
                     </Card.Title>
 
