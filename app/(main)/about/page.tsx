@@ -4,6 +4,7 @@ import { clsx } from "clsx"
 import Image from "next/image"
 import { Container } from "components/Container"
 import { PageTitle } from "components/PageTitle"
+import { Prose } from "components/Prose"
 import { socials } from "components/SocialIcons"
 import portraitImage from "images/portrait.jpg"
 import { siteMeta } from "lib/siteMeta"
@@ -60,7 +61,9 @@ export default function About() {
           <PageTitle className="mb-12">Hi, I’m Mark 👋</PageTitle>
 
           <div className="space-y-7 text-base text-zinc-700 transition-colors dark:text-zinc-300">
-            <Content />
+            <Prose>
+              <Content />
+            </Prose>
           </div>
         </div>
 
