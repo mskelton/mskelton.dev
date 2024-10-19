@@ -41,7 +41,16 @@ function SocialLink({ icon: Icon, ...props }: SocialLinkProps) {
   )
 }
 
-const resume = [
+type Role = {
+  company: string
+  end?: string
+  href: string
+  logo: React.ComponentType<React.SVGProps<SVGSVGElement>>
+  start: string
+  title: string
+}
+
+const resume: Role[] = [
   {
     company: "Ramp",
     href: "https://ramp.com",
@@ -113,18 +122,21 @@ function Resume() {
 
               <dt className="sr-only">Date</dt>
               <dd
-                aria-label={`${role.start} until ${role.end}`}
+                aria-label={
+                  role.end
+                    ? `${role.start} until ${role.end}`
+                    : `${role.start} - present`
+                }
                 className="text-xs text-zinc-400 transition-colors @[400px]:ml-auto dark:text-zinc-500"
               >
-                <time dateTime={role.start}>{role.start}</time>{" "}
-                <span aria-hidden="true">—</span>{" "}
-                <time
-                  dateTime={
-                    roleIndex ? role.end : new Date().getFullYear().toString()
-                  }
-                >
-                  {role.end}
-                </time>
+                <time dateTime={role.start}>{role.start}</time>
+                {role.end && (
+                  <>
+                    {" "}
+                    <span aria-hidden="true">—</span>{" "}
+                    <time dateTime={role.end}>{role.end}</time>
+                  </>
+                )}
               </dd>
             </dl>
           </li>
