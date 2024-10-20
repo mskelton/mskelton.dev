@@ -1,4 +1,5 @@
 import "./styles/tailwind.css"
+import "react-medium-image/styles.css"
 import { GoogleAnalytics } from "@next/third-parties/google"
 import { Metadata } from "next"
 import { Rubik } from "next/font/google"

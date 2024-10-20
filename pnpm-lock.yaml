@@ -96,8 +96,8 @@ importers:
         specifier: ^18.2.0
         version: 18.2.0(react@18.2.0)
       react-medium-image:
-        specifier: workspace:^
-        version: link:packages/react-medium-image
+        specifier: ^0.0.5
+        version: 0.0.5(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       react-stately:
         specifier: ^3.29.0
         version: 3.29.0(react@18.2.0)
@@ -237,15 +237,6 @@ importers:
       eslint:
         specifier: '*'
         version: 8.48.0
-
-  packages/react-medium-image:
-    devDependencies:
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-      react-dom:
-        specifier: ^18.2.0
-        version: 18.2.0(react@18.2.0)
 
 packages:
 
@@ -3940,6 +3931,12 @@ packages:
 
   react-is@16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
+
+  react-medium-image@0.0.5:
+    resolution: {integrity: sha512-ktEbH02d4GJrPC8I9DZGd7T2u+EiduwjkLDxU8bA5QCyYfTfkBnzAPYl6ddUl2bOpFCYCqBaKzRpbdxMgoQeqg==}
+    peerDependencies:
+      react: '>=18'
+      react-dom: '>=18'
 
   react-stately@3.29.0:
     resolution: {integrity: sha512-JWPgEg2RxDtSmMkypsBLuhsuiaMDfJcnFw96oDRg8lAGqkslZmbmYH/O1Wz08k2W6P3Bds4rZz6iK91XMNXomA==}
@@ -9366,6 +9363,11 @@ snapshots:
       scheduler: 0.23.0
 
   react-is@16.13.1: {}
+
+  react-medium-image@0.0.5(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
+    dependencies:
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
 
   react-stately@3.29.0(react@18.2.0):
     dependencies:
