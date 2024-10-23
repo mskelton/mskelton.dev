@@ -16,7 +16,7 @@ export async function verifySignature(req: Request, body: unknown) {
 
   try {
     return crypto.timingSafeEqual(trusted, untrusted)
-  } catch (e) {
+  } catch {
     return false
   }
 }

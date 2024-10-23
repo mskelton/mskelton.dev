@@ -6,7 +6,7 @@ function normalizeHref(href: string) {
   return href.startsWith(siteMeta.url) ? href.replace(siteMeta.url, "") : href
 }
 
-export interface LinkProps extends AnchorHTMLAttributes<HTMLAnchorElement> {}
+export type LinkProps = AnchorHTMLAttributes<HTMLAnchorElement>
 
 export default function MarkdownLink({ href = "#", ...props }: LinkProps) {
   href = normalizeHref(href)

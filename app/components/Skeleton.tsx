@@ -1,6 +1,6 @@
 import { twMerge } from "tailwind-merge"
 
-export interface SkeletonProps extends React.HTMLAttributes<HTMLDivElement> {}
+export type SkeletonProps = React.HTMLAttributes<HTMLDivElement>
 
 export default function Skeleton({ className, ...props }: SkeletonProps) {
   return (

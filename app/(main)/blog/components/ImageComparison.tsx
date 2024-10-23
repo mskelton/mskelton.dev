@@ -26,6 +26,7 @@ function CompareImage({
       alt={alt ?? ""}
       onLoad={onLoad}
       placeholder="blur"
+      // eslint-disable-next-line @typescript-eslint/no-require-imports
       src={require(`../posts/${slug}/${src}`)}
       style={styleFitContainer()}
     />

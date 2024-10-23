@@ -1,5 +1,4 @@
-/* eslint-disable sort/object-properties */
-// eslint-disable-next-line @typescript-eslint/no-var-requires
+/* eslint-disable sort/object-properties, @typescript-eslint/no-require-imports */
 const plugin = require("tailwindcss/plugin")
 
 /** @type {import("tailwindcss").Config} */

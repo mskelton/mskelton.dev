@@ -131,7 +131,6 @@ function ThemeMenuTrigger(props: MenuTriggerProps) {
         [MenuContext, menuProps],
       ]}
     >
-      {/* eslint-disable-next-line react/destructuring-assignment */}
       {props.children}
     </Provider>
   )

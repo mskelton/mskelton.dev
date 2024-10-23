@@ -1,6 +1,12 @@
 // @ts-check
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const { isJSX } = require("../utils/jsx")
+
+/**
+ * @param {import("eslint").Rule.Node} node
+ * @returns {boolean} Whether or not the node if a JSX element or fragment.
+ */
+function isJSX(node) {
+  return node && ["JSXElement", "JSXFragment"].indexOf(node.type) >= 0
+}
 
 const entities = [
   { alternatives: ["“", "”"], char: '"' },
@@ -54,7 +60,7 @@ function reportUnescaped(context, node) {
 }
 
 /** @type {import("eslint").Rule.RuleModule} */
-const rule = {
+export default {
   create(context) {
     return {
       /** @param {import("eslint").Rule.Node} node */
@@ -76,5 +82,3 @@ const rule = {
     type: "suggestion",
   },
 }
-
-module.exports = rule

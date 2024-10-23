@@ -1,7 +1,7 @@
 import { Menu, MenuItem, MenuItemProps, MenuProps } from "react-aria-components"
 import { twMerge } from "tailwind-merge"
 
-export interface NavMenuProps<T extends object> extends MenuProps<T> {}
+export type NavMenuProps<T extends object> = MenuProps<T>
 
 export function NavMenu<T extends object>(props: NavMenuProps<T>) {
   return (
@@ -13,7 +13,7 @@ export function NavMenu<T extends object>(props: NavMenuProps<T>) {
   )
 }
 
-export interface NavMenuItemProps<T extends object> extends MenuItemProps<T> {}
+export type NavMenuItemProps<T extends object> = MenuItemProps<T>
 
 export function NavMenuItem<T extends object>(props: NavMenuItemProps<T>) {
   return (
