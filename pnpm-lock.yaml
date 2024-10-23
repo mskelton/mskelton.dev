@@ -151,8 +151,8 @@ importers:
         version: 5.89.0(esbuild@0.19.12)
     devDependencies:
       '@mskelton/eslint-config':
-        specifier: ^9.0.1
-        version: 9.0.1(eslint@9.13.0(jiti@2.3.3))(typescript@5.3.3)
+        specifier: ^9.0.2
+        version: 9.0.2(eslint@9.13.0(jiti@2.3.3))(typescript@5.3.3)
       '@octokit/webhooks-types':
         specifier: ^7.3.1
         version: 7.3.1
@@ -656,8 +656,8 @@ packages:
     peerDependencies:
       react: '>=16'
 
-  '@mskelton/eslint-config@9.0.1':
-    resolution: {integrity: sha512-qUez93te/pekW4/csTBC3mSRND5yqusBxEnbqgZuRdfiHpRYLKuu8EYCJKo4a6W7gokIAjbCGUOpimESS43YXQ==}
+  '@mskelton/eslint-config@9.0.2':
+    resolution: {integrity: sha512-ycfEpVmqGsLO6K6CoGm+A7MuKSTY79qNaluJmLMuA/KeMSBICayIHMDlYhXJ9zcgmqGb6MuydmI/uXp6E9yYdA==}
     peerDependencies:
       eslint: '>= 9'
 
@@ -4484,7 +4484,7 @@ snapshots:
       '@types/react': 18.2.55
       react: 18.2.0
 
-  '@mskelton/eslint-config@9.0.1(eslint@9.13.0(jiti@2.3.3))(typescript@5.3.3)':
+  '@mskelton/eslint-config@9.0.2(eslint@9.13.0(jiti@2.3.3))(typescript@5.3.3)':
     dependencies:
       '@eslint/js': 9.13.0
       '@typescript-eslint/eslint-plugin': 8.11.0(@typescript-eslint/parser@8.11.0(eslint@9.13.0(jiti@2.3.3))(typescript@5.3.3))(eslint@9.13.0(jiti@2.3.3))(typescript@5.3.3)
