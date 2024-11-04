@@ -5,6 +5,7 @@ import { tokyonight } from "./themes/tokyonight.mjs"
 export const langs = [
   "bash",
   "css",
+  "diff",
   "fish",
   "go",
   "html",
@@ -16,6 +17,7 @@ export const langs = [
   "prolog",
   "rust",
   "scheme",
+  "toml",
   "tsx",
   "typescript",
   "vim",

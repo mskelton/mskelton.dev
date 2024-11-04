@@ -1,0 +1,106 @@
+---
+title: Safely Trash Changes With Git
+description:
+  git trash is an alias I've been using for a long time to remove any
+  staged and unstaged changes in the current repository and reset to a
+  clean state. This is very useful when experimenting with some throw away
+  code that you won't need anymore. However, after several times of
+  accidentally running this command with some changes I actually wanted to
+  keep, it was time for some changes.
+date: "2024-10-04"
+---
+
+`git trash` is an alias I've been using for a long time to remove any
+staged and unstaged changes in the current repository and reset to a clean
+state. This is very useful when experimenting with some throw away code
+that you won't need anymore. However, after several times of accidentally
+running this command with some changes I actually wanted to keep, it was
+time for some changes.
+
+My original version of `git trash` was the following which reverts all
+changes to tracked files and deletes any untracked files.
+
+```toml ~/.gitconfig
+[alias]
+  trash = !git reset --hard && git clean -fd
+```
+
+The problem with this approach, is the changes are gone for good when you
+run it. There is no way to recover them if you run `git trash`
+accidentally. A solution to this problem is surprisingly simple: just
+commit and revert the changes.
+
+Because the goal of `git trash` is to just delete changes without
+committing them, running `git commit` followed by `git revert` isn't a
+solution since I don't want to end up with that in the history of the
+branch. Instead, you can commit and then reset the commit which will remove
+the commit from history. But, while the commit is no longer present in the
+branch history, it still exists in the
+[reflog](https://git-scm.com/docs/git-reflog). which can be used to recover
+the trashed changes.
+
+```bash
+if [ -n "$(git status --porcelain)" ]; then
+  git add -A
+  git commit -qm 'trashing'
+  git reset -q --hard HEAD~1
+else
+  echo 'No changes to discard'
+  exit 1
+fi
+```
+
+Since I wanted to keep the `git trash` alias, I rewrote the above script as
+a very gross looking inline function:
+
+```toml ~/.gitconfig
+[alias]
+  trash = "!f() { if [ -n \"$(git status --porcelain)\" ]; then git add -A && git commit -qm 'trashing' && git reset -q --hard HEAD~1; else echo 'No changes to discard'; exit 1; fi; }; f"
+```
+
+With this setup, it's time to start trashing some code!
+
+```bash
+echo "I'm going to be trashed" >test.txt
+git trash
+git show 'HEAD@{1}'
+```
+
+After running these commands, the repo should be in a clean state, but the
+commit details printed by running `git show` will show that the trashed
+changes still exist in the reflog.
+
+```diff
+commit 2e3f57a1
+Author: Mark Skelton
+Date:   Mon Nov 4 17:26:02 2024 -0600
+
+    trashing
+
+diff --git a/test.txt b/test.txt
+new file mode 100644
+index 00000000..7639cf5a
+--- /dev/null
++++ b/test.txt
+@@ -0,0 +1 @@
++I'm going to be trashed
+```
+
+Running `git reflog` makes it easier to see what's going on here:
+
+```
+96beb357 (HEAD -> main, origin/main, origin/HEAD) HEAD@{0}: reset: moving to HEAD~1
+2e3f57a1 HEAD@{1}: commit: trashing
+96beb357 (HEAD -> main, origin/main, origin/HEAD) HEAD@{2}: commit: Write blog post
+```
+
+In both the `git show` and `git reflog` commands the commit sha of
+`2e3f57a1` is printed which can be used to recover the trashed changes:
+
+```bash
+git checkout 2e3f57a1
+```
+
+After checkout out the commit, all the changes you trashed will be
+restored. At this point it's as simple as committing any or all of the
+trashed changes to a branch to then continue working on them from there.
