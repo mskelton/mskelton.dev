@@ -1,5 +1,6 @@
 name: Tickle DB
 on:
+  push:
   workflow_dispatch:
   schedule:
     - cron: "0 0 * * *"
@@ -9,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Install Turso CLI
-        run: curl -sSf https://get.tur.so/install.sh | sh
+        run: curl -sSf https://get.tur.so/install.sh | bash
 
       - name: Authenticate Turso CLI
         run: turso auth login --token $TURSO_AUTH_TOKEN
