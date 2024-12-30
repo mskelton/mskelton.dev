@@ -11,8 +11,11 @@ jobs:
     steps:
       - name: Tickle DB
         run: |
+          TURSO_URL="${{ secrets.TURSO_DATABASE_URL }}"
+          TURSO_URL="${TURSO_URL/libsql/https}"
+
           curl -X POST \
             -H "Authorization: Bearer ${{ secrets.TURSO_AUTH_TOKEN }}" \
             -H "Content-Type: application/json" \
             -d '{"statements": ["SELECT count(id) FROM bytes"]}' \
-            ${{ secrets.TURSO_DATABASE_URL }}
+            $TURSO_URL
