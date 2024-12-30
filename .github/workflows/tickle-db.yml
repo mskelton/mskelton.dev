@@ -1,0 +1,20 @@
+name: Tickle DB
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 0 * * *"
+jobs:
+  tickle:
+    name: Tickle DB
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install Turso CLI
+        run: curl -sSf https://get.tur.so/install.sh | sh
+
+      - name: Authenticate Turso CLI
+        run: turso auth login --token $TURSO_AUTH_TOKEN
+        env:
+          TURSO_AUTH_TOKEN: ${{ secrets.TURSO_AUTH_TOKEN }}
+
+      - name: Query LibSQL with Turso
+        run: turso db shell mskelton "SELECT count(id) FROM bytes"
