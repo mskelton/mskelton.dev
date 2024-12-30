@@ -14,8 +14,8 @@ jobs:
           TURSO_URL="${{ secrets.TURSO_DATABASE_URL }}"
           TURSO_URL="${TURSO_URL/libsql/https}"
 
-          curl -X POST \
+          curl -LSfs -X POST \
             -H "Authorization: Bearer ${{ secrets.TURSO_AUTH_TOKEN }}" \
             -H "Content-Type: application/json" \
             -d '{"statements": ["SELECT count(id) FROM bytes"]}' \
-            $TURSO_URL
+            $TURSO_URL | jq
