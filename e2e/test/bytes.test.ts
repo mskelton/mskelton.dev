@@ -34,11 +34,10 @@ test.describe("Bytes page", () => {
   test("can search by tag", async ({ bytesPage }) => {
     await bytesPage.goto("?tag=git")
     const title = "Using Git Hooks When Creating Worktrees"
-    const byte = bytesPage.byte(title)
 
     await expect(bytesPage.searchHint).toHaveText("Showing results for #git")
-    await expect(byte.root).toBeVisible()
-    await expect(byte.description).toContainText(
+    await expect(bytesPage.byte(title).root).toHaveCount(1)
+    await expect(bytesPage.byte(title).description).toContainText(
       "I've started to use git worktrees more lately",
     )
   })
