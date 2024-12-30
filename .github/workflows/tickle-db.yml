@@ -8,13 +8,13 @@ jobs:
     name: Tickle DB
     runs-on: ubuntu-latest
     steps:
-      - name: Install Turso CLI
-        run: curl -sSf https://get.tur.so/install.sh | sh
+      - name: Tickle DB
+        run: |
+          TURSO_URL="${{ secrets.TURSO_DATABASE_URL }}"
+          TURSO_URL="${TURSO_URL/libsql/https}"
 
-      - name: Authenticate Turso CLI
-        run: turso auth login --token $TURSO_AUTH_TOKEN
-        env:
-          TURSO_AUTH_TOKEN: ${{ secrets.TURSO_AUTH_TOKEN }}
-
-      - name: Query LibSQL with Turso
-        run: turso db shell mskelton "SELECT count(id) FROM bytes"
+          curl -LSfs -X POST \
+            -H "Authorization: Bearer ${{ secrets.TURSO_AUTH_TOKEN }}" \
+            -H "Content-Type: application/json" \
+            -d '{"statements": ["SELECT count(id) FROM bytes"]}' \
+            $TURSO_URL | jq
