@@ -48,5 +48,5 @@ export async function getPostImage(slug: string) {
     return fs.readFile(imagePath)
   }
 
-  return fs.readFile(path.join(process.cwd(), "public/logo.jpg"))
+  return fs.readFile(path.join(process.cwd(), "app/images/portrait.jpg"))
 }
