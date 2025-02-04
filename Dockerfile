@@ -8,6 +8,9 @@ RUN apt-get update && apt-get install -y ca-certificates
 # have to worry about the read-replica being out of sync with the primary.
 ENV DATABASE_URL "file:/app/data/mskelton.db"
 
+# https://github.com/nodejs/corepack/issues/612
+ENV COREPACK_INTEGRITY_KEYS 0
+
 # Install dependencies only when needed
 FROM base AS deps
 
