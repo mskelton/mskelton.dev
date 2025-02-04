@@ -2,7 +2,7 @@
   "name": "mskelton.dev",
   "description": "Source code for my personal website.",
   "type": "module",
-  "packageManager": "pnpm@9.0.1",
+  "packageManager": "pnpm@9.15.5",
   "scripts": {
     "build": "next build",
     "db:reindex": "curl -X POST http://localhost:3000/api/reindex",
