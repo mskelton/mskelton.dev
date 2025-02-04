@@ -6,6 +6,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: mskelton/setup-pnpm@v3
+        with:
+          node-version: "22.x"
+        env:
+          COREPACK_INTEGRITY_KEYS: 0
       - name: Lint
         run: pnpm lint
       - name: Check formatting
@@ -16,6 +20,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: mskelton/setup-pnpm@v3
+        with:
+          node-version: "22.x"
+        env:
+          COREPACK_INTEGRITY_KEYS: 0
       - name: Type check
         run: pnpm ts
 
@@ -26,6 +34,10 @@ jobs:
       DATABASE_URL: file:./data/mskelton.db
     steps:
       - uses: mskelton/setup-pnpm@v3
+        with:
+          node-version: "22.x"
+        env:
+          COREPACK_INTEGRITY_KEYS: 0
       - run: pnpm playwright install chromium --with-deps
       - run: pnpm drizzle-kit push
       - run: pnpm db:seed
