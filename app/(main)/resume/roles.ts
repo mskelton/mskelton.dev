@@ -1,9 +1,15 @@
 export const roles = [
   {
     company: "Ramp",
-    date: "July 2024 - Present",
+    date: "July 2024 - Now",
     href: "https://ramp.com",
-    responsibilities: [],
+    responsibilities: [
+      "Launched Ramp Treasury providing customers higher earnings, faster payments, and more control over their cash",
+      "Lead maintainer of Ramp's end-to-end test architecture using Playwright and advanced HAR recording",
+      "Managed a complex migration of Ramp's frontend repositories to ESLint 9",
+      "Implemented GitHub Action workflows for code generation and automated test management",
+      "Re-architecting the build process of Ryu, Ramp's internal component library",
+    ],
     title: "Staff Software Engineer",
   },
   {

@@ -125,17 +125,16 @@ function Resume() {
                 aria-label={
                   role.end
                     ? `${role.start} until ${role.end}`
-                    : `${role.start} - present`
+                    : `${role.start} — now`
                 }
                 className="text-xs text-zinc-400 transition-colors @[400px]:ml-auto dark:text-zinc-500"
               >
-                <time dateTime={role.start}>{role.start}</time>
-                {role.end && (
-                  <>
-                    {" "}
-                    <span aria-hidden="true">—</span>{" "}
-                    <time dateTime={role.end}>{role.end}</time>
-                  </>
+                <time dateTime={role.start}>{role.start}</time>{" "}
+                <span aria-hidden="true">—</span>{" "}
+                {role.end ? (
+                  <time dateTime={role.end}>{role.end}</time>
+                ) : (
+                  <span>now</span>
                 )}
               </dd>
             </dl>
