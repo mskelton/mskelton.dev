@@ -6,10 +6,7 @@ RUN apt-get update && apt-get install -y ca-certificates
 # We use Turso as the primary DB with the file-system DB setup as a
 # read-replica. Because my site is deployed as a single machine, I don't
 # have to worry about the read-replica being out of sync with the primary.
-ENV DATABASE_URL "file:/app/data/mskelton.db"
-
-# https://github.com/nodejs/corepack/issues/612
-ENV COREPACK_INTEGRITY_KEYS 0
+ENV DATABASE_URL="file:/app/data/mskelton.db"
 
 # Install dependencies only when needed
 FROM base AS deps
@@ -38,7 +35,7 @@ RUN npm run build
 FROM base AS runner
 WORKDIR /app
 
-ENV NODE_ENV production
+ENV NODE_ENV=production
 
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
@@ -62,7 +59,7 @@ USER nextjs
 
 EXPOSE 3000
 
-ENV PORT 3000
-ENV HOSTNAME "0.0.0.0"
+ENV PORT=3000
+ENV HOSTNAME="0.0.0.0"
 
 CMD ["node", "server.js"]
