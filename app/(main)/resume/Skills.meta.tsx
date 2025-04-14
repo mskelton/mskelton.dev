@@ -35,6 +35,7 @@ export const skills: Skill[] = [
     url: "https://react.dev/",
   },
   {
+    disabled: true,
     icon: (
       <svg viewBox="0 0 128 128">
         <path
@@ -456,6 +457,7 @@ export const skills: Skill[] = [
     url: "https://github.com/",
   },
   {
+    disabled: true,
     icon: (
       <svg viewBox="0 0 128 128">
         <defs>
