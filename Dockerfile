@@ -3,7 +3,7 @@ FROM node:20-slim AS base
 # Pre-requisites for libsql
 RUN apt-get update && apt-get install -y ca-certificates
 
-ENV DATABASE_URL="file:/app/data/mskelton.db"
+ENV DATABASE_FILENAME="file:/app/data/mskelton.db"
 
 # Install dependencies only when needed
 FROM base AS deps

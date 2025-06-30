@@ -20,8 +20,8 @@ export async function generateMetadata({ params }: PageProps) {
 }
 
 export default async function Page({ params }: { params: { slug: string } }) {
-  const { content, createdAt, description, title } = await getByte(params.slug)
-  const date = toDateString(createdAt)
+  const { content, created_at, description, title } = await getByte(params.slug)
+  const date = toDateString(created_at)
 
   return (
     <PostLayout

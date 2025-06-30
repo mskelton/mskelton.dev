@@ -2,7 +2,7 @@ import { NextResponse } from "next/server"
 import { requireToken } from "api/utils/auth"
 import { upsertByte } from "lib/api/bytes"
 import { getByteSource, octokit } from "lib/api/github"
-import { db, schema } from "lib/db"
+import { client } from "lib/db"
 import { toId } from "lib/parser"
 
 async function getAllByteIds() {
@@ -31,9 +31,9 @@ export async function POST(request: Request) {
   const sources = await Promise.all(ids.map(getByteSource))
 
   // Clear all bytes from the database
-  await db.delete(schema.bytesToTags)
-  await db.delete(schema.bytes)
-  await db.delete(schema.tags)
+  client.exec(`DELETE FROM bytes_to_tags`)
+  client.exec(`DELETE FROM bytes`)
+  client.exec(`DELETE FROM tags`)
 
   // Add all bytes to the database
   for (let i = 0; i < ids.length; i++) {

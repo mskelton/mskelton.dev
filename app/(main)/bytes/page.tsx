@@ -80,7 +80,7 @@ export default async function Bytes({
       {bytes.length ? (
         <div className="mt-16 flex flex-col gap-16 sm:mt-20">
           {bytes.map((byte) => {
-            const date = toDateString(byte.createdAt)
+            const date = toDateString(byte.created_at)
 
             return (
               <article key={byte.id}>
@@ -95,7 +95,7 @@ export default async function Bytes({
                       className="order-2 mb-1"
                       dateTime={date}
                     >
-                      {formatDate(byte.createdAt)}
+                      {formatDate(byte.created_at)}
                     </Card.Eyebrow>
 
                     <Card.Tags className="order-1 mb-2 justify-self-end sm:mb-0">
