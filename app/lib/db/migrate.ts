@@ -10,7 +10,7 @@ export function migrate(client: sqlite3.Database) {
 }
 
 const sql = `
-	CREATE TABLE bytes (
+	CREATE TABLE IF NOT EXISTS bytes (
 		content blob NOT NULL,
 		created_at integer NOT NULL,
 		description text NOT NULL,
@@ -19,7 +19,7 @@ const sql = `
 		title text NOT NULL
 	);
 
-	CREATE TABLE bytes_to_tags (
+	CREATE TABLE IF NOT EXISTS bytes_to_tags (
 		byte_id text NOT NULL,
 		tag_id integer NOT NULL,
 		PRIMARY KEY(byte_id, tag_id),
@@ -27,12 +27,12 @@ const sql = `
 		FOREIGN KEY (tag_id) REFERENCES tags(id) ON UPDATE no action ON DELETE no action
 	);
 
-	CREATE TABLE tags (
+	CREATE TABLE IF NOT EXISTS tags (
 		created_at integer NOT NULL,
 		id integer PRIMARY KEY AUTOINCREMENT NOT NULL,
 		name text NOT NULL
 	);
 
-	CREATE UNIQUE INDEX bytes_slug_unique ON bytes (slug);
-	CREATE UNIQUE INDEX tags_name_unique ON tags (name);
+	CREATE UNIQUE INDEX IF NOT EXISTS bytes_slug_unique ON bytes (slug);
+	CREATE UNIQUE INDEX IF NOT EXISTS tags_name_unique ON tags (name);
 `

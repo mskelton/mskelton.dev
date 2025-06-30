@@ -142,9 +142,9 @@ function getPrefix({ query, tag }: Pick<SearchBytesRequest, "query" | "tag">) {
   return `/bytes?${str + (str ? "&" : "")}`
 }
 
-export function getAllBytes() {
+export async function getAllBytes() {
   return client
-    .prepare<Byte[]>(`select * from bytes order by created_at desc`)
+    .prepare<unknown[], Byte>(`select * from bytes order by created_at desc`)
     .all()
 }
 
