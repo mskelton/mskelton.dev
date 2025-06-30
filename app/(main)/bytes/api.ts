@@ -1,5 +1,4 @@
 import rehypeShiki from "@mskelton/rehype-shiki"
-import { and, asc, desc, eq, gt, like, lt, or, sql } from "drizzle-orm"
 import matter from "gray-matter"
 import { notFound } from "next/navigation"
 import { compileMDX } from "next-mdx-remote/rsc"
@@ -10,7 +9,7 @@ import rehypeSlug from "rehype-slug"
 import remarkGfm from "remark-gfm"
 import remarkSmartypants from "remark-smartypants"
 import { getHighlighter, Highlighter } from "shiki"
-import { db, schema } from "lib/db"
+import { client } from "lib/db"
 import MarkdownImage from "../../../components/markdown/MarkdownImage"
 import MarkdownLink from "../../../components/markdown/MarkdownLink"
 import MarkdownPre from "../../../components/markdown/MarkdownPre"
@@ -48,10 +47,36 @@ const loadLocalByteContent = async (id: string) => {
   }
 }
 
+type Byte = {
+  content: string | Buffer
+  created_at: Date
+  description: string
+  id: string
+  slug: string
+  tags: Tag[]
+  title: string
+}
+
+type Tag = {
+  id: string
+  name: string
+}
+
+function parseByte(byte: any): Byte {
+  return {
+    ...byte,
+    created_at: new Date(byte.created_at),
+    tags: byte.tags ? (JSON.parse(byte.tags) as Tag[]) : undefined,
+  }
+}
+
 export const getByte = cache(async (slug: string) => {
-  const byte = await db.query.bytes.findFirst({
-    where: or(eq(schema.bytes.id, slug), eq(schema.bytes.slug, slug)),
-  })
+  const byte = client
+    .prepare<
+      { slug: string },
+      Byte
+    >(`select * from bytes where id = @slug or slug = @slug`)
+    .get({ slug })
 
   if (!byte) {
     notFound()
@@ -98,7 +123,7 @@ export const getByte = cache(async (slug: string) => {
     source: byte.content as string,
   })
 
-  return { ...byte, content }
+  return parseByte({ ...byte, content })
 })
 
 export type Direction = "left" | "none" | "right"
@@ -117,17 +142,10 @@ function getPrefix({ query, tag }: Pick<SearchBytesRequest, "query" | "tag">) {
   return `/bytes?${str + (str ? "&" : "")}`
 }
 
-export function getAllBytes() {
-  return db
-    .select({
-      createdAt: schema.bytes.createdAt,
-      description: schema.bytes.description,
-      id: schema.bytes.id,
-      slug: schema.bytes.slug,
-      title: schema.bytes.title,
-    })
-    .from(schema.bytes)
-    .orderBy(desc(schema.bytes.createdAt))
+export async function getAllBytes() {
+  return client
+    .prepare<unknown[], Byte>(`select * from bytes order by created_at desc`)
+    .all()
 }
 
 export interface SearchBytesRequest {
@@ -141,54 +159,43 @@ export const PAGE_SIZE = 10
 
 export const searchBytes = cache(
   async ({ cursor, direction, query, tag }: SearchBytesRequest) => {
-    const res = await db
-      .select({
-        createdAt: schema.bytes.createdAt,
-        description: schema.bytes.description,
-        id: schema.bytes.id,
-        slug: schema.bytes.slug,
-        tags: sql`json_group_array(json_object('id', ${schema.tags.id}, 'name', ${schema.tags.name}))`.mapWith(
-          (val) => JSON.parse(val) as { id: string; name: string }[],
-        ),
-        title: schema.bytes.title,
-      })
-      .from(schema.bytes)
-      .innerJoin(
-        schema.bytesToTags,
-        eq(schema.bytesToTags.byteId, schema.bytes.id),
+    const where = [
+      cursor ? `bytes.id ${direction === "left" ? ">" : "<"} @cursor` : "",
+      query ? `(bytes.title like @query or bytes.description like @query)` : "",
+      tag ? `tags.name = @tag` : "",
+    ]
+      .filter(Boolean)
+      .join(" and ")
+
+    const res = client
+      .prepare<{
+        cursor?: string
+        query?: string
+        tag?: string
+      }>(
+        `
+          select bytes.*, json_group_array(json_object('id', tags.id, 'name', tags.name)) as tags
+          from bytes
+          inner join bytes_to_tags on bytes.id = bytes_to_tags.byte_id
+          inner join tags on tags.id = bytes_to_tags.tag_id
+          ${where ? `where ${where}` : ""}
+          group by bytes.id
+          -- When paging backwards, we have to sort backwards to allow our limit
+          -- to work correctly.
+          order by bytes.id ${direction === "left" ? "asc" : "desc"}
+          -- To know if there are more pages, we fetch one more record than we need
+          -- and use the total count to determine if there are more pages. This has
+          -- to account for the cursor direction as well.
+          limit ${PAGE_SIZE + 1}
+        `,
       )
-      .innerJoin(schema.tags, eq(schema.bytesToTags.tagId, schema.tags.id))
-      .where(
-        and(
-          cursor
-            ? direction === "left"
-              ? gt(schema.bytes.id, cursor)
-              : lt(schema.bytes.id, cursor)
-            : undefined,
-          query
-            ? or(
-                like(schema.bytes.title, `%${query}%`),
-                like(schema.bytes.description, `%${query}%`),
-              )
-            : undefined,
-          tag ? eq(schema.tags.name, tag) : undefined,
-        ),
-      )
-      .groupBy(schema.bytes.id)
-      // To know if there are more pages, we fetch one more record than we need
-      // and use the total count to determine if there are more pages. This has
-      // to account for the cursor direction as well.
-      .limit(PAGE_SIZE + 1)
-      // When paging backwards, we have to sort backwards to allow our limit
-      // to work correctly.
-      .orderBy((direction === "left" ? asc : desc)(schema.bytes.id))
-      .execute()
+      .all({ cursor, query: `%${query}%`, tag })
 
     const prefix = getPrefix({ query, tag })
     const hasMore = res.length > PAGE_SIZE
 
     // Since we fetch extra records, we need to slice the result to the correct size.
-    const bytes = res.slice(0, PAGE_SIZE)
+    const bytes = res.slice(0, PAGE_SIZE).map(parseByte)
 
     // If paging backwards, we need to reverse the result set to maintain the
     // correct order. Mutating arrays isn't that cool, but what do I care about

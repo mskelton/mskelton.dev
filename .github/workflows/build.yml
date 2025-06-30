@@ -27,13 +27,12 @@ jobs:
     name: Test
     runs-on: ubuntu-latest
     env:
-      DATABASE_URL: file:./data/mskelton.db
+      DATABASE_FILENAME: ./data/mskelton.db
     steps:
       - uses: mskelton/setup-pnpm@v3
         with:
           node-version: "22.x"
       - run: pnpm playwright install chromium --with-deps
-      - run: pnpm drizzle-kit push
       - run: pnpm db:seed
       - run: pnpm test
       - name: Upload test results

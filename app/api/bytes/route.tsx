@@ -1,10 +1,9 @@
-import { inArray } from "drizzle-orm"
 import { NextResponse } from "next/server"
 import { PushEvent } from "@octokit/webhooks-types"
 import { upsertByte } from "lib/api/bytes"
 import { getByteSource } from "lib/api/github"
 import { verifySignature } from "lib/api/signature"
-import { db, schema } from "lib/db"
+import { client } from "lib/db"
 import { toId } from "lib/parser"
 
 async function upsert(file: string) {
@@ -13,7 +12,7 @@ async function upsert(file: string) {
 }
 
 async function remove(files: string[]) {
-  await db.delete(schema.bytes).where(inArray(schema.bytes.id, files.map(toId)))
+  client.prepare(`DELETE FROM bytes WHERE id IN ?`).run(files.map(toId))
 }
 
 export async function POST(req: Request) {
