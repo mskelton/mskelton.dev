@@ -3,6 +3,7 @@ import { drizzle } from "drizzle-orm/libsql"
 import * as schema from "./schema"
 
 function create() {
+  console.log("database url", process.env.DATABASE_URL)
   return createClient({
     url: process.env.DATABASE_URL!,
   })

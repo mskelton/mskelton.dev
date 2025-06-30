@@ -23,9 +23,6 @@ const nextConfig = {
   eslint: {
     dirs: ["app", "components", "config", "e2e"],
   },
-  experimental: {
-    instrumentationHook: true,
-  },
   images: {
     minimumCacheTTL: 3600, // 1 hour
   },

@@ -5,6 +5,5 @@ export default defineConfig({
     url: process.env.DATABASE_URL!,
   },
   dialect: "sqlite",
-  driver: "turso",
   schema: "./app/lib/db/schema.ts",
 })
