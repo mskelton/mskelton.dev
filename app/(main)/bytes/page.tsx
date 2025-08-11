@@ -10,10 +10,14 @@ import { Card } from "components/Card"
 import Input from "components/Input"
 import { SimpleLayout } from "components/layouts/SimpleLayout"
 import { formatDate, toDateString } from "lib/date"
+import { siteMeta } from "lib/siteMeta"
 import { Direction, searchBytes } from "./api"
 import PageLink from "./PageLink"
 
 export const metadata: Metadata = {
+  alternates: {
+    canonical: `${siteMeta.url}/bytes`,
+  },
   description:
     "Bytes is my collection of short-form posts, tips, and things I learn as I build software.",
   title: "Bytes | Mark Skelton",

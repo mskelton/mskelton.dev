@@ -1,6 +1,7 @@
 import { PostLayout } from "components/layouts/PostLayout"
 import { toDateString } from "lib/date"
 import { withOpenGraph } from "lib/metadata"
+import { siteMeta } from "lib/siteMeta"
 import { getByte } from "../api"
 
 interface PageProps {
@@ -14,10 +15,12 @@ export async function generateMetadata({ params }: PageProps) {
 
   return withOpenGraph({
     alternates: {
-      canonical: `/bytes/${id}`,
+      canonical: `${siteMeta.url}/bytes/${id}`,
     },
     description,
-    openGraph: { url: `/bytes/${id}` },
+    openGraph: {
+      url: `${siteMeta.url}/bytes/${id}`,
+    },
     title,
   })
 }
