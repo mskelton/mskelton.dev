@@ -2,6 +2,7 @@ import { Metadata } from "next"
 import { siteMeta } from "./siteMeta"
 
 export function withOpenGraph({
+  alternates,
   openGraph,
   twitter,
   ...props
@@ -11,6 +12,7 @@ export function withOpenGraph({
 
   return {
     ...props,
+    alternates,
     description,
     metadataBase: new URL(siteMeta.url),
     openGraph: {

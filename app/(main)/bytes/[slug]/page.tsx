@@ -13,6 +13,9 @@ export async function generateMetadata({ params }: PageProps) {
   const { description, id, title } = await getByte(params.slug)
 
   return withOpenGraph({
+    alternates: {
+      canonical: `/bytes/${id}`,
+    },
     description,
     openGraph: { url: `/bytes/${id}` },
     title,
