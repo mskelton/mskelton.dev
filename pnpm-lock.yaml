@@ -154,8 +154,8 @@ importers:
         specifier: ^7.3.1
         version: 7.3.1
       '@playwright/test':
-        specifier: ^1.49.1
-        version: 1.49.1
+        specifier: ^1.54.2
+        version: 1.54.2
       '@types/better-sqlite3':
         specifier: ^7.6.13
         version: 7.6.13
@@ -176,13 +176,13 @@ importers:
         version: 9.13.0(jiti@2.4.2)
       expect-axe-playwright:
         specifier: ^4.0.1
-        version: 4.0.1(@playwright/test@1.49.1)
+        version: 4.0.1(@playwright/test@1.54.2)
       gray-matter:
         specifier: ^4.0.3
         version: 4.0.3
       lariat:
         specifier: ^2.0.1
-        version: 2.0.1(@playwright/test@1.49.1)
+        version: 2.0.1(@playwright/test@1.54.2)
       prettier:
         specifier: ^3.2.5
         version: 3.2.5
@@ -623,8 +623,8 @@ packages:
   '@octokit/webhooks-types@7.3.1':
     resolution: {integrity: sha512-u6355ZsZnHwmxen30SrqnYb1pXieBFkYgkNzt+Ed4Ao5tupN1OErHfzwiV6hq6duGkDAYASbq7/uVJQ69PjLEg==}
 
-  '@playwright/test@1.49.1':
-    resolution: {integrity: sha512-Ky+BVzPz8pL6PQxHqNRW1k3mIyv933LML7HktS8uik0bUXNCdPhoS/kLihiO1tMf/egaJb4IutXd7UywvXEW+g==}
+  '@playwright/test@1.54.2':
+    resolution: {integrity: sha512-A+znathYxPf+72riFd1r1ovOLqsIIB0jKIoPjyK2kqEIe30/6jF6BC7QNluHuwUmsD2tv1XZVugN8GqfTMOxsA==}
     engines: {node: '>=18'}
     hasBin: true
 
@@ -2841,13 +2841,13 @@ packages:
     resolution: {integrity: sha512-saLsH7WeYYPiD25LDuLRRY/i+6HaPYr6G1OUlN39otzkSTxKnubR9RTxS3/Kk50s1g2JTgFwWQDQyplC5/SHZg==}
     engines: {node: '>= 6'}
 
-  playwright-core@1.49.1:
-    resolution: {integrity: sha512-BzmpVcs4kE2CH15rWfzpjzVGhWERJfmnXmniSyKeRZUs9Ws65m+RGIi7mjJK/euCegfn3i7jvqWeWyHe9y3Vgg==}
+  playwright-core@1.54.2:
+    resolution: {integrity: sha512-n5r4HFbMmWsB4twG7tJLDN9gmBUeSPcsBZiWSE4DnYz9mJMAFqr2ID7+eGC9kpEnxExJ1epttwR59LEWCk8mtA==}
     engines: {node: '>=18'}
     hasBin: true
 
-  playwright@1.49.1:
-    resolution: {integrity: sha512-VYL8zLoNTBxVOrJBbDuRgDWa3i+mfQgDTrL8Ah9QXZ7ax4Dsj0MSq5bYgytRnDVVe+njoKnfsYkH3HzqVj5UZA==}
+  playwright@1.54.2:
+    resolution: {integrity: sha512-Hu/BMoA1NAdRUuulyvQC0pEqZ4vQbGfn8f7wPXcnqQmM+zct9UliKxsIkLNmz/ku7LElUNqmaiv1TG/aL5ACsw==}
     engines: {node: '>=18'}
     hasBin: true
 
@@ -4018,9 +4018,9 @@ snapshots:
 
   '@octokit/webhooks-types@7.3.1': {}
 
-  '@playwright/test@1.49.1':
+  '@playwright/test@1.54.2':
     dependencies:
-      playwright: 1.49.1
+      playwright: 1.54.2
 
   '@react-aria/breadcrumbs@3.5.9(react@18.2.0)':
     dependencies:
@@ -4880,7 +4880,7 @@ snapshots:
 
   '@swc/helpers@0.4.14':
     dependencies:
-      tslib: 2.8.1
+      tslib: 2.6.3
 
   '@swc/helpers@0.4.36':
     dependencies:
@@ -5823,14 +5823,14 @@ snapshots:
 
   expand-template@2.0.3: {}
 
-  expect-axe-playwright@4.0.1(@playwright/test@1.49.1):
+  expect-axe-playwright@4.0.1(@playwright/test@1.54.2):
     dependencies:
       axe-core: 4.8.2
       axe-reporter-html: 1.0.0
       isomorphic-resolve: 1.0.0
       merge-deep: 3.0.3
     optionalDependencies:
-      '@playwright/test': 1.49.1
+      '@playwright/test': 1.54.2
 
   extend-shallow@2.0.1:
     dependencies:
@@ -6318,9 +6318,9 @@ snapshots:
 
   kleur@4.1.5: {}
 
-  lariat@2.0.1(@playwright/test@1.49.1):
+  lariat@2.0.1(@playwright/test@1.54.2):
     dependencies:
-      '@playwright/test': 1.49.1
+      '@playwright/test': 1.54.2
 
   lazy-cache@0.2.7: {}
 
@@ -7165,11 +7165,11 @@ snapshots:
 
   pirates@4.0.6: {}
 
-  playwright-core@1.49.1: {}
+  playwright-core@1.54.2: {}
 
-  playwright@1.49.1:
+  playwright@1.54.2:
     dependencies:
-      playwright-core: 1.49.1
+      playwright-core: 1.54.2
     optionalDependencies:
       fsevents: 2.3.2
 
