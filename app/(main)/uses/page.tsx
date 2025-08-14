@@ -107,44 +107,36 @@ export default function Uses() {
         </ToolsSection>
 
         <ToolsSection title="Development tools">
-          <Tool href="https://neovim.io" title="Neovim">
-            I used to be a VS Code fanboy, but after using Vim motions for over
-            a year, I switched to Neovim. Not the best tool for beginners, but
-            if you are like me and enjoy spending hours tweaking and improving
-            your Neovim configuration, it’s a great tool.
+          <Tool href="https://www.cursor.com" title="Cursor">
+            As much as I love Neovim, I switched back to the VS Code ecosystem
+            to take advantage of Cursor’s AI features. Has made a massive
+            improvement in my productivity.
           </Tool>
 
-          <Tool href="https://sw.kovidgoyal.net/kitty/" title="Kitty">
-            A “blazingly fast” terminal emulator that works very well with my
-            workflow. Easily configurable with code which makes it much superior
-            to the default macOS terminal.
+          <Tool
+            href="https://www.anthropic.com/claude-code"
+            title="Claude Code"
+          >
+            Alongside Cursor, I use Claude Code for a lot of my longer AI
+            sessions. Really great for developing scripts, projects, and
+            features when giving a good spec.
           </Tool>
 
-          <Tool href="https://github.com/tmux/tmux" title="Tmux">
-            Not long into my career, I found that blue light was not great when
-            starring at a computer for long periods of time. While there are
-            built-in night modes on Mac, I find the customization of Flux hard
-            to beat.
-          </Tool>
-        </ToolsSection>
-
-        <ToolsSection title="Productivity">
           <Tool href="https://1password.com" title="1Password">
             By far the best password manager on the market. Totally worth the
             small price for the security and functionality it provides.
           </Tool>
 
           <Tool href="https://www.raycast.com" title="Raycast">
-            I used to use Alfred as a Spotlight replacement, but when Raycast
-            came on the scene, it was a simple decision to switch. Highly
-            extensible thanks to their extension API.
+            For years the best Spotlight replacement. Apple took a swing at them
+            with a bunch of Spotlight improvements, but Raycast is still
+            unmatched.
           </Tool>
 
-          <Tool href="https://taskwarrior.org" title="Taskwarrior">
-            Since I began my transition to Vim, I started to become a terminal
-            junkie. Taskwarrior is an impressive CLI that let’s you manage your
-            todo list entirely from the command line with tons of powerful
-            features.
+          <Tool href="https://todoist.com" title="Todoist">
+            My life runs on Todoist, quite literally. Without it, I would forget
+            to clean the house or take out the trash. Let software remember
+            stuff so you don’t have to.
           </Tool>
 
           <Tool href="https://shottr.cc" title="Shottr">
