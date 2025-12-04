@@ -1,12 +1,11 @@
 import rehypeShiki from "@mskelton/rehype-shiki"
 import remarkExtractFrontmatter from "@mskelton/remark-extract-frontmatter"
-import nextMDX from "@next/mdx"
+import createMDX from "@next/mdx"
 import rehypeSlug from "rehype-slug"
 import remarkFrontmatter from "remark-frontmatter"
 import remarkGfm from "remark-gfm"
 import remarkMdxFrontmatter from "remark-mdx-frontmatter"
 import remarkSmartypants from "remark-smartypants"
-import { getHighlighter } from "shiki"
 import { langAlias, langs, themeMap, themes } from "./config/highlighter.mjs"
 import { redirects, rewrites } from "./config/redirects.mjs"
 import rehypeCallout from "./config/rehype-callout.mjs"
@@ -30,8 +29,7 @@ const nextConfig = {
   rewrites: async () => rewrites,
 }
 
-const highlighter = await getHighlighter({ langAlias, langs, themes })
-const withMDX = nextMDX({
+const withMDX = createMDX({
   extension: /\.mdx?$/,
   options: {
     rehypePlugins: [
@@ -39,7 +37,7 @@ const withMDX = nextMDX({
       rehypeHeadings,
       rehypeHeaderId,
       rehypeParseCodeMeta,
-      [rehypeShiki, { highlighter, themes: themeMap }],
+      [rehypeShiki, { langAlias, langs, themeMap, themes }],
       rehypeCodeTitles,
       rehypeCodeMeta,
       rehypeCallout,
