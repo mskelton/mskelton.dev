@@ -8,25 +8,29 @@ export async function generateStaticParams() {
   return slugs.map((slug) => ({ slug }))
 }
 
-interface PageProps {
-  params: {
-    slug: string
-  }
-}
-
-export async function generateMetadata({ params }: PageProps) {
-  const { description, title } = await getPost(params.slug)
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>
+}) {
+  const { slug } = await params
+  const { description, title } = await getPost(slug)
 
   return withOpenGraph({
     description,
-    openGraph: { url: `/blog/${params.slug}` },
+    openGraph: { url: `/blog/${slug}` },
     title,
   })
 }
 
-export default async function Page({ params }: { params: { slug: string } }) {
-  const { component: Component, ...meta } = await getPost(params.slug)
-  const image = await import(`../posts/${params.slug}/opengraph-image.png`)
+export default async function Page({
+  params,
+}: {
+  params: Promise<{ slug: string }>
+}) {
+  const { slug } = await params
+  const { component: Component, ...meta } = await getPost(slug)
+  const image = await import(`../posts/${slug}/opengraph-image.png`)
     .then((mod) => mod.default)
     .catch(() => null)
 

@@ -7,7 +7,7 @@
     "build": "next build",
     "db:reindex": "curl -X POST http://localhost:3000/api/reindex",
     "db:seed": "tsx scripts/seed.ts",
-    "dev": "next dev",
+    "dev": "next dev --webpack",
     "serve": "next start",
     "lint": "eslint .",
     "fmt": "prettier --write .",

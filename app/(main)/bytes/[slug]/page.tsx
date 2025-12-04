@@ -4,14 +4,13 @@ import { withOpenGraph } from "lib/metadata"
 import { siteMeta } from "lib/siteMeta"
 import { getByte } from "../api"
 
-interface PageProps {
-  params: {
-    slug: string
-  }
-}
-
-export async function generateMetadata({ params }: PageProps) {
-  const { description, id, title } = await getByte(params.slug)
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>
+}) {
+  const { slug } = await params
+  const { description, id, title } = await getByte(slug)
 
   return withOpenGraph({
     alternates: {
@@ -25,8 +24,13 @@ export async function generateMetadata({ params }: PageProps) {
   })
 }
 
-export default async function Page({ params }: { params: { slug: string } }) {
-  const { content, created_at, description, title } = await getByte(params.slug)
+export default async function Page({
+  params,
+}: {
+  params: Promise<{ slug: string }>
+}) {
+  const { slug } = await params
+  const { content, created_at, description, title } = await getByte(slug)
   const date = toDateString(created_at)
 
   return (
