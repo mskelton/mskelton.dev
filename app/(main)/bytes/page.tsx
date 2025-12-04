@@ -26,14 +26,14 @@ export const metadata: Metadata = {
 export default async function Bytes({
   searchParams,
 }: {
-  searchParams: {
+  searchParams: Promise<{
     after?: string
     before?: string
     q?: string
     tag?: string
-  }
+  }>
 }) {
-  const { after, before, q: query, tag } = searchParams
+  const { after, before, q: query, tag } = await searchParams
   const direction: Direction = after ? "right" : before ? "left" : "none"
   const { bytes, nextHref, prevHref } = await searchBytes({
     cursor: after ?? before,
