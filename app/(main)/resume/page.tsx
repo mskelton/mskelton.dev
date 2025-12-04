@@ -54,8 +54,8 @@ export default function Projects() {
         <div className="m-0 lg:row-start-1">
           {roles
             .filter((role) => role.responsibilities.length)
-            .map((role) => (
-              <Fragment key={role.title}>
+            .map((role, i) => (
+              <Fragment key={i}>
                 <h2>
                   {role.title} at <a href={role.href}>{role.company}</a>
                 </h2>
