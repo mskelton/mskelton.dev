@@ -4,7 +4,7 @@
   "type": "module",
   "packageManager": "pnpm@9.15.5",
   "scripts": {
-    "build": "next build",
+    "build": "next build --webpack",
     "db:reindex": "curl -X POST http://localhost:3000/api/reindex",
     "db:seed": "tsx scripts/seed.ts",
     "dev": "next dev --webpack",
@@ -20,7 +20,7 @@
     "@mdx-js/loader": "^3.1.1",
     "@mdx-js/react": "^3.1.1",
     "@mskelton/rehype-callout": "^0.0.4",
-    "@mskelton/rehype-shiki": "^0.3.0",
+    "@mskelton/rehype-shiki": "^1.0.0",
     "@mskelton/remark-extract-frontmatter": "^0.0.2",
     "@next/mdx": "^16.0.7",
     "@next/third-parties": "^16.0.7",
@@ -54,13 +54,13 @@
     "remark-parse": "^11.0.0",
     "remark-smartypants": "^3.0.2",
     "sharp": "^0.32.6",
-    "shiki": "1.0.0-beta.2",
+    "shiki": "3.19.0",
     "tailwind-merge": "^1.14.0",
     "tailwindcss": "^3.4.0",
     "unified": "^11.0.5",
     "unist-util-visit": "^5.0.0",
     "vfile-matter": "^5.0.1",
-    "webpack": "^5.89.0"
+    "webpack": "^5.103.0"
   },
   "devDependencies": {
     "@mskelton/eslint-config": "^9.2.0",
