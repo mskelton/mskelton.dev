@@ -1,3 +1,5 @@
+"use client"
+
 import clsx from "clsx"
 import { Children, cloneElement, forwardRef } from "react"
 import { Button, ButtonProps } from "react-aria-components"
