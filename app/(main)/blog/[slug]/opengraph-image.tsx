@@ -22,7 +22,11 @@ export default async function Image({
 }) {
   const { slug } = await params
   const bytes = await getPostImage(slug)
-  const blob = new Blob([bytes], { type: "image/png" })
 
-  return new Response(blob)
+  if (bytes instanceof ArrayBuffer) {
+    const blob = new Blob([bytes], { type: "image/png" })
+    return new Response(blob)
+  }
+
+  throw new Error(`Expected ArrayBuffer but got ${typeof bytes}`)
 }
