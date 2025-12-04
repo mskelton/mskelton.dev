@@ -20,9 +20,6 @@ import remarkCodeBlock from "./config/remark-code-block.mjs"
 
 /** @type {import("next").NextConfig} */
 const nextConfig = {
-  eslint: {
-    dirs: ["app", "components", "config", "e2e"],
-  },
   images: {
     minimumCacheTTL: 3600, // 1 hour
   },

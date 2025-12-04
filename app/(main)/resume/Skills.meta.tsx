@@ -1,4 +1,5 @@
 // vim:set foldlevel=2:
+import { JSX } from "react"
 
 interface Skill {
   disabled?: boolean

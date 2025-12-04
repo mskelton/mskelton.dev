@@ -1,10 +1,14 @@
+"use client"
+
 import clsx from "clsx"
 import { Children, cloneElement, forwardRef } from "react"
 import { Button, ButtonProps } from "react-aria-components"
 
 export interface HeaderIconButtonProps extends ButtonProps {
   as?: React.ElementType
-  children: React.ReactElement | React.ReactElement[]
+  children:
+    | React.ReactElement<{ className?: string }>
+    | React.ReactElement<{ className?: string }>[]
   href?: string
   target?: string
 }

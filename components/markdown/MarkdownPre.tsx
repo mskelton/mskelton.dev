@@ -7,7 +7,7 @@ import React, { cloneElement, useRef, useState } from "react"
 const iconStyle = "absolute size-4 inset-[50%] [transform:translate(-50%,-50%)]"
 
 export interface MarkdownPreProps extends React.HTMLAttributes<HTMLPreElement> {
-  children: React.ReactElement
+  children: React.ReactElement<{ tabIndex?: number }>
   hasFocus?: boolean
   hasHighlight?: boolean
   hasTitle?: boolean
