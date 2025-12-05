@@ -4,16 +4,26 @@
   "type": "module",
   "packageManager": "pnpm@9.15.5",
   "scripts": {
-    "build": "next build --webpack",
+    "build": "next build",
     "db:reindex": "curl -X POST http://localhost:3000/api/reindex",
     "db:seed": "tsx scripts/seed.ts",
-    "dev": "next dev --webpack",
+    "dev": "next dev",
     "serve": "next start",
     "lint": "eslint .",
     "fmt": "prettier --write .",
     "fmt:check": "prettier --check .",
     "test": "playwright test",
     "ts": "tsc"
+  },
+  "imports": {
+    "#rehype-callout": "./config/rehype-callout.mjs",
+    "#rehype-code-meta": "./config/rehype-code-meta.mjs",
+    "#rehype-code-titles": "./config/rehype-code-titles.mjs",
+    "#rehype-header-id": "./config/rehype-header-id.mjs",
+    "#rehype-headings": "./config/rehype-headings.mjs",
+    "#rehype-parse-code-meta": "./config/rehype-parse-code-meta.mjs",
+    "#remark-auto-image-path": "./config/remark-auto-image-path.mjs",
+    "#remark-code-block": "./config/remark-code-block.mjs"
   },
   "dependencies": {
     "@heroicons/react": "^2.0.18",
