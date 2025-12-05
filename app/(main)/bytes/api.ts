@@ -8,7 +8,7 @@ import { cache } from "react"
 import rehypeSlug from "rehype-slug"
 import remarkGfm from "remark-gfm"
 import remarkSmartypants from "remark-smartypants"
-import { getHighlighter, Highlighter } from "shiki"
+import { createHighlighter, Highlighter } from "shiki"
 import { client } from "lib/db"
 import MarkdownImage from "../../../components/markdown/MarkdownImage"
 import MarkdownLink from "../../../components/markdown/MarkdownLink"
@@ -92,7 +92,7 @@ export const getByte = cache(async (slug: string) => {
   // Load the highlighter once and reuse it for all requests. Hopefully this
   // fixes the memory leak issue with shiki and vscode-oniguruma.
   if (!highlighter) {
-    highlighter = await getHighlighter({
+    highlighter = await createHighlighter({
       langAlias,
       langs,
       themes: themes as any,
