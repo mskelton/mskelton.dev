@@ -21,8 +21,8 @@ importers:
         specifier: ^0.0.4
         version: 0.0.4
       '@mskelton/rehype-shiki':
-        specifier: ^1.0.0
-        version: 1.0.0(shiki@3.19.0)
+        specifier: ^1.0.1
+        version: 1.0.1(shiki@3.19.0)
       '@mskelton/remark-extract-frontmatter':
         specifier: ^0.0.2
         version: 0.0.2
@@ -153,6 +153,9 @@ importers:
       '@playwright/test':
         specifier: ^1.54.2
         version: 1.54.2
+      '@shikijs/rehype':
+        specifier: ^3.19.0
+        version: 3.19.0
       '@types/better-sqlite3':
         specifier: ^7.6.13
         version: 7.6.13
@@ -636,8 +639,8 @@ packages:
   '@mskelton/rehype-callout@0.0.4':
     resolution: {integrity: sha512-J4ISGbBHSm6ndOnIze6OLWaIowj/+Z0cJ8uPbQvkn5TCJhaZ+KKQ7hTgPXhxKTQ4AIE/Jo61ovMO6kyzW4eG2w==}
 
-  '@mskelton/rehype-shiki@1.0.0':
-    resolution: {integrity: sha512-Zd4x8JI5MbNo/QWKerw3pvgKJdKTqqVGwi5FqBNPIzkt415UNHBWfC2+XqQOB7rBKxTmwf9jPTw+Rf8waoIL0Q==}
+  '@mskelton/rehype-shiki@1.0.1':
+    resolution: {integrity: sha512-/z6bhsvgdfqwmJ+6yEbSNpZFIDM9TT9gP2zSSPMonvMRK+4o2GlqV7E9qNYj91zuNIWT0Q3JePaZg7N5S+7/4Q==}
     peerDependencies:
       shiki: '>=3.0.0'
 
@@ -1381,6 +1384,9 @@ packages:
 
   '@shikijs/langs@3.19.0':
     resolution: {integrity: sha512-dBMFzzg1QiXqCVQ5ONc0z2ebyoi5BKz+MtfByLm0o5/nbUu3Iz8uaTCa5uzGiscQKm7lVShfZHU1+OG3t5hgwg==}
+
+  '@shikijs/rehype@3.19.0':
+    resolution: {integrity: sha512-pzp/JVxrTd95HgMimHgYb9lCGSzVYEp1BweWUprFAEgGOF15d9IyX+IVW/+1Z5ZxdT9IUUF27UbC5YdA5oCzjw==}
 
   '@shikijs/themes@3.19.0':
     resolution: {integrity: sha512-H36qw+oh91Y0s6OlFfdSuQ0Ld+5CgB/VE6gNPK+Hk4VRbVG/XQgkjnt4KzfnnoO6tZPtKJKHPjwebOCfjd6F8A==}
@@ -4403,7 +4409,7 @@ snapshots:
     dependencies:
       unist-util-visit: 5.0.0
 
-  '@mskelton/rehype-shiki@1.0.0(shiki@3.19.0)':
+  '@mskelton/rehype-shiki@1.0.1(shiki@3.19.0)':
     dependencies:
       hast-util-to-text: 4.0.2
       shiki: 3.19.0
@@ -5598,6 +5604,15 @@ snapshots:
     dependencies:
       '@shikijs/types': 3.19.0
 
+  '@shikijs/rehype@3.19.0':
+    dependencies:
+      '@shikijs/types': 3.19.0
+      '@types/hast': 3.0.4
+      hast-util-to-string: 3.0.1
+      shiki: 3.19.0
+      unified: 11.0.5
+      unist-util-visit: 5.0.0
+
   '@shikijs/themes@3.19.0':
     dependencies:
       '@shikijs/types': 3.19.0
@@ -5665,7 +5680,7 @@ snapshots:
 
   '@types/mdast@4.0.3':
     dependencies:
-      '@types/unist': 3.0.2
+      '@types/unist': 3.0.3
 
   '@types/mdast@4.0.4':
     dependencies:
@@ -8983,7 +8998,7 @@ snapshots:
 
   unist-util-is@6.0.0:
     dependencies:
-      '@types/unist': 3.0.2
+      '@types/unist': 3.0.3
 
   unist-util-is@6.0.1:
     dependencies:
@@ -9020,7 +9035,7 @@ snapshots:
 
   unist-util-stringify-position@4.0.0:
     dependencies:
-      '@types/unist': 3.0.2
+      '@types/unist': 3.0.3
 
   unist-util-visit-children@3.0.0:
     dependencies:
@@ -9033,7 +9048,7 @@ snapshots:
 
   unist-util-visit-parents@6.0.1:
     dependencies:
-      '@types/unist': 3.0.2
+      '@types/unist': 3.0.3
       unist-util-is: 6.0.0
 
   unist-util-visit-parents@6.0.2:
@@ -9078,7 +9093,7 @@ snapshots:
 
   vfile-message@4.0.2:
     dependencies:
-      '@types/unist': 3.0.2
+      '@types/unist': 3.0.3
       unist-util-stringify-position: 4.0.0
 
   vfile-message@4.0.3:
@@ -9088,7 +9103,7 @@ snapshots:
 
   vfile@6.0.1:
     dependencies:
-      '@types/unist': 3.0.2
+      '@types/unist': 3.0.3
       unist-util-stringify-position: 4.0.0
       vfile-message: 4.0.2
 
