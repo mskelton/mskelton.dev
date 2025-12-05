@@ -34,4 +34,16 @@ export const themeMap = {
   dark: "tokyonight",
 }
 
+/** @type {import("shiki").Theme[]} */
 export const themes = [tokyolight, tokyonight]
+
+export const rehypeShikiOptions = {
+  codeToHastOptions: {
+    themes: themeMap,
+  },
+  highlighterOptions: {
+    langAlias,
+    langs,
+    themes,
+  },
+}

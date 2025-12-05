@@ -16,7 +16,7 @@ import MarkdownPre from "../../../components/markdown/MarkdownPre"
 import {
   langAlias,
   langs,
-  themeMap,
+  rehypeShikiOptions,
   themes,
 } from "../../../config/highlighter.mjs"
 import rehypeCallout from "../../../config/rehype-callout.mjs"
@@ -95,7 +95,7 @@ export const getByte = cache(async (slug: string) => {
     highlighter = await createHighlighter({
       langAlias,
       langs,
-      themes: themes as any,
+      themes,
     })
   }
 
@@ -103,7 +103,7 @@ export const getByte = cache(async (slug: string) => {
     components: {
       a: MarkdownLink,
       img: MarkdownImage,
-      pre: MarkdownPre as any,
+      pre: MarkdownPre,
     },
     options: {
       mdxOptions: {
@@ -112,12 +112,12 @@ export const getByte = cache(async (slug: string) => {
           config,
           rehypeHeaderId,
           rehypeParseCodeMeta,
-          [rehypeShiki as any, { highlighter, themes: themeMap }],
+          [rehypeShiki, rehypeShikiOptions],
           rehypeCodeTitles,
           rehypeCodeMeta,
-          rehypeCallout as any,
+          rehypeCallout,
         ],
-        remarkPlugins: [remarkGfm, remarkSmartypants as any],
+        remarkPlugins: [remarkGfm, remarkSmartypants],
       },
     },
     source: byte.content as string,

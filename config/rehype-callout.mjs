@@ -4,7 +4,7 @@ import { error, info, warn } from "./icons.mjs"
 
 /**
  * @type {[
- *   import("unified").Pluggable,
+ *   import("unified").Plugin,
  *   import("@mskelton/rehype-callout").Options,
  * ]}
  */

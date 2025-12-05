@@ -6,7 +6,7 @@ import remarkFrontmatter from "remark-frontmatter"
 import remarkGfm from "remark-gfm"
 import remarkMdxFrontmatter from "remark-mdx-frontmatter"
 import remarkSmartypants from "remark-smartypants"
-import { langAlias, langs, themeMap, themes } from "./config/highlighter.mjs"
+import { rehypeShikiOptions } from "./config/highlighter.mjs"
 import { redirects, rewrites } from "./config/redirects.mjs"
 import rehypeCallout from "./config/rehype-callout.mjs"
 import rehypeCodeMeta from "./config/rehype-code-meta.mjs"
@@ -37,19 +37,7 @@ const withMDX = createMDX({
       rehypeHeadings,
       rehypeHeaderId,
       rehypeParseCodeMeta,
-      [
-        rehypeShiki,
-        {
-          codeToHastOptions: {
-            themes: themeMap,
-          },
-          highlighterOptions: {
-            langAlias,
-            langs,
-            themes,
-          },
-        },
-      ],
+      [rehypeShiki, rehypeShikiOptions],
       rehypeCodeTitles,
       rehypeCodeMeta,
       rehypeCallout,
