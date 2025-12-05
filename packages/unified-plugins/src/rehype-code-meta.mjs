@@ -4,6 +4,7 @@ function calculateLines(range) {
   let hasHighlights = false
 
   return {
+    highlighted: () => hasHighlights,
     test: (index) => {
       // There are newlines between each line, so we need to divide by 2
       // to get the actual line number.
@@ -11,7 +12,6 @@ function calculateLines(range) {
       hasHighlights = hasHighlights || match
       return match
     },
-    highlighted: () => hasHighlights,
   }
 }
 

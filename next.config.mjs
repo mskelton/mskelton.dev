@@ -19,13 +19,13 @@ const withMDX = createMDX({
   options: {
     rehypePlugins: [
       "rehype-slug",
-      "#rehype-headings",
-      "#rehype-header-id",
-      "#rehype-parse-code-meta",
+      "unified-plugins/rehype-headings",
+      "unified-plugins/rehype-header-id",
+      "unified-plugins/rehype-parse-code-meta",
       ["@mskelton/rehype-shiki", rehypeShikiOptions],
-      "#rehype-code-titles",
-      "#rehype-code-meta",
-      "#rehype-callout",
+      "unified-plugins/rehype-code-titles",
+      "unified-plugins/rehype-code-meta",
+      "unified-plugins/rehype-callout",
     ],
     remarkPlugins: [
       "remark-gfm",
@@ -33,8 +33,8 @@ const withMDX = createMDX({
       "@mskelton/remark-extract-frontmatter",
       "remark-frontmatter",
       ["remark-mdx-frontmatter", { name: "meta" }],
-      "#remark-auto-image-path",
-      "#remark-code-block",
+      "unified-plugins/remark-auto-image-path",
+      "unified-plugins/remark-code-block",
     ],
   },
 })

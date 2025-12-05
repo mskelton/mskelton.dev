@@ -10,6 +10,12 @@ import remarkGfm from "remark-gfm"
 import remarkSmartypants from "remark-smartypants"
 import { createHighlighter, Highlighter } from "shiki"
 import { client } from "lib/db"
+import rehypeCallout from "unified-plugins/rehype-callout"
+import rehypeCodeMeta from "unified-plugins/rehype-code-meta"
+import rehypeCodeTitles from "unified-plugins/rehype-code-titles"
+import rehypeHeaderId from "unified-plugins/rehype-header-id"
+import config from "unified-plugins/rehype-headings"
+import rehypeParseCodeMeta from "unified-plugins/rehype-parse-code-meta"
 import MarkdownImage from "../../../components/markdown/MarkdownImage"
 import MarkdownLink from "../../../components/markdown/MarkdownLink"
 import MarkdownPre from "../../../components/markdown/MarkdownPre"
@@ -19,12 +25,6 @@ import {
   rehypeShikiOptions,
   themes,
 } from "../../../config/highlighter.mjs"
-import rehypeCallout from "../../../config/rehype-callout.mjs"
-import rehypeCodeMeta from "../../../config/rehype-code-meta.mjs"
-import rehypeCodeTitles from "../../../config/rehype-code-titles.mjs"
-import rehypeHeaderId from "../../../config/rehype-header-id.mjs"
-import config from "../../../config/rehype-headings.mjs"
-import rehypeParseCodeMeta from "../../../config/rehype-parse-code-meta.mjs"
 import { ByteMeta } from "./types"
 
 // Revalidate the data at most every hour

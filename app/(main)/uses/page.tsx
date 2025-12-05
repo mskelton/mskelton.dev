@@ -47,6 +47,45 @@ export default function Uses() {
       title="Software I use, gadgets I love, and other things I recommend."
     >
       <div className="space-y-20">
+        <ToolsSection title="Development tools">
+          <Tool href="https://www.cursor.com" title="Cursor">
+            As much as I love Neovim, I switched back to the VS Code ecosystem
+            to take advantage of Cursor’s AI features. Has made a massive
+            improvement in my productivity.
+          </Tool>
+
+          <Tool
+            href="https://www.anthropic.com/claude-code"
+            title="Claude Code"
+          >
+            Alongside Cursor, I use Claude Code for a lot of my longer AI
+            sessions. Really great for developing scripts, projects, and
+            features when giving a good spec.
+          </Tool>
+
+          <Tool href="https://1password.com" title="1Password">
+            By far the best password manager on the market. Totally worth the
+            small price for the security and functionality it provides.
+          </Tool>
+
+          <Tool href="https://www.raycast.com" title="Raycast">
+            For years the best Spotlight replacement. Apple took a swing at them
+            with a bunch of Spotlight improvements, but Raycast is still
+            unmatched.
+          </Tool>
+
+          <Tool href="https://todoist.com" title="Todoist">
+            My life runs on Todoist, quite literally. Without it, I would forget
+            to clean the house or take out the trash. Let software remember
+            stuff so you don’t have to.
+          </Tool>
+
+          <Tool href="https://shottr.cc" title="Shottr">
+            A better macOS screenshot tool. Not much more to be said, it’s just
+            straight up awesome.
+          </Tool>
+        </ToolsSection>
+
         <ToolsSection title="Workstation">
           <Tool
             href="https://www.apple.com/shop/buy-mac/macbook-pro/16-inch"
@@ -103,45 +142,6 @@ export default function Uses() {
             While certainly as fancy as a Herman Miller chair, this chair get’s
             the job done and is much better than the kitchen chair I used for
             three years.
-          </Tool>
-        </ToolsSection>
-
-        <ToolsSection title="Development tools">
-          <Tool href="https://www.cursor.com" title="Cursor">
-            As much as I love Neovim, I switched back to the VS Code ecosystem
-            to take advantage of Cursor’s AI features. Has made a massive
-            improvement in my productivity.
-          </Tool>
-
-          <Tool
-            href="https://www.anthropic.com/claude-code"
-            title="Claude Code"
-          >
-            Alongside Cursor, I use Claude Code for a lot of my longer AI
-            sessions. Really great for developing scripts, projects, and
-            features when giving a good spec.
-          </Tool>
-
-          <Tool href="https://1password.com" title="1Password">
-            By far the best password manager on the market. Totally worth the
-            small price for the security and functionality it provides.
-          </Tool>
-
-          <Tool href="https://www.raycast.com" title="Raycast">
-            For years the best Spotlight replacement. Apple took a swing at them
-            with a bunch of Spotlight improvements, but Raycast is still
-            unmatched.
-          </Tool>
-
-          <Tool href="https://todoist.com" title="Todoist">
-            My life runs on Todoist, quite literally. Without it, I would forget
-            to clean the house or take out the trash. Let software remember
-            stuff so you don’t have to.
-          </Tool>
-
-          <Tool href="https://shottr.cc" title="Shottr">
-            A better macOS screenshot tool. Not much more to be said, it’s just
-            straight up awesome.
           </Tool>
         </ToolsSection>
       </div>
