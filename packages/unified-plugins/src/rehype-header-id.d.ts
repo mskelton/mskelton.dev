@@ -1,4 +1,4 @@
-import type { Transformer } from "unified";
+import type { Transformer } from "unified"
 
-declare function rehypeHeaderId(): Transformer;
-export default rehypeHeaderId;
+declare function rehypeHeaderId(): Transformer
+export default rehypeHeaderId

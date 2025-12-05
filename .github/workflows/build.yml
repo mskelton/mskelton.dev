@@ -11,7 +11,7 @@ jobs:
       - name: Lint
         run: pnpm lint
       - name: Check formatting
-        run: pnpm prettier --check .
+        run: pnpm format:check
 
   ts:
     name: Type Check

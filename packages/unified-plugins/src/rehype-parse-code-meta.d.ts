@@ -1,4 +1,4 @@
-import type { Transformer } from "unified";
+import type { Transformer } from "unified"
 
-declare function rehypeParseCodeMeta(): Transformer;
-export default rehypeParseCodeMeta;
+declare function rehypeParseCodeMeta(): Transformer
+export default rehypeParseCodeMeta

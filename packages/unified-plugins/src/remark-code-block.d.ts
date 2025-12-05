@@ -1,4 +1,4 @@
-import type { Transformer } from "unified";
+import type { Transformer } from "unified"
 
-declare function remarkCodeBlock(): Transformer;
-export default remarkCodeBlock;
+declare function remarkCodeBlock(): Transformer
+export default remarkCodeBlock

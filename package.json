@@ -10,8 +10,8 @@
     "dev": "next dev",
     "serve": "next start",
     "lint": "eslint .",
-    "fmt": "prettier --write .",
-    "fmt:check": "prettier --check .",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
     "test": "playwright test",
     "ts": "tsc"
   },
