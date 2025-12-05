@@ -37,7 +37,19 @@ const withMDX = createMDX({
       rehypeHeadings,
       rehypeHeaderId,
       rehypeParseCodeMeta,
-      [rehypeShiki, { langAlias, langs, themeMap, themes }],
+      [
+        rehypeShiki,
+        {
+          codeToHastOptions: {
+            themes: themeMap,
+          },
+          highlighterOptions: {
+            langAlias,
+            langs,
+            themes,
+          },
+        },
+      ],
       rehypeCodeTitles,
       rehypeCodeMeta,
       rehypeCallout,
