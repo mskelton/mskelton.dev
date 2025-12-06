@@ -4,6 +4,7 @@ function calculateLines(range) {
   let hasHighlights = false
 
   return {
+    highlighted: () => hasHighlights,
     test: (index) => {
       // There are newlines between each line, so we need to divide by 2
       // to get the actual line number.
@@ -11,7 +12,6 @@ function calculateLines(range) {
       hasHighlights = hasHighlights || match
       return match
     },
-    highlighted: () => hasHighlights,
   }
 }
 
@@ -24,12 +24,20 @@ export default function rehypeCodeMeta() {
         const highlight = calculateLines(node.data?.highlight)
         const focus = calculateLines(node.data?.focus)
 
-        // Remove the tabIndex property, we handle this ourselves
-        delete node.properties.tabindex
-
         if (node.data?.showLineNumbers) {
           node.properties.class += " line-numbers"
         }
+
+        // Move the tabIndex property to the code element
+        delete node.properties.tabindex
+
+        visit(
+          node,
+          (t) => t.type === "element" && t.tagName === "code",
+          (code) => {
+            code.properties.tabIndex = 0
+          },
+        )
 
         visit(
           node,

@@ -32,10 +32,10 @@ export default function remarkCodeBlock() {
       // Add the code block as a child of the JSX element
       node.children = [
         {
-          type: "code",
           lang: path.extname(filename).slice(1),
-          value: raw.trim(),
           meta: `${filename} ${meta ?? ""}`,
+          type: "code",
+          value: raw.trim(),
         },
       ]
     })

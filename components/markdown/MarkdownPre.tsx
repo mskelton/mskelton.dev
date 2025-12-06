@@ -2,7 +2,7 @@
 
 import { CheckIcon, ClipboardIcon } from "@heroicons/react/24/outline"
 import { clsx } from "clsx"
-import React, { cloneElement, useRef, useState } from "react"
+import React, { useRef, useState } from "react"
 
 const iconStyle = "absolute size-4 inset-[50%] [transform:translate(-50%,-50%)]"
 
@@ -98,9 +98,7 @@ export default function MarkdownPre({
         )}
         {...props}
       >
-        {cloneElement(children, {
-          tabIndex: 0,
-        })}
+        {children}
       </pre>
     </>
   )

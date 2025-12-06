@@ -1,21 +1,6 @@
-import rehypeShiki from "@mskelton/rehype-shiki"
-import remarkExtractFrontmatter from "@mskelton/remark-extract-frontmatter"
 import createMDX from "@next/mdx"
-import rehypeSlug from "rehype-slug"
-import remarkFrontmatter from "remark-frontmatter"
-import remarkGfm from "remark-gfm"
-import remarkMdxFrontmatter from "remark-mdx-frontmatter"
-import remarkSmartypants from "remark-smartypants"
 import { rehypeShikiOptions } from "./config/highlighter.mjs"
 import { redirects, rewrites } from "./config/redirects.mjs"
-import rehypeCallout from "./config/rehype-callout.mjs"
-import rehypeCodeMeta from "./config/rehype-code-meta.mjs"
-import rehypeCodeTitles from "./config/rehype-code-titles.mjs"
-import rehypeHeaderId from "./config/rehype-header-id.mjs"
-import rehypeHeadings from "./config/rehype-headings.mjs"
-import rehypeParseCodeMeta from "./config/rehype-parse-code-meta.mjs"
-import remarkAutoImagePath from "./config/remark-auto-image-path.mjs"
-import remarkCodeBlock from "./config/remark-code-block.mjs"
 
 /** @type {import("next").NextConfig} */
 const nextConfig = {
@@ -33,23 +18,23 @@ const withMDX = createMDX({
   extension: /\.mdx?$/,
   options: {
     rehypePlugins: [
-      rehypeSlug,
-      rehypeHeadings,
-      rehypeHeaderId,
-      rehypeParseCodeMeta,
-      [rehypeShiki, rehypeShikiOptions],
-      rehypeCodeTitles,
-      rehypeCodeMeta,
-      rehypeCallout,
+      "rehype-slug",
+      "unified-plugins/rehype-headings",
+      "unified-plugins/rehype-header-id",
+      "unified-plugins/rehype-parse-code-meta",
+      ["@mskelton/rehype-shiki", rehypeShikiOptions],
+      "unified-plugins/rehype-code-titles",
+      "unified-plugins/rehype-code-meta",
+      "unified-plugins/rehype-callout",
     ],
     remarkPlugins: [
-      remarkGfm,
-      remarkSmartypants,
-      remarkExtractFrontmatter,
-      remarkFrontmatter,
-      [remarkMdxFrontmatter, { name: "meta" }],
-      remarkAutoImagePath,
-      remarkCodeBlock,
+      "remark-gfm",
+      "remark-smartypants",
+      "@mskelton/remark-extract-frontmatter",
+      "remark-frontmatter",
+      ["remark-mdx-frontmatter", { name: "meta" }],
+      "unified-plugins/remark-auto-image-path",
+      "unified-plugins/remark-code-block",
     ],
   },
 })
