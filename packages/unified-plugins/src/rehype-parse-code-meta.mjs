@@ -1,5 +1,5 @@
-import { visit } from "unist-util-visit"
 import rangeParser from "parse-numeric-range"
+import { visit } from "unist-util-visit"
 
 /**
  * Get the value given a regex. If the regex has a capture group, use the

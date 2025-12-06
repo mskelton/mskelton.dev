@@ -24,7 +24,6 @@ export default function MarkdownPre({
   const preRef = useRef<HTMLPreElement>(null!)
   const [isExpanded, setIsExpanded] = useState(false)
   const [copied, setCopied] = useState(false)
-  console.log(children)
 
   function handleCopy() {
     setCopied(true)
@@ -100,9 +99,6 @@ export default function MarkdownPre({
         {...props}
       >
         {children}
-        {/* {cloneElement(children, {
-          tabIndex: 0,
-        })} */}
       </pre>
     </>
   )

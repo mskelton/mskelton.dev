@@ -31,6 +31,10 @@ export default function rehypeCodeMeta() {
           node.properties.class += " line-numbers"
         }
 
+        visit(node, (t) => t.type === "element" && t.tagName === "code", (code) => {
+          code.properties.tabIndex = 0
+        })
+
         visit(
           node,
           (t) => t.type === "element" && t.properties?.class?.includes("line"),

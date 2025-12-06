@@ -1,6 +1,6 @@
-import { visit } from "unist-util-visit"
 import { hasProperty } from "hast-util-has-property"
 import { headingRank } from "hast-util-heading-rank"
+import { visit } from "unist-util-visit"
 
 /**
  * The rehype-slug plugin adds an id property to headings. This works normally
