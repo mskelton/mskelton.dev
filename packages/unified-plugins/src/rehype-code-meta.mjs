@@ -24,12 +24,12 @@ export default function rehypeCodeMeta() {
         const highlight = calculateLines(node.data?.highlight)
         const focus = calculateLines(node.data?.focus)
 
-        // Remove the tabIndex property, we handle this ourselves
-        delete node.properties.tabindex
-
         if (node.data?.showLineNumbers) {
           node.properties.class += " line-numbers"
         }
+
+        // Move the tabIndex property to the code element
+        delete node.properties.tabindex
 
         visit(
           node,
