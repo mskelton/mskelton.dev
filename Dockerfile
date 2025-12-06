@@ -5,24 +5,13 @@ RUN apt-get update && apt-get install -y ca-certificates
 
 ENV DATABASE_FILENAME="/app/data/mskelton.db"
 
-# Install dependencies only when needed
-FROM base AS deps
-
-WORKDIR /app
-
-# Install dependencies
-COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
-COPY packages/unified-plugins/package.json ./packages/unified-plugins/
-
-RUN corepack enable
-RUN pnpm install --frozen-lockfile
-
-# Rebuild the source code only when needed
 FROM base AS builder
 WORKDIR /app
 
-COPY --from=deps /app/node_modules ./node_modules
 COPY . .
+
+RUN corepack enable
+RUN pnpm install --frozen-lockfile
 
 # Build time environment variables
 ARG NEXT_PUBLIC_GA_ID
