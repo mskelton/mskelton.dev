@@ -11,7 +11,9 @@ FROM base AS deps
 WORKDIR /app
 
 # Install dependencies
-COPY package.json pnpm-lock.yaml ./
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
+COPY packages/unified-plugins/package.json ./packages/unified-plugins/
+
 RUN corepack enable
 RUN pnpm install --frozen-lockfile
 
