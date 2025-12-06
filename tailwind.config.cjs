@@ -4,6 +4,7 @@ const plugin = require("tailwindcss/plugin")
 /** @type {import("tailwindcss").Config} */
 module.exports = {
   content: [
+    "./packages/**/*.{js,mjs}",
     "./app/**/*.{ts,tsx}",
     "./components/**/*.{ts,tsx}",
     "./config/*.mjs",
