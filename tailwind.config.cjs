@@ -1,94 +1,17 @@
-/* eslint-disable sort/object-properties, @typescript-eslint/no-require-imports */
-const plugin = require("tailwindcss/plugin")
+/* eslint-disable sort/object-properties */
 
 /** @type {import("tailwindcss").Config} */
 module.exports = {
-  plugins: [
-    plugin(({ addUtilities, theme }) => {
-      addUtilities({
-        ".focusable": {
-          "&:focus": {
-            outline: "none",
-          },
-          "&:focus-visible": {
-            boxShadow: `0 0 0 3px ${theme("colors.indigo.500")}`,
-          },
-        },
-      })
-    }),
-  ],
   theme: {
     typography: (theme) => {
-      const transition = {
-        transitionProperty: theme("transitionProperty.colors"),
-        transitionDuration: theme("transitionDuration.150"),
-        transitionTimingFunction: theme("transitionTimingFunction.in-out"),
-      }
-
       const font = (size) => {
         const [fontSize, { lineHeight }] = theme(`fontSize.${size}`)
         return { fontSize, lineHeight }
       }
 
       return {
-        invert: {
-          css: {
-            "--tw-prose-body": theme("colors.zinc.300"),
-            "--tw-prose-headings": theme("colors.zinc.200"),
-            "--tw-prose-link": theme("colors.zinc.100"),
-            "--tw-prose-link-bg": theme("colors.indigo.500"),
-            "--tw-prose-underline": theme("colors.indigo.400 / 0.3"),
-            "--tw-prose-underline-hover": theme("colors.indigo.400"),
-            "--tw-prose-bold": theme("colors.zinc.200"),
-            "--tw-prose-counters": theme("colors.zinc.200"),
-            "--tw-prose-bullets": theme("colors.zinc.200"),
-            "--tw-prose-hr": theme("colors.zinc.700 / 0.4"),
-            "--tw-prose-quote-borders": theme("colors.zinc.500"),
-            "--tw-prose-captions": theme("colors.zinc.500"),
-            "--tw-prose-pre-bg": theme("colors.zinc.950"),
-            "--tw-prose-code": theme("colors.zinc.300"),
-            "--tw-prose-code-bg": theme("colors.zinc.800"),
-            "--tw-prose-code-border": theme("colors.zinc.700"),
-            "--tw-prose-code-link": theme("colors.indigo.400"),
-            "--tw-prose-code-link-hover": theme("colors.indigo.500"),
-            "--tw-prose-kbd": theme("colors.zinc.300"),
-            "--tw-prose-kbd-bg": theme("colors.zinc.800"),
-            "--tw-prose-kbd-borders": theme("colors.zinc.700"),
-            "--tw-prose-hl-bg": theme("colors.slate.800 / 50%"),
-            "--tw-prose-hl-border": theme("colors.indigo.500"),
-            ":is(.shiki, .shiki span)": {
-              color: "var(--shiki-dark) !important",
-            },
-          },
-        },
         DEFAULT: {
           css: {
-            "--tw-prose-ring": `0 0 0 3px ${theme("colors.indigo.500")}`,
-            "--tw-prose-body": theme("colors.zinc.700"),
-            "--tw-prose-headings": theme("colors.zinc.900"),
-            "--tw-prose-link": theme("colors.zinc.900"),
-            "--tw-prose-link-hover": theme("colors.zinc.100"),
-            "--tw-prose-link-bg": theme("colors.indigo.400"),
-            "--tw-prose-underline": theme("colors.indigo.500 / 0.2"),
-            "--tw-prose-underline-hover": theme("colors.indigo.400"),
-            "--tw-prose-bold": theme("colors.zinc.900"),
-            "--tw-prose-counters": theme("colors.zinc.900"),
-            "--tw-prose-bullets": theme("colors.zinc.900"),
-            "--tw-prose-hr": theme("colors.zinc.100"),
-            "--tw-prose-quote-borders": theme("colors.zinc.200"),
-            "--tw-prose-captions": theme("colors.zinc.400"),
-            "--tw-prose-code": theme("colors.zinc.700"),
-            "--tw-prose-code-bg": theme("colors.zinc.100"),
-            "--tw-prose-code-border": theme("colors.zinc.300"),
-            "--tw-prose-code-link": theme("colors.indigo.600"),
-            "--tw-prose-code-link-hover": theme("colors.indigo.500"),
-            "--tw-prose-pre-bg": theme("colors.white"),
-            "--tw-prose-kbd": theme("colors.zinc.700"),
-            "--tw-prose-kbd-bg": theme("colors.zinc.50"),
-            "--tw-prose-kbd-borders": theme("colors.zinc.200"),
-            "--tw-prose-hl-bg": theme("colors.indigo.200 / 50%"),
-            "--tw-prose-hl-border": theme("colors.indigo.500"),
-
             // Base
             color: "var(--tw-prose-body)",
             lineHeight: theme("lineHeight.7"),
@@ -97,7 +20,12 @@ module.exports = {
               marginBottom: theme("spacing.10"),
             },
             p: {
-              ...transition,
+              transitionProperty: theme("transitionProperty.colors"),
+              transitionDuration: theme("transitionDuration.150"),
+              transitionTimingFunction: theme(
+                "transitionTimingFunction.in-out",
+              ),
+
               marginTop: theme("spacing.7"),
               marginBottom: theme("spacing.7"),
             },
@@ -166,7 +94,12 @@ module.exports = {
               fontWeight: theme("fontWeight.semibold"),
             },
             ":is(p, li, aside) code": {
-              ...transition,
+              transitionProperty: theme("transitionProperty.colors"),
+              transitionDuration: theme("transitionDuration.150"),
+              transitionTimingFunction: theme(
+                "transitionTimingFunction.in-out",
+              ),
+
               backgroundColor: "var(--tw-prose-code-bg)",
               borderColor: "var(--tw-prose-code-border)",
               borderRadius: theme("borderRadius.md"),
@@ -191,7 +124,12 @@ module.exports = {
               fontWeight: theme("fontWeight.bold"),
             },
             kbd: {
-              ...transition,
+              transitionProperty: theme("transitionProperty.colors"),
+              transitionDuration: theme("transitionDuration.150"),
+              transitionTimingFunction: theme(
+                "transitionTimingFunction.in-out",
+              ),
+
               backgroundColor: "var(--tw-prose-kbd-bg)",
               borderColor: "var(--tw-prose-kbd-borders)",
               borderRadius: theme("borderRadius.md"),
@@ -325,7 +263,12 @@ module.exports = {
               },
             },
             "pre code .line": {
-              ...transition,
+              transitionProperty: theme("transitionProperty.colors"),
+              transitionDuration: theme("transitionDuration.150"),
+              transitionTimingFunction: theme(
+                "transitionTimingFunction.in-out",
+              ),
+
               transitionDuration: theme("transitionDuration.300"),
               transitionProperty:
                 "height, border-color, background-color, clip-path",

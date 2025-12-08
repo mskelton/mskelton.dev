@@ -6,23 +6,17 @@
 @source "../../app";
 @source "../../components";
 
-/*
-  The default border color has changed to `currentcolor` in Tailwind CSS v4,
-  so we've added these compatibility styles to make sure everything still
-  looks the same as it did with Tailwind CSS v3.
+@utility focusable {
+  &:focus {
+    outline: none;
+  }
 
-  If we ever want to remove these styles, we need to add an explicit border
-  color utility to any element that depends on these defaults.
-*/
-@layer base {
-  *,
-  ::after,
-  ::before,
-  ::backdrop,
-  ::file-selector-button {
-    border-color: var(--color-gray-200, currentcolor);
+  &:focus-visible {
+    box-shadow: 0 0 0 3px var(--color-indigo-500);
   }
 }
+
+/* .prose :where(p):not(:where([class~=not-prose],[class~=not-prose] *)) */
 
 @custom-variant dark (&:where(.dark, .dark *));
 @custom-variant aria-current (&[aria-current="page"]);
@@ -33,6 +27,35 @@
     running;
   --animate-popover-enter: popover-slide 200ms;
   --animate-popover-exit: popover-slide 200ms reverse ease-in;
+
+  --font-size-2xs: 0.75rem;
+  --font-size-2xs--line-height: 1rem;
+  --font-size-xs: 0.8125rem;
+  --font-size-xs--line-height: 1.5rem;
+  --font-size-sm: 0.875rem;
+  --font-size-sm--line-height: 1.5rem;
+  --font-size-base: 1rem;
+  --font-size-base--line-height: 1.75rem;
+  --font-size-lg: 1.125rem;
+  --font-size-lg--line-height: 1.75rem;
+  --font-size-xl: 1.25rem;
+  --font-size-xl--line-height: 2rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-2xl--line-height: 2rem;
+  --font-size-3xl: 1.875rem;
+  --font-size-3xl--line-height: 2.25rem;
+  --font-size-4xl: 2rem;
+  --font-size-4xl--line-height: 2.5rem;
+  --font-size-5xl: 3rem;
+  --font-size-5xl--line-height: 3.5rem;
+  --font-size-6xl: 3.75rem;
+  --font-size-6xl--line-height: 1;
+  --font-size-7xl: 4.5rem;
+  --font-size-7xl--line-height: 1;
+  --font-size-8xl: 6rem;
+  --font-size-8xl--line-height: 1;
+  --font-size-9xl: 8rem;
+  --font-size-9xl--line-height: 1;
 
   @keyframes draw-stroke {
     to {
@@ -154,35 +177,82 @@
       transform: translate(-50%, -50%) scale(0.5);
     }
   }
+}
 
-  --font-size-2xs: 0.75rem;
-  --font-size-2xs--line-height: 1rem;
-  --font-size-xs: 0.8125rem;
-  --font-size-xs--line-height: 1.5rem;
-  --font-size-sm: 0.875rem;
-  --font-size-sm--line-height: 1.5rem;
-  --font-size-base: 1rem;
-  --font-size-base--line-height: 1.75rem;
-  --font-size-lg: 1.125rem;
-  --font-size-lg--line-height: 1.75rem;
-  --font-size-xl: 1.25rem;
-  --font-size-xl--line-height: 2rem;
-  --font-size-2xl: 1.5rem;
-  --font-size-2xl--line-height: 2rem;
-  --font-size-3xl: 1.875rem;
-  --font-size-3xl--line-height: 2.25rem;
-  --font-size-4xl: 2rem;
-  --font-size-4xl--line-height: 2.5rem;
-  --font-size-5xl: 3rem;
-  --font-size-5xl--line-height: 3.5rem;
-  --font-size-6xl: 3.75rem;
-  --font-size-6xl--line-height: 1;
-  --font-size-7xl: 4.5rem;
-  --font-size-7xl--line-height: 1;
-  --font-size-8xl: 6rem;
-  --font-size-8xl--line-height: 1;
-  --font-size-9xl: 8rem;
-  --font-size-9xl--line-height: 1;
+:root {
+  --tw-prose-ring: 0 0 0 3px --theme(--color-indigo-500);
+  --tw-prose-body: --theme(--color-zinc-700);
+  --tw-prose-headings: --theme(--color-zinc-900);
+  --tw-prose-link: --theme(--color-zinc-900);
+  --tw-prose-link-hover: --theme(--color-zinc-100);
+  --tw-prose-link-bg: --theme(--color-indigo-400);
+  --tw-prose-underline: --theme(--color-indigo-500 / 0.2);
+  --tw-prose-underline-hover: --theme(--color-indigo-400);
+  --tw-prose-bold: --theme(--color-zinc-900);
+  --tw-prose-counters: --theme(--color-zinc-900);
+  --tw-prose-bullets: --theme(--color-zinc-900);
+  --tw-prose-hr: --theme(--color-zinc-100);
+  --tw-prose-quote-borders: --theme(--color-zinc-200);
+  --tw-prose-captions: --theme(--color-zinc-400);
+  --tw-prose-code: --theme(--color-zinc-700);
+  --tw-prose-code-bg: --theme(--color-zinc-100);
+  --tw-prose-code-border: --theme(--color-zinc-300);
+  --tw-prose-code-link: --theme(--color-indigo-600);
+  --tw-prose-code-link-hover: --theme(--color-indigo-500);
+  --tw-prose-pre-bg: --theme(--color-white);
+  --tw-prose-kbd: --theme(--color-zinc-700);
+  --tw-prose-kbd-bg: --theme(--color-zinc-50);
+  --tw-prose-kbd-borders: --theme(--color-zinc-200);
+  --tw-prose-hl-bg: --theme(--color-indigo-200 / 50%);
+  --tw-prose-hl-border: --theme(--color-indigo-500);
+}
+
+:root.dark {
+  --tw-prose-body: --theme(--color-zinc-300);
+  --tw-prose-headings: --theme(--color-zinc-200);
+  --tw-prose-link: --theme(--color-zinc-100);
+  --tw-prose-link-bg: --theme(--color-indigo-500);
+  --tw-prose-underline: --theme(--color-indigo-400 / 0.3);
+  --tw-prose-underline-hover: --theme(--color-indigo-400);
+  --tw-prose-bold: --theme(--color-zinc-200);
+  --tw-prose-counters: --theme(--color-zinc-200);
+  --tw-prose-bullets: --theme(--color-zinc-200);
+  --tw-prose-hr: --theme(--color-zinc-700 / 0.4);
+  --tw-prose-quote-borders: --theme(--color-zinc-500);
+  --tw-prose-captions: --theme(--color-zinc-500);
+  --tw-prose-pre-bg: --theme(--color-zinc-950);
+  --tw-prose-code: --theme(--color-zinc-300);
+  --tw-prose-code-bg: --theme(--color-zinc-800);
+  --tw-prose-code-border: --theme(--color-zinc-700);
+  --tw-prose-code-link: --theme(--color-indigo-400);
+  --tw-prose-code-link-hover: --theme(--color-indigo-500);
+  --tw-prose-kbd: --theme(--color-zinc-300);
+  --tw-prose-kbd-bg: --theme(--color-zinc-800);
+  --tw-prose-kbd-borders: --theme(--color-zinc-700);
+  --tw-prose-hl-bg: --theme(--color-slate-800 / 50%);
+  --tw-prose-hl-border: --theme(--color-indigo-500);
+
+  & :is(.shiki, .shiki span) {
+    color: var(--shiki-dark) !important;
+  }
+}
+
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
+  }
 }
 
 :root.pause-transitions *,
