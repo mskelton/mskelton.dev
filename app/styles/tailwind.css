@@ -1,7 +1,10 @@
-@import "tailwindcss";
-/* @plugin "@tailwindcss/typography"; */
+@import "tailwindcss" source(none);
+@plugin "@tailwindcss/typography";
+@plugin "@tailwindcss/container-queries";
 
-@config "../../tailwind.config.cjs";
+@source "../../packages";
+@source "../../app";
+@source "../../components";
 
 /*
   The default border color has changed to `currentcolor` in Tailwind CSS v4,
@@ -21,6 +24,7 @@
   }
 }
 
+@custom-variant dark (&:where(.dark, .dark *));
 @custom-variant aria-current (&[aria-current="page"]);
 
 @theme {
@@ -150,6 +154,35 @@
       transform: translate(-50%, -50%) scale(0.5);
     }
   }
+
+  --font-size-2xs: 0.75rem;
+  --font-size-2xs--line-height: 1rem;
+  --font-size-xs: 0.8125rem;
+  --font-size-xs--line-height: 1.5rem;
+  --font-size-sm: 0.875rem;
+  --font-size-sm--line-height: 1.5rem;
+  --font-size-base: 1rem;
+  --font-size-base--line-height: 1.75rem;
+  --font-size-lg: 1.125rem;
+  --font-size-lg--line-height: 1.75rem;
+  --font-size-xl: 1.25rem;
+  --font-size-xl--line-height: 2rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-2xl--line-height: 2rem;
+  --font-size-3xl: 1.875rem;
+  --font-size-3xl--line-height: 2.25rem;
+  --font-size-4xl: 2rem;
+  --font-size-4xl--line-height: 2.5rem;
+  --font-size-5xl: 3rem;
+  --font-size-5xl--line-height: 3.5rem;
+  --font-size-6xl: 3.75rem;
+  --font-size-6xl--line-height: 1;
+  --font-size-7xl: 4.5rem;
+  --font-size-7xl--line-height: 1;
+  --font-size-8xl: 6rem;
+  --font-size-8xl--line-height: 1;
+  --font-size-9xl: 8rem;
+  --font-size-9xl--line-height: 1;
 }
 
 :root.pause-transitions *,
