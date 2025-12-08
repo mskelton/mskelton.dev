@@ -39,7 +39,7 @@ Card.Link = function CardLink({
     <>
       <div className="absolute -inset-x-4 -inset-y-6 z-0 scale-95 bg-zinc-50 opacity-0 transition group-hover:scale-100 group-hover:opacity-100 sm:-inset-x-6 sm:rounded-2xl dark:bg-zinc-800/50" />
       <Link
-        className={clsx("-mx-2 rounded px-2 py-1 focusable", className)}
+        className={clsx("-mx-2 rounded-sm px-2 py-1 focusable", className)}
         {...props}
         href={href}
       >
@@ -187,8 +187,8 @@ Card.Tag = function CardTag({ children, className, href }: CardTagProps) {
     <Link
       className={twMerge(
         "relative z-20 flex items-center gap-0.5 rounded-2xl px-4 py-0.5 text-xs font-medium transition-colors",
-        "bg-zinc-100 text-zinc-800 hover:bg-zinc-200 group-hover:bg-zinc-200/70 group-hover:hover:bg-zinc-200",
-        "transition-all focusable dark:bg-zinc-800 dark:text-zinc-200 dark:hover:bg-zinc-700 dark:group-hover:bg-zinc-700/70 dark:group-hover:hover:bg-zinc-700/90",
+        "bg-zinc-100 text-zinc-800 hover:bg-zinc-200 group-hover:bg-zinc-200/70 hover:group-hover:bg-zinc-200",
+        "transition-all focusable dark:bg-zinc-800 dark:text-zinc-200 dark:hover:bg-zinc-700 dark:group-hover:bg-zinc-700/70 dark:hover:group-hover:bg-zinc-700/90",
         className,
       )}
       data-testid="card-tag"

@@ -7,7 +7,7 @@ export default function Component() {
       <div
         className={clsx(
           "sticky top-0 mb-4 w-full px-4 py-3 text-xl font-bold",
-          "[--header-fade-bg:theme(colors.blue.100/0.75)] dark:[--header-fade-bg:theme(colors.slate.800/0.75)]",
+          "[--header-fade-bg:var(--color-blue-100)]/75 dark:[--header-fade-bg:var(--color-slate-800)]/75",
           styles.header,
         )}
       >

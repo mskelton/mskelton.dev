@@ -4,7 +4,7 @@ import { CheckIcon, ClipboardIcon } from "@heroicons/react/24/outline"
 import { clsx } from "clsx"
 import React, { useRef, useState } from "react"
 
-const iconStyle = "absolute size-4 inset-[50%] [transform:translate(-50%,-50%)]"
+const iconStyle = "absolute size-4 inset-[50%] transform-[translate(-50%,-50%)]"
 
 export interface MarkdownPreProps extends React.HTMLAttributes<HTMLPreElement> {
   children: React.ReactElement<{ tabIndex?: number }>
@@ -122,8 +122,8 @@ function ExpandPath({ d, isExpanded }: { d: string; isExpanded: boolean }) {
   return (
     <path
       className={clsx(
-        "origin-center transition-transform duration-500 [transform-box:fill-box]",
-        isExpanded && "[transform:rotateX(180deg)]",
+        "origin-center transition-transform duration-500 transform-fill",
+        isExpanded && "transform-[rotateX(180deg)]",
       )}
       d={d}
       stroke="currentColor"

@@ -26,7 +26,7 @@ export default function ZoomableImage({
     >
       <Component
         alt={alt ?? ""}
-        placeholder={isGIF ? undefined : "blur"}
+        placeholder={isGIF ? undefined : "blur-sm"}
         src={src as string}
         {...props}
       />

@@ -106,7 +106,7 @@ function Resume() {
               <dt className="sr-only">Company</dt>
               <dd className="w-full flex-none">
                 <a
-                  className="-mx-1 rounded px-1 text-sm font-medium text-zinc-900 transition-colors focusable hover:text-indigo-500 dark:text-zinc-100 dark:hover:text-indigo-400"
+                  className="-mx-1 rounded-sm px-1 text-sm font-medium text-zinc-900 transition-colors focusable hover:text-indigo-500 dark:text-zinc-100 dark:hover:text-indigo-400"
                   href={role.href}
                   rel="noreferrer"
                   target="_blank"
@@ -164,7 +164,7 @@ export default async function Home() {
     <>
       <Header variant="home" />
 
-      <main className="relative z-[60] bg-inherit pb-16 lg:pb-32">
+      <main className="relative z-60 bg-inherit pb-16 lg:pb-32">
         <div className="absolute -top-16 left-0 right-0 z-50 w-full overflow-hidden">
           <HeaderSwoop className="h-16 w-full min-w-[500px] lg:h-28" />
         </div>

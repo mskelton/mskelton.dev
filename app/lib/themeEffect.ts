@@ -10,11 +10,11 @@ export const themeEffect = function (): Theme {
     (!pref && window.matchMedia("(prefers-color-scheme: dark)").matches)
   ) {
     d.classList.add("pause-transitions")
-    d.classList.add("dark", "[color-scheme:dark]")
+    d.classList.add("dark", "scheme-dark")
     result = "dark"
   } else {
     d.classList.add("pause-transitions")
-    d.classList.remove("dark", "[color-scheme:dark]")
+    d.classList.remove("dark", "scheme-dark")
     result = "light"
   }
 
