@@ -29,20 +29,7 @@ module.exports = {
   ],
   theme: {
     extend: {
-      aria: {
-        current: 'current="page"',
-      },
-      animation: {
-        "draw-stroke": "300ms ease-in-out 700ms forwards draw-stroke",
-        heartbeat:
-          "1s ease-in-out 0s infinite alternate none running heartbeat",
-        "popover-enter": "popover-slide 200ms",
-        "popover-exit": "popover-slide 200ms reverse ease-in",
-      },
       keyframes: ({ theme }) => ({
-        "draw-stroke": {
-          to: { strokeDashoffset: 0 },
-        },
         dash: {
           "0%": {
             strokeDashoffset: 1,

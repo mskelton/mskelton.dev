@@ -20,6 +20,22 @@
   }
 }
 
+@custom-variant aria-current (&[aria-current="page"]);
+
+@theme {
+  --animate-draw-stroke: draw-stroke 200ms ease-in-out 700ms forwards;
+  --animate-heartbeat: heartbeat 1s ease-in-out 0s infinite alternate none
+    running;
+  --animate-popover-enter: popover-slide 200ms;
+  --animate-popover-exit: popover-slide 200ms reverse ease-in;
+
+  @keyframes draw-stroke {
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+}
+
 :root.pause-transitions *,
 :root.pause-transitions *::before,
 :root.pause-transitions *::after {
