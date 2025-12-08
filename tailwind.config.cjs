@@ -4,11 +4,6 @@
 module.exports = {
   theme: {
     typography: (theme) => {
-      const font = (size) => {
-        const [fontSize, { lineHeight }] = theme(`fontSize.${size}`)
-        return { fontSize, lineHeight }
-      }
-
       return {
         DEFAULT: {
           css: {
@@ -225,7 +220,8 @@ module.exports = {
               fontSize: theme("fontSize.sm")[0],
             },
             "pre code": {
-              ...font("xs"),
+              fontSize: theme("fontSize.xs")[0],
+              lineHeight: theme("fontSize.xs")[1].lineHeight,
               backgroundColor: "var(--tw-prose-pre-bg)",
               borderRadius: 0,
               border: "solid var(--tw-prose-code-border)",
