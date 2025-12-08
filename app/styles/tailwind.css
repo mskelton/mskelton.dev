@@ -1,4 +1,5 @@
 @import "tailwindcss";
+/* @plugin "@tailwindcss/typography"; */
 
 @config "../../tailwind.config.cjs";
 
@@ -32,6 +33,121 @@
   @keyframes draw-stroke {
     to {
       stroke-dashoffset: 0;
+    }
+  }
+
+  @keyframes dash {
+    0% {
+      stroke-dashoffset: 1;
+      stroke-dasharray: 1, 150;
+    }
+    50% {
+      stroke-dashoffset: -35;
+      stroke-dasharray: 90, 150;
+    }
+    100% {
+      stroke-dashoffset: -124;
+      stroke-dasharray: 90, 150;
+    }
+  }
+
+  @keyframes halfspin {
+    to {
+      transform: rotate(180deg);
+    }
+  }
+
+  @keyframes heartbeat {
+    from {
+      transform: scale(1);
+    }
+    to {
+      transform: scale(1.1);
+    }
+  }
+
+  @keyframes show {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes header {
+    from {
+      backdrop-filter: blur(0);
+      background: transparent;
+    }
+    to {
+      backdrop-filter: blur(8px);
+      background: var(--tw-header-scroll-bg);
+      box-shadow: --theme(--shadow-md);
+    }
+  }
+
+  @keyframes tooltip-slide {
+    0% {
+      opacity: 0;
+      transform: var(--origin);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes popover-slide {
+    from {
+      opacity: 0;
+      transform: var(--origin);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes copy-hide {
+    0% {
+      opacity: 1;
+      transform: translate(-50%, -50%);
+    }
+    20% {
+      opacity: 0;
+      transform: translate(-50%, -50%) scale(0.5);
+    }
+    80% {
+      opacity: 0;
+      transform: translate(-50%, -50%) scale(0.5);
+    }
+    to {
+      opacity: 1;
+      transform: translate(-50%, -50%);
+    }
+  }
+
+  @keyframes copy-show {
+    0% {
+      opacity: 0;
+      transform: translate(-50%, -50%) scale(0.5);
+    }
+    20% {
+      opacity: 1;
+      transform: translate(-50%, -50%);
+    }
+    60% {
+      opacity: 1;
+      transform: translate(-50%, -50%);
+    }
+    80% {
+      opacity: 0;
+      transform: translate(-50%, -50%) scale(0.5);
+    }
+    to {
+      opacity: 0;
+      transform: translate(-50%, -50%) scale(0.5);
     }
   }
 }
