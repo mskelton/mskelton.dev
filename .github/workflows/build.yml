@@ -5,23 +5,17 @@ jobs:
     name: Lint
     runs-on: ubuntu-latest
     steps:
-      - uses: mskelton/setup-pnpm@v3
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v6
         with:
           node-version: "22.x"
+      - run: yarn install --frozen-lockfile
       - name: Lint
-        run: pnpm lint
+        run: yarn lint
       - name: Check formatting
-        run: pnpm format:check
-
-  ts:
-    name: Type Check
-    runs-on: ubuntu-latest
-    steps:
-      - uses: mskelton/setup-pnpm@v3
-        with:
-          node-version: "22.x"
+        run: yarn format:check
       - name: Type check
-        run: pnpm ts
+        run: yarn ts
 
   test:
     name: Test
@@ -29,12 +23,14 @@ jobs:
     env:
       DATABASE_FILENAME: ./data/mskelton.db
     steps:
-      - uses: mskelton/setup-pnpm@v3
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v6
         with:
           node-version: "22.x"
-      - run: pnpm playwright install chromium --with-deps
-      - run: pnpm db:seed
-      - run: pnpm test
+      - run: yarn install --frozen-lockfile
+      - run: yarn playwright install chromium --with-deps
+      - run: yarn db:seed
+      - run: yarn test
       - name: Upload test results
         uses: actions/upload-artifact@v4
         if: ${{ failure() }}

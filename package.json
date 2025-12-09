@@ -2,7 +2,10 @@
   "name": "mskelton.dev",
   "description": "Source code for my personal website.",
   "type": "module",
-  "packageManager": "pnpm@9.15.5",
+  "packageManager": "yarn@4.12.0",
+  "workspaces": [
+    "packages/*"
+  ],
   "scripts": {
     "build": "next build",
     "db:reindex": "curl -X POST http://localhost:3000/api/reindex",
@@ -26,7 +29,7 @@
     "@octokit/rest": "^20.0.2",
     "@tailwindcss/container-queries": "^0.1.1",
     "@tailwindcss/postcss": "^4.1.17",
-    "@tailwindcss/typography": "^0.5.10",
+    "@tailwindcss/typography": "^0.5.19",
     "better-sqlite3": "^12.5.0",
     "clsx": "^2.0.0",
     "fast-glob": "^3.3.1",

@@ -10,8 +10,7 @@ WORKDIR /app
 
 COPY . .
 
-RUN corepack enable
-RUN pnpm install --frozen-lockfile
+RUN yarn install --frozen-lockfile
 
 # Build time environment variables
 ARG NEXT_PUBLIC_GA_ID
