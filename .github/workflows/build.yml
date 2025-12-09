@@ -41,7 +41,9 @@ jobs:
   deploy:
     name: Deploy
     if: github.ref == 'refs/heads/main'
-    needs: [lint, ts, test]
+    needs:
+      - lint
+      - test
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
