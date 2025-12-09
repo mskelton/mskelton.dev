@@ -1,4 +1,5 @@
 .next/
+.yarn/
 public/
-pnpm-lock.yaml
+.yarnrc.yml
 next-env.d.ts

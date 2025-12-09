@@ -27,7 +27,7 @@ export default defineConfig({
     trace: "on-first-retry",
   },
   webServer: {
-    command: "pnpm dev",
+    command: "yarn dev",
     reuseExistingServer: !process.env.CI,
     stderr: "pipe",
     stdout: "ignore",

@@ -9,7 +9,8 @@ const variantStyles = {
 }
 
 export interface ButtonProps
-  extends React.HTMLAttributes<HTMLElement>,
+  extends
+    React.HTMLAttributes<HTMLElement>,
     Pick<React.ButtonHTMLAttributes<HTMLButtonElement>, "type">,
     Pick<React.AnchorHTMLAttributes<HTMLAnchorElement>, "download" | "href"> {
   as?: React.ElementType
