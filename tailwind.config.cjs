@@ -10,6 +10,9 @@ module.exports = {
         transitionTimingFunction: theme("transitionTimingFunction.in-out"),
       }
 
+      const screen = (value) =>
+        `@media (min-width: ${theme(`screens.${value}`)})`
+
       return {
         invert: {
           css: {
@@ -244,7 +247,7 @@ module.exports = {
               marginBottom: theme("spacing.8"),
               marginTop: 0,
               marginInline: `calc(${theme("spacing.4")} * -1)`,
-              "@screen sm": {
+              [screen("sm")]: {
                 marginInline: 0,
               },
             },
@@ -267,8 +270,8 @@ module.exports = {
               fontSize: theme("fontSize.sm")[0],
             },
             "pre code": {
-              fontSize: theme("fontSize.sm")[0],
-              lineHeight: theme("fontSize.sm")[1].lineHeight,
+              fontSize: theme("fontSize.xs")[0],
+              lineHeight: theme("fontSize.xs")[1].lineHeight,
               backgroundColor: "var(--tw-prose-pre-bg)",
               borderRadius: 0,
               border: "solid var(--tw-prose-code-border)",
@@ -278,7 +281,7 @@ module.exports = {
               isolation: "isolate",
               overflowX: "auto",
               padding: theme("spacing.4"),
-              "@screen sm": {
+              [screen("sm")]: {
                 borderWidth: "1px",
               },
             },
@@ -293,7 +296,7 @@ module.exports = {
 
             ":is(.has-title, .demo) :is(pre, code)": {
               borderRadius: 0,
-              "@screen sm": {
+              [screen("sm")]: {
                 borderRadius: `0 0 ${theme("borderRadius.lg")} ${theme(
                   "borderRadius.lg",
                 )}`,
@@ -301,7 +304,7 @@ module.exports = {
             },
             ".code-block:not(:is(.has-title, .demo)) :is(pre, code)": {
               borderRadius: 0,
-              "@screen sm": {
+              [screen("sm")]: {
                 borderRadius: theme("borderRadius.lg"),
               },
             },
@@ -339,7 +342,7 @@ module.exports = {
             "pre.line-numbers code": {
               counterReset: "line",
 
-              "@screen md": {
+              [screen("md")]: {
                 ".line:before": {
                   display: "inline-block",
                   counterIncrement: "line",
@@ -362,7 +365,7 @@ module.exports = {
               borderTopWidth: "1px",
               borderColor: "var(--tw-prose-hr)",
 
-              "@screen lg": {
+              [screen("lg")]: {
                 marginLeft: `calc(${theme("spacing.12")} * -1)`,
                 marginRight: `calc(${theme("spacing.12")} * -1)`,
               },
