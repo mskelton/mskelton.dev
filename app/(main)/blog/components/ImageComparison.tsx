@@ -52,6 +52,7 @@ export default function ImageComparison({
 
   return (
     <ReactCompareSlider
+      changePositionOnHover
       className="rounded-xl sm:max-w-[calc(100%+4rem)]"
       handle={
         <Handle

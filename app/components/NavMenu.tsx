@@ -6,7 +6,7 @@ export type NavMenuProps<T extends object> = MenuProps<T>
 export function NavMenu<T extends object>(props: NavMenuProps<T>) {
   return (
     <Menu
-      className="mt-2 w-40 rounded-xl bg-white p-1 shadow-lg focus:outline-none dark:bg-zinc-800"
+      className="mt-2 w-40 rounded-xl bg-white p-1 shadow-lg focus:outline-hidden dark:bg-zinc-800"
       selectionMode="single"
       {...props}
     />
@@ -20,7 +20,7 @@ export function NavMenuItem<T extends object>(props: NavMenuItemProps<T>) {
     <MenuItem
       className={({ isFocused, isSelected }) =>
         twMerge(
-          "group flex w-full cursor-default items-center rounded-lg px-4 py-2 text-xs font-medium outline-none",
+          "group flex w-full cursor-default items-center rounded-lg px-4 py-2 text-xs font-medium outline-hidden",
           isFocused
             ? "bg-zinc-100 text-zinc-900 dark:bg-zinc-900 dark:text-zinc-100"
             : "text-zinc-700 dark:text-zinc-300",

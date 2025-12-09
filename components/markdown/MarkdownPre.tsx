@@ -4,7 +4,7 @@ import { CheckIcon, ClipboardIcon } from "@heroicons/react/24/outline"
 import { clsx } from "clsx"
 import React, { useRef, useState } from "react"
 
-const iconStyle = "absolute size-4 inset-[50%] [transform:translate(-50%,-50%)]"
+const iconStyle = "absolute size-4 inset-[50%] transform-[translate(-50%,-50%)]"
 
 export interface MarkdownPreProps extends React.HTMLAttributes<HTMLPreElement> {
   children: React.ReactElement<{ tabIndex?: number }>
@@ -41,8 +41,8 @@ export default function MarkdownPre({
         className={clsx(
           "absolute z-10 flex gap-3 transition-opacity delay-100 group-hover:opacity-100",
           hasTitle
-            ? "right-[10px] top-[10px]"
-            : "right-[15px] top-[15px] opacity-0",
+            ? "top-[10px] right-[10px]"
+            : "top-[15px] right-[15px] opacity-0",
         )}
         data-testid="toolbar"
       >
@@ -111,7 +111,7 @@ function ToolbarButton({
   return (
     <button
       aria-label={label}
-      className="relative flex size-8 items-center justify-center rounded-md border border-zinc-300 bg-zinc-100 transition-[background-color] focusable hover:bg-zinc-200 focus-visible:opacity-100 dark:border-zinc-700 dark:bg-zinc-900 dark:hover:bg-zinc-800"
+      className="focusable relative flex size-8 items-center justify-center rounded-md border border-zinc-300 bg-zinc-100 transition-[background-color] hover:bg-zinc-200 focus-visible:opacity-100 dark:border-zinc-700 dark:bg-zinc-900 dark:hover:bg-zinc-800"
       type="button"
       {...props}
     />
@@ -122,8 +122,8 @@ function ExpandPath({ d, isExpanded }: { d: string; isExpanded: boolean }) {
   return (
     <path
       className={clsx(
-        "origin-center transition-transform duration-500 [transform-box:fill-box]",
-        isExpanded && "[transform:rotateX(180deg)]",
+        "origin-center transition-transform duration-500 transform-fill",
+        isExpanded && "transform-[rotateX(180deg)]",
       )}
       d={d}
       stroke="currentColor"

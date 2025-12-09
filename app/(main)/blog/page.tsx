@@ -40,7 +40,7 @@ function Post({ post }: PostProps) {
 
       <Card.Eyebrow
         as="time"
-        className="mt-1 hidden transition-colors after:absolute after:left-[-37px] after:top-[4px] after:hidden after:h-4 after:w-4 after:rounded-full after:border-4 after:border-zinc-300 after:bg-zinc-100 after:transition-colors md:block md:after:block dark:after:border-zinc-600 dark:after:bg-zinc-800"
+        className="mt-1 hidden transition-colors after:absolute after:top-[4px] after:left-[-37px] after:hidden after:h-4 after:w-4 after:rounded-full after:border-4 after:border-zinc-300 after:bg-zinc-100 after:transition-colors md:block md:after:block dark:after:border-zinc-600 dark:after:bg-zinc-800"
         dateTime={post.date}
       >
         {formatDate(post.date)}

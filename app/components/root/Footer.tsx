@@ -22,7 +22,7 @@ function FooterLink({ children, href }: FooterLinkProps) {
   return (
     <li>
       <Link
-        className="group -mx-2 flex items-center rounded px-2 transition focusable hover:text-indigo-500 dark:text-zinc-200 dark:hover:text-indigo-400"
+        className="group focusable -mx-2 flex items-center rounded-sm px-2 transition hover:text-indigo-500 dark:text-zinc-200 dark:hover:text-indigo-400"
         href={href}
         prefetch={false}
       >
@@ -64,7 +64,7 @@ export function Footer({ variant }: FooterProps) {
               <Copyright className="hidden md:block" />
             </div>
 
-            <div className="flex w-full flex-shrink-0 justify-center gap-14 md:w-auto md:justify-start lg:gap-20">
+            <div className="flex w-full shrink-0 justify-center gap-14 md:w-auto md:justify-start lg:gap-20">
               <div>
                 <p className={styles.listTitle}>Projects</p>
 

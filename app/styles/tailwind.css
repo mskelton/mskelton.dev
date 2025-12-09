@@ -1,6 +1,202 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss" source(none);
+@plugin "@tailwindcss/typography";
+@plugin "@tailwindcss/container-queries";
+@config "../../tailwind.config.cjs";
+
+@source "../../packages";
+@source "../../app";
+@source "../../components";
+
+@utility focusable {
+  &:focus {
+    outline: none;
+  }
+
+  &:focus-visible {
+    box-shadow: 0 0 0 3px var(--color-indigo-500);
+  }
+}
+
+/* .prose :where(p):not(:where([class~=not-prose],[class~=not-prose] *)) */
+
+@custom-variant dark (&:where(.dark, .dark *));
+@custom-variant aria-current (&[aria-current="page"]);
+
+@theme {
+  --animate-draw-stroke: draw-stroke 200ms ease-in-out 700ms forwards;
+  --animate-heartbeat: heartbeat 1s ease-in-out 0s infinite alternate none
+    running;
+  --animate-popover-enter: popover-slide 200ms;
+  --animate-popover-exit: popover-slide 200ms reverse ease-in;
+
+  --text-2xs: 0.75rem;
+  --text-2xs--line-height: 1rem;
+  --text-xs: 0.8125rem;
+  --text-xs--line-height: 1.5rem;
+  --text-sm: 0.875rem;
+  --text-sm--line-height: 1.5rem;
+  --text-base: 1rem;
+  --text-base--line-height: 1.75rem;
+  --text-lg: 1.125rem;
+  --text-lg--line-height: 1.75rem;
+  --text-xl: 1.25rem;
+  --text-xl--line-height: 2rem;
+  --text-2xl: 1.5rem;
+  --text-2xl--line-height: 2rem;
+  --text-3xl: 1.875rem;
+  --text-3xl--line-height: 2.25rem;
+  --text-4xl: 2rem;
+  --text-4xl--line-height: 2.5rem;
+  --text-5xl: 3rem;
+  --text-5xl--line-height: 3.5rem;
+  --text-6xl: 3.75rem;
+  --text-6xl--line-height: 1;
+  --text-7xl: 4.5rem;
+  --text-7xl--line-height: 1;
+  --text-8xl: 6rem;
+  --text-8xl--line-height: 1;
+  --text-9xl: 8rem;
+  --text-9xl--line-height: 1;
+
+  @keyframes draw-stroke {
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+
+  @keyframes dash {
+    0% {
+      stroke-dashoffset: 1;
+      stroke-dasharray: 1, 150;
+    }
+    50% {
+      stroke-dashoffset: -35;
+      stroke-dasharray: 90, 150;
+    }
+    100% {
+      stroke-dashoffset: -124;
+      stroke-dasharray: 90, 150;
+    }
+  }
+
+  @keyframes halfspin {
+    to {
+      transform: rotate(180deg);
+    }
+  }
+
+  @keyframes heartbeat {
+    from {
+      transform: scale(1);
+    }
+    to {
+      transform: scale(1.1);
+    }
+  }
+
+  @keyframes show {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes header {
+    from {
+      backdrop-filter: blur(0);
+      background: transparent;
+    }
+    to {
+      backdrop-filter: blur(8px);
+      background: var(--tw-header-scroll-bg);
+      box-shadow: --theme(--shadow-md);
+    }
+  }
+
+  @keyframes tooltip-slide {
+    0% {
+      opacity: 0;
+      transform: var(--origin);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes popover-slide {
+    from {
+      opacity: 0;
+      transform: var(--origin);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes copy-hide {
+    0% {
+      opacity: 1;
+      transform: translate(-50%, -50%);
+    }
+    20% {
+      opacity: 0;
+      transform: translate(-50%, -50%) scale(0.5);
+    }
+    80% {
+      opacity: 0;
+      transform: translate(-50%, -50%) scale(0.5);
+    }
+    to {
+      opacity: 1;
+      transform: translate(-50%, -50%);
+    }
+  }
+
+  @keyframes copy-show {
+    0% {
+      opacity: 0;
+      transform: translate(-50%, -50%) scale(0.5);
+    }
+    20% {
+      opacity: 1;
+      transform: translate(-50%, -50%);
+    }
+    60% {
+      opacity: 1;
+      transform: translate(-50%, -50%);
+    }
+    80% {
+      opacity: 0;
+      transform: translate(-50%, -50%) scale(0.5);
+    }
+    to {
+      opacity: 0;
+      transform: translate(-50%, -50%) scale(0.5);
+    }
+  }
+}
+
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
+  }
+}
 
 :root.pause-transitions *,
 :root.pause-transitions *::before,
@@ -9,11 +205,11 @@
 }
 
 :root {
-  --tw-header-scroll-bg: theme(colors.white / 75%);
+  --tw-header-scroll-bg: --theme(--color-white / 75%);
 }
 
 :root.dark {
-  --tw-header-scroll-bg: theme(colors.zinc.900 / 75%);
+  --tw-header-scroll-bg: --theme(--color-zinc-900 / 75%);
 }
 
 .dark .rmi-overlay {
