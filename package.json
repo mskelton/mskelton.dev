@@ -52,7 +52,7 @@
     "remark-smartypants": "^3.0.2",
     "sharp": "^0.32.6",
     "shiki": "3.19.0",
-    "tailwind-merge": "^1.14.0",
+    "tailwind-merge": "^3.4.0",
     "tailwindcss": "^4.1.17",
     "unified": "^11.0.5",
     "unified-plugins": "workspace:*",
