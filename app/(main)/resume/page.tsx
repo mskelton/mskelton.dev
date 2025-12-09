@@ -43,7 +43,7 @@ export default function Projects() {
         </p>
       </div>
 
-      <Prose className="grid gap-x-20 prose-h2:mt-8 prose-li:my-2 lg:grid-cols-[1fr_280px]">
+      <Prose className="prose-h2:mt-8 prose-li:my-2 grid gap-x-20 lg:grid-cols-[1fr_280px]">
         <div className="m-0 text-center lg:col-start-2">
           <h2>Skills</h2>
           <Skills />

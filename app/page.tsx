@@ -35,7 +35,7 @@ function Post({ post }: PostProps) {
 
 function SocialLink({ icon: Icon, ...props }: SocialLinkProps) {
   return (
-    <a className="group -m-1 rounded-full p-1 focusable" {...props}>
+    <a className="group focusable -m-1 rounded-full p-1" {...props}>
       <Icon className="size-6 text-zinc-500 transition group-hover:text-indigo-500 dark:text-zinc-300 dark:group-hover:text-indigo-400" />
     </a>
   )
@@ -86,7 +86,7 @@ const resume: Role[] = [
 
 function Resume() {
   return (
-    <div className="rounded-2xl border border-zinc-100 p-6 transition-colors @container dark:border-zinc-700/40">
+    <div className="@container rounded-2xl border border-zinc-100 p-6 transition-colors dark:border-zinc-700/40">
       <h2 className="flex text-sm font-semibold text-zinc-900 transition-colors dark:text-zinc-100">
         <BriefcaseIcon className="size-6 flex-none" />
         <span className="ml-3">Work</span>
@@ -95,7 +95,7 @@ function Resume() {
       <ol className="mt-6 space-y-4">
         {resume.map((role, roleIndex) => (
           <li key={roleIndex} className="flex gap-4">
-            <div className="relative mt-1 flex h-10 w-10 flex-none items-center justify-center rounded-full shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 transition-colors dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0">
+            <div className="relative mt-1 flex h-10 w-10 flex-none items-center justify-center rounded-full shadow-md ring-1 shadow-zinc-800/5 ring-zinc-900/5 transition-colors dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0">
               <role.logo
                 aria-label={`${role.company} logo`}
                 className="size-7"
@@ -106,7 +106,7 @@ function Resume() {
               <dt className="sr-only">Company</dt>
               <dd className="w-full flex-none">
                 <a
-                  className="-mx-1 rounded-sm px-1 text-sm font-medium text-zinc-900 transition-colors focusable hover:text-indigo-500 dark:text-zinc-100 dark:hover:text-indigo-400"
+                  className="focusable -mx-1 rounded-sm px-1 text-sm font-medium text-zinc-900 transition-colors hover:text-indigo-500 dark:text-zinc-100 dark:hover:text-indigo-400"
                   href={role.href}
                   rel="noreferrer"
                   target="_blank"
@@ -165,7 +165,7 @@ export default async function Home() {
       <Header variant="home" />
 
       <main className="relative z-60 bg-inherit pb-16 lg:pb-32">
-        <div className="absolute -top-16 left-0 right-0 z-50 w-full overflow-hidden">
+        <div className="absolute -top-16 right-0 left-0 z-50 w-full overflow-hidden">
           <HeaderSwoop className="h-16 w-full min-w-[500px] lg:h-28" />
         </div>
 

@@ -9,7 +9,7 @@ export default function Skills() {
         .map(({ icon, name, url }) => (
           <a
             key={name}
-            className="group relative flex flex-col items-center gap-2 rounded-md p-1 text-white outline-hidden transition-all focusable"
+            className="group focusable relative flex flex-col items-center gap-2 rounded-md p-1 text-white outline-hidden transition-all"
             href={url}
             rel="noopener noreferrer"
             target="_blank"

@@ -23,7 +23,7 @@ export const HeaderIconButton = forwardRef<
   return (
     <Component
       ref={ref}
-      className={clsx("group rounded-full p-2 focusable", className)}
+      className={clsx("group focusable rounded-full p-2", className)}
       type={props.href ? undefined : "button"}
       {...props}
     >

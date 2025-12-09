@@ -26,7 +26,7 @@ export default function ErrorPage({
         </h1>
 
         <p
-          className="prose mt-6 max-w-xl text-base leading-7 text-zinc-700 dark:prose-invert dark:text-zinc-300"
+          className="prose dark:prose-invert mt-6 max-w-xl text-base leading-7 text-zinc-700 dark:text-zinc-300"
           data-testid="subtitle"
         >
           {subtitle}
