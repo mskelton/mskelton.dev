@@ -66,16 +66,16 @@
 
   @keyframes dash {
     0% {
-      stroke-dashoffset: 1;
       stroke-dasharray: 1, 150;
+      stroke-dashoffset: 1;
     }
     50% {
-      stroke-dashoffset: -35;
       stroke-dasharray: 90, 150;
+      stroke-dashoffset: -35;
     }
     100% {
-      stroke-dashoffset: -124;
       stroke-dasharray: 90, 150;
+      stroke-dashoffset: -124;
     }
   }
 

@@ -7,8 +7,8 @@ Welcome to my personal website!
 
 ## Installing
 
-Dependencies are managed with [yarn](https://yarnpkg.com) and can be installed with
-the `yarn` command.
+Dependencies are managed with [yarn](https://yarnpkg.com) and can be installed
+with the `yarn` command.
 
 ```bash
 yarn
