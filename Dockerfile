@@ -16,7 +16,7 @@ RUN yarn install --frozen-lockfile
 ARG NEXT_PUBLIC_GA_ID
 
 # Build the app
-RUN npm run build
+RUN yarn build
 
 # Production image, copy all the files and run next
 FROM base AS runner
