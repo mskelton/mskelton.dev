@@ -36,7 +36,7 @@ export default function Projects() {
         />
 
         <PageTitle className="mb-6 lg:mb-0">Hi, I’m Mark 👋</PageTitle>
-        <p className="text-gray-300 lg:text-balance">
+        <p className="text-zinc-700 lg:text-balance dark:text-zinc-300">
           Experienced software engineer with over seven years of experience
           building scalable web apps. Dedicated team leader and mentor
           passionate about teaching, developer experience, and high-quality UX.
