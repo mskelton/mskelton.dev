@@ -9,6 +9,7 @@ import { Providers } from "./Providers"
 
 export const metadata: Metadata = {
   description: siteMeta.description,
+  metadataBase: new URL(siteMeta.url),
   title: `Mark Skelton - ${siteMeta.tagline}`,
 }
 
