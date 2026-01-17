@@ -5,11 +5,7 @@
     "forceConsistentCasingInFileNames": true,
     "isolatedModules": true,
     "jsx": "react-jsx",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "module": "esnext",
     "moduleResolution": "bundler",
     "noEmit": true,
@@ -24,15 +20,9 @@
       }
     ],
     "paths": {
-      "~/*": [
-        "./app/*"
-      ],
-      "components/*": [
-        "./app/components/*"
-      ],
-      "lib/*": [
-        "./app/lib/*"
-      ]
+      "~/*": ["./app/*"],
+      "components/*": ["./app/components/*"],
+      "lib/*": ["./app/lib/*"]
     }
   },
   "include": [
@@ -43,7 +33,5 @@
     "**/*.tsx",
     "**/*.mdx"
   ],
-  "exclude": [
-    "node_modules"
-  ]
+  "exclude": ["node_modules"]
 }
