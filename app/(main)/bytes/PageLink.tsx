@@ -1,5 +1,5 @@
-import Link from "next/link"
 import { Button } from "components/Button"
+import Link from "next/link"
 
 export interface PageLinkProps {
   children: React.ReactNode

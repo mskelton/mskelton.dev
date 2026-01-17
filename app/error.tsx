@@ -1,9 +1,9 @@
 "use client"
 
-import Link from "next/link"
-import MainLayout from "~/(main)/layout"
 import { Button } from "components/Button"
 import ErrorPage from "components/ErrorPage"
+import Link from "next/link"
+import MainLayout from "~/(main)/layout"
 
 export default function RootError() {
   return (

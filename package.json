@@ -1,11 +1,10 @@
 {
   "name": "mskelton.dev",
   "description": "Source code for my personal website.",
-  "type": "module",
-  "packageManager": "yarn@4.12.0",
   "workspaces": [
     "packages/*"
   ],
+  "type": "module",
   "scripts": {
     "build": "next build",
     "db:reindex": "curl -X POST http://localhost:3000/api/reindex",
@@ -75,5 +74,6 @@
     "oxfmt": "^0.24.0",
     "tsx": "^4.7.1",
     "typescript": "^5.3.3"
-  }
+  },
+  "packageManager": "yarn@4.12.0"
 }

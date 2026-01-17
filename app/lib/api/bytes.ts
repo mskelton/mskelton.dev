@@ -35,10 +35,9 @@ export async function upsertByte(id: string, source: string) {
 
     // Get tag ids
     const tags = client
-      .prepare<
-        string[][],
-        { id: string }
-      >(`SELECT id FROM tags WHERE name IN (${meta.tags.map(() => "?").join(",")})`)
+      .prepare<string[][], { id: string }>(
+        `SELECT id FROM tags WHERE name IN (${meta.tags.map(() => "?").join(",")})`,
+      )
       .all(meta.tags)
 
     // Add the new tags to the relationship table
