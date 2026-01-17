@@ -1,12 +1,15 @@
 {
   "compilerOptions": {
-    "baseUrl": "app",
     "allowJs": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "isolatedModules": true,
     "jsx": "react-jsx",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "module": "esnext",
     "moduleResolution": "bundler",
     "noEmit": true,
@@ -15,7 +18,22 @@
     "strict": true,
     "target": "esnext",
     "incremental": true,
-    "plugins": [{ "name": "next" }]
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "paths": {
+      "~/*": [
+        "./app/*"
+      ],
+      "components/*": [
+        "./app/components/*"
+      ],
+      "lib/*": [
+        "./app/lib/*"
+      ]
+    }
   },
   "include": [
     "next-env.d.ts",
@@ -25,5 +43,7 @@
     "**/*.tsx",
     "**/*.mdx"
   ],
-  "exclude": ["node_modules"]
+  "exclude": [
+    "node_modules"
+  ]
 }

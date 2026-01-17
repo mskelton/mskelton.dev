@@ -1,4 +1,4 @@
-import { getFeed } from "rss/utils"
+import { getFeed } from "~/rss/utils"
 
 export const dynamic = "force-dynamic"
 

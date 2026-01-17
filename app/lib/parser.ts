@@ -1,7 +1,7 @@
 import matter from "gray-matter"
 import remarkParse from "remark-parse"
 import { Plugin, unified } from "unified"
-import { ByteMeta } from "(main)/bytes/types"
+import { ByteMeta } from "~/(main)/bytes/types"
 import remarkStringify from "./remarkStringify.js"
 
 export const slugify = (str: string) =>

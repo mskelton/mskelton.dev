@@ -2,7 +2,7 @@ import fs from "node:fs"
 import os from "node:os"
 import path from "node:path"
 import v8 from "node:v8"
-import { requireToken } from "api/utils/auth"
+import { requireToken } from "~/api/utils/auth"
 
 export async function GET(request: Request) {
   requireToken(request)

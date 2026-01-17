@@ -1,7 +1,7 @@
 "use client"
 
 import Link from "next/link"
-import MainLayout from "(main)/layout"
+import MainLayout from "~/(main)/layout"
 import { Button } from "components/Button"
 import ErrorPage from "components/ErrorPage"
 
