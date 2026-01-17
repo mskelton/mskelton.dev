@@ -12,7 +12,15 @@ export async function upsertByte(id: string, source: string) {
   // Insert the byte and update if it already exists
   client
     .prepare(
-      `INSERT INTO bytes (id, slug, title, description, content, created_at) VALUES (?, ?, ?, ?, ?, ?)`,
+      `
+        INSERT INTO bytes (id, slug, title, description, content, created_at)
+        VALUES (?, ?, ?, ?, ?, ?)
+        ON CONFLICT(id) DO UPDATE SET
+          slug=excluded.slug,
+          title=excluded.title,
+          description=excluded.description,
+          content=excluded.content
+      `,
     )
     .run(
       id,
