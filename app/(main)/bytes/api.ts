@@ -143,9 +143,11 @@ function getPrefix({ query, tag }: Pick<SearchBytesRequest, "query" | "tag">) {
 }
 
 export async function getAllBytes() {
-  return client
+  const bytes = client
     .prepare<unknown[], Byte>(`select * from bytes order by created_at desc`)
     .all()
+
+  return bytes.map(parseByte)
 }
 
 export interface SearchBytesRequest {
