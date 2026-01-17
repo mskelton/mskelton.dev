@@ -1141,7 +1141,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@octokit/webhooks-types@npm:^7.3.1":
+"@octokit/webhooks-types@npm:^7.6.1":
   version: 7.6.1
   resolution: "@octokit/webhooks-types@npm:7.6.1"
   checksum: 10c0/7c2cb40f9ccd2bd392cf35c23f995ae0719ef35fd3bce0264ced5518cbf0a7087bd069bf5e5963fc33d0232726968db526912df3cb017c1bd1761c8849c31a30
@@ -7247,7 +7247,7 @@ __metadata:
     "@next/mdx": "npm:^16.0.7"
     "@next/third-parties": "npm:^16.0.7"
     "@octokit/rest": "npm:^20.0.2"
-    "@octokit/webhooks-types": "npm:^7.3.1"
+    "@octokit/webhooks-types": "npm:^7.6.1"
     "@playwright/test": "npm:^1.54.2"
     "@shikijs/rehype": "npm:^3.19.0"
     "@tailwindcss/container-queries": "npm:^0.1.1"

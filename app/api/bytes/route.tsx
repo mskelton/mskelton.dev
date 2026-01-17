@@ -16,19 +16,27 @@ async function remove(files: string[]) {
 }
 
 export async function POST(req: Request) {
+  console.log('Received PushEvent...')
   const body = (await req.json()) as PushEvent
 
+  console.log('Verifying signature...')
   if (!verifySignature(req, body)) {
     return NextResponse.json({ message: "Unauthorized" }, { status: 401 })
   }
 
+  console.log('Signature verified...')
+
   const { commits } = body
+  console.log('Removing bytes...')
   await remove(commits.flatMap((c) => c.removed))
 
+  console.log('Upserting bytes...')
   const bytes = commits.flatMap((c) => [...c.added, ...c.modified])
   for await (const byte of bytes) {
     await upsert(byte)
   }
+
+  console.log('Bytes upserted...')
 
   return NextResponse.json({ message: "ok" })
 }
