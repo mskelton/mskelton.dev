@@ -1,9 +1,9 @@
-import { upsertByte } from "lib/api/bytes"
-import { getByteSource, octokit } from "lib/api/github"
-import { client } from "lib/db"
-import { toId } from "lib/parser"
 import { NextResponse } from "next/server"
 import { requireToken } from "~/api/utils/auth"
+import { upsertByte } from "~/lib/api/bytes"
+import { getByteSource, octokit } from "~/lib/api/github"
+import { client } from "~/lib/db"
+import { toId } from "~/lib/parser"
 
 async function getAllByteIds() {
   const path = "bytes"

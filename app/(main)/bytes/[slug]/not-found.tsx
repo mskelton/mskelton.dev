@@ -1,8 +1,8 @@
 "use client"
 
-import { Button } from "components/Button"
-import ErrorPage from "components/ErrorPage"
 import Link from "next/link"
+import { Button } from "~/components/Button"
+import ErrorPage from "~/components/ErrorPage"
 
 export default function ByteNotFound() {
   return (

@@ -1,10 +1,10 @@
-import { client } from "lib/db"
+import { client } from "~/lib/db"
 import {
   dateFromId,
   getFrontmatter,
   parseDescription,
   slugify,
-} from "lib/parser"
+} from "~/lib/parser"
 
 export async function upsertByte(id: string, source: string) {
   const { content, meta } = getFrontmatter(source)

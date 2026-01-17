@@ -1,7 +1,7 @@
-import { Card } from "components/Card"
-import { SimpleLayout } from "components/layouts/SimpleLayout"
 import { Metadata } from "next"
 import Image from "next/image"
+import { Card } from "~/components/Card"
+import { SimpleLayout } from "~/components/layouts/SimpleLayout"
 import { projects } from "./projects"
 
 export const metadata: Metadata = {

@@ -1,10 +1,10 @@
 import { ArrowLeftIcon } from "@heroicons/react/20/solid"
-import { Container } from "components/Container"
-import { PageTitle } from "components/PageTitle"
-import { Prose } from "components/Prose"
-import Skeleton from "components/Skeleton"
-import { formatDate } from "lib/date"
 import Link from "next/link"
+import { Container } from "~/components/Container"
+import { PageTitle } from "~/components/PageTitle"
+import { Prose } from "~/components/Prose"
+import Skeleton from "~/components/Skeleton"
+import { formatDate } from "~/lib/date"
 
 export interface PostMeta {
   date: string

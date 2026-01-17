@@ -1,5 +1,5 @@
-import { SimpleLayout } from "components/layouts/SimpleLayout"
-import Loader from "components/Loader"
+import { SimpleLayout } from "~/components/layouts/SimpleLayout"
+import Loader from "~/components/Loader"
 import { metadata } from "./page"
 
 export default function BytesLoading() {

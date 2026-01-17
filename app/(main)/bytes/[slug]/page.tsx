@@ -1,7 +1,7 @@
-import { PostLayout } from "components/layouts/PostLayout"
-import { toDateString } from "lib/date"
-import { withOpenGraph } from "lib/metadata"
-import { siteMeta } from "lib/siteMeta"
+import { PostLayout } from "~/components/layouts/PostLayout"
+import { toDateString } from "~/lib/date"
+import { withOpenGraph } from "~/lib/metadata"
+import { siteMeta } from "~/lib/siteMeta"
 import { getByte } from "../api"
 
 export async function generateMetadata({
