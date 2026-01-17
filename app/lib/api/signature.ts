@@ -2,10 +2,10 @@ import * as crypto from "crypto"
 
 const WEBHOOK_SECRET = process.env.WEBHOOK_SECRET as string
 
-export async function verifySignature(req: Request, body: unknown) {
+export async function verifySignature(req: Request, body: string) {
   const signature = crypto
     .createHmac("sha256", WEBHOOK_SECRET)
-    .update(JSON.stringify(body))
+    .update(body)
     .digest("hex")
 
   const trusted = Buffer.from(`sha256=${signature}`, "ascii")
