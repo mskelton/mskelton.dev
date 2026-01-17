@@ -8,8 +8,6 @@ export async function verifySignature(req: Request, body: string) {
     .update(body)
     .digest("hex")
 
-  console.log('headers', req.headers.get("x-hub-signature-256"))
-
   const trusted = Buffer.from(`sha256=${signature}`, "ascii")
   const untrusted = Buffer.from(
     req.headers.get("x-hub-signature-256") ?? "",

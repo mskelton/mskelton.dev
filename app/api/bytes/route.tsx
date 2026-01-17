@@ -12,13 +12,20 @@ async function upsert(file: string) {
 }
 
 async function remove(files: string[]) {
-  client.prepare(`DELETE FROM bytes WHERE id IN ?`).run(files.map(toId))
+  const ids = files.map(toId)
+  if (ids.length === 0) {
+    return
+  }
+
+  const placeholders = ids.map(() => "?").join(",")
+  client.prepare(`DELETE FROM bytes WHERE id IN (${placeholders})`).run(...ids)
 }
 
 export async function POST(req: Request) {
   const body = await req.text()
+  const validSignature = await verifySignature(req, body)
 
-  if (!verifySignature(req, body)) {
+  if (!validSignature) {
     return NextResponse.json({ message: "Unauthorized" }, { status: 401 })
   }
 
