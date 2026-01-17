@@ -4,6 +4,7 @@ import { redirects, rewrites } from "./config/redirects.mjs"
 
 /** @type {import("next").NextConfig} */
 const nextConfig = {
+  allowedDevOrigins: ["127.0.0.1", "localhost"],
   images: {
     minimumCacheTTL: 3600, // 1 hour
   },

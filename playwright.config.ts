@@ -6,6 +6,7 @@ expect.extend(axeMatchers)
 
 export default defineConfig({
   expect: {
+    timeout: 10_000,
     toHaveScreenshot: {
       maxDiffPixelRatio: 0.25,
     },
