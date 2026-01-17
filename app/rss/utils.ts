@@ -1,9 +1,9 @@
 import { Feed } from "feed"
 import { cache } from "react"
 import { getAllBytes } from "~/(main)/bytes/api"
-import { parseDate } from "lib/date"
-import { getAllPosts } from "lib/posts"
-import { siteMeta } from "lib/siteMeta"
+import { parseDate } from "~/lib/date"
+import { getAllPosts } from "~/lib/posts"
+import { siteMeta } from "~/lib/siteMeta"
 
 const author = {
   email: siteMeta.email,

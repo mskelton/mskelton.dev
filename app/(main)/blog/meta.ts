@@ -1,5 +1,5 @@
 import { Metadata } from "next"
-import type { PostMeta } from "components/layouts/PostLayout"
+import type { PostMeta } from "~/components/layouts/PostLayout"
 
 export function getMetadata(meta: PostMeta): Metadata {
   return {

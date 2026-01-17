@@ -1,7 +1,7 @@
 import Image from "next/image"
-import { PostLayout } from "components/layouts/PostLayout"
-import { withOpenGraph } from "lib/metadata"
-import { getAllPostSlugs, getPost } from "lib/posts"
+import { PostLayout } from "~/components/layouts/PostLayout"
+import { withOpenGraph } from "~/lib/metadata"
+import { getAllPostSlugs, getPost } from "~/lib/posts"
 
 export async function generateStaticParams() {
   const slugs = await getAllPostSlugs()

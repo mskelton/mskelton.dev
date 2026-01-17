@@ -13,6 +13,9 @@ export default [
     plugins: {
       "local-rules": localRules,
     },
+    rules: {
+      "sort/imports": "off",
+    },
   },
   {
     ...mskelton.react,

@@ -1,7 +1,7 @@
 import rehypeShiki from "@mskelton/rehype-shiki"
 import matter from "gray-matter"
-import { notFound } from "next/navigation"
 import { compileMDX } from "next-mdx-remote/rsc"
+import { notFound } from "next/navigation"
 import fs from "node:fs/promises"
 import path from "node:path"
 import { cache } from "react"
@@ -15,7 +15,7 @@ import rehypeCodeTitles from "unified-plugins/rehype-code-titles"
 import rehypeHeaderId from "unified-plugins/rehype-header-id"
 import config from "unified-plugins/rehype-headings"
 import rehypeParseCodeMeta from "unified-plugins/rehype-parse-code-meta"
-import { client } from "lib/db"
+import { client } from "~/lib/db"
 import MarkdownImage from "../../../components/markdown/MarkdownImage"
 import MarkdownLink from "../../../components/markdown/MarkdownLink"
 import MarkdownPre from "../../../components/markdown/MarkdownPre"
@@ -72,10 +72,9 @@ function parseByte(byte: any): Byte {
 
 export const getByte = cache(async (slug: string) => {
   const byte = client
-    .prepare<
-      { slug: string },
-      Byte
-    >(`select * from bytes where id = @slug or slug = @slug`)
+    .prepare<{ slug: string }, Byte>(
+      `select * from bytes where id = @slug or slug = @slug`,
+    )
     .get({ slug })
 
   if (!byte) {

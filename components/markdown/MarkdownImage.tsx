@@ -1,4 +1,4 @@
-import { isExternalImage } from "lib/image"
+import { isExternalImage } from "~/lib/image"
 import ZoomableImage from "../../app/components/ZoomableImage"
 
 export interface MarkdownImageProps {

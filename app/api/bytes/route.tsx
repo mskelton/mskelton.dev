@@ -1,10 +1,10 @@
-import { NextResponse } from "next/server"
 import { PushEvent } from "@octokit/webhooks-types"
-import { upsertByte } from "lib/api/bytes"
-import { getByteSource } from "lib/api/github"
-import { verifySignature } from "lib/api/signature"
-import { client } from "lib/db"
-import { toId } from "lib/parser"
+import { NextResponse } from "next/server"
+import { upsertByte } from "~/lib/api/bytes"
+import { getByteSource } from "~/lib/api/github"
+import { verifySignature } from "~/lib/api/signature"
+import { client } from "~/lib/db"
+import { toId } from "~/lib/parser"
 
 async function upsert(file: string) {
   const id = toId(file)

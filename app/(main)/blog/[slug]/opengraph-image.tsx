@@ -1,4 +1,4 @@
-import { getPostImage } from "lib/posts"
+import { getPostImage } from "~/lib/posts"
 
 const size = {
   height: 1024,

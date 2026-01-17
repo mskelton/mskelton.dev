@@ -193,39 +193,40 @@ interface CursorProps {
   connection: ClientConnection
 }
 
-export const Cursor = forwardRef<HTMLDivElement, CursorProps>(
-  function Cursor({ connection }, ref) {
-    const hash = new ColorHash({ lightness: 0.3 })
-    const color = hash.hex(connection.username)
+export const Cursor = forwardRef<HTMLDivElement, CursorProps>(function Cursor(
+  { connection },
+  ref,
+) {
+  const hash = new ColorHash({ lightness: 0.3 })
+  const color = hash.hex(connection.username)
 
-    return (
-      <div
-        ref={ref}
-        className={clsx(
-          "fixed flex translate-x-[--x] translate-y-[--y] gap-1 rounded text-xs",
-          // If we don't have any initial coordinates for the user, hide this
-          // cursor. This happens when a new client first connects.
-          connection.coords.x ? "visible" : "invisible",
-        )}
-        style={
-          {
-            "--x": `${connection.coords.x}vw`,
-            "--y": `${connection.coords.y}vh`,
-          } as React.CSSProperties
-        }
+  return (
+    <div
+      ref={ref}
+      className={clsx(
+        "fixed flex translate-x-[--x] translate-y-[--y] gap-1 rounded text-xs",
+        // If we don't have any initial coordinates for the user, hide this
+        // cursor. This happens when a new client first connects.
+        connection.coords.x ? "visible" : "invisible",
+      )}
+      style={
+        {
+          "--x": `${connection.coords.x}vw`,
+          "--y": `${connection.coords.y}vh`,
+        } as React.CSSProperties
+      }
+    >
+      <Arrow color={color} />
+
+      <span
+        className="relative -left-1.5 top-4 rounded-sm px-1.5 py-0.5 text-white"
+        style={{ backgroundColor: color }}
       >
-        <Arrow color={color} />
-
-        <span
-          className="relative -left-1.5 top-4 rounded-sm px-1.5 py-0.5 text-white"
-          style={{ backgroundColor: color }}
-        >
-          {connection.username}
-        </span>
-      </div>
-    )
-  },
-)
+        {connection.username}
+      </span>
+    </div>
+  )
+})
 ```
 
 Now that we can display a single cursor, it's time to display them all!

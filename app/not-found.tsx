@@ -2,8 +2,8 @@
 
 import Link from "next/link"
 import MainLayout from "~/(main)/layout"
-import { Button } from "components/Button"
-import ErrorPage from "components/ErrorPage"
+import { Button } from "~/components/Button"
+import ErrorPage from "~/components/ErrorPage"
 
 export default function RootNotFound() {
   return (

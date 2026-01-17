@@ -1,7 +1,7 @@
 import glob from "fast-glob"
 import fs from "node:fs/promises"
 import path from "node:path"
-import { PostMeta } from "components/layouts/PostLayout"
+import { PostMeta } from "~/components/layouts/PostLayout"
 
 interface Post extends PostMeta {
   component: React.ComponentType
