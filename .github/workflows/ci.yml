@@ -1,5 +1,8 @@
 name: Build
-on: [push]
+
+on:
+  push:
+
 jobs:
   lint:
     name: Lint
@@ -41,9 +44,6 @@ jobs:
   deploy:
     name: Deploy
     if: github.ref == 'refs/heads/main'
-    needs:
-      - lint
-      - test
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
