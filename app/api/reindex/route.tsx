@@ -1,16 +1,16 @@
-import { NextResponse } from "next/server"
-import { requireToken } from "~/api/utils/auth"
-import { upsertByte } from "~/lib/api/bytes"
-import { getByteSource, octokit } from "~/lib/api/github"
-import { client } from "~/lib/db"
-import { toId } from "~/lib/parser"
+import { NextResponse } from 'next/server'
+import { requireToken } from '~/api/utils/auth'
+import { upsertByte } from '~/lib/api/bytes'
+import { getByteSource, octokit } from '~/lib/api/github'
+import { client } from '~/lib/db'
+import { toId } from '~/lib/parser'
 
 async function getAllByteIds() {
-  const path = "bytes"
+  const path = 'bytes'
   const { data } = await octokit.repos.getContent({
-    owner: "mskelton",
+    owner: 'mskelton',
     path,
-    repo: "bytes",
+    repo: 'bytes',
   })
 
   if (!Array.isArray(data)) {
@@ -40,5 +40,5 @@ export async function POST(request: Request) {
     await upsertByte(ids[i], sources[i])
   }
 
-  return NextResponse.json({ message: "ok" })
+  return NextResponse.json({ message: 'ok' })
 }

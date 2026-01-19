@@ -1,4 +1,4 @@
-import clsx from "clsx"
+import clsx from 'clsx'
 
 export interface DemoProps {
   center?: boolean
@@ -15,9 +15,9 @@ export default function Demo({
     <div className="relative overflow-hidden rounded-lg border border-zinc-200 transition-colors dark:border-zinc-700/80">
       <div
         className={clsx(
-          "not-prose w-full",
-          center ? "flex justify-center" : "",
-          tight ? "" : "p-4",
+          'not-prose w-full',
+          center ? 'flex justify-center' : '',
+          tight ? '' : 'p-4',
         )}
       >
         {children}

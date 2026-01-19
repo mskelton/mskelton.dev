@@ -1,7 +1,7 @@
-import noUnescapedQuotes from "./no-unescaped-quotes.js"
+import noUnescapedQuotes from './no-unescaped-quotes.js'
 
 export default {
   rules: {
-    "no-unescaped-quotes": noUnescapedQuotes,
+    'no-unescaped-quotes': noUnescapedQuotes,
   },
 }

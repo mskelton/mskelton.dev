@@ -1,11 +1,11 @@
-import { test as base } from "@playwright/test"
-import { AboutPage } from "../collections/AboutPage.js"
-import { BlogPage } from "../collections/BlogPage.js"
-import { BytesPage } from "../collections/BytesPage.js"
-import { HomePage } from "../collections/HomePage.js"
-import { NotFoundPage } from "../collections/NotFoundPage.js"
-import { ProjectsPage } from "../collections/ProjectsPage.js"
-import { UsesPage } from "../collections/UsesPage.js"
+import { test as base } from '@playwright/test'
+import { AboutPage } from '../collections/AboutPage.js'
+import { BlogPage } from '../collections/BlogPage.js'
+import { BytesPage } from '../collections/BytesPage.js'
+import { HomePage } from '../collections/HomePage.js'
+import { NotFoundPage } from '../collections/NotFoundPage.js'
+import { ProjectsPage } from '../collections/ProjectsPage.js'
+import { UsesPage } from '../collections/UsesPage.js'
 
 interface PageObjectFixtures {
   aboutPage: AboutPage

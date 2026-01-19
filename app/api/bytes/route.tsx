@@ -1,10 +1,10 @@
-import { PushEvent } from "@octokit/webhooks-types"
-import { NextResponse } from "next/server"
-import { upsertByte } from "~/lib/api/bytes"
-import { getByteSource } from "~/lib/api/github"
-import { verifySignature } from "~/lib/api/signature"
-import { client } from "~/lib/db"
-import { toId } from "~/lib/parser"
+import { PushEvent } from '@octokit/webhooks-types'
+import { NextResponse } from 'next/server'
+import { upsertByte } from '~/lib/api/bytes'
+import { getByteSource } from '~/lib/api/github'
+import { verifySignature } from '~/lib/api/signature'
+import { client } from '~/lib/db'
+import { toId } from '~/lib/parser'
 
 async function upsert(file: string) {
   const id = toId(file)
@@ -17,7 +17,7 @@ async function remove(files: string[]) {
     return
   }
 
-  const placeholders = ids.map(() => "?").join(",")
+  const placeholders = ids.map(() => '?').join(',')
   client.prepare(`DELETE FROM bytes WHERE id IN (${placeholders})`).run(...ids)
 }
 
@@ -26,7 +26,7 @@ export async function POST(req: Request) {
   const validSignature = await verifySignature(req, body)
 
   if (!validSignature) {
-    return NextResponse.json({ message: "Unauthorized" }, { status: 401 })
+    return NextResponse.json({ message: 'Unauthorized' }, { status: 401 })
   }
 
   const { commits } = JSON.parse(body) as PushEvent
@@ -37,5 +37,5 @@ export async function POST(req: Request) {
     await upsert(byte)
   }
 
-  return NextResponse.json({ message: "ok" })
+  return NextResponse.json({ message: 'ok' })
 }

@@ -1,5 +1,5 @@
-import { Footer } from "~/components/root/Footer"
-import { Header } from "~/components/root/Header"
+import { Footer } from '~/components/root/Footer'
+import { Header } from '~/components/root/Header'
 
 export interface MainLayoutProps {
   children?: React.ReactNode

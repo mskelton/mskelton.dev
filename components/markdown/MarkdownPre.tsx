@@ -1,10 +1,10 @@
-"use client"
+'use client'
 
-import { CheckIcon, ClipboardIcon } from "@heroicons/react/24/outline"
-import { clsx } from "clsx"
-import React, { useRef, useState } from "react"
+import { CheckIcon, ClipboardIcon } from '@heroicons/react/24/outline'
+import { clsx } from 'clsx'
+import React, { useRef, useState } from 'react'
 
-const iconStyle = "absolute size-4 inset-[50%] transform-[translate(-50%,-50%)]"
+const iconStyle = 'absolute size-4 inset-[50%] transform-[translate(-50%,-50%)]'
 
 export interface MarkdownPreProps extends React.HTMLAttributes<HTMLPreElement> {
   children: React.ReactElement<{ tabIndex?: number }>
@@ -30,8 +30,8 @@ export default function MarkdownPre({
 
     // We don't want to copy code titles, so only get the text content of the
     // `<code>` element.
-    const codeEl = preRef.current.querySelector("code")
-    const text = (codeEl?.innerText ?? "").replaceAll("\u200b", "")
+    const codeEl = preRef.current.querySelector('code')
+    const text = (codeEl?.innerText ?? '').replaceAll('\u200b', '')
     navigator.clipboard.writeText(text)
   }
 
@@ -39,16 +39,16 @@ export default function MarkdownPre({
     <>
       <div
         className={clsx(
-          "absolute z-10 flex gap-3 transition-opacity delay-100 group-hover:opacity-100",
+          'absolute z-10 flex gap-3 transition-opacity delay-100 group-hover:opacity-100',
           hasTitle
-            ? "top-[10px] right-[10px]"
-            : "top-[15px] right-[15px] opacity-0",
+            ? 'top-[10px] right-[10px]'
+            : 'top-[15px] right-[15px] opacity-0',
         )}
         data-testid="toolbar"
       >
         {hasFocus ? (
           <ToolbarButton
-            aria-label={isExpanded ? "Collapse code" : "Expand code"}
+            aria-label={isExpanded ? 'Collapse code' : 'Expand code'}
             onClick={() => setIsExpanded(!isExpanded)}
           >
             <svg
@@ -68,14 +68,14 @@ export default function MarkdownPre({
         ) : null}
 
         <ToolbarButton
-          aria-label={copied ? "Copied" : "Copy code"}
+          aria-label={copied ? 'Copied' : 'Copy code'}
           onClick={handleCopy}
         >
           <ClipboardIcon
             className={clsx(
               iconStyle,
-              copied && "animate-[1s_linear_copy-hide_forwards]",
-              "text-zinc-700 opacity-100 dark:text-zinc-300",
+              copied && 'animate-[1s_linear_copy-hide_forwards]',
+              'text-zinc-700 opacity-100 dark:text-zinc-300',
             )}
             onAnimationEnd={() => setCopied(false)}
           />
@@ -83,8 +83,8 @@ export default function MarkdownPre({
           <CheckIcon
             className={clsx(
               iconStyle,
-              copied && "animate-[1s_.15s_linear_copy-show_forwards]",
-              "text-green-600 opacity-0 dark:text-green-400",
+              copied && 'animate-[1s_.15s_linear_copy-show_forwards]',
+              'text-green-600 opacity-0 dark:text-green-400',
             )}
           />
         </ToolbarButton>
@@ -93,7 +93,7 @@ export default function MarkdownPre({
       <pre
         ref={preRef}
         className={clsx(
-          !hasFocus ? undefined : isExpanded ? "expanded" : "collapsed",
+          !hasFocus ? undefined : isExpanded ? 'expanded' : 'collapsed',
           className,
         )}
         {...props}
@@ -105,7 +105,7 @@ export default function MarkdownPre({
 }
 
 function ToolbarButton({
-  "aria-label": label,
+  'aria-label': label,
   ...props
 }: React.ButtonHTMLAttributes<HTMLButtonElement>) {
   return (
@@ -122,8 +122,8 @@ function ExpandPath({ d, isExpanded }: { d: string; isExpanded: boolean }) {
   return (
     <path
       className={clsx(
-        "origin-center transition-transform duration-500 transform-fill",
-        isExpanded && "transform-[rotateX(180deg)]",
+        'origin-center transition-transform duration-500 transform-fill',
+        isExpanded && 'transform-[rotateX(180deg)]',
       )}
       d={d}
       stroke="currentColor"

@@ -1,9 +1,9 @@
-import sqlite3 from "better-sqlite3"
+import sqlite3 from 'better-sqlite3'
 
 export function migrate(client: sqlite3.Database) {
   sql
-    .split(";")
-    .filter((statement) => statement.trim() !== "")
+    .split(';')
+    .filter((statement) => statement.trim() !== '')
     .forEach((statement) => {
       client.exec(statement)
     })

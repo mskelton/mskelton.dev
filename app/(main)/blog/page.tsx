@@ -1,12 +1,12 @@
-import { Metadata } from "next"
-import { Card } from "~/components/Card"
-import { SimpleLayout } from "~/components/layouts/SimpleLayout"
-import { formatDate } from "~/lib/date"
-import { getAllPosts } from "~/lib/posts"
+import { Metadata } from 'next'
+import { Card } from '~/components/Card'
+import { SimpleLayout } from '~/components/layouts/SimpleLayout'
+import { formatDate } from '~/lib/date'
+import { getAllPosts } from '~/lib/posts'
 
 export const metadata: Metadata = {
   description: `All of my blog posts, even the ones that I might not fully agree with anymore. Software engineering is a process of continuous learning, don’t ever think there isn’t more to learn.`,
-  title: "Blog | Mark Skelton",
+  title: 'Blog | Mark Skelton',
 }
 
 export interface IPost {

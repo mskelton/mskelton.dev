@@ -1,5 +1,5 @@
-import { isExternalImage } from "~/lib/image"
-import ZoomableImage from "../../app/components/ZoomableImage"
+import { isExternalImage } from '~/lib/image'
+import ZoomableImage from '../../app/components/ZoomableImage'
 
 export interface MarkdownImageProps {
   alt?: string
@@ -7,10 +7,10 @@ export interface MarkdownImageProps {
 }
 
 export default async function MarkdownImage({
-  alt: altProp = "",
+  alt: altProp = '',
   src,
 }: MarkdownImageProps) {
-  const isAltHidden = altProp?.startsWith("!")
+  const isAltHidden = altProp?.startsWith('!')
   const alt = isAltHidden ? altProp.slice(1) : altProp
 
   const image = isExternalImage(src)

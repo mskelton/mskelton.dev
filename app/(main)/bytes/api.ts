@@ -1,31 +1,31 @@
-import rehypeShiki from "@mskelton/rehype-shiki"
-import matter from "gray-matter"
-import { compileMDX } from "next-mdx-remote/rsc"
-import { notFound } from "next/navigation"
-import fs from "node:fs/promises"
-import path from "node:path"
-import { cache } from "react"
-import rehypeSlug from "rehype-slug"
-import remarkGfm from "remark-gfm"
-import remarkSmartypants from "remark-smartypants"
-import { createHighlighter, Highlighter } from "shiki"
-import rehypeCallout from "unified-plugins/rehype-callout"
-import rehypeCodeMeta from "unified-plugins/rehype-code-meta"
-import rehypeCodeTitles from "unified-plugins/rehype-code-titles"
-import rehypeHeaderId from "unified-plugins/rehype-header-id"
-import config from "unified-plugins/rehype-headings"
-import rehypeParseCodeMeta from "unified-plugins/rehype-parse-code-meta"
-import { client } from "~/lib/db"
-import MarkdownImage from "../../../components/markdown/MarkdownImage"
-import MarkdownLink from "../../../components/markdown/MarkdownLink"
-import MarkdownPre from "../../../components/markdown/MarkdownPre"
+import rehypeShiki from '@mskelton/rehype-shiki'
+import matter from 'gray-matter'
+import { compileMDX } from 'next-mdx-remote/rsc'
+import { notFound } from 'next/navigation'
+import fs from 'node:fs/promises'
+import path from 'node:path'
+import { cache } from 'react'
+import rehypeSlug from 'rehype-slug'
+import remarkGfm from 'remark-gfm'
+import remarkSmartypants from 'remark-smartypants'
+import { createHighlighter, Highlighter } from 'shiki'
+import rehypeCallout from 'unified-plugins/rehype-callout'
+import rehypeCodeMeta from 'unified-plugins/rehype-code-meta'
+import rehypeCodeTitles from 'unified-plugins/rehype-code-titles'
+import rehypeHeaderId from 'unified-plugins/rehype-header-id'
+import config from 'unified-plugins/rehype-headings'
+import rehypeParseCodeMeta from 'unified-plugins/rehype-parse-code-meta'
+import { client } from '~/lib/db'
+import MarkdownImage from '../../../components/markdown/MarkdownImage'
+import MarkdownLink from '../../../components/markdown/MarkdownLink'
+import MarkdownPre from '../../../components/markdown/MarkdownPre'
 import {
   langAlias,
   langs,
   rehypeShikiOptions,
   themes,
-} from "../../../config/highlighter.mjs"
-import { ByteMeta } from "./types"
+} from '../../../config/highlighter.mjs'
+import { ByteMeta } from './types'
 
 // Revalidate the data at most every hour
 export const revalidate = 3600
@@ -37,13 +37,13 @@ const loadLocalByteContent = async (id: string) => {
   if (!dir) return
 
   try {
-    const filename = path.join(dir, "bytes", `${id}.md`)
-    const raw = await fs.readFile(filename, "utf8")
+    const filename = path.join(dir, 'bytes', `${id}.md`)
+    const raw = await fs.readFile(filename, 'utf8')
     const { content } = matter(raw)
 
     return Buffer.from(content)
   } catch {
-    console.warn("Could not load local byte content. Falling back to database.")
+    console.warn('Could not load local byte content. Falling back to database.')
   }
 }
 
@@ -84,7 +84,7 @@ export const getByte = cache(async (slug: string) => {
   // If running locally, attempt to load the byte content from the local
   // file system. This allows for easier development of bytes before publishing
   // the final content to the database.
-  if (process.env.NODE_ENV === "development") {
+  if (process.env.NODE_ENV === 'development') {
     byte.content = (await loadLocalByteContent(byte.id)) ?? byte.content
   }
 
@@ -125,20 +125,20 @@ export const getByte = cache(async (slug: string) => {
   return parseByte({ ...byte, content })
 })
 
-export type Direction = "left" | "none" | "right"
+export type Direction = 'left' | 'none' | 'right'
 
 /**
  * Returns the prefix for the bytes page with any query parameters. This ensures
  * that we maintain search state when navigating between pages.
  */
-function getPrefix({ query, tag }: Pick<SearchBytesRequest, "query" | "tag">) {
+function getPrefix({ query, tag }: Pick<SearchBytesRequest, 'query' | 'tag'>) {
   const params = new URLSearchParams()
 
-  if (tag) params.set("tag", tag ?? "")
-  if (query) params.set("query", query ?? "")
+  if (tag) params.set('tag', tag ?? '')
+  if (query) params.set('query', query ?? '')
 
   const str = params.toString()
-  return `/bytes?${str + (str ? "&" : "")}`
+  return `/bytes?${str + (str ? '&' : '')}`
 }
 
 export async function getAllBytes() {
@@ -161,12 +161,12 @@ export const PAGE_SIZE = 10
 export const searchBytes = cache(
   async ({ cursor, direction, query, tag }: SearchBytesRequest) => {
     const where = [
-      cursor ? `bytes.id ${direction === "left" ? ">" : "<"} @cursor` : "",
-      query ? `(bytes.title like @query or bytes.description like @query)` : "",
-      tag ? `tags.name = @tag` : "",
+      cursor ? `bytes.id ${direction === 'left' ? '>' : '<'} @cursor` : '',
+      query ? `(bytes.title like @query or bytes.description like @query)` : '',
+      tag ? `tags.name = @tag` : '',
     ]
       .filter(Boolean)
-      .join(" and ")
+      .join(' and ')
 
     const res = client
       .prepare<{
@@ -179,11 +179,11 @@ export const searchBytes = cache(
           from bytes
           inner join bytes_to_tags on bytes.id = bytes_to_tags.byte_id
           inner join tags on tags.id = bytes_to_tags.tag_id
-          ${where ? `where ${where}` : ""}
+          ${where ? `where ${where}` : ''}
           group by bytes.id
           -- When paging backwards, we have to sort backwards to allow our limit
           -- to work correctly.
-          order by bytes.id ${direction === "left" ? "asc" : "desc"}
+          order by bytes.id ${direction === 'left' ? 'asc' : 'desc'}
           -- To know if there are more pages, we fetch one more record than we need
           -- and use the total count to determine if there are more pages. This has
           -- to account for the cursor direction as well.
@@ -201,7 +201,7 @@ export const searchBytes = cache(
     // If paging backwards, we need to reverse the result set to maintain the
     // correct order. Mutating arrays isn't that cool, but what do I care about
     // being cool, I know what I'm doing.
-    if (direction === "left") {
+    if (direction === 'left') {
       bytes.reverse()
     }
 
@@ -210,13 +210,13 @@ export const searchBytes = cache(
       nextHref:
         // The next button is enabled when we are moving left, or there are more
         // pages to the right.
-        direction === "left" || hasMore
+        direction === 'left' || hasMore
           ? `${prefix}after=${bytes.at(-1)?.id}`
           : undefined,
       prevHref:
         // The previous button is enabled when we are moving right, or there
         // are more pages to the left.
-        direction === "right" || (direction === "left" && hasMore)
+        direction === 'right' || (direction === 'left' && hasMore)
           ? `${prefix}before=${bytes.at(0)?.id}`
           : undefined,
     }

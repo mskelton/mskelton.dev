@@ -1,6 +1,6 @@
-import { getFeed } from "~/rss/utils"
+import { getFeed } from '~/rss/utils'
 
-export const dynamic = "force-dynamic"
+export const dynamic = 'force-dynamic'
 
 export async function GET() {
   const feed = await getFeed()
@@ -8,7 +8,7 @@ export async function GET() {
 
   return new Response(content, {
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
     },
   })
 }

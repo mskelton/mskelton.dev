@@ -1,5 +1,5 @@
-import { Metadata } from "next"
-import { siteMeta } from "./siteMeta"
+import { Metadata } from 'next'
+import { siteMeta } from './siteMeta'
 
 export function withOpenGraph({
   alternates,
@@ -17,17 +17,17 @@ export function withOpenGraph({
     metadataBase: new URL(siteMeta.url),
     openGraph: {
       description,
-      locale: "en_US",
-      siteName: "Mark Skelton",
+      locale: 'en_US',
+      siteName: 'Mark Skelton',
       title,
-      type: "website",
+      type: 'website',
       ...openGraph,
     },
     title,
     twitter: {
-      card: "summary_large_image",
+      card: 'summary_large_image',
       description,
-      site: "@mskelton",
+      site: '@mskelton',
       title,
       ...twitter,
     },

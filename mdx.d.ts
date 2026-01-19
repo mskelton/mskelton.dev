@@ -1,4 +1,4 @@
-declare module "*.mdx" {
+declare module '*.mdx' {
   let MDXComponent: () => JSX.Element
   export default MDXComponent
 }

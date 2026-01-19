@@ -1,5 +1,5 @@
-import { Menu, MenuItem, MenuItemProps, MenuProps } from "react-aria-components"
-import { twMerge } from "tailwind-merge"
+import { Menu, MenuItem, MenuItemProps, MenuProps } from 'react-aria-components'
+import { twMerge } from 'tailwind-merge'
 
 export type NavMenuProps<T extends object> = MenuProps<T>
 
@@ -20,11 +20,11 @@ export function NavMenuItem<T extends object>(props: NavMenuItemProps<T>) {
     <MenuItem
       className={({ isFocused, isSelected }) =>
         twMerge(
-          "group flex w-full cursor-default items-center rounded-lg px-4 py-2 text-xs font-medium outline-hidden",
+          'group flex w-full cursor-default items-center rounded-lg px-4 py-2 text-xs font-medium outline-hidden',
           isFocused
-            ? "bg-zinc-100 text-zinc-900 dark:bg-zinc-900 dark:text-zinc-100"
-            : "text-zinc-700 dark:text-zinc-300",
-          isSelected && "text-indigo-700 dark:text-indigo-300",
+            ? 'bg-zinc-100 text-zinc-900 dark:bg-zinc-900 dark:text-zinc-100'
+            : 'text-zinc-700 dark:text-zinc-300',
+          isSelected && 'text-indigo-700 dark:text-indigo-300',
         )
       }
       {...props}

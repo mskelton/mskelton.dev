@@ -1,6 +1,6 @@
 function getText(node) {
   switch (node.type) {
-    case "link":
+    case 'link':
       return collectText(node)
 
     default:
@@ -9,7 +9,7 @@ function getText(node) {
 }
 
 function collectText(ast) {
-  return ast.children.map(getText).join("").replaceAll("\n", " ")
+  return ast.children.map(getText).join('').replaceAll('\n', ' ')
 }
 
 export default function remarkStringify() {

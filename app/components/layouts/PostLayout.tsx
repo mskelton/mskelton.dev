@@ -1,10 +1,10 @@
-import { ArrowLeftIcon } from "@heroicons/react/20/solid"
-import Link from "next/link"
-import { Container } from "~/components/Container"
-import { PageTitle } from "~/components/PageTitle"
-import { Prose } from "~/components/Prose"
-import Skeleton from "~/components/Skeleton"
-import { formatDate } from "~/lib/date"
+import { ArrowLeftIcon } from '@heroicons/react/20/solid'
+import Link from 'next/link'
+import { Container } from '~/components/Container'
+import { PageTitle } from '~/components/PageTitle'
+import { Prose } from '~/components/Prose'
+import Skeleton from '~/components/Skeleton'
+import { formatDate } from '~/lib/date'
 
 export interface PostMeta {
   date: string
@@ -60,7 +60,7 @@ export function PostLayout({
                   </time>
                 ) : (
                   <Skeleton className="h-6 w-40 rounded-sm">
-                    {"\u200b"}
+                    {'\u200b'}
                   </Skeleton>
                 )}
               </div>

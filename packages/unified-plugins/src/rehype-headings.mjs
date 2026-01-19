@@ -1,5 +1,5 @@
 // @ts-check
-import rehypeAutolinkHeadings from "rehype-autolink-headings"
+import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 
 /**
  * @type {[
@@ -14,24 +14,24 @@ const config = [
       children: [],
       properties: {
         className: [
-          "relative",
+          'relative',
           "md:before:content-['#']",
-          "before:absolute",
-          "before:right-2",
+          'before:absolute',
+          'before:right-2',
         ],
       },
-      tagName: "span",
-      type: "element",
+      tagName: 'span',
+      type: 'element',
     },
     properties: {
       ariaHidden: true,
       className: [
-        "heading-link",
-        "text-indigo-500",
-        "transition-colors",
-        "hover:text-indigo-400",
-        "dark:text-indigo-400",
-        "dark:hover:text-indigo-500",
+        'heading-link',
+        'text-indigo-500',
+        'transition-colors',
+        'hover:text-indigo-400',
+        'dark:text-indigo-400',
+        'dark:hover:text-indigo-500',
       ],
       tabIndex: -1,
     },

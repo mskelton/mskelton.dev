@@ -1,7 +1,7 @@
-import glob from "fast-glob"
-import fs from "node:fs/promises"
-import path from "node:path"
-import { PostMeta } from "~/components/layouts/PostLayout"
+import glob from 'fast-glob'
+import fs from 'node:fs/promises'
+import path from 'node:path'
+import { PostMeta } from '~/components/layouts/PostLayout'
 
 interface Post extends PostMeta {
   component: React.ComponentType
@@ -21,12 +21,12 @@ export async function getPost(slug: string): Promise<Post> {
 }
 
 export async function getAllPostSlugs() {
-  const cwd = path.join(process.cwd(), "app/(main)/blog/posts")
-  const filenames = await glob("*/content.mdx", { cwd })
+  const cwd = path.join(process.cwd(), 'app/(main)/blog/posts')
+  const filenames = await glob('*/content.mdx', { cwd })
 
   return filenames
     .map((file) => path.basename(path.dirname(file)))
-    .filter((slug) => !slug.endsWith(".draft"))
+    .filter((slug) => !slug.endsWith('.draft'))
 }
 
 export async function getAllPosts() {
@@ -48,5 +48,5 @@ export async function getPostImage(slug: string) {
     return fs.readFile(imagePath)
   }
 
-  return fs.readFile(path.join(process.cwd(), "app/images/portrait.jpg"))
+  return fs.readFile(path.join(process.cwd(), 'app/images/portrait.jpg'))
 }

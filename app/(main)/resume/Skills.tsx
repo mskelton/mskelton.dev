@@ -1,5 +1,5 @@
-import { cloneElement } from "react"
-import { skills } from "./Skills.meta"
+import { cloneElement } from 'react'
+import { skills } from './Skills.meta'
 
 export default function Skills() {
   return (
@@ -16,7 +16,7 @@ export default function Skills() {
           >
             <span className="rounded-md border border-zinc-200/50 bg-zinc-100/50 p-2 text-white outline-hidden transition-all group-hover:bg-zinc-200 dark:border-zinc-700/50 dark:bg-zinc-800/50 dark:group-hover:bg-zinc-800">
               {cloneElement(icon, {
-                className: icon.props?.className ?? "size-5",
+                className: icon.props?.className ?? 'size-5',
               })}
             </span>
 

@@ -1,4 +1,4 @@
-import { getPostImage } from "~/lib/posts"
+import { getPostImage } from '~/lib/posts'
 
 const size = {
   height: 1024,
@@ -8,8 +8,8 @@ const size = {
 export function generateImageMetadata() {
   return [
     {
-      contentType: "image/png",
-      id: "featured",
+      contentType: 'image/png',
+      id: 'featured',
       size,
     },
   ]
@@ -24,7 +24,7 @@ export default async function Image({
   const bytes = await getPostImage(slug)
 
   if (bytes instanceof ArrayBuffer) {
-    const blob = new Blob([bytes], { type: "image/png" })
+    const blob = new Blob([bytes], { type: 'image/png' })
     return new Response(blob)
   }
 

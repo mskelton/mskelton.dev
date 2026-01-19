@@ -1,18 +1,18 @@
-import matter from "gray-matter"
-import remarkParse from "remark-parse"
-import { Plugin, unified } from "unified"
-import { ByteMeta } from "~/(main)/bytes/types"
-import remarkStringify from "./remarkStringify.js"
+import matter from 'gray-matter'
+import remarkParse from 'remark-parse'
+import { Plugin, unified } from 'unified'
+import { ByteMeta } from '~/(main)/bytes/types'
+import remarkStringify from './remarkStringify.js'
 
 export const slugify = (str: string) =>
   str
     .toLowerCase()
-    .replace(/[^a-z0-9-]+/g, "-")
-    .replace(/-+/g, "-")
-    .replace(/^-|-$/g, "")
+    .replace(/[^a-z0-9-]+/g, '-')
+    .replace(/-+/g, '-')
+    .replace(/^-|-$/g, '')
 
 export const toId = (file: string) =>
-  file.replace(/\.md$/, "").split("/").at(-1) ?? ""
+  file.replace(/\.md$/, '').split('/').at(-1) ?? ''
 
 export function dateFromId(id: string) {
   return new Date(

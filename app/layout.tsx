@@ -1,11 +1,11 @@
-import "./styles/tailwind.css"
-import "react-medium-image/styles.css"
-import { GoogleAnalytics } from "@next/third-parties/google"
-import { Metadata } from "next"
-import { Rubik } from "next/font/google"
-import { siteMeta } from "./lib/siteMeta"
-import { themeEffect } from "./lib/themeEffect"
-import { Providers } from "./Providers"
+import './styles/tailwind.css'
+import 'react-medium-image/styles.css'
+import { GoogleAnalytics } from '@next/third-parties/google'
+import { Metadata } from 'next'
+import { Rubik } from 'next/font/google'
+import { siteMeta } from './lib/siteMeta'
+import { themeEffect } from './lib/themeEffect'
+import { Providers } from './Providers'
 
 export const metadata: Metadata = {
   description: siteMeta.description,
@@ -14,9 +14,9 @@ export const metadata: Metadata = {
 }
 
 const font = Rubik({
-  display: "fallback",
-  fallback: ["sans-serif"],
-  subsets: ["latin"],
+  display: 'fallback',
+  fallback: ['sans-serif'],
+  subsets: ['latin'],
 })
 
 export interface RootLayoutProps {

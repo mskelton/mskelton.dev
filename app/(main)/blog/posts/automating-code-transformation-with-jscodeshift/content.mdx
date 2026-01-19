@@ -4,7 +4,7 @@ description:
   Tired of manual refactoring? This article shows how to automate code
   transformations using jscodeshift to reduce manual work when performing
   refactors.
-date: "2021-01-21"
+date: '2021-01-21'
 ---
 
 The JavaScript ecosystem is fast paced and continuously changing. By the
@@ -45,11 +45,11 @@ article.
 
 ```javascript showLineNumbers
 // Input
-import { useQuery, queryCache } from "react-query"
+import { useQuery, queryCache } from 'react-query'
 
 // Output
-import { useQuery } from "react-query"
-import { queryClient as queryCache } from "common/queryClient"
+import { useQuery } from 'react-query'
+import { queryClient as queryCache } from 'common/queryClient'
 ```
 
 ## Getting started with jscodeshift
@@ -155,8 +155,8 @@ This would look like this in our `transform.js` file.
 // Your transformations go here
 source
   .find(j.ImportSpecifier)
-  .filter((path) => path.parent.value.source.value === "react-query")
-  .filter((path) => path.value.imported.name === "queryCache")
+  .filter((path) => path.parent.value.source.value === 'react-query')
+  .filter((path) => path.value.imported.name === 'queryCache')
   .remove()
 ```
 
@@ -167,7 +167,7 @@ the `queryCache` variable. To do this, create a file called `test.js` and
 add the following content:
 
 ```javascript
-import { useQuery, queryCache } from "react-query"
+import { useQuery, queryCache } from 'react-query'
 ```
 
 Next, transform the file using the following shell command:
@@ -180,7 +180,7 @@ After running that command, we should see that `test.js` has changed to the
 following:
 
 ```javascript
-import { useQuery } from "react-query"
+import { useQuery } from 'react-query'
 ```
 
 Awesome! We've now successfully completed the first step of removing the
@@ -196,8 +196,8 @@ property of the collection returned from our code in step 1.
 ```javascript showLineNumbers
 const specifiers = source
   .find(j.ImportSpecifier)
-  .filter((path) => path.parent.value.source.value === "react-query")
-  .filter((path) => path.value.imported.name === "queryCache")
+  .filter((path) => path.parent.value.source.value === 'react-query')
+  .filter((path) => path.value.imported.name === 'queryCache')
   .remove()
 
 if (specifiers.length) {
@@ -213,7 +213,7 @@ where we found the import specifier.
 // Add new import
 source
   .find(j.ImportDeclaration)
-  .filter((path) => path.value.source.value === "react-query")
+  .filter((path) => path.value.source.value === 'react-query')
 ```
 
 Finally, we can call the `insertAfter` function to insert our new import
@@ -224,16 +224,16 @@ to the helper functions provided by jscodeshift.
 ```javascript showLineNumbers
 source
   .find(j.ImportDeclaration)
-  .filter((path) => path.value.source.value === "react-query")
+  .filter((path) => path.value.source.value === 'react-query')
   .insertAfter(
     j.importDeclaration(
       [
         j.importSpecifier(
-          j.identifier("queryClient"),
-          j.identifier("queryCache"),
+          j.identifier('queryClient'),
+          j.identifier('queryCache'),
         ),
       ],
-      j.stringLiteral("common/queryClient"),
+      j.stringLiteral('common/queryClient'),
     ),
   )
 ```
@@ -254,23 +254,23 @@ module.exports = function (file, api) {
 
   const specifiers = source
     .find(j.ImportSpecifier)
-    .filter((path) => path.parent.value.source.value === "react-query")
-    .filter((path) => path.value.imported.name === "queryCache")
+    .filter((path) => path.parent.value.source.value === 'react-query')
+    .filter((path) => path.value.imported.name === 'queryCache')
     .remove()
 
   if (specifiers.length) {
     source
       .find(j.ImportDeclaration)
-      .filter((path) => path.value.source.value === "react-query")
+      .filter((path) => path.value.source.value === 'react-query')
       .insertAfter(
         j.importDeclaration(
           [
             j.importSpecifier(
-              j.identifier("queryClient"),
-              j.identifier("queryCache"),
+              j.identifier('queryClient'),
+              j.identifier('queryCache'),
             ),
           ],
-          j.stringLiteral("common/queryClient"),
+          j.stringLiteral('common/queryClient'),
         ),
       )
   }

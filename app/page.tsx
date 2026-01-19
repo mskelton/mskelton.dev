@@ -1,23 +1,23 @@
-import { ChevronRightIcon } from "@heroicons/react/20/solid"
-import Link from "next/link"
-import type { SocialLinkProps } from "./(main)/about/page"
-import type { PostProps } from "./(main)/blog/page"
-import { Button } from "./components/Button"
-import { Card } from "./components/Card"
-import { Container } from "./components/Container"
-import { BriefcaseIcon } from "./components/icons"
-import { LogoCKH } from "./components/logos/LogoCKH"
-import { LogoFederato } from "./components/logos/LogoFederato"
-import { LogoRamp } from "./components/logos/LogoRamp"
-import { LogoWiden } from "./components/logos/LogoWiden"
-import { PageSubtitle, PageTitle } from "./components/PageTitle"
-import { Footer } from "./components/root/Footer"
-import { Header } from "./components/root/Header"
-import { HeaderSwoop } from "./components/root/Swoops"
-import { socials } from "./components/SocialIcons"
-import { formatDate } from "./lib/date"
-import { getAllPosts } from "./lib/posts"
-import { siteMeta } from "./lib/siteMeta"
+import { ChevronRightIcon } from '@heroicons/react/20/solid'
+import Link from 'next/link'
+import type { SocialLinkProps } from './(main)/about/page'
+import type { PostProps } from './(main)/blog/page'
+import { Button } from './components/Button'
+import { Card } from './components/Card'
+import { Container } from './components/Container'
+import { BriefcaseIcon } from './components/icons'
+import { LogoCKH } from './components/logos/LogoCKH'
+import { LogoFederato } from './components/logos/LogoFederato'
+import { LogoRamp } from './components/logos/LogoRamp'
+import { LogoWiden } from './components/logos/LogoWiden'
+import { PageSubtitle, PageTitle } from './components/PageTitle'
+import { Footer } from './components/root/Footer'
+import { Header } from './components/root/Header'
+import { HeaderSwoop } from './components/root/Swoops'
+import { socials } from './components/SocialIcons'
+import { formatDate } from './lib/date'
+import { getAllPosts } from './lib/posts'
+import { siteMeta } from './lib/siteMeta'
 
 function Post({ post }: PostProps) {
   return (
@@ -52,35 +52,35 @@ type Role = {
 
 const resume: Role[] = [
   {
-    company: "Ramp",
-    href: "https://ramp.com",
+    company: 'Ramp',
+    href: 'https://ramp.com',
     logo: LogoRamp,
-    start: "2024",
-    title: "Staff software engineer",
+    start: '2024',
+    title: 'Staff software engineer',
   },
   {
-    company: "Federato",
-    end: "2024",
-    href: "https://www.federato.ai",
+    company: 'Federato',
+    end: '2024',
+    href: 'https://www.federato.ai',
     logo: LogoFederato,
-    start: "2023",
-    title: "Staff software engineer",
+    start: '2023',
+    title: 'Staff software engineer',
   },
   {
-    company: "Widen, an Acquia Company",
-    end: "2023",
-    href: "https://www.widen.com",
+    company: 'Widen, an Acquia Company',
+    end: '2023',
+    href: 'https://www.widen.com',
     logo: LogoWiden,
-    start: "2019",
-    title: "Staff software engineer",
+    start: '2019',
+    title: 'Staff software engineer',
   },
   {
-    company: "CKH Consulting",
-    end: "2019",
-    href: "https://ckhconsulting.com",
+    company: 'CKH Consulting',
+    end: '2019',
+    href: 'https://ckhconsulting.com',
     logo: LogoCKH,
-    start: "2016",
-    title: "Software developer",
+    start: '2016',
+    title: 'Software developer',
   },
 ]
 
@@ -129,8 +129,8 @@ function Resume() {
                 }
                 className="text-xs text-zinc-400 transition-colors @[400px]:ml-auto dark:text-zinc-500"
               >
-                <time dateTime={role.start}>{role.start}</time>{" "}
-                <span aria-hidden="true">—</span>{" "}
+                <time dateTime={role.start}>{role.start}</time>{' '}
+                <span aria-hidden="true">—</span>{' '}
                 {role.end ? (
                   <time dateTime={role.end}>{role.end}</time>
                 ) : (

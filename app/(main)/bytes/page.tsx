@@ -3,24 +3,24 @@ import {
   ChevronRightIcon,
   FaceFrownIcon,
   HashtagIcon,
-} from "@heroicons/react/20/solid"
-import { Metadata } from "next"
-import Link from "next/link"
-import { Card } from "~/components/Card"
-import Input from "~/components/Input"
-import { SimpleLayout } from "~/components/layouts/SimpleLayout"
-import { formatDate, toDateString } from "~/lib/date"
-import { siteMeta } from "~/lib/siteMeta"
-import { Direction, searchBytes } from "./api"
-import PageLink from "./PageLink"
+} from '@heroicons/react/20/solid'
+import { Metadata } from 'next'
+import Link from 'next/link'
+import { Card } from '~/components/Card'
+import Input from '~/components/Input'
+import { SimpleLayout } from '~/components/layouts/SimpleLayout'
+import { formatDate, toDateString } from '~/lib/date'
+import { siteMeta } from '~/lib/siteMeta'
+import { Direction, searchBytes } from './api'
+import PageLink from './PageLink'
 
 export const metadata: Metadata = {
   alternates: {
     canonical: `${siteMeta.url}/bytes`,
   },
   description:
-    "Bytes is my collection of short-form posts, tips, and things I learn as I build software.",
-  title: "Bytes | Mark Skelton",
+    'Bytes is my collection of short-form posts, tips, and things I learn as I build software.',
+  title: 'Bytes | Mark Skelton',
 }
 
 export default async function Bytes({
@@ -34,7 +34,7 @@ export default async function Bytes({
   }>
 }) {
   const { after, before, q: query, tag } = await searchParams
-  const direction: Direction = after ? "right" : before ? "left" : "none"
+  const direction: Direction = after ? 'right' : before ? 'left' : 'none'
   const { bytes, nextHref, prevHref } = await searchBytes({
     cursor: after ?? before,
     direction,
@@ -65,7 +65,7 @@ export default async function Bytes({
               className="transition-colors dark:text-zinc-200"
               data-testid="search-hint"
             >
-              Showing results for{" "}
+              Showing results for{' '}
               <span className="font-bold">
                 {query ? `“${query}”` : `#${tag}`}
               </span>
@@ -137,7 +137,7 @@ export default async function Bytes({
         <p className="mx-auto mt-24 flex max-w-xl flex-col items-center text-center text-base text-zinc-700 transition-colors dark:text-zinc-300">
           <FaceFrownIcon className="mb-3 h-12 w-12" />
           <span className="mb-1">
-            We couldn’t find any bytes{" "}
+            We couldn’t find any bytes{' '}
             {query ? (
               <span className="font-bold">matching “{query}”</span>
             ) : null}

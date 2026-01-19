@@ -1,17 +1,17 @@
-import { Metadata } from "next"
-import Image from "next/image"
-import { Fragment } from "react"
-import { Container } from "~/components/Container"
-import { PageTitle } from "~/components/PageTitle"
-import { Prose } from "~/components/Prose"
-import avatar from "~/images/portrait.jpg"
-import Date from "./Date"
-import { roles } from "./roles"
-import Skills from "./Skills"
+import { Metadata } from 'next'
+import Image from 'next/image'
+import { Fragment } from 'react'
+import { Container } from '~/components/Container'
+import { PageTitle } from '~/components/PageTitle'
+import { Prose } from '~/components/Prose'
+import avatar from '~/images/portrait.jpg'
+import Date from './Date'
+import { roles } from './roles'
+import Skills from './Skills'
 
 export const metadata: Metadata = {
   description: `Results oriented front-end software engineer with a strong passion for delivering impactful and scalable solutions to customers, improving developer experience, and mentoring other developers to achieve success.`,
-  title: "Resume | Mark Skelton",
+  title: 'Resume | Mark Skelton',
 }
 
 export default function Projects() {

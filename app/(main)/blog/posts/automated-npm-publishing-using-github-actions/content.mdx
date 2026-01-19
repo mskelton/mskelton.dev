@@ -6,7 +6,7 @@ description:
   incorrectly. In this article, I will show how to use GitHub Actions to
   automate some of the manual steps required to simplify your npm
   publishing workflow.
-date: "2019-11-16"
+date: '2019-11-16'
 ---
 
 GitHub Actions are a great way to setup CI/CD tasks directly in your GitHub
@@ -36,7 +36,7 @@ jobs:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
-          node-version: "16.x"
+          node-version: '16.x'
           registry-url: https://registry.npmjs.org/
       - run: yarn
       - run: yarn publish
@@ -174,7 +174,7 @@ jobs:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
-          node-version: "16.x"
+          node-version: '16.x'
           registry-url: https://registry.npmjs.org/
       - run: yarn
       - run: yarn publish

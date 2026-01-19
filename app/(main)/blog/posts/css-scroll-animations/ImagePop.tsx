@@ -1,7 +1,7 @@
-import clsx from "clsx"
-import Image from "next/image"
-import image from "./image.jpg"
-import styles from "./ImagePop.module.css"
+import clsx from 'clsx'
+import Image from 'next/image'
+import image from './image.jpg'
+import styles from './ImagePop.module.css'
 
 export default function Component() {
   return (
@@ -33,7 +33,7 @@ export default function Component() {
 
         <Image
           alt="Placeholder"
-          className={clsx("h-64", styles.image)}
+          className={clsx('h-64', styles.image)}
           src={image}
         />
 

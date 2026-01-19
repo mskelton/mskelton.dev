@@ -4,14 +4,14 @@ description:
   Scroll-driven animations is an extremely exciting feature that is coming
   to CSS. Join me as we explore how to use scroll-driven animations to
   create performant and well polished user experiences.
-date: "2024-07-30"
+date: '2024-07-30'
 ---
 
-import CodeBlock from "../../components/CodeBlock"
-import Demo from "../../components/Demo"
-import BasicScroll from "./BasicScroll"
-import HeaderFade from "./HeaderFade"
-import ImagePop from "./ImagePop"
+import CodeBlock from '../../components/CodeBlock'
+import Demo from '../../components/Demo'
+import BasicScroll from './BasicScroll'
+import HeaderFade from './HeaderFade'
+import ImagePop from './ImagePop'
 
 In a recent project at work, I started exploring CSS scroll-driven
 animations to transition elements in a sticky header between a larger and
@@ -156,11 +156,11 @@ useEffect(() => {
   }
 
   onScroll()
-  window.addEventListener("scroll", onScroll, { passive: true })
-  return () => window.removeEventListener("scroll", onScroll, { passive: true })
+  window.addEventListener('scroll', onScroll, { passive: true })
+  return () => window.removeEventListener('scroll', onScroll, { passive: true })
 }, [])
 
-return <header className={isScrolled ? "shadow-lg" : ""}></header>
+return <header className={isScrolled ? 'shadow-lg' : ''}></header>
 ```
 
 In the code above, we are using some state to track whether the window has

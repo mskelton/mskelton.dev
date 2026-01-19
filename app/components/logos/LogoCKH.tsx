@@ -1,5 +1,5 @@
 export function LogoCKH(props: React.SVGAttributes<SVGSVGElement>) {
-  const fill = "fill-[#204E9B] dark:fill-zinc-100 transition-colors"
+  const fill = 'fill-[#204E9B] dark:fill-zinc-100 transition-colors'
 
   return (
     <svg viewBox="0 0 1640 1546" xmlns="http://www.w3.org/2000/svg" {...props}>

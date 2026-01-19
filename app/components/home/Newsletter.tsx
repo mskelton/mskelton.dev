@@ -1,5 +1,5 @@
-import { EnvelopeIcon } from "@heroicons/react/24/solid"
-import { Button } from "../Button"
+import { EnvelopeIcon } from '@heroicons/react/24/solid'
+import { Button } from '../Button'
 
 export function Newsletter() {
   return (

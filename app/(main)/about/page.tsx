@@ -1,18 +1,18 @@
-import { EnvelopeIcon } from "@heroicons/react/24/solid"
-import { Metadata } from "@playwright/test"
-import { clsx } from "clsx"
-import Image from "next/image"
-import { Container } from "~/components/Container"
-import { PageTitle } from "~/components/PageTitle"
-import { Prose } from "~/components/Prose"
-import { socials } from "~/components/SocialIcons"
-import portraitImage from "~/images/portrait.jpg"
-import { siteMeta } from "~/lib/siteMeta"
-import Content from "./content.mdx"
+import { EnvelopeIcon } from '@heroicons/react/24/solid'
+import { Metadata } from '@playwright/test'
+import { clsx } from 'clsx'
+import Image from 'next/image'
+import { Container } from '~/components/Container'
+import { PageTitle } from '~/components/PageTitle'
+import { Prose } from '~/components/Prose'
+import { socials } from '~/components/SocialIcons'
+import portraitImage from '~/images/portrait.jpg'
+import { siteMeta } from '~/lib/siteMeta'
+import Content from './content.mdx'
 
 export const metadata: Metadata = {
   description: siteMeta.description,
-  title: "About | Mark Skelton",
+  title: 'About | Mark Skelton',
 }
 
 export interface SocialLinkProps {
@@ -29,7 +29,7 @@ function SocialLink({
   icon: Icon,
 }: SocialLinkProps) {
   return (
-    <li className={clsx(className, "flex")}>
+    <li className={clsx(className, 'flex')}>
       <a
         className="group focusable -m-1 flex rounded-sm p-1 text-sm font-medium text-zinc-800 transition hover:text-indigo-500 dark:text-zinc-200 dark:hover:text-indigo-400"
         href={href}

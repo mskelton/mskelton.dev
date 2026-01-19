@@ -1,12 +1,12 @@
-import { Metadata } from "next"
-import Image from "next/image"
-import { Card } from "~/components/Card"
-import { SimpleLayout } from "~/components/layouts/SimpleLayout"
-import { projects } from "./projects"
+import { Metadata } from 'next'
+import Image from 'next/image'
+import { Card } from '~/components/Card'
+import { SimpleLayout } from '~/components/layouts/SimpleLayout'
+import { projects } from './projects'
 
 export const metadata: Metadata = {
   description: `I love creating software, especially when it makes the process of creating software more enjoyable. These are some of my more popular projects that I’m proud of.`,
-  title: "Projects | Mark Skelton",
+  title: 'Projects | Mark Skelton',
 }
 
 export default function Projects() {

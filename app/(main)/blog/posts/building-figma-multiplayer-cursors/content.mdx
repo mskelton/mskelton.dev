@@ -5,7 +5,7 @@ description:
   like Figma? I had that very question, and this post dives deep into the
   world of WebSockets and real-time communication to show exactly how you
   can build this type of feature in your apps.
-date: "2024-02-03"
+date: '2024-02-03'
 ---
 
 Real-time applications have always fascinated me. The idea that you can
@@ -97,10 +97,10 @@ export function Tracker() {
       console.log(`X:${event.clientX}, Y:${event.clientY}`)
     }
 
-    window.addEventListener("mousemove", handleMove)
+    window.addEventListener('mousemove', handleMove)
 
     return () => {
-      window.removeEventListener("mousemove", handleMove)
+      window.removeEventListener('mousemove', handleMove)
     }
   }, [])
 
@@ -139,17 +139,17 @@ track cursor (or I suppose more properly finger) movement.
 ```ts showLineNumbers ./Tracker.tsx
 useEffect(() => {
   function handleMove(event: MouseEvent | TouchEvent) {
-    const source = "touches" in event ? event.touches[0] : event
+    const source = 'touches' in event ? event.touches[0] : event
 
     console.log(`X:${source.clientX}, Y:${source.clientY}`)
   }
 
-  window.addEventListener("mousemove", handleMove)
-  window.addEventListener("touchmove", handleMove)
+  window.addEventListener('mousemove', handleMove)
+  window.addEventListener('touchmove', handleMove)
 
   return () => {
-    window.removeEventListener("mousemove", handleMove)
-    window.removeEventListener("touchmove", handleMove)
+    window.removeEventListener('mousemove', handleMove)
+    window.removeEventListener('touchmove', handleMove)
   }
 }, [])
 ```
@@ -204,15 +204,15 @@ export const Cursor = forwardRef<HTMLDivElement, CursorProps>(function Cursor(
     <div
       ref={ref}
       className={clsx(
-        "fixed flex translate-x-[--x] translate-y-[--y] gap-1 rounded text-xs",
+        'fixed flex translate-x-[--x] translate-y-[--y] gap-1 rounded text-xs',
         // If we don't have any initial coordinates for the user, hide this
         // cursor. This happens when a new client first connects.
-        connection.coords.x ? "visible" : "invisible",
+        connection.coords.x ? 'visible' : 'invisible',
       )}
       style={
         {
-          "--x": `${connection.coords.x}vw`,
-          "--y": `${connection.coords.y}vh`,
+          '--x': `${connection.coords.x}vw`,
+          '--y': `${connection.coords.y}vh`,
         } as React.CSSProperties
       }
     >
@@ -329,17 +329,17 @@ const server = Bun.serve<{ connectionId: string }>({
   fetch(req, server) {
     const url = new URL(req.url)
 
-    if (url.pathname === "/chat") {
-      const name = url.searchParams.get("name")
+    if (url.pathname === '/chat') {
+      const name = url.searchParams.get('name')
       const connectionId = Math.random().toString(36).slice(2)
 
       const success = server.upgrade(req, { data: { connectionId } })
       return success
         ? undefined
-        : new Response("WebSocket upgrade error", { status: 400 })
+        : new Response('WebSocket upgrade error', { status: 400 })
     }
 
-    return new Response("Hello world")
+    return new Response('Hello world')
   },
   websocket: {
     open(ws) {},
@@ -396,7 +396,7 @@ connection, initializing to `0,0` is a bit simpler for our use case.
 connections.set(connectionId, {
   id: connectionId,
   coords: { x: 0, y: 0 },
-  username: name || "Anonymous",
+  username: name || 'Anonymous',
 })
 ```
 
@@ -408,7 +408,7 @@ message to other users indicating that we've connected to the server. To do
 this, we'll modify the `websocket.open()` method:
 
 ```ts showLineNumbers ./server.ts
-const GROUP_ID = "cursors"
+const GROUP_ID = 'cursors'
 
 const server = Bun.serve({
   // ...
@@ -422,7 +422,7 @@ const server = Bun.serve({
       ws.subscribe(GROUP_ID)
 
       // Notify other users of the new user
-      ws.publish(GROUP_ID, JSON.stringify({ type: "connect", connection }))
+      ws.publish(GROUP_ID, JSON.stringify({ type: 'connect', connection }))
     },
   },
 })
@@ -449,7 +449,7 @@ const server = Bun.serve({
       server.publish(
         GROUP_ID,
         JSON.stringify({
-          type: "disconnect",
+          type: 'disconnect',
           connectionId: ws.data.connectionId,
         }),
       )
@@ -478,11 +478,11 @@ const server = Bun.serve({
   websocket: {
     message(ws, raw) {
       const message = JSON.parse(
-        typeof raw === "string" ? raw : new TextDecoder().decode(raw),
+        typeof raw === 'string' ? raw : new TextDecoder().decode(raw),
       )
 
       switch (message.type) {
-        case "move": {
+        case 'move': {
           // Ignore users we don't recognize
           const connection = connections.get(ws.data.connectionId)
           if (!connection) return
@@ -497,7 +497,7 @@ const server = Bun.serve({
           ws.publish(
             GROUP_ID,
             JSON.stringify({
-              type: "move",
+              type: 'move',
               connectionId: ws.data.connectionId,
               coords: message.coords,
             }),
@@ -525,10 +525,10 @@ from the list. The result is a list of other users connected to the server.
 
 ```ts
 switch (message.type) {
-  case "info": {
+  case 'info': {
     ws.send(
       JSON.stringify({
-        type: "info",
+        type: 'info',
         connections: [...connections.values()].filter(
           (connection) => connection.id !== ws.data.connectionId,
         ),
@@ -548,7 +548,7 @@ it up into some small pieces. First, we need to setup some variables that
 we'll use for managing our WebSocket connection:
 
 ```ts showLineNumbers ./socket.ts
-import { faker } from "@faker-js/faker"
+import { faker } from '@faker-js/faker'
 
 type Subscriber = (event: MessageEvent) => void
 
@@ -572,12 +572,12 @@ to our server:
 function connect() {
   socket = new WebSocket(url)
 
-  socket.addEventListener("message", (event) => {
+  socket.addEventListener('message', (event) => {
     subscribers.forEach((callback) => callback(event))
   })
 
-  socket.addEventListener("close", () => {
-    console.error("Lost connection to server. Retrying in 1 second...")
+  socket.addEventListener('close', () => {
+    console.error('Lost connection to server. Retrying in 1 second...')
     setTimeout(connect, 1000)
   })
 }
@@ -636,11 +636,11 @@ the x/y coordinates of our cursor.
 
 ```ts showLineNumbers ./Tracker.tsx
 function handleMove(event: MouseEvent | TouchEvent) {
-  const source = "touches" in event ? event.touches[0] : event
+  const source = 'touches' in event ? event.touches[0] : event
   if (!source) return
 
   send({
-    type: "move",
+    type: 'move',
     coords: {
       x: (source.clientX / window.innerWidth) * 100,
       y: (source.clientY / window.innerHeight) * 100,
@@ -683,7 +683,7 @@ function handleMessage(e: MessageEvent) {
   const data = JSON.parse(e.data)
 
   switch (data.type) {
-    case "info":
+    case 'info':
       setCursors(
         data.connections.reduce<ConnectionMap>((acc, connection) => {
           acc[connection.id] = makeClientConnection(connection)
@@ -692,7 +692,7 @@ function handleMessage(e: MessageEvent) {
       )
       break
 
-    case "connect":
+    case 'connect':
       if (!cursors[data.connection.id]) {
         setCursors((prev) => ({
           ...prev,
@@ -701,21 +701,21 @@ function handleMessage(e: MessageEvent) {
       }
       break
 
-    case "disconnect":
+    case 'disconnect':
       setCursors((prev) => {
         const { [data.connectionId]: _, ...next } = prev
         return next
       })
       break
 
-    case "move": {
+    case 'move': {
       const cursor = cursors[data.connectionId]
       const { x, y } = data.coords
 
       if (cursor && cursor.ref.current) {
-        cursor.ref.current.style.visibility = "visible"
-        cursor.ref.current.style.setProperty("--x", `${x}vw`)
-        cursor.ref.current.style.setProperty("--y", `${y}vh`)
+        cursor.ref.current.style.visibility = 'visible'
+        cursor.ref.current.style.setProperty('--x', `${x}vw`)
+        cursor.ref.current.style.setProperty('--y', `${y}vh`)
       }
     }
   }
@@ -727,8 +727,8 @@ When the socket is first opened, we need to send the `info` message to
 receive the list of open connections from the server.
 
 ```ts ./socket.ts
-socket.addEventListener("open", () => {
-  socket?.send(JSON.stringify({ type: "info" }))
+socket.addEventListener('open', () => {
+  socket?.send(JSON.stringify({ type: 'info' }))
 })
 ```
 

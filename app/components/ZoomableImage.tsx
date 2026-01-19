@@ -1,13 +1,13 @@
-"use client"
+'use client'
 
-import { ArrowsPointingOutIcon } from "@heroicons/react/20/solid"
-import Image, { ImageProps } from "next/image"
-import React from "react"
-import MediumImage from "react-medium-image"
-import { getSrc, isExternalImage } from "~/lib/image"
+import { ArrowsPointingOutIcon } from '@heroicons/react/20/solid'
+import Image, { ImageProps } from 'next/image'
+import React from 'react'
+import MediumImage from 'react-medium-image'
+import { getSrc, isExternalImage } from '~/lib/image'
 
-export interface ZoomableImageProps extends Omit<ImageProps, "src"> {
-  src: ImageProps["src"] | string
+export interface ZoomableImageProps extends Omit<ImageProps, 'src'> {
+  src: ImageProps['src'] | string
 }
 
 export default function ZoomableImage({
@@ -15,8 +15,8 @@ export default function ZoomableImage({
   src,
   ...props
 }: ZoomableImageProps) {
-  const Component = isExternalImage(src) ? "img" : Image
-  const isGIF = getSrc(src)?.endsWith(".gif")
+  const Component = isExternalImage(src) ? 'img' : Image
+  const isGIF = getSrc(src)?.endsWith('.gif')
 
   return (
     <MediumImage
@@ -25,8 +25,8 @@ export default function ZoomableImage({
       zoomIcon={<ArrowsPointingOutIcon />}
     >
       <Component
-        alt={alt ?? ""}
-        placeholder={isGIF ? undefined : "blur"}
+        alt={alt ?? ''}
+        placeholder={isGIF ? undefined : 'blur'}
         src={src as string}
         {...props}
       />

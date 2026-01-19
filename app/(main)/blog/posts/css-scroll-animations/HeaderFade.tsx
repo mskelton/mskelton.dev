@@ -1,13 +1,13 @@
-import clsx from "clsx"
-import styles from "./HeaderFade.module.css"
+import clsx from 'clsx'
+import styles from './HeaderFade.module.css'
 
 export default function Component() {
   return (
     <div className="relative h-[320px] overflow-y-scroll">
       <div
         className={clsx(
-          "sticky top-0 mb-4 w-full px-4 py-3 text-xl font-bold",
-          "[--header-fade-bg:var(--color-blue-100)]/75 dark:[--header-fade-bg:var(--color-slate-800)]/75",
+          'sticky top-0 mb-4 w-full px-4 py-3 text-xl font-bold',
+          '[--header-fade-bg:var(--color-blue-100)]/75 dark:[--header-fade-bg:var(--color-slate-800)]/75',
           styles.header,
         )}
       >

@@ -1,6 +1,6 @@
-import fs from "node:fs/promises"
-import path from "node:path"
-import { SKIP, visit } from "unist-util-visit"
+import fs from 'node:fs/promises'
+import path from 'node:path'
+import { SKIP, visit } from 'unist-util-visit'
 
 const getAttr = (node, name) => {
   return node.attributes.find((attr) => attr.name === name)?.value
@@ -15,7 +15,7 @@ export default function remarkCodeBlock() {
     // Collect all the code block nodes
     visit(
       ast,
-      (node) => node.type === "mdxJsxFlowElement" && node.name === "CodeBlock",
+      (node) => node.type === 'mdxJsxFlowElement' && node.name === 'CodeBlock',
       (node) => {
         nodes.push(node)
         return SKIP
@@ -23,18 +23,18 @@ export default function remarkCodeBlock() {
     )
 
     const promises = nodes.map(async (node) => {
-      const filename = getAttr(node, "filename")
-      const meta = getAttr(node, "meta")
+      const filename = getAttr(node, 'filename')
+      const meta = getAttr(node, 'meta')
       if (!filename) return
 
-      const raw = await fs.readFile(path.join(dir, filename), "utf8")
+      const raw = await fs.readFile(path.join(dir, filename), 'utf8')
 
       // Add the code block as a child of the JSX element
       node.children = [
         {
           lang: path.extname(filename).slice(1),
-          meta: `${filename} ${meta ?? ""}`,
-          type: "code",
+          meta: `${filename} ${meta ?? ''}`,
+          type: 'code',
           value: raw.trim(),
         },
       ]

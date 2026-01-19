@@ -6,7 +6,7 @@ description:
   experience. In this article, I discuss how to leverage GitHub Actions to
   automate code formatting without requiring any additional steps from
   developers.
-date: "2020-04-11"
+date: '2020-04-11'
 ---
 
 Prettier is a very popular code formatter which uses very opinionated but
@@ -79,7 +79,7 @@ jobs:
           ref: ${{ github.head_ref }}
       - uses: actions/setup-node@v3
         with:
-          node-version: "16.x"
+          node-version: '16.x'
       - run: npm ci
       - run: npm run format
       - name: Commit changes

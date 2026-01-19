@@ -1,5 +1,5 @@
-import sqlite3 from "better-sqlite3"
-import { migrate } from "./migrate"
+import sqlite3 from 'better-sqlite3'
+import { migrate } from './migrate'
 
 function create() {
   const client = sqlite3(process.env.DATABASE_FILENAME)
@@ -16,7 +16,7 @@ declare let globalThis: {
 
 export let client: ReturnType<typeof create>
 
-if (process.env.NODE_ENV !== "production") {
+if (process.env.NODE_ENV !== 'production') {
   if (!globalThis.client) {
     globalThis.client = create()
   }

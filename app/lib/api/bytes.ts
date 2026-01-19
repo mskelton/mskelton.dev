@@ -1,10 +1,10 @@
-import { client } from "~/lib/db"
+import { client } from '~/lib/db'
 import {
   dateFromId,
   getFrontmatter,
   parseDescription,
   slugify,
-} from "~/lib/parser"
+} from '~/lib/parser'
 
 export async function upsertByte(id: string, source: string) {
   const { content, meta } = getFrontmatter(source)
@@ -44,7 +44,7 @@ export async function upsertByte(id: string, source: string) {
     // Get tag ids
     const tags = client
       .prepare<string[][], { id: string }>(
-        `SELECT id FROM tags WHERE name IN (${meta.tags.map(() => "?").join(",")})`,
+        `SELECT id FROM tags WHERE name IN (${meta.tags.map(() => '?').join(',')})`,
       )
       .all(meta.tags)
 

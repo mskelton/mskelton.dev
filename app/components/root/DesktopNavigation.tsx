@@ -1,9 +1,9 @@
-"use client"
+'use client'
 
-import { usePathname } from "next/navigation"
-import { useEffect, useState } from "react"
-import { NavItem } from "./NavItem"
-import { navItems } from "./navItems"
+import { usePathname } from 'next/navigation'
+import { useEffect, useState } from 'react'
+import { NavItem } from './NavItem'
+import { navItems } from './navItems'
 
 export function DesktopNavigation(props: React.HTMLAttributes<HTMLElement>) {
   const [local, setLocal] = useState<string>()

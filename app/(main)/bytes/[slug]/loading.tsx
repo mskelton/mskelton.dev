@@ -1,5 +1,5 @@
-import { PostLayout } from "~/components/layouts/PostLayout"
-import Loader from "~/components/Loader"
+import { PostLayout } from '~/components/layouts/PostLayout'
+import Loader from '~/components/Loader'
 
 export default function ByteLoading() {
   return (

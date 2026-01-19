@@ -1,5 +1,5 @@
-import rangeParser from "parse-numeric-range"
-import { visit } from "unist-util-visit"
+import rangeParser from 'parse-numeric-range'
+import { visit } from 'unist-util-visit'
 
 /**
  * Get the value given a regex. If the regex has a capture group, use the
@@ -10,7 +10,7 @@ function getValue(str, regex) {
   const match = regex.exec(str)
   const value = match?.[1] ?? match?.[0]
 
-  return [value?.trim(), str.replace(regex, "")]
+  return [value?.trim(), str.replace(regex, '')]
 }
 
 /**
@@ -29,17 +29,17 @@ export default function rehypeParseCodeMeta() {
   return (tree) => {
     visit(
       tree,
-      (node) => node.type === "element" && node.tagName === "pre",
+      (node) => node.type === 'element' && node.tagName === 'pre',
       (node) => {
         const code = Array.isArray(node.children)
           ? node.children[0]
           : node.children
 
-        const meta = builder(code.data?.meta ?? "")
-          .add("showLineNumbers")
-          .add("highlight", /\{([0-9,-]+)\}/)
-          .add("focus", /\[([0-9,-]+)\]/)
-          .add("title", /.*/)
+        const meta = builder(code.data?.meta ?? '')
+          .add('showLineNumbers')
+          .add('highlight', /\{([0-9,-]+)\}/)
+          .add('focus', /\[([0-9,-]+)\]/)
+          .add('title', /.*/)
           .build()
 
         node.data ??= {}

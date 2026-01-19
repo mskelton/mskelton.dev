@@ -1,5 +1,5 @@
 // vim:set foldlevel=2:
-import { JSX } from "react"
+import { JSX } from 'react'
 
 interface Skill {
   disabled?: boolean
@@ -20,8 +20,8 @@ export const skills: Skill[] = [
         />
       </svg>
     ),
-    name: "TypeScript",
-    url: "https://www.typescriptlang.org/",
+    name: 'TypeScript',
+    url: 'https://www.typescriptlang.org/',
   },
   {
     icon: (
@@ -32,8 +32,8 @@ export const skills: Skill[] = [
         </g>
       </svg>
     ),
-    name: "React",
-    url: "https://react.dev/",
+    name: 'React',
+    url: 'https://react.dev/',
   },
   {
     disabled: true,
@@ -54,8 +54,8 @@ export const skills: Skill[] = [
         />
       </svg>
     ),
-    name: "HTML",
-    url: "https://developer.mozilla.org/en-US/docs/Web/HTML",
+    name: 'HTML',
+    url: 'https://developer.mozilla.org/en-US/docs/Web/HTML',
   },
   {
     icon: (
@@ -86,8 +86,8 @@ export const skills: Skill[] = [
         />
       </svg>
     ),
-    name: "CSS",
-    url: "https://developer.mozilla.org/en-US/docs/Web/CSS",
+    name: 'CSS',
+    url: 'https://developer.mozilla.org/en-US/docs/Web/CSS',
   },
   {
     icon: (
@@ -98,8 +98,8 @@ export const skills: Skill[] = [
         />
       </svg>
     ),
-    name: "Node.js",
-    url: "https://nodejs.org/en/",
+    name: 'Node.js',
+    url: 'https://nodejs.org/en/',
   },
   {
     icon: (
@@ -116,8 +116,8 @@ export const skills: Skill[] = [
         />
       </svg>
     ),
-    name: "Go",
-    url: "https://golang.org/",
+    name: 'Go',
+    url: 'https://golang.org/',
   },
   {
     icon: (
@@ -138,8 +138,8 @@ export const skills: Skill[] = [
         />
       </svg>
     ),
-    name: "Rust",
-    url: "https://www.rust-lang.org/",
+    name: 'Rust',
+    url: 'https://www.rust-lang.org/',
   },
   {
     icon: (
@@ -156,8 +156,8 @@ export const skills: Skill[] = [
         </g>
       </svg>
     ),
-    name: "GraphQL",
-    url: "https://graphql.org/",
+    name: 'GraphQL',
+    url: 'https://graphql.org/',
   },
   {
     icon: (
@@ -168,8 +168,8 @@ export const skills: Skill[] = [
         />
       </svg>
     ),
-    name: "Next.js",
-    url: "https://nextjs.org/",
+    name: 'Next.js',
+    url: 'https://nextjs.org/',
   },
   {
     icon: (
@@ -180,8 +180,8 @@ export const skills: Skill[] = [
         />
       </svg>
     ),
-    name: "Tailwind",
-    url: "https://tailwindcss.com/",
+    name: 'Tailwind',
+    url: 'https://tailwindcss.com/',
   },
   {
     icon: (
@@ -199,8 +199,8 @@ export const skills: Skill[] = [
       </svg>
     ),
 
-    name: "Storybook",
-    url: "https://storybook.js.org/",
+    name: 'Storybook',
+    url: 'https://storybook.js.org/',
   },
   {
     icon: (
@@ -256,8 +256,8 @@ export const skills: Skill[] = [
         />
       </svg>
     ),
-    name: "Jest",
-    url: "https://jestjs.io/",
+    name: 'Jest',
+    url: 'https://jestjs.io/',
   },
   {
     icon: (
@@ -277,8 +277,8 @@ export const skills: Skill[] = [
         />
       </svg>
     ),
-    name: "Vitest",
-    url: "https://vitest.dev/",
+    name: 'Vitest',
+    url: 'https://vitest.dev/',
   },
   {
     icon: (
@@ -313,8 +313,8 @@ export const skills: Skill[] = [
         />
       </svg>
     ),
-    name: "Playwright",
-    url: "https://playwright.dev/",
+    name: 'Playwright',
+    url: 'https://playwright.dev/',
   },
   {
     icon: (
@@ -325,8 +325,8 @@ export const skills: Skill[] = [
         />
       </svg>
     ),
-    name: "Prisma",
-    url: "https://www.prisma.io/",
+    name: 'Prisma',
+    url: 'https://www.prisma.io/',
   },
   {
     icon: (
@@ -337,8 +337,8 @@ export const skills: Skill[] = [
         />
       </svg>
     ),
-    name: "npm",
-    url: "https://www.npmjs.com/",
+    name: 'npm',
+    url: 'https://www.npmjs.com/',
   },
   {
     icon: (
@@ -353,8 +353,8 @@ export const skills: Skill[] = [
         />
       </svg>
     ),
-    name: "Yarn",
-    url: "https://yarnpkg.com/",
+    name: 'Yarn',
+    url: 'https://yarnpkg.com/',
   },
   {
     icon: (
@@ -369,8 +369,8 @@ export const skills: Skill[] = [
         <path d="M127.59 205h-50v-50h50v50Z" fill="#4e4e4e" />
       </svg>
     ),
-    name: "pnpm",
-    url: "https://pnpm.io/",
+    name: 'pnpm',
+    url: 'https://pnpm.io/',
   },
   {
     icon: (
@@ -410,8 +410,8 @@ export const skills: Skill[] = [
         </defs>
       </svg>
     ),
-    name: "Vite",
-    url: "https://vitejs.dev/",
+    name: 'Vite',
+    url: 'https://vitejs.dev/',
   },
   {
     icon: (
@@ -426,8 +426,8 @@ export const skills: Skill[] = [
         />
       </svg>
     ),
-    name: "webpack",
-    url: "https://webpack.js.org/",
+    name: 'webpack',
+    url: 'https://webpack.js.org/',
   },
   {
     icon: (
@@ -438,8 +438,8 @@ export const skills: Skill[] = [
         />
       </svg>
     ),
-    name: "Git",
-    url: "https://git-scm.com/",
+    name: 'Git',
+    url: 'https://git-scm.com/',
   },
   {
     icon: (
@@ -454,8 +454,8 @@ export const skills: Skill[] = [
         </g>
       </svg>
     ),
-    name: "GitHub",
-    url: "https://github.com/",
+    name: 'GitHub',
+    url: 'https://github.com/',
   },
   {
     disabled: true,
@@ -501,7 +501,7 @@ export const skills: Skill[] = [
         />
       </svg>
     ),
-    name: "Jira",
-    url: "https://www.atlassian.com/software/jira",
+    name: 'Jira',
+    url: 'https://www.atlassian.com/software/jira',
   },
 ]

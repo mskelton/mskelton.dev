@@ -2,7 +2,7 @@
 
 /** @param {import("eslint").Rule.Node} node */
 function isJSX(node) {
-  return node && ["JSXElement", "JSXFragment"].includes(node.type)
+  return node && ['JSXElement', 'JSXFragment'].includes(node.type)
 }
 
 /** @type {import("eslint").Rule.RuleModule} */
@@ -16,13 +16,13 @@ export default {
           return fixer.replaceTextRange([rangeStart, rangeStart + 1], to)
         },
         loc,
-        messageId: "unescapedEntity",
+        messageId: 'unescapedEntity',
       })
     }
 
     return {
       /** @param {import("eslint").Rule.Node} node */
-      "Literal, JSXText"(node) {
+      'Literal, JSXText'(node) {
         if (!isJSX(node.parent) || !node.loc) {
           return
         }
@@ -44,13 +44,13 @@ export default {
               replace({
                 from: "'",
                 loc: { column: start + index, line: i },
-                to: "’",
+                to: '’',
               })
             } else if (rawLine[index] === '"') {
               replace({
                 from: '"',
                 loc: { column: start + index, line: i },
-                to: isOpen ? "”" : "“",
+                to: isOpen ? '”' : '“',
               })
 
               isOpen = !isOpen
@@ -61,12 +61,12 @@ export default {
     }
   },
   meta: {
-    fixable: "code",
+    fixable: 'code',
     hasSuggestions: false,
     messages: {
-      unescapedEntity: "HTML entity, {{entity}}, must be escaped.",
+      unescapedEntity: 'HTML entity, {{entity}}, must be escaped.',
     },
     schema: [],
-    type: "suggestion",
+    type: 'suggestion',
   },
 }

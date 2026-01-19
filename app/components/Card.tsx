@@ -1,7 +1,7 @@
-import { ChevronRightIcon, LinkIcon } from "@heroicons/react/20/solid"
-import { clsx } from "clsx"
-import Link, { LinkProps } from "next/link"
-import { twMerge } from "tailwind-merge"
+import { ChevronRightIcon, LinkIcon } from '@heroicons/react/20/solid'
+import { clsx } from 'clsx'
+import Link, { LinkProps } from 'next/link'
+import { twMerge } from 'tailwind-merge'
 
 interface CardProps {
   as?: React.ElementType
@@ -10,20 +10,20 @@ interface CardProps {
 }
 
 export function Card({
-  as: Component = "div",
+  as: Component = 'div',
   children,
   className,
 }: CardProps) {
   return (
     <Component
-      className={clsx(className, "group relative flex flex-col items-start")}
+      className={clsx(className, 'group relative flex flex-col items-start')}
     >
       {children}
     </Component>
   )
 }
 
-interface CardLinkProps extends Omit<LinkProps, "href"> {
+interface CardLinkProps extends Omit<LinkProps, 'href'> {
   children?: React.ReactNode
   className?: string
   href: string
@@ -39,7 +39,7 @@ Card.Link = function CardLink({
     <>
       <div className="absolute -inset-x-4 -inset-y-6 z-0 scale-95 bg-zinc-50 opacity-0 transition group-hover:scale-100 group-hover:opacity-100 sm:-inset-x-6 sm:rounded-2xl dark:bg-zinc-800/50" />
       <Link
-        className={clsx("focusable -mx-2 rounded-sm px-2 py-1", className)}
+        className={clsx('focusable -mx-2 rounded-sm px-2 py-1', className)}
         {...props}
         href={href}
       >
@@ -58,12 +58,12 @@ interface CardTitleProps {
 }
 
 Card.Title = function CardTitle({
-  as: Component = "h2",
+  as: Component = 'h2',
   children,
   href,
   prefetch,
 }: CardTitleProps) {
-  const className = "text-zinc-800 dark:text-zinc-100 transition-colors"
+  const className = 'text-zinc-800 dark:text-zinc-100 transition-colors'
 
   return (
     <Component className="text-base font-semibold tracking-tight">
@@ -90,7 +90,7 @@ Card.Description = function CardDescription({
   return (
     <p
       className={clsx(
-        "relative z-10 mt-2 text-sm text-zinc-700 transition-colors dark:text-zinc-300",
+        'relative z-10 mt-2 text-sm text-zinc-700 transition-colors dark:text-zinc-300',
         className,
       )}
       data-testid="card-description"
@@ -123,7 +123,7 @@ export interface CardEyebrowProps extends React.HTMLAttributes<HTMLElement> {
 }
 
 Card.Eyebrow = function CardEyebrow({
-  as: Component = "p",
+  as: Component = 'p',
   children,
   className,
   decorate = false,
@@ -132,8 +132,8 @@ Card.Eyebrow = function CardEyebrow({
   return (
     <Component
       className={twMerge(
-        "relative z-10 order-first mb-3 flex items-center text-sm text-zinc-500 transition-colors dark:text-zinc-400",
-        decorate && "pl-3.5",
+        'relative z-10 order-first mb-3 flex items-center text-sm text-zinc-500 transition-colors dark:text-zinc-400',
+        decorate && 'pl-3.5',
         className,
       )}
       {...props}
@@ -152,7 +152,7 @@ Card.Eyebrow = function CardEyebrow({
   )
 }
 
-const formatURL = (url: string) => new URL(url).hostname.replace("www.", "")
+const formatURL = (url: string) => new URL(url).hostname.replace('www.', '')
 
 export interface CardExternalLinkProps {
   href: string
@@ -173,7 +173,7 @@ export interface CardTagsProps {
 }
 
 Card.Tags = function CardTags({ children, className }: CardTagsProps) {
-  return <div className={clsx("flex gap-2", className)}>{children}</div>
+  return <div className={clsx('flex gap-2', className)}>{children}</div>
 }
 
 export interface CardTagProps {
@@ -186,9 +186,9 @@ Card.Tag = function CardTag({ children, className, href }: CardTagProps) {
   return (
     <Link
       className={twMerge(
-        "relative z-20 flex items-center gap-0.5 rounded-2xl px-4 py-0.5 text-xs font-medium transition-colors",
-        "bg-zinc-100 text-zinc-800 group-hover:bg-zinc-200/70 hover:bg-zinc-200 hover:group-hover:bg-zinc-200",
-        "focusable transition-all dark:bg-zinc-800 dark:text-zinc-200 dark:group-hover:bg-zinc-700/70 dark:hover:bg-zinc-700 dark:hover:group-hover:bg-zinc-700/90",
+        'relative z-20 flex items-center gap-0.5 rounded-2xl px-4 py-0.5 text-xs font-medium transition-colors',
+        'bg-zinc-100 text-zinc-800 group-hover:bg-zinc-200/70 hover:bg-zinc-200 hover:group-hover:bg-zinc-200',
+        'focusable transition-all dark:bg-zinc-800 dark:text-zinc-200 dark:group-hover:bg-zinc-700/70 dark:hover:bg-zinc-700 dark:hover:group-hover:bg-zinc-700/90',
         className,
       )}
       data-testid="card-tag"

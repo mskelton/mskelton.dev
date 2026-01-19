@@ -1,15 +1,15 @@
-"use client"
+'use client'
 
-import clsx from "clsx"
-import Image from "next/image"
-import React, { useState } from "react"
+import clsx from 'clsx'
+import Image from 'next/image'
+import React, { useState } from 'react'
 import {
   ReactCompareSlider,
   ReactCompareSliderHandle,
   ReactCompareSliderHandleProps,
   ReactCompareSliderImageProps,
   styleFitContainer,
-} from "react-compare-slider"
+} from 'react-compare-slider'
 
 const Handle = ReactCompareSliderHandle as React.FC<
   ReactCompareSliderHandleProps & { className: string }
@@ -23,7 +23,7 @@ function CompareImage({
 }: React.ImgHTMLAttributes<HTMLImageElement> & { slug?: string }) {
   return (
     <Image
-      alt={alt ?? ""}
+      alt={alt ?? ''}
       onLoad={onLoad}
       placeholder="blur"
       // eslint-disable-next-line @typescript-eslint/no-require-imports
@@ -56,10 +56,10 @@ export default function ImageComparison({
       className="rounded-xl sm:max-w-[calc(100%+4rem)]"
       handle={
         <Handle
-          buttonStyle={{ borderColor: "currentcolor" }}
+          buttonStyle={{ borderColor: 'currentcolor' }}
           className={clsx(
-            "text-indigo-400 opacity-0 transition",
-            loaded === 2 && "opacity-100",
+            'text-indigo-400 opacity-0 transition',
+            loaded === 2 && 'opacity-100',
           )}
           style={{ color: undefined }}
         />

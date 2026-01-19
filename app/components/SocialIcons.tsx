@@ -1,4 +1,4 @@
-import { RssIcon } from "@heroicons/react/20/solid"
+import { RssIcon } from '@heroicons/react/20/solid'
 
 export function XIcon(props: React.SVGAttributes<SVGSVGElement>) {
   return (
@@ -26,27 +26,27 @@ export function LinkedInIcon(props: React.SVGAttributes<SVGSVGElement>) {
 
 export const socials = [
   {
-    href: "https://github.com/mskelton",
+    href: 'https://github.com/mskelton',
     icon: GitHubIcon,
-    label: "Follow on GitHub",
-    name: "GitHub",
+    label: 'Follow on GitHub',
+    name: 'GitHub',
   },
   {
-    href: "https://x.com/mskelton0",
+    href: 'https://x.com/mskelton0',
     icon: XIcon,
-    label: "Follow on X",
-    name: "X",
+    label: 'Follow on X',
+    name: 'X',
   },
   {
-    href: "https://linkedin.com/in/mskelton0/",
+    href: 'https://linkedin.com/in/mskelton0/',
     icon: LinkedInIcon,
-    label: "Follow on LinkedIn",
-    name: "LinkedIn",
+    label: 'Follow on LinkedIn',
+    name: 'LinkedIn',
   },
   {
-    href: "/rss/feed.xml",
+    href: '/rss/feed.xml',
     icon: RssIcon,
-    label: "RSS feed",
-    name: "RSS feed",
+    label: 'RSS feed',
+    name: 'RSS feed',
   },
 ]

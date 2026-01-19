@@ -1,5 +1,5 @@
-import { Container } from "../Container"
-import { PageSubtitle, PageTitle } from "../PageTitle"
+import { Container } from '../Container'
+import { PageSubtitle, PageTitle } from '../PageTitle'
 
 export interface SimpleLayoutProps {
   children?: React.ReactNode
@@ -21,7 +21,7 @@ export function SimpleLayout({
         <PageSubtitle>{intro}</PageSubtitle>
       </header>
 
-      <div className={noMargin ? "" : "mt-16 sm:mt-20"}>{children}</div>
+      <div className={noMargin ? '' : 'mt-16 sm:mt-20'}>{children}</div>
     </Container>
   )
 }

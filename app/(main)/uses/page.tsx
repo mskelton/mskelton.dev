@@ -1,11 +1,11 @@
-import { Metadata } from "next"
-import { Card } from "~/components/Card"
-import { SimpleLayout } from "~/components/layouts/SimpleLayout"
-import { Section, SectionProps } from "~/components/Section"
+import { Metadata } from 'next'
+import { Card } from '~/components/Card'
+import { SimpleLayout } from '~/components/layouts/SimpleLayout'
+import { Section, SectionProps } from '~/components/Section'
 
 export const metadata: Metadata = {
   description: `I create software 40+ hours per week so having the right tools is important to me. Poor tools can result in lower productivity and increased health risk. Here’s a big list of all of my favorite stuff.`,
-  title: "Uses | Mark Skelton",
+  title: 'Uses | Mark Skelton',
 }
 
 function ToolsSection({ children, ...props }: SectionProps) {
@@ -31,7 +31,7 @@ function Tool({ children, href, title }: ToolProps) {
         {title}
       </Card.Title>
 
-      <Card.Description className={href ? "mb-6" : ""}>
+      <Card.Description className={href ? 'mb-6' : ''}>
         {children}
       </Card.Description>
 

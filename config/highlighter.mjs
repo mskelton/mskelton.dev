@@ -1,37 +1,37 @@
-import { tokyolight } from "./themes/tokyolight.mjs"
-import { tokyonight } from "./themes/tokyonight.mjs"
+import { tokyolight } from './themes/tokyolight.mjs'
+import { tokyonight } from './themes/tokyonight.mjs'
 
 /** @type {import("shiki").BundledLanguage[]} */
 export const langs = [
-  "bash",
-  "css",
-  "diff",
-  "fish",
-  "go",
-  "html",
-  "http",
-  "javascript",
-  "json",
-  "lua",
-  "markdown",
-  "prolog",
-  "rust",
-  "scheme",
-  "toml",
-  "tsx",
-  "typescript",
-  "vim",
-  "xml",
-  "yaml",
+  'bash',
+  'css',
+  'diff',
+  'fish',
+  'go',
+  'html',
+  'http',
+  'javascript',
+  'json',
+  'lua',
+  'markdown',
+  'prolog',
+  'rust',
+  'scheme',
+  'toml',
+  'tsx',
+  'typescript',
+  'vim',
+  'xml',
+  'yaml',
 ]
 
 export const langAlias = {
-  query: "scheme",
+  query: 'scheme',
 }
 
 export const themeMap = {
-  light: "tokyolight",
-  dark: "tokyonight",
+  light: 'tokyolight',
+  dark: 'tokyonight',
 }
 
 /** @type {import("shiki").Theme[]} */

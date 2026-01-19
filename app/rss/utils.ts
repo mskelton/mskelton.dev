@@ -1,13 +1,13 @@
-import { Feed } from "feed"
-import { cache } from "react"
-import { getAllBytes } from "~/(main)/bytes/api"
-import { parseDate } from "~/lib/date"
-import { getAllPosts } from "~/lib/posts"
-import { siteMeta } from "~/lib/siteMeta"
+import { Feed } from 'feed'
+import { cache } from 'react'
+import { getAllBytes } from '~/(main)/bytes/api'
+import { parseDate } from '~/lib/date'
+import { getAllPosts } from '~/lib/posts'
+import { siteMeta } from '~/lib/siteMeta'
 
 const author = {
   email: siteMeta.email,
-  name: "Mark Skelton",
+  name: 'Mark Skelton',
 }
 
 // Revalidate the data at most every hour
@@ -32,19 +32,19 @@ export const getFeed = cache(async () => {
     title: author.name,
   })
 
-  feed.addCategory("Blog")
-  feed.addCategory("Bytes")
+  feed.addCategory('Blog')
+  feed.addCategory('Bytes')
 
   const items = [
     ...posts.map((post) => ({
       ...post,
-      category: "Blog",
+      category: 'Blog',
       date: parseDate(post.date),
       url: `${siteMeta.url}/blog/${post.slug}`,
     })),
     ...bytes.map((byte) => ({
       ...byte,
-      category: "Bytes",
+      category: 'Bytes',
       date: byte.created_at,
       url: `${siteMeta.url}/bytes/${byte.id}`,
     })),

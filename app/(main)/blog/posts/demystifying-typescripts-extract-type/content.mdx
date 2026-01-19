@@ -4,7 +4,7 @@ description:
   TypeScript's Extract type can be confusing to understand and use. In this
   article, I'll show how this type works as well as some practical examples
   of when you might want to use it in your applications.
-date: "2021-06-03"
+date: '2021-06-03'
 ---
 
 Many of the applications I develop at work utilize TypeScript for front-end
@@ -53,9 +53,9 @@ look something like this:
 
 ```typescript
 type Product =
-  | { type: "book"; author: string }
-  | { type: "movie"; producer: string }
-  | { type: "appliance"; manufacturer: string }
+  | { type: 'book'; author: string }
+  | { type: 'movie'; producer: string }
+  | { type: 'appliance'; manufacturer: string }
 ```
 
 Let's say we want to create a function that takes an array of `Product`s
@@ -63,7 +63,7 @@ and returns only those which match a specified type. This would look
 something like this:
 
 ```typescript
-function filterProducts(products: Product[], type: Product["type"]) {
+function filterProducts(products: Product[], type: Product['type']) {
   return products.filter((item) => item.type === type)
 }
 ```
@@ -74,12 +74,12 @@ returned from calling `filterProducts(products, 'book')` will be
 `movie`s or `appliance`s. With the power of `Extract`, we can improve this:
 
 ```typescript
-function filterProducts<T extends Product, U extends T["type"]>(
+function filterProducts<T extends Product, U extends T['type']>(
   products: T[],
   type: U,
 ) {
   return products.filter(
-    (item): item is Extract<T, Record<"type", U>> => item.type === type,
+    (item): item is Extract<T, Record<'type', U>> => item.type === type,
   )
 }
 ```
@@ -110,7 +110,7 @@ containing all members that `{ type: 'book' }` is assignable to. Our final
 resulting type when calling our function will look like this:
 
 ```typescript
-type Result = { type: "book"; author: string }[]
+type Result = { type: 'book'; author: string }[]
 ```
 
 Neat, right!
@@ -140,7 +140,7 @@ contains only the phone number keys. This would be fairly simple with
 `Pick` as we could do this:
 
 ```typescript
-type PhoneInfo = Pick<Person, "homePhone" | "mobilePhone" | "workPhone">
+type PhoneInfo = Pick<Person, 'homePhone' | 'mobilePhone' | 'workPhone'>
 ```
 
 However, if we have a large number of phone number keys, this will be

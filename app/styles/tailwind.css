@@ -1,4 +1,4 @@
-@import "tailwindcss" source(none);
+@import 'tailwindcss' source(none);
 @plugin "@tailwindcss/typography";
 @plugin "@tailwindcss/container-queries";
 @config "../../tailwind.config.cjs";
