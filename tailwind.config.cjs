@@ -73,13 +73,13 @@ module.exports = {
             '--tw-prose-hl-border': theme('colors.indigo.500'),
 
             // Base
-            color: 'var(--tw-prose-body)',
-            lineHeight: theme('lineHeight.7'),
+            'color': 'var(--tw-prose-body)',
+            'lineHeight': theme('lineHeight.7'),
             '> *': {
               marginTop: theme('spacing.10'),
               marginBottom: theme('spacing.10'),
             },
-            p: {
+            'p': {
               ...transition,
               marginTop: theme('spacing.7'),
               marginBottom: theme('spacing.7'),
@@ -90,14 +90,14 @@ module.exports = {
               color: 'var(--tw-prose-headings)',
               fontWeight: theme('fontWeight.semibold'),
             },
-            h2: {
+            'h2': {
               fontSize: theme('fontSize.xl')[0],
               lineHeight: theme('lineHeight.7'),
               marginTop: theme('spacing.16'),
               paddingTop: theme('spacing.4'),
               marginBottom: theme('spacing.4'),
             },
-            h3: {
+            'h3': {
               fontSize: theme('fontSize.base')[0],
               lineHeight: theme('lineHeight.7'),
               marginTop: theme('spacing.12'),
@@ -109,7 +109,7 @@ module.exports = {
             },
 
             // Images
-            img: {
+            'img': {
               borderRadius: theme('borderRadius.xl'),
             },
 
@@ -144,7 +144,7 @@ module.exports = {
               marginRight: `-${theme('spacing.1')}`,
             },
 
-            strong: {
+            'strong': {
               color: 'var(--tw-prose-bold)',
               fontWeight: theme('fontWeight.semibold'),
             },
@@ -173,7 +173,7 @@ module.exports = {
             ':is(h2, h3) code': {
               fontWeight: theme('fontWeight.bold'),
             },
-            kbd: {
+            'kbd': {
               ...transition,
               backgroundColor: 'var(--tw-prose-kbd-bg)',
               borderColor: 'var(--tw-prose-kbd-borders)',
@@ -187,7 +187,7 @@ module.exports = {
             },
 
             // Quotes
-            blockquote: {
+            'blockquote': {
               paddingLeft: theme('spacing.6'),
               borderLeftWidth: theme('borderWidth.2'),
               borderLeftColor: 'var(--tw-prose-quote-borders)',
@@ -195,7 +195,7 @@ module.exports = {
             },
 
             // Figures
-            figcaption: {
+            'figcaption': {
               color: 'var(--tw-prose-captions)',
               fontSize: theme('fontSize.sm')[0],
               lineHeight: theme('lineHeight.6'),
@@ -206,17 +206,17 @@ module.exports = {
             },
 
             // Lists
-            ul: {
+            'ul': {
               listStyleType: 'disc',
             },
-            ol: {
+            'ol': {
               listStyleType: 'decimal',
             },
             'ul, ol': {
               paddingLeft: theme('spacing.6'),
               marginTop: theme('spacing.4'),
             },
-            li: {
+            'li': {
               marginTop: theme('spacing.2'),
               marginBottom: theme('spacing.2'),
               paddingLeft: theme('spacing[3.5]'),
@@ -261,7 +261,7 @@ module.exports = {
               marginBottom: theme('spacing.4'),
             },
 
-            pre: {
+            'pre': {
               // Shiki applies the background color of the theme to the `pre`
               // tag. However, I override this color and thus need to set it to
               // transparent otherwise a very subtle white background will slip
@@ -359,7 +359,7 @@ module.exports = {
             },
 
             // Horizontal rules
-            hr: {
+            'hr': {
               marginTop: theme('spacing.20'),
               marginBottom: theme('spacing.20'),
               borderTopWidth: '1px',

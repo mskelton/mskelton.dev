@@ -5,7 +5,7 @@ export const tokyonight = {
     'parameter.declaration': {
       foreground: '#e0af68',
     },
-    parameter: {
+    'parameter': {
       foreground: '#cfc9c2',
     },
     'property.declaration': {
@@ -23,16 +23,16 @@ export const tokyonight = {
     'variable.declaration': {
       foreground: '#bb9af7',
     },
-    variable: {
+    'variable': {
       foreground: '#c0caf5',
     },
   },
   semanticClass: 'tokyo-night-storm',
   colors: {
-    foreground: '#7982a9',
-    descriptionForeground: '#545c7e',
-    focusBorder: '#545c7e33',
-    errorForeground: '#5a607d',
+    'foreground': '#7982a9',
+    'descriptionForeground': '#545c7e',
+    'focusBorder': '#545c7e33',
+    'errorForeground': '#5a607d',
     'widget.shadow': '#ffffff00',
     'scrollbar.shadow': '#00000033',
     'badge.background': '#7e83b233',

@@ -4,7 +4,7 @@
   "singleQuote": true,
   "semi": false,
   "objectWrap": "preserve",
-  "quoteProps": "as-needed",
+  "quoteProps": "consistent",
   "experimentalSortPackageJson": true,
   "experimentalSortImports": {
     "newlinesBetween": false,

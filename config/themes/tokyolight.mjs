@@ -38,7 +38,7 @@ export const tokyolight = {
     'editorWidget.border': '#E5E5E6',
     'input.background': '#FFFFFF',
     'input.border': '#DBDBDC',
-    focusBorder: '#526FFF',
+    'focusBorder': '#526FFF',
     'list.activeSelectionBackground': '#DBDBDC',
     'list.activeSelectionForeground': '#232324',
     'list.focusBackground': '#DBDBDC',
