@@ -10,7 +10,7 @@ export const roles = [
       'Implemented GitHub Action workflows for code generation and automated test management',
       "Re-architecting the build process of Ryu, Ramp's internal component library",
     ],
-    title: 'Staff Software Engineer',
+    title: 'Senior Staff Software Engineer',
   },
   {
     company: 'Federato',

@@ -56,7 +56,7 @@ const resume: Role[] = [
     href: 'https://ramp.com',
     logo: LogoRamp,
     start: '2024',
-    title: 'Staff software engineer',
+    title: 'Senior staff software engineer',
   },
   {
     company: 'Federato',
