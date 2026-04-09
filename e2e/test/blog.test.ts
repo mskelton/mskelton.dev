@@ -1,5 +1,5 @@
-import matter from 'gray-matter'
 import fs from 'node:fs'
+import matter from 'gray-matter'
 import { expect, test } from '../fixtures/index.js'
 
 const baseURL = new URL('../../app/(main)/blog/', import.meta.url)

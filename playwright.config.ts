@@ -1,6 +1,6 @@
+import { fileURLToPath } from 'node:url'
 import { defineConfig, expect } from '@playwright/test'
 import axeMatchers from 'expect-axe-playwright'
-import { fileURLToPath } from 'node:url'
 
 expect.extend(axeMatchers)
 

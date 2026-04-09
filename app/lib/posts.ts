@@ -1,6 +1,6 @@
-import glob from 'fast-glob'
 import fs from 'node:fs/promises'
 import path from 'node:path'
+import glob from 'fast-glob'
 import { PostMeta } from '~/components/layouts/PostLayout'
 
 interface Post extends PostMeta {
